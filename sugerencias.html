@@ -43,28 +43,32 @@
 
                 <div class="actions">
                     <ul class="actions-list">
-                        <li class="action"><a href="#">Consejería</a></li>
-                        <li class="action"><a href="#">Realizar Comentarios</a></li>
-                        <li class="action"><a href="#">Sacar cita con Profesora</a></li>
-                        <li class="action"><a href="#">Hacer sugerencias de clases</a></li>
+                        <li class="action"><a href="index.html">Consejería</a></li>
+                        <li class="action"><a href="">Realizar Comentarios</a></li>
+                        <li class="action"><a href="cita.html">Sacar cita con Profesora</a></li>
+                        <li class="action"><a href="sugerencias.html">Hacer sugerencias de clases</a></li>
                         
                     </ul>
                 </div>
                 <h2 class="title">Hacer Sugerencias de Clases</h2>
                 
                 <section class="suggestions">
+                    <button class="suggestion-toggle">Make new Suggestion</button>
                     <div class="suggestion-form">
                         <div class="form-group">
                             <div class="form-label">Title</div>
-                        <div class="title-input"><input type="text">
+                        <div><input type="text" class="form-input-title">
                         </div>
                     </div>
                         <div class="form-group">
                             <div class="form-label">Message</div>
-                        <div class="title-input"><textarea name="" id="" cols="30" rows="10"></textarea>
+                        <div><textarea name="" class="form-input" cols="30" rows="10"></textarea>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                         <button type="submit" class="submit-btn">Post To Forum</button>
+                         <button class="cancel-btn">Cancel</button>
+                        </div>
                     </div>
                     <div class="suggestion">
                         <div class="suggestion-title">TEMA: Sugerencia 1</div>
@@ -122,6 +126,12 @@
                 minDate: new Date(2020, 07, 14),
                 maxDate: new Date(2020, 11, 4)
             });
+        </script>
+        <script>
+            $(".suggestion-toggle").click(function(){
+                
+  $(".suggestion-form").toggleClass("active");
+});
         </script>
 </body>
 </html>
