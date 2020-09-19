@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | DataTables</title>
+  <title>CONSEJERIA-UPRA | STUDENT</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,7 +26,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="../../index3.html" class="nav-link">Inicio</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -146,7 +146,7 @@
   </nav>
   <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
+ <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
@@ -162,7 +162,7 @@
           <img src="../../img/profeliana.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">Eliana Valenzuela Andrade</a>
+          <a href="#" class="d-block">Eliana Valenzuela Andrade</a>
         </div>
       </div>
 
@@ -183,50 +183,30 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
+          <li class="nav-item has-treeview menu-open">
+            <a href="../../index.html" class="nav-link">
+               <i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Inicio</p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                 &nbsp;&nbsp;&nbsp;<p>Home</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
           </li>
-        <li class="nav-item">
+          <li class="nav-item has-treeview menu-open">
             <a href="../examples/projects.html" class="nav-link">
-                <i class="fas fa-user-graduate"></i>
-                <p>Estudiantes</p>
+               <i class="fas fa-user-graduate"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Data Estudiantes</p>
             </a>
-        </li>
-        <li class="nav-item">
+          </li>
+           <li class="nav-item has-treeview menu-open">
             <a href="../calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
+               <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Calendario</p>
             </a>
-        </li>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="../mailbox/mailbox.html" class="nav-link">
+               <i class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Mail Box</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -245,7 +225,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Inicio</a></li>
               <li class="breadcrumb-item active">PROGRAMA ACADEMICO</li>
             </ol>
           </div>
@@ -274,10 +254,11 @@
                     Año: <b>5</b>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
+                <td><a  href="../../editest.html"><button type="button" class="btn btn-block btn-danger">EDIT</button></a></td>
+              <div class="card-body"> 
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr width="50%" bgcolor="yellow">
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -290,8 +271,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>CCOM-3001</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3001</td>
                     <td>Programación I</td>
                     <td>5</td>
                     <td>C</td>
@@ -302,7 +283,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>CCOM-3002</td>
+                    <td>CCOM3002</td>
                     <td>Programación II</td>
                     <td>5</td>
                     <td>C</td>
@@ -312,8 +293,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>CCOM-3010</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3010</td>
                     <td>Niveles Lógicos</td>
                     <td>3</td>
                     <td>A</td>
@@ -321,10 +302,10 @@
                     <td></td>
                     <td></td>
                     <td>B62</td>
-                    <td></td>
+                    <td>CCOM3135</td>
                   </tr>
                   <tr>
-                    <td>CCOM-3015</td>
+                    <td>CCOM3015</td>
                     <td>Computadoras en la Sociedad</td>
                     <td>3</td>
                     <td>A</td>
@@ -334,8 +315,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>CCOM-3020</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3020</td>
                     <td>Matemáticas Discretas</td>
                     <td>3</td>
                     <td>C</td>
@@ -346,7 +327,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>CCOM-3025</td>
+                    <td>CCOM3025</td>
                     <td>Int. Sistemas de Computadoras</td>
                     <td>3</td>
                     <td>A</td>
@@ -356,9 +337,9 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>CCOM-3035</td>
-                    <td>Organización de Computadoras</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3035</td>
+                    <td>Organización de Comp.</td>
                     <td>3</td>
                     <td>A</td>
                     <td></td>
@@ -368,7 +349,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>CCOM-3041</td>
+                    <td>CCOM3041</td>
                     <td>Sistemas Operativos</td>
                     <td>3</td>
                     <td>C</td>
@@ -378,8 +359,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>CCOM-4005</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4005</td>
                     <td>Estructura de Datos</td>
                     <td>3</td>
                     <td>C</td>
@@ -400,7 +381,7 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
+                  <tr width="50%" bgcolor="D6D2D2">
                     <td>CCOM4007</td>
                     <td>Estadística Aplicada a CCOM</td>
                     <td>3</td>
@@ -412,7 +393,7 @@
                     <td>MATE3026</td>
                   </tr>
                   <tr>
-                    <td>CCOM-4025</td>
+                    <td>CCOM4025</td>
                     <td>Org. Lenguajes de Programación</td>
                     <td>3</td>
                     <td>B</td>
@@ -422,8 +403,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>CCOM-4065</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4065</td>
                     <td>Algebra Lineal Numérica</td>
                     <td>3</td>
                     <td></td>
@@ -434,7 +415,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>CCOM-4115</td>
+                    <td>CCOM4115</td>
                     <td>Diseño Base de Datos</td>
                     <td>3</td>
                     <td>B</td>
@@ -444,8 +425,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>CCOM-4075</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4075</td>
                     <td>Ingeniería de Software</td>
                     <td>3</td>
                     <td></td>
@@ -456,7 +437,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>CCOM-4095</td>
+                    <td>CCOM4095</td>
                     <td>Proyecto Ingeniería de Prog.</td>
                     <td>3</td>
                     <td></td>
@@ -467,7 +448,7 @@
                     <td></td>
                   </tr>
                     <thead>
-                  <tr>
+                  <tr width="50%" bgcolor="yellow"> 
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -479,8 +460,8 @@
                     <th>Convalidación</th>
                   </tr>
                   </thead>
-                  <tr>
-                    <td>ESPA-3101</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>ESPA3101</td>
                     <td>Español I</td>
                     <td>3</td>
                     <td>C</td>
@@ -491,7 +472,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>ESPA-3102</td>
+                    <td>ESPA3102</td>
                     <td>Español II</td>
                     <td>3</td>
                     <td>A</td>
@@ -501,8 +482,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>ESPA-3208</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>ESPA3208</td>
                     <td>Redación y Estilo</td>
                     <td>3</td>
                     <td>A</td>
@@ -513,7 +494,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>INGL-3101</td>
+                    <td>INGL3101</td>
                     <td>Inglés I</td>
                     <td>3</td>
                     <td>B</td>
@@ -523,8 +504,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>INGL-3102</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>INGL3102</td>
                     <td>Inglés</td>
                     <td>3</td>
                     <td>B</td>
@@ -535,18 +516,18 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>INGL-3015</td>
+                    <td>INGL3015</td>
                     <td>Inglés Ciencias y Tecnología</td>
+                    <td>3</td>
                     <td>A</td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
                   </tr>
-                  <tr>
-                    <td>MATE-0008</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>MATE0008</td>
                     <td>Desarrollo Destrezas Básicas</td>
                     <td>0</td>
                     <td>P</td>
@@ -557,7 +538,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>MATE-3171</td>
+                    <td>MATE3171</td>
                     <td>Precálculo I</td>
                     <td>3</td>
                     <td>C</td>
@@ -567,8 +548,8 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td>MATE-3172</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>MATE3172</td>
                     <td>Precálculo II</td>
                     <td>3</td>
                     <td>C</td>
@@ -579,7 +560,7 @@
                     <td></td>
                   </tr>
                   <tr>
-                    <td>MATE-3031</td>
+                    <td>MATE3031</td>
                     <td>Cálculo I</td>
                     <td>4</td>
                     <td></td>
@@ -589,677 +570,240 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>Safari 1.3</td>
-                    <td>OSX.3</td>
-                    <td>312.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>Safari 2.0</td>
-                    <td>OSX.4+</td>
-                    <td>419.3</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>Safari 3.0</td>
-                    <td>OSX.4+</td>
-                    <td>522.1</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>OmniWeb 5.5</td>
-                    <td>OSX.4+</td>
-                    <td>420</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>iPod Touch / iPhone</td>
-                    <td>iPod</td>
-                    <td>420.1</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>S60</td>
-                    <td>S60</td>
-                    <td>413</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 7.0</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 7.5</td>
-                    <td>Win 95+ / OSX.2+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 8.0</td>
-                    <td>Win 95+ / OSX.2+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 8.5</td>
-                    <td>Win 95+ / OSX.2+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 9.0</td>
-                    <td>Win 95+ / OSX.3+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 9.2</td>
-                    <td>Win 88+ / OSX.3+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 9.5</td>
-                    <td>Win 88+ / OSX.3+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera for Wii</td>
-                    <td>Wii</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Nokia N800</td>
-                    <td>N800</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Nintendo DS browser</td>
-                    <td>Nintendo DS</td>
-                    <td>8.5</td>
-                    <td>C/A<sup>1</sup></td>
-                  </tr>
-                  <tr>
-                    <td>KHTML</td>
-                    <td>Konqureror 3.1</td>
-                    <td>KDE 3.1</td>
-                    <td>3.1</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>HUMA3201</td>
+                    <td>Cultura Occidental III</td>
+                    <td>3</td>
                     <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>KHTML</td>
-                    <td>Konqureror 3.3</td>
-                    <td>KDE 3.3</td>
-                    <td>3.3</td>
+                    <td>HIST3242</td>
+                    <td>Historia de Puerto Rico II</td>
+                    <td>3</td>
+                    <td></td>
+                    <td>C01-Matriculado</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CISO3121</td>
+                    <td>Introducción Ciencias Sociales</td>
+                    <td>3</td>
                     <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>KHTML</td>
-                    <td>Konqureror 3.5</td>
-                    <td>KDE 3.5</td>
-                    <td>3.5</td>
-                    <td>A</td>
+                    <td>CISO3122</td>
+                    <td>Introducción Ciencias Sociales</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CIBI3001</td>
+                    <td>Int. Ciencias Biológicas I</td>
+                    <td>3</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>Tasman</td>
-                    <td>Internet Explorer 4.5</td>
-                    <td>Mac OS 8-9</td>
-                    <td>-</td>
-                    <td>X</td>
+                    <td>CIBI3002</td>
+                    <td>Int. Ciencias Biológicas II</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>FISI3011</td>
+                    <td>Física Universitaria I</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>Tasman</td>
-                    <td>Internet Explorer 5.1</td>
-                    <td>Mac OS 7.6-9</td>
+                    <td>FISI3013</td>
+                    <td>Lab Física Universitaria I</td>
                     <td>1</td>
                     <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
-                  <tr>
-                    <td>Tasman</td>
-                    <td>Internet Explorer 5.2</td>
-                    <td>Mac OS 8-X</td>
-                    <td>1</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>NetFront 3.1</td>
-                    <td>Embedded devices</td>
-                    <td>-</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>NetFront 3.4</td>
-                    <td>Embedded devices</td>
-                    <td>-</td>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>FISI3012</td>
+                    <td>Física Universitaria II</td>
+                    <td>3</td>
                     <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>Misc</td>
-                    <td>Dillo 0.8</td>
-                    <td>Embedded devices</td>
-                    <td>-</td>
-                    <td>X</td>
+                    <td>FISI3014</td>
+                    <td>Lab Física Universitaria I</td>
+                    <td>1</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <thead>
+                  <tr width="50%" bgcolor="yellow">
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Matriculado</th>
+                    <th>Recomendación</th>
+                    <th>Iniciales</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación</th>
+                  </tr>
+                  </thead>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>EDFI3451</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>Misc</td>
-                    <td>Links</td>
-                    <td>Text only</td>
-                    <td>-</td>
-                    <td>X</td>
+                    <td>EDFI3475</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>EDFI3025</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>Misc</td>
-                    <td>Lynx</td>
-                    <td>Text only</td>
-                    <td>-</td>
-                    <td>X</td>
+                    <td>CCOM3027</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <thead>
+                  <tr width="50%" bgcolor="yellow">
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Matriculado</th>
+                    <th>Recomendación</th>
+                    <th>Iniciales</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación</th>
+                  </tr>
+                  </thead>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4306</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>Misc</td>
-                    <td>IE Mobile</td>
-                    <td>Windows Mobile 6</td>
-                    <td>-</td>
-                    <td>C</td>
+                    <td>CCOM4305</td>
+                    <td></td>
+                    <td>4</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4307</td>
+                    <td>Avanzada</td>
+                    <td>4</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td>Misc</td>
-                    <td>PSP browser</td>
-                    <td>PSP</td>
-                    <td>-</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Other browsers</td>
-                    <td>All others</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>U</td>
+                    <td>CCOM4019</td>
+                    <td>Avanzada</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot>
                 </table>
+                  <b align="right"> Total de Creditos Electivas Departamentales: 14</b>
+                  
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                    <td>7</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.5</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 2.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 3.0</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>1.9</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.0</td>
-                    <td>OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.5</td>
-                    <td>OSX.3+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Netscape 7.2</td>
-                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Netscape Browser 8</td>
-                    <td>Win 98SE+</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Netscape Navigator 9</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.0</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>1</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.1</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>1.1</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.2</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>1.2</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.3</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>1.3</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.4</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>1.4</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.5</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>1.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.6</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>1.6</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.7</td>
-                    <td>Win 98+ / OSX.1+</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Mozilla 1.8</td>
-                    <td>Win 98+ / OSX.1+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Seamonkey 1.1</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Epiphany 2.20</td>
-                    <td>Gnome</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>Safari 1.2</td>
-                    <td>OSX.3</td>
-                    <td>125.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>Safari 1.3</td>
-                    <td>OSX.3</td>
-                    <td>312.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>Safari 2.0</td>
-                    <td>OSX.4+</td>
-                    <td>419.3</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>Safari 3.0</td>
-                    <td>OSX.4+</td>
-                    <td>522.1</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>OmniWeb 5.5</td>
-                    <td>OSX.4+</td>
-                    <td>420</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>iPod Touch / iPhone</td>
-                    <td>iPod</td>
-                    <td>420.1</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Webkit</td>
-                    <td>S60</td>
-                    <td>S60</td>
-                    <td>413</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 7.0</td>
-                    <td>Win 95+ / OSX.1+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 7.5</td>
-                    <td>Win 95+ / OSX.2+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 8.0</td>
-                    <td>Win 95+ / OSX.2+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 8.5</td>
-                    <td>Win 95+ / OSX.2+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 9.0</td>
-                    <td>Win 95+ / OSX.3+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 9.2</td>
-                    <td>Win 88+ / OSX.3+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera 9.5</td>
-                    <td>Win 88+ / OSX.3+</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Opera for Wii</td>
-                    <td>Wii</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Nokia N800</td>
-                    <td>N800</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Presto</td>
-                    <td>Nintendo DS browser</td>
-                    <td>Nintendo DS</td>
-                    <td>8.5</td>
-                    <td>C/A<sup>1</sup></td>
-                  </tr>
-                  <tr>
-                    <td>KHTML</td>
-                    <td>Konqureror 3.1</td>
-                    <td>KDE 3.1</td>
-                    <td>3.1</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>KHTML</td>
-                    <td>Konqureror 3.3</td>
-                    <td>KDE 3.3</td>
-                    <td>3.3</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>KHTML</td>
-                    <td>Konqureror 3.5</td>
-                    <td>KDE 3.5</td>
-                    <td>3.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Tasman</td>
-                    <td>Internet Explorer 4.5</td>
-                    <td>Mac OS 8-9</td>
-                    <td>-</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Tasman</td>
-                    <td>Internet Explorer 5.1</td>
-                    <td>Mac OS 7.6-9</td>
-                    <td>1</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Tasman</td>
-                    <td>Internet Explorer 5.2</td>
-                    <td>Mac OS 8-X</td>
-                    <td>1</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>NetFront 3.1</td>
-                    <td>Embedded devices</td>
-                    <td>-</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>NetFront 3.4</td>
-                    <td>Embedded devices</td>
-                    <td>-</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>Dillo 0.8</td>
-                    <td>Embedded devices</td>
-                    <td>-</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>Links</td>
-                    <td>Text only</td>
-                    <td>-</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>Lynx</td>
-                    <td>Text only</td>
-                    <td>-</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>IE Mobile</td>
-                    <td>Windows Mobile 6</td>
-                    <td>-</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Misc</td>
-                    <td>PSP browser</td>
-                    <td>PSP</td>
-                    <td>-</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Other browsers</td>
-                    <td>All others</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>U</td>
-                  </tr>
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
+           
             <!-- /.card -->
           </div>
           <!-- /.col -->
@@ -1308,22 +852,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+
 </body>
 </html>
