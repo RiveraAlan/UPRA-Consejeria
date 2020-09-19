@@ -101,6 +101,8 @@ transition: margin-left 1s;
     background-color: #FFF;
     box-shadow: 0 0 3px rgba(0,0,0,0.3);
     padding: 1rem;
+    position: absolute;
+    top: 0;
 }
 
 .hamburguer-icon {
