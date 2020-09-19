@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consejeria - UPRA</title>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+        <header>
+            <div class="logo-area">
+                <h1 class="logo">Consejería UPRA</h1>
+            </div>
+            
+            
+        </header>
+        <main>
+            <div class="container">
+                <div class="student">
+                    <div class="student-info">
+                        <div class="name">
+                            Christian R. Tirado Morales
+                        </div>
+                        <div class="email">
+                            Correo: christian.tirado2@upr.edu
+                        </div>
+                        <div class="academic-year">
+                            Año académico: 2020-2021
+                        </div>
+                        <div class="student-number">
+                            Num. estudiante: 840-17-1194
+                        </div>
+                    </div>
+                        <div class="logout">
+                            <button class="">Log out</button>
+                        </div>
+                </div>
+                
+
+                <div class="actions">
+                    <ul class="actions-list">
+                        <li class="action"><a href="#">Consejería</a></li>
+                        <li class="action"><a href="#">Realizar Comentarios</a></li>
+                        <li class="action"><a href="#">Sacar cita con Profesora</a></li>
+                        <li class="action"><a href="#">Hacer sugerencias de clases</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="container tables">
+                <div class="tab">
+                    <button class="tablinks active" onclick="openCity(event, 'Primer')">Primer Año</button>
+                    <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
+                    <button class="tablinks" onclick="openCity(event, 'Libres')">Tercer Año</button>
+                    <button class="tablinks" onclick="openCity(event, 'Cuarto')">Cuarto Año</button>
+                    <button class="tablinks" onclick="openCity(event, 'Departamentales')">Electivas Departamentales</button>
+                  </div>
+                  
+                  <!-- Tab content -->
+                  <div id="Primer" class="tabcontent active">
+                    <div class="limiter">
+                      <h2>Primer Semestre</h2>
+                      <div class="container-table100">
+                        <div class="wrap-table100">
+                          <div class="table100 ver2 m-b-110">
+                            <table data-vertable="ver1">
+                              <thead>
+                                <tr class="row100 head">
+                                  <th class="column100 column1" data-column="column1">Codigo</th>
+                                  <th class="column100 column2" data-column="column2">Descripcion</th>
+                                  <th class="column100 column3" data-column="column3">Nota</th>
+                                  <th class="column100 column4" data-column="column4">Creditos</th>
+                                  <th class="column100 column5" data-column="column5">Iniciales</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">CCOM 3001</td>
+                                  <td class="column100 column2" data-column="column2">Programacion I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">5</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">INGL 3101</td>
+                                  <td class="column100 column2" data-column="column2">Ingles Basico I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">INGL 3113</td>
+                                  <td class="column100 column2" data-column="column2">Pract. Oral Basico I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">0</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">CCOM 3010</td>
+                                  <td class="column100 column2" data-column="column2">Niveles Logicos</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">CCOM 3025</td>
+                                  <td class="column100 column2" data-column="column2">Int. Sist. Comp.</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">MATE 3171</td>
+                                  <td class="column100 column2" data-column="column2">Pre-Calculo I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <h2>Segundo Semestre</h2>
+                      <div class="container-table100">
+                        <div class="wrap-table100">
+                          <div class="table100 ver2 m-b-110">
+                            <table data-vertable="ver1">
+                              <thead>
+                                <tr class="row100 head">
+                                  <th class="column100 column1" data-column="column1">Codigo</th>
+                                  <th class="column100 column2" data-column="column2">Descripcion</th>
+                                  <th class="column100 column3" data-column="column3">Nota</th>
+                                  <th class="column100 column4" data-column="column4">Creditos</th>
+                                  <th class="column100 column5" data-column="column5">Iniciales</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">CCOM 3001</td>
+                                  <td class="column100 column2" data-column="column2">Programacion I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">5</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">INGL 3101</td>
+                                  <td class="column100 column2" data-column="column2">Ingles Basico I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">INGL 3113</td>
+                                  <td class="column100 column2" data-column="column2">Pract. Oral Basico I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">0</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">CCOM 3010</td>
+                                  <td class="column100 column2" data-column="column2">Niveles Logicos</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">CCOM 3025</td>
+                                  <td class="column100 column2" data-column="column2">Int. Sist. Comp.</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                                <tr class="row100">
+                                  <td class="column100 column1" data-column="column1">MATE 3171</td>
+                                  <td class="column100 column2" data-column="column2">Pre-Calculo I</td>
+                                  <td class="column100 column3" data-column="column3">A</td>
+                                  <td class="column100 column4" data-column="column4">3</td>
+                                  <td class="column100 column5" data-column="column5">--</td>
+                                </tr>
+                  
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div id="Otros" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cursos</th>
+                                <th>Descripcion</th>
+                                <th>Creditos</th>
+                                <th>Nota</th>
+                                <th>Matriculado</th>
+                                <th>Recomendacion</th>
+                                <th>Iniciales</th>
+                                <th>Ano Aprobo</th>
+                                <th>Convalidacion</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>ESPA-</td>
+                            <td>Espanol 1</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ESPA-</td>
+                            <td>Espanol 2</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ESPA-3208</td>
+                            <td>Redaccion y Estilo</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>INGL-</td>
+                            <td>Ingles 1</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>MATE-0008</td>
+                            <td>Desarrollo de Destrezas Basicas</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>MATE-3171</td>
+                            <td>Precalculo 1</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>MATE-3172</td>
+                            <td>Precalculo 2</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>MATE-3031</td>
+                            <td>Calculo 1</td>
+                            <td>4</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>HUMA- </td>
+                            <td>    </td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>HUMA- </td>
+                            <td>    </td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CISO-3121/31</td>
+                            <td>Introduccion Ciencias Sociales</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CISO- </td>
+                            <td>      </td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CIBI-3001</td>
+                            <td>Int. Ciencias Biologicas 1</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>CIBI-3002</td>
+                            <td>Int. Ciencias Biologicas 2</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>FISI-3011</td>
+                            <td>fisica Universitaria 1</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>FISI-3013</td>
+                            <td>Lab fisica Universitaria 1</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>FISI-3012</td>
+                            <td>Lab fisica Universitaria 2</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>FISI-3014</td>
+                            <td>Lab fisica Universitaria 2</td>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                  
+                  </div>
+                  
+                  <div id="Libres" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cursos</th>
+                                <th>Descripcion</th>
+                                <th>Creditos</th>
+                                <th>Nota</th>
+                                <th>Matriculado</th>
+                                <th>Recomendacion</th>
+                                <th>Iniciales</th>
+                                <th>Ano Aprobo</th>
+                                <th>Convalidacion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    
+                  </div>
+                  <div id="Departamentales" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cursos</th>
+                                <th>Descripcion</th>
+                                <th>Creditos</th>
+                                <th>Nota</th>
+                                <th>Matriculado</th>
+                                <th>Recomendacion</th>
+                                <th>Iniciales</th>
+                                <th>Ano Aprobo</th>
+                                <th>Convalidacion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <p></p>
+                  </div>
+
+            </div>
+            <!-- Tab links -->
+
+
+        </main>
+        <footer>
+
+        </footer>
+
+        <script src="index.js"></script>
+</body>
+</html>
