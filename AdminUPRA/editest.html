@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CONSEJERIA-UPRA | EDITAR</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+    
+<body class="hold-transition register-page">
+<div class="register-box">
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="index.html" class="nav-link">INICIO</a>
+      </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="pages/examples/projects.html" class="nav-link">ATRAS</a>
+      </li>
+  <div class="register-logo">
+    <a><b>CONSEJERIA</b>CCOM</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+    <?php if(!empty($message)): ?>
+    <p><?= $message ?></p>
+    <?php endif; ?>
+      <p class="login-box-msg">EDITAR PROGRAMA ACADEMICO</p>
+
+      <form action="edtiest.php" method="post">
+          <div class="input-group mb-3">
+          <input type="text" name="item_id" class="form-control" placeholder="NOTA">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-clipboard"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          <input type="text" name="name" class="form-control" placeholder="MATRICULADO">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+            <div class="input-group mb-3">
+          <input type="text" name="name" class="form-control" placeholder="RECOMENDACION">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-comment-dots"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          <input type="text" name="name" class="form-control" placeholder="AÑO APROBADO">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-comment-dots"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          <input type="text" name="name" class="form-control" placeholder="CONVALIDACION">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-comment-dots"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+    
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" name="btnRegister"class="btn btn-primary btn-block">ADD</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+</body>
+</html>
