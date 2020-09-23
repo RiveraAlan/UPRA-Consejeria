@@ -1,0 +1,1142 @@
+<style>
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+* {
+  box-sizing: border-box;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+h1, h3, h4, h5, h6 {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  letter-spacing: 1.5px;
+    color: #e0c200;
+}
+h2 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    letter-spacing: 1.5px;
+    color: black;
+    text-align: center;
+}
+
+li {
+    align-items: center;
+    text-decoration-line: center;
+}
+.section__titulo {
+  text-align: center;
+  font-size: 40px;
+  color: #e0c200;
+}
+.contenedor {
+  margin: auto;
+  width: 99%;
+}
+/*-------------------Estilos del header-------------------*/
+.header {
+  height: 60px;
+}
+.header .contenedor {
+  display: flex;
+  justify-content: space-between;
+}
+.logo, .icon-menu {
+  margin: 5px;
+  color: #fff;
+}
+.icon-menu {
+  display: block;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  background: #e0c200;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 5px;
+  margin-left: auto;
+  cursor: pointer;
+}
+/*------------------Estilos del menu------------------*/
+.nav {
+  position: absolute;
+  top: 60px;
+  left: -100%;
+  width: 100%;
+  transition: all 0.4s;
+}
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu__link {
+  display: block;
+  padding: 15px;
+  background: #e0c200;
+  text-decoration: none;
+  color: #fff;
+}
+.menu__link:hover, .select {
+  background: white;
+  color: #e0c200;
+}
+.mostrar {
+  left: 0;
+}
+
+/*--------------Estilos de banner--------------*/
+
+.banner {
+  margin-top: -60px;
+  position: relative;
+  z-index: -1000;
+  margin-bottom: 20px;
+}
+
+.banner .contenedor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+
+.banner__txt {
+  display: none;
+  color: #e0c200;
+}
+
+.banner__titulo{
+    color: #e0c200;
+}
+
+/*-----------------Estilos de info-----------------*/
+.info__columna {
+  background: black;
+  color: #fff;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.info__txt {
+    text-align: center;
+    color: black;
+}
+
+.info__titulo {
+    color: #e0c200;
+}
+
+.info__pregunta {
+    color: black;
+    text-align: center;
+}
+
+/*-----------------Estilos de cursos-----------------*/
+.cursos__columna {
+  position: relative;
+  margin-bottom: 30px;
+}
+.cursos__descripcion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  width: 60%;
+  height: 100%;
+  padding: 5px;
+}
+.cursos__titulo {
+  font-size: 25px;
+  margin: 5px 0;
+}
+.cursos__img {
+  width: 100%;
+}
+/*-----------------Estilos de footer-----------------*/
+
+.footer {
+  background: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer .social [class^="icon-"] {
+  display: inline-block;
+  color: #333;
+  text-decoration: none;
+  font-size: 30px;
+  padding: 10px;
+  background: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+}
+
+/*------------------Estilos responsive------------------*/
+
+@media(min-width:480px) {
+  .logo {
+    font-size: 40px;
+  }
+  .banner__titulo {
+    font-size: 30px;
+    margin: 5px 0;
+  }
+  .banner__txt {
+    display: block;
+    font-size: 18px;
+    margin: 7px 0;
+  }
+  .info, .cursos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -90px;
+  }
+  .info__columna {
+    width: 32%;
+  }
+  .info__titulo {
+    font-size: 30px;
+    margin: 5px 0;
+  }
+  .section__titulo {
+    width: 100%;
+  }
+  .cursos {
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+  .cursos__columna {
+    width: 49%;
+  }
+  .footer .social [class^="icon-"] {
+    margin: 0 10px;
+  }
+}
+@media(min-width:768px) {  
+  .banner__titulo {
+    font-size: 50px;
+  }
+  .cursos__titulo {
+    font-size: 40px;
+  }
+}
+
+@media(min-width:1024px) {  
+  .contenedor {
+    width: 1000px;
+  }
+  .section__titulo {
+    font-size: 50px;
+    margin: 30px 0;
+  }
+  .nav {
+    position: static;
+    width: auto;
+  }
+  .menu {
+    display: flex;
+  }
+  .icon-menu {
+    display: none;
+  }
+  .menu__link {
+    background: none;
+    font-size: 20px;
+  }
+  .select {
+    color: #fff;
+    background: #e0c200;
+  }
+  .banner__titulo {
+    font-size: 60px;
+  }
+  .banner__txt {
+    font-size: 25px;
+  }
+  .info {
+    margin-top: -120px;
+  }
+  .info__columna {
+    padding: 30px;
+  }
+  .info__titulo {
+    font-size: 40px;
+    text-align: center;
+  }
+  .cursos__descripcion {
+    padding: 20px;
+  }
+  .cursos__titulo {
+    font-size: 50px;
+  }
+  .cursos__txt {
+    font-size: 20px;
+  }
+}
+
+@media(min-width:1280px) {
+  .contenedor {
+    width: 1200px;
+  }
+  .logo {
+    font-size: 60px;
+  }
+  .banner .contenedor {
+    top: 40%;
+  }
+  .info {
+    margin-top: -220px;
+  }
+}
+</style>
+<style>@charset "UTF-8";
+
+@font-face {
+  font-family: "untitled-font-1";
+  src:url("../fonts/untitled-font-1.eot");
+  src:url("../fonts/untitled-font-1.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/untitled-font-1.woff") format("woff"),
+    url("../fonts/untitled-font-1.ttf") format("truetype"),
+    url("../fonts/untitled-font-1.svg#untitled-font-1") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "untitled-font-1" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "untitled-font-1" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu:before {
+  content: "\61";
+}
+.icon-snapchat:before {
+  content: "\62";
+}
+.icon-facebook:before {
+  content: "\63";
+}
+.icon-youtube:before {
+  content: "\65";
+}
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSEJERIA-UPRA</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+        <header class="header">
+            <br>
+            <div class="contenedor">
+            <h1 class="logo"></h1>
+            <span class="icon-menu" id="btn-menu"></span>
+                <nav class="nav" id="nav">
+                    <ul class="menu">
+                        <li class="menu__item"><a class="menu__link select" href="index.html">Inicio</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+         <div class="banner">
+            <img src="image/pageconse.png" alt="" class="banner__img">
+            <div class="contenedor">
+             <h1 class="banner__titulo"></h1>
+             </div>
+            </div>
+        <main>
+            <div class="container">
+                <div class="student">
+                    <div class="student-info">
+                        <div class="name">
+                            Nelson J. Octaviani Soto
+                        </div>
+                        <div class="email">
+                            Correo: nelson.octaviani@upr.edu
+                        </div>
+                        <div class="academic-year">
+                            Año académico: 2 Semestre
+                        </div>
+                        <div class="student-number">
+                            Num. Estudiante: 840-16-5082
+                        </div>
+                    </div>
+                        <div class="logout">
+                            <button class="">Log out</button>
+                        </div>
+                </div>
+                
+
+                <div class="actions">
+                    <ul class="actions-list">
+                        <li class="action"><a href="consejeria.html">Consejería</a></li>
+                        <li class="action"><a href="">Realizar Comentarios</a></li>
+                        <li class="action"><a href="cita.html">Sacar Cita con Consejero/a</a></li>
+                        <li class="action"><a href="sugerencias.html">Sugerencias de Clases</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="container tables">
+                
+                  <div id="Concentracion" class="tabcontent active">
+                    
+                    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <div align='center'><h1>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h1>
+                                    <h1>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h1>
+                                    <h1>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h1></div><br>
+              </div>
+                <div class="card-header">
+                    <h3>Nombre: Nelson J. Octaviani Soto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Correo: nelson.octaviani@upr.edu&nbsp;&nbsp;&nbsp; 
+                    Semestre: 2</h3>&nbsp;&nbsp;&nbsp;
+                    <h3>Número de Estudiante: 840-16-5082&nbsp;&nbsp;&nbsp;Créditos Recomendados: 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    Año: 5</h3>&nbsp;&nbsp;&nbsp;
+             
+              </div>
+              <div class="card-body"> 
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr width="50%" bgcolor="#e0c200">
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Matriculado</th>
+                    <th>Recomendación</th>
+                    <th>Aceptar recomendación</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3001</td>
+                    <td>Programación I</td>
+                    <td>5</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM3002</td>
+                    <td>Programación II</td>
+                    <td>5</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3010</td>
+                    <td>Niveles Lógicos</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td>B62</td>
+                    <td>CCOM3135</td>
+                  </tr>
+                  <tr>
+                    <td>CCOM3015</td>
+                    <td>Computadoras en la Sociedad</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3020</td>
+                    <td>Matemáticas Discretas</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM3025</td>
+                    <td>Int. Sistemas de Computadoras</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM3035</td>
+                    <td>Organización de Comp.</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM3041</td>
+                    <td>Sistemas Operativos</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4005</td>
+                    <td>Estructura de Datos</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM4006</td>
+                    <td>Diseño y Análisis de Algoritmo</td>
+                    <td>3</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4007</td>
+                    <td>Estadística Aplicada a CCOM</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td>MATE3026</td>
+                  </tr>
+                  <tr>
+                    <td>CCOM4025</td>
+                    <td>Org. Lenguajes de Programación</td>
+                    <td>3</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4065</td>
+                    <td>Algebra Lineal Numérica</td>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td>Prox. Sem</td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM4115</td>
+                    <td>Diseño Base de Datos</td>
+                    <td>3</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4075</td>
+                    <td>Ingeniería de Software</td>
+                    <td>3</td>
+                    <td></td>
+                    <td>C01-Matriculado</td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM4095</td>
+                    <td>Proyecto Ingeniería de Prog.</td>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td>Prox. Sem</td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                    <thead>
+                  <tr width="50%" bgcolor="e0c200"> 
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Matriculado</th>
+                    <th>Recomendación</th>
+                    <th>Iniciales</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación</th>
+                  </tr>
+                  </thead>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>ESPA3101</td>
+                    <td>Español I</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>ESPA3102</td>
+                    <td>Español II</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>ESPA3208</td>
+                    <td>Redación y Estilo</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>INGL3101</td>
+                    <td>Inglés I</td>
+                    <td>3</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>INGL3102</td>
+                    <td>Inglés</td>
+                    <td>3</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>INGL3015</td>
+                    <td>Inglés Ciencias y Tecnología</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>MATE0008</td>
+                    <td>Desarrollo Destrezas Básicas</td>
+                    <td>0</td>
+                    <td>P</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>MATE3171</td>
+                    <td>Precálculo I</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>MATE3172</td>
+                    <td>Precálculo II</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>MATE3031</td>
+                    <td>Cálculo I</td>
+                    <td>4</td>
+                    <td></td>
+                    <td>C01-Matriculado</td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>HUMA3201</td>
+                    <td>Cultura Occidental III</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>HIST3242</td>
+                    <td>Historia de Puerto Rico II</td>
+                    <td>3</td>
+                    <td></td>
+                    <td>C01-Matriculado</td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CISO3121</td>
+                    <td>Introducción Ciencias Sociales</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CISO3122</td>
+                    <td>Introducción Ciencias Sociales</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CIBI3001</td>
+                    <td>Int. Ciencias Biológicas I</td>
+                    <td>3</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CIBI3002</td>
+                    <td>Int. Ciencias Biológicas II</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>FISI3011</td>
+                    <td>Física Universitaria I</td>
+                    <td>3</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>FISI3013</td>
+                    <td>Lab Física Universitaria I</td>
+                    <td>1</td>
+                    <td>C</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>FISI3012</td>
+                    <td>Física Universitaria II</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>FISI3014</td>
+                    <td>Lab Física Universitaria I</td>
+                    <td>1</td>
+                    <td>B</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <thead>
+                  <tr width="50%" bgcolor="e0c200">
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Matriculado</th>
+                    <th>Recomendación</th>
+                    <th>Iniciales</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación</th>
+                  </tr>
+                  </thead>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>EDFI3451</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>EDFI3475</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>EDFI3025</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM3027</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <thead>
+                  <tr width="50%" bgcolor="e0c200">
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Matriculado</th>
+                    <th>Recomendación</th>
+                    <th>Iniciales</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación</th>
+                  </tr>
+                  </thead>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4306</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM4305</td>
+                    <td></td>
+                    <td>4</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr width="50%" bgcolor="D6D2D2">
+                    <td>CCOM4307</td>
+                    <td>Avanzada</td>
+                    <td>4</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CCOM4019</td>
+                    <td>Avanzada</td>
+                    <td>3</td>
+                    <td>A</td>
+                    <td></td>
+                    <td></td>
+                    <td><div align='center'><div class="buttons">
+                    <div class="pull-right">
+                        <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Accept">
+                    </div></div></div></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  </tbody>
+                </table>
+                  <b align="right"> Total de Creditos Electivas Departamentales: 14</b>
+                  
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+           
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+                  </div>
+                  </div>
+
+        </main>
+        <footer>
+
+        </footer>
+
+        <script src="index.js"></script>
+</body>
+</html>
