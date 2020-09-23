@@ -1,27 +1,467 @@
+<style>
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+* {
+  box-sizing: border-box;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+h1, h3, h4, h5, h6 {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  letter-spacing: 1.5px;
+    color: #e0c200;
+}
+h2 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    letter-spacing: 1.5px;
+    color: black;
+    text-align: center;
+}
+
+li {
+    align-items: center;
+    text-decoration-line: center;
+}
+.section__titulo {
+  text-align: center;
+  font-size: 40px;
+  color: #e0c200;
+}
+.contenedor {
+  margin: auto;
+  width: 99%;
+}
+/*-------------------Estilos del header-------------------*/
+.header {
+  height: 60px;
+}
+.header .contenedor {
+  display: flex;
+  justify-content: space-between;
+}
+.logo, .icon-menu {
+  margin: 5px;
+  color: #fff;
+}
+.icon-menu {
+  display: block;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  background: #e0c200;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 5px;
+  margin-left: auto;
+  cursor: pointer;
+}
+/*------------------Estilos del menu------------------*/
+.nav {
+  position: absolute;
+  top: 60px;
+  left: -100%;
+  width: 100%;
+  transition: all 0.4s;
+}
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu__link {
+  display: block;
+  padding: 15px;
+  background: #e0c200;
+  text-decoration: none;
+  color: #fff;
+}
+.menu__link:hover, .select {
+  background: white;
+  color: #e0c200;
+}
+.mostrar {
+  left: 0;
+}
+
+/*--------------Estilos de banner--------------*/
+
+.banner {
+  margin-top: -60px;
+  position: relative;
+  z-index: -1000;
+  margin-bottom: 20px;
+}
+
+.banner .contenedor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+
+.banner__txt {
+  display: none;
+  color: #e0c200;
+}
+
+.banner__titulo{
+    color: #e0c200;
+}
+
+/*-----------------Estilos de info-----------------*/
+.info__columna {
+  background: black;
+  color: #fff;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.info__txt {
+    text-align: center;
+    color: black;
+}
+
+.info__titulo {
+    color: #e0c200;
+}
+
+.info__pregunta {
+    color: black;
+    text-align: center;
+}
+
+/*-----------------Estilos de cursos-----------------*/
+.cursos__columna {
+  position: relative;
+  margin-bottom: 30px;
+}
+.cursos__descripcion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  width: 60%;
+  height: 100%;
+  padding: 5px;
+}
+.cursos__titulo {
+  font-size: 25px;
+  margin: 5px 0;
+}
+.cursos__img {
+  width: 100%;
+}
+/*-----------------Estilos de footer-----------------*/
+
+.footer {
+  background: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer .social [class^="icon-"] {
+  display: inline-block;
+  color: #333;
+  text-decoration: none;
+  font-size: 30px;
+  padding: 10px;
+  background: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+}
+
+/*------------------Estilos responsive------------------*/
+
+@media(min-width:480px) {
+  .logo {
+    font-size: 40px;
+  }
+  .banner__titulo {
+    font-size: 30px;
+    margin: 5px 0;
+  }
+  .banner__txt {
+    display: block;
+    font-size: 18px;
+    margin: 7px 0;
+  }
+  .info, .cursos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -90px;
+  }
+  .info__columna {
+    width: 32%;
+  }
+  .info__titulo {
+    font-size: 30px;
+    margin: 5px 0;
+  }
+  .section__titulo {
+    width: 100%;
+  }
+  .cursos {
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+  .cursos__columna {
+    width: 49%;
+  }
+  .footer .social [class^="icon-"] {
+    margin: 0 10px;
+  }
+}
+@media(min-width:768px) {  
+  .banner__titulo {
+    font-size: 50px;
+  }
+  .cursos__titulo {
+    font-size: 40px;
+  }
+}
+
+@media(min-width:1024px) {  
+  .contenedor {
+    width: 1000px;
+  }
+  .section__titulo {
+    font-size: 50px;
+    margin: 30px 0;
+  }
+  .nav {
+    position: static;
+    width: auto;
+  }
+  .menu {
+    display: flex;
+  }
+  .icon-menu {
+    display: none;
+  }
+  .menu__link {
+    background: none;
+    font-size: 20px;
+  }
+  .select {
+    color: #fff;
+    background: #e0c200;
+  }
+  .banner__titulo {
+    font-size: 60px;
+  }
+  .banner__txt {
+    font-size: 25px;
+  }
+  .info {
+    margin-top: -120px;
+  }
+  .info__columna {
+    padding: 30px;
+  }
+  .info__titulo {
+    font-size: 40px;
+    text-align: center;
+  }
+  .cursos__descripcion {
+    padding: 20px;
+  }
+  .cursos__titulo {
+    font-size: 50px;
+  }
+  .cursos__txt {
+    font-size: 20px;
+  }
+}
+
+@media(min-width:1280px) {
+  .contenedor {
+    width: 1200px;
+  }
+  .logo {
+    font-size: 60px;
+  }
+  .banner .contenedor {
+    top: 40%;
+  }
+  .info {
+    margin-top: -220px;
+  }
+}
+</style>
+<style>@charset "UTF-8";
+
+@font-face {
+  font-family: "untitled-font-1";
+  src:url("../fonts/untitled-font-1.eot");
+  src:url("../fonts/untitled-font-1.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/untitled-font-1.woff") format("woff"),
+    url("../fonts/untitled-font-1.ttf") format("truetype"),
+    url("../fonts/untitled-font-1.svg#untitled-font-1") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "untitled-font-1" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "untitled-font-1" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu:before {
+  content: "\61";
+}
+.icon-snapchat:before {
+  content: "\62";
+}
+.icon-facebook:before {
+  content: "\63";
+}
+.icon-youtube:before {
+  content: "\65";
+}
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Site Metas -->
+   <title>CONSEJERIA-UPRA</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- site icon -->
+   <link rel="icon" href="images/fevicon.png" type="image/png" />
+   <!-- Bootstrap core CSS -->
+   <link href="css/bootstrap.css" rel="stylesheet">
+   <!-- FontAwesome Icons core CSS -->
+   <link href="css/font-awesome.min.css" rel="stylesheet">
+   <!-- Custom animate styles for this template -->
+   <link href="css/animate.css" rel="stylesheet">
+   <!-- Custom styles for this template -->
+   <link href="style.css" rel="stylesheet">
+   <!-- Responsive styles for this template -->
+   <link href="css/responsive.css" rel="stylesheet">
+   <!-- Colors for this template -->
+   <link href="css/colors.css" rel="stylesheet">
+   <!-- light box gallery -->
+   <link href="css/ekko-lightbox.css" rel="stylesheet">
+   <!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+   <![endif]-->
+   <head>
+   <body id="home_page" class="home_page">
+      <!-- header -->
+     
+     <header class="header">
+            <br>
+            <div class="contenedor">
+            <h1 class="logo"></h1>
+            <span class="icon-menu" id="btn-menu"></span>
+                <nav class="nav" id="nav">
+                    <ul class="menu">
+                        <li class="menu__item"><a class="menu__link select" href="index.html">Inicio</a></li>
+                    </ul>
+                </nav>
+            </div>
+        
+          
+        </header>
+      <!-- end header -->
+       <div class="banner">
+            <img src="image/login2.png" alt="" class="banner__img">
+            <div class="contenedor">
+             <h1 class="banner__titulo"></h1>
+             
+    
+             </div>
+            </div>
+       
+          <!-- about section -->
+      <section>
+          <div align='center'>
+ 
+        <body>
+    <form class="col-sm-6" action="login.php" enctype="multipart/form-data" method="POST">
     <div class="full-page-color">
         <div class="login">
-            <div class="group-controls">
-                <div class="group-control">
-                    <input type="email" placeholder="Enter Email...">
-                </div>
-                <div class="group-control">
-                    <input type="password" placeholder="Enter Password...">
-                </div>
+            <div class="group-controls">       
+          <div align='left'><div class="form-group required">
+            <label for="input-email" class="col-sm-2 control-label"><h1>Email</h1></label>
+            <div class="col-sm-10">
+              <input type="text" name="email" value="" placeholder="Coloque su correo electrónico: example@upr.edu" id="input-email" class="form-control">
             </div>
-           <button class="login-btn">Login</button>
-
+          </div></div> 
+                &nbsp;
+          <div align='left'><div class="form-group required">
+            <label for="input-password" class="col-sm-2 control-label"><h1>Password</h1></label>
+            <div class="col-sm-10">
+              <input type="password" name="password" value="" placeholder="Entre su contraseña" id="input-password" class="form-control">
+            </div>
+              &nbsp;
+          </div> 
+            </div> 
+                 <div align='center'><div class="buttons">
+          <div class="pull-right">
+            <input type="submit" style="color: black"; class="btn btn-primary" name='submit' value="Login">
+              </div></div>
         </div>
-
+            </div>
+          
+        </div>
     </div>
-    
+     </form>
 </body>
+              </div>
+      </section><br>
+      <!-- end about section -->
+      <!-- Core JavaScript
+         ================================================== -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/tether.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/parallax.js"></script>
+      <script src="js/animate.js"></script>
+      <script src="js/ekko-lightbox.js"></script>
+      <script src="js/custom.js"></script>
+   </body>
+    </head>
 </html>
