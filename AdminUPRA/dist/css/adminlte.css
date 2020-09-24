@@ -31218,3 +31218,13 @@ a.text-muted:hover {
   color: #ffffff;
 }
 /*# sourceMappingURL=adminlte.css.map */
+
+/* Colores UPRA */
+
+.upra-amarillo{
+  background-color :  #e0c200;
+}
+
+.upra-gris {
+  color : #777;
+}
