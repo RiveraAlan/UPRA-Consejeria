@@ -1,3 +1,32 @@
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+/*Estilos Generales*/
+    .button{
+        background: #e0c200;
+        color: black;
+        text-align: center;
+        width: 100px;
+        text-decoration: none;
+        box-shadow: 0px 3px 0px #777777;
+    }
+/*Colores*/
+    .button.inicio{
+        background: #777777;
+        box-shadow: 0px 3px 0px #e0c200;
+    }
+    
+         
+    .butoon.inicio {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+}
+    
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -251,10 +280,15 @@
                     Número de Estudiante: <b>840-16-5082</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Año: <b>5</b>
+                    Año: <b>5</b><br>
+                    <div class="btn-group">
+                    <button href="../../editest.html" type="button" class="button inicio">EDITAR</button>
+                    <button href='#' type="button" class="button inicio">CONVALIDAR</button>
+                    <button href='#' type="button" class="button inicio">AÑADIR</button>
+                    </div>
               </div>
               <!-- /.card-header -->
-                <td><a  href="../../editest.html"><button type="button" class="btn btn-block btn-danger">EDIT</button></a></td>
+       
               <div class="card-body"> 
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
