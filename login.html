@@ -284,6 +284,9 @@ li {
   .cursos__txt {
     font-size: 20px;
   }
+    .buttons{
+        align-content: center;
+    }
 }
 
 @media(min-width:1280px) {
@@ -393,7 +396,7 @@ li {
      
      <header class="header">
             <br>
-            <div class="contenedor">
+             <!--<div class="contenedor">
             <h1 class="logo"></h1>
             <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
@@ -401,38 +404,32 @@ li {
                         <li class="menu__item"><a class="menu__link select" href="index.html">Inicio</a></li>
                     </ul>
                 </nav>
-            </div>
-        
-          
+            </div>-->
         </header>
-      <!-- end header -->
        <div class="banner">
             <img src="image/login2.png" alt="" class="banner__img">
             <div class="contenedor">
              <h1 class="banner__titulo"></h1>
-             
-    
              </div>
             </div>
-       
           <!-- about section -->
       <section>
           <div align='center'>
  
-        <body>
+        <body><br><br>
     <form class="col-sm-6" action="login.php" enctype="multipart/form-data" method="POST">
     <div class="full-page-color">
         <div class="login">
             <div class="group-controls">       
           <div align='left'><div class="form-group required">
-            <label for="input-email" class="col-sm-2 control-label"><h1>Email</h1></label>
             <div class="col-sm-10">
+                <label for="input-email" class="col-sm-2 control-label"><h4>Email</h4></label>
               <input type="text" name="email" value="" placeholder="Coloque su correo electrónico: example@upr.edu" id="input-email" class="form-control">
             </div>
           </div></div> 
                 &nbsp;
           <div align='left'><div class="form-group required">
-            <label for="input-password" class="col-sm-2 control-label"><h1>Password</h1></label>
+            <label for="input-password" class="col-sm-2 control-label"><h4>Password</h4></label>
             <div class="col-sm-10">
               <input type="password" name="password" value="" placeholder="Entre su contraseña" id="input-password" class="form-control">
             </div>
