@@ -233,7 +233,7 @@ ul, li {
 input {
   display: block;
 	outline: none;
-	border: none !important;
+	
 }
 
 textarea {
@@ -241,9 +241,7 @@ textarea {
   outline: none;
 }
 
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
+
 
 /* ------------------------------------ */
 button {
@@ -260,6 +258,97 @@ iframe {
 	border: none !important;
 }
 
+.form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
+.form-label {
+  font-size: 1.25rem;
+}
+.form-group {
+  width: 50%;
+  margin: 0 auto;
+
+}
+.form-input {
+  
+  border: 1px solid rgb(214, 214, 214);
+  padding: .5rem;
+  outline: none;
+  margin-top: .5rem;
+  
+}
+.form-input-invalid {
+  border: 1px solid red;
+  padding: .5rem;
+  outline: none;
+  margin: .5rem 0 .5rem 0;
+  margin-top: .5rem;
+  background-color: rgb(253, 187, 180);
+  
+}
+.text-field-error {
+   color: red;
+   margin: .25rem 0;
+}
+
+
+
+.form-control:focus {
+  border: 1px solid rgb(214, 214, 214) !important;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+/*-------------------Estilos del header-------------------*/
+
+
+
+
+/*--------------Estilos de banner--------------*/
+
+.banner {
+   width: 100%;
+   background-color: #e0c200;
+   padding: 1.5rem 2rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.logo {
+  width: 150px;
+}
+
+.banner .contenedor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+
+.banner__txt {
+  display: none;
+  color: #e0c200;
+}
+
+.banner__titulo{
+    color: #e0c200;
+}
 
 
 /*//////////////////////////////////////////////////////////////////
