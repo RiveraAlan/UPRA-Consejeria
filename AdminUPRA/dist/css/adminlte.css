@@ -15888,7 +15888,7 @@ textarea.form-control.is-warning {
 }
 
 .card-primary.card-outline {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid yellow;
 }
 
 .card-primary.card-outline-tabs > .card-header a:hover {
