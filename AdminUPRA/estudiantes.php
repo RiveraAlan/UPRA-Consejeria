@@ -28,22 +28,7 @@ require 'inc/connection.php';
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index.html" class="nav-link">Inicio</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
     </ul>
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -132,11 +117,7 @@ require 'inc/connection.php';
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
+      
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -215,7 +196,7 @@ require 'inc/connection.php';
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Projects</li>
+              <li class="breadcrumb-item active">Data</li>
             </ol>
           </div>
         </div>
@@ -297,18 +278,18 @@ require 'inc/connection.php';
                       <td class='project-actions text-right'>
                           <a class='btn btn-primary btn-sm' href='editest.html'>
                               <i class='fas fa-user-edit'></i>
-                              Edit
+                              Editar
                           </a>
                           <div style='padding-top: 10px;'>
                           <a class='btn btn-danger btn-sm' href='#''>
                              <i class='fas fa-user-times'></i>
-                              Inactive
+                              Inactivo
                           </a>
                         </div>
                         <div style='padding-top: 10px;'>
                           <a class='btn btn-info btn-sm' href='#'>
                               <i class='fas fa-user-plus'></i>
-                              Active
+                              Activo
                           </a>
                         </div>
                       </td>
