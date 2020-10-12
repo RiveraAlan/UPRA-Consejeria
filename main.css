@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 
@@ -394,13 +394,14 @@ th, td {
 }
 
 .column100.column1 {
-  width: 265px;
-  padding-left: 42px;
+  width: 50px;
+  padding-left: 25px;
 }
 
 .row100.head th {
   padding-top: 24px;
   padding-bottom: 20px;
+  padding-left: 24px;
 }
 
 .row100 td {
