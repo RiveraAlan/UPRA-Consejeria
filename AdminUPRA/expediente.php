@@ -18,7 +18,6 @@ require 'inc/connection.php';
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="dist/css/expendiente.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
