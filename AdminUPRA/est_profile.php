@@ -4,10 +4,87 @@ include("inc/connection.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        * {
+  outline:none;
+    border:none;
+    margin:0px;
+    padding:0px;
+    /* font-family:Courier, monospace; */
+}
+/* body {
+    background:#333 url(https://static.tumblr.com/maopbtg/a5emgtoju/inflicted.png) repeat;        
+} */
+#paper {
+    color:#FFF;
+    font-size:30px;
+}
+#margin {
+    margin-left:0px;
+    margin-bottom:0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none; 
+}
+#text {
+    width:100%;
+    overflow:hidden;
+    background-color:#FFF;
+    color:#222;
+    font-family:Courier, monospace;
+    font-weight:normal;
+    font-size:22px;
+    resize:none;
+    line-height:40px;
+    padding-left:60px;
+    padding-right:50px;
+    padding-top:10px;
+    padding-bottom:10px;
+    background-image:url(../images/lines.png);
+    background-repeat:repeat-y, repeat;
+}
+#button {
+    cursor:pointer;
+    margin-top:0px;
+    float:right;
+    height:30px;
+    padding-right:0px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:20px;
+    color:#0000;
+    text-shadow: 0px -1px 0px #000000;
+    -webkit-border-radius:8px;
+    -webkit-box-shadow: 0px 2px 14px #000;
+    box-shadow: 0px 2px 14px #000;
+    background-color: #e0c200;
+}
+#button:active {
+    zoom: 1;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+}
+#button:focus {
+    zoom: 1;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+}
+#wrapper {
+    width:100%;
+    height:auto;
+    margin-left:0px;
+    margin-right:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+    </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CONSEJERIA-UPRA | INICIO</title>
 
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -263,46 +340,30 @@ include("inc/connection.php");
             <!-- About Me Box -->
             <div class='card' >
               <div class='card-header' style='background: #e0c200'>
-                <h3 class='card-title' >About Me</h3>
+                <h3 class='card-title' >Notes</h3>
               </div>
               <!-- /.card-header -->
-              <div class='card-body'>
-                <strong><i class='fas fa-book mr-1'></i> Education</strong>
+              <div>
 
-                <p class='text-muted'>
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
-                </p>
-
-                <hr>
-
-                <strong><i class='fas fa-map-marker-alt mr-1'></i> Location</strong>
-
-                <p class='text-muted'>Malibu, California</p>
-
-                <hr>
-
-                <strong><i class='fas fa-pencil-alt mr-1'></i> Skills</strong>
-
-                <p class='text-muted'>
-                  <span class='tag tag-danger'>UI Design</span>
-                  <span class='tag tag-success'>Coding</span>
-                  <span class='tag tag-info'>Javascript</span>
-                  <span class='tag tag-warning'>PHP</span>
-                  <span class='tag tag-primary'>Node.js</span>
-                </p>
-
-                <hr>
-
-                <strong><i class='far fa-file-alt mr-1'></i> Notes</strong>
-
-                <p class='text-muted'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-              </div>
+              <form id='paper' method='get' action=''>
+		<textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow: hidden; word-wrap: break-word; resize: none; height: 400px; '></textarea>  
+		
+		
+	
+          
+              </div><input id='button' type='submit' value='Create'>
+              </form>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>";
               }
           ?>
+          <script>
+              $(document).ready(function(){
+                 $('#text').autosize();
+            });
+            </script>
           <!-- /.col -->
           <div class="col-md-9" style="overflow: scroll; height: 800px">
         <div class="row">
@@ -312,42 +373,29 @@ include("inc/connection.php");
                 <div align='center'><h3>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h3>
                                     <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
                                     <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
-              </div>
-                <?php 
-                $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
-                      FROM estudiante WHERE id_est = 2";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
-              
-                if($resultCheck > 0){
-                $row = mysqli_fetch_assoc($result);
-                 echo "<div class='card-header'>
-                    Nombre: <b> {$row['nombre_est']} {$row['inicial_est']} {$row['apellido_estU']} {$row['apellido_estD']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Correo: <b>{$row['correo_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Semestre: <b>2</b><br>
-                    Número de Estudiante: <b>{$row['num_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Año: <b>5</b><br>
-           
-                    </div><br>
-                    <div class='btn-group'>
+                                   
                     
-                    <div class='container'>
-                      <!-- Trigger the modal with a button -->
-                      <button style='float: right;' type='button' class='button inicio' data-toggle='modal' data-target='#myModal'>EDITAR</button>
+                    <!-- </div>
+              </div> -->
+            </div>
+              <!-- /.card-header -->
+    
+        
+              <div class="card-body"> 
+                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                <!-- <div class="w3-container" style="float:right">
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button" style="background: #e0c200">Editar</button> -->
 
-                      <!-- Modal -->
-                      <div class='modal fade' id='myModal' role='dialog'>
-                        <div class='modal-dialog'>
-
-                          <!-- Modal content-->
-                          <div class='modal-content'>
-                            <div class='modal-header'>
-                              <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                            </div>
-                            <div class='modal-body'>
-                              <form action='edtiest.php' method='post'>
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+      <header class="w3-container" style="padding-top:5px"> 
+        <span onclick="document.getElementById('id01').style.display='none'" 
+        class="w3-button w3-display-topright">&times;</span>
+        <h3>Editar</h3>
+      </header>
+      <div class="w3-container">
+          <br>
+      <form action='edtiest.php' method='post'>
                           <div class='input-group mb-3'>
                           <input type='text'' name='item_id' class='form-control' placeholder='CURSO'>
                           <div class='input-group-append'>
@@ -367,8 +415,7 @@ include("inc/connection.php");
                         </div>
 
                           <div class='input-group mb-3'>
-                            <label>Description: &nbsp; </label>
-                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCION' required>
+                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCION'>
                               </textarea>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
@@ -418,29 +465,15 @@ include("inc/connection.php");
                             </div>
                           </div>
                         </div>
-                        <div class='row'>
-                          <div class='col-8'>
-                            <div class='icheck-primary'>
-
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                                            </div>
-                            <div class='modal-footer'>
-                              <button type='button' class='btn btn-default' data-dismiss='modal'>APPLY</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              </div>";}
-                ?>
-              <!-- /.card-header -->
-    
-        
-              <div class="card-body"> 
-                <div align = "center"><h3>Cursos de Concentración</h3></div>
+                     
+      </div>
+      <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
+      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APPLY</button> </form>
+      </footer>
+    </div>
+  </div>
+<!-- </div>   -->
+                <br>
                 <table id="example2" class="table table-bordered table-hover" >
                   <thead>
                   <tr width="50%" bgcolor="#e0c200">
@@ -479,7 +512,9 @@ include("inc/connection.php");
                       
                 </tbody> 
                   </table>
-                  <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
+                  <br>
+                  <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                  <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr width="50%" bgcolor="#e0c200">
@@ -517,7 +552,9 @@ include("inc/connection.php");
                   </tr> ";}}?>
                 </tbody>
                   </table>
-                   <div align = "center"><h3>Electivas Libres</h3></div>
+                  <br>
+                   <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                   <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr width="50%" bgcolor="#e0c200">
@@ -555,7 +592,9 @@ include("inc/connection.php");
                   </tr> ";}}?>
                 </tbody> 
                   </table>
-                   <div align = "center"><h3>Electivas Departamentales</h3></div>
+                  <br>
+                   <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                   <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
                   <tr width="50%" bgcolor="#e0c200">
