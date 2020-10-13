@@ -268,7 +268,7 @@ require 'inc/connection.php';
                       <td>
                           <ul class='list-inline'> <div align='center'>
                               <li class='list-inline-item'>
-                                  <a title='UPRA' href='expediente.php'><img alt='Avatar' class='table-avatar' src='img/folder.svg' alt='UPRA' /></a>
+                                  <a title='UPRA' href='est_profile.php'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></a>
                               </li></div>
                           </ul>
                       </td>
