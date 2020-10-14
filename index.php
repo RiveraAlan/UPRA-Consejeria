@@ -71,7 +71,7 @@
                 <div class="col-lg-6 mb-4">
                   <h1  data-aos="fade-up" data-aos-delay="100">¡Bienvenidos a Consejería Universidad de Puerto Rico!</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">En el botón de abajo muestra cómo hacer la Consejería</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">¿Cómo hacer Consejería?</a></p>
+                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-yellow py-3 px-5 btn-pill">¿Cómo hacer Consejería?</a></p>
 
                 </div>
 
@@ -97,7 +97,7 @@
                 <input type="password" name="password" id="" class="form-control <?= isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty'] ? 'form-input-invalid' : 'form-input'?>">
                 <?php if(isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty']) echo '<p class="text-field-error">Please provide a password</p>'?>
               </div>
-               <div class="login-btn-container"><button type="submit" class="btn btn-primary btn-pill">Iniciar Sesión</button></div>
+               <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Iniciar Sesión</button></div>
          </form>
                 </div>
               </div>

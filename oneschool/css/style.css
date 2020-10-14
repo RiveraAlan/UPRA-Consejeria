@@ -87,6 +87,21 @@ h1, h2, h3, h4, h5,
         border-color: #000;
         background: #000;
         color: #fff; }
+  .btn.btn-yellow {
+    border-width: 2px;
+    border-color: #e0c200;
+    background: #e0c200;
+    color: #fff; }
+    .btn.btn-yellow:hover {
+      color: #fff;
+      background-color: #c9ae00; }
+    .btn.btn-yellow.btn-outline-yellow {
+      color: #fff;
+      background-color: #c9ae00; }
+      .btn.btn-yellow.btn-outline-yellow:hover {
+        border-color: #c9ae00;
+        background: #c9ae00;
+        color: #fff; }
   .btn.btn-white {
     border-width: 2px;
     border-color: #fff;

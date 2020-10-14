@@ -72,20 +72,21 @@ h1, h2, h3, h4, h5,
     outline: none;
     -webkit-box-shadow: none !important;
     box-shadow: none !important; }
-  .btn.btn-black {
+  .btn.btn-yellow {
     border-width: 2px;
-    border-color: #000;
-    background: #000;
+    border-color: #e0c200;
+    background: #e0c200;
     color: #fff; }
-    .btn.btn-black:hover {
-      color: #000;
-      background-color: transparent; }
-    .btn.btn-black.btn-outline-black {
-      color: #000;
-      background-color: transparent; }
-      .btn.btn-black.btn-outline-black:hover {
-        border-color: #000;
-        background: #000;
+    .btn.btn-yellow:hover {
+      color: white;
+      background-color: #c9ae00;
+      border-color: #c9ae00; }
+    .btn.btn-yellow.btn-outline-yellow {
+      color: white;
+      background-color: #c9ae00; }
+      .btn.btn-yellow.btn-outline-yellow:hover {
+        border-color: #c9ae00;
+        background: #c9ae00;
         color: #fff; }
   .btn.btn-white {
     border-width: 2px;
