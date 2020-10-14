@@ -49,7 +49,7 @@ session_start();
 
                 <div class="actions">
                     <ul class="actions-list">
-                        <li class="action"><a href="consejeria.html">Consejería</a></li>
+                        <li class="action"><a href="consejeria.php">Consejería</a></li>
                         <li class="action"><a href="cita.html">Sacar cita con Profesora</a></li>
                         <li class="action"><a href="sugerencias.html">Hacer sugerencias de clases</a></li>
                     </ul>

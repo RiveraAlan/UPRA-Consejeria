@@ -9,13 +9,13 @@ session_start();
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( empty($_POST['email']) &&  empty($_POST['password'])) {
     // Could not get the data that should have been sent.
-    header('Location: ../login.php?isEmailEmpty=true&isPasswordEmpty=true');
+    header('Location: ../index.php?isEmailEmpty=true&isPasswordEmpty=true');
 	exit();
 } elseif(empty($_POST['email'])) {
-    header('Location: ../login.php?isEmailEmpty=true');
+    header('Location: ../index.php?isEmailEmpty=true');
 	exit();
 } elseif(empty($_POST['password'])){
-    header('Location: ../login.php?isPasswordEmpty=true');
+    header('Location: ../index.php?isPasswordEmpty=true');
 	exit();
 }
 
@@ -54,17 +54,17 @@ if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, apellido
             // ====== SWITCH TO INDEX.PHP INSTEAD OF CITA.PHP ============
         } else {
             // Incorrect password
-            header('Location:  ../login.php?isAuthFailed=true');
+            header('Location:  ../index.php?isAuthFailed=true');
 
 	        exit();
         
-          echo 'Incorrect username and/or password!';
+          echo '¡Correo electrónico y/o Contraseña incorrecta!';
         }
     } else {
         // Incorrect username
-        header('Location:  ../login.php?isAuthFailed=true');
+        header('Location:  ../index.php?isAuthFailed=true');
 	    exit();
-        echo 'Incorrect username and/or password!';
+        echo '¡Correo electrónico y/o Contraseña incorrecta!';
     }
 
 

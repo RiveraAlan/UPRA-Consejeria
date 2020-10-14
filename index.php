@@ -81,21 +81,21 @@
                     <h3 class="h4 text-black mb-4">Iniciar Sesión</h3>
              <?php 
                 if(isset($_GET['isEmailEmpty']) || isset($_GET['isPasswordEmpty'])){
-                    echo '<div class="error-message">Please fill both the username and password fields!</div>';
+                    echo '<div class="error-message">¡Por favor rellenar ambos campos!</div>';
                 } 
                 if(isset($_GET['isAuthFailed'])){
-                    echo '<div class="error-message">Incorrect username and/or password!</div>';
+                    echo '<div class="error-message">¡Correo electrónico y/o Contraseña incorrecta!</div>';
                 }
                 ?>
               <div class="form-group">
                 <label for="" class="form-group-label">Correo Electrónico</label>
                  <input type="email" name="email"  class="form-control <?= isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty'] ? 'form-input-invalid' : 'form-input'?>">
-                 <?php if(isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty']) echo '<p class="text-field-error">Please provide an e-mail</p>'?>
+                 <?php if(isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty']) echo '<p class="text-field-error">Por favor proveer Correo Electrónico</p>'?>
               </div>
               <div class="form-group">
                 <label for="" class="form-group-label">Contraseña</label>
                 <input type="password" name="password" id="" class="form-control <?= isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty'] ? 'form-input-invalid' : 'form-input'?>">
-                <?php if(isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty']) echo '<p class="text-field-error">Please provide a password</p>'?>
+                <?php if(isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty']) echo '<p class="text-field-error">Por favor proveer contraseña</p>'?>
               </div>
                <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Iniciar Sesión</button></div>
          </form>
@@ -113,7 +113,7 @@
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Acerca</h2>
+            <h2 class="section-title">Acerca de Nosotros</h2>
           </div>
         </div>
       </div>
