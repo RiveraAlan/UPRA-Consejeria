@@ -313,7 +313,7 @@ include("inc/connection.php");
                 <!-- <div class="w3-container" style="float:right">
   <button onclick="document.getElementById('id01').style.display='block'" class="w3-button" style="background: #e0c200">Editar</button> -->
 
-  <div id="id01" class="w3-modal">
+  <div id="id01" class="w3-modal" style="padding-left:20%">
     <div class="w3-modal-content w3-animate-zoom">
       <header class="w3-container" style="padding-top:5px"> 
         <span onclick="document.getElementById('id01').style.display='none'" 
@@ -408,9 +408,7 @@ include("inc/connection.php");
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -424,15 +422,15 @@ include("inc/connection.php");
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  
-                  echo "<tr width='50%'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c']){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%'>";}
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td><button class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f'>recomendar</button></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -451,7 +449,6 @@ include("inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -466,14 +463,16 @@ include("inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c']){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%'>";}
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td><button align='center' class='w3-button w3-round-xlarge' style='background:#c72837; color:white'>recomendar</button></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -491,7 +490,6 @@ include("inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -506,14 +504,16 @@ include("inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c']){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%'>";}
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td>-</td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -531,7 +531,6 @@ include("inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -546,14 +545,16 @@ include("inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c']){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%'>";}
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td>-</td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
