@@ -69,26 +69,36 @@
             <div class="col-12">
               <div class="row align-items-center">
                 <div class="col-lg-6 mb-4">
-                  <h1  data-aos="fade-up" data-aos-delay="100">Learn From The Expert</h1>
-                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">Admission Now</a></p>
+                  <h1  data-aos="fade-up" data-aos-delay="100">¡Bienvenidos a Consejería Universidad de Puerto Rico!</h1>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">En el botón de abajo muestra cómo hacer la Consejería</p>
+                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">¿Cómo hacer Consejería?</a></p>
 
                 </div>
 
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                  <form action="" method="post" class="form-box">
+                    
+                    <form action="private/auth.php" method="post" class="form-box">
                     <h3 class="h4 text-black mb-4">Iniciar Sesión</h3>
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Correo Electrónico">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Contraseña">
-                    </div>
-                    <div class="form-group">
-                      <input type="submit" class="btn btn-primary btn-pill" value="Iniciar Sesión">
-                    </div>
-                  </form>
-
+             <?php 
+                if(isset($_GET['isEmailEmpty']) || isset($_GET['isPasswordEmpty'])){
+                    echo '<div class="error-message">Please fill both the username and password fields!</div>';
+                } 
+                if(isset($_GET['isAuthFailed'])){
+                    echo '<div class="error-message">Incorrect username and/or password!</div>';
+                }
+                ?>
+              <div class="form-group">
+                <label for="" class="form-group-label">Correo Electrónico</label>
+                 <input type="email" name="email"  class="form-control <?= isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty'] ? 'form-input-invalid' : 'form-input'?>">
+                 <?php if(isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty']) echo '<p class="text-field-error">Please provide an e-mail</p>'?>
+              </div>
+              <div class="form-group">
+                <label for="" class="form-group-label">Contraseña</label>
+                <input type="password" name="password" id="" class="form-control <?= isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty'] ? 'form-input-invalid' : 'form-input'?>">
+                <?php if(isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty']) echo '<p class="text-field-error">Please provide a password</p>'?>
+              </div>
+               <div class="login-btn-container"><button type="submit" class="btn btn-primary btn-pill">Iniciar Sesión</button></div>
+         </form>
                 </div>
               </div>
             </div>
