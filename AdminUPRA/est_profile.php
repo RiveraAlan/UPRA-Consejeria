@@ -4,82 +4,7 @@ include("inc/connection.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        * {
-  outline:none;
-    border:none;
-    margin:0px;
-    padding:0px;
-    /* font-family:Courier, monospace; */
-}
-/* body {
-    background:#333 url(https://static.tumblr.com/maopbtg/a5emgtoju/inflicted.png) repeat;        
-} */
-#paper {
-    color:#FFF;
-    font-size:30px;
-}
-#margin {
-    margin-left:0px;
-    margin-bottom:0px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none; 
-}
-#text {
-    width:100%;
-    overflow:hidden;
-    background-color:#FFF;
-    color:#222;
-    font-family:Courier, monospace;
-    font-weight:normal;
-    font-size:22px;
-    resize:none;
-    line-height:40px;
-    padding-left:60px;
-    padding-right:50px;
-    padding-top:10px;
-    padding-bottom:10px;
-    background-image:url(../images/lines.png);
-    background-repeat:repeat-y, repeat;
-}
-#button {
-    cursor:pointer;
-    margin-top:0px;
-    float:right;
-    height:30px;
-    padding-right:0px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-weight:bold;
-    font-size:20px;
-    color:#0000;
-    text-shadow: 0px -1px 0px #000000;
-    -webkit-border-radius:8px;
-    -webkit-box-shadow: 0px 2px 14px #000;
-    box-shadow: 0px 2px 14px #000;
-    background-color: #e0c200;
-}
-#button:active {
-    zoom: 1;
-    filter: alpha(opacity=80);
-    opacity: 0.8;
-}
-#button:focus {
-    zoom: 1;
-    filter: alpha(opacity=80);
-    opacity: 0.8;
-}
-#wrapper {
-    width:100%;
-    height:auto;
-    margin-left:0px;
-    margin-right:0px;
-    margin-top:0px;
-    margin-bottom:0px;
-}
-    </style>
+    
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CONSEJERIA-UPRA | INICIO</title>
@@ -105,12 +30,14 @@ include("inc/connection.php");
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- page css -->
+  <link rel="stylesheet" href="dist/css/adminlte.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand upra-amarillo navbar-light">
+   <!-- Navbar -->
+   <nav class="main-header navbar navbar-expand upra-amarillo navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -365,7 +292,7 @@ include("inc/connection.php");
             });
             </script>
           <!-- /.col -->
-          <div class="col-md-9" style="overflow: scroll; height: 800px">
+          <div class="col-md-9" style="overflow: scroll; height: 800px;">
         <div class="row">
           <div class="col-12">
             <div class="card">
@@ -474,7 +401,7 @@ include("inc/connection.php");
   </div>
 <!-- </div>   -->
                 <br>
-                <table id="example2" class="table table-bordered table-hover" >
+                <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr width="50%" bgcolor="#e0c200">
                     <th>Cursos</th>
