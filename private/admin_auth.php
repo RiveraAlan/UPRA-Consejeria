@@ -9,13 +9,13 @@ session_start();
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( empty($_POST['email']) &&  empty($_POST['password'])) {
     // Could not get the data that should have been sent.
-    header('Location: ../AdminUPRA/login.php?isEmailEmpty=true&isPasswordEmpty=true');
+    header('Location: ../AdminUPRA/index.php?isEmailEmpty=true&isPasswordEmpty=true');
 	exit();
 } elseif(empty($_POST['email'])) {
-    header('Location:  ../AdminUPRA/login.php?isEmailEmpty=true');
+    header('Location:  ../AdminUPRA/index.php?isEmailEmpty=true');
 	exit();
 } elseif(empty($_POST['password'])){
-    header('Location:  ../AdminUPRA/login.php?isPasswordEmpty=true');
+    header('Location:  ../AdminUPRA/index.php?isPasswordEmpty=true');
 	exit();
 }
 
@@ -45,16 +45,16 @@ if ($stmt = $conn->prepare('SELECT id_conse, contraseña_conse, nombre_conse  FR
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $name;
             $_SESSION['id'] = $id;
-            echo 'Welcome ' . $_SESSION['name'] . '!';
+             echo '<script>window.location="../AdminUPRA/inicio.php"</script>';
         } else {
             // Incorrect password
-            header('Location:  ../AdminUPRA/login.php?isAuthFailed=true');
+            header('Location:  ../AdminUPRA/index.php?isAuthFailed=true');
 	          exit();
             echo 'Incorrect username and/or password!';
         }
     } else {
         // Incorrect username
-        header('Location:  ../AdminUPRA/login.php?isAuthFailed=true');
+        header('Location:  ../AdminUPRA/index.php?isAuthFailed=true');
 	    exit();
         echo 'Incorrect username and/or password!';
     }
