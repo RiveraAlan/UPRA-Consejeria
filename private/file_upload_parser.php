@@ -9,7 +9,8 @@ if (!$fileTmpLoc) { // if file not chosen
     exit();
 }
 if(move_uploaded_file($fileTmpLoc, "../expediente.txt")){
-    echo "$fileName upload is complete";
+    //echo "$fileName upload is complete";
+    header('Location: ../read_exp_acad.php');
 } else {
     echo "move_uploaded_file function failed";
 }

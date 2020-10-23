@@ -13,15 +13,15 @@ $regex = array('- - - - - - - - - - - - -  REQUISITOS GENERALES - - - - - - - - 
                 ''
 );
 
- file_put_contents('exp_alan_format.txt',
+ file_put_contents('expediente_formatted.txt',
     preg_replace(
         '~[\r\n]+~',
         "\r\n",
-        trim(file_get_contents('exp_alan.txt'))
+        trim(file_get_contents('expediente.txt'))
     )
 );
 
-$fileArr = file('exp_alan_format.txt');
+$fileArr = file('expediente_formatted.txt');
 $courses = array();
 $i = 0;
 $j = 0;
