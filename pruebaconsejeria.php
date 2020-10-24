@@ -77,6 +77,23 @@ include("AdminUPRA/inc/connection.php");
     </header>
 
     <div class="header">
+         <div class="card-header">
+                <div align='center'><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
+                                    <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
+                                    <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
+              </div>
+                <?php 
+                
+                 echo "<div class='card-header'>
+                    Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Semestre: <b>2</b><br>
+                    Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Año: <b>{$_SESSION['año_CCOM']}</b><br>
+           
+                    </div>";?>
     </div><br><br><br><br><br><br><br><br>
        <div class="container tables">
                 <div class="tab">
