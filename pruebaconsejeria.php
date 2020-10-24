@@ -132,9 +132,9 @@ include("AdminUPRA/inc/connection.php");
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <div align='center'><h3>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h3>
-                                    <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
-                                    <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
+                <div align='center'><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
+                                    <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
+                                    <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
               </div>
                 <?php 
                 
@@ -152,9 +152,8 @@ include("AdminUPRA/inc/connection.php");
                     
                     <div class='container'>
                       <!-- Trigger the modal with a button -->
-                      <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Cerrar Sesión</button></div>
-                      <button style='float: right;' type='button' class='button inicio' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button>
-
+                      <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
+        
                       <!-- Modal -->
                       <div class='modal fade' id='myModal' role='dialog'>
                         <div class='modal-dialog'>
@@ -192,7 +191,7 @@ include("AdminUPRA/inc/connection.php");
                           </table>
                                             </div>
                             <div class='modal-footer'>
-                              <button type='button' class='btn btn-default' data-dismiss='modal'>CONFIRMAR</button>
+                              <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
                             </div>
                           </div>
                         </div>
@@ -214,7 +213,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -245,7 +243,7 @@ include("AdminUPRA/inc/connection.php");
                     echo "<td>Prox. Semestre</td>";
                     }else{
                     echo "<td></td>";}
-                    echo "<td></td>
+                    echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -262,7 +260,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
