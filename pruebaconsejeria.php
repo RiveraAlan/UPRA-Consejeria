@@ -152,6 +152,7 @@ include("AdminUPRA/inc/connection.php");
                     
                     <div class='container'>
                       <!-- Trigger the modal with a button -->
+                      <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Cerrar Sesión</button></div>
                       <button style='float: right;' type='button' class='button inicio' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button>
 
                       <!-- Modal -->
