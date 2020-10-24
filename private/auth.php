@@ -49,7 +49,7 @@ if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, apellido
             $_SESSION['fullName'] = $firstName.' '.$lastNameU.' '.$lastNameD;
             $_SESSION['email'] = $email;
             $_SESSION['studentNumber'] = $studentNumber;
-            $_SESSION['est_id'] = $id;
+            $_SESSION['id_est'] = $id;
             header('Location: ../consejeria.php');
             // ====== SWITCH TO INDEX.PHP INSTEAD OF CITA.PHP ============
         } else {
