@@ -32,7 +32,12 @@ include("AdminUPRA/inc/connection.php");
     <link rel="stylesheet" href="css/style.css">
       
     <link rel="stylesheet" href="css/conse.css">
+      
+    <link rel="stylesheet" href="cita.css">
     
+    <link rel="stylesheet" href="jqueryui/jquery-ui.css">
+    <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
+    <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
@@ -439,22 +444,13 @@ include("AdminUPRA/inc/connection.php");
                     if((isset($_GET['is-date-empty']) AND boolval($_GET['is-date-empty'])) OR (isset($_GET['is-hour-chosen-empty']) AND boolval($_GET['is-hour-chosen-empty']))){
                     echo '<div class="error-message">*Escoga el día y la hora de la cita.</div>';
                         }
-                    echo ' <div class="form-group d-flex">
-                    <div class="form-label">
-                        <label>Name</label>
-                    </div>
-                    <div class="form-controls d-flex">
-                    <input type="text" name="first-name" value="'.$_SESSION['firstName'].'" placeholder="First Name" class="form-control" readonly>
-                    <input type="text" name="last-name" value="'.$_SESSION['lastNameU'].' '.$_SESSION['lastNameD'].'" placeholder="Last Name"  class="form-control" readonly>
-                    </div>
-                    </div>';
-                    echo '<div class="form-group d-flex">
-                                          <div class="form-label">
-                                         <label>E-mail</label>
-                                         </div>
-                                         <input type="email" name="email"  value="'. $_SESSION['email'].'" placeholder="E-mail" class="form-control" readonly> 
+                    echo ' 
+                    <input type="hidden" name="first-name" value="'.$_SESSION['firstName'].'" placeholder="First Name" class="form-control" readonly>
+                    <input type="hidden" name="last-name" value="'.$_SESSION['lastNameU'].' '.$_SESSION['lastNameD'].'" placeholder="Last Name"  class="form-control" readonly>';
+                    echo '<div class="form-group">
+                                         <input type="hidden" name="email"  value="'. $_SESSION['email'].'" class="form-control" readonly> 
                                          </div>';
-                    echo ' <div class="form-group d-flex">
+                    echo ' <h3>Escoger Fecha y Hora</h3>  <div class="form-group d-flex">
                                          <div class="calendar-box">';
 
                                                 $dateField = '<input type="text" name="date" onchange="getAvailableDates(this.value)" id="datepicker"  type="text" class="form-control"/>';
@@ -463,14 +459,12 @@ include("AdminUPRA/inc/connection.php");
                                                 } 
                                                 echo $dateField;
                                             
-                    echo '<div class="hour-chosen-container"></div>
+                                        echo '<div class="hour-chosen-container"></div>
                                             </div>
                                             <div class="spots-available">
                                              </div>
                                              </div>';
-                                        echo '<div class="submitBtn">
-                                        <button type="submit">Submit</button>
-                                    </div>';
+                    echo '<div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Someter</button></div>';
                                 }
                            ?>
                         </form>
@@ -526,7 +520,7 @@ include("AdminUPRA/inc/connection.php");
             $("#datepicker").datepicker({
                 changeMonth: true,
                 minDate: new Date(2020, 09, 4),
-                maxDate: new Date(2020, 10, 4)
+                maxDate: new Date(2020, 12, 15)
             });
         </script>
 
