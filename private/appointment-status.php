@@ -1,9 +1,9 @@
 <?php
 include 'dbconnect.php';
 
-$stmt = $conn->prepare("SELECT fecha_cita FROM citas WHERE est_id = ?");
+$stmt = $conn->prepare("SELECT fecha_cita FROM citas WHERE id_est = ?");
 
-$stmt->bind_param('i', $_SESSION['est_id']);
+$stmt->bind_param('i', $_SESSION['id_est']);
 
 $stmt->execute();
 
@@ -24,9 +24,9 @@ if ($stmt->num_rows > 0) {
        
     } else {
          // DELETE APPOINTMENT FROM DATABASE
-         $stmt = $conn->prepare("DELETE FROM citas WHERE est_id = ?");
+         $stmt = $conn->prepare("DELETE FROM citas WHERE id_est = ?");
 
-         $stmt->bind_param('i', $_SESSION['est_id']);
+         $stmt->bind_param('i', $_SESSION['id_est']);
 
          $stmt->execute();
     }
