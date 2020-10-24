@@ -32,6 +32,18 @@ include("inc/connection.php");
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <!-- page css -->
   <link rel="stylesheet" href="dist/css/adminlte.css">
+
+  <style>
+    #drop_zone {
+            background-color: #EEE; 
+            border: #999 5px dashed;
+            width: 100%; 
+            height: 30rem;
+            padding: 8px;
+            font-size: 18px;
+        }
+  </style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -258,12 +270,15 @@ include("inc/connection.php");
                   <li class='list-group-item'>
                     <b>Secuencia Curricular</b> <a class='float-right'>2017</a>
                   </li>
-                </ul>
-              </div>
+                    
+                </ul>";?>
+                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar Expediente</button>
+              <?php
+                echo "</div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-
+            
             <!-- About Me Box -->
             <div class='card' >
               <div class='card-header' style='background: #e0c200'>
@@ -273,12 +288,8 @@ include("inc/connection.php");
               <div>
 
               <form id='paper' method='get' action=''>
-		<textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow: hidden; word-wrap: break-word; resize: none; height: 400px; '></textarea>  
-		
-		
-	
-          
-              </div><input id='button' type='submit' value='Create'>
+		<textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px; '></textarea>
+              </div><button type='submit' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
               <!-- /.card-body -->
             </div>
@@ -292,13 +303,13 @@ include("inc/connection.php");
             });
             </script>
           <!-- /.col -->
-          <div class="col-md-9" style="overflow: scroll; height: 800px;">
+          <div class="col-md-9" style="overflow-y: scroll; overflow-x: auto; height: 825px;">
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
                 <div align='center'><h3>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h3>
-                                    <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
+                                    <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3> 
                                     <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
                                    
                     
@@ -306,14 +317,9 @@ include("inc/connection.php");
               </div> -->
             </div>
               <!-- /.card-header -->
-    
-        
-              <div class="card-body"> 
-                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
-                <!-- <div class="w3-container" style="float:right">
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button" style="background: #e0c200">Editar</button> -->
-
-  <div id="id01" class="w3-modal" style="padding-left:20%">
+            <!-- Modals -->
+            <!-- Edit -->
+            <div id="id01" class="w3-modal" style="padding-left:20%">
     <div class="w3-modal-content w3-animate-zoom">
       <header class="w3-container" style="padding-top:5px"> 
         <span onclick="document.getElementById('id01').style.display='none'" 
@@ -399,6 +405,74 @@ include("inc/connection.php");
       </footer>
     </div>
   </div>
+            <!-- /.Edit -->
+
+            <!-- Expediente -->
+  <div id='id02' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'> 
+                <span onclick='document.getElementById("id02").style.display="none"' 
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Subir Expediente</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+<div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false"></div>
+
+<script>
+    function $(el){
+        return document.getElementById(el);
+    }
+
+    function uploadFile(event){
+    event.preventDefault();
+    var file = event.dataTransfer.files[0];
+	// alert(file.name+" | "+file.size+" | "+file.type);
+	var formdata = new FormData();
+	formdata.append("file1", file);
+	var ajax = new XMLHttpRequest();
+	ajax.upload.addEventListener("progress", progressHandler, false);
+	ajax.addEventListener("load", completeHandler, false);
+	ajax.addEventListener("error", errorHandler, false);
+	ajax.addEventListener("abort", abortHandler, false);
+	ajax.open("POST", "../private/file_upload_parser.php");
+	ajax.send(formdata);
+
+    }
+
+    function progressHandler(event){
+	$("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+	var percent = (event.loaded / event.total) * 100;
+	$("progressBar").value = Math.round(percent);
+	$("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+    }
+
+    function completeHandler(event){
+	$("status").innerHTML = event.target.responseText;
+	$("progressBar").value = 0;
+    }
+
+    function errorHandler(event){
+	$("status").innerHTML = "Upload Failed";
+    }
+
+    function abortHandler(event){
+	$("status").innerHTML = "Upload Aborted";
+    }
+
+
+    
+</script>     
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button> </form>
+              </footer>
+            </div>
+          </div>
+            <!-- /.Expediente -->
+            <!-- /.Modals -->
+              <div class="card-body"> 
+                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
 <!-- </div>   -->
                 <br>
                 <table id="example2" class="table table-bordered table-hover">
@@ -415,23 +489,41 @@ include("inc/connection.php");
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 1";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  if($row['estatus_c']){
+                  if($row['estatus_c'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td><button class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f'>recomendar</button></td>
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['nota_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"<td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
                       
@@ -455,7 +547,7 @@ include("inc/connection.php");
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 2 OR id_rol = 4";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -463,17 +555,35 @@ include("inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['estatus_c']){
+                  if($row['estatus_c'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
-                    <td><button align='center' class='w3-button w3-round-xlarge' style='background:#c72837; color:white'>recomendar</button></td>
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['estatus_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"<td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
                 </tbody>
@@ -496,7 +606,7 @@ include("inc/connection.php");
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -504,8 +614,10 @@ include("inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['estatus_c']){
+                  if($row['estatus_c'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -513,7 +625,25 @@ include("inc/connection.php");
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td>-</td>
+                    ";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -537,7 +667,7 @@ include("inc/connection.php");
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 ";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -545,8 +675,10 @@ include("inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['estatus_c']){
+                  if($row['estatus_c'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -554,7 +686,25 @@ include("inc/connection.php");
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td>-</td>
+                    ";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
