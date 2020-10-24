@@ -66,6 +66,7 @@ include("AdminUPRA/inc/connection.php");
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
+                 <li><div class="login-btn-container"><button type="submit" class="btn btn-grey btn-pill">Cerrar Sesión</button></div></li>
               </ul>
             </nav>
           </div>
@@ -77,14 +78,12 @@ include("AdminUPRA/inc/connection.php");
     </header>
 
     <div class="intro-section" id="home-section">
-      
-      <div class="slide-1" style="background-image: url('image/lobby.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
               <div class="row align-items-center">
 
-                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
+                <div data-aos="fade-up" data-aos-delay="500">
                     
                     <form action="private/auth.php" method="post" class="form-box">
                     <h3 class="h4 text-black mb-4">Información del Estudiante:</h3>
@@ -113,7 +112,6 @@ include("AdminUPRA/inc/connection.php");
             
           </div>
         </div>
-      </div>
     </div><br>
 
     
@@ -290,7 +288,7 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "<td></td>
+                      echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -306,7 +304,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -337,7 +334,7 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "<td></td>
+                      echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -353,7 +350,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -384,14 +380,12 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "<td></td>
+                      echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
 
                     </table>
-                  <b align="right"> Total de Creditos Electivas Departamentales: 14</b>
-                  
               </div>
               <!-- /.card-body -->
             </div>
