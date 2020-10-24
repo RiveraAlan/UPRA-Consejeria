@@ -116,12 +116,12 @@ include("AdminUPRA/inc/connection.php");
     
      <div class="container tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
-                    <button class="tablinks" onclick="openCity(event, 'Otros')">Sacar Cita con su Consejero/a</button>
+                    <button class="tablinks active" onclick="openCity(event, 'Otros')">Sacar Cita con su Consejero/a</button>
+                    <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
                   </div>
                   
                   <!-- Tab content -->
-                  <div id="Concentracion" class="tabcontent active">
+                  <div id="Concentracion" class="tabcontent">
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -430,7 +430,7 @@ include("AdminUPRA/inc/connection.php");
     </section>
     </div>
                   
-    <div id="Otros" class="tabcontent">
+    <div id="Otros" class="tabcontent active">
     <section class="appointment">
     <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">
