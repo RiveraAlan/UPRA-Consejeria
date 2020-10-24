@@ -76,34 +76,27 @@ include("AdminUPRA/inc/connection.php");
       
     </header>
 
-    <div class="intro-section">
+    <div style="padding-top: 150px; padding-bottom: 20px; margin-left: 15%">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
-              <div class="row align-items-center">
-                <div data-aos="fade-up" data-aos-delay="500">
                     
-                    <form action="private/auth.php" method="post" class="form-box">
-                    <h3 class="h4 text-black mb-4">Información del Estudiante:</h3>
-             
-                <div class="student">
-                    <div class="student-info">
-                        <div class="name">
-                            <p class="h4 text-black mb-4">Nombre: <?php echo $_SESSION['fullName']?> </p>
-                        </div>
-                        <div class="email">
-                            <p class="h4 text-black mb-4">Correo Electrónico: <?php echo $_SESSION['email']?></p>
-                        </div>
-                        <div class="academic-year">
-                            <p class="h4 text-black mb-4">Año : <?php echo $_SESSION['año_CCOM']?></p>
-                        </div>
-                        <div class="student-number">
-                            <p class="h4 text-black mb-4">Número de Estudiante: <?php echo $_SESSION['studentNumber']?></p>
-                        </div>
-                        <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Cerrar Sesión</button></div>
-                    </div>
-                </div>
-                </form>
+                <div style="margin-right: 30%"><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
+                                    <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
+                                    <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
+              </div>
+                <?php 
+                
+                 echo "<div class='card-header'>
+                    Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Semestre: <b>2</b><br>
+                    Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Año: <b>{$_SESSION['año_CCOM']}</b><br>
+           
+                    </div>";?>
                 </div>
               </div>
             </div>
@@ -124,23 +117,9 @@ include("AdminUPRA/inc/connection.php");
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <div align='center'><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
-                                    <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
-                                    <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
-              </div>
                 <?php 
                 
-                 echo "<div class='card-header'>
-                    Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Semestre: <b>2</b><br>
-                    Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Año: <b>{$_SESSION['año_CCOM']}</b><br>
-           
-                    </div><br>
+                 echo "
                     <div class='btn-group'>
                     
                     <div class='container'>
