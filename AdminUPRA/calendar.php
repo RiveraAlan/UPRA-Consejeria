@@ -389,26 +389,17 @@ echo "
       //Random default events
       events    : [";
                       
-                        if($resultCheck > 1){
+                        if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
                           echo "{
                             title          : 'Cita con fulanito',
-                            start          : new Date(y, m, 28),
+                            start          : new Date(2020, 11, 20, 11, 0),
                             end            : new Date(y, m, 29),
                             url            : 'https://www.google.com/',
                             backgroundColor: '#3c8dbc', //Primary (light-blue)
                             borderColor    : '#3c8dbc' //Primary (light-blue)
                            },";
-                        }}else if($resultCheck > 0){
-                          echo "{
-                            title          : 'Cita con Nelson',
-                            start          : new Date(y, m, 28),
-                            end            : new Date(y, m, 29),
-                            url            : 'https://www.google.com/',
-                            backgroundColor: '#3c8dbc', //Primary (light-blue)
-                            borderColor    : '#3c8dbc' //Primary (light-blue)
-                           }";
-                        }
+                        }}
                       
         echo "
       ],
