@@ -157,88 +157,34 @@ include("AdminUPRA/inc/connection.php");
                           <!-- Modal content-->
                           <div class='modal-content'>
                             <div class='modal-header'>
+                              <h3>Proximo Semestre</h3>
                               <button type='button' class='close' data-dismiss='modal'>&times;</button>
                             </div>
                             <div class='modal-body'>
-                              <form action='edtiest.php' method='post'>
-                          <div class='input-group mb-3'>
-                          <input type='text'' name='item_id' class='form-control' placeholder='CURSO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-chalkboard-teacher'></span>
-                            </div>
-                          </div>
-
-                        </div>
-                         <div class='input-group mb-3'>
-                          <input type='text' name='item_id' class='form-control' placeholder='CAMBIAR NOMBRE AL CURSO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-chalkboard-teacher'></span>
-                            </div>
-                          </div>
-                        </div>
-
-                          <div class='input-group mb-3'>
-                            <label>Description: &nbsp; </label>
-                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCION' required>
-                              </textarea>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fa fa-font'></span>
-                            </div>
-                          </div>
-                        </div>
-
-
-                          <div class='input-group mb-3'>
-                          <input type='text' name='item_id' class='form-control' placeholder='NOTA'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-clipboard'></span>
-                            </div>
-                          </div>
-                        </div>
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='MATRICULADO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-user'></span>
-                            </div>
-                          </div>
-                        </div>
-                            <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACION'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='AÑO APROBADO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACION'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class='row'>
-                          <div class='col-8'>
-                            <div class='icheck-primary'>
-
-                            </div>
-                          </div>
-                        </div>
-                      </form>
+                            <table id='example2' class='table table-bordered table-hover'>
+                          <thead>
+                          <tr width='50%'' bgcolor='yellow'>
+                            <th>Cursos</th>
+                            <th>Descripción</th>
+                            <th>Créditos</th>
+                          </tr>
+                          </thead> 
+                        <tbody>";
+                        $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                              FROM expediente WHERE id_est = ".$_SESSION['id_est']." AND estatus_R = 1";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+                      
+                        if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                          
+                          echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                            <td>{$row['nombre_c']}</td>
+                            <td>{$row['descripción_c']}</td>
+                            <td>{$row['créditos_c']}</td>
+                          </tr> ";}}
+                        echo "</tbody> 
+                          </table>
                                             </div>
                             <div class='modal-footer'>
                               <button type='button' class='btn btn-default' data-dismiss='modal'>APPLY</button>
@@ -270,7 +216,7 @@ include("AdminUPRA/inc/connection.php");
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 1";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -278,14 +224,23 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  }
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{$row['estatus_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                    echo "<td>Prox. Semestre</td>";
+                    }else{
+                    echo "<td></td>";}
+                    echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -309,7 +264,7 @@ include("AdminUPRA/inc/connection.php");
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 2 OR id_rol = 4";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -317,14 +272,23 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  }
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{$row['estatus_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                      echo "<td>Prox. Semestre</td>";
+                      }else{
+                      echo "<td></td>";}
+                      echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -347,7 +311,7 @@ include("AdminUPRA/inc/connection.php");
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -355,14 +319,23 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  }
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{$row['estatus_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                      echo "<td>Prox. Semestre</td>";
+                      }else{
+                      echo "<td></td>";}
+                      echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -385,7 +358,7 @@ include("AdminUPRA/inc/connection.php");
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
+                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 ";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -393,14 +366,23 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                    <td>{$row['nombre_c']}</td>
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                  }else{
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  }
+                    echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{$row['estatus_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                      echo "<td>Prox. Semestre</td>";
+                      }else{
+                      echo "<td></td>";}
+                      echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
