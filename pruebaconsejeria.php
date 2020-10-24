@@ -152,7 +152,7 @@ include("AdminUPRA/inc/connection.php");
                     
                     <div class='container'>
                       <!-- Trigger the modal with a button -->
-                      <button style='float: right;' type='button' class='button inicio' data-toggle='modal' data-target='#myModal'>EDITAR</button>
+                      <button style='float: right;' type='button' class='button inicio' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button>
 
                       <!-- Modal -->
                       <div class='modal fade' id='myModal' role='dialog'>
@@ -161,7 +161,7 @@ include("AdminUPRA/inc/connection.php");
                           <!-- Modal content-->
                           <div class='modal-content'>
                             <div class='modal-header'>
-                              <h3>Proximo Semestre</h3>
+                              <h3>Próximo Semestre</h3>
                               <button type='button' class='close' data-dismiss='modal'>&times;</button>
                             </div>
                             <div class='modal-body'>
@@ -191,7 +191,7 @@ include("AdminUPRA/inc/connection.php");
                           </table>
                                             </div>
                             <div class='modal-footer'>
-                              <button type='button' class='btn btn-default' data-dismiss='modal'>APPLY</button>
+                              <button type='button' class='btn btn-default' data-dismiss='modal'>CONFIRMAR</button>
                             </div>
                           </div>
                         </div>
