@@ -290,7 +290,7 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "<td></td>
+                      echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -306,7 +306,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -337,7 +336,7 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "<td></td>
+                      echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -353,7 +352,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
-                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -384,14 +382,12 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "<td></td>
+                      echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
 
                     </table>
-                  <b align="right"> Total de Creditos Electivas Departamentales: 14</b>
-                  
               </div>
               <!-- /.card-body -->
             </div>
