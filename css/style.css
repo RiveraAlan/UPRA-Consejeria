@@ -571,6 +571,7 @@ h1, h2, h3, h4, h5,
 
 .sticky-wrapper {
   position: absolute;
+  background: #e0c200;
   z-index: 100;
   width: 100%; }
   .sticky-wrapper + .site-blocks-cover {
@@ -595,7 +596,7 @@ h1, h2, h3, h4, h5,
   .sticky-wrapper.is-sticky .site-navbar {
     -webkit-box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2);
     box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2);
-    background: #fff; }
+    background: #e0c200; }
     .sticky-wrapper.is-sticky .site-navbar .site-logo a {
       color: #000; }
     .sticky-wrapper.is-sticky .site-navbar .site-menu > li {
