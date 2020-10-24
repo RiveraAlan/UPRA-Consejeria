@@ -77,12 +77,11 @@ include("AdminUPRA/inc/connection.php");
       
     </header>
 
-    <div class="intro-section" id="home-section">
+    <div class="intro-section">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
               <div class="row align-items-center">
-
                 <div data-aos="fade-up" data-aos-delay="500">
                     
                     <form action="private/auth.php" method="post" class="form-box">
@@ -102,20 +101,16 @@ include("AdminUPRA/inc/connection.php");
                         <div class="student-number">
                             <p class="h4 text-black mb-4">Número de Estudiante: <?php echo $_SESSION['studentNumber']?></p>
                         </div>
-                    </div><br>
-                    <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Cerrar Sesión</button></div>
+                    </div>
                 </div>
-         </form>
+                </form>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
-    </div><br>
-
-    
-     <div class="container tables">
+    </div>
+       <div class="container tables">
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'Citas')">Sacar Cita con su Consejero/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
@@ -615,38 +610,6 @@ include("AdminUPRA/inc/connection.php");
             </div>
             <!-- Tab links -->
 
-
-    <div class="site-section bg-image overlay" style="background-image: url('images/bd.jpg');">
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-md-8 text-center testimony">
-            <img src="images/profeliana.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-            <h3 class="mb-4">Dra. Eliana Valenzuela Andrade</h3>
-            <h3 class="mb-4">Profesora en el Departamento de Ciencias de Cómputos</h3>
-            <h3 class="mb-4">Correo Electrónico: eliana.valenzuela@upr.edu</h3>
-            <blockquote>
-              <p>Eliana Valenzuela-Andrade holds a doctoral degree in Computing, Information Sciences and Engineering, a Masters in Engineering Management Systems from the University of Puerto Rico, Mayagüez Campus and a BS in Industrial Engineering from the Universidad de los Andes, in Bogotá, Colombia. She has nearly fifteen years of teaching experience and ten years of research experience. The research areas of Dr. Valenzuela-Andrade are Database Management System, Datamining, Educational Robotics, Swarm Robotics, and Outreach Strategies for STEM careers, among others.</p>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-     
-    <footer class="footer-section bg-white">
-      <div class="container">
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-            <p>
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a target="_blank" >CONSEJERÍA-UPRA</a><br>
-        <a>Teléfono: +1-787-815-0000/ FAX: 787-880-4972</a><br>Correo: oficinadecomunicaciones.arecibo@upr.edu
-      </p>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </footer>
 
   </div> <!-- .site-wrap -->
       
