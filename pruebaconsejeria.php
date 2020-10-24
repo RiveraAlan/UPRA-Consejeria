@@ -89,7 +89,7 @@ include("AdminUPRA/inc/connection.php");
                 <div class="student">
                     <div class="student-info">
                         <div class="name">
-                            <p class="h4 text-black mb-4">Nombre: <?php echo $_SESSION['inicial_est']?> </p>
+                            <p class="h4 text-black mb-4">Nombre: <?php echo $_SESSION['fullName']?> </p>
                         </div>
                         <div class="email">
                             <p class="h4 text-black mb-4">Correo Electrónico: <?php echo $_SESSION['email']?></p>
@@ -133,21 +133,15 @@ include("AdminUPRA/inc/connection.php");
                                     <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
               </div>
                 <?php 
-                $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
-                      FROM estudiante WHERE id_est = 2";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
-              
-                if($resultCheck > 0){
-                $row = mysqli_fetch_assoc($result);
+                
                  echo "<div class='card-header'>
-                    Nombre: <b> {$row['nombre_est']} {$row['inicial_est']} {$row['apellido_estU']} {$row['apellido_estD']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Correo: <b>{$row['correo_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>2</b><br>
-                    Número de Estudiante: <b>{$row['num_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Año: <b>5</b><br>
+                    Año: <b>{$_SESSION['año_CCOM']}</b><br>
            
                     </div><br>
                     <div class='btn-group'>
@@ -253,7 +247,7 @@ include("AdminUPRA/inc/connection.php");
                         </div>
                       </div>
                     </div>
-              </div>";}
+              </div>";
                 ?>
               <!-- /.card-header -->
     
@@ -284,7 +278,7 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%'>
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
                     <td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
@@ -323,7 +317,7 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%'>
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
                     <td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
@@ -361,7 +355,7 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%'>
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
                     <td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
@@ -399,7 +393,7 @@ include("AdminUPRA/inc/connection.php");
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  echo "<tr width='50%'>
+                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
                     <td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
