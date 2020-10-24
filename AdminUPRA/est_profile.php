@@ -206,12 +206,6 @@ include("inc/connection.php");
               <p>Calendario</p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="mailbox.php" class="nav-link">
-               <i class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Mail Box</p>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
