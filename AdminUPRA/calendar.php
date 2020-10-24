@@ -392,7 +392,7 @@ echo "
                         if($resultCheck > 1){
                         while($row = mysqli_fetch_assoc($result)){
                           echo "{
-                            title          : 'Cita con ',
+                            title          : 'Cita con fulanito',
                             start          : new Date(y, m, 28),
                             end            : new Date(y, m, 29),
                             url            : 'https://www.google.com/',
@@ -401,7 +401,7 @@ echo "
                            },";
                         }}else if($resultCheck > 0){
                           echo "{
-                            title          : 'Cita con ',
+                            title          : 'Cita con Nelson',
                             start          : new Date(y, m, 28),
                             end            : new Date(y, m, 29),
                             url            : 'https://www.google.com/',
