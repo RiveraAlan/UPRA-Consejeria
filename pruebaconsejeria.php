@@ -66,7 +66,6 @@ include("AdminUPRA/inc/connection.php");
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
-                 <li><div class="login-btn-container"><button type="submit" class="btn btn-grey btn-pill">Cerrar Sesión</button></div></li>
               </ul>
             </nav>
           </div>
@@ -101,6 +100,7 @@ include("AdminUPRA/inc/connection.php");
                         <div class="student-number">
                             <p class="h4 text-black mb-4">Número de Estudiante: <?php echo $_SESSION['studentNumber']?></p>
                         </div>
+                        <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Cerrar Sesión</button></div>
                     </div>
                 </div>
                 </form>
