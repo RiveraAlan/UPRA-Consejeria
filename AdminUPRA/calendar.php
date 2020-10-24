@@ -308,8 +308,8 @@ include("inc/connection.php");
 <script src="dist/js/demo.js"></script>
 <!-- Page specific script -->
 <?php
-$sql ="SELECT cita_id, id_est, fecha_cita 
-FROM citas";
+$sql ="SELECT cita_id, citas.id_est, fecha_cita, estudiante.id_est, nombre_est, apellido_estU, apellido_estD  
+FROM citas, estudiante WHERE citas.id_est = estudiante.id_est";
 $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
 echo "
@@ -384,12 +384,19 @@ echo "
       events    : [";
                       
                         if($resultCheck > 0){
-                        while($row = mysqli_fetch_assoc($result)){
+                          while($row = mysqli_fetch_assoc($result)){
+                            $datetime = $row['fecha_cita'];
+                          
+                            $year = date("Y", strtotime($datetime));
+                            $day = date("d", strtotime($datetime));
+                            $month = date("m", strtotime($datetime));
+                            $month = $month - 1;
+                            $hour = date("H", strtotime($datetime));
+                            
                           echo "{
-                            title          : 'Cita con fulanito',
-                            start          : new Date(2020, 11, 20, 11, 0),
-                            end            : new Date(y, m, 29),
-                            url            : 'https://www.google.com/',
+                            title          : '{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}',
+                            start          : new Date($year, $month, $day, $hour),
+                            url            : '{$row['nombre_est']}',
                             backgroundColor: '#3c8dbc', //Primary (light-blue)
                             borderColor    : '#3c8dbc' //Primary (light-blue)
                            },";
