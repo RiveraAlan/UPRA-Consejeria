@@ -34,9 +34,6 @@ include("AdminUPRA/inc/connection.php");
     <link rel="stylesheet" href="css/conse.css">
       
     <link rel="stylesheet" href="cita.css">
-    <link rel="stylesheet" href="css/sugerencias.css">
-    <link rel="stylesheet" href="css/sugerencias2.css">
-    
     
     <link rel="stylesheet" href="jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
@@ -76,12 +73,15 @@ include("AdminUPRA/inc/connection.php");
       
     </header>
 
-    <div class="intro-section">
+    <div class="intro-section" id="home-section">
+      
+      <div class="slide-1" style="background-image: url('image/lobby.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
               <div class="row align-items-center">
-                <div data-aos="fade-up" data-aos-delay="500">
+
+                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
                     
                     <form action="private/auth.php" method="post" class="form-box">
                     <h3 class="h4 text-black mb-4">Información del Estudiante:</h3>
@@ -109,12 +109,14 @@ include("AdminUPRA/inc/connection.php");
             </div>
           </div>
         </div>
-    </div>
-       <div class="container tables">
+      </div>
+    </div><br>
+
+    
+     <div class="container tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openCity(event, 'Citas')">Sacar Cita con su Consejero/a</button>
+                    <button class="tablinks active" onclick="openCity(event, 'Otros')">Sacar Cita con su Consejero/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
-                     <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Sugerencias de Clases</button>
                   </div>
                   
                   <!-- Tab content -->
@@ -125,9 +127,9 @@ include("AdminUPRA/inc/connection.php");
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <div align='center'><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
-                                    <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
-                                    <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
+                <div align='center'><h3>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h3>
+                                    <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
+                                    <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
               </div>
                 <?php 
                 
@@ -145,8 +147,8 @@ include("AdminUPRA/inc/connection.php");
                     
                     <div class='container'>
                       <!-- Trigger the modal with a button -->
-                      <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
-        
+                      <button style='float: right;' type='button' class='button inicio' data-toggle='modal' data-target='#myModal'>EDITAR</button>
+
                       <!-- Modal -->
                       <div class='modal fade' id='myModal' role='dialog'>
                         <div class='modal-dialog'>
@@ -154,7 +156,7 @@ include("AdminUPRA/inc/connection.php");
                           <!-- Modal content-->
                           <div class='modal-content'>
                             <div class='modal-header'>
-                              <h3>Próximo Semestre</h3>
+                              <h3>Proximo Semestre</h3>
                               <button type='button' class='close' data-dismiss='modal'>&times;</button>
                             </div>
                             <div class='modal-body'>
@@ -184,7 +186,7 @@ include("AdminUPRA/inc/connection.php");
                           </table>
                                             </div>
                             <div class='modal-footer'>
-                              <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
+                              <button type='button' class='btn btn-default' data-dismiss='modal'>APPLY</button>
                             </div>
                           </div>
                         </div>
@@ -206,6 +208,7 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
+                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -236,7 +239,7 @@ include("AdminUPRA/inc/connection.php");
                     echo "<td>Prox. Semestre</td>";
                     }else{
                     echo "<td></td>";}
-                    echo "
+                    echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -253,6 +256,7 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
+                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -283,7 +287,7 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "
+                      echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -299,6 +303,7 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
+                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -329,7 +334,7 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "
+                      echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -345,6 +350,7 @@ include("AdminUPRA/inc/connection.php");
                     <th>Nota</th>
                     <th>Matriculado</th>
                     <th>Recomendación</th>
+                    <th>Iniciales</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
@@ -375,12 +381,14 @@ include("AdminUPRA/inc/connection.php");
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
-                      echo "
+                      echo "<td></td>
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
 
                     </table>
+                  <b align="right"> Total de Creditos Electivas Departamentales: 14</b>
+                  
               </div>
               <!-- /.card-body -->
             </div>
@@ -397,7 +405,7 @@ include("AdminUPRA/inc/connection.php");
     </section>
     </div>
                   
-    <div id="Citas" class="tabcontent active">
+    <div id="Otros" class="tabcontent active">
     <section class="appointment">
     <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">
@@ -438,174 +446,6 @@ include("AdminUPRA/inc/connection.php");
                 </section>
                   
                   </div>
-         
-         <div id="Sugerencias" class="tabcontent">
-            <section>
-                <div class="table">
-                <div class="container-table100">
-                    <h2>Electivas Departamentales</h2>
-                          <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    <th class="column100 column1" data-column="column1">Sugerencias</th>
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                    <th class="column100 column5" data-column="column5">Clasificación</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3027</td>
-                                    <td class="column100 column2" data-column="column2">Prog. Orientada a Objetos</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3036</td>
-                                    <td class="column100 column2" data-column="column2">Programación Visual</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3042</td>
-                                    <td class="column100 column2" data-column="column2">Arquitectura de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3115</td>
-                                    <td class="column100 column2" data-column="column2">Aplicaciones de Microprocesadores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3135</td>
-                                    <td class="column100 column2" data-column="column2">Temas en Ciencias de Cómputos</td>
-                                    <td class="column100 column3" data-column="column3">1-6</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3985</td>
-                                    <td class="column100 column2" data-column="column2">Investigación Sub-graduada</td>
-                                    <td class="column100 column3" data-column="column3">2</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4018</td>
-                                    <td class="column100 column2" data-column="column2">Redes de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4019</td>
-                                    <td class="column100 column2" data-column="column2">Programación Web</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4125</td>
-                                    <td class="column100 column2" data-column="column2">Inteligencia Artificial</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4135</td>
-                                    <td class="column100 column2" data-column="column2">Diseño Compiladores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4305</td>
-                                    <td class="column100 column2" data-column="column2">Introducción Diseño Web</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4306</td>
-                                    <td class="column100 column2" data-column="column2">Opt. Gráficas</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4307</td>
-                                    <td class="column100 column2" data-column="column2">Mantenimiento de PC's</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Desarrollo de Aplicaciones Móviles</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4420</td>
-                                    <td class="column100 column2" data-column="column2">Cloud Computing Apps</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Robótica</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>             
-                </div>
-                </section>    
-         </div>
                   
             </div>
             <!-- Tab links -->
