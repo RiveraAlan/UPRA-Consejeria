@@ -76,40 +76,8 @@ include("AdminUPRA/inc/connection.php");
       
     </header>
 
-    <div class="intro-section">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-12">
-              <div class="row align-items-center">
-                <div data-aos="fade-up" data-aos-delay="500">
-                    
-                    <form action="private/auth.php" method="post" class="form-box">
-                    <h3 class="h4 text-black mb-4">Información del Estudiante:</h3>
-             
-                <div class="student">
-                    <div class="student-info">
-                        <div class="name">
-                            <p class="h4 text-black mb-4">Nombre: <?php echo $_SESSION['fullName']?> </p>
-                        </div>
-                        <div class="email">
-                            <p class="h4 text-black mb-4">Correo Electrónico: <?php echo $_SESSION['email']?></p>
-                        </div>
-                        <div class="academic-year">
-                            <p class="h4 text-black mb-4">Año : <?php echo $_SESSION['año_CCOM']?></p>
-                        </div>
-                        <div class="student-number">
-                            <p class="h4 text-black mb-4">Número de Estudiante: <?php echo $_SESSION['studentNumber']?></p>
-                        </div>
-                        <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Cerrar Sesión</button></div>
-                    </div>
-                </div>
-                </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+    <div class="header">
+    </div><br><br><br><br><br><br><br><br>
        <div class="container tables">
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'Citas')">Sacar Cita con su Consejero/a</button>
