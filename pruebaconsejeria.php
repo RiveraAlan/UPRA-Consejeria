@@ -89,16 +89,16 @@ include("AdminUPRA/inc/connection.php");
                 <div class="student">
                     <div class="student-info">
                         <div class="name">
-                            <p class="h4 text-black mb-4">Nombre: Nelson J. Octaviani Soto</p>
+                            <p class="h4 text-black mb-4">Nombre: <?php echo $_SESSION['inicial_est']?> </p>
                         </div>
                         <div class="email">
-                            <p class="h4 text-black mb-4">Correo Electrónico: nelson.octaviani@upr.edu</p>
+                            <p class="h4 text-black mb-4">Correo Electrónico: <?php echo $_SESSION['email']?></p>
                         </div>
                         <div class="academic-year">
-                            <p class="h4 text-black mb-4">Año Académico: 2 Semestre</p>
+                            <p class="h4 text-black mb-4">Año : <?php echo $_SESSION['año_CCOM']?></p>
                         </div>
                         <div class="student-number">
-                            <p class="h4 text-black mb-4">Número de Estudiante: 840-16-5082</p>
+                            <p class="h4 text-black mb-4">Número de Estudiante: <?php echo $_SESSION['studentNumber']?></p>
                         </div>
                     </div><br>
                     <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Cerrar Sesión</button></div>
