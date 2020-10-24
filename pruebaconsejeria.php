@@ -1,5 +1,8 @@
 <?php
-include("inc/connection.php");
+session_start();
+
+// Make sure if user not signed in they cannot see this page.
+include("AdminUPRA/inc/connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -422,23 +425,56 @@ include("inc/connection.php");
     </section>
     </div>
                   
-                  <div id="Otros" class="tabcontent">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Cursos</th>
-                                <th>Descripción</th>
-                                <th>Créditos</th>
-                                <th>Notas</th>
-                                <th>Matriculado</th>
-                                <th>Recomendacion</th>
-                                <th>Firma</th>
-                                <th>Año Aprobado</th>
-                                <th>Convalidación</th>
-                            </tr>
-                        </thead>
-                        
-                    </table>
+    <div id="Otros" class="tabcontent">
+    <section class="appointment">
+    <h2 class="appointment-form-title">Sacar cita</h2>
+    <form action="private/process-appointment.php" method="POST" class="appointment-form">
+                       
+    <?php 
+        include 'private/appointment-status.php';
+                                
+            if($isAppointmentValid){
+                echo '<div class="success-message">La cita con el/la consejero(a) fue separada para el '.$fecha_cita.'.</div>';
+                } else {
+                    if((isset($_GET['is-date-empty']) AND boolval($_GET['is-date-empty'])) OR (isset($_GET['is-hour-chosen-empty']) AND boolval($_GET['is-hour-chosen-empty']))){
+                    echo '<div class="error-message">*Escoga el día y la hora de la cita.</div>';
+                        }
+                    echo ' <div class="form-group d-flex">
+                    <div class="form-label">
+                        <label>Name</label>
+                    </div>
+                    <div class="form-controls d-flex">
+                    <input type="text" name="first-name" value="'.$_SESSION['firstName'].'" placeholder="First Name" class="form-control" readonly>
+                    <input type="text" name="last-name" value="'.$_SESSION['lastNameU'].' '.$_SESSION['lastNameD'].'" placeholder="Last Name"  class="form-control" readonly>
+                    </div>
+                    </div>';
+                    echo '<div class="form-group d-flex">
+                                          <div class="form-label">
+                                         <label>E-mail</label>
+                                         </div>
+                                         <input type="email" name="email"  value="'. $_SESSION['email'].'" placeholder="E-mail" class="form-control" readonly> 
+                                         </div>';
+                    echo ' <div class="form-group d-flex">
+                                         <div class="calendar-box">';
+
+                                                $dateField = '<input type="text" name="date" onchange="getAvailableDates(this.value)" id="datepicker"  type="text" class="form-control"/>';
+                                                if(isset($_GET['is-date-empty']) AND boolval($_GET['is-date-empty'])){
+                                                    $dateField = '<input type="text" name="date" onchange="getAvailableDates(this.value)" id="datepicker"  type="text" class="invalid"/>';
+                                                } 
+                                                echo $dateField;
+                                            
+                    echo '<div class="hour-chosen-container"></div>
+                                            </div>
+                                            <div class="spots-available">
+                                             </div>
+                                             </div>';
+                                        echo '<div class="submitBtn">
+                                        <button type="submit">Submit</button>
+                                    </div>';
+                                }
+                           ?>
+                        </form>
+                </section>
                   
                   </div>
                   
@@ -479,6 +515,55 @@ include("inc/connection.php");
     </footer>
 
   </div> <!-- .site-wrap -->
+      
+  <script src="index.js"></script> 
+        <script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+        <script src="jqueryui/jquery-ui.js"></script>
+        <script>
+            $("#datepicker").datepicker({
+                changeMonth: true,
+                minDate: new Date(2020, 09, 4),
+                maxDate: new Date(2020, 10, 4)
+            });
+        </script>
+
+        <script>
+            function getAvailableDates(date){
+                var xmlhttp = new XMLHttpRequest();
+                 xmlhttp.onreadystatechange = function() {
+             if (this.readyState == 4 && this.status == 200) {
+               document.querySelector('.spots-available').innerHTML  =  this.responseText;
+             
+            }
+      }
+      let dateFormatted = date.split('/').reverse();
+      const temp = dateFormatted[1];
+      dateFormatted[1] = dateFormatted[2];
+      dateFormatted[2] = temp;
+      dateFormatted = dateFormatted.join('-');
+      
+      xmlhttp.open("GET", "private/get-available-dates.php?date=" + dateFormatted, true);
+      xmlhttp.send();
+    };
+    
+       function getHourOfMeeting(hour){
+        let editHour = hour.split(' ');
+        editHour = editHour[0];
+        
+        
+        let input = document.createElement("INPUT");
+        input.setAttribute("type", "text");
+        input.className = 'hour-chosen';
+        input.name = "hour-chosen";
+        input.setAttribute('value', editHour);
+        input.readOnly = true;
+        document.querySelector('.hour-chosen-container').innerHTML = 'Hour: ';
+        document.querySelector('.hour-chosen-container').appendChild(input);
+       }
+        </script>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
