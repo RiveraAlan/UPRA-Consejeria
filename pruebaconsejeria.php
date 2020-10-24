@@ -60,12 +60,12 @@ include("AdminUPRA/inc/connection.php");
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-25"><a href="index.html"><img src="image/upr.png" alt="">CONSEJERÍA UPRA</a></div>
+          <div class="site-logo mr-auto w-25"><a href="index.html"><img src="image/upraconse.png" alt=""></a></div>
 
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="index.php" class="nav-link">Inicio</a></li>
+                <li><a href="private/logout.php" class="nav-link">Cerrar Sesión</a></li>
               </ul>
             </nav>
           </div>
@@ -76,7 +76,7 @@ include("AdminUPRA/inc/connection.php");
       
     </header>
 
-    <div style="padding-top: 150px; padding-bottom: 20px; margin-left: 15%">
+    <div style="padding-top: 200px; padding-bottom: 20px; margin-left: 15%">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
@@ -100,9 +100,7 @@ include("AdminUPRA/inc/connection.php");
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-    </div>
+        
        <div class="container tables">
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'Citas')">Sacar Cita con su Consejero/a</button>
@@ -162,7 +160,7 @@ include("AdminUPRA/inc/connection.php");
                         echo "</tbody> 
                           </table>
                                             </div>
-                            <div class='modal-footer'>
+                            <div class='modal-footer'><br>
                               <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
                             </div>
                           </div>
@@ -410,7 +408,7 @@ include("AdminUPRA/inc/connection.php");
                                             <div class="spots-available">
                                              </div>
                                              </div>';
-                    echo '<div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Someter</button></div>';
+                    echo '<div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Confirmar Cita</button></div>';
                                 }
                            ?>
                         </form>
@@ -591,6 +589,8 @@ include("AdminUPRA/inc/connection.php");
 
 
   </div> <!-- .site-wrap -->
+      
+      
       
   <script src="index.js"></script> 
         <script
