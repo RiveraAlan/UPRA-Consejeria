@@ -417,7 +417,11 @@ include("inc/connection.php");
               </header>
               <div class='w3-container'>
                   <br>
-<div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false"></div>
+<div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
+<div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
+  <input type="file" id="myfile" name="myfile">
+          </div>
+</div>
 
 <script>
     function $(el){
@@ -459,7 +463,6 @@ include("inc/connection.php");
     function abortHandler(event){
 	$("status").innerHTML = "Upload Aborted";
     }
-
 
     
 </script>     
