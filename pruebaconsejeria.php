@@ -32,6 +32,8 @@ include("AdminUPRA/inc/connection.php");
     <link rel="stylesheet" href="css/style.css">
       
     <link rel="stylesheet" href="css/conse.css">
+    
+    <link rel="stylesheet" href="css/notes.css">
       
     <link rel="stylesheet" href="cita.css">
     <link rel="stylesheet" href="css/sugerencias.css">
@@ -60,7 +62,7 @@ include("AdminUPRA/inc/connection.php");
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-25"><a href="index.html"><img src="image/upraconse.png" alt=""></a></div>
+          <div class="site-logo mr-auto w-25"><img src="image/upraconse.png" alt=""></div>
 
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
@@ -105,7 +107,8 @@ include("AdminUPRA/inc/connection.php");
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'Citas')">Sacar Cita con su Consejero/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
-                     <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Sugerencias de Clases</button>
+                     <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Hacer Sugerencias de Clases</button>
+                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del Consejero/a</button>
                   </div>
                   
                   <!-- Tab content -->
@@ -583,10 +586,29 @@ include("AdminUPRA/inc/connection.php");
                 </div>
                 </section>    
          </div>
-                  
-            </div>
-            <!-- Tab links -->
+            <div id="Comentario" class="tabcontent">
+                <!-- Notes -->
+             <?php
+            echo "
+            <div class='card' >
+              <div class='card-header' style='background: #e0c200'>
+                <h3 class='card-title' >Notas</h3>
+              </div>
+                
+              <div>
 
+              <form id='paper' method='get' action=''>
+		            <textarea  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></textarea>
+              </form>
+                
+            </div>
+            <!-- /.card -->
+          </div>";
+          ?>
+
+            </div>
+           
+      </div>
 
   </div> <!-- .site-wrap -->
       

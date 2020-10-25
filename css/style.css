@@ -607,7 +607,7 @@ h1, h2, h3, h4, h5,
         display: inline-block;
         text-decoration: none !important; }
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover {
-          color: #e0c200; }
+          color: gray; }
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active:after {
           background: #e0c200; }
   .sticky-wrapper .shrink {

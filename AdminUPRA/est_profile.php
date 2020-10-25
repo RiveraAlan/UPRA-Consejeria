@@ -9,7 +9,7 @@ $id = $_SESSION['id_est'];
     
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | INICIO</title>
+  <title>CONSEJERIA-UPRA | EXP.ESTUDIANTE</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
@@ -222,12 +222,12 @@ $id = $_SESSION['id_est'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Inicio</h1>
+            <h1 class="m-0 text-dark">Expediente Académico del Estudiante</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Inicio</li>
+              <li class="breadcrumb-item active">Expediente Académico del Estudiante</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -259,7 +259,7 @@ $id = $_SESSION['id_est'];
 
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
-                    <b>Creditos Aprobados</b> <a class='float-right'>90</a>
+                    <b>Créditos Aprobados</b> <a class='float-right'>90</a>
                   </li>
                   <li class='list-group-item'>
                     <b>Año</b> <a class='float-right'>4</a>
@@ -279,7 +279,7 @@ $id = $_SESSION['id_est'];
             <!-- About Me Box -->
             <div class='card' >
               <div class='card-header' style='background: #e0c200'>
-                <h3 class='card-title' >Notes</h3>
+                <h3 class='card-title' >Notas</h3>
               </div>
               <!-- /.card-header -->
               <div>
@@ -333,8 +333,8 @@ $id = $_SESSION['id_est'];
                               <span class='fas fa-chalkboard-teacher'></span>
                             </div>
                           </div>
-
                         </div>
+                                                                     
                          <div class='input-group mb-3'>
                           <input type='text' name='item_id' class='form-control' placeholder='CAMBIAR NOMBRE AL CURSO'>
                           <div class='input-group-append'>
@@ -345,15 +345,13 @@ $id = $_SESSION['id_est'];
                         </div>
 
                           <div class='input-group mb-3'>
-                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCION'>
-                              </textarea>
+                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCION'></textarea>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fa fa-font'></span>
                             </div>
                           </div>
                         </div>
-
 
                           <div class='input-group mb-3'>
                           <input type='text' name='item_id' class='form-control' placeholder='NOTA'>
@@ -363,6 +361,7 @@ $id = $_SESSION['id_est'];
                             </div>
                           </div>
                         </div>
+                                                            
                           <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='MATRICULADO'>
                           <div class='input-group-append'>
@@ -371,7 +370,8 @@ $id = $_SESSION['id_est'];
                             </div>
                           </div>
                         </div>
-                            <div class='input-group mb-3'>
+                                                       
+                          <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='RECOMENDACION'>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
@@ -379,6 +379,7 @@ $id = $_SESSION['id_est'];
                             </div>
                           </div>
                         </div>
+                                                               
                           <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='AÑO APROBADO'>
                           <div class='input-group-append'>
@@ -397,6 +398,7 @@ $id = $_SESSION['id_est'];
                         </div>
                      
       </div>
+                                                               
       <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
       <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APPLY</button> </form>
       </footer>
@@ -710,7 +712,6 @@ $id = $_SESSION['id_est'];
                   </tr> ";}}?>
 
                     </table>
-                  <b align="right"> Total de Creditos Electivas Departamentales: 14</b>
                   
               </div>
               <!-- /.card-body -->
@@ -738,10 +739,7 @@ $id = $_SESSION['id_est'];
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
-    </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
