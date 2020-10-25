@@ -250,20 +250,21 @@ require 'inc/connection.php';
                           {$row['num_est']}
                       </td>
                       <td>
-                          <a href='profile.html'>
                               {$row['nombre_est']}
                               {$row['apellido_estU']}
-                          
                           <br/>
                           <small>
                               Cohorte 2017
-                          </small></a>
+                          </small>
                       </td>
                       <td>
                           <ul class='list-inline'> <div align='center'>
+                          <form action='inc/exp_session.php' method='post'>
                               <li class='list-inline-item'>
-                                  <a title='UPRA' href='est_profile.php'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></a>
+                              <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'> 
+                                  <button title='UPRA' onclick='estudiante()' name='est-submit' style='border: none'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></button>
                               </li></div>
+                            </form>
                           </ul>
                       </td>
                       <td class='project-state'>

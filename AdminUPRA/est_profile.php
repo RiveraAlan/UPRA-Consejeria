@@ -1,5 +1,7 @@
 <?php
+session_start();
 include("inc/connection.php");
+$id = $_SESSION['id_est'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -244,7 +246,7 @@ include("inc/connection.php");
               <div class="card-body box-profile">
                     <?php
                     $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
-                    FROM estudiante";
+                    FROM estudiante WHERE id_est = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
             
@@ -252,6 +254,7 @@ include("inc/connection.php");
               $row = mysqli_fetch_assoc($result);
                echo "<h3 class='profile-username text-center'>{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}</h3>
 
+                <p class='text-muted text-center'>{$row['correo_est']}</p>
                 <p class='text-muted text-center'>{$row['num_est']}</p>
 
                 <ul class='list-group list-group-unbordered mb-3'>
@@ -282,7 +285,7 @@ include("inc/connection.php");
               <div>
 
               <form id='paper' method='get' action=''>
-		<textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px; '></textarea>
+		            <textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></textarea>
               </div><button type='submit' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
               <!-- /.card-body -->
@@ -297,7 +300,7 @@ include("inc/connection.php");
             });
             </script>
           <!-- /.col -->
-          <div class="col-md-9" style="overflow-y: scroll; overflow-x: auto; height: 825px;">
+          <div class="card" id="style-2" style="overflow-y: scroll; overflow-x: auto; height: 850px; width: 75%;border-top: 3px solid #e0c200;">
         <div class="row">
           <div class="col-12">
             <div class="card">
@@ -487,7 +490,7 @@ include("inc/connection.php");
                   <tbody>
                 <?php 
                 $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 1";
+                      FROM expediente WHERE id_rol = 1 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -545,7 +548,7 @@ include("inc/connection.php");
                   <tbody>
                 <?php 
                 $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 2 OR id_rol = 4";
+                      FROM expediente WHERE id_rol = 2 OR id_rol = 4 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -604,7 +607,7 @@ include("inc/connection.php");
                 <tbody>
                 <?php 
                 $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10";
+                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -665,7 +668,7 @@ include("inc/connection.php");
                 <tbody>
                 <?php 
                 $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 ";
+                      FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
