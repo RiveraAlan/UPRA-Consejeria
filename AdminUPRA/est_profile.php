@@ -345,7 +345,7 @@ $id = $_SESSION['id_est'];
                         </div>
 
                           <div class='input-group mb-3'>
-                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCION'></textarea>
+                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCIÓN'></textarea>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fa fa-font'></span>
@@ -372,7 +372,7 @@ $id = $_SESSION['id_est'];
                         </div>
                                                        
                           <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACION'>
+                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACIÓN'>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fas fa-comment-dots'></span>
@@ -389,7 +389,7 @@ $id = $_SESSION['id_est'];
                           </div>
                         </div>
                           <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACION'>
+                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACIÓN'>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fas fa-comment-dots'></span>
@@ -400,7 +400,7 @@ $id = $_SESSION['id_est'];
       </div>
                                                                
       <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
-      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APPLY</button> </form>
+      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APLICAR</button> </form>
       </footer>
     </div>
   </div>
