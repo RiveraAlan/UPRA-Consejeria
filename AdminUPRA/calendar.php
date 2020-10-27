@@ -259,41 +259,20 @@ $resultCheck = mysqli_num_rows($result);
 echo "
 <script>
   $(function () {
-
-    /* initialize the external events
-     -----------------------------------------------------------------*/
-    function ini_events(ele) {
-      ele.each(function () {
-
-        // create an Event Object (https://fullcalendar.io/docs/event-object)
-        // it doesn't need to have a start or end
-
-        
-
-      })
-    }
-
     
-
     /* initialize the calendar
      -----------------------------------------------------------------*/
     //Date for the calendar events (dummy data)
     var date = new Date()
-    var d    = date.getDate(),
-        m    = date.getMonth(),
-        y    = date.getFullYear()
 
     var Calendar = FullCalendar.Calendar;
     var Draggable = FullCalendarInteraction.Draggable;
 
     var containerEl = document.getElementById('external-events');
-    var checkbox = document.getElementById('drop-remove');
     var calendarEl = document.getElementById('calendar');
 
     // initialize the external events
     // -----------------------------------------------------------------
-
-    
 
     var calendar = new Calendar(calendarEl, {
       plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
@@ -303,7 +282,7 @@ echo "
         right : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
       'themeSystem': 'bootstrap',
-      //Random default events
+      //Citas
       events    : [";
                       
                         if($resultCheck > 0){

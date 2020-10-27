@@ -178,7 +178,7 @@ include("AdminUPRA/inc/connection.php");
         
               <div class="card-body"> 
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
                   <tr width="50%" bgcolor="yellow">
                     <th>Cursos</th>
@@ -202,11 +202,11 @@ include("AdminUPRA/inc/connection.php");
                 while($row = mysqli_fetch_assoc($result)){
                   
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
@@ -225,7 +225,7 @@ include("AdminUPRA/inc/connection.php");
                 </tbody> 
                   </table>
                   <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
                   <tr width="50%" bgcolor="yellow">
                     <th>Cursos</th>
@@ -249,11 +249,11 @@ include("AdminUPRA/inc/connection.php");
                 while($row = mysqli_fetch_assoc($result)){
                   
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
@@ -271,7 +271,7 @@ include("AdminUPRA/inc/connection.php");
                 </tbody>
                   </table>
                    <div align = "center"><h3>Electivas Libres</h3></div>
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
                   <tr width="50%" bgcolor="yellow">
                     <th>Cursos</th>
@@ -295,11 +295,11 @@ include("AdminUPRA/inc/connection.php");
                 while($row = mysqli_fetch_assoc($result)){
                   
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
@@ -317,7 +317,7 @@ include("AdminUPRA/inc/connection.php");
                 </tbody> 
                   </table>
                    <div align = "center"><h3>Electivas Departamentales</h3></div>
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example2" class="table table-bordered table-hover" style="color:#000">
                      <thead>
                   <tr width="50%" bgcolor="yellow">
                     <th>Cursos</th>
@@ -341,11 +341,11 @@ include("AdminUPRA/inc/connection.php");
                 while($row = mysqli_fetch_assoc($result)){
                   
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>";
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>

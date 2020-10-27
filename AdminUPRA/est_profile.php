@@ -187,7 +187,7 @@ $id = $_SESSION['id_est'];
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
+                    $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est, año_CCOM, secuencia_est
                     FROM estudiante WHERE id_est = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -204,10 +204,10 @@ $id = $_SESSION['id_est'];
                     <b>Créditos Aprobados</b> <a class='float-right'>90</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Año</b> <a class='float-right'>4</a>
+                    <b>Año</b> <a class='float-right'>{$row['año_CCOM']}</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Secuencia Curricular</b> <a class='float-right'>2017</a>
+                    <b>Secuencia Curricular</b> <a class='float-right'>{$row['secuencia_est']}</a>
                   </li>
                     
                 </ul>";?>
