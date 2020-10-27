@@ -9,7 +9,7 @@ $id = $_SESSION['id_est'];
     
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | EXP.ESTUDIANTE</title>
+  <title>CONSEJERÍA-UPRA | EXP.ESTUDIANTE</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
