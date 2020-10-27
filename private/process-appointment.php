@@ -25,7 +25,7 @@ foreach($fields as $field) {
   }
   
 if($isAFieldEmpty){
-  header('Location: ../pruebaconsejeria.php'.$queryParams);
+  header('Location: ../consejeria.php'.$queryParams);
   exit();
 }
 
@@ -71,7 +71,7 @@ $stmt->bind_param('is', $_SESSION['id_est'], $meetingDate);
 // Execute the query using the data we just defined
 // The execute() method returns TRUE if it is successful and FALSE if it is not, allowing you to write your own messages here
 if ($stmt->execute()) {
-     header('Location: ../pruebaconsejeria.php');
+     header('Location: ../consejeria.php');
 } else {
   echo "Unable to create record";
 }

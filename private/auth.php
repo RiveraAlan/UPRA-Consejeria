@@ -52,7 +52,7 @@ if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, inicial_
             $_SESSION['studentNumber'] = $studentNumber;
             $_SESSION['año_CCOM'] = $year;
             $_SESSION['id_est'] = $id;
-            header('Location: ../pruebaconsejeria.php');
+            header('Location: ../consejeria.php');
             // ====== SWITCH TO INDEX.PHP INSTEAD OF CITA.PHP ============
         } else {
             // Incorrect password
