@@ -84,20 +84,19 @@ include("AdminUPRA/inc/connection.php");
           <div class="row align-items-center">
             <div class="col-12">
                     
-                <div style="margin-right: 30%"><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
+                <div style="margin-right: 20%"><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
                                     <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
                                     <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
               </div>
                 <?php 
                 
-                 echo "<div class='card-header'>
+                 echo "<div style='margin-left: 12%'>
+                    <div style='text-align:center;color:#000'>
                     Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Semestre: <b>2</b><br>
+                    </div></div><br>
+                    <div style='text-align:center;color:#000;'>
                     Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Año: <b>{$_SESSION['año_CCOM']}</b><br>
+                    <br>
            
                     </div>";?>
                 </div>
@@ -142,6 +141,7 @@ include("AdminUPRA/inc/connection.php");
                             <table id='example2' class='table table-bordered table-hover'>
                           <thead>
                           <tr width='50%'' bgcolor='yellow'>
+                            <th><input type='checkbox' class='case' name='case' value='' /> </th>
                             <th>Cursos</th>
                             <th>Descripción</th>
                             <th>Créditos</th>
@@ -157,13 +157,14 @@ include("AdminUPRA/inc/connection.php");
                         while($row = mysqli_fetch_assoc($result)){
                           
                           echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                            <td><input type='checkbox' class='case' name='case' value='' /> </td>
                             <td>{$row['nombre_c']}</td>
                             <td>{$row['descripción_c']}</td>
                             <td>{$row['créditos_c']}</td>
                           </tr> ";}}
                         echo "</tbody> 
                           </table>
-                                            </div>
+                            </div>&nbsp;&nbsp;&nbsp;Total de Créditos Recomendados: 5
                             <div class='modal-footer'><br>
                               <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
                             </div>
@@ -185,7 +186,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
@@ -211,8 +211,7 @@ include("AdminUPRA/inc/connection.php");
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                     echo "<td>Prox. Semestre</td>";
                     }else{
@@ -232,7 +231,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
@@ -258,8 +256,7 @@ include("AdminUPRA/inc/connection.php");
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
@@ -278,7 +275,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
@@ -304,8 +300,7 @@ include("AdminUPRA/inc/connection.php");
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
@@ -324,7 +319,6 @@ include("AdminUPRA/inc/connection.php");
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
@@ -350,8 +344,7 @@ include("AdminUPRA/inc/connection.php");
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
@@ -438,147 +431,30 @@ include("AdminUPRA/inc/connection.php");
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3027</td>
-                                    <td class="column100 column2" data-column="column2">Prog. Orientada a Objetos</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3036</td>
-                                    <td class="column100 column2" data-column="column2">Programación Visual</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3042</td>
-                                    <td class="column100 column2" data-column="column2">Arquitectura de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3115</td>
-                                    <td class="column100 column2" data-column="column2">Aplicaciones de Microprocesadores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
                                   
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3135</td>
-                                    <td class="column100 column2" data-column="column2">Temas en Ciencias de Cómputos</td>
-                                    <td class="column100 column3" data-column="column3">1-6</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3985</td>
-                                    <td class="column100 column2" data-column="column2">Investigación Sub-graduada</td>
-                                    <td class="column100 column3" data-column="column3">2</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4018</td>
-                                    <td class="column100 column2" data-column="column2">Redes de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4019</td>
-                                    <td class="column100 column2" data-column="column2">Programación Web</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4125</td>
-                                    <td class="column100 column2" data-column="column2">Inteligencia Artificial</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4135</td>
-                                    <td class="column100 column2" data-column="column2">Diseño Compiladores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4305</td>
-                                    <td class="column100 column2" data-column="column2">Introducción Diseño Web</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4306</td>
-                                    <td class="column100 column2" data-column="column2">Opt. Gráficas</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4307</td>
-                                    <td class="column100 column2" data-column="column2">Mantenimiento de PC's</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Desarrollo de Aplicaciones Móviles</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4420</td>
-                                    <td class="column100 column2" data-column="column2">Cloud Computing Apps</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Robótica</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
+                                    <?php 
+                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R, id_rol
+                      FROM expediente WHERE id_rol = 11 OR id_rol = 12";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    echo "
+                                    <tr class='row100'>
+                                    <td align='center'>
+                                    <input type='checkbox' class='case' name='case' value='{$row['nombre_c']}' /></td>
+                                    <td class='column100 column1' data-column='column1'>{$row['nombre_c']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['descripción_c']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['créditos_c']}</td>
+                                    ";
+                                        if($row['id_rol']==11){
+                                        echo "<td class='column100 column4' data-column='column4'>Intermedio</td>";
+                                        }else{
+                                        echo "<td class='column100 column4' data-column='column4'>Avanzada</td>";
+                                        }
+                                        echo "
+                                  </tr>"; }}?>
                                 </tbody>
                               </table>
                             </div>
