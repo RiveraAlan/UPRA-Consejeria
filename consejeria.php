@@ -1,5 +1,6 @@
 <?php
 session_start();
+$id= $_SESSION['id_est'];
 
 // Make sure if user not signed in they cannot see this page.
 include("AdminUPRA/inc/connection.php");
@@ -589,7 +590,15 @@ include("AdminUPRA/inc/connection.php");
             <div id="Comentario" class="tabcontent">
                 <!-- Notes -->
              <?php
-            echo "
+                $sql ="SELECT comentarios_e
+                      FROM exp_detalles WHERE id_est = $id";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                 
+                    echo "
             <div class='card'>
               <div class='card-header' style='background: #e0c200'>
                 <h3 class='card-title' >Notas</h3>
@@ -598,12 +607,14 @@ include("AdminUPRA/inc/connection.php");
               <div>
 
               <form id='paper' method='get' action=''>
-		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>$row</p>
+		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['comentarios_e']}</p>
               </form>
                 
             </div>
             <!-- /.card -->
           </div>";
+}}
+        
           ?>
 
             </div>

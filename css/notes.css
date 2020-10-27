@@ -26,12 +26,12 @@
     color:#222;
     font-family:Courier, monospace;
     font-weight:normal;
-    font-size:22px;
+    font-size:40px;
     resize:none;
-    line-height:40px;
-    padding-left:60px;
+    line-height:60px;
+    padding-left:80px;
     padding-right:50px;
-    padding-top:10px;
+    padding-top:20px;
     padding-bottom:10px;
     background-image:url(../images/line_long.png);
     background-repeat:repeat-y, repeat;
