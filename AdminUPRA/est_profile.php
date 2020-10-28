@@ -6,10 +6,10 @@ $id = $_SESSION['id_est'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | EXP.ESTUDIANTE</title>
+  <title>CONSEJERIA-UPRA | EXP.ESTUDIANTE</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
@@ -37,9 +37,9 @@ $id = $_SESSION['id_est'];
 
   <style>
     #drop_zone {
-            background-color: #EEE; 
+            background-color: #EEE;
             border: #999 5px dashed;
-            width: 100%; 
+            width: 100%;
             height: 30rem;
             padding: 8px;
             font-size: 18px;
@@ -63,6 +63,64 @@ $id = $_SESSION['id_est'];
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="read-mail.php" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="mailbox.php" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -99,20 +157,20 @@ $id = $_SESSION['id_est'];
     <!-- Brand Logo -->
     <a href="inicio.php" class="brand-link">
       <img src="img/university.jpg" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CONSEJERÍA UPRA</span>
+      <span class="brand-text font-weight-light">CONSEJERIA UPRA</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        
-        
+       
+       
         <div class="info">
         <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero`";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 $row = mysqli_fetch_assoc($result);
                 ;}
@@ -187,11 +245,11 @@ $id = $_SESSION['id_est'];
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est, año_CCOM, secuencia_est
+                    $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
                     FROM estudiante WHERE id_est = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-            
+           
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
                echo "<h3 class='profile-username text-center'>{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}</h3>
@@ -204,12 +262,12 @@ $id = $_SESSION['id_est'];
                     <b>Créditos Aprobados</b> <a class='float-right'>90</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Año</b> <a class='float-right'>{$row['año_CCOM']}</a>
+                    <b>Año</b> <a class='float-right'>4</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Secuencia Curricular</b> <a class='float-right'>{$row['secuencia_est']}</a>
+                    <b>Secuencia Curricular</b> <a class='float-right'>2017</a>
                   </li>
-                    
+                   
                 </ul>";?>
                 <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar Expediente</button>
               <?php
@@ -217,7 +275,7 @@ $id = $_SESSION['id_est'];
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-            
+           
             <!-- About Me Box -->
             <div class='card' >
               <div class='card-header' style='background: #e0c200'>
@@ -226,10 +284,9 @@ $id = $_SESSION['id_est'];
               <!-- /.card-header -->
               <div>
 
-              <form id='paper' method='post' action='inc/notespost.php'>
-		            <textarea value='' type='text' placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></textarea>
-                <input type='hidden' id='id' name='id' value='$id'>
-              </div><button onclick='notes()' name='notes-submit' type='submit' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
+              <form id='paper' method='get' action=''>
+           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></textarea>
+              </div><button type='submit' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
               <!-- /.card-body -->
             </div>
@@ -249,10 +306,10 @@ $id = $_SESSION['id_est'];
             <div class="card">
               <div class="card-header">
                 <div align='center'><h3>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h3>
-                                    <h3>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h3> 
-                                    <h3>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h3></div>
+                                    <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
+                                    <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
                                    
-                    
+                   
                     <!-- </div>
               </div> -->
             </div>
@@ -261,8 +318,8 @@ $id = $_SESSION['id_est'];
             <!-- Edit -->
             <div id="id01" class="w3-modal" style="padding-left:20%">
     <div class="w3-modal-content w3-animate-zoom">
-      <header class="w3-container" style="padding-top:5px"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
+      <header class="w3-container" style="padding-top:5px">
+        <span onclick="document.getElementById('id01').style.display='none'"
         class="w3-button w3-display-topright">&times;</span>
         <h3>Editar</h3>
       </header>
@@ -304,7 +361,7 @@ $id = $_SESSION['id_est'];
                             </div>
                           </div>
                         </div>
-                                                            
+                                                           
                           <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='MATRICULADO'>
                           <div class='input-group-append'>
@@ -352,8 +409,8 @@ $id = $_SESSION['id_est'];
             <!-- Expediente -->
   <div id='id02' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
-              <header class='w3-container' style='padding-top:5px'> 
-                <span onclick='document.getElementById("id02").style.display="none"' 
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id02").style.display="none"'
                 class='w3-button w3-display-topright'>&times;</span>
                 <h3>Subir Expediente</h3>
               </header>
@@ -373,41 +430,41 @@ $id = $_SESSION['id_est'];
     function uploadFile(event){
     event.preventDefault();
     var file = event.dataTransfer.files[0];
-	// alert(file.name+" | "+file.size+" | "+file.type);
-	var formdata = new FormData();
-	formdata.append("file1", file);
-	var ajax = new XMLHttpRequest();
-	ajax.upload.addEventListener("progress", progressHandler, false);
-	ajax.addEventListener("load", completeHandler, false);
-	ajax.addEventListener("error", errorHandler, false);
-	ajax.addEventListener("abort", abortHandler, false);
-	ajax.open("POST", "../private/file_upload_parser.php");
-	ajax.send(formdata);
+// alert(file.name+" | "+file.size+" | "+file.type);
+var formdata = new FormData();
+formdata.append("file1", file);
+var ajax = new XMLHttpRequest();
+ajax.upload.addEventListener("progress", progressHandler, false);
+ajax.addEventListener("load", completeHandler, false);
+ajax.addEventListener("error", errorHandler, false);
+ajax.addEventListener("abort", abortHandler, false);
+ajax.open("POST", "../private/file_upload_parser.php");
+ajax.send(formdata);
 
     }
 
     function progressHandler(event){
-	$("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
-	var percent = (event.loaded / event.total) * 100;
-	$("progressBar").value = Math.round(percent);
-	$("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+$("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+var percent = (event.loaded / event.total) * 100;
+$("progressBar").value = Math.round(percent);
+$("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
     }
 
     function completeHandler(event){
-	$("status").innerHTML = event.target.responseText;
-	$("progressBar").value = 0;
+$("status").innerHTML = event.target.responseText;
+$("progressBar").value = 0;
     }
 
     function errorHandler(event){
-	$("status").innerHTML = "Upload Failed";
+$("status").innerHTML = "Upload Failed";
     }
 
     function abortHandler(event){
-	$("status").innerHTML = "Upload Aborted";
+$("status").innerHTML = "Upload Aborted";
     }
 
-    
-</script>     
+   
+</script>    
               </div>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button> </form>
@@ -416,7 +473,7 @@ $id = $_SESSION['id_est'];
           </div>
             <!-- /.Expediente -->
             <!-- /.Modals -->
-              <div class="card-body"> 
+              <div class="card-body">
                 <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
 <!-- </div>   -->
                 <br>
@@ -429,22 +486,24 @@ $id = $_SESSION['id_est'];
                     <th>Nota</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencia</th>
                   </tr>
-                  </thead> 
+                  </thead>
                   <tbody>
-                <?php 
-                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 1 AND id_est = $id";
+                <?php
+                   $sql =" SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_rol = 8
+                    ORDER by id_fijo";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
+                 
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -454,25 +513,27 @@ $id = $_SESSION['id_est'];
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
                     }else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
-                    echo"<td>{$row['año_aprobo_c']}</td>
+                    echo"
+                    <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
-                      
-                </tbody> 
+ 
+                     
+                </tbody>
                   </table>
                   <br>
                   <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
@@ -489,46 +550,48 @@ $id = $_SESSION['id_est'];
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
-                  </thead> 
+                  </thead>
                   <tbody>
-                <?php 
+                <?php
                 $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 2 OR id_rol = 4 AND id_est = $id";
+                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  
+                 
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['estatus_c']}</td>
+                    ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
                     }else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
-                    echo"<td>{$row['año_aprobo_c']}</td>
+                    echo"
+                    <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
                 </tbody>
@@ -548,21 +611,21 @@ $id = $_SESSION['id_est'];
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
-                  </thead> 
+                  </thead>
                 <tbody>
-                <?php 
+                <?php
                 $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  
+                 
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -574,15 +637,15 @@ $id = $_SESSION['id_est'];
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
                     }else{
@@ -592,7 +655,7 @@ $id = $_SESSION['id_est'];
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
-                </tbody> 
+                </tbody>
                   </table>
                   <br>
                    <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
@@ -609,21 +672,21 @@ $id = $_SESSION['id_est'];
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
-                  </thead> 
+                  </thead>
                 <tbody>
-                <?php 
+                <?php
                 $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
                       FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  
+                 
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -635,15 +698,15 @@ $id = $_SESSION['id_est'];
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'> 
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'> 
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
                     }else{
@@ -655,7 +718,7 @@ $id = $_SESSION['id_est'];
                   </tr> ";}}?>
 
                     </table>
-                  
+                 
               </div>
               <!-- /.card-body -->
             </div>
