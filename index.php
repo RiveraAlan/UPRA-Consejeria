@@ -168,7 +168,7 @@
             <h3 class="mb-4">Profesora en el Departamento de Ciencias de Cómputos</h3>
             <h3 class="mb-4">Correo Electrónico: eliana.valenzuela@upr.edu</h3>
             <blockquote>
-              <p>Eliana Valenzuela Andrade holds a doctoral degree in Computing, Information Sciences and Engineering, a Masters in Engineering Management Systems from the University of Puerto Rico, Mayagüez Campus and a BS in Industrial Engineering from the Universidad de los Andes, in Bogotá, Colombia. She has nearly fifteen years of teaching experience and ten years of research experience. The research areas of Dr. Valenzuela-Andrade are Database Management System, Datamining, Educational Robotics, Swarm Robotics, and Outreach Strategies for STEM careers, among others.</p>
+              <p>Eliana Valenzuela Andrade tiene un doctorado en Computación, Ciencias de la Información e Ingeniería, una Maestría en Sistemas de Gestión de Ingeniería de la Universidad de Puerto Rico, Recinto de Mayagüez y una Licenciatura en Ingeniería Industrial de la Universidad de los Andes, en Bogotá, Colombia. Tiene casi quince años de experiencia docente y diez años de experiencia investigadora. Las áreas de investigación de la Dra. Valenzuela Andrade son Sistema de Gestión de Bases de Datos, Minería de Datos, Robótica Educativa, Robótica de Enjambre y Estrategias de Difusión para las carreras STEM, entre otras.</p>
             </blockquote>
           </div>
         </div>
