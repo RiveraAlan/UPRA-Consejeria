@@ -1,6 +1,6 @@
 <?php
 
-$regex = array('- - - - - - - - - - - - -  REQUISITOS GENERALES - - - - - - - - - - - - - -' => 1,
+$regex = array(
                '- - - - - - - - - - - - - - - Espanol Basico  - - - - - - - - - - - - - - -' => 2,
                '- - - - - - - - - REQUISITOS GENERALES REDACCION ESPANOL  - - - - - - - - -' => 3,
                '- - - - - - - - - - - - - - Ingles Intermedio - - - - - - - - - - - - - - -' => 4, 
@@ -52,9 +52,7 @@ while($i < count($fileArr)){
   
 }
 
-
 print_r($courses);
-
 
 ?>
 
