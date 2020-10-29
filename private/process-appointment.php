@@ -25,7 +25,7 @@ foreach($fields as $field) {
   }
   
 if($isAFieldEmpty){
-  header('Location: ../cita.php'.$queryParams);
+  header('Location: ../consejeria.php'.$queryParams);
   exit();
 }
 
@@ -33,7 +33,7 @@ if($isAFieldEmpty){
 // Here we create a variable that calls the prepare() method of the database object
 // The SQL query you want to run is entered as the parameter, and placeholders are written like this :placeholder_name
 
-$stmt = $conn->prepare("INSERT INTO citas (est_id, fecha_cita) VALUES (?, ?)");
+$stmt = $conn->prepare("INSERT INTO citas (id_est, fecha_cita) VALUES (?, ?)");
 
 // Now we tell the script which variable each placeholder actually refers to using the bindParam() method
 // First parameter is the placeholder in the statement above - the second parameter is a variable that it should refer to
@@ -59,10 +59,10 @@ if($_POST['hour-chosen'] === '10:00am'){
 }
 
 
-echo $_SESSION['est_id'];
+echo $_SESSION['id_est'];
 echo $meetingDate;
 
-$stmt->bind_param('is', $_SESSION['est_id'], $meetingDate);
+$stmt->bind_param('is', $_SESSION['id_est'], $meetingDate);
 
 
 
@@ -71,7 +71,7 @@ $stmt->bind_param('is', $_SESSION['est_id'], $meetingDate);
 // Execute the query using the data we just defined
 // The execute() method returns TRUE if it is successful and FALSE if it is not, allowing you to write your own messages here
 if ($stmt->execute()) {
-     header('Location: ../cita.php');
+     header('Location: ../consejeria.php');
 } else {
   echo "Unable to create record";
 }

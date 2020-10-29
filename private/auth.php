@@ -21,7 +21,7 @@ if ( empty($_POST['email']) &&  empty($_POST['password'])) {
 
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, apellido_estU, apellido_estD, correo_est, num_est  FROM estudiante WHERE correo_est = ?')) {
+if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, inicial_est, apellido_estU, apellido_estD, correo_est, num_est, año_CCOM  FROM estudiante WHERE correo_est = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['email']);
 	$stmt->execute();
@@ -31,7 +31,7 @@ if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, apellido
 
     
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password, $firstName, $lastNameU, $lastNameD, $email, $studentNumber);
+        $stmt->bind_result($id, $password, $firstName, $initial, $lastNameU, $lastNameD, $email, $studentNumber, $year);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -44,12 +44,14 @@ if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, apellido
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['firstName'] = $firstName;
+            $_SESSION['inicial_est'] = $initial;
             $_SESSION['lastNameU'] = $lastNameU;
-            $_SESSION['lastNameD'] = $lastNameD;
-            $_SESSION['fullName'] = $firstName.' '.$lastNameU.' '.$lastNameD;
+            $_SESSION['lastNameD'] = $lastNameD; 
+            $_SESSION['fullName'] = $firstName.'  '.$initial.'  '.$lastNameU.' '.$lastNameD;
             $_SESSION['email'] = $email;
             $_SESSION['studentNumber'] = $studentNumber;
-            $_SESSION['est_id'] = $id;
+            $_SESSION['año_CCOM'] = $year;
+            $_SESSION['id_est'] = $id;
             header('Location: ../consejeria.php');
             // ====== SWITCH TO INDEX.PHP INSTEAD OF CITA.PHP ============
         } else {

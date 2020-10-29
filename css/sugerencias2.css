@@ -12,14 +12,9 @@ body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
 }
-h1, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   letter-spacing: 1.5px;
-    color: #e0c200;
-}
-h2 {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
-    letter-spacing: 1.5px;
     color: black;
     text-align: center;
 }
@@ -300,8 +295,8 @@ li {
     margin-top: -220px;
   }
 }
-
-@charset "UTF-8";
+</style>
+<style>@charset "UTF-8";
 
 @font-face {
   font-family: "untitled-font-1";
@@ -353,3 +348,136 @@ li {
 .icon-youtube:before {
   content: "\65";
 }
+</style>
+
+<style>
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container-table100 {
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wrap-table100 {
+  width: 1300px;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+table {
+  width: 100%;
+  background-color: #fff;
+}
+
+th, td {
+  font-weight: unset;
+  padding-right: 10px;
+}
+
+.column100 {
+  width: 130px;
+  padding-left: 25px;
+}
+
+.column100.column1 {
+  width: 50px;
+  padding-left: 25px;
+}
+
+.row100.head th {
+  padding-top: 24px;
+  padding-bottom: 20px;
+  padding-left: 24px;
+}
+
+.row100 td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.table100.ver2 td {
+  font-family: Montserrat-Regular;
+  font-size: 14px;
+  color: #808080;
+  line-height: 1.4;
+}
+
+.table100.ver2 th {
+  font-family: Montserrat-Medium;
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  background-color: #333333;
+}
+
+.table100.ver2 .row100:hover td {
+  background-color: #FFFF59;
+}
+
+.table100.ver2 .hov-column-ver2 {
+  background-color: #FFFF59;
+}
+
+.table100.ver2 .hov-column-head-ver2 {
+  background-color: #484848 !important;
+}
+
+.table100.ver2 .row100 td:hover {
+  background-color: #FFFF59;
+}
+
+/*==================================================================
+[ Ver2 ]*/
+.table100.ver2 tbody tr:nth-child(even) {
+  background-color: #eaf8e6;
+}
+
+.table100.ver2 td {
+  font-family: Montserrat-Regular;
+  font-size: 14px;
+  color: #808080;
+  line-height: 1.4;
+}
+
+.table100.ver2 th {
+  font-family: Montserrat-Medium;
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  background-color: #333333;
+}
+
+.table100.ver2 .row100:hover td {
+  background-color: #FFFF59;
+}
+
+.table100.ver2 .hov-column-ver2 {
+  background-color: #FFFF59;
+}
+
+.table100.ver2 .hov-column-head-ver2 {
+  background-color: #484848 !important;
+}
+
+.table100.ver2 .row100 td:hover {
+  background-color: #000;
+  color: #fff;
+}
+ </style>

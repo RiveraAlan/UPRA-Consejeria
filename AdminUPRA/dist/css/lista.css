@@ -1,5 +1,4 @@
-<style>
-body {font-family: Arial;}
+/* body {font-family: Arial;} */
 
 /* Style the tab */
 .tab {
@@ -80,8 +79,6 @@ body {font-family: Arial;}
     color: white;
     border-bottom: 5px solid #e0c200;
   }
-</style>
-<style>
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 
@@ -217,4 +214,4 @@ th, td {
 .sidebar-dark {
     background-color: red;
 }
- </style>
+

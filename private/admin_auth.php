@@ -45,6 +45,7 @@ if ($stmt = $conn->prepare('SELECT id_conse, contraseña_conse, nombre_conse  FR
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $name;
             $_SESSION['id'] = $id;
+            
              echo '<script>window.location="../AdminUPRA/inicio.php"</script>';
         } else {
             // Incorrect password

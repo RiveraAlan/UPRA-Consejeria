@@ -1,13 +1,15 @@
 <?php
+session_start();
 include("inc/connection.php");
+$id = $_SESSION['id_est'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | INICIO</title>
+  <title>CONSEJERIA-UPRA | EXP.ESTUDIANTE</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
@@ -32,6 +34,18 @@ include("inc/connection.php");
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <!-- page css -->
   <link rel="stylesheet" href="dist/css/adminlte.css">
+
+  <style>
+    #drop_zone {
+            background-color: #EEE;
+            border: #999 5px dashed;
+            width: 100%;
+            height: 30rem;
+            padding: 8px;
+            font-size: 18px;
+        }
+  </style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -150,13 +164,13 @@ include("inc/connection.php");
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        
-        
+       
+       
         <div class="info">
         <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero`";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 $row = mysqli_fetch_assoc($result);
                 ;}
@@ -178,8 +192,8 @@ include("inc/connection.php");
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="estudiantes.php" class="nav-link">
-               <i class="fas fa-user-graduate"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Data Estudiantes</p>
+               <i class="fas fa-id-badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Expediente Estudiantes</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -192,12 +206,6 @@ include("inc/connection.php");
             <a href="calendar.php" class="nav-link">
                <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Calendario</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="mailbox.php" class="nav-link">
-               <i class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Mail Box</p>
             </a>
           </li>
         </ul>
@@ -214,12 +222,12 @@ include("inc/connection.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Inicio</h1>
+            <h1 class="m-0 text-dark">Expediente Académico del Estudiante</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Inicio</li>
+              <li class="breadcrumb-item active">Expediente Académico del Estudiante</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -238,19 +246,20 @@ include("inc/connection.php");
               <div class="card-body box-profile">
                     <?php
                     $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
-                    FROM estudiante";
+                    FROM estudiante WHERE id_est = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-            
+           
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
                echo "<h3 class='profile-username text-center'>{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}</h3>
 
+                <p class='text-muted text-center'>{$row['correo_est']}</p>
                 <p class='text-muted text-center'>{$row['num_est']}</p>
 
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
-                    <b>Creditos Aprobados</b> <a class='float-right'>90</a>
+                    <b>Créditos Aprobados</b> <a class='float-right'>90</a>
                   </li>
                   <li class='list-group-item'>
                     <b>Año</b> <a class='float-right'>4</a>
@@ -258,27 +267,26 @@ include("inc/connection.php");
                   <li class='list-group-item'>
                     <b>Secuencia Curricular</b> <a class='float-right'>2017</a>
                   </li>
-                </ul>
-              </div>
+                   
+                </ul>";?>
+                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar Expediente</button>
+              <?php
+                echo "</div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-
+           
             <!-- About Me Box -->
             <div class='card' >
               <div class='card-header' style='background: #e0c200'>
-                <h3 class='card-title' >Notes</h3>
+                <h3 class='card-title' >Notas</h3>
               </div>
               <!-- /.card-header -->
               <div>
 
               <form id='paper' method='get' action=''>
-		<textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow: hidden; word-wrap: break-word; resize: none; height: 400px; '></textarea>  
-		
-		
-	
-          
-              </div><input id='button' type='submit' value='Create'>
+           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></textarea>
+              </div><button type='submit' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
               <!-- /.card-body -->
             </div>
@@ -292,7 +300,7 @@ include("inc/connection.php");
             });
             </script>
           <!-- /.col -->
-          <div class="col-md-9" style="overflow: scroll; height: 800px;">
+          <div class="card" id="style-2" style="overflow-y: scroll; overflow-x: auto; height: 850px; width: 75%;border-top: 3px solid #e0c200;">
         <div class="row">
           <div class="col-12">
             <div class="card">
@@ -301,22 +309,17 @@ include("inc/connection.php");
                                     <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
                                     <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
                                    
-                    
+                   
                     <!-- </div>
               </div> -->
             </div>
               <!-- /.card-header -->
-    
-        
-              <div class="card-body"> 
-                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
-                <!-- <div class="w3-container" style="float:right">
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button" style="background: #e0c200">Editar</button> -->
-
-  <div id="id01" class="w3-modal" style="padding-left:20%">
+            <!-- Modals -->
+            <!-- Edit -->
+            <div id="id01" class="w3-modal" style="padding-left:20%">
     <div class="w3-modal-content w3-animate-zoom">
-      <header class="w3-container" style="padding-top:5px"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
+      <header class="w3-container" style="padding-top:5px">
+        <span onclick="document.getElementById('id01').style.display='none'"
         class="w3-button w3-display-topright">&times;</span>
         <h3>Editar</h3>
       </header>
@@ -330,8 +333,8 @@ include("inc/connection.php");
                               <span class='fas fa-chalkboard-teacher'></span>
                             </div>
                           </div>
-
                         </div>
+                                                                     
                          <div class='input-group mb-3'>
                           <input type='text' name='item_id' class='form-control' placeholder='CAMBIAR NOMBRE AL CURSO'>
                           <div class='input-group-append'>
@@ -342,15 +345,13 @@ include("inc/connection.php");
                         </div>
 
                           <div class='input-group mb-3'>
-                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCION'>
-                              </textarea>
+                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCIÓN'></textarea>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fa fa-font'></span>
                             </div>
                           </div>
                         </div>
-
 
                           <div class='input-group mb-3'>
                           <input type='text' name='item_id' class='form-control' placeholder='NOTA'>
@@ -360,6 +361,7 @@ include("inc/connection.php");
                             </div>
                           </div>
                         </div>
+                                                           
                           <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='MATRICULADO'>
                           <div class='input-group-append'>
@@ -368,14 +370,16 @@ include("inc/connection.php");
                             </div>
                           </div>
                         </div>
-                            <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACION'>
+                                                       
+                          <div class='input-group mb-3'>
+                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACIÓN'>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fas fa-comment-dots'></span>
                             </div>
                           </div>
                         </div>
+                                                               
                           <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='AÑO APROBADO'>
                           <div class='input-group-append'>
@@ -385,7 +389,7 @@ include("inc/connection.php");
                           </div>
                         </div>
                           <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACION'>
+                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACIÓN'>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fas fa-comment-dots'></span>
@@ -394,11 +398,83 @@ include("inc/connection.php");
                         </div>
                      
       </div>
+                                                               
       <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
-      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APPLY</button> </form>
+      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APLICAR</button> </form>
       </footer>
     </div>
   </div>
+            <!-- /.Edit -->
+
+            <!-- Expediente -->
+  <div id='id02' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id02").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Subir Expediente</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+<div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
+<div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
+  <input type="file" id="myfile" name="myfile">
+          </div>
+</div>
+
+<script>
+    function $(el){
+        return document.getElementById(el);
+    }
+
+    function uploadFile(event){
+    event.preventDefault();
+    var file = event.dataTransfer.files[0];
+// alert(file.name+" | "+file.size+" | "+file.type);
+var formdata = new FormData();
+formdata.append("file1", file);
+var ajax = new XMLHttpRequest();
+ajax.upload.addEventListener("progress", progressHandler, false);
+ajax.addEventListener("load", completeHandler, false);
+ajax.addEventListener("error", errorHandler, false);
+ajax.addEventListener("abort", abortHandler, false);
+ajax.open("POST", "../private/file_upload_parser.php");
+ajax.send(formdata);
+
+    }
+
+    function progressHandler(event){
+$("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+var percent = (event.loaded / event.total) * 100;
+$("progressBar").value = Math.round(percent);
+$("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+    }
+
+    function completeHandler(event){
+$("status").innerHTML = event.target.responseText;
+$("progressBar").value = 0;
+    }
+
+    function errorHandler(event){
+$("status").innerHTML = "Upload Failed";
+    }
+
+    function abortHandler(event){
+$("status").innerHTML = "Upload Aborted";
+    }
+
+   
+</script>    
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button> </form>
+              </footer>
+            </div>
+          </div>
+            <!-- /.Expediente -->
+            <!-- /.Modals -->
+              <div class="card-body">
+                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
 <!-- </div>   -->
                 <br>
                 <table id="example2" class="table table-bordered table-hover">
@@ -410,32 +486,54 @@ include("inc/connection.php");
                     <th>Nota</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencia</th>
                   </tr>
-                  </thead> 
+                  </thead>
                   <tbody>
-                <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
-                      FROM expediente WHERE id_rol = 1";
+                <?php
+                   $sql =" SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_rol = 8
+                    ORDER by id_fijo";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  if($row['estatus_c']){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                 
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td><button class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f'>recomendar</button></td>
+                    <td>{$row['nota_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
-                      
-                </tbody> 
+ 
+                     
+                </tbody>
                   </table>
                   <br>
                   <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
@@ -452,19 +550,21 @@ include("inc/connection.php");
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
-                  </thead> 
+                  </thead>
                   <tbody>
-                <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
-                      FROM expediente WHERE id_rol = 2 OR id_rol = 4";
+                <?php
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  
-                  if($row['estatus_c']){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                 
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -472,7 +572,25 @@ include("inc/connection.php");
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td><button align='center' class='w3-button w3-round-xlarge' style='background:#c72837; color:white'>recomendar</button></td>
+                    ";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
@@ -493,19 +611,21 @@ include("inc/connection.php");
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
-                  </thead> 
+                  </thead>
                 <tbody>
-                <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
-                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10";
+                <?php
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  
-                  if($row['estatus_c']){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                 
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -513,11 +633,29 @@ include("inc/connection.php");
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td>-</td>
+                    ";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
-                </tbody> 
+                </tbody>
                   </table>
                   <br>
                    <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
@@ -534,19 +672,21 @@ include("inc/connection.php");
                     <th>Año Aprobó</th>
                     <th>Convalidación</th>
                   </tr>
-                  </thead> 
+                  </thead>
                 <tbody>
-                <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
-                      FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 ";
+                <?php
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                      FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+             
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  
-                  if($row['estatus_c']){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>"; 
+                 
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
@@ -554,14 +694,31 @@ include("inc/connection.php");
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['estatus_c']}</td>
-                    <td>-</td>
+                    ";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
 
                     </table>
-                  <b align="right"> Total de Creditos Electivas Departamentales: 14</b>
-                  
+                 
               </div>
               <!-- /.card-body -->
             </div>
@@ -588,10 +745,7 @@ include("inc/connection.php");
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
-    </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

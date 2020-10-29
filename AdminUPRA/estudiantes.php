@@ -6,7 +6,7 @@ require 'inc/connection.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | STUDENTS-DATA</title>
+  <title>CONSEJERÍA-UPRA | EXP-ESTUDIANTES</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -32,69 +32,11 @@ require 'inc/connection.php';
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="pages/mailbox/read-mail.html" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="pages/mailbox/mailbox.html" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-danger navbar-badge">15</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">15 Notifications</span>
@@ -127,16 +69,13 @@ require 'inc/connection.php';
     <!-- Brand Logo -->
     <a href="inicio.php" class="brand-link">
       <img src="img/university.jpg" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CONSEJERIA UPRA</span>
+      <span class="brand-text font-weight-light">CONSEJERÍA UPRA</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="img/profeliana.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
         <div class="info">
           <a class="d-block">Eliana Valenzuela Andrade</a>
         </div>
@@ -155,8 +94,8 @@ require 'inc/connection.php';
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="estudiantes.php" class="nav-link">
-               <i class="fas fa-user-graduate"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Data Estudiantes</p>
+               <i class="fas fa-id-badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Expediente Estudiantes</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -169,12 +108,6 @@ require 'inc/connection.php';
             <a href="calendar.php" class="nav-link">
                <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Calendario</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="mailbox.php" class="nav-link">
-               <i class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Mail Box</p>
             </a>
           </li>
         </ul>
@@ -191,12 +124,12 @@ require 'inc/connection.php';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data de los Estudiantes</h1>
+            <h1>Expedientes de los Estudiantes</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Data</li>
+              <li class="breadcrumb-item active">Expedientes de los Estudiantes</li>
             </ol>
           </div>
         </div>
@@ -209,7 +142,7 @@ require 'inc/connection.php';
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">ESTUDIANTES CCOM</h3>
+          <h3 class="card-title">ESTUDIANTES DE CCOM</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -228,10 +161,10 @@ require 'inc/connection.php';
                           # Estudiante</div>
                       </th>
                       <th style="width: 20%">  <div align='center'>
-                          Nombre</div>
+                          Nombre del Estudiante</div>
                       </th>
                       <th style="width: 30%"> <div align='center'>
-                          Programa Académico</div>
+                          Programa Académico del Estudiante</div>
                       </th>
                       <th> <div align='center'>
                           Realización de Consejería</div>
@@ -256,20 +189,21 @@ require 'inc/connection.php';
                           {$row['num_est']}
                       </td>
                       <td>
-                          <a href='profile.html'>
                               {$row['nombre_est']}
                               {$row['apellido_estU']}
-                          
                           <br/>
                           <small>
                               Cohorte 2017
-                          </small></a>
+                          </small>
                       </td>
                       <td>
                           <ul class='list-inline'> <div align='center'>
+                          <form action='inc/exp_session.php' method='post'>
                               <li class='list-inline-item'>
-                                  <a title='UPRA' href='est_profile.php'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></a>
+                              <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'> 
+                                  <button title='UPRA' onclick='estudiante()' name='est-submit' style='border: none'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></button>
                               </li></div>
+                            </form>
                           </ul>
                       </td>
                       <td class='project-state'>
