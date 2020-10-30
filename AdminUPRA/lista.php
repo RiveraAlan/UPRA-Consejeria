@@ -1,6 +1,16 @@
 <?php
-require 'inc/connection.php';
-?><link rel="stylesheet" href="dist/css/lista.css">
+include("inc/connection.php");
+session_start();
+$id= $_SESSION['id'];
+$name = $_SESSION['name'];
+
+if(!isset($_SESSION['id'])){
+  header("Location: index.php");
+    exit();
+}
+?>
+
+<link rel="stylesheet" href="dist/css/lista.css">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,11 +100,9 @@ require 'inc/connection.php';
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        
-        
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero`";
+        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero` WHERE id_conse = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -118,12 +126,6 @@ require 'inc/connection.php';
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="estudiantes.php" class="nav-link">
-               <i class="fas fa-id-badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Expediente Estudiantes</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
             <a href="lista.php" class="nav-link">
                <i class="fas fa-stopwatch-20"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Lista de Conteo de Clases</p>
@@ -135,6 +137,10 @@ require 'inc/connection.php';
               <p>Calendario</p>
             </a>
           </li>
+          <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
+              <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Cerrar Sesión</p>
+            </a></li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
