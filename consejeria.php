@@ -49,6 +49,9 @@ if(!isset($_SESSION['id_est'])){
     <link rel="stylesheet" href="jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
+
+      <!-- Font Awesome -->
+  <link rel="stylesheet" href="AdminUPRA/plugins/fontawesome-free/css/all.min.css">
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
@@ -625,7 +628,36 @@ if(!isset($_SESSION['id_est'])){
             </div>
            
       </div>
+      <footer class="bg-white">
+<br>
 
+<div class="grid-container">
+  <div class="grid-item">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60546.43133375424!2d-66.7486562!3d18.47677480000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c02e71441a83073%3A0xf81fe612f4f1f3f7!2sUniversidad+de+Puerto+Rico+-+Recinto+de+Arecibo!5e0!3m2!1ses-419!2spr!4v1560197851966!5m2!1ses-419!2spr" width="600" height="260" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<div class="grid-item">
+<ul>
+<i class="fas fa-route">&nbsp;&nbsp;Carr. 653 Km. 0.8 Sector Las Dunas, Arecibo
+P.O. Box 4010 Arecibo P.R. 00614</i><br><br>
+<i class="fas fa-phone-alt">&nbsp;&nbsp;787-815-0000 / Fax 787-880-4972</i><br><br>
+<i class="fas fa-envelope-open">&nbsp;&nbsp;oficinadecomunicaciones.arecibo@upr.edu</i>
+</ul>
+</div>
+</div>
+      <div class="container">
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+            <p>
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a target="_blank" >CONSEJERÍA-UPRA</a>
+        <br>Pagina Oficial: <a href="http://upra.edu/">http://upra.edu/</a>
+      </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
   </div> <!-- .site-wrap -->
       
       
