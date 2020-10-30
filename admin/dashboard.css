@@ -1,0 +1,117 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+body {
+  
+    color: transparent;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow-x: hidden;
+}
+
+.side-nav {
+    background-color: #212529;
+    min-height: 100vh;
+    color: #4f5962;
+    width: 0;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 1s;
+   
+}
+.active {
+    width: 20%;
+  
+}
+
+main {
+width: 100%;
+transition: margin-left 1s;  
+}
+
+.ml-20 {
+    margin-left: 20%;
+}
+
+.admin-logo, .admin-info {
+    border-bottom: 1px solid #4f5962;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.admin-logo{
+    color: #4f5962;
+    padding: 2rem;
+    font-weight: 100;
+}
+.admin-info {
+    font-weight: 700;
+}
+
+.nav-items {
+    list-style-type: none;
+    font-size: 1rem;
+    padding: 1rem;
+    text-align: center;
+    color: #c2c7d0;
+    margin-top: 1rem;
+    
+}
+
+.nav-item {
+    padding: .5rem;
+    border-radius: .5rem;
+    margin: .5rem;
+}
+.nav-item:nth-child(1){
+    background-color: #FFFF59;
+    color: #4f5962;
+    
+}
+
+.active-link {
+    background-color: #FFFFFFE6;
+    color: #212529;
+}
+
+.nav-item:hover {
+    background-color: #FFFFFF1A;
+}
+
+.log-out {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 2rem;
+}
+.log-out:hover{
+    color: #FFFF59;
+    text-decoration: underline;
+}
+
+.top-bar {
+    width: 100%;
+    color: black;
+    background-color: #FFF;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+}
+
+.hamburguer-icon {
+
+}
+
+.hamburguer-icon > div {
+    width: 17.5px;
+    height: 3px;
+    background-color: #4f5962;
+    margin: 3px 0;
+  }

@@ -35,6 +35,8 @@ $id = $_SESSION['id_est'];
   <!-- page css -->
   <link rel="stylesheet" href="dist/css/adminlte.css">
 
+   <link rel="stylesheet" href="../css/conse.css">
+
   <style>
     #drop_zone {
             background-color: #EEE;
@@ -63,64 +65,7 @@ $id = $_SESSION['id_est'];
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="read-mail.php" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="mailbox.php" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
+
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -308,172 +253,19 @@ $id = $_SESSION['id_est'];
                 <div align='center'><h3>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h3>
                                     <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
                                     <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
-                                   
-                   
-                    <!-- </div>
-              </div> -->
             </div>
-              <!-- /.card-header -->
-            <!-- Modals -->
-            <!-- Edit -->
-            <div id="id01" class="w3-modal" style="padding-left:20%">
-    <div class="w3-modal-content w3-animate-zoom">
-      <header class="w3-container" style="padding-top:5px">
-        <span onclick="document.getElementById('id01').style.display='none'"
-        class="w3-button w3-display-topright">&times;</span>
-        <h3>Editar</h3>
-      </header>
-      <div class="w3-container">
-          <br>
-      <form action='edtiest.php' method='post'>
-                          <div class='input-group mb-3'>
-                          <input type='text'' name='item_id' class='form-control' placeholder='CURSO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-chalkboard-teacher'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                                     
-                         <div class='input-group mb-3'>
-                          <input type='text' name='item_id' class='form-control' placeholder='CAMBIAR NOMBRE AL CURSO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-chalkboard-teacher'></span>
-                            </div>
-                          </div>
-                        </div>
-
-                          <div class='input-group mb-3'>
-                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCIÓN'></textarea>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fa fa-font'></span>
-                            </div>
-                          </div>
-                        </div>
-
-                          <div class='input-group mb-3'>
-                          <input type='text' name='item_id' class='form-control' placeholder='NOTA'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-clipboard'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                           
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='MATRICULADO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-user'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                       
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACIÓN'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                               
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='AÑO APROBADO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACIÓN'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                     
-      </div>
-                                                               
-      <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
-      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APLICAR</button> </form>
-      </footer>
-    </div>
-  </div>
-            <!-- /.Edit -->
-
-            <!-- Expediente -->
-  <div id='id02' class='w3-modal' style='padding-left:20%'>
-            <div class='w3-modal-content w3-animate-zoom'>
-              <header class='w3-container' style='padding-top:5px'>
-                <span onclick='document.getElementById("id02").style.display="none"'
-                class='w3-button w3-display-topright'>&times;</span>
-                <h3>Subir Expediente</h3>
-              </header>
-              <div class='w3-container'>
-                  <br>
-<div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
-<div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
-  <input type="file" id="myfile" name="myfile">
-          </div>
-</div>
-
-<script>
-    function $(el){
-        return document.getElementById(el);
-    }
-
-    function uploadFile(event){
-    event.preventDefault();
-    var file = event.dataTransfer.files[0];
-// alert(file.name+" | "+file.size+" | "+file.type);
-var formdata = new FormData();
-formdata.append("file1", file);
-var ajax = new XMLHttpRequest();
-ajax.upload.addEventListener("progress", progressHandler, false);
-ajax.addEventListener("load", completeHandler, false);
-ajax.addEventListener("error", errorHandler, false);
-ajax.addEventListener("abort", abortHandler, false);
-ajax.open("POST", "../private/file_upload_parser.php");
-ajax.send(formdata);
-
-    }
-
-    function progressHandler(event){
-$("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
-var percent = (event.loaded / event.total) * 100;
-$("progressBar").value = Math.round(percent);
-$("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
-    }
-
-    function completeHandler(event){
-$("status").innerHTML = event.target.responseText;
-$("progressBar").value = 0;
-    }
-
-    function errorHandler(event){
-$("status").innerHTML = "Upload Failed";
-    }
-
-    function abortHandler(event){
-$("status").innerHTML = "Upload Aborted";
-    }
-
-   
-</script>    
-              </div>
-              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-              <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button> </form>
-              </footer>
-            </div>
-          </div>
-            <!-- /.Expediente -->
-            <!-- /.Modals -->
-              <div class="card-body">
+                
+                <!-- /.Comienzo de Expediente del Estudiante -->
+            <div class="container tables">
+                <div class="tab">
+                    <button class="tablinks active" onclick="openCity(event, 'Expediente')">Expediente del Estudiante</button>
+                    <button class="tablinks" onclick="openCity(event, 'Examinar')">Cursos a Examinar</button>
+                  </div>
+                
+                  <!-- Tab content -->
+    <div id="Expediente" class="tabcontent active">
+    <section class="content">
+      <div class="card-body">
                 <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
 <!-- </div>   -->
                 <br>
@@ -720,6 +512,185 @@ $("status").innerHTML = "Upload Aborted";
                     </table>
                  
               </div>
+ 
+    </section>
+    </div>
+                <!-- /.Final de Expediente del Estudiante -->
+                
+                
+        <!-- /.Comienzo de Examinar -->  
+   <div id="Examinar" class="tabcontent">
+            <section>
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr width="50%" bgcolor="#e0c200">
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                  </tr>
+                  </thead>
+                <tbody>
+                <?php
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+             
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                 
+                  if($row['estatus_c'] == 1){
+                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                  }else if ($row['estatus_c'] == 2){
+                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
+                  }else{
+                  echo "<tr width='50%'>";}
+                    echo "<td>{$row['nombre_c']}</td>
+                    <td>{$row['descripción_c']}</td>
+                    <td>{$row['créditos_c']}</td>";
+                    if($row['estatus_R'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else if($row['estatus_c'] == 0){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
+                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
+                    <td>{$row['año_aprobo_c']}</td>
+                    <td></td>
+                  </tr> ";}}?>
+                </tbody>
+                  </table>
+            </section>    
+         </div>
+      </div>
+              <!-- /.Final de Examinar -->  
+                
+                
+            <!-- Modals -->
+            <!-- Edit -->
+            <div id="id01" class="w3-modal" style="padding-left:20%">
+    <div class="w3-modal-content w3-animate-zoom">
+      <header class="w3-container" style="padding-top:5px">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <h3>Editar</h3>
+      </header>
+      <div class="w3-container">
+          <br>
+      <form action='edtiest.php' method='post'>
+                          <div class='input-group mb-3'>
+                          <input type='text' name='item_id' class='form-control' placeholder='CURSO'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-chalkboard-teacher'></span>
+                            </div>
+                          </div>
+                        </div>
+                                                                     
+                         <div class='input-group mb-3'>
+                          <input type='text' name='item_id' class='form-control' placeholder='CAMBIAR NOMBRE AL CURSO'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-chalkboard-teacher'></span>
+                            </div>
+                          </div>
+                        </div>
+
+                          <div class='input-group mb-3'>
+                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCIÓN'></textarea>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fa fa-font'></span>
+                            </div>
+                          </div>
+                        </div>
+
+                          <div class='input-group mb-3'>
+                          <input type='text' name='item_id' class='form-control' placeholder='NOTA'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-clipboard'></span>
+                            </div>
+                          </div>
+                        </div>
+                                                           
+                          <div class='input-group mb-3'>
+                          <input type='text' name='name' class='form-control' placeholder='MATRICULADO'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-user'></span>
+                            </div>
+                          </div>
+                        </div>
+                                                       
+                          <div class='input-group mb-3'>
+                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACIÓN'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                                                               
+                          <div class='input-group mb-3'>
+                          <input type='text' name='name' class='form-control' placeholder='AÑO APROBADO'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                          <div class='input-group mb-3'>
+                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACIÓN'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+          </form>           
+      </div>                                                     
+      <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
+      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APLICAR</button> 
+      </footer>   
+    </div>
+  </div>
+            <!-- /.Edit -->
+
+            <!-- Expediente -->
+  <div id='id02' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id02").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Subir Expediente</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                <div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
+                <div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
+                  <input type="file" id="myfile" name="myfile">
+                          </div>
+                </div>   
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer>
+            </div>
+          </div>
+            <!-- /.Expediente -->
+            <!-- /.Modals -->
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -743,6 +714,64 @@ $("status").innerHTML = "Upload Aborted";
     </section>
     <!-- /.content -->
   </div>
+<script>
+        function openCity(evt, clase) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(clase).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+        </script>
+<script>
+    function $(el){
+        return document.getElementById(el);
+    }
+
+    function uploadFile(event){
+    event.preventDefault();
+    var file = event.dataTransfer.files[0];
+// alert(file.name+" | "+file.size+" | "+file.type);
+var formdata = new FormData();
+formdata.append("file1", file);
+var ajax = new XMLHttpRequest();
+ajax.upload.addEventListener("progress", progressHandler, false);
+ajax.addEventListener("load", completeHandler, false);
+ajax.addEventListener("error", errorHandler, false);
+ajax.addEventListener("abort", abortHandler, false);
+ajax.open("POST", "../private/file_upload_parser.php");
+ajax.send(formdata);
+
+    }
+
+    function progressHandler(event){
+$("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+var percent = (event.loaded / event.total) * 100;
+$("progressBar").value = Math.round(percent);
+$("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+    }
+
+    function completeHandler(event){
+$("status").innerHTML = event.target.responseText;
+$("progressBar").value = 0;
+    }
+
+    function errorHandler(event){
+$("status").innerHTML = "Upload Failed";
+    }
+
+    function abortHandler(event){
+$("status").innerHTML = "Upload Aborted";
+    }
+
+   
+</script> 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
@@ -754,7 +783,6 @@ $("status").innerHTML = "Upload Aborted";
   </aside>
   <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>

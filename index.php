@@ -44,7 +44,7 @@
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-25"><a href="index.html"><img src="image/upraconse.png" alt=""></a></div>
+          <div class="site-logo mr-auto w-25"><a href="index.html"><img src="image/upraconse.png" width="280" height="60"  alt=""></a></div>
 
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
