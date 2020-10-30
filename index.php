@@ -200,7 +200,7 @@ P.O. Box 4010 Arecibo P.R. 00614</i><br><br>
             <div class="border-top pt-5">
             <p>
         Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a target="_blank" >CONSEJERÍA-UPRA</a>
-        <br>Pagina Oficial: <a href="http://upra.edu/">http://upra.edu/</a>
+        <br>Página Oficial: <a href="http://upra.edu/">http://upra.edu/</a>
       </p>
             </div>
           </div>
