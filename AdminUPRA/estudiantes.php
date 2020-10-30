@@ -1,5 +1,13 @@
 <?php
-require 'inc/connection.php';
+include("inc/connection.php");
+session_start();
+$id= $_SESSION['id'];
+$name = $_SESSION['name'];
+
+if(!isset($_SESSION['id'])){
+  header("Location: index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +85,15 @@ require 'inc/connection.php';
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a class="d-block">Eliana Valenzuela Andrade</a>
+        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero` WHERE id_conse = $id";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                $row = mysqli_fetch_assoc($result);
+                ;}
+            ?>
+          <?php echo "<a class='d-block'>{$row['nombre_conse']} {$row['apellido_conseU']} {$row['apellido_conseD']}</a>" ?>
         </div>
       </div>
 
@@ -110,6 +126,10 @@ require 'inc/connection.php';
               <p>Calendario</p>
             </a>
           </li>
+          <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
+              <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Cerrar Sesión</p>
+            </a></li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -119,6 +139,7 @@ require 'inc/connection.php';
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -137,8 +158,86 @@ require 'inc/connection.php';
     </section>
 
     <!-- Main content -->
+    
     <section class="content">
+    <!-- bloques de estadisticas -->
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+            <?php
+                $sql = "SELECT count(*) id_est FROM `estudiante`";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                $row = mysqli_fetch_assoc($result);
+                ;}
+              ?>
+                <?php echo "<h3>{$row['id_est']}</h3>" ?>
 
+                <p>Estudiantes de CCOM</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer"></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>70<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Realización Consejería</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer"></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner" style="color: white">
+                <h3>44</h3>
+
+                <p>Candidatos a Graduación de CCOM</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer"></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>30<sup style="font-size: 20px">%</sup></h3>
+
+                <p>No ha realizado Consejería</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer"></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+  
+      </div><!-- /.container-fluid -->           
+
+    <!-- /. bloques de estadisticas -->
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
