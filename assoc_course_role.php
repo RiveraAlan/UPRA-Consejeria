@@ -51,10 +51,6 @@ if($resultCheck > 0){
 
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
-$creditos_ciso = 0;
-$creditos_huma= 0;
-$creditos_intermedias = 0;
-
 while(!feof($myfile)){
     $temp = ltrim(fgets($myfile));
     $course_code;
@@ -162,64 +158,62 @@ while(!feof($myfile)){
     }
 }
 
-if ($course['nombre_c'] == "MATE 3026" OR 
-$course['nombre_c'] == "BIOL 3011" OR 
-$course['nombre_c'] == "BIOL 3012" OR 
-$course['nombre_c'] == "FISI 3171" OR 
-$course['nombre_c'] == "FISI 3172" OR 
-$course['nombre_c'] == "FISI 3173" OR 
-$course['nombre_c'] == "MATE 3174" OR   
-$course['nombre_c'] == "CCOM 3135"){ 
-    $array['id_especial'] = 2;}
-    else {
-if ($course['id_rol'] == 5 AND $credito_ciso >= 6){ 
-$course['id_especial'] = 1; }
-else{
-if ($course['id_rol'] == 5 AND $credito_ciso < 6){
-$credito_ciso +=$course['créditos_c']; }
-else{
-if ($course['id_rol'] == 6 AND $credito_huma >= 6){ 
-$course['id_especial'] = 1;}
-else{
-if ($course['id_rol'] == 5 AND $credito_huma < 6){
-$credito_huma +=$array['créditos_c']; }
-else{
-if ($course['id_rol'] == 9 AND $credito_intermedias >= 6){ 
-$course['id_especial'] = 1;} 
-else{
-if ($course['id_rol'] == 9 AND 
-$course['nombre_c'] == "CCOM 3027" OR 
-$course['nombre_c'] == "CCOM 3036" OR 
-$course['nombre_c'] == "CCOM 4305" OR 
-$course['nombre_c'] == "CCOM 4306" OR
-$course['nombre_c'] == "CCOM 4501" AND 
-$credito_intermedias < 6) { 
-$credito_intermedias +=$array['créditos_c'];}
-else{
-    $course['id_especial'] = NULL;}}}}}}}
+   
        
 }
 fclose($myfile);
 
+$creditos_ciso = 0;
+$creditos_huma= 0;
+$creditos_intermedias = 0;
 
-
-
-
+foreach($courses as $course ){
+if ($course['nombre_c'] == "MATE 3026" OR 
+    $course['nombre_c'] == "BIOL 3011" OR 
+    $course['nombre_c'] == "BIOL 3012" OR 
+    $course['nombre_c'] == "FISI 3171" OR 
+    $course['nombre_c'] == "FISI 3172" OR 
+    $course['nombre_c'] == "FISI 3173" OR 
+    $course['nombre_c'] == "MATE 3174" OR   
+    $course['nombre_c'] == "CCOM 3135"){ 
+        $array['id_especial'] = 2;}
+        else {
+if ($course['id_rol'] == 5 AND $credito_ciso >= 6){ 
+    $course['id_especial'] = 1; }
+    else{
+if ($course['id_rol'] == 5 AND $credito_ciso < 6){
+$credito_ciso +=$course['créditos_c']; }
+    else{
+if ($course['id_rol'] == 6 AND $credito_huma >= 6){ 
+    $course['id_especial'] = 1;}
+    else{
+if ($course['id_rol'] == 5 AND $credito_huma < 6){
+$credito_huma +=$array['créditos_c']; }
+    else{
+if ($course['id_rol'] == 9 AND $credito_intermedias >= 6){ 
+    $course['id_especial'] = 1;} 
+    else{
+if ($course['id_rol'] == 9 AND 
+    $course['nombre_c'] == "CCOM 3027" OR 
+    $course['nombre_c'] == "CCOM 3036" OR 
+    $course['nombre_c'] == "CCOM 4305" OR 
+    $course['nombre_c'] == "CCOM 4306" OR
+    $course['nombre_c'] == "CCOM 4501" AND 
+    $credito_intermedias < 6) { 
+$credito_intermedias +=$array['créditos_c'];}
+    else{
+        $course['codigo_especial'] = NULL;}}}}}}}
 
 echo "<h2>expediente_fijo:"."</h2>";
 foreach($expediente_fijo as $e_f){
-   $course = array("id_est" => -1, "id_fijo" => $e_f["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
-            "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
-            "equivalencia_c" => NULL, "creditos_c" => NULL, "estatus_R" => NULL, "code" => $e_f["nombre_c"]
-                        );
-        array_push($courses, $course);
+    echo "<p>".$e_f["nombre_c"]."</p>";
 }
 
 
 echo "<h2>courses:"."</h2>";
 
 foreach($courses as $course){
-    echo "<p>codigo: ".$course["code"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["creditos_c"]."</p>";
+    echo "<p>".$course["nombre_c"]."</p>";
 }
 
 

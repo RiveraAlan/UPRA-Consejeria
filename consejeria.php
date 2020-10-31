@@ -454,7 +454,10 @@ if(!isset($_SESSION['id_est'])){
                   </div>
          
          <div id="Sugerencias" class="tabcontent">
+            <form action="private/confirmacion.php" method="post">
+            
             <section>
+            
                 <div class="table">
                 <div class="container-table100">
                     <h2>Electivas Departamentales</h2>
@@ -468,150 +471,31 @@ if(!isset($_SESSION['id_est'])){
                                     <th class="column100 column3" data-column="column3">Descripción</th>
                                     <th class="column100 column4" data-column="column4">Créditos</th>
                                     <th class="column100 column5" data-column="column5">Clasificación</th>
+                                    <th style="background: transparent; border: none" class="column100 column5" data-column="column5"><button onclick="confirmar()" name="confirm-submit" type="submit" class="btn btn-yellow btn-pill">CONFIRMAR</button></th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3027</td>
-                                    <td class="column100 column2" data-column="column2">Prog. Orientada a Objetos</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3036</td>
-                                    <td class="column100 column2" data-column="column2">Programación Visual</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
                                 
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3042</td>
-                                    <td class="column100 column2" data-column="column2">Arquitectura de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3115</td>
-                                    <td class="column100 column2" data-column="column2">Aplicaciones de Microprocesadores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3135</td>
-                                    <td class="column100 column2" data-column="column2">Temas en Ciencias de Cómputos</td>
-                                    <td class="column100 column3" data-column="column3">1-6</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 3985</td>
-                                    <td class="column100 column2" data-column="column2">Investigación Sub-graduada</td>
-                                    <td class="column100 column3" data-column="column3">2</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4018</td>
-                                    <td class="column100 column2" data-column="column2">Redes de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4019</td>
-                                    <td class="column100 column2" data-column="column2">Programación Web</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4125</td>
-                                    <td class="column100 column2" data-column="column2">Inteligencia Artificial</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4135</td>
-                                    <td class="column100 column2" data-column="column2">Diseño Compiladores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4305</td>
-                                    <td class="column100 column2" data-column="column2">Introducción Diseño Web</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4306</td>
-                                    <td class="column100 column2" data-column="column2">Opt. Gráficas</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4307</td>
-                                    <td class="column100 column2" data-column="column2">Mantenimiento de PC's</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Desarrollo de Aplicaciones Móviles</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4420</td>
-                                    <td class="column100 column2" data-column="column2">Cloud Computing Apps</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td align="center">
-                                    <input type="checkbox" class="case" name="case" value="1" /> </td>
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Robótica</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                  </tr>
+                                <tbody>
+                                  <?php
+                                    $sql ="SELECT nombre_c, descripción_c, créditos_c, id_fijo
+                                    FROM expediente_fijo_departamentales WHERE id_rol = 9";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+                                    <td align='center'>
+                                    <input type='checkbox' class='case' name='id_fijo' id='id_fijo' value='{$row['id_fijo']}' /> </td>
+                                    <td class='column100 column1' data-column='column1'>{$row['nombre_c']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['descripción_c']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['créditos_c']}</td>
+                                    <td class='column100 column4' data-column='column4'>Intermedia</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                  </form>
                                 </tbody>
                               </table>
                             </div>
