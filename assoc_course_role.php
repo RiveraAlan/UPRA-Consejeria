@@ -208,14 +208,18 @@ fclose($myfile);
 
 echo "<h2>expediente_fijo:"."</h2>";
 foreach($expediente_fijo as $e_f){
-    echo "<p>".$e_f["nombre_c"]."</p>";
+   $course = array("id_est" => -1, "id_fijo" => $e_f["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
+            "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
+            "equivalencia_c" => NULL, "creditos_c" => NULL, "estatus_R" => NULL, "code" => $e_f["nombre_c"]
+                        );
+        array_push($courses, $course);
 }
 
 
 echo "<h2>courses:"."</h2>";
 
 foreach($courses as $course){
-    echo "<p>".$course["nombre_c"].$course["id_especial"]."</p>";
+    echo "<p>codigo: ".$course["code"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["creditos_c"]."</p>";
 }
 
 
