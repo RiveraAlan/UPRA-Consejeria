@@ -51,6 +51,10 @@ if($resultCheck > 0){
 
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
+$creditos_ciso = 0;
+$creditos_huma= 0;
+$creditos_intermedias = 0;
+
 while(!feof($myfile)){
     $temp = ltrim(fgets($myfile));
     $course_code;
@@ -99,18 +103,17 @@ while(!feof($myfile)){
         }else {
             $estatus_c = 1;
         }
-
         
        /*  $course = array("code" => $course_code[0], "name" => $temp,
                         "semester" => $semester[0], "credits" => $credits[0], 
                         "grade" => $grade[0], "role" => 8); */
             $course = array("id_est" => -1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
                             "estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
-                            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "code" => $course_code[0]
+                            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0]
                             );
             // ASSIGN ID_FIJO
             foreach($expediente_fijo as $idx => $e_f){
-                if($e_f["nombre_c"] === $course["code"]){
+                if($e_f["nombre_c"] === $course["nombre_c"]){
                     $course["id_fijo"] = $e_f["id_fijo"];
                     unset($expediente_fijo[$idx]);
                 }
@@ -143,12 +146,12 @@ while(!feof($myfile)){
                         "grade" => $grade[0], "role" => -1); */
             $course = array("id_est" => -1, "id_fijo" => -1, "id_especial" => NULL, "nota_c" => $grade[0],
             "estatus_c" => $estatus_c, "año_aprobo_c" => $semester,"convalidacion_c" => NULL,
-            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "code" => $course_code[0]
+            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0]
                         );
                         
                  // ASSIGN ID_FIJO
             foreach($expediente_fijo as $idx => $e_f){
-                if($e_f["nombre_c"] === $course["code"]){
+                if($e_f["nombre_c"] === $course["nombre_c"]){
                     $course["id_fijo"] = $e_f["id_fijo"];
                     unset($expediente_fijo[$idx]);
                 }
@@ -158,22 +161,65 @@ while(!feof($myfile)){
     
     }
 }
-    
-   
+
+if ($course['nombre_c'] == "MATE 3026" OR 
+$course['nombre_c'] == "BIOL 3011" OR 
+$course['nombre_c'] == "BIOL 3012" OR 
+$course['nombre_c'] == "FISI 3171" OR 
+$course['nombre_c'] == "FISI 3172" OR 
+$course['nombre_c'] == "FISI 3173" OR 
+$course['nombre_c'] == "MATE 3174" OR   
+$course['nombre_c'] == "CCOM 3135"){ 
+    $array['id_especial'] = 2;}
+    else {
+if ($course['id_rol'] == 5 AND $credito_ciso >= 6){ 
+$course['id_especial'] = 1; }
+else{
+if ($course['id_rol'] == 5 AND $credito_ciso < 6){
+$credito_ciso +=$course['créditos_c']; }
+else{
+if ($course['id_rol'] == 6 AND $credito_huma >= 6){ 
+$course['id_especial'] = 1;}
+else{
+if ($course['id_rol'] == 5 AND $credito_huma < 6){
+$credito_huma +=$array['créditos_c']; }
+else{
+if ($course['id_rol'] == 9 AND $credito_intermedias >= 6){ 
+$course['id_especial'] = 1;} 
+else{
+if ($course['id_rol'] == 9 AND 
+$course['nombre_c'] == "CCOM 3027" OR 
+$course['nombre_c'] == "CCOM 3036" OR 
+$course['nombre_c'] == "CCOM 4305" OR 
+$course['nombre_c'] == "CCOM 4306" OR
+$course['nombre_c'] == "CCOM 4501" AND 
+$credito_intermedias < 6) { 
+$credito_intermedias +=$array['créditos_c'];}
+else{
+    $course['id_especial'] = NULL;}}}}}}}
        
 }
 fclose($myfile);
 
+
+
+
+
+
 echo "<h2>expediente_fijo:"."</h2>";
 foreach($expediente_fijo as $e_f){
-    echo "<p>".$e_f["nombre_c"]."</p>";
+   $course = array("id_est" => -1, "id_fijo" => $e_f["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
+            "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
+            "equivalencia_c" => NULL, "creditos_c" => NULL, "estatus_R" => NULL, "code" => $e_f["nombre_c"]
+                        );
+        array_push($courses, $course);
 }
 
 
 echo "<h2>courses:"."</h2>";
 
 foreach($courses as $course){
-    echo "<p>".$course["code"]."</p>";
+    echo "<p>codigo: ".$course["code"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["creditos_c"]."</p>";
 }
 
 
