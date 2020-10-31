@@ -208,7 +208,7 @@ if(!isset($_SESSION['id'])){
                                     <td class="column100 column3" data-column="column3">3</td>
                                     <td class="column100 column4" data-column="column4">Intermedia</td>
                                     <td class="column100 column5" data-column="column5">2</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
+                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.php" class="nav-link"></a>
                                     <b>Lista CCOOM 3027</b></td>
                                   </tr>
                     

@@ -97,13 +97,27 @@ if(!isset($_SESSION['id_est'])){
                                     <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
               </div>
                 <?php 
+                 $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est=$id AND estatus_R=1";
+                    $resultRecom = mysqli_query($conn, $sentenciaSQL);
+                    $reco=mysqli_fetch_assoc($resultRecom);
                 
+              if ($reco['SUM(créditos_C_E)']=== NULL){
+                  $reco['SUM(créditos_C_E)']=0;
+              }
+              
+               
+                  $mes = date('m');
+                  $sem = 1;
+                      if($mes >= 6){
+                      $sem = 2;
+                    }
+              
                  echo "<div class='card-header'>
                     Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Semestre: <b>2</b><br>
+                    Semestre: <b>$sem</b><br>
                     Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendado: <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Créditos Recomendados: <b>{$reco['SUM(créditos_C_E)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Año: <b>{$_SESSION['año_CCOM']}</b><br>
            
@@ -150,6 +164,7 @@ if(!isset($_SESSION['id_est'])){
                             <table id='example2' class='table table-bordered table-hover'>
                           <thead>
                           <tr width='50%'' bgcolor='yellow'>
+                            <th><input type='checkbox' class='case' name='case' value='1' /></th>
                             <th>Cursos</th>
                             <th>Descripción</th>
                             <th>Créditos</th>
@@ -165,12 +180,22 @@ if(!isset($_SESSION['id_est'])){
                         while($row = mysqli_fetch_assoc($result)){
                           
                           echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                            <td><input type='checkbox' class='case' name='case' value='1' /> </td>
                             <td>{$row['nombre_c']}</td>
                             <td>{$row['descripción_c']}</td>
                             <td>{$row['créditos_c']}</td>
                           </tr> ";}}
+                
+                        echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                            <td><input type='checkbox' class='case' name='case' value='1' /> </td>
+                            <td>Otros</td>
+                            <td></td>
+                            <td></td>
+                          </tr> ";
+                
                         echo "</tbody> 
                           </table>
+                           Créditos Recomendados: {$reco['SUM(créditos_C_E)']}
                                             </div>
                             <div class='modal-footer'><br>
                               <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>

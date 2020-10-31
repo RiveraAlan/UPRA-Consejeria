@@ -197,6 +197,14 @@ if(!isset($_SESSION['id'])){
                     FROM estudiante WHERE id_est = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
+            
+                $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est=$id";
+                $resultSUM = mysqli_query($conn, $sentenciaSQL);
+                $creditos=mysqli_fetch_assoc($resultSUM);
+                if ($creditos['SUM(créditos_C_E)']=== NULL){
+                  $creditos['SUM(créditos_C_E)']=0;
+              }
+               
            
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
@@ -207,7 +215,7 @@ if(!isset($_SESSION['id'])){
 
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
-                    <b>Créditos Aprobados</b> <a class='float-right'>90</a>
+                    <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(créditos_C_E)']}</a>
                   </li>
                   <li class='list-group-item'>
                     <b>Año</b> <a class='float-right'>4</a>
