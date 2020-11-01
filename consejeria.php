@@ -500,7 +500,7 @@ if(!isset($_SESSION['id_est'])){
                                 </tbody>
                               </table>
                             </div>
-                          </div>
+                          </div>a
                         </div>             
                 </div>
                 </section>    

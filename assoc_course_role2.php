@@ -48,9 +48,15 @@ if($resultCheck > 0){
   }
 }
 
+ 
+
+
+
+
 
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
+
 while(!feof($myfile)){
     $temp = ltrim(fgets($myfile));
     $course_code;
@@ -104,8 +110,9 @@ while(!feof($myfile)){
                         "semester" => $semester[0], "credits" => $credits[0], 
                         "grade" => $grade[0], "role" => 8); */
             $course = array("id_est" => -1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
-                            "estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
-                            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0]
+                            "descripción_c" => $temp, "estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
+                            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
+                            "id_rol" => NULL
                             );
             // ASSIGN ID_FIJO
             foreach($expediente_fijo as $idx => $e_f){
@@ -141,8 +148,9 @@ while(!feof($myfile)){
                         "semester" => $semester[0], "credits" => $credits[0], 
                         "grade" => $grade[0], "role" => -1); */
             $course = array("id_est" => -1, "id_fijo" => -1, "id_especial" => NULL, "nota_c" => $grade[0],
-            "estatus_c" => $estatus_c, "año_aprobo_c" => $semester,"convalidacion_c" => NULL,
-            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0]
+            "descripción_c" => $temp,"estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
+            "equivalencia_c" => NULL, "creditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
+            "id_rol" => NULL
                         );
                         
                  // ASSIGN ID_FIJO
@@ -153,83 +161,82 @@ while(!feof($myfile)){
                 }
                    
             }
-
+               array_push($courses, $course);
     
     }
 }
 
-   
-       
 }
+
 fclose($myfile);
 
-$creditos_ciso = 0;
-$creditos_huma= 0;
-$creditos_intermedias = 0;
 
-foreach($courses as $course ){
-if ($course['nombre_c'] == "MATE 3026" OR 
-    $course['nombre_c'] == "BIOL 3011" OR 
-    $course['nombre_c'] == "BIOL 3012" OR 
-    $course['nombre_c'] == "FISI 3171" OR 
-    $course['nombre_c'] == "FISI 3172" OR 
-    $course['nombre_c'] == "FISI 3173" OR 
-    $course['nombre_c'] == "MATE 3174" OR   
-    $course['nombre_c'] == "CCOM 3135"){ 
-        $array['id_especial'] = 2;}
-        else {
-if ($course['id_rol'] == 5 AND $credito_ciso >= 6){ 
-    $course['id_especial'] = 1; }
-    else{
-if ($course['id_rol'] == 5 AND $credito_ciso < 6){
-$credito_ciso +=$course['créditos_c']; }
-    else{
-if ($course['id_rol'] == 6 AND $credito_huma >= 6){ 
-    $course['id_especial'] = 1;}
-    else{
-if ($course['id_rol'] == 5 AND $credito_huma < 6){
-$credito_huma +=$array['créditos_c']; }
-    else{
-if ($course['id_rol'] == 9 AND $credito_intermedias >= 6){ 
-    $course['id_especial'] = 1;} 
-    else{
-if ($course['id_rol'] == 9 AND 
-    $course['nombre_c'] == "CCOM 3027" OR 
-    $course['nombre_c'] == "CCOM 3036" OR 
-    $course['nombre_c'] == "CCOM 4305" OR 
-    $course['nombre_c'] == "CCOM 4306" OR
-    $course['nombre_c'] == "CCOM 4501" AND 
-    $credito_intermedias < 6) { 
-$credito_intermedias +=$array['créditos_c'];}
-    else{
-        $course['codigo_especial'] = NULL;}}}}}}}}
+
+
+
+
+
 
 echo "<h2>expediente_fijo:"."</h2>";
 foreach($expediente_fijo as $e_f){
-    echo "<p>".$e_f["nombre_c"]."</p>";
+    if($e_f["id_fijo"] >= 1 AND $e_f["id_fijo"] <= 30){
+        $course = array("id_est" => -1, "id_fijo" => $e_f["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
+            "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
+            "equivalencia_c" => NULL, "creditos_c" => NULL, "estatus_R" => NULL, "nombre_c" => $e_f["nombre_c"]
+                        );
+        array_push($courses, $course);
+    }
+   
 }
+
+
+$e_f_generales = array('ANTR 3006', 'CIPO 3011','CISO 3121',
+                       'CISO 3122', 'CISO 3155', 'ECON 3005',
+                       'ECON 3021', 'ECON 3022','GEOG 3155',
+                       'PSIC 3003', 'PSIC 3005', 'PSIC 3006',
+                       'PSIC 3048', 'PSIC 3116', 'SOCI 1001',
+                       'SOCI 3245');
+
+$e_f_libres = array('ARTE 3115', 'ARTE 3116', 'ARTE 3118',
+                    'FILO 3001', 'FILO 3002', 'FILO 3005',
+                    'FILO 4006', 'FILO 4027', 'HIST 3111',
+                   'HIST 3112', 'HIST 3165', 'HIST 3177',
+                    'HIST 3179', 'HIST 3241', 'HIST 3242',
+                    'HUMA 3101', 'HUMA 3102', 'HUMA 3201',
+                    'HUMA 3202', 'HUMA 3145', 'INTD 3046',
+                    'ESIN 4001', 'LITE 3011', 'LITE 3012',
+                    'LITE 3035', 'LITE 3055', 'MUSI 3225',
+                    'MUSI 3235', 'TEAT 3025'
+);
+$e_libres = array();
+foreach($courses as $idx => $course){
+    if($course["id_fijo"] === NULL){
+        //ASIGNA A GENERALES O LIBRES
+        if(array_search($course["nombre_c"], $e_f_libres)){
+            $course = array("id_rol" => 5, "nombre_c" => $course["nombre_c"], "descripción_c" =>  $course["descripción_c"]);
+           array_push($e_libres, $course);
+        }
+            
+    }
+}
+
 
 
 echo "<h2>courses:"."</h2>";
 
 foreach($courses as $course){
-    echo "<p>".$course["nombre_c"]."</p>";
+    echo "<p>codigo: ".$course["nombre_c"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["creditos_c"]." "."</p>";
 }
 
-echo "
-<script>
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.querySelector('.spots-available').innerHTML  =  this.responseText;
-    
-   }
+echo "<h1>Electivas Libres</h1>";
+foreach($e_libres as $e_l){
+    echo "<p>".$e_l["nombre_c"]." ".$e_l["id_rol"]."</p>";
 }
-var courses = 'hello';
-      xmlhttp.open('GET', 'AdminUPRA/inc/insert_exp.php?cursos=' +  courses, true);
-      xmlhttp.send();
-</script>";
-?>
+ // SI LA LIBRE ESTA EN LA BASE DE DATOS AISGNA EL ID_FIJO QUE TENGA SI EMPEZANDO CON ID MAYOR SI LA TABLA ESTA VACIA SI NO PUES COJE EL ULTIMO VALOR Y SUMALE UNO.
+
+
+
+
 
 
 
