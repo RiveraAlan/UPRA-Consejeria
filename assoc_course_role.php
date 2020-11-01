@@ -202,7 +202,7 @@ if ($course['id_rol'] == 9 AND
     $credito_intermedias < 6) { 
 $credito_intermedias +=$array['créditos_c'];}
     else{
-        $course['codigo_especial'] = NULL;}}}}}}}
+        $course['codigo_especial'] = NULL;}}}}}}}}
 
 echo "<h2>expediente_fijo:"."</h2>";
 foreach($expediente_fijo as $e_f){
@@ -215,12 +215,21 @@ echo "<h2>courses:"."</h2>";
 foreach($courses as $course){
     echo "<p>".$course["nombre_c"]."</p>";
 }
-?>
+
+echo "
 <script>
 var xmlhttp = new XMLHttpRequest();
-      
-      xmlhttp.open("GET", "../AdminUPRA/inc/insert_exp.php?courses=" + <?php echo $courses ?> + "course=" + <?php echo $course?>, true);
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.querySelector('.spots-available').innerHTML  =  this.responseText;
+    
+   }
+}
+var courses = 'hello';
+      xmlhttp.open('GET', 'AdminUPRA/inc/insert_exp.php?cursos=' +  courses, true);
       xmlhttp.send();
-</script>
+</script>";
+?>
+
 
 

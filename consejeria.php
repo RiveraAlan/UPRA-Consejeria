@@ -171,8 +171,9 @@ if(!isset($_SESSION['id_est'])){
                           </tr>
                           </thead> 
                         <tbody>";
-                        $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c
-                              FROM expediente WHERE id_est = ".$_SESSION['id_est']." AND estatus_R = 1";
+                        $sql ="SELECT expediente_fijo_departamentales.nombre_c, expediente_fijo_departamentales.descripción_c, expediente_fijo_departamentales.créditos_c
+                        FROM expediente_fijo_departamentales INNER JOIN expediente WHERE expediente.id_est = $id AND expediente.id_fijo = expediente_fijo_departamentales.id_fijo AND expediente.estatus_R = 1 
+                            OR expediente.id_est = $id AND expediente.id_fijo = expediente_fijo_departamentales.id_fijo AND expediente.estatus_c = 2";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
                       
