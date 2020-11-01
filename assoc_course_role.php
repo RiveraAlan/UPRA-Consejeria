@@ -215,7 +215,12 @@ echo "<h2>courses:"."</h2>";
 foreach($courses as $course){
     echo "<p>".$course["nombre_c"]."</p>";
 }
-
-
+?>
+<script>
+var xmlhttp = new XMLHttpRequest();
+      
+      xmlhttp.open("GET", "../AdminUPRA/inc/insert_exp.php?courses=" + <?php echo $courses ?> + "course=" + <?php echo $course?>, true);
+      xmlhttp.send();
+</script>
 
 
