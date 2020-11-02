@@ -1,7 +1,7 @@
 <?php
+session_start();
 include 'private/dbconnect.php';
 
- 
 
 $myfile = fopen("expediente_formatted.txt", "r") or die("Unable to open file!");
 $courses = array();
@@ -19,7 +19,7 @@ $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
-        $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"]);
+        $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"], "id_rol" => $row["id_rol"]);
         array_push($expediente_fijo, $arr);
   }
 }
@@ -31,7 +31,7 @@ $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
-        $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"]);
+        $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"], "id_rol" => $row["id_rol"]);
         array_push($expediente_fijo, $arr);
   }
 }
@@ -43,16 +43,12 @@ if($resultCheck > 0){
  
  if($resultCheck > 0){
    while($row = mysqli_fetch_assoc($result)) {
-         $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"]);
+         $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"], "id_rol" => $row["id_rol"]);
          array_push($expediente_fijo, $arr);
    }
  }
 
  
-
-
-
-
 
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
@@ -64,10 +60,7 @@ while(!feof($myfile)){
     $credits;
     $grade;
     
-     // FALTA ASIGNAR ROL 1 Y 7 AL 13. ALAN SE VA A ENCARGAR DE ESO MIRA SU TASK.
-     //ASSIGN ID_FIJO EN LAS EXTRAS!!!!!!!!!!!!!!!!!!!!!!!!!
-     // ESTE CODIGO PUEDE SER MUCHO MAS SENCILLO PORQUE COMO NO SE ASIGNA  ROL_ID NO TENGO QUE DIVIDIR
-     // EXPRESION REGULAR ENTRE CCOM, CISO, ESPA, HUMA ETC.
+     
       
      if(preg_match("/SECTION 2 - Academic Requirements Completed or in Progress/", $temp)){
          $isCoursesReached = TRUE;
@@ -106,9 +99,6 @@ while(!feof($myfile)){
             $estatus_c = 1;
         }
         
-       /*  $course = array("code" => $course_code[0], "name" => $temp,
-                        "semester" => $semester[0], "credits" => $credits[0], 
-                        "grade" => $grade[0], "role" => 8); */
             $course = array("id_est" => -1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
                             "descripción_c" => $temp, "estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
                             "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
@@ -119,6 +109,7 @@ while(!feof($myfile)){
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["nombre_c"] === $course["nombre_c"]){
                     $course["id_fijo"] = $e_f["id_fijo"];
+                    $course["id_rol"] = $e_f["id_rol"];
                     unset($expediente_fijo[$idx]);
                 }
                    
@@ -153,10 +144,7 @@ while(!feof($myfile)){
         }
         
     
-        /* $course = array("code" => $course_code[0], "name" => $temp,
-                        "semester" => $semester[0], "credits" => $credits[0], 
-                        "grade" => $grade[0], "role" => -1); */
-            $course = array("id_est" => -1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
+            $course = array("id_est" =>-1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
             "descripción_c" => $temp,"estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
             "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
             "id_rol" => NULL
@@ -166,6 +154,7 @@ while(!feof($myfile)){
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["nombre_c"] === $course["nombre_c"]){
                     $course["id_fijo"] = $e_f["id_fijo"];
+                    $course["id_rol"] = $e_f["id_rol"];
                     unset($expediente_fijo[$idx]);
                 }
                    
@@ -201,6 +190,7 @@ foreach($courses as &$course){
    
    
     if($course["id_fijo"] === NULL){
+        $course["id_rol"] = 7;
         //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
         $query1 = "SELECT id_fijo FROM expediente_fijo_libre WHERE nombre_c = '".$course["nombre_c"]."';";
         
@@ -219,10 +209,11 @@ foreach($courses as &$course){
         } elseif($resultCheck2 === 1 AND $id_fijo_from_query2["max_id_fijo"] !== NULL) {
             // FIX BUG IN HERE: COURSE IS NOT BEING INSERTED IN THE DB AND IS NOT BEING ASSIGNED THE CORRECT ID.
             $course["id_fijo"] = $id_fijo_from_query2["max_id_fijo"] + 1;
-            echo "<h1>PUÑETA: ".$course["id_fijo"]."</h1>";
+            
             $query = "INSERT INTO expediente_fijo_libre(id_fijo, nombre_c, descripción_c, créditos_c, id_rol) 
             VALUES(".$course["id_fijo"].", '".$course["nombre_c"]."','".$course["descripción_c"]."',".$course["créditos_c"].", 7);";
             echo "<h1>".$query."</h1>";
+
             mysqli_query($conn,$query);
             
         } else {
@@ -236,120 +227,78 @@ foreach($courses as &$course){
            
             mysqli_query($conn,$query);
         }
-
     }
-   
-    
-
 }
 
+$creditos_ciso = 0;
+$creditos_huma= 0;
+$creditos_intermedias = 0;
 
-
-
-echo "<h2>courses:"."</h2>";
-
-foreach($courses as $course){
-    echo "<p>codigo: ".$course["nombre_c"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["créditos_c"]." "."</p>";
-}
-
-
-/*
-
-echo "<h2>expediente_fijo:"."</h2>";
-foreach($expediente_fijo as $e_f){
-    if($e_f["id_fijo"] >= 1 AND $e_f["id_fijo"] <= 30){
-        $course = array("id_est" => -1, "id_fijo" => $e_f["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
-            "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
-            "equivalencia_c" => NULL, "creditos_c" => NULL, "estatus_R" => NULL, "nombre_c" => $e_f["nombre_c"]
-                        );
-        array_push($courses, $course);
-    } 
-   
-}
-
-foreach($expediente_fijo_generales as $e_f_g){
-    if($e_f_g["id_fijo"] >= 57 AND $e_f_g["id_fijo"] <= 99){
-        $course = array("id_est" => -1, "id_fijo" => $e_f_g["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
-            "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
-            "equivalencia_c" => NULL, "creditos_c" => NULL, "estatus_R" => NULL, "nombre_c" => $e_f["nombre_c"]
-                        );
-        array_push($courses, $course);
-    } 
-   
-}
-
-
-
-
-
-
-
-
-
-
-
-echo "<h2>courses:"."</h2>";
-
-foreach($courses as $course){
-    echo "<p>codigo: ".$course["nombre_c"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["creditos_c"]." "."</p>";
-}
-
-
-
-$id_fijo_start_point = 100;
-
-echo "<h1>Electivas Libres</h1>";
-foreach($courses as $course){
-    echo "<p>".$e_l["nombre_c"]." ".$e_l["id_rol"]."</p>";
-   
-    if($course["id_fijo"] === NULL){
-        //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
-        $query1 = "SELECT id_fijo FROM expediente_fijo_libre WHERE nombre_c = ".$course["nombre_c"].";";
-        $result1 = mysqli_query($conn,$query);
-        $resultCheck1 = mysqli_num_rows($result);
-        $id_fijo_from_query1 = mysqli_fetch_assoc($result1);
-        $query2 = "SELECT MAX(id_fijo) AS max_id_fijo FROM expediente_fijo_libre;";
-        $result2 = mysqli_query($conn,$query);
-        $resultCheck2 = mysqli_num_rows($result);
-        $id_fijo_from_query2 = mysqli_fetch_assoc($result2);
-
-        if($resultCheck1 === 1){
-            $course["id_fijo"] = $id_fijo_from_query1["id_fijo"];
-            
-        } elseif($resultCheck2 === 1) {
-            $course["id_fijo"] = $id_fijo_from_query2["id_fijo"] + 1;
-        } else {
-            $course["id_fijo"] = $id_fijo_start_point;
-            $id_fijo_start_point++;
-            //INSERT INTO DB
-            $query = "INSERT INTO expediente_fijo_libre VALUES(".$course["id_fijo"].",".$course["nombre_c"].",".$course["descripción_c"].",".$course["rol_id"].");";
-            mysqli_query($conn,$query);
+foreach($courses as &$course){
+    if($course["id_rol"] !== NULL){
+    if($course['nombre_c'] === 'MATE 3026' OR 
+        $course['nombre_c'] === 'BIOL 3011' OR 
+        $course['nombre_c'] === 'BIOL 3012' OR 
+        $course['nombre_c'] === 'FISI 3171' OR 
+        $course['nombre_c'] === 'FISI 3172' OR 
+        $course['nombre_c'] === 'FISI 3173' OR 
+        $course['nombre_c'] === 'MATE 3174' OR   
+        $course['nombre_c'] === 'CCOM 3135')
+            $course['id_especial'] = 2;
+        
+       elseif($course['id_rol'] === 5 AND $creditos_ciso >= 6) {
+            $course['id_especial'] = 1;
         }
+        elseif($course['id_rol'] === 5 AND $creditos_ciso < 6){
+            $creditos_ciso +=$course['créditos_c'];       
+        }
+        elseif($course['id_rol'] === 6 AND $creditos_huma >= 6) {
+            $course['id_especial'] = 1;
+        }
+        elseif($course['id_rol'] === 5 AND $creditos_huma < 6) {
+            $creditos_huma +=$course['créditos_c']; 
+        }
+        elseif($course['id_rol'] === 9 AND ($course['nombre_c'] === 'CCOM 3027' OR 
+                $course['nombre_c'] === 'CCOM 3036' OR 
+                $course['nombre_c'] === 'CCOM 4305' OR 
+                $course['nombre_c'] === 'CCOM 4306' OR
+                $course['nombre_c'] === 'CCOM 4501') AND 
+                $creditos_intermedias > 6){
+                   $course['id_especial'] = 1;
+        }
+        elseif($course['id_rol'] === 9 AND
+                $course['nombre_c'] === 'CCOM 3027' OR 
+                $course['nombre_c'] === 'CCOM 3036' OR 
+                $course['nombre_c'] === 'CCOM 4305' OR 
+                $course['nombre_c'] === 'CCOM 4306' OR
+                $course['nombre_c'] === 'CCOM 4501' AND 
+                $creditos_intermedias < 6){
+            
+                    $creditos_intermedias +=$course['créditos_c'];
+        }
+        else {
+            
+        }
+     }
 
     }
    
-    
+    // CON ID FIJO CONSIGUE EL ID ROL PARA PODER ASIGNAR ID ESPECIAL  Y LUEGO SUBIR A LA BASE DE DATOS
+
+
+
+
+
+
+echo "<h2>courses:"."</h2>";
+
+foreach($courses as $course){
+    echo "<p>codigo: ".$course["nombre_c"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["créditos_c"]." "."id_rol: ".$course["id_rol"]." "."id_especial: ".$course["id_especial"]."</p>";
+   
+  
 
 }
-*/
- 
- 
 
- // 2 querys: one for finding id_fijo by looking for nombre_c, another one to get the biggest id_fijo in table.
-    // if first query returns result set id_fijo to that tuple.
-    // Else if second query returns result add one to the id_fijo and set it.
-    // Else the table will be empty so set the id_fijo and increment.
-
-// SI LA LIBRE ESTA EN LA BASE DE DATOS AISGNA EL ID_FIJO QUE TENGA SI EMPEZANDO CON 50 SI LA TABLA ESTA VACIA SI NO PUES COJE EL ULTIMO VALOR Y SUMALE UNO.
-
- // PROCESAR CURSOS QUE PERTENECEN A EXPEDIENTE_FIJO_GENERALES
-
-
-// A, B, C, D, ID, IF y cuando es Nulo despues del asterisco ponerlo en CURSOS
-
-//  EL ID ESPECIAL FUNCIONA SOLO FALTA SACAR EL ID ROL PARA QUE FUNCIONE
-
-// SUBIR A LA BASE DE DATOS
 
 
 mysqli_close($conn);
