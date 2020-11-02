@@ -10,15 +10,26 @@ $electives = array();
 $department_electives = array();
 $free_electives = array();
 $adv_department_electives = array(
-    'PROGRAMACION PARA WEB',
-    'MANT. DE PCS Y REDES'
+    'CCOM 4019',
+    'CCOM 4307',
+    'CCOM 3042',
+    'CCOM 3115',
+    'CCOM 3985',
+    'CCOM 4018',
+    'CCOM 4125',
+    'CCOM 4135',
+    'CCOM 4401',
+    'CCOM 4420'
+    
 );
 
 $int_department_electives = array(
-    'PROG OBJ ORIENT OB',
-    'TEMAS CIENCIAS COMPUT',
-    'INTRO DISENO PAGINAS',
-    'GRAFICOS PARA LA INTE'
+    'CCOM 3027',
+    'CCOM 3036',
+    'CCOM 4305',
+    'CCOM 4306',
+    'CCOM 4501'
+    
 );
 
 
@@ -64,32 +75,49 @@ fclose($myfile);
         preg_match("/[A-Z]\d{2}/", $temp, $semester);
         $temp = preg_replace("/[A-Z]\d{2}/", '', $temp);
         //Amount of Credits
-        preg_match("/\d{1}\.\d{2}/", $temp, $credits);
-        $temp = preg_replace("/\d{1}\.\d{2}/", '', $temp);
+        preg_match("/\d\.\d{1,2}/", $temp, $credits);
+        $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
         // Grade
         preg_match("/\s[A-F]{1}\s/", $temp, $grade);
         $temp = preg_replace("/\s[A-F]{1}\s/", '', $temp);
     
-        $department_elective = array("code" => $course_code[0], "name" => trim($temp),
-                                     "semester" => $semester[0], "credits" => $credits[0], "grade" => $grade[0]);
+        $department_elective = array("nombre_c" => $course_code[0], "descripción_c" => trim($temp),
+                                     "año_aprobó_c" => $semester[0], "créditos_c" => $credits[0], "nota_c" => $grade[0]);
         array_push($department_electives, $department_elective);
         unset($electives[$i]);
     } elseif(preg_match("/^[A-Z]{4} \d{4}/", $temp)){
-        array_push($free_electives, $temp);
+        
+         //Course code
+         preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
+         $temp = preg_replace("/[A-Z]{4} \d{4}/", '', $temp);
+         //Semester
+         preg_match("/[A-Z]\d{2}/", $temp, $semester);
+         $temp = preg_replace("/[A-Z]\d{2}/", '', $temp);
+         //Amount of Credits
+         preg_match("/\d\.\d{1,2}/", $temp, $credits);
+         $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
+         // Grade
+         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", $temp, $grade);
+         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", '', $temp);
+    
+         // MAKE SURE TO TAKE "REGISTERED" INTO CONSIDERATION
+        $free_elective = array("nombre_c" => $course_code[0], "descripción_c" => trim($temp),
+                                     "año_aprobó_c" => $semester[0], "créditos_c" => $credits[0], "nota_c" => $grade[0]);
+        array_push($free_electives, $free_elective);
     }       
 } 
 
 
 usort($department_electives, function ($item1, $item2) {
-    return $item1["code"] <=> $item2["code"];
+    return $item1["nombre_c"] <=> $item2["nombre_c"];
 });
 
 
 for($i=0; $i < count($department_electives) - 1; $i++){
-    if($department_electives[$i]["code"] === $department_electives[$i+1]["code"] AND $department_electives[$i]["semester"] === $department_electives[$i+1]["semester"]){
-        $credits = floatval($department_electives[$i]["credits"]) +  floatval($department_electives[$i+1]["credits"]);
+    if($department_electives[$i]["nombre_c"] === $department_electives[$i+1]["nombre_c"] AND $department_electives[$i]["año_aprobó_c"] === $department_electives[$i+1]["año_aprobó_c"]){
+        $credits = floatval($department_electives[$i]["créditos_c"]) +  floatval($department_electives[$i+1]["créditos_c"]);
         $credits = number_format($credits, 2);
-        $department_electives[$i+1]["credits"] = strval($credits);
+        $department_electives[$i+1]["créditos_c"] = strval($credits);
         unset($department_electives[$i]);
     }
 }
@@ -97,36 +125,54 @@ for($i=0; $i < count($department_electives) - 1; $i++){
 
 $adv_credits = 0;
 $int_credits = 0;
-$coursesToDel = array();
+
 
 foreach($department_electives as $department_elective_idx => $department_elective_info){
+    //ccom 4307
     
-    if(in_array($department_elective_info["name"], $adv_department_electives)){
-        $adv_credits += intval($department_elective_info["credits"]);
+    if(in_array(trim($department_elective_info["nombre_c"]), $adv_department_electives)){
+        echo "<h1>".$department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"]."</h1>";
+        $adv_credits += intval($department_elective_info["créditos_c"]);
     } else {
          if($int_credits >= 6){
-             $free_elective = $department_elective_info["code"]." ".$department_elective_info["name"]." ".$department_elective_info["semester"]." ".$department_elective_info["credits"]." ".$department_elective_info["grade"];
+             $free_elective = $department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"]." ".$department_elective_info["año_aprobó_c"]." ".$department_elective_info["créditos_c"]." ".$department_elective_info["nota_c"];
              array_push($free_electives, $free_elective);
              // Delete course from dept electives.
                unset($department_electives[$department_elective_idx]);
-              // array_push($coursesToDel, $department_elective["code"]);
 
          } else {
-            $int_credits += intval($department_elective_info["credits"]);
+            $int_credits += intval($department_elective_info["créditos_c"]);
          }
     }
 }
 
 
-echo "\n"."<h3>Department electives:</h3>";
+usort($free_electives, function ($item1, $item2) {
+    return $item1["nombre_c"] <=> $item2["nombre_c"];
+});
+
+ for($i=0; $i < count($free_electives) - 1; $i++){
+     
+    if($free_electives[$i]["nombre_c"] === $free_electives[$i+1]["nombre_c"] AND $free_electives[$i]["año_aprobó_c"] === $free_electives[$i+1]["año_aprobó_c"]){
+        $credits = floatval($free_electives[$i]["créditos_c"]) +  floatval($free_electives[$i+1]["créditos_c"]);
+        $credits = number_format($credits, 2);
+        $free_electives[$i+1]["créditos_c"] = strval($credits);
+        unset($free_electives[$i]);
+    }
+} 
+
+
+/* echo "\n"."<h3>Department electives:</h3>";
 foreach($department_electives as $department_elective){
-    echo "<p>".$department_elective['code']. " ".$department_elective['name']." ".$department_elective['semester']." ".$department_elective['credits']." ".$department_elective['grade']."</p>";
+    echo "<p>".$department_elective['nombre_c']. " ".$department_elective['descripción_c']." ".$department_elective['año_aprobó_c']." ".$department_elective['créditos_c']." ".$department_elective['nota_c']."</p>";
 }
+ */
 
 echo "\n"."<h3>Free lectives:</h3>";
 foreach($free_electives as $free_elective){
-    echo "<p>".$free_elective."</p>";
+    echo "<p>".$free_elective['nombre_c']. " ".$free_elective['descripción_c']." ".$free_elective['año_aprobó_c']." ".$free_elective['créditos_c']." ".$free_elective['nota_c']."</p>";
 }
+echo "<h3>End of Free Electives</h3>";
 
 
 
@@ -137,12 +183,12 @@ $myfile = fopen('expediente_formatted.txt', 'a');//opens file in append mode
 
 fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
 foreach($department_electives as $department_elective){
-    fwrite($myfile, "\n".$department_elective["code"]." ".$department_elective["name"]. " ".$department_elective["semester"]." ".$department_elective["credits"]." ".$department_elective["grade"]."\n");
+    fwrite($myfile, "\n".$department_elective['nombre_c']. " ".$department_elective['descripción_c']." ".$department_elective['año_aprobó_c']." ".$department_elective['créditos_c']." ".$department_elective['nota_c']."\n");
 }
 
 fwrite($myfile, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
 foreach($free_electives as $free_elective){
-    fwrite($myfile,"\n$free_elective\n");
+    fwrite($myfile,"\n".$free_elective['nombre_c']. " ".$free_elective['descripción_c']." ".$free_elective['año_aprobó_c']." ".$free_elective['créditos_c']." ".$free_elective['nota_c']."\n");
 }
 
 $delete = FALSE;
