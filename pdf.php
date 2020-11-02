@@ -1,6 +1,8 @@
 <?php
 require('fpdf.php');
 require('inc/connection.php');
+session_start();
+$id= $_SESSION['id_est'];
 
 
 class PDF extends FPDF
@@ -39,8 +41,9 @@ function Footer()
 }
 }
     
-require 'inc/connection.php';
-$consulta = "SELECT nombre_c, descripción_c, créditos_c, nota_c FROM expediente";
+
+$consulta = "SELECT nombre_c, descripción_c, créditos_c, nota_c, año_aprobo_c
+FROM expediente WHERE id_est = $id";
 $resultado = $conn->query($consulta);
 
 
@@ -56,6 +59,7 @@ while($row = $resultado->fetch_assoc()){
     $pdf->Cell(105, 10, utf8_decode($row['descripción_c']), 1, 0, 'C', 0);
     $pdf->Cell(27, 10, $row['créditos_c'], 1, 0, 'C', 0);
     $pdf->Cell(15, 10, $row['nota_c'], 1, 1, 'C', 0);
+    $pdf->Cell(105, 10, utf8_decode($row['año_aprobo_c']), 1, 0, 'C', 0);
 }
 
 $pdf->Output();
