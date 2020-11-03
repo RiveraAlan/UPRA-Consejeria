@@ -2,15 +2,11 @@
 session_start();
 include 'private/dbconnect.php';
 
-
 $myfile = fopen("expediente_formatted.txt", "r") or die("Unable to open file!");
 $courses = array();
 $expediente_fijo = array();
 $expediente_fijo_generales = array();
 $posicion_cursos = array();
-
-// ============= FALTA COLOCAR LAS QUE SOBRAN EN EXP_FIJO Y COLOCAR ID_ROL 
-
 
 //EXPEDIENTE FIJO
 $query = "SELECT  * FROM expediente_fijo";
@@ -48,8 +44,6 @@ if($resultCheck > 0){
    }
  }
 
- 
-
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
 
@@ -60,8 +54,6 @@ while(!feof($myfile)){
     $credits;
     $grade;
     
-     
-      
      if(preg_match("/SECTION 2 - Academic Requirements Completed or in Progress/", $temp)){
          $isCoursesReached = TRUE;
      }  
@@ -69,7 +61,6 @@ while(!feof($myfile)){
      if(preg_match("/SECTION 3 - Work Not Applicable to this Program/", $temp)){
         $isExtrasReached = TRUE;
     }
-
 
      if(!$isCoursesReached)
         continue;
@@ -90,7 +81,10 @@ while(!feof($myfile)){
         // Grade
         preg_match("/\s[A-F]{1}\s/", $temp, $grade);
         $temp = preg_replace("/\s[A-F]{1}\s/", '', $temp);
-    
+        // REMOVE "Meets no requirements"
+        if(preg_match("/Meets no requirements/", $temp)){
+            $temp = preg_replace("/Meets no requirements/", '', $temp);
+        }
          // ASSIGN ESTATUS_C
         if(preg_match("/Registered/", $temp)){
             $temp = preg_replace("/Registered/", '', $temp);
@@ -98,13 +92,16 @@ while(!feof($myfile)){
         }else {
             $estatus_c = 1;
         }
-        
+               if(preg_match("/\sF\s|\sW\s|\sID\s|\sIF\s/", $grade[0]) OR is_null($grade[0])){
+                   continue;
+               }
+
             $course = array("id_est" => -1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
                             "descripción_c" => $temp, "estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
                             "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
                             "id_rol" => NULL
                             );
-                   
+
             // ASSIGN ID_FIJO
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["nombre_c"] === $course["nombre_c"]){
@@ -114,10 +111,7 @@ while(!feof($myfile)){
                 }
                    
             }
-           
-
             array_push($courses, $course);
-        
     } 
         
 } else {
@@ -143,14 +137,12 @@ while(!feof($myfile)){
             $estatus_c = 1;
         }
         
-    
             $course = array("id_est" =>-1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
             "descripción_c" => $temp,"estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
             "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
             "id_rol" => NULL
                         );
                         
-                 // ASSIGN ID_FIJO
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["nombre_c"] === $course["nombre_c"]){
                     $course["id_fijo"] = $e_f["id_fijo"];
@@ -160,15 +152,12 @@ while(!feof($myfile)){
                    
             }
                array_push($courses, $course);
-    
     }
 }
 
 }
 
 fclose($myfile);
-
-
 
 foreach($expediente_fijo as $e_f){
     if($e_f["id_fijo"] >= 1 AND $e_f["id_fijo"] <= 30){
@@ -181,19 +170,18 @@ foreach($expediente_fijo as $e_f){
    
 }
 
-
-
 $id_fijo_start_point = 100;
 
 echo "<h1>Electivas Libres</h1>";
 foreach($courses as &$course){
    
-   
     if($course["id_fijo"] === NULL){
         $course["id_rol"] = 7;
         //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
         $query1 = "SELECT id_fijo FROM expediente_fijo_libre WHERE nombre_c = '".$course["nombre_c"]."';";
-        
+
+        //  =====LA BASE DATOS NO ESTA USANDO EL 100, ESTA AUTO INCREMENTANDOSE Y YA NO EMPIEZA EN 100. =======
+
         $result1 = mysqli_query($conn,$query1);
         $resultCheck1 = mysqli_num_rows($result1);
         $id_fijo_from_query1 = mysqli_fetch_assoc($result1);
@@ -207,7 +195,6 @@ foreach($courses as &$course){
             $course["id_fijo"] = $id_fijo_from_query1["id_fijo"];
             
         } elseif($resultCheck2 === 1 AND $id_fijo_from_query2["max_id_fijo"] !== NULL) {
-            // FIX BUG IN HERE: COURSE IS NOT BEING INSERTED IN THE DB AND IS NOT BEING ASSIGNED THE CORRECT ID.
             $course["id_fijo"] = $id_fijo_from_query2["max_id_fijo"] + 1;
             
             $query = "INSERT INTO expediente_fijo_libre(id_fijo, nombre_c, descripción_c, créditos_c, id_rol) 
@@ -267,13 +254,12 @@ foreach($courses as &$course){
                    $course['id_especial'] = 1;
         }
         elseif($course['id_rol'] === 9 AND
-                $course['nombre_c'] === 'CCOM 3027' OR 
+                ($course['nombre_c'] === 'CCOM 3027' OR 
                 $course['nombre_c'] === 'CCOM 3036' OR 
                 $course['nombre_c'] === 'CCOM 4305' OR 
                 $course['nombre_c'] === 'CCOM 4306' OR
-                $course['nombre_c'] === 'CCOM 4501' AND 
+                $course['nombre_c'] === 'CCOM 4501') AND 
                 $creditos_intermedias < 6){
-            
                     $creditos_intermedias +=$course['créditos_c'];
         }
         else {
@@ -283,12 +269,6 @@ foreach($courses as &$course){
 
     }
    
-    // CON ID FIJO CONSIGUE EL ID ROL PARA PODER ASIGNAR ID ESPECIAL  Y LUEGO SUBIR A LA BASE DE DATOS
-
-
-
-
-
 
 echo "<h2>courses:"."</h2>";
 
@@ -298,7 +278,5 @@ foreach($courses as $course){
   
 
 }
-
-
 
 mysqli_close($conn);
