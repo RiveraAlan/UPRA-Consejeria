@@ -198,7 +198,7 @@ if(!isset($_SESSION['id'])){
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
             
-                $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est=$id";
+                $sentenciaSQL= "SELECT SUM(créditos_C_E) FROM expediente WHERE id_est=$id";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                 if ($creditos['SUM(créditos_C_E)']=== NULL){
@@ -262,8 +262,8 @@ if(!isset($_SESSION['id'])){
             <div class="card">
               <div class="card-header">
                 <div align='center'><h3>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h3>
-                                    <h3>DEPARTAMENTO DE CIENCIAS DE COMPUTOS</h3>
-                                    <h3>EVALUACION BACHILLERATO EN CIENCIAS DE COMPUTOS</h3></div>
+                                    <h3>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h3>
+                                    <h3>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h3></div>
             </div>
                 
                 <!-- /.Comienzo de Expediente del Estudiante -->
@@ -294,9 +294,9 @@ if(!isset($_SESSION['id'])){
                   </thead>
                   <tbody>
                 <?php
-                   $sql =" SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_rol = 8
-                    ORDER by id_fijo";
+                   $sql =" SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_rol = 8 AND id_est = $id
+                   ORDER by id_fijo";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -304,11 +304,12 @@ if(!isset($_SESSION['id'])){
                 while($row = mysqli_fetch_assoc($result)){
                  
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%'>";}
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
@@ -316,14 +317,14 @@ if(!isset($_SESSION['id'])){
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -348,16 +349,15 @@ if(!isset($_SESSION['id'])){
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencia</th>
                   </tr>
                   </thead>
                   <tbody>
                 <?php
-                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
+                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo_generales INNER JOIN expediente USING (id_fijo) WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -365,28 +365,28 @@ if(!isset($_SESSION['id'])){
                 while($row = mysqli_fetch_assoc($result)){
                  
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%'>";}
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -409,16 +409,15 @@ if(!isset($_SESSION['id'])){
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencia</th>
                   </tr>
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
+                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -426,28 +425,28 @@ if(!isset($_SESSION['id'])){
                 while($row = mysqli_fetch_assoc($result)){
                  
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%'>";}
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -470,16 +469,15 @@ if(!isset($_SESSION['id'])){
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencia</th>
                   </tr>
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 AND id_est = $id";
+                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo_departamentales INNER JOIN expediente USING (id_fijo) WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -487,28 +485,28 @@ if(!isset($_SESSION['id'])){
                 while($row = mysqli_fetch_assoc($result)){
                  
                   if($row['estatus_c'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['estatus_c'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
+                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
-                  echo "<tr width='50%'>";}
+                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  }
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['estatus_c'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
+                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -529,7 +527,7 @@ if(!isset($_SESSION['id'])){
                 <!-- /.Final de Expediente del Estudiante -->
                 
                 
-        <!-- /.Comienzo de Examinar -->  
+       <!-- /.Comienzo de Examinar -->  
    <div id="Examinar" class="tabcontent">
             <section>
                 <table id="example2" class="table table-bordered table-hover">
@@ -538,12 +536,14 @@ if(!isset($_SESSION['id'])){
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Semestre Aprobó</th>
                   </tr>
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, año_aprobo_c, estatus_c
+                   FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_especial = 2 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -558,27 +558,9 @@ if(!isset($_SESSION['id'])){
                   echo "<tr width='50%'>";}
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>";
-                    if($row['estatus_R'] == 1){
-                      echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
-                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
-                      </form>";
-                    }else if($row['estatus_c'] == 0){
-                      echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'>
-                      <input type='hidden' id='nombre_c' name='nombre_c' value='{$row['nombre_c']}'>
-                      <input type='hidden' id='estatus_R' name='estatus_R' value='{$row['estatus_R']}'>
-                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
-                      </form>";
-                    }else{
-                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
-                    }
-                    echo"
+                    <td>{$row['créditos_c']}</td>
+                    <td>{$row['nota_c']}</td>
                     <td>{$row['año_aprobo_c']}</td>
-                    <td></td>
                   </tr> ";}}?>
                 </tbody>
                   </table>
@@ -586,7 +568,6 @@ if(!isset($_SESSION['id'])){
          </div>
       </div>
               <!-- /.Final de Examinar -->  
-                
                 
             <!-- Modals -->
             <!-- Edit -->
