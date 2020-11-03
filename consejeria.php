@@ -171,9 +171,9 @@ if(!isset($_SESSION['id_est'])){
                           </tr>
                           </thead> 
                         <tbody>";
-                        $sql ="SELECT expediente_fijo_departamentales.nombre_c, expediente_fijo_departamentales.descripción_c, expediente_fijo_departamentales.créditos_c
-                        FROM expediente_fijo_departamentales INNER JOIN expediente WHERE expediente.id_est = $id AND expediente.id_fijo = expediente_fijo_departamentales.id_fijo AND expediente.estatus_R = 1 
-                            OR expediente.id_est = $id AND expediente.id_fijo = expediente_fijo_departamentales.id_fijo AND expediente.estatus_c = 2";
+                        $sql ="SELECT * USING (id_fijo)
+                            FROM expediente INNER JOIN expediente_fijo INNER JOIN expediente_fijo_departamentales INNER JOIN expediente_fijo_generales INNER JOIN expediente_fijo_libre 
+                            WHERE expediente.id_est = 1 AND expediente.estatus_R = 1 AND expediente.estatus_c = 3";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
                       
@@ -227,8 +227,9 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 1";
+                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_rol = 8 AND id_est = $id
+                   ORDER by id_fijo";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -274,8 +275,8 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 2 OR id_rol = 4";
+                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo_generales INNER JOIN expediente USING (id_fijo) WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -320,8 +321,8 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10";
+                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -366,8 +367,8 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                      FROM expediente WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 ";
+                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
+                   FROM expediente_fijo_departamentales INNER JOIN expediente USING (id_fijo) WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
