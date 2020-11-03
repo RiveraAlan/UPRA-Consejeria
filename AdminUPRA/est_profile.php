@@ -544,7 +544,7 @@ if(!isset($_SESSION['id'])){
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, año_aprobo_c
+                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, año_aprobo_c, estatus_c
                    FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_especial = 2 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
