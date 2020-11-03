@@ -299,6 +299,33 @@ foreach($courses as $course){
 
 }
 
+            $sql ="SELECT id_est FROM expediente";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck === 0){
+                    foreach($courses as $course){
+                    $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, id_especial, nota_c, estatus_c, año_aprobo_c) VALUES (?, ?, ?, ?, ?, ?)");
+
+// Now we tell the script which variable each placeholder actually refers to using the bindParam() method
+// First parameter is the placeholder in the statement above - the second parameter is a variable that it should refer to
+
+
+$stmt->bind_param('iiisis', $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c']);
+echo $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c'];
+
+// Execute the query using the data we just defined
+// The execute() method returns TRUE if it is successful and FALSE if it is not, allowing you to write your own messages here
+if ($stmt->execute()) {
+    //  header('Location: ../est_profile.php');
+    echo "Uploaded to Database successfully";
+} else {
+  echo "Unable to create record";
+}
+
+
+	$stmt->close();
+                }}
 
 
 mysqli_close($conn);

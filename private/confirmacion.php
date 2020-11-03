@@ -23,8 +23,6 @@ require 'dbconnect.php';
      echo "Unable to create record";
    }
    
-      echo $id_est, $id_fijo, $id_especial, $nota_c, $estatus_c, $año_aprobo_c, $convalidación_c, $equivalencia_c, $créditos_C_E, $estatus_R;
-   
        $stmt->close();
 
 }
