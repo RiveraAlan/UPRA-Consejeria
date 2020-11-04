@@ -1,10 +1,8 @@
 <?php
 session_start();
 $id= $_SESSION['id_est'];
-
-// Make sure if user not signed in they cannot see this page.
+// Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
 include("AdminUPRA/inc/connection.php");
-
 if(!isset($_SESSION['id_est'])){
   header("Location: index.php");
     exit();
@@ -16,47 +14,33 @@ if(!isset($_SESSION['id_est'])){
     <title>CONSEJERÍA-UPRA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    
+<!-- Aqui llamamos a los distintos css de la pagina y el font que tiene -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="fonts/icomoon/style.css">
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
     <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
     <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/style.css">
-      
+    <link rel="stylesheet" href="css/style.css"> 
     <link rel="stylesheet" href="css/conse.css">
-    
-    <link rel="stylesheet" href="css/notes.css">
-      
+    <link rel="stylesheet" href="css/notes.css">  
     <link rel="stylesheet" href="cita.css">
     <link rel="stylesheet" href="css/sugerencias.css">
     <link rel="stylesheet" href="css/sugerencias2.css">
-    
-    
     <link rel="stylesheet" href="jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
-
-      <!-- Font Awesome -->
+<!-- Culmina la parte los css y fonts. -->
+      <!-- Font Awesome. -->
   <link rel="stylesheet" href="AdminUPRA/plugins/fontawesome-free/css/all.min.css">
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  
   <div class="site-wrap">
-
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -65,10 +49,8 @@ if(!isset($_SESSION['id_est'])){
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-   
-    
+<!-- Esta area es para que el estudiante cierre su sesion. -->
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
-      
       <div class="container-fluid">
         <div class="d-flex align-items-center">
           <div class="site-logo mr-auto w-25"><img src="image/upraconse.png" alt=""></div>
@@ -80,18 +62,14 @@ if(!isset($_SESSION['id_est'])){
               </ul>
             </nav>
           </div>
-
-      
         </div>
       </div>
-      
     </header>
-
+ <!-- Culmina la parte cerrar sesion del estudiante. -->
     <div style="padding-top: 200px; padding-bottom: 20px; margin-left: 15%">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-12">
-                    
+            <div class="col-12">   
                 <div style="margin-right: 30%"><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
                                     <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
                                     <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
@@ -104,14 +82,11 @@ if(!isset($_SESSION['id_est'])){
               if ($reco['SUM(créditos_C_E)']=== NULL){
                   $reco['SUM(créditos_C_E)']=0;
               }
-              
-               
                   $mes = date('m');
                   $sem = 1;
                       if($mes >= 6){
                       $sem = 2;
                     }
-              
                  echo "<div class='card-header'>
                     Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -119,13 +94,11 @@ if(!isset($_SESSION['id_est'])){
                     Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendados: <b>{$reco['SUM(créditos_C_E)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Año: <b>{$_SESSION['año_CCOM']}</b><br>
-           
-                    </div>";?>
+                    Año: <b>{$_SESSION['año_CCOM']}</b><br></div>";?>
                 </div>
               </div>
             </div>
-        
+ <!-- Aqui se muestran los distinto TABS que estan en la pagina del estudiante. -->
        <div class="container tables">
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'Citas')">Sacar Cita con su Consejero/a</button>
@@ -133,83 +106,82 @@ if(!isset($_SESSION['id_est'])){
                      <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Hacer Sugerencias de Clases</button>
                     <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del Consejero/a</button>
                   </div>
-                  
-                  <!-- Tab content -->
-                  <div id="Concentracion" class="tabcontent">
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-                <?php 
-                
-                 echo "
-                    <div class='btn-group'>
-                    
-                    <div class='container'>
-                      <!-- Trigger the modal with a button -->
-                      <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
-        
-                      <!-- Modal -->
-                      <div class='modal fade' id='myModal' role='dialog'>
-                        <div class='modal-dialog'>
+ <!-- Culmina la parte de los TABS. -->                
+ <!-- Comienza el TAB de la realizacion de consejeria donde el estudiante puede ver su expediente y confirmar su consejeria academica y tambien sugerir al momento de darle 'click' en consejeria 'otros cursos'. -->
+            <div id="Concentracion" class="tabcontent">
+                <section class="content">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                            <?php 
 
-                          <!-- Modal content-->
-                          <div class='modal-content'>
-                            <div class='modal-header'>
-                              <h3>Próximo Semestre</h3>
-                              <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                            </div>
-                            <div class='modal-body'>
-                            <table id='example2' class='table table-bordered table-hover'>
-                          <thead>
-                          <tr width='50%'' bgcolor='yellow'>
-                            <th><input type='checkbox' class='case' name='case' value='1' /></th>
-                            <th>Cursos</th>
-                            <th>Descripción</th>
-                            <th>Créditos</th>
-                          </tr>
-                          </thead> 
-                        <tbody>";
-                        $sql ="SELECT * USING (id_fijo)
-                            FROM expediente INNER JOIN expediente_fijo INNER JOIN expediente_fijo_departamentales INNER JOIN expediente_fijo_generales INNER JOIN expediente_fijo_libre 
-                            WHERE expediente.id_est = 1 AND expediente.estatus_R = 1 AND expediente.estatus_c = 3";
-                            $result = mysqli_query($conn, $sql);
-                            $resultCheck = mysqli_num_rows($result);
-                      
-                        if($resultCheck > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                          
-                          echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                            <td><input type='checkbox' class='case' name='case' value='1' /> </td>
-                            <td>{$row['nombre_c']}</td>
-                            <td>{$row['descripción_c']}</td>
-                            <td>{$row['créditos_c']}</td>
-                          </tr> ";}}
-                
-                        echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                            <td><input type='checkbox' class='case' name='case' value='1' /> </td>
-                            <td>Otros</td>
-                            <td></td>
-                            <td></td>
-                          </tr> ";
-                
-                        echo "</tbody> 
-                          </table>
-                           Créditos Recomendados: {$reco['SUM(créditos_C_E)']}
-                                            </div>
-                            <div class='modal-footer'><br>
-                              <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              </div>";
-                ?>
-              <!-- /.card-header -->
-    
-        
+                             echo "
+                                <div class='btn-group'>
+
+                                <div class='container'>
+                                  <!-- Trigger the modal with a button -->
+                                  <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
+
+                                  <!-- Modal -->
+                                  <div class='modal fade' id='myModal' role='dialog'>
+                                    <div class='modal-dialog'>
+
+                                      <!-- Modal content-->
+                                      <div class='modal-content'>
+                                        <div class='modal-header'>
+                                          <h3>Próximo Semestre</h3>
+                                          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                                        </div>
+                                        <div class='modal-body'>
+                                        <table id='example2' class='table table-bordered table-hover'>
+                                      <thead>
+                                      <tr width='50%'' bgcolor='yellow'>
+                                        <th><input type='checkbox' class='case' name='case' value='1' /></th>
+                                        <th>Cursos</th>
+                                        <th>Descripción</th>
+                                        <th>Créditos</th>
+                                      </tr>
+                                      </thead> 
+                                    <tbody>";
+                                    $sql ="SELECT * USING (id_fijo)
+                                        FROM expediente INNER JOIN expediente_fijo INNER JOIN expediente_fijo_departamentales INNER JOIN expediente_fijo_generales INNER JOIN expediente_fijo_libre 
+                                        WHERE expediente.id_est = 1 AND expediente.estatus_R = 1 AND expediente.estatus_c = 3";
+                                        $result = mysqli_query($conn, $sql);
+                                        $resultCheck = mysqli_num_rows($result);
+
+                                    if($resultCheck > 0){
+                                    while($row = mysqli_fetch_assoc($result)){
+
+                                      echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                                        <td><input type='checkbox' class='case' name='case' value='1' /> </td>
+                                        <td>{$row['nombre_c']}</td>
+                                        <td>{$row['descripción_c']}</td>
+                                        <td>{$row['créditos_c']}</td>
+                                      </tr> ";}}
+
+                                    echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                                        <td><input type='checkbox' class='case' name='case' value='1' /> </td>
+                                        <td>Otros</td>
+                                        <td></td>
+                                        <td></td>
+                                      </tr> ";
+
+                                    echo "</tbody> 
+                                      </table>
+                                       Créditos Recomendados: {$reco['SUM(créditos_C_E)']}
+                                                        </div>
+                                        <div class='modal-footer'><br>
+                                          <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          </div>";
+                            ?>
+<!-- Termina el MODAL del boton confirmar. -->
+ <!-- Comienza el expediente academico del estudiante. -->
               <div class="card-body"> 
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
@@ -255,8 +227,7 @@ if(!isset($_SESSION['id_est'])){
                     echo "
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
-                  </tr> ";}}?>
-                      
+                  </tr> ";}}?>  
                 </tbody> 
                   </table>
                   <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
@@ -395,29 +366,20 @@ if(!isset($_SESSION['id_est'])){
                     <td>{$row['año_aprobo_c']}</td>
                     <td></td>
                   </tr> ";}}?>
-
                     </table>
               </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-
-           
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
       </div>
-      <!-- /.container-fluid -->
     </section>
     </div>
-                  
+<!-- Culmina la parte del expediente academico. -->          
+<!-- TAB para Citas. El estudiante puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
     <div id="Citas" class="tabcontent active">
     <section class="appointment">
     <h2 class="appointment-form-title">Sacar cita</h2>
-    <form action="private/process-appointment.php" method="POST" class="appointment-form">
-                       
+    <form action="private/process-appointment.php" method="POST" class="appointment-form">                 
     <?php 
         include 'private/appointment-status.php';
                                 
@@ -452,14 +414,12 @@ if(!isset($_SESSION['id_est'])){
                            ?>
                         </form>
                 </section>
-                  
                   </div>
-         
+<!-- Culmina la parte de los TABS para las Citas. -->          
+<!-- Este es el TAB de Sugerencias del estudiante. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el estudiante sugiriendo solo las electivas departamentales. -->
          <div id="Sugerencias" class="tabcontent">
             <form action="private/confirmacion.php" method="post">
-            
             <section>
-            
                 <div class="table">
                 <div class="container-table100">
                     <h2>Electivas Departamentales</h2>
@@ -497,15 +457,20 @@ if(!isset($_SESSION['id_est'])){
                               }
                             }
                                   ?>
-                                  </form>
+                                  
                                 </tbody>
                               </table>
+                                
                             </div>
-                          </div>a
-                        </div>             
+                            </div>
+                          </div>            
                 </div>
+                
                 </section>    
-         </div>
+             </form>
+           </div>
+<!-- Culmina la parte de los TABS para las Sugerencias. -->           
+<!-- Este es el TAB de Comentarios que le hace el consejero/a al estudiante. Donde podra ver que le escribe el/la consejera sobre algun comentario adiconal que tenga que decirle al estudiante. -->           
             <div id="Comentario" class="tabcontent">
                 <!-- Notes -->
              <?php
@@ -531,48 +496,38 @@ if(!isset($_SESSION['id_est'])){
                 
             </div>
             <!-- /.card -->
-          </div>";
-}}
-        
+          </div>";}}
           ?>
-
             </div>
-           
       </div>
-      <footer class="bg-white">
-<br>
-
-<div class="grid-container">
-  <div class="grid-item">
+<!-- Culmina la parte de los TABS para las Comentarios del consejero/a. -->
+<!-- Comienza la parte del footer -->
+      <footer class="bg-white"><br>
+          <div class="grid-container">
+            <div class="grid-item">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60546.43133375424!2d-66.7486562!3d18.47677480000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c02e71441a83073%3A0xf81fe612f4f1f3f7!2sUniversidad+de+Puerto+Rico+-+Recinto+de+Arecibo!5e0!3m2!1ses-419!2spr!4v1560197851966!5m2!1ses-419!2spr" width="600" height="260" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
-<div class="grid-item">
-<ul>
-<i class="fas fa-route">&nbsp;&nbsp;Carr. 653 Km. 0.8 Sector Las Dunas, Arecibo
-P.O. Box 4010 Arecibo P.R. 00614</i><br><br>
-<i class="fas fa-phone-alt">&nbsp;&nbsp;787-815-0000 / Fax 787-880-4972</i><br><br>
-<i class="fas fa-envelope-open">&nbsp;&nbsp;oficinadecomunicaciones.arecibo@upr.edu</i>
-</ul>
-</div>
-</div>
+            </div>
+            <div class="grid-item">
+            <ul>
+            <i class="fas fa-route">&nbsp;&nbsp;Carr. 653 Km. 0.8 Sector Las Dunas, Arecibo
+            P.O. Box 4010 Arecibo P.R. 00614</i><br><br>
+            <i class="fas fa-phone-alt">&nbsp;&nbsp;787-815-0000 / Fax 787-880-4972</i><br><br>
+            <i class="fas fa-envelope-open">&nbsp;&nbsp;oficinadecomunicaciones.arecibo@upr.edu</i>
+            </ul>
+            </div>
+            </div>
       <div class="container">
         <div class="row pt-5 mt-5 text-center">
           <div class="col-md-12">
             <div class="border-top pt-5">
-            <p>
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a target="_blank" >CONSEJERÍA-UPRA</a>
-        <br>Página Oficial: <a href="http://upra.edu/">http://upra.edu/</a>
-      </p>
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a target="_blank" >CONSEJERÍA-UPRA</a><br>Página Oficial: <a href="http://upra.edu/">http://upra.edu/</a></p>
             </div>
           </div>
-          
         </div>
       </div>
     </footer>
-  </div> <!-- .site-wrap -->
-      
-      
-      
+ <!-- Culmina la parte del footer --> 
+ <!-- Este SCRIPT es para bregar con las citas (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los consejeros a cargo. -->
   <script src="index.js"></script> 
         <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -621,7 +576,8 @@ P.O. Box 4010 Arecibo P.R. 00614</i><br><br>
         document.querySelector('.hour-chosen-container').appendChild(input);
        }
         </script>
-
+<!-- Culmina la parte del SCRIPT del calendario para sacar citas -->
+<!-- Aqui se encuentran varios SCRIPTS que hacen el funcionamiento de la pagina. -->     
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
@@ -635,9 +591,9 @@ P.O. Box 4010 Arecibo P.R. 00614</i><br><br>
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
-  
   <script src="js/main.js"></script>
-  <script src="js/consejeria.js"></script>
-  </body>
+  <script src="js/consejeria.js"></script>    
+<!-- Culmina la parte de los JS. -->
+</div>
+</body>
 </html>
