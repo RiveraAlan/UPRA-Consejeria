@@ -85,6 +85,16 @@ while(!feof($myfile)){
         if(preg_match("/Meets no requirements/", $temp)){
             $temp = preg_replace("/Meets no requirements/", '', $temp);
         }
+        // REMOVE "May not be repeated"
+        if(preg_match("/May not be repeated/", $temp)){
+            $temp = preg_replace("/May not be repeated/", '', $temp);
+        }
+        //REMOVE "()"
+        if(preg_match("/\( \)/", $temp)){
+            $temp = preg_replace("/\( \)/", '', $temp);
+        }
+
+        
          // ASSIGN ESTATUS_C
         if(preg_match("/Registered/", $temp)){
             $temp = preg_replace("/Registered/", '', $temp);
@@ -129,6 +139,20 @@ while(!feof($myfile)){
         // Grade
          preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", $temp, $grade);
          $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", '', $temp);
+
+         // REMOVE "Meets no requirements"
+         if(preg_match("/Meets no requirements/", $temp)){
+            $temp = preg_replace("/Meets no requirements/", '', $temp);
+        }
+        // REMOVE "May not be repeated"
+        if(preg_match("/May not be repeated/", $temp)){
+            $temp = preg_replace("/May not be repeated/", '', $temp);
+        }
+        //REMOVE "()"
+        if(preg_match("/\( \)/", $temp)){
+            $temp = preg_replace("/\( \)/", '', $temp);
+        }
+
          // ASSIGN ESTATUS_C
          if(preg_match("/Registered/", $temp)){
             $temp = preg_replace("/Registered/", '', $temp);

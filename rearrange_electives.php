@@ -131,10 +131,10 @@ foreach($department_electives as $department_elective_idx => $department_electiv
     //ccom 4307
     
     if(in_array(trim($department_elective_info["nombre_c"]), $adv_department_electives)){
-        echo "<h1>".$department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"]."</h1>";
         $adv_credits += intval($department_elective_info["créditos_c"]);
     } else {
-         if($int_credits >= 6){
+        /*  if($int_credits >= 6){
+             echo"<h1>Go to Elective: </h1>". $department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"];
              $free_elective = $department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"]." ".$department_elective_info["año_aprobó_c"]." ".$department_elective_info["créditos_c"]." ".$department_elective_info["nota_c"];
              array_push($free_electives, $free_elective);
              // Delete course from dept electives.
@@ -142,7 +142,7 @@ foreach($department_electives as $department_elective_idx => $department_electiv
 
          } else {
             $int_credits += intval($department_elective_info["créditos_c"]);
-         }
+         } */
     }
 }
 
@@ -162,11 +162,11 @@ usort($free_electives, function ($item1, $item2) {
 } 
 
 
-/* echo "\n"."<h3>Department electives:</h3>";
+echo "\n"."<h3>Department electives:</h3>";
 foreach($department_electives as $department_elective){
     echo "<p>".$department_elective['nombre_c']. " ".$department_elective['descripción_c']." ".$department_elective['año_aprobó_c']." ".$department_elective['créditos_c']." ".$department_elective['nota_c']."</p>";
 }
- */
+ 
 
 echo "\n"."<h3>Free lectives:</h3>";
 foreach($free_electives as $free_elective){
