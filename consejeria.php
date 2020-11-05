@@ -144,9 +144,22 @@ if(!isset($_SESSION['id_est'])){
                                       </tr>
                                       </thead> 
                                     <tbody>";
-                                    $sql ="SELECT * USING (id_fijo)
-                                        FROM expediente INNER JOIN expediente_fijo INNER JOIN expediente_fijo_departamentales INNER JOIN expediente_fijo_generales INNER JOIN expediente_fijo_libre 
-                                        WHERE expediente.id_est = 1 AND expediente.estatus_R = 1 AND expediente.estatus_c = 3";
+                                    $sql ="SELECT nombre_c, descripción_c, créditos_c
+                                    FROM expediente
+                                    INNER JOIN expediente_fijo ON expediente.id_fijo = expediente_fijo.id_fijo 
+                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3)
+                                    UNION(SELECT nombre_c, descripción_c, créditos_c
+                                    FROM expediente
+                                    INNER JOIN expediente_fijo_generales ON expediente.id_fijo = expediente_fijo_generales.id_fijo
+                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
+                                    UNION(SELECT nombre_c, descripción_c, créditos_c
+                                    FROM expediente
+                                    INNER JOIN expediente_fijo_departamentales ON expediente.id_fijo = expediente_fijo_departamentales.id_fijo
+                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
+                                    UNION(SELECT nombre_c, descripción_c, créditos_c
+                                    FROM expediente
+                                    INNER JOIN expediente_fijo_libre ON expediente.id_fijo = expediente_fijo_libre.id_fijo 
+                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
