@@ -53,6 +53,7 @@ while(!feof($myfile)){
     $semester;
     $credits;
     $grade;
+
     
      if(preg_match("/SECTION 2 - Academic Requirements Completed or in Progress/", $temp)){
          $isCoursesReached = TRUE;
@@ -102,7 +103,7 @@ while(!feof($myfile)){
         }else {
             $estatus_c = 1;
         }
-               if(preg_match("/\sF\s|\sW\s|\sID\s|\sIF\s/", $grade[0]) OR is_null($grade[0])){
+               if((preg_match("/\sF\s|\sW\s|\sID\s|\sIF\s/", $grade[0]) OR is_null($grade[0])) AND $estatus_c !== 2){
                    continue;
                }
 
