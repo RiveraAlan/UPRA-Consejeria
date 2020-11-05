@@ -193,7 +193,10 @@ foreach($expediente_fijo as $e_f){
     } 
    
 }
-
+foreach($courses as &$course){
+if(preg_match("/TEAT 3011/", $course["nombre_c"])){
+    echo "<h1>{$course["nombre_c"]}</h1>";
+}}
 $id_fijo_start_point = 100;
 
 echo "<h1>Electivas Libres</h1>";
@@ -309,7 +312,7 @@ $sql ="SELECT id_est FROM expediente";
 
                 if($resultCheck === 0){
                     foreach($courses as $course){
-                        if (($course["nombre_c"] !== "INGL 3113") AND ($course["nombre_c"] !== "INGL 3114") AND ($course["nombre_c"] !== "EDFU 3005")){
+                        if (($course["nombre_c"] !== "INGL 3113") AND ($course["nombre_c"] !== "INGL 3114") AND ($course["nombre_c"] !== "EDFU 3005") AND ($course["nombre_c"] !== "INGL 0060")){
                             $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, id_especial, nota_c, estatus_c, año_aprobo_c) VALUES (?, ?, ?, ?, ?, ?)");
 
                 // Now we tell the script which variable each placeholder actually refers to using the bindParam() method
