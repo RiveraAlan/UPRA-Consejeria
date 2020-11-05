@@ -75,7 +75,7 @@ if(!isset($_SESSION['id_est'])){
                                     <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
               </div>
                 <?php 
-                 $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est=$id AND estatus_R=1";
+                 $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est=$id";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
                 
@@ -115,7 +115,6 @@ if(!isset($_SESSION['id_est'])){
                       <div class="col-12">
                         <div class="card">
                             <?php 
-
                              echo "
                                 <div class='btn-group'>
 
