@@ -119,7 +119,7 @@ body {
   }
   .active {
       display: block;
-  }
+    }
 
   .actions {
     background-color: #e0c200;

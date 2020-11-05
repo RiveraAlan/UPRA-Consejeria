@@ -12,12 +12,10 @@ if(!isset($_SESSION['id'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   
+<head> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CONSEJERIA-UPRA | EXP.ESTUDIANTE</title>
-
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -41,8 +39,7 @@ if(!isset($_SESSION['id'])){
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <!-- page css -->
   <link rel="stylesheet" href="dist/css/adminlte.css">
-
-   <link rel="stylesheet" href="../css/conse.css">
+  <link rel="stylesheet" href="../css/conse.css">
 
   <style>
     #drop_zone {
@@ -102,8 +99,7 @@ if(!isset($_SESSION['id'])){
       </li>
     </ul>
   </nav>
-  <!-- /.navbar -->
-
+<!-- /.navbar -->
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -111,7 +107,6 @@ if(!isset($_SESSION['id'])){
       <img src="img/university.jpg" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">CONSEJERIA UPRA</span>
     </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
@@ -128,12 +123,9 @@ if(!isset($_SESSION['id'])){
           <?php echo "<a class='d-block'>{$row['nombre_conse']} {$row['apellido_conseU']} {$row['apellido_conseD']}</a>" ?>
         </div>
       </div>
-
-      <!-- Sidebar Menu -->
+<!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="inicio.php" class="nav-link">
                <i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;

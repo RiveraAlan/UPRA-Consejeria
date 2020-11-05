@@ -115,6 +115,13 @@ if(!isset($_SESSION['contrasena_est'])){
                       <div class="col-12">
                         <div class="card">
                             <?php 
+                             $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est = $id AND (estatus_R = 1 OR estatus_C = 3)";
+                             $resultRecom = mysqli_query($conn, $sentenciaSQL);
+                             $reco=mysqli_fetch_assoc($resultRecom);
+                         
+                       if ($reco['SUM(créditos_C_E)'] === NULL){
+                           $reco['SUM(créditos_C_E)'] = 0;
+                       }
                              echo "
                                 <div class='btn-group'>
 
@@ -388,14 +395,17 @@ if(!isset($_SESSION['contrasena_est'])){
     </div>
 <!-- Culmina la parte del expediente academico. -->          
 <!-- TAB para Citas. El estudiante puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
-    <div id="Citas" class="tabcontent active">
+    <div id="Citas" class="tabcontent">
     <section class="appointment">
     <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">                 
     <?php 
         include 'private/appointment-status.php';
-                                
-            if($isAppointmentValid){
+        $sql ="SELECT cita_id FROM citas WHERE id_est = $id";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+             
+                if($resultCheck > 0){  
                 echo '<div class="success-message">La cita con el/la consejero(a) fue separada para el '.$fecha_cita.'.</div>';
                 } else {
                     if((isset($_GET['is-date-empty']) AND boolval($_GET['is-date-empty'])) OR (isset($_GET['is-hour-chosen-empty']) AND boolval($_GET['is-hour-chosen-empty']))){
@@ -403,11 +413,9 @@ if(!isset($_SESSION['contrasena_est'])){
                         }
                     echo ' 
                     <input type="hidden" name="first-name" value="'.$_SESSION['firstName'].'" placeholder="First Name" class="form-control" readonly>
-                    <input type="hidden" name="last-name" value="'.$_SESSION['lastNameU'].' '.$_SESSION['lastNameD'].'" placeholder="Last Name"  class="form-control" readonly>';
-                    echo '<div class="form-group">
-                                         <input type="hidden" name="email"  value="'. $_SESSION['email'].'" class="form-control" readonly> 
-                                         </div>';
-                    echo ' <h3>Escoger Fecha y Hora</h3>  <div class="form-group d-flex">
+                    <input type="hidden" name="last-name" value="'.$_SESSION['lastNameU'].' '.$_SESSION['lastNameD'].'" placeholder="Last Name"  class="form-control" readonly>
+                           <input type="hidden" name="email"  value="'. $_SESSION['email'].'" class="form-control" readonly> 
+                                 <h3>Escoger Fecha y Hora</h3>  <div class="form-group d-flex">
                                          <div class="calendar-box">';
 
                                                 $dateField = '<input type="text" name="date" onchange="getAvailableDates(this.value)" id="datepicker"  type="text" class="form-control"/>';
@@ -420,8 +428,8 @@ if(!isset($_SESSION['contrasena_est'])){
                                             </div>
                                             <div class="spots-available">
                                              </div>
-                                             </div>';
-                    echo '<div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Confirmar Cita</button></div>';
+                                             </div>
+                                             <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Confirmar Cita</button></div>';
                                 }
                            ?>
                         </form>
