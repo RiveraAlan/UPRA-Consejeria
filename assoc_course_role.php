@@ -161,7 +161,9 @@ while(!feof($myfile)){
         }else {
             $estatus_c = 1;
         }
-        
+        if((preg_match("/\sF\s|\sW\s|\sID\s|\sIF\s/", $grade[0]) OR is_null($grade[0])) AND $estatus_c !== 2){
+            continue;
+        }
             $course = array("id_est" =>-1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
             "descripción_c" => $temp,"estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
             "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
