@@ -47,7 +47,7 @@
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-25"><a href="index.html"><img src="image/upraconse.png" width="280" height="60"  alt=""></a></div>
+          <div class="site-logo mr-auto w-25"><a href="index.php"><img src="image/upraconse.png" width="280" height="60"  alt=""></a></div>
 
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
@@ -129,7 +129,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="images/mision.jpg" alt="Image" class="img-fluid"></a>
+                <a><img src="images/mision.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <h3><b>Misión</b></h3>
@@ -139,7 +139,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="images/vision.jpg" alt="Image" class="img-fluid"></a>
+                <a><img src="images/vision.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <h3><b>Visión</b></h3>
@@ -149,7 +149,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="images/proposito.jpg" alt="Image" class="img-fluid"></a>
+                <a><img src="images/proposito.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <h3><b>Propósito</b></h3>
@@ -171,44 +171,13 @@
             <h3 class="mb-4">Profesora en el Departamento de Ciencias de Cómputos</h3>
             <h3 class="mb-4">Correo Electrónico: eliana.valenzuela@upr.edu</h3>
             <blockquote>
-              <p>Eliana Valenzuela Andrade tiene un doctorado en Computación, Ciencias de la Información e Ingeniería, una Maestría en Sistemas de Gestión de Ingeniería de la Universidad de Puerto Rico, Recinto de Mayagüez y una Licenciatura en Ingeniería Industrial de la Universidad de los Andes, en Bogotá, Colombia. Tiene casi quince años de experiencia docente y diez años de experiencia investigadora. Las áreas de investigación de la Dra. Valenzuela Andrade son Sistema de Gestión de Bases de Datos, Minería de Datos, Robótica Educativa, Robótica de Enjambre y Estrategias de Difusión para las carreras STEM, entre otras.</p>
+              <p>Eliana Valenzuela Andrade tiene un doctorado en Computación, Ciencias de la Información e Ingeniería, una Maestría en Sistemas de Gestión de Ingeniería de la Universidad de Puerto Rico, Recinto de Mayagüez y una Licenciatura en Ingeniería Industrial de la Universidad de los Andes, en Bogotá, Colombia. Tiene casi quince años de experiencia docente y diez años de experiencia investigadora. Las áreas de investigación de la Dra. Valenzuela Andrade son Sistema de Gestión de Bases de Datos, Minería de Datos, Robótica Educativa, Robótica de Enjambre y Estrategias de Difusión para las carreras STEM, entre otras.</p><br>
+              <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a target="_blank" >CONSEJERÍA-UPRA</a><br>Página Oficial: <a href="http://upra.edu/">http://upra.edu/</a></p>
             </blockquote>
           </div>
         </div>
       </div>
     </div>
-     
-    <footer class="bg-white">
-<br>
-
-<div class="grid-container">
-  <div class="grid-item">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60546.43133375424!2d-66.7486562!3d18.47677480000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c02e71441a83073%3A0xf81fe612f4f1f3f7!2sUniversidad+de+Puerto+Rico+-+Recinto+de+Arecibo!5e0!3m2!1ses-419!2spr!4v1560197851966!5m2!1ses-419!2spr" width="600" height="260" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
-<div class="grid-item">
-<ul>
-<i class="fas fa-route">&nbsp;&nbsp;Carr. 653 Km. 0.8 Sector Las Dunas, Arecibo
-P.O. Box 4010 Arecibo P.R. 00614</i><br><br>
-<i class="fas fa-phone-alt">&nbsp;&nbsp;787-815-0000 / Fax 787-880-4972</i><br><br>
-<i class="fas fa-envelope-open">&nbsp;&nbsp;oficinadecomunicaciones.arecibo@upr.edu</i>
-</ul>
-</div>
-</div>
-      <div class="container">
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-            <p>
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a target="_blank" >CONSEJERÍA-UPRA</a>
-        <br>Página Oficial: <a href="http://upra.edu/">http://upra.edu/</a>
-      </p>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </footer>
-
   </div> <!-- .site-wrap -->
 
   <script src="js/jquery-3.3.1.min.js"></script>
