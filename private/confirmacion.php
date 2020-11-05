@@ -6,7 +6,7 @@ require 'dbconnect.php';
     $id_fijo = mysqli_real_escape_string($conn, $_POST['id_fijo']);
     $id_especial = NULL;
     $nota_c = NULL;
-    $estatus_c = 2;
+    $estatus_c = 3;
     $año_aprobo_c = NULL;
     $convalidación_c = NULL;
     $equivalencia_c = NULL;

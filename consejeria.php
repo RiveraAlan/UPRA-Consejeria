@@ -115,12 +115,12 @@ if(!isset($_SESSION['id_est'])){
                       <div class="col-12">
                         <div class="card">
                             <?php 
-                             $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est=$id AND (estatus_R = 1 OR estatus_C = 2)";
+                             $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est = $id AND (estatus_R = 1 OR estatus_C = 3)";
                              $resultRecom = mysqli_query($conn, $sentenciaSQL);
                              $reco=mysqli_fetch_assoc($resultRecom);
                          
-                       if ($reco['SUM(créditos_C_E)']=== NULL){
-                           $reco['SUM(créditos_C_E)']=0;
+                       if ($reco['SUM(créditos_C_E)'] === NULL){
+                           $reco['SUM(créditos_C_E)'] = 0;
                        }
                              echo "
                                 <div class='btn-group'>
