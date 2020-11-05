@@ -316,13 +316,13 @@ $sql ="SELECT id_est FROM expediente";
                 if($resultCheck === 0){
                     foreach($courses as $course){
                         if (($course["nombre_c"] !== "INGL 3113") AND ($course["nombre_c"] !== "INGL 3114") AND ($course["nombre_c"] !== "EDFU 3005") AND ($course["nombre_c"] !== "INGL 0060")){
-                            $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, id_especial, nota_c, estatus_c, año_aprobo_c, créditos_C_E) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                            $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, id_especial, nota_c, estatus_c, año_aprobo_c) VALUES (?, ?, ?, ?, ?, ?)");
 
                 // Now we tell the script which variable each placeholder actually refers to using the bindParam() method
                 // First parameter is the placeholder in the statement above - the second parameter is a variable that it should refer to
 
 
-                $stmt->bind_param('iiisisi', $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c'], $course['créditos_c']);
+                $stmt->bind_param('iiisisi', $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c']);
                         
                 // Execute the query using the data we just defined
                 // The execute() method returns TRUE if it is successful and FALSE if it is not, allowing you to write your own messages here

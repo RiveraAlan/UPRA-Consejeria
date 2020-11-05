@@ -13,18 +13,25 @@ require 'dbconnect.php';
     $créditos_C_E = NULL;
     $estatus_R = NULL;
 
+    $sql ="SELECT  id_fijo
+                   FROM expediente_fijo_departamentales WHERE id_fijo = $id_fijo";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+             
+                if($resultCheck === 0){
     $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, id_especial, nota_c, estatus_c, año_aprobo_c, convalidación_c, equivalencia_c, créditos_C_E, estatus_R) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     
     $stmt->bind_param('iiisisssii', $id_est, $id_fijo, $id_especial, $nota_c, $estatus_c, $año_aprobo_c, $convalidación_c, $equivalencia_c, $créditos_C_E, $estatus_R);
     // Prepare statement    
     if ($stmt->execute()) {
         header('Location: ../consejeria.php');
-   } else {
-     echo "Unable to create record";
+   }
+   $stmt->close();
+   }  else {
+     echo "No se pudo procesar su sugerencia.";
    }
    
-       $stmt->close();
-
+    
 }
 
 ?>
