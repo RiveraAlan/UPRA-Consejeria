@@ -97,8 +97,8 @@ fclose($myfile);
          preg_match("/\d\.\d{1,2}/", $temp, $credits);
          $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
          // Grade
-         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", $temp, $grade);
-         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", '', $temp);
+         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp, $grade);
+         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
     
          // MAKE SURE TO TAKE "REGISTERED" INTO CONSIDERATION
         $free_elective = array("nombre_c" => $course_code[0], "descripción_c" => trim($temp),

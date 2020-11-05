@@ -125,7 +125,7 @@ while(!feof($myfile)){
     } 
         
 } else {
-    if(preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", $temp)){
+    if(preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp)){
         
         //Course code
         preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
@@ -137,8 +137,8 @@ while(!feof($myfile)){
         preg_match("/\d\.\d{1,2}/", $temp, $credits);
         $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
         // Grade
-         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", $temp, $grade);
-         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|[A-D]\s/", '', $temp);
+         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp, $grade);
+         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
 
          // REMOVE "Meets no requirements"
          if(preg_match("/Meets no requirements/", $temp)){
@@ -303,4 +303,37 @@ foreach($courses as $course){
 
 }
 
+$sql ="SELECT id_est FROM expediente";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+
+                if($resultCheck === 0){
+                    foreach($courses as $course){
+                        if (($course["nombre_c"] !== "INGL 3113") AND ($course["nombre_c"] !== "INGL 3114") AND ($course["nombre_c"] !== "EDFU 3005")){
+                            $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, id_especial, nota_c, estatus_c, año_aprobo_c) VALUES (?, ?, ?, ?, ?, ?)");
+
+                // Now we tell the script which variable each placeholder actually refers to using the bindParam() method
+                // First parameter is the placeholder in the statement above - the second parameter is a variable that it should refer to
+
+
+                $stmt->bind_param('iiisis', $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c']);
+                        if($course["nombre_c"] === "TEAT 3011"){
+                            echo "<h1>$stmt</h1>";
+                        }
+                // Execute the query using the data we just defined
+                // The execute() method returns TRUE if it is successful and FALSE if it is not, allowing you to write your own messages here
+                if ($stmt->execute()) {
+                    //  header('Location: ../est_profile.php');
+                    echo "Uploaded to Database successfully";
+                } else {
+                echo "Unable to create record";
+                }
+
+
+                    $stmt->close();
+                        
+                        }
+                    }
+                }
+                    
 mysqli_close($conn);
