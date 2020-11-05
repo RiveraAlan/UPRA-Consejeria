@@ -1,11 +1,11 @@
 .appointment {
-
+    
 }
 
 .appointment-form {
     width: 80%;
     margin: 2rem auto;
-    padding: 3rem;
+    padding: 1rem;
     box-shadow: 0 0 6px rgba(0,0,0,0.3);
 }
 
