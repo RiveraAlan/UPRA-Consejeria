@@ -190,11 +190,28 @@ if(!isset($_SESSION['id'])){
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
             
-                $sentenciaSQL= "SELECT SUM(créditos_C_E) FROM expediente WHERE id_est=$id";
+                $sentenciaSQL= "SELECT SUM(C)
+                FROM ((SELECT créditos_c AS C
+                FROM expediente_fijo
+                INNER JOIN  expediente USING(id_fijo)
+                WHERE expediente.id_est = $id)
+                UNION ALL
+                (SELECT créditos_c AS C
+                FROM expediente_fijo_generales
+                INNER JOIN expediente USING(id_fijo)
+                WHERE expediente.id_est = $id)
+                UNION ALL (SELECT créditos_c AS C
+                FROM expediente_fijo_departamentales
+                INNER JOIN expediente USING(id_fijo)
+                WHERE expediente.id_est = $id)
+                UNION ALL (SELECT créditos_c AS C
+                FROM expediente_fijo_libre
+                INNER JOIN expediente USING(id_fijo)
+                WHERE expediente.id_est = $id)) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
-                if ($creditos['SUM(créditos_C_E)']=== NULL){
-                  $creditos['SUM(créditos_C_E)']=0;
+                if ($creditos['SUM(C)']=== NULL){
+                  $creditos['SUM(C)']=0;
               }
                
            
@@ -207,7 +224,7 @@ if(!isset($_SESSION['id'])){
 
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
-                    <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(créditos_C_E)']}</a>
+                    <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(C)']}</a>
                   </li>
                   <li class='list-group-item'>
                     <b>Año</b> <a class='float-right'>4</a>
