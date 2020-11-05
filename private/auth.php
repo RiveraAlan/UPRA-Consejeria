@@ -1,7 +1,16 @@
 <?php
-include_once 'dbconnect.php';
+include 'dbconnect.php';
 session_start();
 
+
+/*
+============ MAKE SURE TO SANTITIZE AND VALIDATE USER INPUT ======================
+
+      =============REMEMBER TO USE PASSWORD ENCRYPTION ====================
+
+
+       ========= EL ERROR SURGE PORQUE LA BASE DE DATOS NO ACEPTA LA TILDE.========
+*/
 
 
 
@@ -19,41 +28,42 @@ if ( empty($_POST['email']) &&  empty($_POST['password'])) {
 	exit();
 }
 
+echo "<h1>".$_POST['email']."</h1>";
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, inicial_est, apellido_estU, apellido_estD, correo_est, num_est, año_CCOM  FROM estudiante WHERE correo_est = ?')) {
+if($stmt = $conn->prepare("SELECT correo_est, contrasena_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est, ano_CCOM, secuencia_est FROM estudiante WHERE correo_est = ?")){
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-	$stmt->bind_param('s', $_POST['email']);
+    $stmt->bind_param('s', $_POST['email']);
+
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
     $stmt->store_result();
   
-
-    
+    echo "Verification success! User has loggedin!";
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password, $firstName, $initial, $lastNameU, $lastNameD, $email, $studentNumber, $year);
+        $stmt->bind_result($correo_est, $contraseña_est, $num_est, $apellido_estU, $apellido_estD, $nombre_est, $inicial_est, $año_ccom, $secuencia_est);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
         
         
-        // =============REMEMBER TO USE PASSWORD ENCRYPTION ====================
-        if ($_POST['password'] === $password) {
+   
+        if ($_POST['password'] === $contraseña_est) {
+            echo "Verification success! User has loggedin!";
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
-            $_SESSION['firstName'] = $firstName;
-            $_SESSION['inicial_est'] = $initial;
-            $_SESSION['lastNameU'] = $lastNameU;
-            $_SESSION['lastNameD'] = $lastNameD; 
-            $_SESSION['fullName'] = $firstName.'  '.$initial.'  '.$lastNameU.' '.$lastNameD;
-            $_SESSION['email'] = $email;
-            $_SESSION['studentNumber'] = $studentNumber;
-            $_SESSION['año_CCOM'] = $year;
-            $_SESSION['id_est'] = $id;
+            $_SESSION['nombre_est'] = $nombre_est;
+            $_SESSION['inicial_est'] = $inicial_est;
+            $_SESSION['apellido_estU'] = $apellido_estU;
+            $_SESSION['apellido_estD'] = $apellido_estD; 
+            $_SESSION['nombre_completo'] = $nombre_est.'  '.$inicial_est.'  '.$apellido_estU.' '.$apellido_estD;
+            $_SESSION['correo_est'] = $correo_est;
+            $_SESSION['num_est'] = $num_est;
+            $_SESSION['año_CCOM'] = $año_ccom;
             header('Location: ../consejeria.php');
-            // ====== SWITCH TO INDEX.PHP INSTEAD OF CITA.PHP ============
+           
         } else {
             // Incorrect password
             header('Location:  ../index.php?isAuthFailed=true');
@@ -72,6 +82,8 @@ if ($stmt = $conn->prepare('SELECT id_est, contraseña_est, nombre_est, inicial_
 
 
 
-	$stmt->close();
+    $stmt->close();
+} else {
+    echo $stmt->error();
 }
 ?>

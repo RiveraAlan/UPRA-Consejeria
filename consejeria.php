@@ -1,9 +1,9 @@
 <?php
 session_start();
-$id= $_SESSION['id_est'];
+$id= $_SESSION['contrasena_est'];
 // Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
-include("AdminUPRA/inc/connection.php");
-if(!isset($_SESSION['id_est'])){
+include_once 'dbconnect.php';
+if(!isset($_SESSION['contrasena_est'])){
   header("Location: index.php");
     exit();
 }
