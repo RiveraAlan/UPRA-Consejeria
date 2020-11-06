@@ -203,18 +203,10 @@ if(!isset($_SESSION['id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="BUSCAR ESTUDIANTE.." title="Type in a name">
+        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="BUSCAR ESTUDIANTE.." title="Type in a name">
         
             <ul id="myUL">
-              <li><a href="#">Adele</a></li>
-              <li><a href="#">Agnes</a></li>
-
-              <li><a href="#">Billy</a></li>
-              <li><a href="#">Bob</a></li>
-
-              <li><a href="#">Calvin</a></li>
-              <li><a href="#">Christina</a></li>
-              <li><a href="#">Cindy</a></li>
+      
             </ul>
             
 <style>
@@ -315,8 +307,11 @@ function myFunction() {
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
               
+              $students = array();
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
+              
+                  array_push($students, $row["nombre_est"]);
              echo "  
                   <tr>
                       <td>
@@ -397,5 +392,28 @@ function myFunction() {
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script>
+function searchStudent(str){
+  const strCpy = "^" + str;
+  let re = new RegExp(strCpy);
+  const students = <?php echo json_encode($students); ?>;
+  let searchList = '';
+
+  if(str === ""){
+    document.getElementById('myUL').innerHTML = '';
+    return;
+  }
+    
+
+    students.map((student, index) => {
+        if(re.test(student)){
+              searchList += `<ul>${student}</ul>`;
+        }
+    }); 
+
+    document.getElementById('myUL').innerHTML = searchList;
+}    
+
+</script>
 </body>
 </html>
