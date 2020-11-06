@@ -235,7 +235,7 @@ if(!isset($_SESSION['id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">ESTUDIANTES DE CCOM</h3>
+        <section class="card-title"><input type="text" name="busqueda" id="busqueda" placeholder="BUSCAR ESTUDIANTE..."></section>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
