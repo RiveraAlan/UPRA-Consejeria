@@ -203,7 +203,80 @@ if(!isset($_SESSION['id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <section class="card-title"><input type="text" name="busqueda" id="busqueda" placeholder="BUSCAR ESTUDIANTE..."></section>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="BUSCAR ESTUDIANTE.." title="Type in a name">
+        
+            <ul id="myUL">
+              <li><a href="#">Adele</a></li>
+              <li><a href="#">Agnes</a></li>
+
+              <li><a href="#">Billy</a></li>
+              <li><a href="#">Bob</a></li>
+
+              <li><a href="#">Calvin</a></li>
+              <li><a href="#">Christina</a></li>
+              <li><a href="#">Cindy</a></li>
+            </ul>
+            
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
+
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+            
+            <!-- TERMINAR EL SEARCH -->
+            
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -252,6 +325,7 @@ if(!isset($_SESSION['id'])){
                       <td>
                               {$row['nombre_est']}
                               {$row['apellido_estU']}
+                              {$row['apellido_estD']}
                           <br/>
                           <small>
                               Cohorte 2017
