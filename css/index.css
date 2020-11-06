@@ -1,4 +1,4 @@
-<style>
+
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
 * {
@@ -300,8 +300,8 @@ li {
     margin-top: -220px;
   }
 }
-</style>
-<style>@charset "UTF-8";
+
+
 
 @font-face {
   font-family: "untitled-font-1";
@@ -353,4 +353,3 @@ li {
 .icon-youtube:before {
   content: "\65";
 }
-</style>

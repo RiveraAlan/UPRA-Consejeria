@@ -5,6 +5,28 @@ body {
   font-weight: 300;
   font-size: 1.1rem; }
 
+/*CUSTOM STYLING ON INDEX.PHP*/
+
+
+@media (max-width: 500px) {
+  .hero-text {
+    margin-top: 7rem;
+  }
+}
+
+.error-message {
+  background-color: rgb(253, 168, 159);
+  border: 1px solid red;
+  border-radius: .5rem;
+  width: 100%;
+  color: #333333;
+  font-weight: 400;
+  font-size: .7rem;
+  padding: 0.5rem;
+  text-align: center;
+
+}
+
 ::-moz-selection {
   background: #000;
   color: #fff; }
@@ -308,7 +330,8 @@ h1, h2, h3, h4, h5,
   margin-bottom: 0px;
   z-index: 1999;
   position: absolute;
-  width: 100%; }
+  width: 100%; 
+}
   .site-navbar .container-fluid {
     padding-left: 7rem;
     padding-right: 7rem; }
@@ -616,7 +639,8 @@ h1, h2, h3, h4, h5,
 
 /* Blocks */
 .intro-section {
-  position: relative; }
+  position: relative;
+}
   .intro-section, .intro-section .container > .row {
     height: 100vh;
     min-height: 900px; }
@@ -676,7 +700,9 @@ h1, h2, h3, h4, h5,
 .form-box {
   padding: 40px;
   background: #fff;
-  border-radius: 7px; }
+  border-radius: 7px; 
+  margin-bottom: 1rem;
+}
 
 .site-section {
   padding: 4em 0;
