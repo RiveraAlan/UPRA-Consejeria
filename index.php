@@ -71,7 +71,7 @@
           <div class="row align-items-center">
             <div class="col-12">
               <div class="row align-items-center">
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-6 mb-4 hero-text">
                   <h1  data-aos="fade-up" data-aos-delay="100">¡Bienvenidos a Consejería Académica de la Universidad de Puerto Rico Recinto de Arecibo!</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">En el botón de abajo muestra cómo hacer la Consejería</p>
                   <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-yellow py-3 px-5 btn-pill">¿Cómo hacer Consejería?</a></p>
