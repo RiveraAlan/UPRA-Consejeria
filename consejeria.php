@@ -75,12 +75,29 @@ if(!isset($_SESSION['contrasena_est'])){
                                     <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
               </div>
                 <?php 
-                 $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est=$id";
+                 $sentenciaSQL= "SELECT SUM(C)
+                 FROM ((SELECT créditos_c AS C
+                 FROM expediente_fijo
+                 INNER JOIN  expediente USING(id_fijo)
+                 WHERE expediente.id_est = $id)
+                 UNION ALL
+                 (SELECT créditos_c AS C
+                 FROM expediente_fijo_generales
+                 INNER JOIN expediente USING(id_fijo)
+                 WHERE expediente.id_est = $id)
+                 UNION ALL (SELECT créditos_c AS C
+                 FROM expediente_fijo_departamentales
+                 INNER JOIN expediente USING(id_fijo)
+                 WHERE expediente.id_est = $id)
+                 UNION ALL (SELECT créditos_c AS C
+                 FROM expediente_fijo_libre
+                 INNER JOIN expediente USING(id_fijo)
+                 WHERE expediente.id_est = $id)) t1";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
                 
-              if ($reco['SUM(créditos_C_E)']=== NULL){
-                  $reco['SUM(créditos_C_E)']=0;
+              if ($reco['SUM(C)']=== NULL){
+                  $reco['SUM(C)']=0;
               }
                   $mes = date('m');
                   $sem = 1;
@@ -92,7 +109,7 @@ if(!isset($_SESSION['contrasena_est'])){
                     Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
                     Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendados: <b>{$reco['SUM(créditos_C_E)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Créditos Recomendados: <b>{$reco['SUM(C)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Año: <b>{$_SESSION['año_CCOM']}</b><br></div>";?>
                 </div>
@@ -115,12 +132,29 @@ if(!isset($_SESSION['contrasena_est'])){
                       <div class="col-12">
                         <div class="card">
                             <?php 
-                             $sentenciaSQL= " Select SUM(créditos_C_E) FROM expediente WHERE id_est = $id AND (estatus_R = 1 OR estatus_C = 3)";
+                             $sentenciaSQL= "SELECT SUM(C)
+                             FROM ((SELECT créditos_c AS C
+                             FROM expediente_fijo
+                             INNER JOIN  expediente USING(id_fijo)
+                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))
+                             UNION ALL
+                             (SELECT créditos_c AS C
+                             FROM expediente_fijo_generales
+                             INNER JOIN expediente USING(id_fijo)
+                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))
+                             UNION ALL (SELECT créditos_c AS C
+                             FROM expediente_fijo_departamentales
+                             INNER JOIN expediente USING(id_fijo)
+                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))
+                             UNION ALL (SELECT créditos_c AS C
+                             FROM expediente_fijo_libre
+                             INNER JOIN expediente USING(id_fijo)
+                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))) t1";
                              $resultRecom = mysqli_query($conn, $sentenciaSQL);
                              $reco=mysqli_fetch_assoc($resultRecom);
                          
-                       if ($reco['SUM(créditos_C_E)'] === NULL){
-                           $reco['SUM(créditos_C_E)'] = 0;
+                       if ($reco['SUM(C)'] === NULL){
+                           $reco['SUM(C)'] = 0;
                        }
                              echo "
                                 <div class='btn-group'>
@@ -188,7 +222,7 @@ if(!isset($_SESSION['contrasena_est'])){
 
                                     echo "</tbody> 
                                       </table>
-                                       Créditos Recomendados: {$reco['SUM(créditos_C_E)']}
+                                       Créditos Recomendados: {$reco['SUM(C)']}
                                                         </div>
                                         <div class='modal-footer'><br>
                                           <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>

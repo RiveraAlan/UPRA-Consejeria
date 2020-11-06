@@ -178,11 +178,10 @@ if(!isset($_SESSION['id'])){
           <div class="tab">
             <button class="tablinks active" onclick="openCity(event, 'ElectDept')">Electivas Departamentales</button>
             <button class="tablinks" onclick="openCity(event, 'Concen')">Concentración</button>
-            <button class="tablinks" onclick="openCity(event, 'Otros')">Otros</button>
+            <button class="tablinks" onclick="openCity(event, 'Otros')">Generales</button>
             </div>
 
         <div id="ElectDept" class="tabcontent active">
-          <h3 align="center">Electivas Departamentales</h3>
             <div class="table">
                 <div class="container-table100">
                           <div class="wrap-table100">
@@ -190,174 +189,32 @@ if(!isset($_SESSION['id'])){
                               <table data-vertable="ver1">
                                 <thead>
                                   <tr class="row100 head">
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                    <th class="column100 column5" data-column="column5">Clasificación</th>
-                                    <th class="column100 column6" data-column="column6">Cantidad de Firmas</th>
-                                    <th class="column100 column7" data-column="column7">Listas</th>
+                                    <th class="column100 column1" data-column="column1">Código</th>
+                                    <th class="column100 column2" data-column="column2">Descripción</th>
+                                    <th class="column100 column3" data-column="column3">Créditos</th>
+                                    <th class="column100 column4" data-column="column4">Cantidad de Firmas</th>
+                                    <th class="column100 column5" data-column="column5">Listas</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3027</td>
-                                    <td class="column100 column2" data-column="column2">Prog. Orientada a Objetos</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                    <td class="column100 column5" data-column="column5">2</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.php" class="nav-link"></a>
-                                    <b>Lista CCOOM 3027</b></td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3036</td>
-                                    <td class="column100 column2" data-column="column2">Programación Visual</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3036</b></td>
-                                  </tr>
-                                
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3042</td>
-                                    <td class="column100 column2" data-column="column2">Arquitectura de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3042</b></td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3115</td>
-                                    <td class="column100 column2" data-column="column2">Aplicaciones de Microprocesadores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3115</b></td>
-                                  </tr>
-                                  
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3135</td>
-                                    <td class="column100 column2" data-column="column2">Temas en Ciencias de Cómputos</td>
-                                    <td class="column100 column3" data-column="column3">1-6</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3135</b></td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3985</td>
-                                    <td class="column100 column2" data-column="column2">Investigación Sub-graduada</td>
-                                    <td class="column100 column3" data-column="column3">2</td>
-                                    <td class="column100 column4" data-column="column4">Variable</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3985</b></td>
-                                  </tr>
+                                  <?php
+                                       $sql ="SELECT nombre_c, descripción_c, créditos_c
+                                        FROM expediente_fijo_departamentales";
+                                        $result = mysqli_query($conn, $sql);
+                                        $resultCheck = mysqli_num_rows($result);
+
+                                    if($resultCheck > 0){
+                                    while($row = mysqli_fetch_assoc($result)){
+                    echo '
                                     
                                   <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4018</td>
-                                    <td class="column100 column2" data-column="column2">Redes de Computadoras</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4018</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4019</td>
-                                    <td class="column100 column2" data-column="column2">Programación Web</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4019</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4125</td>
-                                    <td class="column100 column2" data-column="column2">Inteligencia Artificial</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4125</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4135</td>
-                                    <td class="column100 column2" data-column="column2">Diseño Compiladores</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4135</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4305</td>
-                                    <td class="column100 column2" data-column="column2">Introducción Diseño Web</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4305</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4306</td>
-                                    <td class="column100 column2" data-column="column2">Opt. Gráficas</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4306</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4307</td>
-                                    <td class="column100 column2" data-column="column2">Mantenimiento de PC's</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4307</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Desarrollo de Aplicaciones Móviles</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4401</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4420</td>
-                                    <td class="column100 column2" data-column="column2">Cloud Computing Apps</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">Avanzada</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4420</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4401</td>
-                                    <td class="column100 column2" data-column="column2">Robótica</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">Intermedia</td>
-                                    <td class="column100 column5" data-column="column5">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4401</b></td>
-                                  </tr>
+                                    <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
+                                    <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
+                                    <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
+                                    <td class="column100 column4" data-column="column4">--</td>
+                                    <td class="column100 column5" data-column="column5"><a href="firmas.php" class="nav-link"></a>
+                                    <b>Lista '.$row['nombre_c'].'</b></td>
+                                  </tr>';}}?>
                                 </tbody>
                               </table>
                             </div>
@@ -367,7 +224,6 @@ if(!isset($_SESSION['id'])){
       </div>
 
         <div id="Concen" class="tabcontent">
-           <h3 align="center">Concentración</h3>
             <div class="table">
                 <div class="container-table100">
                           <div class="wrap-table100">
@@ -383,149 +239,23 @@ if(!isset($_SESSION['id'])){
                                   </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                   $sql =" SELECT nombre_c, descripción_c, créditos_c
+                                   FROM expediente_fijo";
+                                    $result = mysqli_query($conn, $sql);
+                                    $resultCheck = mysqli_num_rows($result);
+
+                                if($resultCheck > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                        echo '
                                   <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3001</td>
-                                    <td class="column100 column2" data-column="column2">Programación I</td>
-                                    <td class="column100 column3" data-column="column3">5</td>
+                                    <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
+                                    <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
+                                    <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3001</b></td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3010</td>
-                                    <td class="column100 column2" data-column="column2">Niveles Lógicos</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3010</b></td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3025</td>
-                                    <td class="column100 column2" data-column="column2">Int. Sist. Comp.</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3025</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3002</td>
-                                    <td class="column100 column2" data-column="column2">Programación II</td>
-                                    <td class="column100 column3" data-column="column3">5</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3002</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3015</td>
-                                    <td class="column100 column2" data-column="column2">Comp. en la Sociedad</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3015</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3015</td>
-                                    <td class="column100 column2" data-column="column2">Organización Comp.</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3015</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4005</td>
-                                    <td class="column100 column2" data-column="column2">Estructura de Datos y Análisis Algorítmico</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4005</b></td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3020</td>
-                                    <td class="column100 column2" data-column="column2">Matemáticas Discretas</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3020</b></td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4006</td>
-                                    <td class="column100 column2" data-column="column2">Diseño y Análisis Algorítmico</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4006</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4007</td>
-                                    <td class="column100 column2" data-column="column2">Int. Probabilidad y Estad.</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4007</b></td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4065</td>
-                                    <td class="column100 column2" data-column="column2">Álgebra Lineal Numérica</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4065</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 3041</td>
-                                    <td class="column100 column2" data-column="column2">Sistemas Operativos</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 3041</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4025</td>
-                                    <td class="column100 column2" data-column="column2">Organización de Lenguaje</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4025</b></td>
-                                  </tr>
-                                
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4115</td>
-                                    <td class="column100 column2" data-column="column2">Diseño de Base de Datos</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4115</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4075</td>
-                                    <td class="column100 column2" data-column="column2">Ingeniería de Programación</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4075</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CCOM 4095</td>
-                                    <td class="column100 column2" data-column="column2">Proyecto Ing. de Prog.</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOOM 4095</b></td>
-                                  </tr>
+                                    <td class="column100 column5" data-column="column5"><a href="firmas.php" class="nav-link"></a>
+                                    <b>Lista '.$row['nombre_c'].'</b></td>
+                                  </tr>';}}?>
                                   
                                 </tbody>
                               </table>
@@ -536,7 +266,6 @@ if(!isset($_SESSION['id'])){
       </div>
 
         <div id="Otros" class="tabcontent">
-          <h3 align="center">Otros</h3>
             <div class="table">
                 <div class="container-table100">
                           <div class="wrap-table100">
@@ -552,159 +281,22 @@ if(!isset($_SESSION['id'])){
                                   </tr>
                                 </thead>
                                 <tbody>
+                                 <?php
+                                $sql ="SELECT nombre_c, descripción_c, créditos_c
+                                   FROM expediente_fijo_generales";
+                                    $result = mysqli_query($conn, $sql);
+                                    $resultCheck = mysqli_num_rows($result);
+                                if($resultCheck > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                           echo '
                                   <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">INGL 3101</td>
-                                    <td class="column100 column2" data-column="column2">Inglés Básico I</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
+                                    <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
+                                    <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
+                                    <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista INGL 3101</b></td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">INGL 3113</td>
-                                    <td class="column100 column2" data-column="column2">Práct. Oral Inglés Básico I</td>
-                                    <td class="column100 column3" data-column="column3">0</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista INGL 3113</b></td>
-                                  </tr>
-                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">MATE 3171</td>
-                                    <td class="column100 column2" data-column="column2">Pre-cálculo I</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista MATE 3171</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">INGL 3102</td>
-                                    <td class="column100 column2" data-column="column2">Inglés Básico II</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista INGL 3102</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">INGL 3114</td>
-                                    <td class="column100 column2" data-column="column2">Práct. Oral Inglés Básico II</td>
-                                    <td class="column100 column3" data-column="column3">0</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista INGL 3114</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">MATE 3172</td>
-                                    <td class="column100 column2" data-column="column2">Pre-cálculo II</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista MATE 3172</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">MATE 3031</td>
-                                    <td class="column100 column2" data-column="column2">Cálculo I</td>
-                                    <td class="column100 column3" data-column="column3">4</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista MATE 3031</b></td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">ESPA 3101</td>
-                                    <td class="column100 column2" data-column="column2">Español Básico I</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista ESPA 3101</b></td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CIBI 3001</td>
-                                    <td class="column100 column2" data-column="column2">Int. Cs. Biológicas I</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CIBI 3001</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">ESPA 3102</td>
-                                    <td class="column100 column2" data-column="column2">Español Básico II</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista ESPA 3102</b></td>
-                                  </tr>
-                                 
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">CIBI 3002</td>
-                                    <td class="column100 column2" data-column="column2">Int. Cs. Biológicas II</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CIBI 3002</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">FISI 3011</td>
-                                    <td class="column100 column2" data-column="column2">Física Universitaria I</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista FISI 3011</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">FISI 3013</td>
-                                    <td class="column100 column2" data-column="column2">Laboratorio Física Univ. I</td>
-                                    <td class="column100 column3" data-column="column3">1</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista FISI 3013</b></td>
-                                  </tr>
-                                
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">ESPA 3208</td>
-                                    <td class="column100 column2" data-column="column2">Redacción y Estilo</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista ESPA 3208</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">FISI 3012</td>
-                                    <td class="column100 column2" data-column="column2">Física Universitaria II</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista FISI 3012</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">FISI 3014</td>
-                                    <td class="column100 column2" data-column="column2">Laboratorio Física Univ. II</td>
-                                    <td class="column100 column3" data-column="column3">1</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista CCOM 3101</b></td>
-                                  </tr>
-                                    
-                                  <tr class="row100">
-                                    <td class="column100 column1" data-column="column1">INGL 3015</td>
-                                    <td class="column100 column2" data-column="column2">Inglés para Ciencia y Tecnología</td>
-                                    <td class="column100 column3" data-column="column3">3</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="ccom3027.html" class="nav-link"></a>
-                                    <b>Lista INGL 3015</b></td>
-                                  </tr>
-                                  
+                                    <td class="column100 column5" data-column="column5"><a href="firmas.php" class="nav-link"></a>
+                                    <b>Lista '.$row['nombre_c'].'</b></td>
+                                  </tr>';}}?>
                                 </tbody>
                               </table>
                             </div>
