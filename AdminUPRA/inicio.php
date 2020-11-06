@@ -203,21 +203,12 @@ if(!isset($_SESSION['id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-            
+        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="BUSCAR ESTUDIANTE.." title="Type in a name">
+        
             <ul id="myUL">
-                <?php 
-        $sql = "SELECT id_est, apellido_estU, apellido_estD, nombre_est
-                      FROM estudiante";
-              $result = mysqli_query($conn, $sql);
-              $resultCheck = mysqli_num_rows($result);
-                  
-              if($resultCheck > 0){
-                while($row = mysqli_fetch_assoc($result)){
-                    echo"
-              <li><a href='#'>{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}</a></li>";}}
-                 ?>
+      
             </ul>
+            
 <style>
 * {
   box-sizing: border-box;
@@ -256,6 +247,7 @@ if(!isset($_SESSION['id'])){
 }
 </style>
 
+
 <script>
 function myFunction() {
     var input, filter, ul, li, a, i, txtValue;
@@ -274,7 +266,6 @@ function myFunction() {
     }
 }
 </script>
-
             
             <!-- TERMINAR EL SEARCH -->
             
@@ -315,14 +306,12 @@ function myFunction() {
                       FROM estudiante";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
-//Array para guardar los estudiantes CHRIS
-                  $estudiantes = array();
-                  
+              
+              $students = array();
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                    $estudiante = array('nombre_est'=>$row['nombre_est'],'apellido_estU'=>$row['apellido_estU'],'apellido_estD'=>$row['apellido_estD'],'id_est'=> $row['id_est']);
-        //CHRIS
-                    array_push($estudiantes);
+              
+                  array_push($students, $row["nombre_est"]);
              echo "  
                   <tr>
                       <td>
@@ -403,16 +392,28 @@ function myFunction() {
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-    <!-- CHRIS -->
 <script>
 function searchStudent(str){
-    console.log(str);
-    <?php
-     //  $str=  echo" <script>document.writeln(str)</script>";
-    echo "<h1>$str</h1>";
-       
-    ?>
+  const strCpy = "^" + str;
+  let re = new RegExp(strCpy);
+  const students = <?php echo json_encode($students); ?>;
+  let searchList = '';
+
+  if(str === ""){
+    document.getElementById('myUL').innerHTML = '';
+    return;
+  }
+    
+
+    students.map((student, index) => {
+        if(re.test(student)){
+              searchList += `<ul>${student}</ul>`;
+        }
+    }); 
+
+    document.getElementById('myUL').innerHTML = searchList;
 }    
+
 </script>
 </body>
 </html>
