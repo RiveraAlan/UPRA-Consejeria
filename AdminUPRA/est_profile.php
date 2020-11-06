@@ -78,8 +78,17 @@ body {
   cursor: pointer;
   position : relative;
   max-width:  20em;
-  margin: 5em auto;
+  margin: 1rem auto;
   width: 100%;
+}
+
+
+#course-list {
+  background-color: #ececec;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+    font-size: 1.25rem;
 }
 
 .select,
@@ -102,6 +111,7 @@ body {
 }
 .select-box1 {
   background: #ececec;
+
 }
 
 .label {
@@ -810,24 +820,28 @@ body {
                     <input type="radio" name="tipo" value="equivalencia"> Equivalencia</input>
                   </div>
               </div>
-              <div class="select-box" style="margin-top:0%; margin-bottom:0%">
-  <label for="select-box1" class="label select-box1"><span class="label-desc">CLASES</span> </label>
-  <select id="select-box1" class="select">
-                <?php
+              <div class="select-box">
+                
+                      
+          <select name="courses" id="course-list">
+          <?php
                 $sql ="SELECT nombre_c, id_fijo
                 FROM expediente_fijo";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 
-                if($resultCheck > 0){
+                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                echo "<option value='{$row['id_fijo']}' name='clase'>{$row['nombre_c']}</option>";
-                }}
+                echo "<option value='{$row['id_fijo']}'>{$row['nombre_c']}</option>";
+                }} 
+                
                 ?>
-              </select>
+          </select>
+
               </div>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               <button type='submit' class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;'>APLICAR</button>
+              </form>
               </footer>
             </div>
           </div>
@@ -913,32 +927,6 @@ $("status").innerHTML = "Upload Failed";
 $("status").innerHTML = "Upload Aborted";
     }
 
-    $("select").on("click" , function() {
-  
-  $(this).parent(".select-box").toggleClass("open");
-  
-});
-
-$(document).mouseup(function (e)
-{
-    var container = $(".select-box");
-
-    if (container.has(e.target).length === 0)
-    {
-        container.removeClass("open");
-    }
-});
-
-
-$("select").on("change" , function() {
-  
-  var selection = $(this).find("option:selected").text(),
-      labelFor = $(this).attr("id"),
-      label = $("[for='" + labelFor + "']");
-    
-  label.find(".label-desc").html(selection);
-    
-});
 </script> 
   <!-- /.content-wrapper -->
   <footer class="main-footer">

@@ -322,7 +322,7 @@ $sql ="SELECT id_est FROM expediente";
                 // First parameter is the placeholder in the statement above - the second parameter is a variable that it should refer to
 
 
-                $stmt->bind_param('iiisisi', $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c']);
+                $stmt->bind_param('iiisis', $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c']);
                         
                 // Execute the query using the data we just defined
                 // The execute() method returns TRUE if it is successful and FALSE if it is not, allowing you to write your own messages here
