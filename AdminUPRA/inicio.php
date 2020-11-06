@@ -408,7 +408,7 @@ function myFunction() {
 function searchStudent(str){
     console.log(str);
     <?php
-       $str=  echo" <script>document.writeln(str)</script>";
+     //  $str=  echo" <script>document.writeln(str)</script>";
     echo "<h1>$str</h1>";
        
     ?>
