@@ -1,9 +1,9 @@
 <?php
 session_start();
-$id= $_SESSION['contrasena_est'];
+$id= $_SESSION['id_est'];
 // Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
-include_once 'dbconnect.php';
-if(!isset($_SESSION['contrasena_est'])){
+include_once 'private/dbconnect.php';
+if(!isset($_SESSION['id_est'])){
   header("Location: index.php");
     exit();
 }
@@ -105,10 +105,10 @@ if(!isset($_SESSION['contrasena_est'])){
                       $sem = 2;
                     }
                  echo "<div class='card-header'>
-                    Nombre: <b> {$_SESSION['fullName']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Correo: <b>{$_SESSION['email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Nombre: <b> {$_SESSION['nombre_completo']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Correo: <b>{$_SESSION['correo_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
-                    Número de Estudiante: <b>{$_SESSION['studentNumber']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Número de Estudiante: <b>{$_SESSION['num_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendados: <b>{$reco['SUM(C)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Año: <b>{$_SESSION['año_CCOM']}</b><br></div>";?>

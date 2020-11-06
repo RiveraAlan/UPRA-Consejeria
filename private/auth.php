@@ -31,7 +31,7 @@ if ( empty($_POST['email']) &&  empty($_POST['password'])) {
 echo "<h1>".$_POST['email']."</h1>";
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if($stmt = $conn->prepare("SELECT correo_est, contrasena_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est, ano_CCOM, secuencia_est FROM estudiante WHERE correo_est = ?")){
+if($stmt = $conn->prepare("SELECT id_est, correo_est, contraseña_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est, año_CCOM, secuencia_est FROM estudiante WHERE correo_est = ?")){
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
     $stmt->bind_param('s', $_POST['email']);
 
@@ -41,7 +41,7 @@ if($stmt = $conn->prepare("SELECT correo_est, contrasena_est, num_est, apellido_
   
     echo "Verification success! User has loggedin!";
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($correo_est, $contraseña_est, $num_est, $apellido_estU, $apellido_estD, $nombre_est, $inicial_est, $año_ccom, $secuencia_est);
+        $stmt->bind_result($id_est, $correo_est, $contraseña_est, $num_est, $apellido_estU, $apellido_estD, $nombre_est, $inicial_est, $año_ccom, $secuencia_est);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -54,6 +54,7 @@ if($stmt = $conn->prepare("SELECT correo_est, contrasena_est, num_est, apellido_
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
+            $_SESSION['id_est'] = $id_est;
             $_SESSION['nombre_est'] = $nombre_est;
             $_SESSION['inicial_est'] = $inicial_est;
             $_SESSION['apellido_estU'] = $apellido_estU;
