@@ -37,38 +37,6 @@ if(!isset($_SESSION['id'])){
         <a href="index.html" class="nav-link">Inicio</a>
       </li>
     </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-danger navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      
-    </ul>
   </nav>
   <!-- /.navbar -->
 
@@ -235,7 +203,80 @@ if(!isset($_SESSION['id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">ESTUDIANTES DE CCOM</h3>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="BUSCAR ESTUDIANTE.." title="Type in a name">
+        
+            <ul id="myUL">
+              <li><a href="#">Adele</a></li>
+              <li><a href="#">Agnes</a></li>
+
+              <li><a href="#">Billy</a></li>
+              <li><a href="#">Bob</a></li>
+
+              <li><a href="#">Calvin</a></li>
+              <li><a href="#">Christina</a></li>
+              <li><a href="#">Cindy</a></li>
+            </ul>
+            
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
+
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+            
+            <!-- TERMINAR EL SEARCH -->
+            
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -284,6 +325,7 @@ if(!isset($_SESSION['id'])){
                       <td>
                               {$row['nombre_est']}
                               {$row['apellido_estU']}
+                              {$row['apellido_estD']}
                           <br/>
                           <small>
                               Cohorte 2017
@@ -303,10 +345,7 @@ if(!isset($_SESSION['id'])){
                           <span class='badge badge-success'>SI</span>
                       </td>
                       <td class='project-actions text-right'>
-                          <a class='btn btn-primary btn-sm' href='editest.html'>
-                              <i class='fas fa-user-edit'></i>
-                              Editar
-                          </a>
+                          
                           <div style='padding-top: 10px;'>
                           <a class='btn btn-danger btn-sm' href='#''>
                              <i class='fas fa-user-times'></i>
