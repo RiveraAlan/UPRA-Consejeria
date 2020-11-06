@@ -821,7 +821,7 @@ body {
 
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                echo "<option value='{$row['id_fijo']}'>{$row['nombre_c']}</option>";
+                echo "<option value='{$row['id_fijo']}' name='clase'>{$row['nombre_c']}</option>";
                 }}
                 ?>
               </select>
