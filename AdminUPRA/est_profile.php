@@ -50,6 +50,77 @@ if(!isset($_SESSION['id'])){
             padding: 8px;
             font-size: 18px;
         }
+
+        .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: transparent;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: transparent;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+body {
+  background: #ffffff; 
+  color: #414141;
+  font: 400 17px/2em 'Source Sans Pro', sans-serif;
+}
+
+.select-box {
+  cursor: pointer;
+  position : relative;
+  max-width:  20em;
+  margin: 5em auto;
+  width: 100%;
+}
+
+.select,
+.label {
+  color: #414141;
+  display: block;
+  font: 400 17px/2em 'Source Sans Pro', sans-serif;
+}
+
+.select {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 5px 0;
+  height: 40px;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  background: none transparent;
+  border: 0 none;
+}
+.select-box1 {
+  background: #ececec;
+}
+
+.label {
+  position: relative;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.open .label::after {
+   content: "▲";
+}
+.label::after {
+  content: "▼";
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 15px;
+  border-left: 5px solid #fff;
+}
   </style>
 
 </head>
@@ -536,7 +607,7 @@ if(!isset($_SESSION['id'])){
                 <!-- /.Final de Expediente del Estudiante -->
                 
                 
-       <!-- /.Comienzo de Examinar -->  
+       <!-- Comienzo de Examinar -->  
    <div id="Examinar" class="tabcontent">
             <section>
                 <table id="example2" class="table table-bordered table-hover">
@@ -547,6 +618,7 @@ if(!isset($_SESSION['id'])){
                     <th>Créditos</th>
                     <th>Nota</th>
                     <th>Semestre Aprobó</th>
+                    <th>Acomodar</th>
                   </tr>
                   </thead>
                 <tbody>
@@ -555,7 +627,7 @@ if(!isset($_SESSION['id'])){
                    FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_especial = 2 AND id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-             
+                  $modal = 'document.getElementById("id03").style.display="block"';
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                  
@@ -570,7 +642,8 @@ if(!isset($_SESSION['id'])){
                     <td>{$row['créditos_c']}</td>
                     <td>{$row['nota_c']}</td>
                     <td>{$row['año_aprobo_c']}</td>
-                  </tr> ";}}?>
+                    <td><button onclick='$modal' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
+                  </tr>";}}?>
                 </tbody>
                   </table>
             </section>    
@@ -691,6 +764,75 @@ if(!isset($_SESSION['id'])){
             </div>
           </div>
             <!-- /.Expediente -->
+            <!-- Cursos a Examinar -->
+          <div id='id03' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id03").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Acomodar</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                <form action="conv_env.php" method="POST">
+                <div class="grid-container">
+                <div class='item-1'>
+                          <button type="button" name="tabla" value="1" class='btn btn-primary' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i>
+                              Concentración
+                  </button>
+                  </div>
+                <div class='item-2'>
+                          <button type="button" name="tabla" value="2" class='btn btn-warning' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i>
+                              General Obli.
+                  </button>
+                  </div>
+                          <div class='item-3'>
+                          <button type="button" name="tabla" value="3" class='btn btn-danger'style="width: 100%; color: white">
+                             <i class='fas fa-pencil-alt'></i>
+                              Elect. Dept.
+                  </button>
+                        </div>
+                        <div class='item-4'>
+                          <button type="button" name="tabla" value="4" class='btn btn-info' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i>
+                              Elect. Libre
+                  </button>
+                        </div>
+                  </div>
+              </div>
+              <div class="grid-container" style="margin-left:18%">
+              <div class='item-1'>
+                    <input type="radio" name="tipo" value="convalidacion"> Convalidación</input>
+                  </div>
+                  <div class='item-2'>
+                    <input type="radio" name="tipo" value="equivalencia"> Equivalencia</input>
+                  </div>
+              </div>
+              <div class="select-box" style="margin-top:0%; margin-bottom:0%">
+  <label for="select-box1" class="label select-box1"><span class="label-desc">CLASES</span> </label>
+  <select id="select-box1" class="select">
+                <?php
+                $sql ="SELECT nombre_c, id_fijo
+                FROM expediente_fijo";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                echo "<option value='{$row['id_fijo']}' name='clase'>{$row['nombre_c']}</option>";
+                }}
+                ?>
+              </select>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='submit' class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;'>APLICAR</button>
+              </footer>
+            </div>
+          </div>
+            <!-- /.Cursos a Examinar -->
+            
             <!-- /.Modals -->
               <!-- /.card-body -->
             </div>
@@ -771,7 +913,32 @@ $("status").innerHTML = "Upload Failed";
 $("status").innerHTML = "Upload Aborted";
     }
 
-   
+    $("select").on("click" , function() {
+  
+  $(this).parent(".select-box").toggleClass("open");
+  
+});
+
+$(document).mouseup(function (e)
+{
+    var container = $(".select-box");
+
+    if (container.has(e.target).length === 0)
+    {
+        container.removeClass("open");
+    }
+});
+
+
+$("select").on("change" , function() {
+  
+  var selection = $(this).find("option:selected").text(),
+      labelFor = $(this).attr("id"),
+      label = $("[for='" + labelFor + "']");
+    
+  label.find(".label-desc").html(selection);
+    
+});
 </script> 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
