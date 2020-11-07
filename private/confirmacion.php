@@ -26,5 +26,4 @@ require 'dbconnect.php';
    
     
 }
-
 ?>

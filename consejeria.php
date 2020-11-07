@@ -622,7 +622,13 @@ function toggle(source) {
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/consejeria.js"></script>    
+  <script src="js/consejeria.js"></script>  
+  <script>function toggle(source) {
+              checkboxes = document.getElementsByName('id_fijo');
+              for(var i=0, n=checkboxes.length;i<n;i++) {
+                  checkboxes[i].checked = source.checked;
+              }}
+  </script>
 <!-- Culmina la parte de los JS. -->
 </div>
 </body>
