@@ -184,19 +184,19 @@ if(!isset($_SESSION['id_est'])){
                                       </tr>
                                       </thead> 
                                     <tbody>";
-                                    $sql ="SELECT nombre_c, descripción_c, créditos_c
+                                    $sql ="SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
                                     INNER JOIN expediente_fijo ON expediente.id_fijo = expediente_fijo.id_fijo 
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3)
-                                    UNION(SELECT nombre_c, descripción_c, créditos_c
+                                    UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
                                     INNER JOIN expediente_fijo_generales ON expediente.id_fijo = expediente_fijo_generales.id_fijo
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
-                                    UNION(SELECT nombre_c, descripción_c, créditos_c
+                                    UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
                                     INNER JOIN expediente_fijo_departamentales ON expediente.id_fijo = expediente_fijo_departamentales.id_fijo
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
-                                    UNION(SELECT nombre_c, descripción_c, créditos_c
+                                    UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
                                     INNER JOIN expediente_fijo_libre ON expediente.id_fijo = expediente_fijo_libre.id_fijo 
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))";
@@ -205,16 +205,15 @@ if(!isset($_SESSION['id_est'])){
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
-
                                       echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='case' value='1' /> </td>
+                                        <td><input type='checkbox' class='case' name='id_fijo[]' value='{$row['id_fijo']}' /> </td>
                                         <td>{$row['nombre_c']}</td>
                                         <td>{$row['descripción_c']}</td>
                                         <td>{$row['créditos_c']}</td>
                                       </tr> ";}}
 
                                     echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='case' value='1' /> </td>
+                                        <td><input type='checkbox' class='case' name='id_fijo[]' value='otros' /> </td>
                                         <td>Otros</td>
                                         <td></td>
                                         <td></td>
@@ -225,7 +224,8 @@ if(!isset($_SESSION['id_est'])){
                                        Créditos Recomendados: {$reco['SUM(C)']}
                                                         </div>
                                         <div class='modal-footer'><br>
-                                          <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
+                                        <input type='hidden' name='count' value='$id'></input>
+                                          <div class='login-btn-container'><button style='float: right;' type='submit' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
                                         </div>
                                       </div>
                                     </div>
@@ -253,7 +253,7 @@ if(!isset($_SESSION['id_est'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_rol = 8 AND id_est = $id
+                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_est = $id
                    ORDER by id_fijo";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -300,7 +300,7 @@ if(!isset($_SESSION['id_est'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo_generales INNER JOIN expediente USING (id_fijo) WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
+                   FROM expediente_fijo_generales INNER JOIN expediente USING (id_fijo) WHERE id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -346,7 +346,7 @@ if(!isset($_SESSION['id_est'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_rol = 3 OR id_rol = 6 OR id_rol = 7 OR id_rol = 8 OR id_rol = 9 OR id_rol = 10 AND id_est = $id";
+                   FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -392,7 +392,7 @@ if(!isset($_SESSION['id_est'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo_departamentales INNER JOIN expediente USING (id_fijo) WHERE id_rol = 11 OR id_rol = 12 OR id_rol = 13 AND id_est = $id";
+                   FROM expediente_fijo_departamentales INNER JOIN expediente USING (id_fijo) WHERE id_est = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
