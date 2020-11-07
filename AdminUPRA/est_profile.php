@@ -148,37 +148,6 @@ body {
         <a href="index.html" class="nav-link">Inicio</a>
       </li>
     </ul>
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-danger navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-    </ul>
   </nav>
 <!-- /.navbar -->
 <!-- Main Sidebar Container -->
@@ -266,7 +235,7 @@ body {
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
+                    $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est, secuencia_est
                     FROM estudiante WHERE id_est = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -299,10 +268,8 @@ body {
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
                echo "<h3 class='profile-username text-center'>{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}</h3>
-
                 <p class='text-muted text-center'>{$row['correo_est']}</p>
                 <p class='text-muted text-center'>{$row['num_est']}</p>
-
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
                     <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(C)']}</a>
@@ -311,7 +278,7 @@ body {
                     <b>Año</b> <a class='float-right'>4</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Secuencia Curricular</b> <a class='float-right'>2017</a>
+                    <b>Secuencia:</b> <a class='float-right'>{$row['secuencia_est']}</a>
                   </li>
                    
                 </ul>";?>
