@@ -421,7 +421,7 @@ if(!isset($_SESSION['id_est'])){
     </div>
 <!-- Culmina la parte del expediente academico. -->          
 <!-- TAB para Citas. El estudiante puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
-    <div id="Citas" class="tabcontent">
+    <div id="Citas" class="tabcontent active">
     <section class="appointment">
     <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">                 

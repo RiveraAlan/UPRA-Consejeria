@@ -29,9 +29,6 @@ require 'dbconnect.php';
    $stmt->close();
    }  else {
      echo "No se pudo procesar su sugerencia.";
-   }
-   
-    
+   }  
 }
-
 ?>
