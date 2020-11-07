@@ -244,10 +244,9 @@ if(!isset($_SESSION['id_est'])){
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencias</th>
                   </tr>
                   </thead> 
                   <tbody>
@@ -271,8 +270,7 @@ if(!isset($_SESSION['id_est'])){
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                     echo "<td>Prox. Semestre</td>";
                     }else{
@@ -291,10 +289,9 @@ if(!isset($_SESSION['id_est'])){
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencias</th>
                   </tr>
                   </thead> 
                   <tbody>
@@ -317,8 +314,7 @@ if(!isset($_SESSION['id_est'])){
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
@@ -337,10 +333,9 @@ if(!isset($_SESSION['id_est'])){
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencias</th>
                   </tr>
                   </thead> 
                 <tbody>
@@ -363,8 +358,7 @@ if(!isset($_SESSION['id_est'])){
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
@@ -383,10 +377,9 @@ if(!isset($_SESSION['id_est'])){
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Matriculado</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación</th>
+                    <th>Convalidación/Equivalencias</th>
                   </tr>
                   </thead> 
                 <tbody>
@@ -409,8 +402,7 @@ if(!isset($_SESSION['id_est'])){
                     echo "<td>{$row['nombre_c']}</td>
                     <td>{$row['descripción_c']}</td>
                     <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['estatus_c']}</td>";
+                    <td>{$row['nota_c']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
