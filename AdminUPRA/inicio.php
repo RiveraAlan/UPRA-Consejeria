@@ -395,7 +395,7 @@ function myFunction() {
 <script>
 function searchStudent(str){
   const strCpy = "^" + str;
-  let re = new RegExp(strCpy);
+  let re = new RegExp(strCpy, "i");
   const students = <?php echo json_encode($students); ?>;
   let searchList = '';
 
