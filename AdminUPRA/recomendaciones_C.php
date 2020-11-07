@@ -2,6 +2,7 @@
 session_start();
 include 'private/dbconnect.php';
 
+//SELECT (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) AS YY FROM estudiante;
 
 // Query para detectar las notas y cursos que esta tomando 
 
@@ -13,7 +14,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -29,7 +30,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -43,7 +44,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -58,7 +59,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -72,7 +73,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -87,16 +88,16 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 3041 
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE 
+
     $query = "  SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 8 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
+                WHERE (id_fijo = 8 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
                 AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
                 OR (id_fijo = 4 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
                 OR (id_fijo = 7 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
@@ -104,7 +105,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -119,7 +120,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -134,7 +135,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -151,7 +152,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 4){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -166,7 +167,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -182,7 +183,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -197,7 +198,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -215,7 +216,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 5){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -231,7 +232,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -242,45 +243,43 @@ include 'private/dbconnect.php';
 //Query para recomendar Español I
 //FALTA DETECTAR EL A~O DEL ESTUDIANTE 
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 19 OR id_fijo = 21 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )
+            WHERE (id_fijo = 19 OR id_fijo = 21 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar Español II
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE 
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 20 OR id_fijo = 22 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            WHERE (id_fijo = 20 OR id_fijo = 22 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 19 OR id_fijo = 21 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar Español 3208
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE 
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 23 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            WHERE (id_fijo = 23 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 20 OR id_fijo = 22 AND estatus_c <> 0 AND (nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D')))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -294,7 +293,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -309,23 +308,22 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar INGL 3015
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 31 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            WHERE (id_fijo = 31 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 25 OR id_fijo = 26 OR id_fijo = 29 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -339,7 +337,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -354,7 +352,7 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -369,135 +367,118 @@ include 'private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
-            // Prepare statement
-            $stmt = $conn->prepare($sql);
-            // execute the query
-            $stmt->execute();
-            $stmt->close();}
-//Query para recomendar HUMA 
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo > 70 AND id_fijo < 100 AND estatus_c = 0 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W'))";
-    $result = mysqli_query($conn,$query);
-    $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 1){
-         $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar CISO 
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 17 OR id_fijo = 18 AND estatus_c = 0 
+            WHERE (id_fijo = 17 OR id_fijo = 18 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 OR $resultCheck < 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar CIBI 3001 
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 36 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
+            WHERE (id_fijo = 36 AND estatus_c = 0 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar CIBI 3002
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 37 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
+            WHERE (id_fijo = 37 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 36 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3011 
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 38 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
+            WHERE (id_fijo = 38 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 35 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3013
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 39 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
+            WHERE (id_fijo = 39 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 35 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D')))";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3012
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 40 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
+            WHERE (id_fijo = 40 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 38 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3014
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE
  $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 41 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
+            WHERE (id_fijo = 41 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
             OR (id_fijo = 39 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row['id_fijo']";
+         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
+
+   
+     /*  if($creditos_huma < 6 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3){
+         // SQL UPDATE EXPEDIENTE
+      } */
 mysqli_close($conn);
