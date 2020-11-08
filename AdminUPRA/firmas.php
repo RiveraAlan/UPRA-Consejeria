@@ -8,6 +8,8 @@ if(!isset($_SESSION['id'])){
   header("Location: index.php");
     exit();
 }
+if (isset($_POST['class-submit'])) {
+$id_fijo = mysqli_real_escape_string($conn, $_POST['id_fijo']);}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,37 +69,6 @@ if(!isset($_SESSION['id'])){
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index.html" class="nav-link">Inicio</a>
-      </li>
-    </ul>
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-danger navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
       </li>
     </ul>
   </nav>
@@ -169,7 +140,7 @@ if(!isset($_SESSION['id'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>LISTA DE ESTUDIANTES CCOM 3027</h1>
+            <h1>LISTA DE ESTUDIANTES CCOM <?php '.$row['nombre_c'].' ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -198,26 +169,19 @@ if(!isset($_SESSION['id'])){
         </div>
         <div class="card-body p-0">
             <div align='center'><h3>FIRMAS</h3></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>1. nelson.octaviani@upr.edu</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>2. liz.matos2@upr.edu</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>3.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>4.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>5.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>6.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>7.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>8.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>9.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>10.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>11.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>12.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>13.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>14.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>15.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>16.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>17.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>18.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>19.</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>20.</th><br>
+            <?php
+        $sql ="SELECT correo_est, nombre_c, id_fijo FROM expediente 
+        INNER JOIN estudiante USING (id_est)
+        INNER JOIN expediente_fijo_departamentales USING (id_fijo) 
+               WHERE estatus_c = 4 AND id_fijo = $id_fijo";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+        $count = 1;
+        if($resultCheck > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            echo "
+                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['correo_est']}</th><br>";
+        }}?>
             <br>
         </div>
       </div>
