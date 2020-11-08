@@ -207,7 +207,7 @@ if(!isset($_SESSION['id_est'])){
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='id_fijo[]' id='id_fijo' value='{$row['id_fijo']}' /> </td>
+                                        <td><input type='checkbox' class='case' name='id_fijo[]' id='id_fijo[]' value='{$row['id_fijo']}' /> </td>
                                         <td>{$row['nombre_c']}</td>
                                         <td>{$row['descripción_c']}</td>
                                         <td>{$row['créditos_c']}</td>
@@ -624,7 +624,7 @@ function toggle(source) {
   <script src="js/main.js"></script>
   <script src="js/consejeria.js"></script>  
   <script>function toggle(source) {
-              checkboxes = document.getElementsByName('id_fijo');
+              checkboxes = document.getElementsByName('id_fijo[]');
               for(var i=0, n=checkboxes.length;i<n;i++) {
                   checkboxes[i].checked = source.checked;
               }}
