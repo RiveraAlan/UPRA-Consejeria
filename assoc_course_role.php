@@ -154,8 +154,8 @@ for($i=0; $i < count($courses_below_section3); $i++){
         preg_match("/\d\.\d{1,2}/", $temp, $credits);
         $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
         // Grade
-         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp, $grade);
-         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
+         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-F]\s/", $temp, $grade);
+         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-F]\s/", '', $temp);
 
          // REMOVE "Meets no requirements"
          if(preg_match("/Meets no requirements/", $temp)){
@@ -176,7 +176,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
         }else {
             $estatus_c = 1;
         }
-         if((preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[^A-D]\s/", $grade[0])) OR (is_null($grade[0]) AND $estatus_c !== 2)){
+         if(preg_match("/EDFU 3005|INGL 0060/", $course_code[0])){
             continue;
         } 
         
@@ -186,7 +186,6 @@ for($i=0; $i < count($courses_below_section3); $i++){
             "id_rol" => NULL
                         );
                         
-            
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["nombre_c"] === $course["nombre_c"]){
                     $course["id_fijo"] = $e_f["id_fijo"];

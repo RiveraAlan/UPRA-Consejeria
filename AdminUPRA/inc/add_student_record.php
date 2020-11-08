@@ -86,8 +86,6 @@ fclose($myfile);
     $credits;
     $grade;
     
-  
-
     if(preg_match("/^CCOM/", $temp) AND preg_match("/\s[A-F]{1}\s/", $temp)){
 
         //Course code
@@ -129,11 +127,9 @@ fclose($myfile);
     }       
 } 
 
-
 usort($department_electives, function ($item1, $item2) {
     return $item1["nombre_c"] <=> $item2["nombre_c"];
 });
-
 
 for($i=0; $i < count($department_electives) - 1; $i++){
     if($department_electives[$i]["nombre_c"] === $department_electives[$i+1]["nombre_c"] AND $department_electives[$i]["año_aprobó_c"] === $department_electives[$i+1]["año_aprobó_c"]){
@@ -144,27 +140,15 @@ for($i=0; $i < count($department_electives) - 1; $i++){
     }
 }
 
-
 $adv_credits = 0;
 $int_credits = 0;
 
-
 foreach($department_electives as $department_elective_idx => $department_elective_info){
-    //ccom 4307
     
     if(in_array(trim($department_elective_info["nombre_c"]), $adv_department_electives)){
         $adv_credits += intval($department_elective_info["créditos_c"]);
     } else {
-        /*  if($int_credits >= 6){
-             echo"<h1>Go to Elective: </h1>". $department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"];
-             $free_elective = $department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"]." ".$department_elective_info["año_aprobó_c"]." ".$department_elective_info["créditos_c"]." ".$department_elective_info["nota_c"];
-             array_push($free_electives, $free_elective);
-             // Delete course from dept electives.
-               unset($department_electives[$department_elective_idx]);
-
-         } else {
-            $int_credits += intval($department_elective_info["créditos_c"]);
-         } */
+        
     }
 }
 
@@ -232,6 +216,9 @@ $contents = file_get_contents('expediente_formatted.txt');
         $contents = str_replace($line, '', $contents);
         file_put_contents('expediente_formatted.txt', $contents);        
 */
+
+
+
 
 
 // ASSOCIATE COURSE WITH ID_FIJO AND UPLOAD TO DATABASE
@@ -390,8 +377,8 @@ for($i=0; $i < count($courses_below_section3); $i++){
         preg_match("/\d\.\d{1,2}/", $temp, $credits);
         $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
         // Grade
-         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp, $grade);
-         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
+         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-F]\s/", $temp, $grade);
+         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-F]\s/", '', $temp);
 
          // REMOVE "Meets no requirements"
          if(preg_match("/Meets no requirements/", $temp)){
@@ -412,7 +399,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
         }else {
             $estatus_c = 1;
         }
-         if((preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[^A-D]\s/", $grade[0])) OR (is_null($grade[0]) AND $estatus_c !== 2)){
+         if(preg_match("/EDFU 3005|INGL 0060/", $course_code[0])){
             continue;
         } 
         
@@ -422,7 +409,6 @@ for($i=0; $i < count($courses_below_section3); $i++){
             "id_rol" => NULL
                         );
                         
-            
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["nombre_c"] === $course["nombre_c"]){
                     $course["id_fijo"] = $e_f["id_fijo"];
@@ -578,69 +564,6 @@ $sql ="SELECT id_est FROM expediente";
                 }
                     
 mysqli_close($conn);
-
-
-
-/*
-if(preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp)){
-        
-        //Course code
-        preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
-        $temp = preg_replace("/[A-Z]{4} \d{4}/", '', $temp);
-        //Semester
-        preg_match("/[A-Z]\d{2}/", $temp, $semester);
-        $temp = preg_replace("/[A-Z]\d{2}/", '', $temp);
-        //Amount of Credits
-        preg_match("/\d\.\d{1,2}/", $temp, $credits);
-        $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
-        // Grade
-         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp, $grade);
-         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
-
-         // REMOVE "Meets no requirements"
-         if(preg_match("/Meets no requirements/", $temp)){
-            $temp = preg_replace("/Meets no requirements/", '', $temp);
-        }
-        // REMOVE "May not be repeated"
-        if(preg_match("/May not be repeated/", $temp)){
-            $temp = preg_replace("/May not be repeated/", '', $temp);
-        }
-        //REMOVE "()"
-        if(preg_match("/\( \)/", $temp)){
-            $temp = preg_replace("/\( \)/", '', $temp);
-        }
-
-         // ASSIGN ESTATUS_C
-         if(preg_match("/Registered/", $temp)){
-            $temp = preg_replace("/Registered/", '', $temp);
-            $estatus_c = 2;
-        }else {
-            $estatus_c = 1;
-        }
-        if((preg_match("/\sF\s|\sW\s|\sID\s|\sIF\s/", $grade[0])) OR (is_null($grade[0]) AND $estatus_c !== 2)){
-            continue;
-        }
-        
-            $course = array("id_est" =>-1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
-            "descripción_c" => $temp,"estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
-            "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
-            "id_rol" => NULL
-                        );
-                        
-            foreach($expediente_fijo as $idx => $e_f){
-                if($e_f["nombre_c"] === $course["nombre_c"]){
-                    $course["id_fijo"] = $e_f["id_fijo"];
-                    $course["id_rol"] = $e_f["id_rol"];
-                    unset($expediente_fijo[$idx]);
-                }
-                   
-            }
-               array_push($courses, $course);
-    }
-*/
- 
-
-
 
 
 
