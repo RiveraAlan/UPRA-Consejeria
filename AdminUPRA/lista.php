@@ -178,11 +178,12 @@ if(!isset($_SESSION['id'])){
                                   <form action="firmas.php" method="POST">   
                                   <tr class="row100">
                                      <input type="hidden" name="id_fijo" value="'.$row['id_fijo'].'"></input> 
+                                     <input type="hidden" name="nombre_c" value="'.$row['nombre_c'].'"></input> 
                                     <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
                                     <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
                                     <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
+                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="class()" name="class-submit" class="nav-link"></button>
                                     <b>Lista '.$row['nombre_c'].'</b></td>
                                   </tr>
                                   </form>';}}?>
