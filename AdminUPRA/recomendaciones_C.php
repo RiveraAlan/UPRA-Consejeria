@@ -1,6 +1,7 @@
 <?php
 session_start();
-include 'private/dbconnect.php';
+$id_est = $_SESSION['id_est'];
+include '../private/dbconnect.php';
 
 //SELECT (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) AS YY FROM estudiante;
 
@@ -12,7 +13,7 @@ include 'private/dbconnect.php';
                 (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W'))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 1){
+    if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -42,7 +43,7 @@ include 'private/dbconnect.php';
         AND ( nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 1){
+    if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -57,7 +58,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 35 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' ))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -71,7 +72,7 @@ include 'private/dbconnect.php';
                 AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 1){
+    if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -86,7 +87,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 6 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -103,7 +104,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 7 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 3){
+    if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -118,7 +119,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 2 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -133,7 +134,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 9 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C')))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -150,7 +151,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 10 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 4){
+    if($resultCheck == 4){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -165,7 +166,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 9 AND (estatus_c <> 0  OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -181,7 +182,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 35 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 3){
+    if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -196,7 +197,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 12 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -214,7 +215,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 14 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 5){
+    if($resultCheck == 5){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -230,7 +231,7 @@ include 'private/dbconnect.php';
                 OR (id_fijo = 14 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 3){
+    if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -247,7 +248,7 @@ include 'private/dbconnect.php';
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 1){
+    if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -262,7 +263,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 19 OR id_fijo = 21 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -277,7 +278,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 20 OR id_fijo = 22 AND estatus_c <> 0 AND (nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D')))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -291,7 +292,7 @@ include 'private/dbconnect.php';
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 3){
+    if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -306,7 +307,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 24 OR id_fijo = 26 OR id_fijo = 29 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -321,7 +322,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 25 OR id_fijo = 26 OR id_fijo = 29 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -335,7 +336,7 @@ include 'private/dbconnect.php';
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 1){
+    if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -350,7 +351,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 33 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -365,7 +366,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 34 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -379,7 +380,7 @@ include 'private/dbconnect.php';
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck > 1 OR $resultCheck < 2){
+    if($resultCheck > 0 AND $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -393,7 +394,7 @@ include 'private/dbconnect.php';
             AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 1){
+    if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -408,7 +409,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 36 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -423,7 +424,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 35 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -438,7 +439,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 35 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D')))";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -453,7 +454,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 38 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -468,7 +469,7 @@ include 'private/dbconnect.php';
             OR (id_fijo = 39 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
-    if($resultCheck = 2){
+    if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
          $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
             // Prepare statement
@@ -477,8 +478,159 @@ include 'private/dbconnect.php';
             $stmt->execute();
             $stmt->close();}
 
-   
-     /*  if($creditos_huma < 6 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3){
-         // SQL UPDATE EXPEDIENTE
-      } */
+   $estatus_R = 1;
+//Query para recomendar ELECTIVA LIBRE
+ $query = " SELECT id_fijo FROM expediente 
+            WHERE (id_fijo = -1 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+    $result = mysqli_query($conn,$query);
+    $resultCheck = mysqli_num_rows($result);
+    if($resultCheck == 2){
+         $row = mysqli_fetch_assoc($result);
+         $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+$stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();}    
+
+//Query para recomendar ELECTIVA LIBRE
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -2 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();}   
+
+//Query para recomendar ELECTIVA LIBRE
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -3 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();} 
+
+//Query para recomendar ELECTIVA LIBRE
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -4 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();} 
+
+//Query para recomendar ELECTIVA DEPARTAMENTAL
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -5 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();}   
+
+//Query para recomendar ELECTIVA DEPARTAMENTALES
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -6 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();}  
+
+//Query para recomendar ELECTIVA DEPARTAMENTALES
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -7 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();} 
+
+//Query para recomendar ELECTIVA DEPARTAMENTALES
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -8 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();} 
+
+//Query para recomendar ELECTIVA HUMA
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -9 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();}  
+
+//Query para recomendar ELECTIVA HUMA
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -10 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();}  
+
+//Query para recomendar ELECTIVA CISO
+$query = " SELECT id_fijo FROM expediente 
+   WHERE (id_fijo = -10 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+   $result = mysqli_query($conn,$query);
+   $resultCheck = mysqli_num_rows($result);
+   if($resultCheck == 2){
+   $row = mysqli_fetch_assoc($result);
+   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+
+   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+// Prepare statement    
+$stmt->execute();
+   $stmt->close();} 
+
 mysqli_close($conn);

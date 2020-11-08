@@ -176,8 +176,9 @@ if(!isset($_SESSION['id_est'])){
                                         <div class='modal-body'>
                                         <table id='example2' class='table table-bordered table-hover'>
                                       <thead>
+                                      <form action='private/confirmacion.php' method='POST'>
                                       <tr width='50%'' bgcolor='yellow'>
-                                        <th><input type='checkbox' class='case' name='case' value='1' /></th>
+                                        <th><input type='checkbox' onClick='toggle(this)' class='case' name='case' /></th>
                                         <th>Cursos</th>
                                         <th>Descripción</th>
                                         <th>Créditos</th>
@@ -186,19 +187,19 @@ if(!isset($_SESSION['id_est'])){
                                     <tbody>";
                                     $sql ="SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
-                                    INNER JOIN expediente_fijo ON expediente.id_fijo = expediente_fijo.id_fijo 
+                                    INNER JOIN expediente_fijo USING (id_fijo)
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3)
                                     UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
-                                    INNER JOIN expediente_fijo_generales ON expediente.id_fijo = expediente_fijo_generales.id_fijo
+                                    INNER JOIN expediente_fijo_generales USING (id_fijo)
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
                                     UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
-                                    INNER JOIN expediente_fijo_departamentales ON expediente.id_fijo = expediente_fijo_departamentales.id_fijo
+                                    INNER JOIN expediente_fijo_departamentales USING (id_fijo)
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
                                     UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
                                     FROM expediente
-                                    INNER JOIN expediente_fijo_libre ON expediente.id_fijo = expediente_fijo_libre.id_fijo 
+                                    INNER JOIN expediente_fijo_libre USING (id_fijo)
                                     WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
@@ -206,14 +207,14 @@ if(!isset($_SESSION['id_est'])){
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='id_fijo[]' value='{$row['id_fijo']}' /> </td>
+                                        <td><input type='checkbox' class='case' name='id_fijo[]' id='id_fijo' value='{$row['id_fijo']}' /> </td>
                                         <td>{$row['nombre_c']}</td>
                                         <td>{$row['descripción_c']}</td>
                                         <td>{$row['créditos_c']}</td>
                                       </tr> ";}}
 
                                     echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='id_fijo[]' value='otros' /> </td>
+                                        <td><input type='checkbox' class='case' name='otros' id='otros' value='otros' /> </td>
                                         <td>Otros</td>
                                         <td></td>
                                         <td></td>
@@ -224,9 +225,9 @@ if(!isset($_SESSION['id_est'])){
                                        Créditos Recomendados: {$reco['SUM(C)']}
                                                         </div>
                                         <div class='modal-footer'><br>
-                                        <input type='hidden' name='count' value='$id'></input>
-                                          <div class='login-btn-container'><button style='float: right;' type='submit' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
-                                        </div>
+                                          <div class='login-btn-container'><button onclick='confirmar()' name='confirm-submit' style='float: right;' type='submit' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
+                                        </form>
+                                          </div>
                                       </div>
                                     </div>
                                   </div>
@@ -464,7 +465,7 @@ if(!isset($_SESSION['id_est'])){
 <!-- Culmina la parte de los TABS para las Citas. -->          
 <!-- Este es el TAB de Sugerencias del estudiante. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el estudiante sugiriendo solo las electivas departamentales. -->
          <div id="Sugerencias" class="tabcontent">
-            <form action="private/confirmacion.php" method="post">
+            <form action="private/sugerencias.php" method="POST">
             <section>
                 <div class="table">
                 <div class="container-table100">
@@ -479,7 +480,7 @@ if(!isset($_SESSION['id_est'])){
                                     <th class="column100 column3" data-column="column3">Descripción</th>
                                     <th class="column100 column4" data-column="column4">Créditos</th>
                                     <th class="column100 column5" data-column="column5">Clasificación</th>
-                                    <th style="background: transparent; border: none" class="column100 column5" data-column="column5"><button onclick="confirmar()" name="confirm-submit" type="submit" class="btn btn-yellow btn-pill">CONFIRMAR</button></th>
+                                    <th style="background: transparent; border: none" class="column100 column5" data-column="column5"><button onclick="sugerir()" name="suge-submit" type="submit" class="btn btn-yellow btn-pill">CONFIRMAR</button></th>
                                   </tr>
                                 </thead>
                                 
@@ -494,8 +495,7 @@ if(!isset($_SESSION['id_est'])){
                               while($row = mysqli_fetch_assoc($result)){
                                   echo "<tr class='row100'>
                                     <td align='center'>
-                                    <input type='checkbox' onClick='toggle(this)' 
-                                    class='case' name='id_fijo' id='id_fijo' value='{$row['id_fijo']}' /> </td>
+                                    <input type='checkbox' class='case' name='sugerencia[]' id='sugerencia' value='{$row['id_fijo']}' /> </td>
                                     <td class='column100 column1' data-column='column1'>{$row['nombre_c']}</td>
                                     <td class='column100 column2' data-column='column2'>{$row['descripción_c']}</td>
                                     <td class='column100 column3' data-column='column3'>{$row['créditos_c']}</td>
@@ -597,6 +597,16 @@ if(!isset($_SESSION['id_est'])){
        }
         </script>
 <!-- Culmina la parte del SCRIPT del calendario para sacar citas -->
+<!-- Script para seleccionar todos los checkbox -->
+<script>
+function toggle(source) {
+              checkboxes = document.getElementsByName('id_fijo[]');
+              for(var i=0, n=checkboxes.length;i<n;i++) {
+                  checkboxes[i].checked = source.checked;
+              }
+            }
+</script>
+<!-- Culmina scripts de checkbox -->
 <!-- Aqui se encuentran varios SCRIPTS que hacen el funcionamiento de la pagina. -->     
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
