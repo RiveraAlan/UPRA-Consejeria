@@ -197,6 +197,8 @@ foreach($electives as $course){
         fwrite($myfile, $course);
     elseif(trim($course) === '***********************************************'){
         $delete = TRUE;
+        
+        fwrite($myfile ,"\nSECTION 3 - Work Not Applicable to this Program\n");
         fwrite($myfile ,"\n***********************************************\n");
     }
         
@@ -210,13 +212,4 @@ fclose($myfile);
 $contents = file_get_contents('expediente_formatted.txt');
         $contents = str_replace($line, '', $contents);
         file_put_contents('expediente_formatted.txt', $contents);        
-*/
-
-/*
-SEIS CREDITOS INTERMEDIA LAS DEMAS SE VAN PARA ELECTIVA LIBRE
-SEIS CREDITOS MINIMO EN AVANZADA
-CASO ESPECIAL: INVESTIGACION TRES VECES ES EL MISMO CODIGO
-COMPARAR CODIGO Y SEMESTRE 
-
-FALTA QUITAR MEETING REQUIREMENTS AL NOMBRE DEL CURSO Y COLOCAR LAS EXTRAS DESPUES DE LIBRES
 */
