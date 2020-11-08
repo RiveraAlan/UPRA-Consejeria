@@ -198,8 +198,8 @@ if(!isset($_SESSION['id'])){
         </div>
         <div class="card-body p-0">
             <div align='center'><h3>FIRMAS</h3></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>1. nelson.octaviani@upr.edu</th><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<th>2. liz.matos2@upr.edu</th><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<th>1.</th><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<th>2.</th><br>
             &nbsp;&nbsp;&nbsp;&nbsp;<th>3.</th><br>
             &nbsp;&nbsp;&nbsp;&nbsp;<th>4.</th><br>
             &nbsp;&nbsp;&nbsp;&nbsp;<th>5.</th><br>
