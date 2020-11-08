@@ -9,7 +9,9 @@ if(!isset($_SESSION['id'])){
     exit();
 }
 if (isset($_POST['class-submit'])) {
-$id_fijo = mysqli_real_escape_string($conn, $_POST['id_fijo']);}
+$id_fijo = mysqli_real_escape_string($conn, $_POST['id_fijo']);
+$nombre_c = mysqli_real_escape_string($conn, $_POST['nombre_c']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,7 +142,7 @@ $id_fijo = mysqli_real_escape_string($conn, $_POST['id_fijo']);}
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>LISTA DE ESTUDIANTES CCOM <?php '.$row['nombre_c'].' ?></h1>
+            <h1>LISTA DE ESTUDIANTES <?php echo $nombre_c ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -170,7 +172,7 @@ $id_fijo = mysqli_real_escape_string($conn, $_POST['id_fijo']);}
         <div class="card-body p-0">
             <div align='center'><h3>FIRMAS</h3></div>
             <?php
-        $sql ="SELECT correo_est, nombre_c, id_fijo FROM expediente 
+        $sql ="SELECT correo_est FROM expediente 
         INNER JOIN estudiante USING (id_est)
         INNER JOIN expediente_fijo_departamentales USING (id_fijo) 
                WHERE estatus_c = 4 AND id_fijo = $id_fijo";
