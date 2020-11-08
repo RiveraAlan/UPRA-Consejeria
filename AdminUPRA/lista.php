@@ -167,7 +167,7 @@ if(!isset($_SESSION['id'])){
                                 </thead>
                                 <tbody>
                                   <?php
-                                       $sql ="SELECT nombre_c, descripción_c, créditos_c
+                                       $sql ="SELECT nombre_c, descripción_c, créditos_c, id_fijo
                                         FROM expediente_fijo_departamentales";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
@@ -175,15 +175,17 @@ if(!isset($_SESSION['id'])){
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                     echo '
-                                    
+                                  <form action="firmas.php" method="POST">   
                                   <tr class="row100">
+                                     <input type="hidden" name="id_fijo" value="'.$row['id_fijo'].'"></input> 
                                     <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
                                     <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
                                     <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="firmas.php" class="nav-link"></a>
+                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
                                     <b>Lista '.$row['nombre_c'].'</b></td>
-                                  </tr>';}}?>
+                                  </tr>
+                                  </form>';}}?>
                                 </tbody>
                               </table>
                             </div>
@@ -209,7 +211,7 @@ if(!isset($_SESSION['id'])){
                                 </thead>
                                 <tbody>
                                 <?php
-                                   $sql =" SELECT nombre_c, descripción_c, créditos_c
+                                   $sql =" SELECT nombre_c, descripción_c, créditos_c, id_fijo
                                    FROM expediente_fijo";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
@@ -217,14 +219,17 @@ if(!isset($_SESSION['id'])){
                                 if($resultCheck > 0){
                                 while($row = mysqli_fetch_assoc($result)){
                         echo '
+                                  <form action="firmas.php" method="POST"> 
                                   <tr class="row100">
+                                     <input type="hidden" name="id_fijo" value="'.$row['id_fijo'].'"></input> 
                                     <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
                                     <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
                                     <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="firmas.php" class="nav-link"></a>
+                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
                                     <b>Lista '.$row['nombre_c'].'</b></td>
-                                  </tr>';}}?>
+                                  </tr>
+                                  </form>';}}?>
                                   
                                 </tbody>
                               </table>
@@ -251,21 +256,24 @@ if(!isset($_SESSION['id'])){
                                 </thead>
                                 <tbody>
                                  <?php
-                                $sql ="SELECT nombre_c, descripción_c, créditos_c
+                                $sql ="SELECT nombre_c, descripción_c, créditos_c, id_fijo
                                    FROM expediente_fijo_generales";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
                                 if($resultCheck > 0){
                                 while($row = mysqli_fetch_assoc($result)){
                            echo '
+                                  <form action="firmas.php" method="POST"> 
                                   <tr class="row100">
+                                    <input type="hidden" name="id_fijo" value="'.$row['id_fijo'].'"></input> 
                                     <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
                                     <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
                                     <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><a href="firmas.php" class="nav-link"></a>
+                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
                                     <b>Lista '.$row['nombre_c'].'</b></td>
-                                  </tr>';}}?>
+                                  </tr>
+                                  </form>';}}?>
                                 </tbody>
                               </table>
                             </div>
