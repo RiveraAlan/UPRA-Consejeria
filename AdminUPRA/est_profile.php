@@ -647,9 +647,14 @@ body {
       </div>
               <!-- /.Final de Examinar -->  
                 
+
+
             <!-- Modals -->
+
+
+
             <!-- Edit -->
-            <div id="id01" class="w3-modal" style="padding-left:20%">
+    <div id="id01" class="w3-modal" style="padding-left:20%">
     <div class="w3-modal-content w3-animate-zoom">
       <header class="w3-container" style="padding-top:5px">
         <span onclick="document.getElementById('id01').style.display='none'"
@@ -736,6 +741,7 @@ body {
       </footer>   
     </div>
   </div>
+
             <!-- /.Edit -->
 
             <!-- Expediente -->
@@ -934,5 +940,27 @@ $("status").innerHTML = "Upload Aborted";
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script>
+
+  // REDIRECT TO PHP SCRIPT THAT WILL PUT THE STUDENT RECORD IN A TXT FILE
+    function $(el){
+        return document.getElementById(el);
+    }
+
+    function uploadFile(event){
+    event.preventDefault();
+    var file = event.dataTransfer.files[0];
+	// alert(file.name+" | "+file.size+" | "+file.type);
+	var formdata = new FormData();
+	formdata.append("file1", file);
+	var ajax = new XMLHttpRequest();
+	ajax.upload.addEventListener("progress", progressHandler, false);
+	ajax.open("POST", "inc/add_record_to_project.php");
+	ajax.send(formdata);
+
+    }
+    
+</script>
 </body>
 </html>
