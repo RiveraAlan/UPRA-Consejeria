@@ -1,11 +1,10 @@
 <?php
 session_start();
 include("inc/connection.php");
-$id = $_SESSION['stdnt_number'];
-$id= $_SESSION['id'];
-$name = $_SESSION['name'];
+$student_id = $_SESSION['stdnt_number'];
+$advisor_id = $_SESSION['adv_id'];
 
-if(!isset($_SESSION['id'])){
+if(!isset($student_id)){
   header("Location: index.php");
     exit();
 }
@@ -162,7 +161,7 @@ body {
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -235,7 +234,7 @@ body {
               <div class="card-body box-profile">
                     <?php
                     $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_cohort
-                    FROM student WHERE stdnt_number = $id";
+                    FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
             
@@ -243,23 +242,23 @@ body {
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
                 INNER JOIN  student_record USING(crse_label)
-                WHERE student_record.stdnt_number = $id)
+                WHERE student_record.stdnt_number = '$student_id')
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = $id)
+                WHERE student_record.stdnt_number = '$student_id')
                 UNION ALL (SELECT crse_credits AS C
                 FROM departmental_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = $id)
+                WHERE student_record.stdnt_number = '$student_id')
                 UNION ALL (SELECT crse_credits AS C
                 FROM free_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = $id)) t1";
+                WHERE student_record.stdnt_number = '$student_id')) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
-                if ($creditos['SUM(C)']=== NULL){
+                if ($creditos['SUM(C)'] === NULL){
                   $creditos['SUM(C)']=0;
               }
                
@@ -346,12 +345,12 @@ body {
                   <tbody>
                 <?php
                    $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
+                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'
                    UNION
                    (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                    FROM mandatory_courses WHERE crse_label 
                    NOT IN (SELECT crse_label
-                   FROM student_record WHERE student_record.stdnt_number = $id))";
+                   FROM student_record WHERE student_record.stdnt_number = '$student_id'))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -410,12 +409,12 @@ body {
                   <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
+                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'
                 UNION
                 (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                 FROM general_courses WHERE crse_label 
                 NOT IN (SELECT crse_label
-                FROM student_record WHERE student_record.stdnt_number = $id))";
+                FROM student_record WHERE student_record.stdnt_number = '$student_id'))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -436,14 +435,14 @@ body {
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
@@ -480,7 +479,7 @@ body {
                 (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                 FROM free_courses WHERE crse_label 
                 NOT IN (SELECT crse_label
-                FROM student_record WHERE student_record.stdnt_number = $id))";
+                FROM student_record WHERE student_record.stdnt_number = '$student_id'))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -501,14 +500,14 @@ body {
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
@@ -540,12 +539,12 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
+                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'
                 UNION
                 (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                 FROM departmental_courses WHERE crse_label 
                 NOT IN (SELECT crse_label
-                FROM student_record WHERE student_record.stdnt_number = $id))";
+                FROM student_record WHERE student_record.stdnt_number = $student_id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -566,14 +565,14 @@ body {
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
@@ -612,7 +611,7 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status
-                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = $id";
+                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                   $modal = 'document.getElementById("id03").style.display="block"';

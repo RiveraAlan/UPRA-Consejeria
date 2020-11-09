@@ -1,8 +1,8 @@
 <?php
 include("inc/connection.php");
 session_start();
-$id= $_SESSION['adv_id'];
-$name = $_SESSION['adv_name'];
+$advisor_id= $_SESSION['adv_id'];
+$advisor_name = $_SESSION['adv_name'];
 
 if(!isset($_SESSION['adv_id'])){
   header("Location: index.php");
@@ -53,7 +53,7 @@ if(!isset($_SESSION['adv_id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
