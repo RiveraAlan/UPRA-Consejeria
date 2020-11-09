@@ -53,7 +53,7 @@ if(!isset($_SESSION['adv_id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -61,7 +61,7 @@ if(!isset($_SESSION['adv_id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']}</a>" ?>
         </div>
       </div>
 
@@ -107,12 +107,12 @@ if(!isset($_SESSION['adv_id'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>files de los students</h1>
+            <h1>Expediente de los Estudiantes</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">files de los students</li>
+              <li class="breadcrumb-item active">Expediente de los Estudiantes</li>
             </ol>
           </div>
         </div>
@@ -141,7 +141,7 @@ if(!isset($_SESSION['adv_id'])){
               ?>
                 <?php echo "<h3>{$row['stdnt_number']}</h3>" ?>
 
-                <p>students de CCOM</p>
+                <p>Estudiantes de CCOM</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -268,8 +268,6 @@ function myFunction() {
 </script>
             
             <!-- TERMINAR EL SEARCH -->
-            
-
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
@@ -302,7 +300,7 @@ function myFunction() {
               </thead>
               <tbody> 
               <?php
-              $sql = "SELECT stdnt_number, stdnt_email, stdnt_number, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial
+              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial
                       FROM student";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
