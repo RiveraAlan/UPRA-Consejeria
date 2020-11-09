@@ -424,7 +424,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
 
 
 foreach($expediente_fijo as $e_f){
-    if($e_f["id_fijo"] >= 1 AND $e_f["id_fijo"] <= 30){
+    if($e_f["id_fijo"] >= 1 AND $e_f["id_fijo"] <= 40){
         $course = array("id_est" => -1, "id_fijo" => $e_f["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
             "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
             "equivalencia_c" => NULL, "créditos_c" => NULL, "estatus_R" => NULL, "nombre_c" => $e_f["nombre_c"]
