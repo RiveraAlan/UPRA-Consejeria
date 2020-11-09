@@ -21,7 +21,7 @@ if ( empty($_POST['email']) &&  empty($_POST['password'])) {
 echo "<h1>".$_POST['email']."</h1>";
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if($stmt = $conn->prepare("SELECT stdnt_number, stdnt_email, stdnt_password, stdnt_number, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, crse_label FROM student WHERE stdnt_email = ?")){
+if($stmt = $conn->prepare("SELECT stdnt_number, stdnt_email, stdnt_password, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial FROM student WHERE stdnt_email = ?")){
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
     $stmt->bind_param('s', $_POST['email']);
 
@@ -31,7 +31,7 @@ if($stmt = $conn->prepare("SELECT stdnt_number, stdnt_email, stdnt_password, std
   
     echo "Verification success! User has loggedin!";
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($stdnt_number, $stdnt_email, $stdnt_password, $stdnt_number, $stdnt_lastname1, $stdnt_lastname2, $stdnt_name, $stdnt_initial, $crse_label);
+        $stmt->bind_result($stdnt_number, $stdnt_email, $stdnt_password,  $stdnt_lastname1, $stdnt_lastname2, $stdnt_name, $stdnt_initial);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -51,7 +51,6 @@ if($stmt = $conn->prepare("SELECT stdnt_number, stdnt_email, stdnt_password, std
             $_SESSION['stdnt_lastname2'] = $stdnt_lastname2; 
             $_SESSION['crse_nameompleto'] = $stdnt_name.'  '.$stdnt_initial.'  '.$stdnt_lastname1.' '.$stdnt_lastname2;
             $_SESSION['stdnt_email'] = $stdnt_email;
-            $_SESSION['stdnt_number'] = $stdnt_number;
             header('Location: ../consejeria.php');
            
         } else {

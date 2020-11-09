@@ -105,13 +105,12 @@ if(!isset($_SESSION['stdnt_number'])){
                       $sem = 2;
                     }
                  echo "<div class='card-header'>
-                    Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
                     Número de student: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendados: <b>{$reco['SUM(C)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Año: <b>{$_SESSION['año_CCOM']}</b><br></div>";?>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><br></div>";?>
                 </div>
               </div>
             </div>
@@ -422,13 +421,13 @@ if(!isset($_SESSION['stdnt_number'])){
     </div>
 <!-- Culmina la parte del file academico. -->          
 <!-- TAB para appointment. El student puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
-    <div id="appointment" class="tabcontent active">
+    <div id="appointment" class="tabcontent">
     <section class="appointment">
     <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">                 
     <?php 
         include 'private/appointment-status.php';
-        $sql ="SELECT appt_idFROM appointment WHERE stdnt_number = $id";
+        $sql ="SELECT appt_id FROM appointment WHERE stdnt_number = $id";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
              
@@ -439,9 +438,9 @@ if(!isset($_SESSION['stdnt_number'])){
                     echo '<div class="error-message">*Escoga el día y la hora de la cita.</div>';
                         }
                     echo ' 
-                    <input type="hidden" name="first-name" value="'.$_SESSION['firstName'].'" placeholder="First Name" class="form-control" readonly>
-                    <input type="hidden" name="last-name" value="'.$_SESSION['lastNameU'].' '.$_SESSION['lastNameD'].'" placeholder="Last Name"  class="form-control" readonly>
-                           <input type="hidden" name="email"  value="'. $_SESSION['email'].'" class="form-control" readonly> 
+                    <input type="hidden" name="first-name" value="'.$_SESSION['stdnt_name'].'" placeholder="First Name" class="form-control" readonly>
+                    <input type="hidden" name="last-name" value="'.$_SESSION['stdnt_lastname1'].' '.$_SESSION['stdnt_lastname2'].'" placeholder="Last Name"  class="form-control" readonly>
+                           <input type="hidden" name="email"  value="'. $_SESSION['stdnt_email'].'" class="form-control" readonly> 
                                  <h3>Escoger Fecha y Hora</h3>  <div class="form-group d-flex">
                                          <div class="calendar-box">';
 
@@ -479,7 +478,6 @@ if(!isset($_SESSION['stdnt_number'])){
                                     <th class="column100 column2" data-column="column2">Código</th>
                                     <th class="column100 column3" data-column="column3">Descripción</th>
                                     <th class="column100 column4" data-column="column4">Créditos</th>
-                                    <th class="column100 column5" data-column="column5">Clasificación</th>
                                     <th style="background: transparent; border: none" class="column100 column5" data-column="column5"><button onclick="sugerir()" name="suge-submit" type="submit" class="btn btn-yellow btn-pill">CONFIRMAR</button></th>
                                   </tr>
                                 </thead>
@@ -499,12 +497,10 @@ if(!isset($_SESSION['stdnt_number'])){
                                     <td class='column100 column1' data-column='column1'>{$row['crse_name']}</td>
                                     <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
                                     <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                    <td class='column100 column4' data-column='column4'>Intermedia</td>
                                   </tr>";
                               }
                             }
                                   ?>
-                                  
                                 </tbody>
                               </table>
                                 
