@@ -1569,73 +1569,73 @@ readers do not read off random characters that represent icons */
 .fa-figma:before {
   content: "\f799"; }
 
-.fa-file:before {
+.fa-student_record:before {
   content: "\f15b"; }
 
-.fa-file-alt:before {
+.fa-student_record-alt:before {
   content: "\f15c"; }
 
-.fa-file-archive:before {
+.fa-student_record-archive:before {
   content: "\f1c6"; }
 
-.fa-file-audio:before {
+.fa-student_record-audio:before {
   content: "\f1c7"; }
 
-.fa-file-code:before {
+.fa-student_record-code:before {
   content: "\f1c9"; }
 
-.fa-file-contract:before {
+.fa-student_record-contract:before {
   content: "\f56c"; }
 
-.fa-file-csv:before {
+.fa-student_record-csv:before {
   content: "\f6dd"; }
 
-.fa-file-download:before {
+.fa-student_record-download:before {
   content: "\f56d"; }
 
-.fa-file-excel:before {
+.fa-student_record-excel:before {
   content: "\f1c3"; }
 
-.fa-file-export:before {
+.fa-student_record-export:before {
   content: "\f56e"; }
 
-.fa-file-image:before {
+.fa-student_record-image:before {
   content: "\f1c5"; }
 
-.fa-file-import:before {
+.fa-student_record-import:before {
   content: "\f56f"; }
 
-.fa-file-invoice:before {
+.fa-student_record-invoice:before {
   content: "\f570"; }
 
-.fa-file-invoice-dollar:before {
+.fa-student_record-invoice-dollar:before {
   content: "\f571"; }
 
-.fa-file-medical:before {
+.fa-student_record-medical:before {
   content: "\f477"; }
 
-.fa-file-medical-alt:before {
+.fa-student_record-medical-alt:before {
   content: "\f478"; }
 
-.fa-file-pdf:before {
+.fa-student_record-pdf:before {
   content: "\f1c1"; }
 
-.fa-file-powerpoint:before {
+.fa-student_record-powerpoint:before {
   content: "\f1c4"; }
 
-.fa-file-prescription:before {
+.fa-student_record-prescription:before {
   content: "\f572"; }
 
-.fa-file-signature:before {
+.fa-student_record-signature:before {
   content: "\f573"; }
 
-.fa-file-upload:before {
+.fa-student_record-upload:before {
   content: "\f574"; }
 
-.fa-file-video:before {
+.fa-student_record-video:before {
   content: "\f1c8"; }
 
-.fa-file-word:before {
+.fa-student_record-word:before {
   content: "\f1c2"; }
 
 .fa-fill:before {

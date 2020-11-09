@@ -663,7 +663,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
 
       startState: function(state) {
         state.tlvIndentationStyle = [];  // Styles to use for each level of indentation.
-        state.tlvCodeActive = true;  // True when we're in a TLV region (and at beginning of file).
+        state.tlvCodeActive = true;  // True when we're in a TLV region (and at beginning of student_record).
         state.tlvNextIndent = -1;    // The number of spaces to autoindent the next line if tlvCodeActive.
         state.tlvInBlockComment = false;  // True inside /**/ comment.
         if (tlvTrackStatements) {

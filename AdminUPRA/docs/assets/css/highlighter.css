@@ -7,7 +7,7 @@ pre .o { color: #666666 } /* Operator */
 pre .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
 pre .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
 pre .cp { color: #007020 } /* Comment.Preproc */
-pre .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
+pre .cpf { color: #60a0b0; font-style: italic } /* Comment.Preprocstudent_record */
 pre .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
 pre .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
 pre .gd { color: #A00000 } /* Generic.Deleted */
@@ -80,7 +80,7 @@ pre .il { color: #40a070 } /* Literal.Number.Integer.Long */
 .highlight pre .ch { color: #75715e } /* Comment.Hashbang */
 .highlight pre .cm { color: #75715e } /* Comment.Multiline */
 .highlight pre .cp { color: #75715e } /* Comment.Preproc */
-.highlight pre .cpf { color: #75715e } /* Comment.PreprocFile */
+.highlight pre .cpf { color: #75715e } /* Comment.Preprocstudent_record */
 .highlight pre .c1 { color: #75715e } /* Comment.Single */
 .highlight pre .cs { color: #75715e } /* Comment.Special */
 .highlight pre .gd { color: #f92672 } /* Generic.Deleted */

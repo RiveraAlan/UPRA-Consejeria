@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Forma: Nenhum',
         dragImageHere: 'Arraste uma imagem para aqui',
         dropImage: 'Arraste uma imagem ou texto',
-        selectFromFiles: 'Selecione a partir dos arquivos',
-        maximumFileSize: 'Tamanho máximo do fixeiro',
-        maximumFileSizeError: 'Tamanho máximo do fixeiro é maior que o permitido.',
+        selectFromstudent_records: 'Selecione a partir dos arquivos',
+        maximumstudent_recordSize: 'Tamanho máximo do fixeiro',
+        maximumstudent_recordSizeError: 'Tamanho máximo do fixeiro é maior que o permitido.',
         url: 'Endereço da imagem',
         remove: 'Remover Imagem',
         original: 'Original'

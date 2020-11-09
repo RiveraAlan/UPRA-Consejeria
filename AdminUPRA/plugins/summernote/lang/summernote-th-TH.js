@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'ลากรูปภาพที่ต้องการไว้ที่นี่',
         dropImage: 'วางรูปภาพหรือข้อความ',
-        selectFromFiles: 'เลือกไฟล์รูปภาพ',
-        maximumFileSize: 'ขนาดไฟล์ใหญ่สุด',
-        maximumFileSizeError: 'ไฟล์เกินขนาดที่กำหนด',
+        selectFromstudent_records: 'เลือกไฟล์รูปภาพ',
+        maximumstudent_recordSize: 'ขนาดไฟล์ใหญ่สุด',
+        maximumstudent_recordSizeError: 'ไฟล์เกินขนาดที่กำหนด',
         url: 'ที่อยู่ URL ของรูปภาพ',
         remove: 'ลบรูปภาพ',
         original: 'Original'

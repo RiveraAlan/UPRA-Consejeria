@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'الشكل: لا شيء',
         dragImageHere: 'إدرج الصورة هنا',
         dropImage: 'إسقاط صورة أو نص',
-        selectFromFiles: 'حدد ملف',
-        maximumFileSize: 'الحد الأقصى لحجم الملف',
-        maximumFileSizeError: 'تم تجاوز الحد الأقصى لحجم الملف',
+        selectFromstudent_records: 'حدد ملف',
+        maximumstudent_recordSize: 'الحد الأقصى لحجم الملف',
+        maximumstudent_recordSizeError: 'تم تجاوز الحد الأقصى لحجم الملف',
         url: 'رابط الصورة',
         remove: 'حذف الصورة',
         original: 'Original'

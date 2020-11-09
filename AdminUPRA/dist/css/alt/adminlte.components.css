@@ -60,7 +60,7 @@
   line-height: calc(1.8125rem + 2px);
 }
 
-label:not(.form-check-label):not(.custom-file-label) {
+label:not(.form-check-label):not(.custom-student_record-label) {
   font-weight: 700;
 }
 
@@ -120,8 +120,8 @@ textarea.form-control.is-warning {
   display: block;
 }
 
-.form-control-file.is-warning ~ .warning-feedback,
-.form-control-file.is-warning ~ .warning-tooltip {
+.form-control-student_record.is-warning ~ .warning-feedback,
+.form-control-student_record.is-warning ~ .warning-tooltip {
   display: block;
 }
 
@@ -160,16 +160,16 @@ textarea.form-control.is-warning {
   border-color: #ffc107;
 }
 
-.custom-file-input.is-warning ~ .custom-file-label {
+.custom-student_record-input.is-warning ~ .custom-student_record-label {
   border-color: #ffc107;
 }
 
-.custom-file-input.is-warning ~ .warning-feedback,
-.custom-file-input.is-warning ~ .warning-tooltip {
+.custom-student_record-input.is-warning ~ .warning-feedback,
+.custom-student_record-input.is-warning ~ .warning-tooltip {
   display: block;
 }
 
-.custom-file-input.is-warning:focus ~ .custom-file-label {
+.custom-student_record-input.is-warning:focus ~ .custom-student_record-label {
   border-color: #ffc107;
   box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.25);
 }
@@ -4836,12 +4836,12 @@ html.maximized-card {
   box-shadow: none;
 }
 
-.btn.btn-file {
+.btn.btn-student_record {
   overflow: hidden;
   position: relative;
 }
 
-.btn.btn-file > input[type='file'] {
+.btn.btn-student_record > input[type='student_record'] {
   background: #ffffff;
   cursor: inherit;
   display: block;

@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Bentuk: Tidak ada',
         dragImageHere: 'Tarik gambar ke area ini',
         dropImage: 'Letakkan gambar atau teks',
-        selectFromFiles: 'Pilih gambar dari berkas',
-        maximumFileSize: 'Ukuran maksimal berkas',
-        maximumFileSizeError: 'Ukuran maksimal berkas terlampaui.',
+        selectFromstudent_records: 'Pilih gambar dari berkas',
+        maximumstudent_recordSize: 'Ukuran maksimal berkas',
+        maximumstudent_recordSizeError: 'Ukuran maksimal berkas terlampaui.',
         url: 'URL gambar',
         remove: 'Hapus Gambar',
         original: 'Original'

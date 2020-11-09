@@ -149,7 +149,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 	ready: false, // whether movie is ready to receive events or not
 	movie: null, // reference to movie object
 	clipText: '', // text to copy to clipboard
-	fileName: '', // default file save name
+	student_recordName: '', // default student_record save name
 	action: 'copy', // action to perform
 	handCursorEnabled: true, // whether to show hand cursor, or default pointer cursor
 	cssEffects: true, // enable CSS mouse effects on dom container
@@ -303,11 +303,11 @@ ZeroClipboard_TableTools.Client.prototype = {
 		if (this.ready) { this.movie.setText(newText) ;}
 	},
 
-	setFileName: function(newText) {
-		// set the file name
-		this.fileName = newText;
+	setstudent_recordName: function(newText) {
+		// set the student_record name
+		this.student_recordName = newText;
 		if (this.ready) {
-			this.movie.setFileName(newText);
+			this.movie.setstudent_recordName(newText);
 		}
 	},
 
@@ -328,7 +328,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 
 	addEventListener: function(eventName, func) {
 		// add user event listener for event
-		// event types: load, queueStart, fileStart, fileComplete, queueComplete, progress, error, cancel
+		// event types: load, queueStart, student_recordStart, student_recordComplete, queueComplete, progress, error, cancel
 		eventName = eventName.toString().toLowerCase().replace(/^on/, '');
 		if (!this.handlers[eventName]) {
 			this.handlers[eventName] = [];
@@ -378,7 +378,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 				this.ready = true;
 				this.movie.clearText();
 				this.movie.appendText( this.clipText );
-				this.movie.setFileName( this.fileName );
+				this.movie.setstudent_recordName( this.student_recordName );
 				this.movie.setAction( this.action );
 				this.movie.setHandCursor( this.handCursorEnabled );
 				break;
@@ -545,7 +545,7 @@ var _newLine = function ( config )
 
 /**
  * Combine the data from the `buttons.exportData` method into a string that
- * will be used in the export file.
+ * will be used in the export student_record.
  *
  * @param  {DataTable.Api} dt     DataTables API instance
  * @param  {object}        config Button configuration
@@ -633,7 +633,7 @@ var flashButton = {
 
 	messageBottom: '*',
 
-	filename: '*',
+	student_recordname: '*',
 
 	extension: '.csv',
 
@@ -828,7 +828,7 @@ function _xlsxToStrings( obj ) {
 	} );
 }
 
-// Excel - Pre-defined strings to build a basic XLSX file
+// Excel - Pre-defined strings to build a basic XLSX student_record
 var excelStrings = {
 	"_rels/.rels":
 		'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
@@ -857,7 +857,7 @@ var excelStrings = {
 	"xl/workbook.xml":
 		'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
 		'<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'+
-			'<fileVersion appName="xl" lastEdited="5" lowestEdited="5" rupBuild="24816"/>'+
+			'<student_recordVersion appName="xl" lastEdited="5" lowestEdited="5" rupBuild="24816"/>'+
 			'<workbookPr showInkAnnotation="0" autoCompressPictures="0"/>'+
 			'<bookViews>'+
 				'<workbookView xWindow="0" yWindow="0" windowWidth="25600" windowHeight="19020" tabRatio="500"/>'+
@@ -1155,7 +1155,7 @@ DataTable.ext.buttons.copyFlash = $.extend( {}, flashButton, {
 	fieldBoundary: ''
 } );
 
-// CSV save file
+// CSV save student_record
 DataTable.ext.buttons.csvFlash = $.extend( {}, flashButton, {
 	className: 'buttons-csv buttons-flash',
 
@@ -1173,14 +1173,14 @@ DataTable.ext.buttons.csvFlash = $.extend( {}, flashButton, {
 			data.str;
 
 		flash.setAction( 'csv' );
-		flash.setFileName( info.filename );
+		flash.setstudent_recordName( info.student_recordname );
 		_setText( flash, output );
 	},
 
 	escapeChar: '"'
 } );
 
-// Excel save file - this is really a CSV file using UTF-8 that Excel can read
+// Excel save student_record - this is really a CSV student_record using UTF-8 that Excel can read
 DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 	className: 'buttons-excel buttons-flash',
 
@@ -1388,7 +1388,7 @@ DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 		_xlsxToStrings( xlsx );
 
 		flash.setAction( 'excel' );
-		flash.setFileName( exportInfo.filename );
+		flash.setstudent_recordName( exportInfo.student_recordname );
 		flash.setSheetData( xlsx );
 		_setText( flash, '' );
 
@@ -1425,7 +1425,7 @@ DataTable.ext.buttons.pdfFlash = $.extend( {}, flashButton, {
 		} );
 
 		flash.setAction( 'pdf' );
-		flash.setFileName( info.filename );
+		flash.setstudent_recordName( info.student_recordname );
 
 		_setText( flash, JSON.stringify( {
 			title:         info.title || '',

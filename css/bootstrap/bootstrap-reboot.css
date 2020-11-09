@@ -255,7 +255,7 @@ progress {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
-::-webkit-file-upload-button {
+::-webkit-student_record-upload-button {
   font: inherit;
   -webkit-appearance: button; }
 

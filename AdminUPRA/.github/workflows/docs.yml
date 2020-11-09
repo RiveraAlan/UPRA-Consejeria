@@ -43,18 +43,18 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
+          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashstudent_records('package.json') }}-${{ hashstudent_records('package-lock.json') }}}
           restore-keys: |
-            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
+            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashstudent_records('package.json') }}-${{ hashstudent_records('package-lock.json') }}
             ${{ runner.OS }}-node-v${{ env.node }}-
 
       - name: Set up Ruby cache
         uses: actions/cache@v2
         with:
           path: docs/vendor/bundle
-          key: ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('docs/Gemfile') }}-${{ hashFiles('docs/Gemfile.lock') }}
+          key: ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashstudent_records('docs/Gemstudent_record') }}-${{ hashstudent_records('docs/Gemstudent_record.lock') }}
           restore-keys: |
-            ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('docs/Gemfile') }}-${{ hashFiles('docs/Gemfile.lock') }}
+            ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashstudent_records('docs/Gemstudent_record') }}-${{ hashstudent_records('docs/Gemstudent_record.lock') }}
             ${{ runner.os }}-ruby-v${{ env.RUBY }}-
 
       - name: Set up Bundler
@@ -69,7 +69,7 @@ jobs:
         run: npm ci
 
       - name: Install bundler dependencies
-        run: bundle install --gemfile docs/Gemfile --deployment --jobs=4 --retry=3 --clean
+        run: bundle install --gemstudent_record docs/Gemstudent_record --deployment --jobs=4 --retry=3 --clean
 
       - name: Build docs
         run: npm run docs-compile

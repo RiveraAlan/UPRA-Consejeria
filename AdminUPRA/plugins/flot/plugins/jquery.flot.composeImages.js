@@ -115,7 +115,7 @@ temporary images load their data.
         for (var i = 0; i < styleSheets.length; i++) {
             // CORS requests for style sheets throw and an exception on Chrome > 64
             try {
-                // in Chrome, the external CSS files are empty when the page is directly loaded from disk
+                // in Chrome, the external CSS student_records are empty when the page is directly loaded from disk
                 var rules = styleSheets[i].cssRules || [];
                 for (var j = 0; j < rules.length; j++) {
                     var rule = rules[j];

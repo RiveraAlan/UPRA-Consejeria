@@ -3,8 +3,8 @@
 echo '<h1>Rearrange Electives:</h1>';
 
 
-$myfile = fopen("file_formatted.txt", "r+") or die("Unable to open file!");
-//fwrite($myfile, $txt);
+$mystudent_record = fopen("student_record_formatted.txt", "r+") or die("Unable to open student_record!");
+//fwrite($mystudent_record, $txt);
 
 $electives = array();
 $department_electives = array();
@@ -34,27 +34,27 @@ $int_department_electives = array(
 
 
 $delete = FALSE;
-while(!feof($myfile)) {
-    $line = fgets($myfile);
+while(!feof($mystudent_record)) {
+    $line = fgets($mystudent_record);
 
     if($delete){
      
         array_push($electives, $line);
-        $contents = file_get_contents('file_formatted.txt');
+        $contents = student_record_get_contents('student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('file_formatted.txt', $contents);
+        student_record_put_contents('student_record_formatted.txt', $contents);
     }elseif(trim($line) === '- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -'){
         
         $delete = TRUE;
         array_push($electives, $line);
-        $contents = file_get_contents('file_formatted.txt');
+        $contents = student_record_get_contents('student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('file_formatted.txt', $contents);
+        student_record_put_contents('student_record_formatted.txt', $contents);
     }
    
   }
 
-fclose($myfile);
+fclose($mystudent_record);
 
  for($i=0; $i < count($electives); $i++){
      $matches = array();
@@ -177,39 +177,39 @@ echo "<h3>End of Free Electives</h3>";
 
 
 
-$myfile = fopen('file_formatted.txt', 'a');//opens file in append mode  
+$mystudent_record = fopen('student_record_formatted.txt', 'a');//opens student_record in append mode  
   
  
 
-fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
+fwrite($mystudent_record, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
 foreach($department_electives as $department_elective){
-    fwrite($myfile, "\n".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."\n");
+    fwrite($mystudent_record, "\n".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."\n");
 }
 
-fwrite($myfile, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
+fwrite($mystudent_record, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
 foreach($free_electives as $free_elective){
-    fwrite($myfile,"\n".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."\n");
+    fwrite($mystudent_record,"\n".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."\n");
 }
 
 $delete = FALSE;
 foreach($electives as $course){
     if($delete)
-        fwrite($myfile, $course);
+        fwrite($mystudent_record, $course);
     elseif(trim($course) === '***********************************************'){
         $delete = TRUE;
         
-        fwrite($myfile ,"\nSECTION 3 - Work Not Applicable to this Program\n");
-        fwrite($myfile ,"\n***********************************************\n");
+        fwrite($mystudent_record ,"\nSECTION 3 - Work Not Applicable to this Program\n");
+        fwrite($mystudent_record ,"\n***********************************************\n");
     }
         
     
 }
 
-fclose($myfile); 
+fclose($mystudent_record); 
 
 
 /* PUT THIS CODE INSIDE A FUNCTION
-$contents = file_get_contents('file_formatted.txt');
+$contents = student_record_get_contents('student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('file_formatted.txt', $contents);        
+        student_record_put_contents('student_record_formatted.txt', $contents);        
 */

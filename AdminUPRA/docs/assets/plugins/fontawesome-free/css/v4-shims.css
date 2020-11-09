@@ -32,11 +32,11 @@
 .fa.fa-trash-o:before {
   content: "\f2ed"; }
 
-.fa.fa-file-o {
+.fa.fa-student_record-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-o:before {
+.fa.fa-student_record-o:before {
   content: "\f15b"; }
 
 .fa.fa-clock-o {
@@ -346,11 +346,11 @@
 .fa.fa-scissors:before {
   content: "\f0c4"; }
 
-.fa.fa-files-o {
+.fa.fa-student_records-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-files-o:before {
+.fa.fa-student_records-o:before {
   content: "\f0c5"; }
 
 .fa.fa-floppy-o {
@@ -474,11 +474,11 @@
 .fa.fa-cutlery:before {
   content: "\f2e7"; }
 
-.fa.fa-file-text-o {
+.fa.fa-student_record-text-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-text-o:before {
+.fa.fa-student_record-text-o:before {
   content: "\f15c"; }
 
 .fa.fa-building-o {
@@ -746,7 +746,7 @@
 .fa.fa-bitcoin:before {
   content: "\f15a"; }
 
-.fa.fa-file-text:before {
+.fa.fa-student_record-text:before {
   content: "\f15c"; }
 
 .fa.fa-sort-alpha-asc:before {
@@ -1080,102 +1080,102 @@
   font-family: 'Font Awesome 5 Brands';
   font-weight: 400; }
 
-.fa.fa-file-pdf-o {
+.fa.fa-student_record-pdf-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-pdf-o:before {
+.fa.fa-student_record-pdf-o:before {
   content: "\f1c1"; }
 
-.fa.fa-file-word-o {
+.fa.fa-student_record-word-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-word-o:before {
+.fa.fa-student_record-word-o:before {
   content: "\f1c2"; }
 
-.fa.fa-file-excel-o {
+.fa.fa-student_record-excel-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-excel-o:before {
+.fa.fa-student_record-excel-o:before {
   content: "\f1c3"; }
 
-.fa.fa-file-powerpoint-o {
+.fa.fa-student_record-powerpoint-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-powerpoint-o:before {
+.fa.fa-student_record-powerpoint-o:before {
   content: "\f1c4"; }
 
-.fa.fa-file-image-o {
+.fa.fa-student_record-image-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-image-o:before {
+.fa.fa-student_record-image-o:before {
   content: "\f1c5"; }
 
-.fa.fa-file-photo-o {
+.fa.fa-student_record-photo-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-photo-o:before {
+.fa.fa-student_record-photo-o:before {
   content: "\f1c5"; }
 
-.fa.fa-file-picture-o {
+.fa.fa-student_record-picture-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-picture-o:before {
+.fa.fa-student_record-picture-o:before {
   content: "\f1c5"; }
 
-.fa.fa-file-archive-o {
+.fa.fa-student_record-archive-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-archive-o:before {
+.fa.fa-student_record-archive-o:before {
   content: "\f1c6"; }
 
-.fa.fa-file-zip-o {
+.fa.fa-student_record-zip-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-zip-o:before {
+.fa.fa-student_record-zip-o:before {
   content: "\f1c6"; }
 
-.fa.fa-file-audio-o {
+.fa.fa-student_record-audio-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-audio-o:before {
+.fa.fa-student_record-audio-o:before {
   content: "\f1c7"; }
 
-.fa.fa-file-sound-o {
+.fa.fa-student_record-sound-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-sound-o:before {
+.fa.fa-student_record-sound-o:before {
   content: "\f1c7"; }
 
-.fa.fa-file-video-o {
+.fa.fa-student_record-video-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-video-o:before {
+.fa.fa-student_record-video-o:before {
   content: "\f1c8"; }
 
-.fa.fa-file-movie-o {
+.fa.fa-student_record-movie-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-movie-o:before {
+.fa.fa-student_record-movie-o:before {
   content: "\f1c8"; }
 
-.fa.fa-file-code-o {
+.fa.fa-student_record-code-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-file-code-o:before {
+.fa.fa-student_record-code-o:before {
   content: "\f1c9"; }
 
 .fa.fa-vine {

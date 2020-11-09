@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Thả Ảnh ở vùng này',
         dropImage: 'Drop image or Text',
-        selectFromFiles: 'Chọn từ File',
-        maximumFileSize: 'Maximum file size',
-        maximumFileSizeError: 'Maximum file size exceeded.',
+        selectFromstudent_records: 'Chọn từ student_record',
+        maximumstudent_recordSize: 'Maximum student_record size',
+        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
         url: 'URL',
         remove: 'Xóa',
         original: 'Original'

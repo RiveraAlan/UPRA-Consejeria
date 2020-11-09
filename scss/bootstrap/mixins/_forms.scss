@@ -68,7 +68,7 @@
     }
   }
 
-  .form-control-file {
+  .form-control-student_record {
     .was-validated &:#{$state},
     &.is-#{$state} {
       ~ .#{$state}-feedback,
@@ -122,11 +122,11 @@
     }
   }
 
-  // custom file
-  .custom-file-input {
+  // custom student_record
+  .custom-student_record-input {
     .was-validated &:#{$state},
     &.is-#{$state} {
-      ~ .custom-file-label {
+      ~ .custom-student_record-label {
         border-color: $color;
 
         &::after { border-color: inherit; }
@@ -138,7 +138,7 @@
       }
 
       &:focus {
-        ~ .custom-file-label {
+        ~ .custom-student_record-label {
           box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
         }
       }

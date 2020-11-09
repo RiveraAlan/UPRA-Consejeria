@@ -780,7 +780,7 @@ var keycode = $.ui.keyCode = {
 
 
 
-// This file is deprecated
+// This student_record is deprecated
 var ie = $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 
 /*!

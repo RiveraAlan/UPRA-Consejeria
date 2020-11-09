@@ -2082,7 +2082,7 @@ Expr = Sizzle.selectors = {
 Expr.pseudos["nth"] = Expr.pseudos["eq"];
 
 // Add button/input type pseudos
-for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
+for ( i in { radio: true, checkbox: true, student_record: true, password: true, image: true } ) {
 	Expr.pseudos[ i ] = createInputPseudo( i );
 }
 for ( i in { submit: true, reset: true } ) {
@@ -9079,7 +9079,7 @@ var
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg,
 
 	// #7653, #8125, #8152: local protocol detection
-	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
+	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|student_record|res|widget):$/,
 	rnoContent = /^(?:GET|HEAD)$/,
 	rprotocol = /^\/\//,
 	rurl = /^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,
@@ -10021,7 +10021,7 @@ jQuery.expr.filters.visible = function( elem ) {
 var r20 = /%20/g,
 	rbracket = /\[\]$/,
 	rCRLF = /\r?\n/g,
-	rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i,
+	rsubmitterTypes = /^(?:submit|button|image|reset|student_record)$/i,
 	rsubmittable = /^(?:input|select|textarea|keygen)/i;
 
 function buildParams( prefix, obj, traditional, add ) {
@@ -10141,7 +10141,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject !== undefined ?
 	// Support: IE6-IE8
 	function() {
 
-		// XHR cannot access local files, always use ActiveX for that case
+		// XHR cannot access local student_records, always use ActiveX for that case
 		if ( this.isLocal ) {
 			return createActiveXHR();
 		}
@@ -10957,11 +10957,11 @@ jQuery.fn.andSelf = jQuery.fn.addBack;
 
 
 // Register as a named AMD module, since jQuery can be concatenated with other
-// files that may use define, but not via a proper concatenation script that
+// student_records that may use define, but not via a proper concatenation script that
 // understands anonymous AMD modules. A named AMD is safest and most robust
 // way to register. Lowercase jquery is used because AMD module names are
-// derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
+// derived from student_record names, and jQuery is normally delivered in a lowercase
+// student_record name. Do this after creating the global so that if an AMD module wants
 // to call noConflict to hide this version of jQuery, it will work.
 
 // Note that for maximum portability, libraries that are not jQuery should

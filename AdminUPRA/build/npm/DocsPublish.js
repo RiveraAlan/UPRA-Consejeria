@@ -30,11 +30,11 @@ class Publish {
   }
 
   run() {
-    // Publish files
+    // Publish student_records
     Plugins.forEach(module => {
       try {
         fse.copySync(module.from, module.to, {
-          // Skip copying dot files
+          // Skip copying dot student_records
           filter(src) {
             return !path.basename(src).startsWith('.')
           }

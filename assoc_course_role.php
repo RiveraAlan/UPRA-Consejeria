@@ -2,14 +2,14 @@
 session_start();
 include 'private/dbconnect.php';
 
-$myfile = fopen("file_formatted.txt", "r") or die("Unable to open file!");
+$mystudent_record = fopen("student_record_formatted.txt", "r") or die("Unable to open student_record!");
 $courses = array();
 $mandatory_courses = array();
 $general_courses = array();
 $course_category = array();
 $courses_below_section3 = array();
 
-//file FIJO
+//student_record FIJO
 $query = "SELECT  * FROM mandatory_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
@@ -21,7 +21,7 @@ if($resultCheck > 0){
   }
 }
 
- //file FIJO DEPARTAMENTALES
+ //student_record FIJO DEPARTAMENTALES
 $query = "SELECT  * FROM departmental_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
@@ -33,7 +33,7 @@ if($resultCheck > 0){
   }
 }
 
- //file FIJO GENERALES
+ //student_record FIJO GENERALES
  $query = "SELECT  * FROM general_courses";
  $result = mysqli_query($conn,$query);
  $resultCheck = mysqli_num_rows($result);
@@ -48,8 +48,8 @@ if($resultCheck > 0){
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
 
-while(!feof($myfile)){
-    $temp = ltrim(fgets($myfile));
+while(!feof($mystudent_record)){
+    $temp = ltrim(fgets($mystudent_record));
     $course_code;
     $semester;
     $credits;
@@ -132,7 +132,7 @@ while(!feof($myfile)){
 
 }
 
-fclose($myfile);
+fclose($mystudent_record);
 
 // ADD COURSES FROM SECTION 3 TO COURSES ARRAY
 for($i=0; $i < count($courses_below_section3); $i++){
@@ -315,20 +315,20 @@ foreach($courses as $course){
    
 }
 
-$sql ="SELECT stdnt_number FROM file";
+$sql ="SELECT stdnt_number FROM student_record";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
                 if($resultCheck === 0){
                     foreach($courses as $course){
                         if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                            $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
+                            $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
 
                 $stmt->bind_param('iiisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
                         
                
                 if ($stmt->execute()) {
-                    //  header('Location: ../est_profile.php');
+                    //  header('Location: ../est_prostudent_record.php');
                     echo "Uploaded to Database successfully";
                 } else {
                 echo "Unable to create record";

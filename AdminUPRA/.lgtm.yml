@@ -1,4 +1,4 @@
-# https://lgtm.com/help/lgtm/customizing-file-classification
+# https://lgtm.com/help/lgtm/customizing-student_record-classification
 path_classifiers:
   plugins:
     - plugins/
@@ -6,9 +6,9 @@ path_classifiers:
 extraction:
   javascript:
     # https://lgtm.com/help/lgtm/javascript-extraction#customizing-index
-    # The `index` step extracts information from the files in the codebase.
+    # The `index` step extracts information from the student_records in the codebase.
     index:
-      # Specify a list of files and folders to exclude from extraction.
+      # Specify a list of student_records and folders to exclude from extraction.
       exclude:
         - bower_components/
         - docs/assets/js/plugins/

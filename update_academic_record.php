@@ -1,7 +1,7 @@
 <?php
 include_once 'private/dbconnect.php';
 session_start();
-$myfile = fopen("file_formatted.txt", "r") or die("Unable to open file!");
+$mystudent_record = fopen("student_record_formatted.txt", "r") or die("Unable to open student_record!");
 
 $coursesForNextSemester = array();
 $coursesTakenThisSemester = array();
@@ -9,8 +9,8 @@ $is2ndSemesterReached = FALSE;
 $is1stSemesterReached = FALSE;
 
 
-while(!feof($myfile)){
-    $temp = ltrim(fgets($myfile));
+while(!feof($mystudent_record)){
+    $temp = ltrim(fgets($mystudent_record));
     $course_code;
     $semester;
     $credits;
@@ -61,15 +61,15 @@ while(!feof($myfile)){
     }
 
 }
-fclose($myfile);
+fclose($mystudent_record);
 
-$query = "SELECT crse_name, stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, estatus_R FROM (SELECT * FROM file JOIN mandatory_courses USING(crse_label)
+$query = "SELECT crse_name, stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, estatus_R FROM (SELECT * FROM student_record JOIN mandatory_courses USING(crse_label)
             UNION 
-            SELECT * FROM file JOIN departmental_courses USING(crse_label) 
+            SELECT * FROM student_record JOIN departmental_courses USING(crse_label) 
             UNION 
-            SELECT * FROM file JOIN general_courses USING(crse_label) 
+            SELECT * FROM student_record JOIN general_courses USING(crse_label) 
             UNION 
-            SELECT * FROM file JOIN free_courses USING(crse_label))
+            SELECT * FROM student_record JOIN free_courses USING(crse_label))
                                 AS Courses   WHERE crse_name IN (";
 
 foreach($coursesTakenThisSemester as $course_name => $course_grade){
@@ -88,7 +88,7 @@ if($resultCheck > 0){
     $coursesFromDB = array();
     while($row = mysqli_fetch_assoc($result)) {
         
-       $sql = "UPDATE file SET crse_grade = ".$coursesTakenThisSemester[$row['crse_name']]['crse_grade'].", semester_pass = value 2, crse_status = 1
+       $sql = "UPDATE student_record SET crse_grade = ".$coursesTakenThisSemester[$row['crse_name']]['crse_grade'].", semester_pass = value 2, crse_status = 1
     WHERE crse_label = $row[crse_label] AND est_id = 1";
     echo "<p>$sql</p>";
     // USE SESSION INSTEAD OF HARDCODED NUMBER
@@ -113,7 +113,7 @@ foreach($coursesForNextSemester as $key => $grade){
    
    if($resultCheck === 1){
        while($row = mysqli_fetch_assoc($result)) {
-        $query = "INSERT INTO file(stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, 
+        $query = "INSERT INTO student_record(stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, 
                   crse_recognition, crse_equivalence, crse_credits_ER, estatus_R) 
                   VALUES (NULL, $row[crse_label], NULL, NULL, 2, NULL, NULL, NULL, $row[crse_credits], NULL);";
           echo "<p>$query</p>";

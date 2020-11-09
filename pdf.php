@@ -17,7 +17,7 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,utf8_decode('file Académico'),0,0,'C');
+    $this->Cell(30,10,utf8_decode('student_record Académico'),0,0,'C');
     // Line break
     $this->Ln(20);
     
@@ -43,7 +43,7 @@ function Footer()
     
 
 $consulta = "SELECT crse_name, crse_description, crse_credits, crse_grade, semester_pass
-FROM file WHERE stdnt_number = $id";
+FROM student_record WHERE stdnt_number = $id";
 $resultado = $conn->query($consulta);
 
 

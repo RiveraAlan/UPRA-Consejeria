@@ -78,21 +78,21 @@ if(!isset($_SESSION['stdnt_number'])){
                  $sentenciaSQL= "SELECT SUM(C)
                  FROM ((SELECT crse_credits AS C
                  FROM mandatory_courses
-                 INNER JOIN  file USING(crse_label)
-                 WHERE file.stdnt_number = $id)
+                 INNER JOIN  student_record USING(crse_label)
+                 WHERE student_record.stdnt_number = $id)
                  UNION ALL
                  (SELECT crse_credits AS C
                  FROM general_courses
-                 INNER JOIN file USING(crse_label)
-                 WHERE file.stdnt_number = $id)
+                 INNER JOIN student_record USING(crse_label)
+                 WHERE student_record.stdnt_number = $id)
                  UNION ALL (SELECT crse_credits AS C
                  FROM departmental_courses
-                 INNER JOIN file USING(crse_label)
-                 WHERE file.stdnt_number = $id)
+                 INNER JOIN student_record USING(crse_label)
+                 WHERE student_record.stdnt_number = $id)
                  UNION ALL (SELECT crse_credits AS C
                  FROM free_courses
-                 INNER JOIN file USING(crse_label)
-                 WHERE file.stdnt_number = $id)) t1";
+                 INNER JOIN student_record USING(crse_label)
+                 WHERE student_record.stdnt_number = $id)) t1";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
                 
@@ -134,21 +134,21 @@ if(!isset($_SESSION['stdnt_number'])){
                              $sentenciaSQL= "SELECT SUM(C)
                              FROM ((SELECT crse_credits AS C
                              FROM mandatory_courses
-                             INNER JOIN  file USING(crse_label)
-                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
+                             INNER JOIN  student_record USING(crse_label)
+                             WHERE student_record.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
                              UNION ALL
                              (SELECT crse_credits AS C
                              FROM general_courses
-                             INNER JOIN file USING(crse_label)
-                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
+                             INNER JOIN student_record USING(crse_label)
+                             WHERE student_record.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
                              UNION ALL (SELECT crse_credits AS C
                              FROM departmental_courses
-                             INNER JOIN file USING(crse_label)
-                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
+                             INNER JOIN student_record USING(crse_label)
+                             WHERE student_record.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
                              UNION ALL (SELECT crse_credits AS C
                              FROM free_courses
-                             INNER JOIN file USING(crse_label)
-                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))) t1";
+                             INNER JOIN student_record USING(crse_label)
+                             WHERE student_record.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))) t1";
                              $resultRecom = mysqli_query($conn, $sentenciaSQL);
                              $reco=mysqli_fetch_assoc($resultRecom);
                          
@@ -185,21 +185,21 @@ if(!isset($_SESSION['stdnt_number'])){
                                       </thead> 
                                     <tbody>";
                                     $sql ="SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM file
+                                    FROM student_record
                                     INNER JOIN mandatory_courses USING (crse_label)
-                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3)
+                                    WHERE student_record.stdnt_number = $id AND (student_record.estatus_R = 1 OR student_record.crse_status = 3)
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM file
+                                    FROM student_record
                                     INNER JOIN general_courses USING (crse_label)
-                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3))
+                                    WHERE student_record.stdnt_number = $id AND (student_record.estatus_R = 1 OR student_record.crse_status = 3))
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM file
+                                    FROM student_record
                                     INNER JOIN departmental_courses USING (crse_label)
-                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3))
+                                    WHERE student_record.stdnt_number = $id AND (student_record.estatus_R = 1 OR student_record.crse_status = 3))
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM file
+                                    FROM student_record
                                     INNER JOIN free_courses USING (crse_label)
-                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3))";
+                                    WHERE student_record.stdnt_number = $id AND (student_record.estatus_R = 1 OR student_record.crse_status = 3))";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
@@ -234,7 +234,7 @@ if(!isset($_SESSION['stdnt_number'])){
                           </div>";
                             ?>
 <!-- Termina el MODAL del boton confirmar. -->
- <!-- Comienza el file academico del student. -->
+ <!-- Comienza el student_record academico del student. -->
               <div class="card-body"> 
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
@@ -252,7 +252,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                   FROM mandatory_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
+                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
                    ORDER by crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -297,7 +297,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                   FROM general_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id";
+                   FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -341,7 +341,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                   FROM free_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id";
+                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -385,7 +385,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                   FROM departmental_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id";
+                   FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -419,7 +419,7 @@ if(!isset($_SESSION['stdnt_number'])){
       </div>
     </section>
     </div>
-<!-- Culmina la parte del file academico. -->          
+<!-- Culmina la parte del student_record academico. -->          
 <!-- TAB para appointment. El student puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
     <div id="appointment" class="tabcontent">
     <section class="appointment">
@@ -518,7 +518,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <!-- Notes -->
              <?php
                 $sql ="SELECT adv_comments
-                      FROM file_details WHERE stdnt_number = $id";
+                      FROM student_record_details WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               

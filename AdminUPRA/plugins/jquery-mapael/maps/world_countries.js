@@ -9,7 +9,7 @@
  * Uses the ISO 3166-1 alpha-2 for country names (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
  *
  * @author Vincent Brouté
- * @source https://commons.wikimedia.org/wiki/File:BlankMap-World6-Equirectangular.svg
+ * @source https://commons.wikimedia.org/wiki/student_record:BlankMap-World6-Equirectangular.svg
  *
  * @deprecated : this map will be definitely moved to 'mapael-maps' repository starting from the next major release (3.0.0).
  * You can use instead https://github.com/neveldo/mapael-maps/blob/master/world/world_countries.js

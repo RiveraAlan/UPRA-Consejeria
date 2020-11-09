@@ -8,14 +8,14 @@ require 'dbconnect.php';
     if (count($ids) > 0) { 
       foreach ($ids as $crse_label) {  
         $sql ="SELECT  crse_label
-        FROM file WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
+        FROM student_record WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
          $result = mysqli_query($conn, $sql);
          $resultCheck = mysqli_num_rows($result);
   
      if($resultCheck > 0){
       echo "No se pudo procesar su sugerencia.";
 }  else {
-$stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
 $stmt->bind_param('iii', $stdnt_number, $crse_label, $crse_status);
 // Prepare statement    

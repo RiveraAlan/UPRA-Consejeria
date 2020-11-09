@@ -5657,7 +5657,7 @@
         if (at <= sz) {
           child.insertInner(at, lines, height);
           if (child.lines && child.lines.length > 50) {
-            // To avoid memory thrashing when child.lines is huge (e.g. first view of a large file), it's never spliced.
+            // To avoid memory thrashing when child.lines is huge (e.g. first view of a large student_record), it's never spliced.
             // Instead, small slices are taken. They're taken in order because sequential memory accesses are fastest.
             var remaining = child.lines.length % 25 + 25;
             for (var pos = remaining; pos < child.lines.length;) {
@@ -6485,13 +6485,13 @@
       { return }
     e_preventDefault(e);
     if (ie) { lastDrop = +new Date; }
-    var pos = posFromMouse(cm, e, true), files = e.dataTransfer.files;
+    var pos = posFromMouse(cm, e, true), student_records = e.dataTransfer.student_records;
     if (!pos || cm.isReadOnly()) { return }
-    // Might be a file drop, in which case we simply extract the text
+    // Might be a student_record drop, in which case we simply extract the text
     // and insert it.
-    if (files && files.length && window.FileReader && window.File) {
-      var n = files.length, text = Array(n), read = 0;
-      var markAsReadAndPasteIfAllFilesAreRead = function () {
+    if (student_records && student_records.length && window.student_recordReader && window.student_record) {
+      var n = student_records.length, text = Array(n), read = 0;
+      var markAsReadAndPasteIfAllstudent_recordsAreRead = function () {
         if (++read == n) {
           operation(cm, function () {
             pos = clipPos(cm.doc, pos);
@@ -6504,26 +6504,26 @@
           })();
         }
       };
-      var readTextFromFile = function (file, i) {
-        if (cm.options.allowDropFileTypes &&
-            indexOf(cm.options.allowDropFileTypes, file.type) == -1) {
-          markAsReadAndPasteIfAllFilesAreRead();
+      var readTextFromstudent_record = function (student_record, i) {
+        if (cm.options.allowDropstudent_recordTypes &&
+            indexOf(cm.options.allowDropstudent_recordTypes, student_record.type) == -1) {
+          markAsReadAndPasteIfAllstudent_recordsAreRead();
           return
         }
-        var reader = new FileReader;
-        reader.onerror = function () { return markAsReadAndPasteIfAllFilesAreRead(); };
+        var reader = new student_recordReader;
+        reader.onerror = function () { return markAsReadAndPasteIfAllstudent_recordsAreRead(); };
         reader.onload = function () {
           var content = reader.result;
           if (/[\x00-\x08\x0e-\x1f]{2}/.test(content)) {
-            markAsReadAndPasteIfAllFilesAreRead();
+            markAsReadAndPasteIfAllstudent_recordsAreRead();
             return
           }
           text[i] = content;
-          markAsReadAndPasteIfAllFilesAreRead();
+          markAsReadAndPasteIfAllstudent_recordsAreRead();
         };
-        reader.readAsText(file);
+        reader.readAsText(student_record);
       };
-      for (var i = 0; i < files.length; i++) { readTextFromFile(files[i], i); }
+      for (var i = 0; i < student_records.length; i++) { readTextFromstudent_record(student_records[i], i); }
     } else { // Normal drop
       // Don't do a replace if the drop happened inside of the selected text.
       if (cm.state.draggingText && cm.doc.sel.contains(pos) > -1) {
@@ -7769,7 +7769,7 @@
 
     option("disableInput", false, function (cm, val) {if (!val) { cm.display.input.reset(); }}, true);
     option("dragDrop", true, dragDropChanged);
-    option("allowDropFileTypes", null);
+    option("allowDropstudent_recordTypes", null);
 
     option("cursorBlinkRate", 530);
     option("cursorScrollMargin", 0);

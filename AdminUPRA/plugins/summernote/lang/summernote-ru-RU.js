@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Форма: Нет',
         dragImageHere: 'Перетащите сюда картинку',
         dropImage: 'Перетащите картинку',
-        selectFromFiles: 'Выбрать из файлов',
-        maximumFileSize: 'Максимальный размер файла',
-        maximumFileSizeError: 'Превышен максимальный размер файла',
+        selectFromstudent_records: 'Выбрать из файлов',
+        maximumstudent_recordSize: 'Максимальный размер файла',
+        maximumstudent_recordSizeError: 'Превышен максимальный размер файла',
         url: 'URL картинки',
         remove: 'Удалить картинку',
         original: 'Оригинал'

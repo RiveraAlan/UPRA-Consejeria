@@ -403,7 +403,7 @@
   word-wrap: break-word; }
 
 .swal2-input,
-.swal2-file,
+.swal2-student_record,
 .swal2-textarea,
 .swal2-select,
 .swal2-radio,
@@ -411,7 +411,7 @@
   margin: 1em auto; }
 
 .swal2-input,
-.swal2-file,
+.swal2-student_record,
 .swal2-textarea {
   box-sizing: border-box;
   width: 100%;
@@ -423,26 +423,26 @@
   color: inherit;
   font-size: 1rem; }
   .swal2-input.swal2-inputerror,
-  .swal2-file.swal2-inputerror,
+  .swal2-student_record.swal2-inputerror,
   .swal2-textarea.swal2-inputerror {
     border-color: #dc3545 !important;
     box-shadow: 0 0 2px #dc3545 !important; }
   .swal2-input:focus,
-  .swal2-file:focus,
+  .swal2-student_record:focus,
   .swal2-textarea:focus {
     border: 1px solid #b4dbed;
     outline: none;
     box-shadow: 0 0 3px #c4e6f5; }
-  .swal2-input::-webkit-input-placeholder, .swal2-file::-webkit-input-placeholder, .swal2-textarea::-webkit-input-placeholder {
+  .swal2-input::-webkit-input-placeholder, .swal2-student_record::-webkit-input-placeholder, .swal2-textarea::-webkit-input-placeholder {
     color: #cccccc; }
-  .swal2-input::-moz-placeholder, .swal2-file::-moz-placeholder, .swal2-textarea::-moz-placeholder {
+  .swal2-input::-moz-placeholder, .swal2-student_record::-moz-placeholder, .swal2-textarea::-moz-placeholder {
     color: #cccccc; }
-  .swal2-input:-ms-input-placeholder, .swal2-file:-ms-input-placeholder, .swal2-textarea:-ms-input-placeholder {
+  .swal2-input:-ms-input-placeholder, .swal2-student_record:-ms-input-placeholder, .swal2-textarea:-ms-input-placeholder {
     color: #cccccc; }
-  .swal2-input::-ms-input-placeholder, .swal2-file::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder {
+  .swal2-input::-ms-input-placeholder, .swal2-student_record::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder {
     color: #cccccc; }
   .swal2-input::placeholder,
-  .swal2-file::placeholder,
+  .swal2-student_record::placeholder,
   .swal2-textarea::placeholder {
     color: #cccccc; }
 
@@ -469,7 +469,7 @@
   .swal2-input[type='number'] {
     max-width: 10em; }
 
-.swal2-file {
+.swal2-student_record {
   background: inherit;
   font-size: 1rem; }
 

@@ -1087,8 +1087,8 @@ Docs & License: https://fullcalendar.io/
                         if (hit &&
                             (
                             // make sure the hit is within activeRange, meaning it's not a deal cell
-                            !component.props.dateProfile || // hack for DayTile
-                                core.rangeContainsRange(component.props.dateProfile.activeRange, hit.dateSpan.range)) &&
+                            !component.props.dateProstudent_record || // hack for DayTile
+                                core.rangeContainsRange(component.props.dateProstudent_record.activeRange, hit.dateSpan.range)) &&
                             (!bestHit || hit.layer > bestHit.layer)) {
                             // TODO: better way to re-orient rectangle
                             hit.rect.left += originLeft;

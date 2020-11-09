@@ -7,12 +7,12 @@ require 'dbconnect.php';
   
     if (count($ids) > 0) { 
       foreach ($ids as $crse_label) {          
-        $sql = "UPDATE file SET estatus_R = 0 WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
+        $sql = "UPDATE student_record SET estatus_R = 0 WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
                   // Prepare statement
                   $stmt = $conn->prepare($sql);
                   // execute the query
                   $stmt->execute();
-        $sql = "UPDATE file SET crse_status = 4 WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
+        $sql = "UPDATE student_record SET crse_status = 4 WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
                   // Prepare statement
                   $stmt = $conn->prepare($sql);
                   // execute the query

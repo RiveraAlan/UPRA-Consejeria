@@ -1,17 +1,17 @@
 /*!
- * bsCustomFileInput v1.3.4 (https://github.com/Johann-S/bs-custom-file-input)
+ * bsCustomstudent_recordInput v1.3.4 (https://github.com/Johann-S/bs-custom-student_record-input)
  * Copyright 2018 - 2020 Johann-S <johann.servoire@gmail.com>
- * Licensed under MIT (https://github.com/Johann-S/bs-custom-file-input/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/Johann-S/bs-custom-student_record-input/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.bsCustomFileInput = factory());
+  (global = global || self, global.bsCustomstudent_recordInput = factory());
 }(this, (function () { 'use strict';
 
   var Selector = {
-    CUSTOMFILE: '.custom-file input[type="file"]',
-    CUSTOMFILELABEL: '.custom-file-label',
+    CUSTOMstudent_record: '.custom-student_record input[type="student_record"]',
+    CUSTOMstudent_recordLABEL: '.custom-student_record-label',
     FORM: 'form',
     INPUT: 'input'
   };
@@ -20,7 +20,7 @@
 
   var getDefaultText = function getDefaultText(input) {
     var defaultText = '';
-    var label = input.parentNode.querySelector(Selector.CUSTOMFILELABEL);
+    var label = input.parentNode.querySelector(Selector.CUSTOMstudent_recordLABEL);
 
     if (label) {
       defaultText = label.textContent;
@@ -46,8 +46,8 @@
   };
 
   var restoreDefaultText = function restoreDefaultText(input) {
-    var defaultText = input.bsCustomFileInput.defaultText;
-    var label = input.parentNode.querySelector(Selector.CUSTOMFILELABEL);
+    var defaultText = input.bsCustomstudent_recordInput.defaultText;
+    var label = input.parentNode.querySelector(Selector.CUSTOMstudent_recordLABEL);
 
     if (label) {
       var element = findFirstChildNode(label);
@@ -55,14 +55,14 @@
     }
   };
 
-  var fileApi = !!window.File;
+  var student_recordApi = !!window.student_record;
   var FAKE_PATH = 'fakepath';
   var FAKE_PATH_SEPARATOR = '\\';
 
-  var getSelectedFiles = function getSelectedFiles(input) {
-    if (input.hasAttribute('multiple') && fileApi) {
-      return [].slice.call(input.files).map(function (file) {
-        return file.name;
+  var getSelectedstudent_records = function getSelectedstudent_records(input) {
+    if (input.hasAttribute('multiple') && student_recordApi) {
+      return [].slice.call(input.student_records).map(function (student_record) {
+        return student_record.name;
       }).join(', ');
     }
 
@@ -75,11 +75,11 @@
   };
 
   function handleInputChange() {
-    var label = this.parentNode.querySelector(Selector.CUSTOMFILELABEL);
+    var label = this.parentNode.querySelector(Selector.CUSTOMstudent_recordLABEL);
 
     if (label) {
       var element = findFirstChildNode(label);
-      var inputValue = getSelectedFiles(this);
+      var inputValue = getSelectedstudent_records(this);
 
       if (inputValue.length) {
         element.textContent = inputValue;
@@ -90,35 +90,35 @@
   }
 
   function handleFormReset() {
-    var customFileList = [].slice.call(this.querySelectorAll(Selector.INPUT)).filter(function (input) {
-      return !!input.bsCustomFileInput;
+    var customstudent_recordList = [].slice.call(this.querySelectorAll(Selector.INPUT)).filter(function (input) {
+      return !!input.bsCustomstudent_recordInput;
     });
 
-    for (var i = 0, len = customFileList.length; i < len; i++) {
-      restoreDefaultText(customFileList[i]);
+    for (var i = 0, len = customstudent_recordList.length; i < len; i++) {
+      restoreDefaultText(customstudent_recordList[i]);
     }
   }
 
-  var customProperty = 'bsCustomFileInput';
+  var customProperty = 'bsCustomstudent_recordInput';
   var Event = {
     FORMRESET: 'reset',
     INPUTCHANGE: 'change'
   };
-  var bsCustomFileInput = {
+  var bsCustomstudent_recordInput = {
     init: function init(inputSelector, formSelector) {
       if (inputSelector === void 0) {
-        inputSelector = Selector.CUSTOMFILE;
+        inputSelector = Selector.CUSTOMstudent_record;
       }
 
       if (formSelector === void 0) {
         formSelector = Selector.FORM;
       }
 
-      var customFileInputList = [].slice.call(document.querySelectorAll(inputSelector));
+      var customstudent_recordInputList = [].slice.call(document.querySelectorAll(inputSelector));
       var formList = [].slice.call(document.querySelectorAll(formSelector));
 
-      for (var i = 0, len = customFileInputList.length; i < len; i++) {
-        var input = customFileInputList[i];
+      for (var i = 0, len = customstudent_recordInputList.length; i < len; i++) {
+        var input = customstudent_recordInputList[i];
         Object.defineProperty(input, customProperty, {
           value: {
             defaultText: getDefaultText(input)
@@ -140,14 +140,14 @@
     },
     destroy: function destroy() {
       var formList = [].slice.call(document.querySelectorAll(Selector.FORM)).filter(function (form) {
-        return !!form.bsCustomFileInput;
+        return !!form.bsCustomstudent_recordInput;
       });
-      var customFileInputList = [].slice.call(document.querySelectorAll(Selector.INPUT)).filter(function (input) {
-        return !!input.bsCustomFileInput;
+      var customstudent_recordInputList = [].slice.call(document.querySelectorAll(Selector.INPUT)).filter(function (input) {
+        return !!input.bsCustomstudent_recordInput;
       });
 
-      for (var i = 0, len = customFileInputList.length; i < len; i++) {
-        var input = customFileInputList[i];
+      for (var i = 0, len = customstudent_recordInputList.length; i < len; i++) {
+        var input = customstudent_recordInputList[i];
         restoreDefaultText(input);
         input[customProperty] = undefined;
         input.removeEventListener(Event.INPUTCHANGE, handleInputChange);
@@ -161,7 +161,7 @@
     }
   };
 
-  return bsCustomFileInput;
+  return bsCustomstudent_recordInput;
 
 })));
-//# sourceMappingURL=bs-custom-file-input.js.map
+//# sourceMappingURL=bs-custom-student_record-input.js.map

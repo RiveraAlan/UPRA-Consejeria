@@ -39,7 +39,7 @@ protected $LineWidth;          // line width in user unit
 protected $fontpath;           // path containing fonts
 protected $CoreFonts;          // array of core font names
 protected $fonts;              // array of used fonts
-protected $FontFiles;          // array of font files
+protected $Fontstudent_records;          // array of font student_records
 protected $encodings;          // array of encodings
 protected $cmaps;              // array of ToUnicode CMaps
 protected $FontFamily;         // current font family
@@ -83,7 +83,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->pages = array();
 	$this->PageInfo = array();
 	$this->fonts = array();
-	$this->FontFiles = array();
+	$this->Fontstudent_records = array();
 	$this->encodings = array();
 	$this->cmaps = array();
 	$this->images = array();
@@ -108,8 +108,8 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 		if(substr($this->fontpath,-1)!='/' && substr($this->fontpath,-1)!='\\')
 			$this->fontpath .= '/';
 	}
-	elseif(is_dir(dirname(__FILE__).'/font'))
-		$this->fontpath = dirname(__FILE__).'/font/';
+	elseif(is_dir(dirname(__student_record__).'/font'))
+		$this->fontpath = dirname(__student_record__).'/font/';
 	else
 		$this->fontpath = '';
 	// Core fonts
@@ -444,27 +444,27 @@ function Rect($x, $y, $w, $h, $style='')
 	$this->_out(sprintf('%.2F %.2F %.2F %.2F re %s',$x*$this->k,($this->h-$y)*$this->k,$w*$this->k,-$h*$this->k,$op));
 }
 
-function AddFont($family, $style='', $file='')
+function AddFont($family, $style='', $student_record='')
 {
 	// Add a TrueType, OpenType or Type1 font
 	$family = strtolower($family);
-	if($file=='')
-		$file = str_replace(' ','',$family).strtolower($style).'.php';
+	if($student_record=='')
+		$student_record = str_replace(' ','',$family).strtolower($style).'.php';
 	$style = strtoupper($style);
 	if($style=='IB')
 		$style = 'BI';
 	$fontkey = $family.$style;
 	if(isset($this->fonts[$fontkey]))
 		return;
-	$info = $this->_loadfont($file);
+	$info = $this->_loadfont($student_record);
 	$info['i'] = count($this->fonts)+1;
-	if(!empty($info['file']))
+	if(!empty($info['student_record']))
 	{
 		// Embedded font
 		if($info['type']=='TrueType')
-			$this->FontFiles[$info['file']] = array('length1'=>$info['originalsize']);
+			$this->Fontstudent_records[$info['student_record']] = array('length1'=>$info['originalsize']);
 		else
-			$this->FontFiles[$info['file']] = array('length1'=>$info['size1'], 'length2'=>$info['size2']);
+			$this->Fontstudent_records[$info['student_record']] = array('length1'=>$info['size1'], 'length2'=>$info['size2']);
 	}
 	$this->fonts[$fontkey] = $info;
 }
@@ -861,20 +861,20 @@ function Ln($h=null)
 		$this->y += $h;
 }
 
-function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
+function Image($student_record, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
 {
 	// Put an image on the page
-	if($file=='')
-		$this->Error('Image file name is empty');
-	if(!isset($this->images[$file]))
+	if($student_record=='')
+		$this->Error('Image student_record name is empty');
+	if(!isset($this->images[$student_record]))
 	{
 		// First use of this image, get info
 		if($type=='')
 		{
-			$pos = strrpos($file,'.');
+			$pos = strrpos($student_record,'.');
 			if(!$pos)
-				$this->Error('Image file has no extension and no type was specified: '.$file);
-			$type = substr($file,$pos+1);
+				$this->Error('Image student_record has no extension and no type was specified: '.$student_record);
+			$type = substr($student_record,$pos+1);
 		}
 		$type = strtolower($type);
 		if($type=='jpeg')
@@ -882,12 +882,12 @@ function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
 		$mtd = '_parse'.$type;
 		if(!method_exists($this,$mtd))
 			$this->Error('Unsupported image type: '.$type);
-		$info = $this->$mtd($file);
+		$info = $this->$mtd($student_record);
 		$info['i'] = count($this->images)+1;
-		$this->images[$file] = $info;
+		$this->images[$student_record] = $info;
 	}
 	else
-		$info = $this->images[$file];
+		$info = $this->images[$student_record];
 
 	// Automatic width and height calculation if needed
 	if($w==0 && $h==0)
@@ -1001,25 +1001,25 @@ function Output($dest='', $name='', $isUTF8=false)
 			{
 				// We send to a browser
 				header('Content-Type: application/pdf');
-				header('Content-Disposition: inline; '.$this->_httpencode('filename',$name,$isUTF8));
+				header('Content-Disposition: inline; '.$this->_httpencode('student_recordname',$name,$isUTF8));
 				header('Cache-Control: private, max-age=0, must-revalidate');
 				header('Pragma: public');
 			}
 			echo $this->buffer;
 			break;
 		case 'D':
-			// Download file
+			// Download student_record
 			$this->_checkoutput();
 			header('Content-Type: application/x-download');
-			header('Content-Disposition: attachment; '.$this->_httpencode('filename',$name,$isUTF8));
+			header('Content-Disposition: attachment; '.$this->_httpencode('student_recordname',$name,$isUTF8));
 			header('Cache-Control: private, max-age=0, must-revalidate');
 			header('Pragma: public');
 			echo $this->buffer;
 			break;
 		case 'F':
-			// Save to local file
-			if(!file_put_contents($name,$this->buffer))
-				$this->Error('Unable to create output file: '.$name);
+			// Save to local student_record
+			if(!student_record_put_contents($name,$this->buffer))
+				$this->Error('Unable to create output student_record: '.$name);
 			break;
 		case 'S':
 			// Return as a string
@@ -1045,8 +1045,8 @@ protected function _checkoutput()
 {
 	if(PHP_SAPI!='cli')
 	{
-		if(headers_sent($file,$line))
-			$this->Error("Some data has already been output, can't send PDF file (output started at $file:$line)");
+		if(headers_sent($student_record,$line))
+			$this->Error("Some data has already been output, can't send PDF student_record (output started at $student_record:$line)");
 	}
 	if(ob_get_length())
 	{
@@ -1057,7 +1057,7 @@ protected function _checkoutput()
 			ob_clean();
 		}
 		else
-			$this->Error("Some data has already been output, can't send PDF file");
+			$this->Error("Some data has already been output, can't send PDF student_record");
 	}
 }
 
@@ -1134,12 +1134,12 @@ protected function _endpage()
 
 protected function _loadfont($font)
 {
-	// Load a font definition file from the font directory
+	// Load a font definition student_record from the font directory
 	if(strpos($font,'/')!==false || strpos($font,"\\")!==false)
-		$this->Error('Incorrect font definition file name: '.$font);
+		$this->Error('Incorrect font definition student_record name: '.$font);
 	include($this->fontpath.$font);
 	if(!isset($name))
-		$this->Error('Could not include font definition file');
+		$this->Error('Could not include font definition student_record');
 	if(isset($enc))
 		$enc = strtolower($enc);
 	if(!isset($subsetted))
@@ -1231,14 +1231,14 @@ protected function _dounderline($x, $y, $txt)
 	return sprintf('%.2F %.2F %.2F %.2F re f',$x*$this->k,($this->h-($y-$up/1000*$this->FontSize))*$this->k,$w*$this->k,-$ut/1000*$this->FontSizePt);
 }
 
-protected function _parsejpg($file)
+protected function _parsejpg($student_record)
 {
-	// Extract info from a JPEG file
-	$a = getimagesize($file);
+	// Extract info from a JPEG student_record
+	$a = getimagesize($student_record);
 	if(!$a)
-		$this->Error('Missing or incorrect image file: '.$file);
+		$this->Error('Missing or incorrect image student_record: '.$student_record);
 	if($a[2]!=2)
-		$this->Error('Not a JPEG file: '.$file);
+		$this->Error('Not a JPEG student_record: '.$student_record);
 	if(!isset($a['channels']) || $a['channels']==3)
 		$colspace = 'DeviceRGB';
 	elseif($a['channels']==4)
@@ -1246,36 +1246,36 @@ protected function _parsejpg($file)
 	else
 		$colspace = 'DeviceGray';
 	$bpc = isset($a['bits']) ? $a['bits'] : 8;
-	$data = file_get_contents($file);
+	$data = student_record_get_contents($student_record);
 	return array('w'=>$a[0], 'h'=>$a[1], 'cs'=>$colspace, 'bpc'=>$bpc, 'f'=>'DCTDecode', 'data'=>$data);
 }
 
-protected function _parsepng($file)
+protected function _parsepng($student_record)
 {
-	// Extract info from a PNG file
-	$f = fopen($file,'rb');
+	// Extract info from a PNG student_record
+	$f = fopen($student_record,'rb');
 	if(!$f)
-		$this->Error('Can\'t open image file: '.$file);
-	$info = $this->_parsepngstream($f,$file);
+		$this->Error('Can\'t open image student_record: '.$student_record);
+	$info = $this->_parsepngstream($f,$student_record);
 	fclose($f);
 	return $info;
 }
 
-protected function _parsepngstream($f, $file)
+protected function _parsepngstream($f, $student_record)
 {
 	// Check signature
 	if($this->_readstream($f,8)!=chr(137).'PNG'.chr(13).chr(10).chr(26).chr(10))
-		$this->Error('Not a PNG file: '.$file);
+		$this->Error('Not a PNG student_record: '.$student_record);
 
 	// Read header chunk
 	$this->_readstream($f,4);
 	if($this->_readstream($f,4)!='IHDR')
-		$this->Error('Incorrect PNG file: '.$file);
+		$this->Error('Incorrect PNG student_record: '.$student_record);
 	$w = $this->_readint($f);
 	$h = $this->_readint($f);
 	$bpc = ord($this->_readstream($f,1));
 	if($bpc>8)
-		$this->Error('16-bit depth not supported: '.$file);
+		$this->Error('16-bit depth not supported: '.$student_record);
 	$ct = ord($this->_readstream($f,1));
 	if($ct==0 || $ct==4)
 		$colspace = 'DeviceGray';
@@ -1284,13 +1284,13 @@ protected function _parsepngstream($f, $file)
 	elseif($ct==3)
 		$colspace = 'Indexed';
 	else
-		$this->Error('Unknown color type: '.$file);
+		$this->Error('Unknown color type: '.$student_record);
 	if(ord($this->_readstream($f,1))!=0)
-		$this->Error('Unknown compression method: '.$file);
+		$this->Error('Unknown compression method: '.$student_record);
 	if(ord($this->_readstream($f,1))!=0)
-		$this->Error('Unknown filter method: '.$file);
+		$this->Error('Unknown filter method: '.$student_record);
 	if(ord($this->_readstream($f,1))!=0)
-		$this->Error('Interlacing not supported: '.$file);
+		$this->Error('Interlacing not supported: '.$student_record);
 	$this->_readstream($f,4);
 	$dp = '/Predictor 15 /Colors '.($colspace=='DeviceRGB' ? 3 : 1).' /BitsPerComponent '.$bpc.' /Columns '.$w;
 
@@ -1338,13 +1338,13 @@ protected function _parsepngstream($f, $file)
 	while($n);
 
 	if($colspace=='Indexed' && empty($pal))
-		$this->Error('Missing palette in '.$file);
+		$this->Error('Missing palette in '.$student_record);
 	$info = array('w'=>$w, 'h'=>$h, 'cs'=>$colspace, 'bpc'=>$bpc, 'f'=>'FlateDecode', 'dp'=>$dp, 'pal'=>$pal, 'trns'=>$trns);
 	if($ct>=4)
 	{
 		// Extract alpha channel
 		if(!function_exists('gzuncompress'))
-			$this->Error('Zlib not available, can\'t handle alpha channel: '.$file);
+			$this->Error('Zlib not available, can\'t handle alpha channel: '.$student_record);
 		$data = gzuncompress($data);
 		$color = '';
 		$alpha = '';
@@ -1411,16 +1411,16 @@ protected function _readint($f)
 	return $a['i'];
 }
 
-protected function _parsegif($file)
+protected function _parsegif($student_record)
 {
-	// Extract info from a GIF file (via PNG conversion)
+	// Extract info from a GIF student_record (via PNG conversion)
 	if(!function_exists('imagepng'))
 		$this->Error('GD extension is required for GIF support');
 	if(!function_exists('imagecreatefromgif'))
 		$this->Error('GD has no GIF read support');
-	$im = imagecreatefromgif($file);
+	$im = imagecreatefromgif($student_record);
 	if(!$im)
-		$this->Error('Missing or incorrect image file: '.$file);
+		$this->Error('Missing or incorrect image student_record: '.$student_record);
 	imageinterlace($im,0);
 	ob_start();
 	imagepng($im);
@@ -1431,7 +1431,7 @@ protected function _parsegif($file)
 		$this->Error('Unable to create memory stream');
 	fwrite($f,$data);
 	rewind($f);
-	$info = $this->_parsepngstream($f,$file);
+	$info = $this->_parsepngstream($f,$student_record);
 	fclose($f);
 	return $info;
 }
@@ -1565,15 +1565,15 @@ protected function _putpages()
 
 protected function _putfonts()
 {
-	foreach($this->FontFiles as $file=>$info)
+	foreach($this->Fontstudent_records as $student_record=>$info)
 	{
-		// Font file embedding
+		// Font student_record embedding
 		$this->_newobj();
-		$this->FontFiles[$file]['n'] = $this->n;
-		$font = file_get_contents($this->fontpath.$file,true);
+		$this->Fontstudent_records[$student_record]['n'] = $this->n;
+		$font = student_record_get_contents($this->fontpath.$student_record,true);
 		if(!$font)
-			$this->Error('Font file not found: '.$file);
-		$compressed = (substr($file,-2)=='.z');
+			$this->Error('Font student_record not found: '.$student_record);
+		$compressed = (substr($student_record,-2)=='.z');
 		if(!$compressed && isset($info['length2']))
 			$font = substr($font,6,$info['length1']).substr($font,6+$info['length1']+6,$info['length2']);
 		$this->_put('<</Length '.strlen($font));
@@ -1664,8 +1664,8 @@ protected function _putfonts()
 			$s = '<</Type /FontDescriptor /FontName /'.$name;
 			foreach($font['desc'] as $k=>$v)
 				$s .= ' /'.$k.' '.$v;
-			if(!empty($font['file']))
-				$s .= ' /FontFile'.($type=='Type1' ? '' : '2').' '.$this->FontFiles[$font['file']]['n'].' 0 R';
+			if(!empty($font['student_record']))
+				$s .= ' /Fontstudent_record'.($type=='Type1' ? '' : '2').' '.$this->Fontstudent_records[$font['student_record']]['n'].' 0 R';
 			$this->_put($s.'>>');
 			$this->_put('endobj');
 		}
@@ -1733,11 +1733,11 @@ protected function _tounicodecmap($uv)
 
 protected function _putimages()
 {
-	foreach(array_keys($this->images) as $file)
+	foreach(array_keys($this->images) as $student_record)
 	{
-		$this->_putimage($this->images[$file]);
-		unset($this->images[$file]['data']);
-		unset($this->images[$file]['smask']);
+		$this->_putimage($this->images[$student_record]);
+		unset($this->images[$student_record]['data']);
+		unset($this->images[$student_record]['smask']);
 	}
 }
 

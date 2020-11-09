@@ -172,7 +172,7 @@ $crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
         <div class="card-body p-0">
             <div align='center'><h3>FIRMAS</h3></div>
             <?php
-        $sql ="SELECT stdnt_email FROM file 
+        $sql ="SELECT stdnt_email FROM student_record 
         INNER JOIN student USING (stdnt_number)
         INNER JOIN departmental_courses USING (crse_label) 
                WHERE crse_status = 4 AND crse_label = $crse_label";

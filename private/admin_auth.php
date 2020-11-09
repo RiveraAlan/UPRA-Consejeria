@@ -1,11 +1,6 @@
 <?php
 include_once 'dbconnect.php';
 session_start();
-
-
-
-
-
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( empty($_POST['email']) &&  empty($_POST['password'])) {
     // Could not get the data that should have been sent.
@@ -18,7 +13,6 @@ if ( empty($_POST['email']) &&  empty($_POST['password'])) {
     header('Location:  ../AdminUPRA/index.php?isPasswordEmpty=true');
 	exit();
 }
-
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor WHERE adv_email= ?')) {
@@ -43,8 +37,8 @@ if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor 
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
-            $_SESSION['name'] = $name;
-            $_SESSION['id'] = $id;
+            $_SESSION['adv_name'] = $name;
+            $_SESSION['adv_id'] = $id;
             
              echo '<script>window.location="../AdminUPRA/inicio.php"</script>';
         } else {

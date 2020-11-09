@@ -243,21 +243,21 @@ body {
                 $sentenciaSQL= "SELECT SUM(C)
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
-                INNER JOIN  file USING(crse_label)
-                WHERE file.stdnt_number = $id)
+                INNER JOIN  student_record USING(crse_label)
+                WHERE student_record.stdnt_number = $id)
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_courses
-                INNER JOIN file USING(crse_label)
-                WHERE file.stdnt_number = $id)
+                INNER JOIN student_record USING(crse_label)
+                WHERE student_record.stdnt_number = $id)
                 UNION ALL (SELECT crse_credits AS C
                 FROM departmental_courses
-                INNER JOIN file USING(crse_label)
-                WHERE file.stdnt_number = $id)
+                INNER JOIN student_record USING(crse_label)
+                WHERE student_record.stdnt_number = $id)
                 UNION ALL (SELECT crse_credits AS C
                 FROM free_courses
-                INNER JOIN file USING(crse_label)
-                WHERE file.stdnt_number = $id)) t1";
+                INNER JOIN student_record USING(crse_label)
+                WHERE student_record.stdnt_number = $id)) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                 if ($creditos['SUM(C)']=== NULL){
@@ -352,12 +352,12 @@ body {
                   <tbody>
                 <?php
                    $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                   FROM mandatory_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
+                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
                    UNION
                    (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                    FROM mandatory_courses WHERE crse_label 
                    NOT IN (SELECT crse_label
-                   FROM file WHERE file.stdnt_number = $id))";
+                   FROM student_record WHERE student_record.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -418,12 +418,12 @@ body {
                   <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM general_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
+                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
                 UNION
                 (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                 FROM general_courses WHERE crse_label 
                 NOT IN (SELECT crse_label
-                FROM file WHERE file.stdnt_number = $id))";
+                FROM student_record WHERE student_record.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -483,12 +483,12 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM free_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
+                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
                 UNION
                 (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                 FROM free_courses WHERE crse_label 
                 NOT IN (SELECT crse_label
-                FROM file WHERE file.stdnt_number = $id))";
+                FROM student_record WHERE student_record.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -548,12 +548,12 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM departmental_courses INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
+                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
                 UNION
                 (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
                 FROM departmental_courses WHERE crse_label 
                 NOT IN (SELECT crse_label
-                FROM file WHERE file.stdnt_number = $id))";
+                FROM student_record WHERE student_record.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -620,7 +620,7 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status
-                   FROM free_courses INNER JOIN file USING (crse_label) WHERE special_id = 2 AND stdnt_number = $id";
+                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                   $modal = 'document.getElementById("id03").style.display="block"';

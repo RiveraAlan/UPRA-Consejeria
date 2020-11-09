@@ -2,31 +2,31 @@
 include_once 'connection.php';
 session_start();
 
-$fileName = $_FILES["file1"]["name"]; // The file name
-$fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
-$fileType = $_FILES["file1"]["type"]; // The type of file it is
-$fileSize = $_FILES["file1"]["size"]; // File size in bytes
-$fileErrorMsg = $_FILES["file1"]["error"]; // 0 for false... and 1 for true
-if (!$fileTmpLoc) { // if file not chosen
-    echo "ERROR: Please browse for a file before clicking the upload button.";
+$student_recordName = $_student_recordS["student_record1"]["name"]; // The student_record name
+$student_recordTmpLoc = $_student_recordS["student_record1"]["tmp_name"]; // student_record in the PHP tmp folder
+$student_recordType = $_student_recordS["student_record1"]["type"]; // The type of student_record it is
+$student_recordSize = $_student_recordS["student_record1"]["size"]; // student_record size in bytes
+$student_recordErrorMsg = $_student_recordS["student_record1"]["error"]; // 0 for false... and 1 for true
+if (!$student_recordTmpLoc) { // if student_record not chosen
+    echo "ERROR: Please browse for a student_record before clicking the upload button.";
     exit();
 }
-if(move_uploaded_file($fileTmpLoc, "../academic_record.txt")){
+if(move_uploaded_student_record($student_recordTmpLoc, "../academic_record.txt")){
     
     // UPLOAD IS COMPLETE";
- file_put_contents('../academic_record_formatted.txt',
+ student_record_put_contents('../academic_record_formatted.txt',
  preg_replace(
      '~[\r\n]+~',
      "\r\n",
-     trim(file_get_contents('../academic_record.txt'))
+     trim(student_record_get_contents('../academic_record.txt'))
  )
 );
 
 //  ======= REARRANGE ELECTIVES =========
 
 
-$myfile = fopen("../academic_record_formatted.txt", "r+") or die("Unable to open file!");
-//fwrite($myfile, $txt);
+$mystudent_record = fopen("../academic_record_formatted.txt", "r+") or die("Unable to open student_record!");
+//fwrite($mystudent_record, $txt);
 
 $electives = array();
 $department_electives = array();
@@ -56,27 +56,27 @@ $int_department_electives = array(
 
 
 $delete = FALSE;
-while(!feof($myfile)) {
-    $line = fgets($myfile);
+while(!feof($mystudent_record)) {
+    $line = fgets($mystudent_record);
 
     if($delete){
      
         array_push($electives, $line);
-        $contents = file_get_contents('../academic_record_formatted.txt');
+        $contents = student_record_get_contents('../academic_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('../academic_record_formatted.txt', $contents);
+        student_record_put_contents('../academic_record_formatted.txt', $contents);
     }elseif(trim($line) === '- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -'){
         
         $delete = TRUE;
         array_push($electives, $line);
-        $contents = file_get_contents('../academic_record_formatted.txt');
+        $contents = student_record_get_contents('../academic_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('../academic_record_formatted.txt', $contents);
+        student_record_put_contents('../academic_record_formatted.txt', $contents);
     }
    
   }
 
-fclose($myfile);
+fclose($mystudent_record);
 
  for($i=0; $i < count($electives); $i++){
      $matches = array();
@@ -180,41 +180,41 @@ foreach($free_electives as $free_elective){
 }
 echo "<h3>End of Free Electives</h3>";
 
-fclose($myfile); 
+fclose($mystudent_record); 
 
-$myfile = fopen('../academic_record_formatted.txt', 'a');//opens file in append mode  
+$mystudent_record = fopen('../academic_record_formatted.txt', 'a');//opens student_record in append mode  
   
  
 
-fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
+fwrite($mystudent_record, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
 foreach($department_electives as $department_elective){
-    fwrite($myfile, "\n".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."\n");
+    fwrite($mystudent_record, "\n".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."\n");
 }
 
-fwrite($myfile, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
+fwrite($mystudent_record, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
 foreach($free_electives as $free_elective){
-    fwrite($myfile,"\n".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."\n");
+    fwrite($mystudent_record,"\n".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."\n");
 }
 
 $delete = FALSE;
 foreach($electives as $course){
     if($delete)
-        fwrite($myfile, $course);
+        fwrite($mystudent_record, $course);
     elseif(trim($course) === '***********************************************'){
         $delete = TRUE;
-        fwrite($myfile ,"\nSECTION 3 - Work Not Applicable to this Program\n");
-        fwrite($myfile ,"\n***********************************************\n");
+        fwrite($mystudent_record ,"\nSECTION 3 - Work Not Applicable to this Program\n");
+        fwrite($mystudent_record ,"\n***********************************************\n");
     }
         
     
 }
 
-fclose($myfile); 
+fclose($mystudent_record); 
 
 /* PUT THIS CODE INSIDE A FUNCTION
-$contents = file_get_contents('file_formatted.txt');
+$contents = student_record_get_contents('student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('file_formatted.txt', $contents);        
+        student_record_put_contents('student_record_formatted.txt', $contents);        
 */
 
 
@@ -225,14 +225,14 @@ $contents = file_get_contents('file_formatted.txt');
 
 
 
-$myfile = fopen("file_formatted.txt", "r") or die("Unable to open file!");
+$mystudent_record = fopen("student_record_formatted.txt", "r") or die("Unable to open student_record!");
 $courses = array();
 $mandatory_courses = array();
 $general_courses = array();
 $course_category = array();
 $courses_below_section3 = array();
 
-//file FIJO
+//student_record FIJO
 $query = "SELECT  * FROM mandatory_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
@@ -244,7 +244,7 @@ if($resultCheck > 0){
   }
 }
 
- //file FIJO DEPARTAMENTALES
+ //student_record FIJO DEPARTAMENTALES
 $query = "SELECT  * FROM departmental_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
@@ -256,7 +256,7 @@ if($resultCheck > 0){
   }
 }
 
- //file FIJO GENERALES
+ //student_record FIJO GENERALES
  $query = "SELECT  * FROM general_courses";
  $result = mysqli_query($conn,$query);
  $resultCheck = mysqli_num_rows($result);
@@ -271,8 +271,8 @@ if($resultCheck > 0){
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
 
-while(!feof($myfile)){
-    $temp = ltrim(fgets($myfile));
+while(!feof($mystudent_record)){
+    $temp = ltrim(fgets($mystudent_record));
     $course_code;
     $semester;
     $credits;
@@ -355,7 +355,7 @@ while(!feof($myfile)){
 
 }
 
-fclose($myfile);
+fclose($mystudent_record);
 
 // ADD COURSES FROM SECTION 3 TO COURSES ARRAY
 for($i=0; $i < count($courses_below_section3); $i++){
@@ -538,20 +538,20 @@ foreach($courses as $course){
    
 }
 
-$sql ="SELECT stdnt_number FROM file";
+$sql ="SELECT stdnt_number FROM student_record";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
                 if($resultCheck === 0){
                     foreach($courses as $course){
                         if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                            $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
+                            $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
 
                 $stmt->bind_param('iiisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
                         
                
                 if ($stmt->execute()) {
-                    //  header('Location: ../est_profile.php');
+                    //  header('Location: ../est_prostudent_record.php');
                     echo "Uploaded to Database successfully";
                 } else {
                 echo "Unable to create record";
@@ -572,9 +572,9 @@ mysqli_close($conn);
 
 
     
-   //header('Location: ../est_profile.php');
+   //header('Location: ../est_prostudent_record.php');
 } else {
-    echo "move_uploaded_file function failed";
+    echo "move_uploaded_student_record function failed";
 }
 
 

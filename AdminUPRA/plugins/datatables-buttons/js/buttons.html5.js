@@ -2,7 +2,7 @@
  * HTML5 export buttons for Buttons and DataTables.
  * 2016 SpryMedia Ltd - datatables.net/license
  *
- * FileSaver.js (1.3.3) - MIT license
+ * student_recordSaver.js (1.3.3) - MIT license
  * Copyright © 2016 Eli Grey - http://eligrey.com
  */
 
@@ -64,7 +64,7 @@ DataTable.Buttons.jszip = function (_) {
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * FileSaver.js dependency
+ * student_recordSaver.js dependency
  */
 
 /*jslint bitwise: true, indent: 4, laxbreak: true, laxcomma: true, smarttabs: true, plusplus: true */
@@ -97,24 +97,24 @@ var _saveAs = (function(view) {
 		, force_saveable_type = "application/octet-stream"
 		// the Blob API is fundamentally broken as there is no "downloadfinished" event to subscribe to
 		, arbitrary_revoke_timeout = 1000 * 40 // in ms
-		, revoke = function(file) {
+		, revoke = function(student_record) {
 			var revoker = function() {
-				if (typeof file === "string") { // file is an object URL
-					get_URL().revokeObjectURL(file);
-				} else { // file is a File
-					file.remove();
+				if (typeof student_record === "string") { // student_record is an object URL
+					get_URL().revokeObjectURL(student_record);
+				} else { // student_record is a student_record
+					student_record.remove();
 				}
 			};
 			setTimeout(revoker, arbitrary_revoke_timeout);
 		}
-		, dispatch = function(filesaver, event_types, event) {
+		, dispatch = function(student_recordsaver, event_types, event) {
 			event_types = [].concat(event_types);
 			var i = event_types.length;
 			while (i--) {
-				var listener = filesaver["on" + event_types[i]];
+				var listener = student_recordsaver["on" + event_types[i]];
 				if (typeof listener === "function") {
 					try {
-						listener.call(filesaver, event || filesaver);
+						listener.call(student_recordsaver, event || student_recordsaver);
 					} catch (ex) {
 						throw_outside(ex);
 					}
@@ -129,34 +129,34 @@ var _saveAs = (function(view) {
 			}
 			return blob;
 		}
-		, FileSaver = function(blob, name, no_auto_bom) {
+		, student_recordSaver = function(blob, name, no_auto_bom) {
 			if (!no_auto_bom) {
 				blob = auto_bom(blob);
 			}
-			// First try a.download, then web filesystem, then object URLs
+			// First try a.download, then web student_recordsystem, then object URLs
 			var
-				  filesaver = this
+				  student_recordsaver = this
 				, type = blob.type
 				, force = type === force_saveable_type
 				, object_url
 				, dispatch_all = function() {
-					dispatch(filesaver, "writestart progress write writeend".split(" "));
+					dispatch(student_recordsaver, "writestart progress write writeend".split(" "));
 				}
-				// on any filesys errors revert to saving with object URLs
+				// on any student_recordsys errors revert to saving with object URLs
 				, fs_error = function() {
-					if ((is_chrome_ios || (force && is_safari)) && view.FileReader) {
+					if ((is_chrome_ios || (force && is_safari)) && view.student_recordReader) {
 						// Safari doesn't allow downloading of blob urls
-						var reader = new FileReader();
+						var reader = new student_recordReader();
 						reader.onloadend = function() {
-							var url = is_chrome_ios ? reader.result : reader.result.replace(/^data:[^;]*;/, 'data:attachment/file;');
+							var url = is_chrome_ios ? reader.result : reader.result.replace(/^data:[^;]*;/, 'data:attachment/student_record;');
 							var popup = view.open(url, '_blank');
 							if(!popup) view.location.href = url;
 							url=undefined; // release reference before dispatching
-							filesaver.readyState = filesaver.DONE;
+							student_recordsaver.readyState = student_recordsaver.DONE;
 							dispatch_all();
 						};
 						reader.readAsDataURL(blob);
-						filesaver.readyState = filesaver.INIT;
+						student_recordsaver.readyState = student_recordsaver.INIT;
 						return;
 					}
 					// don't create more object URLs than needed
@@ -172,12 +172,12 @@ var _saveAs = (function(view) {
 							view.location.href = object_url;
 						}
 					}
-					filesaver.readyState = filesaver.DONE;
+					student_recordsaver.readyState = student_recordsaver.DONE;
 					dispatch_all();
 					revoke(object_url);
 				}
 			;
-			filesaver.readyState = filesaver.INIT;
+			student_recordsaver.readyState = student_recordsaver.INIT;
 
 			if (can_use_save_link) {
 				object_url = get_URL().createObjectURL(blob);
@@ -187,16 +187,16 @@ var _saveAs = (function(view) {
 					click(save_link);
 					dispatch_all();
 					revoke(object_url);
-					filesaver.readyState = filesaver.DONE;
+					student_recordsaver.readyState = student_recordsaver.DONE;
 				});
 				return;
 			}
 
 			fs_error();
 		}
-		, FS_proto = FileSaver.prototype
+		, FS_proto = student_recordSaver.prototype
 		, saveAs = function(blob, name, no_auto_bom) {
-			return new FileSaver(blob, name || blob.name || "download", no_auto_bom);
+			return new student_recordSaver(blob, name || blob.name || "download", no_auto_bom);
 		}
 	;
 	// IE 10+ (native saveAs)
@@ -233,9 +233,9 @@ var _saveAs = (function(view) {
 ));
 
 
-// Expose file saver on the DataTables API. Can't attach to `DataTables.Buttons`
-// since this file can be loaded before Button's core!
-DataTable.fileSave = _saveAs;
+// Expose student_record saver on the DataTables API. Can't attach to `DataTables.Buttons`
+// since this student_record can be loaded before Button's core!
+DataTable.student_recordSave = _saveAs;
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -275,7 +275,7 @@ var _newLine = function ( config )
 
 /**
  * Combine the data from the `buttons.exportData` method into a string that
- * will be used in the export file.
+ * will be used in the export student_record.
  *
  * @param	{DataTable.Api} dt		 DataTables API instance
  * @param	{object}				config Button configuration
@@ -373,9 +373,9 @@ try {
 catch (t) {}
 
 /**
- * Recursively add XML files from an object's structure to a ZIP file. This
- * allows the XSLX file to be easily defined with an object's structure matching
- * the files structure.
+ * Recursively add XML student_records from an object's structure to a ZIP student_record. This
+ * allows the XSLX student_record to be easily defined with an object's structure matching
+ * the student_records structure.
  *
  * @param {JSZip} zip ZIP package
  * @param {object} obj Object to add (recursive)
@@ -445,7 +445,7 @@ function _addToZip( zip, obj ) {
 			// various elements making them useless. This strips them out
 			str = str.replace( /<([^<>]*?) xmlns=""([^<>]*?)>/g, '<$1 $2>' );
 
-			zip.file( name, str );
+			zip.student_record( name, str );
 		}
 	} );
 }
@@ -532,7 +532,7 @@ function _excelColWidth( data, col ) {
 	return max > 6 ? max : 6;
 }
 
-// Excel - Pre-defined strings to build a basic XLSX file
+// Excel - Pre-defined strings to build a basic XLSX student_record
 var excelStrings = {
 	"_rels/.rels":
 		'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
@@ -561,7 +561,7 @@ var excelStrings = {
 	"xl/workbook.xml":
 		'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
 		'<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'+
-			'<fileVersion appName="xl" lastEdited="5" lowestEdited="5" rupBuild="24816"/>'+
+			'<student_recordVersion appName="xl" lastEdited="5" lowestEdited="5" rupBuild="24816"/>'+
 			'<workbookPr showInkAnnotation="0" autoCompressPictures="0"/>'+
 			'<bookViews>'+
 				'<workbookView xWindow="0" yWindow="0" windowWidth="25600" windowHeight="19020" tabRatio="500"/>'+
@@ -929,7 +929,7 @@ DataTable.ext.buttons.csvHtml5 = {
 	className: 'buttons-csv buttons-html5',
 
 	available: function () {
-		return window.FileReader !== undefined && window.Blob;
+		return window.student_recordReader !== undefined && window.Blob;
 	},
 
 	text: function ( dt ) {
@@ -967,14 +967,14 @@ DataTable.ext.buttons.csvHtml5 = {
 
 		_saveAs(
 			new Blob( [output], {type: 'text/csv'+charset} ),
-			info.filename,
+			info.student_recordname,
 			true
 		);
 
 		this.processing( false );
 	},
 
-	filename: '*',
+	student_recordname: '*',
 
 	extension: '.csv',
 
@@ -1000,7 +1000,7 @@ DataTable.ext.buttons.excelHtml5 = {
 	className: 'buttons-excel buttons-html5',
 
 	available: function () {
-		return window.FileReader !== undefined && _jsZip() !== undefined && ! _isDuffSafari() && _serialiser;
+		return window.student_recordReader !== undefined && _jsZip() !== undefined && ! _isDuffSafari() && _serialiser;
 	},
 
 	text: function ( dt ) {
@@ -1261,7 +1261,7 @@ DataTable.ext.buttons.excelHtml5 = {
 			zip
 				.generateAsync( zipConfig )
 				.then( function ( blob ) {
-					_saveAs( blob, exportInfo.filename );
+					_saveAs( blob, exportInfo.student_recordname );
 					that.processing( false );
 				} );
 		}
@@ -1269,13 +1269,13 @@ DataTable.ext.buttons.excelHtml5 = {
 			// JSZip 2.5
 			_saveAs(
 				zip.generate( zipConfig ),
-				exportInfo.filename
+				exportInfo.student_recordname
 			);
 			this.processing( false );
 		}
 	},
 
-	filename: '*',
+	student_recordname: '*',
 
 	extension: '.xlsx',
 
@@ -1305,7 +1305,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 	className: 'buttons-pdf buttons-html5',
 
 	available: function () {
-		return window.FileReader !== undefined && _pdfMake();
+		return window.student_recordReader !== undefined && _pdfMake();
 	},
 
 	text: function ( dt ) {
@@ -1425,7 +1425,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 			pdf.open();
 		}
 		else {
-			pdf.download( info.filename );
+			pdf.download( info.student_recordname );
 		}
 
 		this.processing( false );
@@ -1433,7 +1433,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 
 	title: '*',
 
-	filename: '*',
+	student_recordname: '*',
 
 	extension: '.pdf',
 

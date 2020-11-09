@@ -6,21 +6,21 @@ require 'connection.php';
     $estatus_R = mysqli_real_escape_string($conn, $_POST['estatus_R']); 
 
             if($estatus_R == 0){
-                $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
+                $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
             }else{
-                $sql = "UPDATE file SET estatus_R = 0 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
+                $sql = "UPDATE student_record SET estatus_R = 0 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
             }
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             //exit
-            header("Location: ../est_profile.php");
+            header("Location: ../est_prostudent_record.php");
             exit();
     
     }
 else {
-    header("Location: ../est_profile.php");
+    header("Location: ../est_prostudent_record.php");
     exit();
 }
 ?>

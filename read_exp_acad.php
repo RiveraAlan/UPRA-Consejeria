@@ -13,33 +13,33 @@ $regex = array(
                 ''
 );
 
- file_put_contents('file_formatted.txt',
+ student_record_put_contents('student_record_formatted.txt',
     preg_replace(
         '~[\r\n]+~',
         "\r\n",
-        trim(file_get_contents('file.txt'))
+        trim(student_record_get_contents('student_record.txt'))
     )
 );
 
-$fileArr = file('file_formatted.txt');
+$student_recordArr = student_record('student_record_formatted.txt');
 $courses = array();
 $i = 0;
 $j = 0;
 
-while($i < count($fileArr)){
+while($i < count($student_recordArr)){
   
-  if(array_key_exists(trim($fileArr[$i]), $regex)){
-    //echo $fileArr[$i] . "\n";
+  if(array_key_exists(trim($student_recordArr[$i]), $regex)){
+    //echo $student_recordArr[$i] . "\n";
     $j = $i + 1;
-    while($i < $j AND $j < count($fileArr)){
-      if(preg_match("/^[A-Z]{4} \d{4}/", trim($fileArr[$j]))){
-       // $fileArr[$j] .= $regex[trim($fileArr[$i])];
-       $course = trim($fileArr[$j]) . ' ' . $regex[trim($fileArr[$i])];
+    while($i < $j AND $j < count($student_recordArr)){
+      if(preg_match("/^[A-Z]{4} \d{4}/", trim($student_recordArr[$j]))){
+       // $student_recordArr[$j] .= $regex[trim($student_recordArr[$i])];
+       $course = trim($student_recordArr[$j]) . ' ' . $regex[trim($student_recordArr[$i])];
        array_push($courses, $course);
-        //echo $fileArr[$j];
+        //echo $student_recordArr[$j];
       }
 
-      if(array_key_exists(trim($fileArr[$j]), $regex)){
+      if(array_key_exists(trim($student_recordArr[$j]), $regex)){
         break;
       }
 

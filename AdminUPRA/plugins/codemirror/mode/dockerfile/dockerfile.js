@@ -26,13 +26,13 @@
     "workdir", "onbuild", "stopsignal", "healthcheck", "shell"
   ];
 
-  // Collect all Dockerfile directives
+  // Collect all Dockerstudent_record directives
   var instructions = [from, expose].concat(shells).concat(others),
       instructionRegex = "(" + instructions.join('|') + ")",
       instructionOnlyLine = new RegExp("^(\\s*)" + instructionRegex + "(\\s*)(#.*)?$", "i"),
       instructionWithArguments = new RegExp("^(\\s*)" + instructionRegex + "(\\s+)", "i");
 
-  CodeMirror.defineSimpleMode("dockerfile", {
+  CodeMirror.defineSimpleMode("dockerstudent_record", {
     start: [
       // Block comment: This is a line starting with a comment
       {
@@ -207,5 +207,5 @@
     }
   });
 
-  CodeMirror.defineMIME("text/x-dockerfile", "dockerfile");
+  CodeMirror.defineMIME("text/x-dockerstudent_record", "dockerstudent_record");
 });

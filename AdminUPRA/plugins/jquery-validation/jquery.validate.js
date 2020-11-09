@@ -443,7 +443,7 @@ $.extend( $.validator, {
 
 			$( this.currentForm )
 				.on( "focusin.validate focusout.validate keyup.validate",
-					":text, [type='password'], [type='file'], select, textarea, [type='number'], [type='search'], " +
+					":text, [type='password'], [type='student_record'], select, textarea, [type='number'], [type='search'], " +
 					"[type='tel'], [type='url'], [type='email'], [type='datetime'], [type='date'], [type='month'], " +
 					"[type='week'], [type='time'], [type='datetime-local'], [type='range'], [type='color'], " +
 					"[type='radio'], [type='checkbox'], [contenteditable], [type='button']", delegate )
@@ -733,7 +733,7 @@ $.extend( $.validator, {
 				val = $element.val();
 			}
 
-			if ( type === "file" ) {
+			if ( type === "student_record" ) {
 
 				// Modern browser (chrome & safari)
 				if ( val.substr( 0, 12 ) === "C:\\fakepath\\" ) {
@@ -753,7 +753,7 @@ $.extend( $.validator, {
 					return val.substr( idx + 1 );
 				}
 
-				// Just the file name
+				// Just the student_record name
 				return val;
 			}
 

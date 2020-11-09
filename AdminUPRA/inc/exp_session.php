@@ -4,7 +4,7 @@ include_once 'connection.php';
 session_start();
 
 $_SESSION['stdnt_number'] = mysqli_real_escape_string($conn, $_POST['stdnt_number']);
-header('Location:  ../est_profile.php');
+header('Location:  ../est_prostudent_record.php');
 	    exit();
 }
 ?>

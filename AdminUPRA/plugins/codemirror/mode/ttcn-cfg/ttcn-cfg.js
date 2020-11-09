@@ -14,7 +14,7 @@
   CodeMirror.defineMode("ttcn-cfg", function(config, parserConfig) {
     var indentUnit = config.indentUnit,
         keywords = parserConfig.keywords || {},
-        fileNCtrlMaskOptions = parserConfig.fileNCtrlMaskOptions || {},
+        student_recordNCtrlMaskOptions = parserConfig.student_recordNCtrlMaskOptions || {},
         externalCommands = parserConfig.externalCommands || {},
         multiLineStrings = parserConfig.multiLineStrings,
         indentStatements = parserConfig.indentStatements !== false;
@@ -51,8 +51,8 @@
       stream.eatWhile(/[\w\$_]/);
       var cur = stream.current();
       if (keywords.propertyIsEnumerable(cur)) return "keyword";
-      if (fileNCtrlMaskOptions.propertyIsEnumerable(cur))
-        return "negative fileNCtrlMaskOptions";
+      if (student_recordNCtrlMaskOptions.propertyIsEnumerable(cur))
+        return "negative student_recordNCtrlMaskOptions";
       if (externalCommands.propertyIsEnumerable(cur)) return "negative externalCommands";
 
       return "variable";
@@ -160,14 +160,14 @@
 
   CodeMirror.defineMIME("text/x-ttcn-cfg", {
     name: "ttcn-cfg",
-    keywords: words("Yes No LogFile FileMask ConsoleMask AppendFile" +
+    keywords: words("Yes No Logstudent_record student_recordMask ConsoleMask Appendstudent_record" +
     " TimeStampFormat LogEventTypes SourceInfoFormat" +
     " LogEntityName LogSourceInfo DiskFullAction" +
-    " LogFileNumber LogFileSize MatchingHints Detailed" +
+    " Logstudent_recordNumber Logstudent_recordSize MatchingHints Detailed" +
     " Compact SubCategories Stack Single None Seconds" +
     " DateTime Time Stop Error Retry Delete TCPPort KillTimer" +
     " NumHCs UnixSocketsEnabled LocalAddress"),
-    fileNCtrlMaskOptions: words("TTCN_EXECUTOR TTCN_ERROR TTCN_WARNING" +
+    student_recordNCtrlMaskOptions: words("TTCN_EXECUTOR TTCN_ERROR TTCN_WARNING" +
     " TTCN_PORTEVENT TTCN_TIMEROP TTCN_VERDICTOP" +
     " TTCN_DEFAULTOP TTCN_TESTCASE TTCN_ACTION" +
     " TTCN_USER TTCN_FUNCTION TTCN_STATISTICS" +
