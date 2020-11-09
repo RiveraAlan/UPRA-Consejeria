@@ -4,44 +4,44 @@ include 'private/dbconnect.php';
 
 $myfile = fopen("file_formatted.txt", "r") or die("Unable to open file!");
 $courses = array();
-$file_fijo = array();
-$file_fijo_generales = array();
-$posicion_cursos = array();
+$mandatory_courses = array();
+$general_courses = array();
+$course_category = array();
 $courses_below_section3 = array();
 
 //file FIJO
-$query = "SELECT  * FROM file_fijo";
+$query = "SELECT  * FROM mandatory_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
         $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
-        array_push($file_fijo, $arr);
+        array_push($mandatory_courses, $arr);
   }
 }
 
  //file FIJO DEPARTAMENTALES
-$query = "SELECT  * FROM file_fijo_departamentales";
+$query = "SELECT  * FROM departmental_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
         $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
-        array_push($file_fijo, $arr);
+        array_push($mandatory_courses, $arr);
   }
 }
 
  //file FIJO GENERALES
- $query = "SELECT  * FROM file_fijo_generales";
+ $query = "SELECT  * FROM general_courses";
  $result = mysqli_query($conn,$query);
  $resultCheck = mysqli_num_rows($result);
  
  if($resultCheck > 0){
    while($row = mysqli_fetch_assoc($result)) {
          $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
-         array_push($file_fijo, $arr);
+         array_push($mandatory_courses, $arr);
    }
  }
 
@@ -115,11 +115,11 @@ while(!feof($myfile)){
                             );
 
             // ASSIGN crse_label
-            foreach($file_fijo as $idx => $e_f){
+            foreach($mandatory_courses as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
                     $course["crse_label"] = $e_f["crse_label"];
                     $course["crse_id"] = $e_f["crse_id"];
-                    unset($file_fijo[$idx]);
+                    unset($mandatory_courses[$idx]);
                 }
                    
             }
@@ -186,11 +186,11 @@ for($i=0; $i < count($courses_below_section3); $i++){
             "crse_id" => NULL
                         );
                         
-            foreach($file_fijo as $idx => $e_f){
+            foreach($mandatory_courses as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
                     $course["crse_label"] = $e_f["crse_label"];
                     $course["crse_id"] = $e_f["crse_id"];
-                    unset($file_fijo[$idx]);
+                    unset($mandatory_courses[$idx]);
                 }
                    
             }
@@ -200,7 +200,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
 }
 
 
-foreach($file_fijo as $e_f){
+foreach($mandatory_courses as $e_f){
     if($e_f["crse_label"] >= 1 AND $e_f["crse_label"] <= 30){
         $course = array("stdnt_number" => -1, "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
             "crse_status" => 0, "semester_pass" => NULL,"convalidacion_c" => NULL,
@@ -218,14 +218,14 @@ foreach($courses as &$course){
     if($course["crse_label"] === NULL){
         $course["crse_id"] = 7;
         //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
-        $query1 = "SELECT crse_label FROM file_fijo_libre WHERE crse_name = '".$course["crse_name"]."';";
+        $query1 = "SELECT crse_label FROM free_courses WHERE crse_name = '".$course["crse_name"]."';";
 
         //  =====LA BASE DATOS NO ESTA USANDO EL 100, ESTA AUTO INCREMENTANDOSE Y YA NO EMPIEZA EN 100. =======
 
         $result1 = mysqli_query($conn,$query1);
         $resultCheck1 = mysqli_num_rows($result1);
         $crse_label_from_query1 = mysqli_fetch_assoc($result1);
-        $query2 = "SELECT MAX(crse_label)AS max_crse_label FROM file_fijo_libre;";
+        $query2 = "SELECT MAX(crse_label)AS max_crse_label FROM free_courses;";
         $result2 = mysqli_query($conn,$query2);
         $resultCheck2 = mysqli_num_rows($result2);
         
@@ -237,7 +237,7 @@ foreach($courses as &$course){
         } elseif($resultCheck2 === 1 AND $crse_label_from_query2["max_crse_label"] !== NULL) {
             $course["crse_label"] = $crse_label_from_query2["max_crse_label"] + 1;
             
-            $query = "INSERT INTO file_fijo_libre(crse_label, crse_name, crse_description, crse_credits, crse_id) 
+            $query = "INSERT INTO free_courses(crse_label, crse_name, crse_description, crse_credits, crse_id) 
             VALUES(".$course["crse_label"].", '".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].", 7);";
             echo "<h1>".$query."</h1>";
 
@@ -247,7 +247,7 @@ foreach($courses as &$course){
             $course["crse_label"] = $crse_label_start_point;
             $crse_label_start_point++;
             //INSERT INTO DB
-            $query = "INSERT INTO file_fijo_libre(crse_name, crse_description, crse_credits, crse_id) 
+            $query = "INSERT INTO free_courses(crse_name, crse_description, crse_credits, crse_id) 
             VALUES('".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].
              ", 7);";
         
@@ -390,11 +390,11 @@ if(preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp)){
             "crse_id" => NULL
                         );
                         
-            foreach($file_fijo as $idx => $e_f){
+            foreach($mandatory_courses as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
                     $course["crse_label"] = $e_f["crse_label"];
                     $course["crse_id"] = $e_f["crse_id"];
-                    unset($file_fijo[$idx]);
+                    unset($mandatory_courses[$idx]);
                 }
                    
             }

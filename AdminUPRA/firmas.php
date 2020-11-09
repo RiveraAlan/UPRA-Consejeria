@@ -174,7 +174,7 @@ $crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
             <?php
         $sql ="SELECT stdnt_email FROM file 
         INNER JOIN student USING (stdnt_number)
-        INNER JOIN file_fijo_departamentales USING (crse_label) 
+        INNER JOIN departmental_courses USING (crse_label) 
                WHERE crse_status = 4 AND crse_label = $crse_label";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);

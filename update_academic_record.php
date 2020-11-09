@@ -63,13 +63,13 @@ while(!feof($myfile)){
 }
 fclose($myfile);
 
-$query = "SELECT crse_name, stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, estatus_R FROM (SELECT * FROM file JOIN file_fijo USING(crse_label)
+$query = "SELECT crse_name, stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, estatus_R FROM (SELECT * FROM file JOIN mandatory_courses USING(crse_label)
             UNION 
-            SELECT * FROM file JOIN file_fijo_departamentales USING(crse_label) 
+            SELECT * FROM file JOIN departmental_courses USING(crse_label) 
             UNION 
-            SELECT * FROM file JOIN file_fijo_generales USING(crse_label) 
+            SELECT * FROM file JOIN general_courses USING(crse_label) 
             UNION 
-            SELECT * FROM file JOIN file_fijo_libre USING(crse_label))
+            SELECT * FROM file JOIN free_courses USING(crse_label))
                                 AS Courses   WHERE crse_name IN (";
 
 foreach($coursesTakenThisSemester as $course_name => $course_grade){
@@ -98,13 +98,13 @@ if($resultCheck > 0){
 
 foreach($coursesForNextSemester as $key => $grade){
   // FOR WHAT I UNDERSTAND THE COURSES IN THIS ARRAY ARE NOT IN THE DB.
-   $query = "SELECT * FROM ( SELECT * FROM file_fijo
+   $query = "SELECT * FROM ( SELECT * FROM mandatory_courses
    UNION
-   SELECT * FROM file_fijo_departamentales 
+   SELECT * FROM departmental_courses 
    UNION 
-   SELECT * FROM file_fijo_generales 
+   SELECT * FROM general_courses 
    UNION 
-   SELECT * FROM file_fijo_libre) AS Courses
+   SELECT * FROM free_courses) AS Courses
    WHERE crse_name = '$key';
    ";
 

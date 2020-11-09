@@ -168,7 +168,7 @@ if(!isset($_SESSION['id'])){
                                 <tbody>
                                   <?php
                                        $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
-                                        FROM file_fijo_departamentales";
+                                        FROM departmental_courses";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
@@ -213,7 +213,7 @@ if(!isset($_SESSION['id'])){
                                 <tbody>
                                 <?php
                                    $sql =" SELECT crse_name, crse_description, crse_credits, crse_label
-                                   FROM file_fijo";
+                                   FROM mandatory_courses";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
 
@@ -258,7 +258,7 @@ if(!isset($_SESSION['id'])){
                                 <tbody>
                                  <?php
                                 $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
-                                   FROM file_fijo_generales";
+                                   FROM general_courses";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
                                 if($resultCheck > 0){
