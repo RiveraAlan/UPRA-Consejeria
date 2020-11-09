@@ -3,7 +3,7 @@
 $serverName = 'localhost';
 $dbUserName = 'root';
 $dbPassword = '';
-$dbName = 'consejeria';
+$dbName = 'counseling';
  
 /*
 $serverName = '136.145.29.193';

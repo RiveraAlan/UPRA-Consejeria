@@ -23,7 +23,7 @@
          
          
 
-        <form class="login-form" action="../private/admin_auth.php" method="POST">
+        <form class="login-form" action="inc/admin_auth.php" method="POST">
              <div class="form-group">
                  <div class="<?= isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty'] ? 'form-group-label-invalid' : 'form-group-label'?>">E-mail</div>
                  <input type="email" name="email" id="" class="<?= isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty'] ? 'form-input-invalid' : 'form-input'?>">
