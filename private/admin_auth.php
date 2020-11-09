@@ -34,8 +34,8 @@ if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor 
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
-            $_SESSION['adv_name'] = $name;
-            $_SESSION['adv_id'] = $id;
+            $_SESSION['name'] = $name;
+            $_SESSION['id'] = $id;
             
              echo '<script>window.location="../AdminUPRA/inicio.php"</script>';
             

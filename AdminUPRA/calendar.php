@@ -57,7 +57,7 @@ if(!isset($_SESSION['id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -65,7 +65,7 @@ if(!isset($_SESSION['id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']}</a>" ?>
         </div>
       </div>
 

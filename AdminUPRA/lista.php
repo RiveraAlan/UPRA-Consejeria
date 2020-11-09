@@ -17,7 +17,7 @@ if(!isset($_SESSION['id'])){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | LISTA-studentS</title>
+  <title>CONSEJERÍA-UPRA | LISTA-ESTUDIANTES</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -71,7 +71,7 @@ if(!isset($_SESSION['id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -79,7 +79,7 @@ if(!isset($_SESSION['id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>" ?>
         </div>
       </div>
 
@@ -124,7 +124,7 @@ if(!isset($_SESSION['id'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Conteo de los students por Clases</h1>
+            <h1>Conteo de los Estudiantes por Clases</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
