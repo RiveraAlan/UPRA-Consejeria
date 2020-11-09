@@ -22,7 +22,6 @@ if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor 
 	// Store the result so we can check if the account exists in the database.
     $stmt->store_result();
   
-
     
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id, $password, $name);
@@ -39,6 +38,7 @@ if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor 
             $_SESSION['adv_id'] = $id;
             
              echo '<script>window.location="../AdminUPRA/inicio.php"</script>';
+            
         } else {
             // Incorrect password
             header('Location:  ../AdminUPRA/index.php?isAuthFailed=true');
