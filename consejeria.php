@@ -1,9 +1,9 @@
 <?php
 session_start();
-$id= $_SESSION['id_est'];
+$id= $_SESSION['stdnt_number'];
 // Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
 include_once 'private/dbconnect.php';
-if(!isset($_SESSION['id_est'])){
+if(!isset($_SESSION['stdnt_number'])){
   header("Location: index.php");
     exit();
 }
@@ -49,7 +49,7 @@ if(!isset($_SESSION['id_est'])){
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-<!-- Esta area es para que el estudiante cierre su sesion. -->
+<!-- Esta area es para que el student cierre su sesion. -->
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
       <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -65,7 +65,7 @@ if(!isset($_SESSION['id_est'])){
         </div>
       </div>
     </header>
- <!-- Culmina la parte cerrar sesion del estudiante. -->
+ <!-- Culmina la parte cerrar sesion del student. -->
     <div style="padding-top: 200px; padding-bottom: 20px; margin-left: 15%">
         <div class="container">
           <div class="row align-items-center">
@@ -76,23 +76,23 @@ if(!isset($_SESSION['id_est'])){
               </div>
                 <?php 
                  $sentenciaSQL= "SELECT SUM(C)
-                 FROM ((SELECT créditos_c AS C
-                 FROM expediente_fijo
-                 INNER JOIN  expediente USING(id_fijo)
-                 WHERE expediente.id_est = $id)
+                 FROM ((SELECT crse_credits AS C
+                 FROM file_fijo
+                 INNER JOIN  file USING(crse_label)
+                 WHERE file.stdnt_number = $id)
                  UNION ALL
-                 (SELECT créditos_c AS C
-                 FROM expediente_fijo_generales
-                 INNER JOIN expediente USING(id_fijo)
-                 WHERE expediente.id_est = $id)
-                 UNION ALL (SELECT créditos_c AS C
-                 FROM expediente_fijo_departamentales
-                 INNER JOIN expediente USING(id_fijo)
-                 WHERE expediente.id_est = $id)
-                 UNION ALL (SELECT créditos_c AS C
-                 FROM expediente_fijo_libre
-                 INNER JOIN expediente USING(id_fijo)
-                 WHERE expediente.id_est = $id)) t1";
+                 (SELECT crse_credits AS C
+                 FROM file_fijo_generales
+                 INNER JOIN file USING(crse_label)
+                 WHERE file.stdnt_number = $id)
+                 UNION ALL (SELECT crse_credits AS C
+                 FROM file_fijo_departamentales
+                 INNER JOIN file USING(crse_label)
+                 WHERE file.stdnt_number = $id)
+                 UNION ALL (SELECT crse_credits AS C
+                 FROM file_fijo_libre
+                 INNER JOIN file USING(crse_label)
+                 WHERE file.stdnt_number = $id)) t1";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
                 
@@ -105,26 +105,26 @@ if(!isset($_SESSION['id_est'])){
                       $sem = 2;
                     }
                  echo "<div class='card-header'>
-                    Nombre: <b> {$_SESSION['nombre_completo']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Correo: <b>{$_SESSION['correo_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
-                    Número de Estudiante: <b>{$_SESSION['num_est']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Número de student: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendados: <b>{$reco['SUM(C)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Año: <b>{$_SESSION['año_CCOM']}</b><br></div>";?>
                 </div>
               </div>
             </div>
- <!-- Aqui se muestran los distinto TABS que estan en la pagina del estudiante. -->
+ <!-- Aqui se muestran los distinto TABS que estan en la pagina del student. -->
        <div class="container tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openCity(event, 'Citas')">Sacar Cita con su Consejero/a</button>
+                    <button class="tablinks active" onclick="openCity(event, 'appointment')">Sacar Cita con su advisor/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
                      <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Hacer Sugerencias de Clases</button>
-                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del Consejero/a</button>
+                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del advisor/a</button>
                   </div>
  <!-- Culmina la parte de los TABS. -->                
- <!-- Comienza el TAB de la realizacion de consejeria donde el estudiante puede ver su expediente y confirmar su consejeria academica y tambien sugerir al momento de darle 'click' en consejeria 'otros cursos'. -->
+ <!-- Comienza el TAB de la realizacion de consejeria donde el student puede ver su file y confirmar su consejeria academica y tambien sugerir al momento de darle 'click' en consejeria 'otros cursos'. -->
             <div id="Concentracion" class="tabcontent">
                 <section class="content">
                   <div class="container-fluid">
@@ -133,23 +133,23 @@ if(!isset($_SESSION['id_est'])){
                         <div class="card">
                             <?php 
                              $sentenciaSQL= "SELECT SUM(C)
-                             FROM ((SELECT créditos_c AS C
-                             FROM expediente_fijo
-                             INNER JOIN  expediente USING(id_fijo)
-                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))
+                             FROM ((SELECT crse_credits AS C
+                             FROM file_fijo
+                             INNER JOIN  file USING(crse_label)
+                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
                              UNION ALL
-                             (SELECT créditos_c AS C
-                             FROM expediente_fijo_generales
-                             INNER JOIN expediente USING(id_fijo)
-                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))
-                             UNION ALL (SELECT créditos_c AS C
-                             FROM expediente_fijo_departamentales
-                             INNER JOIN expediente USING(id_fijo)
-                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))
-                             UNION ALL (SELECT créditos_c AS C
-                             FROM expediente_fijo_libre
-                             INNER JOIN expediente USING(id_fijo)
-                             WHERE expediente.id_est = $id AND (estatus_R = 1 OR estatus_C = 3))) t1";
+                             (SELECT crse_credits AS C
+                             FROM file_fijo_generales
+                             INNER JOIN file USING(crse_label)
+                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
+                             UNION ALL (SELECT crse_credits AS C
+                             FROM file_fijo_departamentales
+                             INNER JOIN file USING(crse_label)
+                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))
+                             UNION ALL (SELECT crse_credits AS C
+                             FROM file_fijo_libre
+                             INNER JOIN file USING(crse_label)
+                             WHERE file.stdnt_number = $id AND (estatus_R = 1 OR crse_status = 3))) t1";
                              $resultRecom = mysqli_query($conn, $sentenciaSQL);
                              $reco=mysqli_fetch_assoc($resultRecom);
                          
@@ -185,32 +185,32 @@ if(!isset($_SESSION['id_est'])){
                                       </tr>
                                       </thead> 
                                     <tbody>";
-                                    $sql ="SELECT id_fijo, nombre_c, descripción_c, créditos_c
-                                    FROM expediente
-                                    INNER JOIN expediente_fijo USING (id_fijo)
-                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3)
-                                    UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
-                                    FROM expediente
-                                    INNER JOIN expediente_fijo_generales USING (id_fijo)
-                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
-                                    UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
-                                    FROM expediente
-                                    INNER JOIN expediente_fijo_departamentales USING (id_fijo)
-                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))
-                                    UNION(SELECT id_fijo, nombre_c, descripción_c, créditos_c
-                                    FROM expediente
-                                    INNER JOIN expediente_fijo_libre USING (id_fijo)
-                                    WHERE expediente.id_est = $id AND (expediente.estatus_R = 1 OR expediente.estatus_c = 3))";
+                                    $sql ="SELECT crse_label, crse_name, crse_description, crse_credits
+                                    FROM file
+                                    INNER JOIN file_fijo USING (crse_label)
+                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3)
+                                    UNION(SELECT crse_label, crse_name, crse_description, crse_credits
+                                    FROM file
+                                    INNER JOIN file_fijo_generales USING (crse_label)
+                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3))
+                                    UNION(SELECT crse_label, crse_name, crse_description, crse_credits
+                                    FROM file
+                                    INNER JOIN file_fijo_departamentales USING (crse_label)
+                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3))
+                                    UNION(SELECT crse_label, crse_name, crse_description, crse_credits
+                                    FROM file
+                                    INNER JOIN file_fijo_libre USING (crse_label)
+                                    WHERE file.stdnt_number = $id AND (file.estatus_R = 1 OR file.crse_status = 3))";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='id_fijo[]' id='id_fijo[]' value='{$row['id_fijo']}' /> </td>
-                                        <td>{$row['nombre_c']}</td>
-                                        <td>{$row['descripción_c']}</td>
-                                        <td>{$row['créditos_c']}</td>
+                                        <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                        <td>{$row['crse_name']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
                                       </tr> ";}}
 
                                     echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
@@ -235,7 +235,7 @@ if(!isset($_SESSION['id_est'])){
                           </div>";
                             ?>
 <!-- Termina el MODAL del boton confirmar. -->
- <!-- Comienza el expediente academico del estudiante. -->
+ <!-- Comienza el file academico del student. -->
               <div class="card-body"> 
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
@@ -252,32 +252,32 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_est = $id
-                   ORDER by id_fijo";
+                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                   FROM file_fijo INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
+                   ORDER by crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>";
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>";
                     if($row['estatus_R'] == 1){
                     echo "<td>Prox. Semestre</td>";
                     }else{
                     echo "<td></td>";}
                     echo "
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>  
                 </tbody> 
@@ -297,31 +297,31 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo_generales INNER JOIN expediente USING (id_fijo) WHERE id_est = $id";
+                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                   FROM file_fijo_generales INNER JOIN file USING (crse_label) WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>";
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
                       echo "
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
                 </tbody>
@@ -341,31 +341,31 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_est = $id";
+                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                   FROM file_fijo_libre INNER JOIN file USING (crse_label) WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>";
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
                       echo "
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
                 </tbody> 
@@ -385,31 +385,31 @@ if(!isset($_SESSION['id_est'])){
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT id_est, id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo_departamentales INNER JOIN expediente USING (id_fijo) WHERE id_est = $id";
+                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                   FROM file_fijo_departamentales INNER JOIN file USING (crse_label) WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>";
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<td>Prox. Semestre</td>";
                       }else{
                       echo "<td></td>";}
                       echo "
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
                     </table>
@@ -420,20 +420,20 @@ if(!isset($_SESSION['id_est'])){
       </div>
     </section>
     </div>
-<!-- Culmina la parte del expediente academico. -->          
-<!-- TAB para Citas. El estudiante puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
-    <div id="Citas" class="tabcontent active">
+<!-- Culmina la parte del file academico. -->          
+<!-- TAB para appointment. El student puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
+    <div id="appointment" class="tabcontent active">
     <section class="appointment">
     <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">                 
     <?php 
         include 'private/appointment-status.php';
-        $sql ="SELECT cita_id FROM citas WHERE id_est = $id";
+        $sql ="SELECT appt_idFROM appointment WHERE stdnt_number = $id";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){  
-                echo '<div class="success-message">La cita con el/la consejero(a) fue separada para el '.$fecha_cita.'.</div>';
+                echo '<div class="success-message">La cita con el/la advisor(a) fue separada para el '.$appt_date.'.</div>';
                 } else {
                     if((isset($_GET['is-date-empty']) AND boolval($_GET['is-date-empty'])) OR (isset($_GET['is-hour-chosen-empty']) AND boolval($_GET['is-hour-chosen-empty']))){
                     echo '<div class="error-message">*Escoga el día y la hora de la cita.</div>';
@@ -462,8 +462,8 @@ if(!isset($_SESSION['id_est'])){
                         </form>
                 </section>
                   </div>
-<!-- Culmina la parte de los TABS para las Citas. -->          
-<!-- Este es el TAB de Sugerencias del estudiante. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el estudiante sugiriendo solo las electivas departamentales. -->
+<!-- Culmina la parte de los TABS para las appointment. -->          
+<!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
          <div id="Sugerencias" class="tabcontent">
             <form action="private/sugerencias.php" method="POST">
             <section>
@@ -486,8 +486,8 @@ if(!isset($_SESSION['id_est'])){
                                 
                                 <tbody>
                                   <?php
-                                    $sql ="SELECT nombre_c, descripción_c, créditos_c, id_fijo
-                                    FROM expediente_fijo_departamentales WHERE id_rol = 9";
+                                    $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                    FROM file_fijo_departamentales WHERE crse_id = 9";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
@@ -495,10 +495,10 @@ if(!isset($_SESSION['id_est'])){
                               while($row = mysqli_fetch_assoc($result)){
                                   echo "<tr class='row100'>
                                     <td align='center'>
-                                    <input type='checkbox' class='case' name='sugerencia[]' id='sugerencia' value='{$row['id_fijo']}' /> </td>
-                                    <td class='column100 column1' data-column='column1'>{$row['nombre_c']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['descripción_c']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['créditos_c']}</td>
+                                    <input type='checkbox' class='case' name='sugerencia[]' id='sugerencia' value='{$row['crse_label']}' /> </td>
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_name']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
                                     <td class='column100 column4' data-column='column4'>Intermedia</td>
                                   </tr>";
                               }
@@ -517,12 +517,12 @@ if(!isset($_SESSION['id_est'])){
              </form>
            </div>
 <!-- Culmina la parte de los TABS para las Sugerencias. -->           
-<!-- Este es el TAB de Comentarios que le hace el consejero/a al estudiante. Donde podra ver que le escribe el/la consejera sobre algun comentario adiconal que tenga que decirle al estudiante. -->           
+<!-- Este es el TAB de Comentarios que le hace el advisor/a al student. Donde podra ver que le escribe el/la consejera sobre algun comentario adiconal que tenga que decirle al student. -->           
             <div id="Comentario" class="tabcontent">
                 <!-- Notes -->
              <?php
-                $sql ="SELECT comentarios_e
-                      FROM exp_detalles WHERE id_est = $id";
+                $sql ="SELECT adv_comments
+                      FROM file_details WHERE stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -538,7 +538,7 @@ if(!isset($_SESSION['id_est'])){
               <div>
 
               <form id='paper' method='get' action=''>
-		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['comentarios_e']}</p>
+		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['adv_comments']}</p>
               </form>
                 
             </div>
@@ -547,7 +547,7 @@ if(!isset($_SESSION['id_est'])){
           ?>
             </div>
       </div> 
- <!-- Este SCRIPT es para bregar con las citas (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los consejeros a cargo. -->
+ <!-- Este SCRIPT es para bregar con las appointment (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los advisors a cargo. -->
   <script src="index.js"></script> 
         <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -596,11 +596,11 @@ if(!isset($_SESSION['id_est'])){
         document.querySelector('.hour-chosen-container').appendChild(input);
        }
         </script>
-<!-- Culmina la parte del SCRIPT del calendario para sacar citas -->
+<!-- Culmina la parte del SCRIPT del calendario para sacar appointment -->
 <!-- Script para seleccionar todos los checkbox -->
 <script>
 function toggle(source) {
-              checkboxes = document.getElementsByName('id_fijo[]');
+              checkboxes = document.getElementsByName('crse_label[]');
               for(var i=0, n=checkboxes.length;i<n;i++) {
                   checkboxes[i].checked = source.checked;
               }
@@ -624,7 +624,7 @@ function toggle(source) {
   <script src="js/main.js"></script>
   <script src="js/consejeria.js"></script>  
   <script>function toggle(source) {
-              checkboxes = document.getElementsByName('id_fijo[]');
+              checkboxes = document.getElementsByName('crse_label[]');
               for(var i=0, n=checkboxes.length;i<n;i++) {
                   checkboxes[i].checked = source.checked;
               }}

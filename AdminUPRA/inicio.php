@@ -14,7 +14,7 @@ if(!isset($_SESSION['id'])){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | EXP-ESTUDIANTES</title>
+  <title>CONSEJERÍA-UPRA | EXP-studentS</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -53,7 +53,7 @@ if(!isset($_SESSION['id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero` WHERE id_conse = $id";
+        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -61,7 +61,7 @@ if(!isset($_SESSION['id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['nombre_conse']} {$row['apellido_conseU']} {$row['apellido_conseD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
         </div>
       </div>
 
@@ -107,12 +107,12 @@ if(!isset($_SESSION['id'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Expedientes de los Estudiantes</h1>
+            <h1>files de los students</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Expedientes de los Estudiantes</li>
+              <li class="breadcrumb-item active">files de los students</li>
             </ol>
           </div>
         </div>
@@ -131,7 +131,7 @@ if(!isset($_SESSION['id'])){
             <div class="small-box bg-info">
               <div class="inner">
             <?php
-                $sql = "SELECT count(*) id_est FROM `estudiante`";
+                $sql = "SELECT count(*) stdnt_number FROM `student`";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -139,9 +139,9 @@ if(!isset($_SESSION['id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
               ?>
-                <?php echo "<h3>{$row['id_est']}</h3>" ?>
+                <?php echo "<h3>{$row['stdnt_number']}</h3>" ?>
 
-                <p>Estudiantes de CCOM</p>
+                <p>students de CCOM</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -203,7 +203,7 @@ if(!isset($_SESSION['id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="BUSCAR ESTUDIANTE.." title="Type in a name">
+        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="BUSCAR student.." title="Type in a name">
         
             <ul id="myUL">
       
@@ -284,13 +284,13 @@ function myFunction() {
               <thead>
                   <tr>
                       <th style="width: 12%"> <div align='center'>
-                          # Estudiante</div>
+                          # student</div>
                       </th>
                       <th style="width: 20%">  <div align='center'>
-                          Nombre del Estudiante</div>
+                          Nombre del student</div>
                       </th>
                       <th style="width: 30%"> <div align='center'>
-                          Programa Académico del Estudiante</div>
+                          Programa Académico del student</div>
                       </th>
                       <th> <div align='center'>
                           Realización de Consejería</div>
@@ -302,8 +302,8 @@ function myFunction() {
               </thead>
               <tbody> 
               <?php
-              $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est
-                      FROM estudiante";
+              $sql = "SELECT stdnt_number, stdnt_email, stdnt_number, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial
+                      FROM student";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
               
@@ -311,16 +311,16 @@ function myFunction() {
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
               
-                  array_push($students, $row["nombre_est"]);
+                  array_push($students, $row["stdnt_name"]);
              echo "  
                   <tr>
                       <td>
-                          {$row['num_est']}
+                          {$row['stdnt_number']}
                       </td>
                       <td>
-                              {$row['nombre_est']}
-                              {$row['apellido_estU']}
-                              {$row['apellido_estD']}
+                              {$row['stdnt_name']}
+                              {$row['stdnt_lastname1']}
+                              {$row['stdnt_lastname2']}
                           <br/>
                           <small>
                               Cohorte 2017
@@ -330,8 +330,8 @@ function myFunction() {
                           <ul class='list-inline'> <div align='center'>
                           <form action='inc/exp_session.php' method='post'>
                               <li class='list-inline-item'>
-                              <input type='hidden' id='id_est' name='id_est' value='{$row['id_est']}'> 
-                                  <button title='UPRA' onclick='estudiante()' name='est-submit' style='border: none'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></button>
+                              <input type='hidden' id='stdnt_number' name='stdnt_number' value='{$row['stdnt_number']}'> 
+                                  <button title='UPRA' onclick='student()' name='est-submit' style='border: none'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></button>
                               </li></div>
                             </form>
                           </ul>

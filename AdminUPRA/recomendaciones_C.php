@@ -1,95 +1,95 @@
 <?php
 session_start();
-$id_est = $_SESSION['id_est'];
+$stdnt_number = $_SESSION['stdnt_number'];
 include '../private/dbconnect.php';
 
-//SELECT (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) AS YY FROM estudiante;
+//SELECT (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) AS YY FROM student;
 
 // Query para detectar las notas y cursos que esta tomando 
 
 // Query para recomendar CCOM 3001 
-    $query = "SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 1 AND estatus_c = 0 AND
-                (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W'))"; 
+    $query = "SELECT crse_label FROM file 
+                WHERE (crse_label = 1 AND crse_status = 0 AND
+                (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W'))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 3002    
-    $query = "SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 2 AND estatus_c =0 AND 
-                (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W'))
-                OR (id_fijo= 1 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C')) 
-                OR (id_fijo = 33 AND  (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' ))"; 
+    $query = "SELECT crse_label FROM file 
+                WHERE (crse_label = 2 AND crse_status =0 AND 
+                (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W'))
+                OR (crse_label= 1 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C')) 
+                OR (crse_label = 33 AND  (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' ))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck = 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 3010    
-    $query = " SELECT id_fijo FROM expediente 
-        WHERE (id_fijo = 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
-        AND ( nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')) "; 
+    $query = " SELECT crse_label FROM file 
+        WHERE (crse_label = 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
+        AND ( crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 3020    
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 5 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 35 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' ))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE (crse_label = 5 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' ))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 3025 
-    $query = "  SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 6 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) >= 04)  
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')) "; 
+    $query = "  SELECT crse_label FROM file 
+                WHERE (crse_label = 6 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) >= 04)  
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 3035 
-    $query = "  SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 7 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 6 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = "  SELECT crse_label FROM file 
+                WHERE (crse_label = 7 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 6 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -97,143 +97,143 @@ include '../private/dbconnect.php';
             $stmt->close();}
 // Query para recomendar CCOM 3041 
 
-    $query = "  SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 8 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 4 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
-                OR (id_fijo = 7 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = "  SELECT crse_label FROM file 
+                WHERE (crse_label = 8 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 4 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                OR (crse_label = 7 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4005
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 9 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )  
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 2 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE (crse_label = 9 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )  
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 2 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4006
-    $query = "  SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 10 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)  
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 9 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C')))"; 
+    $query = "  SELECT crse_label FROM file 
+                WHERE (crse_label = 10 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)  
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 9 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C')))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4007
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 11 AND estatus_c = 0 
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 5  AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
-                OR (id_fijo = 35 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))
-                OR (id_fijo = 10 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE (crse_label = 11 AND crse_status = 0 
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 5  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                OR (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))
+                OR (crse_label = 10 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 4){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4025
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 12 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 9 AND (estatus_c <> 0  OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE (crse_label = 12 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 9 AND (crse_status <> 0  OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4065
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 13 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 9  AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
-                OR (id_fijo = 35 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE (crse_label = 13 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 9  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                OR (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4115
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 14 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 12 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE (crse_label = 14 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 12 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4075
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE (id_fijo = 15 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 8  AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
-                OR (id_fijo = 10 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
-                OR (id_fijo = 11 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
-                OR (id_fijo = 14 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE (crse_label = 15 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 8  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                OR (crse_label = 10 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                OR (crse_label = 11 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                OR (crse_label = 14 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 5){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 // Query para recomendar CCOM 4095
-    $query = " SELECT id_fijo FROM expediente 
-                WHERE(id_fijo = 16 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
-                AND (nota_c IS NULL OR nota_c = 'D' OR nota_c = 'F' OR nota_c = 'ID' OR nota_c = 'IF' OR nota_c = 'W')
-                OR (id_fijo = 15 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))
-                OR (id_fijo = 14 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C'))) "; 
+    $query = " SELECT crse_label FROM file 
+                WHERE(crse_label = 16 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
+                OR (crse_label = 15 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                OR (crse_label = 14 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -242,236 +242,236 @@ include '../private/dbconnect.php';
 // Query para recomendar los cursos de educacion general 
 
 //Query para recomendar Español I
-//FALTA DETECTAR EL A~O DEL ESTUDIANTE 
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 19 OR id_fijo = 21 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) "; 
+//FALTA DETECTAR EL A~O DEL student 
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 19 OR crse_label = 21 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar Español II
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 20 OR id_fijo = 22 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 19 OR id_fijo = 21 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) "; 
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 20 OR crse_label = 22 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 19 OR crse_label = 21 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar Español 3208
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 23 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 20 OR id_fijo = 22 AND estatus_c <> 0 AND (nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D')))"; 
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 23 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 20 OR crse_label = 22 AND crse_status <> 0 AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D')))"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar Ingles I 
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 24 OR id_fijo = 26 OR id_fijo = 29 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) "; 
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 24 OR crse_label = 26 OR crse_label = 29 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar Ingles II 
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 25 OR id_fijo = 28 OR id_fijo = 30 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 24 OR id_fijo = 26 OR id_fijo = 29 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) "; 
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 25 OR crse_label = 28 OR crse_label = 30 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 24 OR crse_label = 26 OR crse_label = 29 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) "; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar INGL 3015
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 31 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 25 OR id_fijo = 26 OR id_fijo = 29 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 31 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 25 OR crse_label = 26 OR crse_label = 29 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar MATE 3171 
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 33 AND estatus_c = 0
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 33 AND crse_status = 0
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar MATE 3172
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 34 AND estatus_c = 0 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 33 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 34 AND crse_status = 0 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 33 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar MATE 3031
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 35 AND estatus_c = 0 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 34 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 35 AND crse_status = 0 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 34 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar CISO 
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 17 OR id_fijo = 18 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 17 OR crse_label = 18 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 AND $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar CIBI 3001 
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 36 AND estatus_c = 0 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 36 AND crse_status = 0 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 1){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar CIBI 3002
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 37 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 36 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 37 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 36 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3011 
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 38 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 35 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 38 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 35 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3013
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 39 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 35 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D')))";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 39 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 35 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D')))";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3012
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 40 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 38 AND (estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 40 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 38 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             $stmt->close();}
 //Query para recomendar FISI 3014
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = 41 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
-            AND (nota_c IS NULL OR nota_c = 'F' OR nota_c = 'IF' OR nota_c = 'W')
-            OR (id_fijo = 39 AND ( estatus_c <> 0 OR nota_c = 'A' OR nota_c = 'B' OR nota_c = 'C' OR nota_c = 'D'))) ";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = 41 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
+            OR (crse_label = 39 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND id_fijo = $row[id_fijo]";
+         $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = $row[crse_label]";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -480,155 +480,155 @@ include '../private/dbconnect.php';
 
    $estatus_R = 1;
 //Query para recomendar ELECTIVA LIBRE
- $query = " SELECT id_fijo FROM expediente 
-            WHERE (id_fijo = -1 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+ $query = " SELECT crse_label FROM file 
+            WHERE (crse_label = -1 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck == 2){
          $row = mysqli_fetch_assoc($result);
-         $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+         $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-$stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+$stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}    
 
 //Query para recomendar ELECTIVA LIBRE
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -2 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -2 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}   
 
 //Query para recomendar ELECTIVA LIBRE
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -3 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -3 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
 
 //Query para recomendar ELECTIVA LIBRE
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -4 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -4 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
 
 //Query para recomendar ELECTIVA DEPARTAMENTAL
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -5 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -5 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}   
 
 //Query para recomendar ELECTIVA DEPARTAMENTALES
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -6 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 1 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -6 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}  
 
 //Query para recomendar ELECTIVA DEPARTAMENTALES
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -7 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -7 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
 
 //Query para recomendar ELECTIVA DEPARTAMENTALES
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -8 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 2 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -8 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
 
 //Query para recomendar ELECTIVA HUMA
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -9 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -9 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}  
 
 //Query para recomendar ELECTIVA HUMA
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -10 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -10 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}  
 
 //Query para recomendar ELECTIVA CISO
-$query = " SELECT id_fijo FROM expediente 
-   WHERE (id_fijo = -10 AND (YEAR(CURRENT_DATE)-(SUBSTRING(num_est, 5,2) + 1999)) > 3 AND estatus_c = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
+$query = " SELECT crse_label FROM file 
+   WHERE (crse_label = -10 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 2){
    $row = mysqli_fetch_assoc($result);
-   $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, estatus_c) VALUES (?, ?, ?)");
+   $stmt = $conn->prepare("INSERT INTO file (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $id_est, $row['id_fijo'], $estatus_R);
+   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 

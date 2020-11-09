@@ -9,8 +9,8 @@ if(!isset($_SESSION['id'])){
     exit();
 }
 if (isset($_POST['class-submit'])) {
-$id_fijo = mysqli_real_escape_string($conn, $_POST['id_fijo']);
-$nombre_c = mysqli_real_escape_string($conn, $_POST['nombre_c']);
+$crse_label = mysqli_real_escape_string($conn, $_POST['crse_label']);
+$crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
 }
 ?>
 <!DOCTYPE html>
@@ -89,7 +89,7 @@ $nombre_c = mysqli_real_escape_string($conn, $_POST['nombre_c']);
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero` WHERE id_conse = $id";
+        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -97,7 +97,7 @@ $nombre_c = mysqli_real_escape_string($conn, $_POST['nombre_c']);
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['nombre_conse']} {$row['apellido_conseU']} {$row['apellido_conseD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
         </div>
       </div>
 
@@ -142,7 +142,7 @@ $nombre_c = mysqli_real_escape_string($conn, $_POST['nombre_c']);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>LISTA DE ESTUDIANTES <?php echo $nombre_c ?></h1>
+            <h1>LISTA DE studentS <?php echo $crse_name ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -172,17 +172,17 @@ $nombre_c = mysqli_real_escape_string($conn, $_POST['nombre_c']);
         <div class="card-body p-0">
             <div align='center'><h3>FIRMAS</h3></div>
             <?php
-        $sql ="SELECT correo_est FROM expediente 
-        INNER JOIN estudiante USING (id_est)
-        INNER JOIN expediente_fijo_departamentales USING (id_fijo) 
-               WHERE estatus_c = 4 AND id_fijo = $id_fijo";
+        $sql ="SELECT stdnt_email FROM file 
+        INNER JOIN student USING (stdnt_number)
+        INNER JOIN file_fijo_departamentales USING (crse_label) 
+               WHERE crse_status = 4 AND crse_label = $crse_label";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;
         if($resultCheck > 0){
         while($row = mysqli_fetch_assoc($result)){
             echo "
-                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['correo_est']}</th><br>";
+                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
         }}?>
             <br>
         </div>

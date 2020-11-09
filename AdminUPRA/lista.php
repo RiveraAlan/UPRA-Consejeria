@@ -17,7 +17,7 @@ if(!isset($_SESSION['id'])){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | LISTA-ESTUDIANTES</title>
+  <title>CONSEJERÍA-UPRA | LISTA-studentS</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -71,7 +71,7 @@ if(!isset($_SESSION['id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero` WHERE id_conse = $id";
+        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -79,7 +79,7 @@ if(!isset($_SESSION['id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['nombre_conse']} {$row['apellido_conseU']} {$row['apellido_conseD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
         </div>
       </div>
 
@@ -124,7 +124,7 @@ if(!isset($_SESSION['id'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Conteo de los Estudiantes por Clases</h1>
+            <h1>Conteo de los students por Clases</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -167,8 +167,8 @@ if(!isset($_SESSION['id'])){
                                 </thead>
                                 <tbody>
                                   <?php
-                                       $sql ="SELECT nombre_c, descripción_c, créditos_c, id_fijo
-                                        FROM expediente_fijo_departamentales";
+                                       $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                        FROM file_fijo_departamentales";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
@@ -177,14 +177,14 @@ if(!isset($_SESSION['id'])){
                     echo '
                                   <form action="firmas.php" method="POST">   
                                   <tr class="row100">
-                                     <input type="hidden" name="id_fijo" value="'.$row['id_fijo'].'"></input> 
-                                     <input type="hidden" name="nombre_c" value="'.$row['nombre_c'].'"></input> 
-                                    <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
-                                    <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
-                                    <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
+                                     <input type="hidden" name="crse_label" value="'.$row['crse_label'].'"></input> 
+                                     <input type="hidden" name="crse_name" value="'.$row['crse_name'].'"></input> 
+                                    <td class="column100 column1" data-column="column1">'.$row['crse_name'].'</td>
+                                    <td class="column100 column2" data-column="column2">'.$row['crse_description'].'</td>
+                                    <td class="column100 column3" data-column="column3">'.$row['crse_credits'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
                                     <td class="column100 column5" data-column="column5"><button type="submit" onclick="class()" name="class-submit" class="nav-link"></button>
-                                    <b>Lista '.$row['nombre_c'].'</b></td>
+                                    <b>Lista '.$row['crse_name'].'</b></td>
                                   </tr>
                                   </form>';}}?>
                                 </tbody>
@@ -212,8 +212,8 @@ if(!isset($_SESSION['id'])){
                                 </thead>
                                 <tbody>
                                 <?php
-                                   $sql =" SELECT nombre_c, descripción_c, créditos_c, id_fijo
-                                   FROM expediente_fijo";
+                                   $sql =" SELECT crse_name, crse_description, crse_credits, crse_label
+                                   FROM file_fijo";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
 
@@ -222,13 +222,13 @@ if(!isset($_SESSION['id'])){
                         echo '
                                   <form action="firmas.php" method="POST"> 
                                   <tr class="row100">
-                                     <input type="hidden" name="id_fijo" value="'.$row['id_fijo'].'"></input> 
-                                    <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
-                                    <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
-                                    <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
+                                     <input type="hidden" name="crse_label" value="'.$row['crse_label'].'"></input> 
+                                    <td class="column100 column1" data-column="column1">'.$row['crse_name'].'</td>
+                                    <td class="column100 column2" data-column="column2">'.$row['crse_description'].'</td>
+                                    <td class="column100 column3" data-column="column3">'.$row['crse_credits'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
                                     <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
-                                    <b>Lista '.$row['nombre_c'].'</b></td>
+                                    <b>Lista '.$row['crse_name'].'</b></td>
                                   </tr>
                                   </form>';}}?>
                                   
@@ -257,8 +257,8 @@ if(!isset($_SESSION['id'])){
                                 </thead>
                                 <tbody>
                                  <?php
-                                $sql ="SELECT nombre_c, descripción_c, créditos_c, id_fijo
-                                   FROM expediente_fijo_generales";
+                                $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                   FROM file_fijo_generales";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
                                 if($resultCheck > 0){
@@ -266,13 +266,13 @@ if(!isset($_SESSION['id'])){
                            echo '
                                   <form action="firmas.php" method="POST"> 
                                   <tr class="row100">
-                                    <input type="hidden" name="id_fijo" value="'.$row['id_fijo'].'"></input> 
-                                    <td class="column100 column1" data-column="column1">'.$row['nombre_c'].'</td>
-                                    <td class="column100 column2" data-column="column2">'.$row['descripción_c'].'</td>
-                                    <td class="column100 column3" data-column="column3">'.$row['créditos_c'].'</td>
+                                    <input type="hidden" name="crse_label" value="'.$row['crse_label'].'"></input> 
+                                    <td class="column100 column1" data-column="column1">'.$row['crse_name'].'</td>
+                                    <td class="column100 column2" data-column="column2">'.$row['crse_description'].'</td>
+                                    <td class="column100 column3" data-column="column3">'.$row['crse_credits'].'</td>
                                     <td class="column100 column4" data-column="column4">--</td>
                                     <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
-                                    <b>Lista '.$row['nombre_c'].'</b></td>
+                                    <b>Lista '.$row['crse_name'].'</b></td>
                                   </tr>
                                   </form>';}}?>
                                 </tbody>

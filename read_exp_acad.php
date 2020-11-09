@@ -13,15 +13,15 @@ $regex = array(
                 ''
 );
 
- file_put_contents('expediente_formatted.txt',
+ file_put_contents('file_formatted.txt',
     preg_replace(
         '~[\r\n]+~',
         "\r\n",
-        trim(file_get_contents('expediente.txt'))
+        trim(file_get_contents('file.txt'))
     )
 );
 
-$fileArr = file('expediente_formatted.txt');
+$fileArr = file('file_formatted.txt');
 $courses = array();
 $i = 0;
 $j = 0;

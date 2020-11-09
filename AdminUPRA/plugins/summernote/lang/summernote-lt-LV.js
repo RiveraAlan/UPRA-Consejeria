@@ -209,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
       },
       color: {
         recent: 'Nesen izmantotās',
-        more: 'Citas krāsas',
+        more: 'appointment krāsas',
         background: 'Fona krāsa',
         foreground: 'Fonta krāsa',
         transparent: 'Caurspīdīgs',
@@ -224,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
         action: 'Darbība',
         paragraphFormatting: 'Paragrāfa formatēšana',
         documentStyle: 'Dokumenta stils',
-        extraKeys: 'Citas taustiņu kombinācijas'
+        extraKeys: 'appointment taustiņu kombinācijas'
       },
       help: {
         insertParagraph: 'Ievietot Paragrāfu',

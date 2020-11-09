@@ -21,7 +21,7 @@ if ( empty($_POST['email']) &&  empty($_POST['password'])) {
 
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $conn->prepare('SELECT id_conse, contraseña_conse, nombre_conse  FROM consejero WHERE correo_conse = ?')) {
+if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor WHERE adv_email= ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['email']);
 	$stmt->execute();

@@ -1,14 +1,14 @@
 <?php
 if (isset($_POST['notes-submit'])) {
 require 'connection.php';
-    $id_est = mysqli_real_escape_string($conn, $_POST['id_est']);
-    $nombre_c = mysqli_real_escape_string($conn, $_POST['nombre_c']);
+    $stdnt_number = mysqli_real_escape_string($conn, $_POST['stdnt_number']);
+    $crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
     $estatus_R = mysqli_real_escape_string($conn, $_POST['estatus_R']); 
 
             if($estatus_R == 0){
-                $sql = "UPDATE expediente SET estatus_R = 1 WHERE id_est = $id_est AND nombre_c = '$nombre_c'";
+                $sql = "UPDATE file SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
             }else{
-                $sql = "UPDATE expediente SET estatus_R = 0 WHERE id_est = $id_est AND nombre_c = '$nombre_c'";
+                $sql = "UPDATE file SET estatus_R = 0 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
             }
             // Prepare statement
             $stmt = $conn->prepare($sql);

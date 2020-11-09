@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("inc/connection.php");
-$id = $_SESSION['id_est'];
+$id = $_SESSION['stdnt_number'];
 $id= $_SESSION['id'];
 $name = $_SESSION['name'];
 
@@ -15,7 +15,7 @@ if(!isset($_SESSION['id'])){
 <head> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | EXP.ESTUDIANTE</title>
+  <title>CONSEJERIA-UPRA | EXP.student</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -162,7 +162,7 @@ body {
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero` WHERE id_conse = $id";
+        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -170,7 +170,7 @@ body {
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['nombre_conse']} {$row['apellido_conseU']} {$row['apellido_conseD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
         </div>
       </div>
 <!-- Sidebar Menu -->
@@ -212,12 +212,12 @@ body {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Expediente Académico del Estudiante</h1>
+            <h1 class="m-0 text-dark">file Académico del student</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Expediente Académico del Estudiante</li>
+              <li class="breadcrumb-item active">file Académico del student</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -235,29 +235,29 @@ body {
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT id_est, correo_est, num_est, apellido_estU, apellido_estD, nombre_est, inicial_est, secuencia_est
-                    FROM estudiante WHERE id_est = $id";
+                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_number, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, crse_label
+                    FROM student WHERE stdnt_number = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
             
                 $sentenciaSQL= "SELECT SUM(C)
-                FROM ((SELECT créditos_c AS C
-                FROM expediente_fijo
-                INNER JOIN  expediente USING(id_fijo)
-                WHERE expediente.id_est = $id)
+                FROM ((SELECT crse_credits AS C
+                FROM file_fijo
+                INNER JOIN  file USING(crse_label)
+                WHERE file.stdnt_number = $id)
                 UNION ALL
-                (SELECT créditos_c AS C
-                FROM expediente_fijo_generales
-                INNER JOIN expediente USING(id_fijo)
-                WHERE expediente.id_est = $id)
-                UNION ALL (SELECT créditos_c AS C
-                FROM expediente_fijo_departamentales
-                INNER JOIN expediente USING(id_fijo)
-                WHERE expediente.id_est = $id)
-                UNION ALL (SELECT créditos_c AS C
-                FROM expediente_fijo_libre
-                INNER JOIN expediente USING(id_fijo)
-                WHERE expediente.id_est = $id)) t1";
+                (SELECT crse_credits AS C
+                FROM file_fijo_generales
+                INNER JOIN file USING(crse_label)
+                WHERE file.stdnt_number = $id)
+                UNION ALL (SELECT crse_credits AS C
+                FROM file_fijo_departamentales
+                INNER JOIN file USING(crse_label)
+                WHERE file.stdnt_number = $id)
+                UNION ALL (SELECT crse_credits AS C
+                FROM file_fijo_libre
+                INNER JOIN file USING(crse_label)
+                WHERE file.stdnt_number = $id)) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                 if ($creditos['SUM(C)']=== NULL){
@@ -267,9 +267,9 @@ body {
            
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
-               echo "<h3 class='profile-username text-center'>{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}</h3>
-                <p class='text-muted text-center'>{$row['correo_est']}</p>
-                <p class='text-muted text-center'>{$row['num_est']}</p>
+               echo "<h3 class='profile-username text-center'>{$row['stdnt_name']} {$row['stdnt_lastname1']} {$row['stdnt_lastname2']}</h3>
+                <p class='text-muted text-center'>{$row['stdnt_email']}</p>
+                <p class='text-muted text-center'>{$row['stdnt_number']}</p>
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
                     <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(C)']}</a>
@@ -278,11 +278,11 @@ body {
                     <b>Año</b> <a class='float-right'>4</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Secuencia:</b> <a class='float-right'>{$row['secuencia_est']}</a>
+                    <b>Secuencia:</b> <a class='float-right'>{$row['crse_label']}</a>
                   </li>
                    
                 </ul>";?>
-                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar Expediente</button>
+                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar file</button>
               <?php
                 echo "</div>
               <!-- /.card-body -->
@@ -323,15 +323,15 @@ body {
                                     <h3>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h3></div>
             </div>
                 
-                <!-- /.Comienzo de Expediente del Estudiante -->
+                <!-- /.Comienzo de file del student -->
             <div class="container tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openCity(event, 'Expediente')">Expediente del Estudiante</button>
+                    <button class="tablinks active" onclick="openCity(event, 'file')">file del student</button>
                     <button class="tablinks" onclick="openCity(event, 'Examinar')">Cursos a Examinar</button>
                   </div>
                 
                   <!-- Tab content -->
-    <div id="Expediente" class="tabcontent active">
+    <div id="file" class="tabcontent active">
     <section class="content">
       <div class="card-body">
                 <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
@@ -351,41 +351,41 @@ body {
                   </thead>
                   <tbody>
                 <?php
-                   $sql ="SELECT id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                   FROM expediente_fijo INNER JOIN expediente USING (id_fijo) WHERE id_est = $id
+                   $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                   FROM file_fijo INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
                    UNION
-                   (SELECT id_fijo, nombre_c, descripción_c, créditos_c, '', '', '', ''
-                   FROM expediente_fijo WHERE id_fijo 
-                   NOT IN (SELECT id_fijo
-                   FROM expediente WHERE expediente.id_est = $id))";
+                   (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
+                   FROM file_fijo WHERE crse_label 
+                   NOT IN (SELECT crse_label
+                   FROM file WHERE file.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                  
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>";
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
-                    }else if($row['estatus_c'] == 0){
+                    }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -393,7 +393,7 @@ body {
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
  
@@ -417,42 +417,42 @@ body {
                   </thead>
                   <tbody>
                 <?php
-                $sql ="SELECT id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                FROM expediente_fijo_generales INNER JOIN expediente USING (id_fijo) WHERE id_est = $id
+                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                FROM file_fijo_generales INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
                 UNION
-                (SELECT id_fijo, nombre_c, descripción_c, créditos_c, '', '', '', ''
-                FROM expediente_fijo_generales WHERE id_fijo 
-                NOT IN (SELECT id_fijo
-                FROM expediente WHERE expediente.id_est = $id))";
+                (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
+                FROM file_fijo_generales WHERE crse_label 
+                NOT IN (SELECT crse_label
+                FROM file WHERE file.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                  
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
-                    }else if($row['estatus_c'] == 0){
+                    }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -460,7 +460,7 @@ body {
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
                 </tbody>
@@ -482,42 +482,42 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_est = $id
+                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                FROM file_fijo_libre INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
                 UNION
-                (SELECT id_fijo, nombre_c, descripción_c, créditos_c, '', '', '', ''
-                FROM expediente_fijo_libre WHERE id_fijo 
-                NOT IN (SELECT id_fijo
-                FROM expediente WHERE expediente.id_est = $id))";
+                (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
+                FROM file_fijo_libre WHERE crse_label 
+                NOT IN (SELECT crse_label
+                FROM file WHERE file.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                  
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
-                    }else if($row['estatus_c'] == 0){
+                    }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -525,7 +525,7 @@ body {
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
                 </tbody>
@@ -547,42 +547,42 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT id_fijo, nombre_c, descripción_c, créditos_c, nota_c, estatus_c, año_aprobo_c, estatus_R
-                FROM expediente_fijo_departamentales INNER JOIN expediente USING (id_fijo) WHERE id_est = $id
+                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
+                FROM file_fijo_departamentales INNER JOIN file USING (crse_label) WHERE stdnt_number = $id
                 UNION
-                (SELECT id_fijo, nombre_c, descripción_c, créditos_c, '', '', '', ''
-                FROM expediente_fijo_departamentales WHERE id_fijo 
-                NOT IN (SELECT id_fijo
-                FROM expediente WHERE expediente.id_est = $id))";
+                (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
+                FROM file_fijo_departamentales WHERE crse_label 
+                NOT IN (SELECT crse_label
+                FROM file WHERE file.stdnt_number = $id))";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                  
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>
                     ";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
-                    }else if($row['estatus_c'] == 0){
+                    }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='id_est' name='id_est' value='$id'>
-                      <input type='hidden' id='id_fijo' name='id_fijo' value='{$row['id_fijo']}'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -590,7 +590,7 @@ body {
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
-                    <td>{$row['año_aprobo_c']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
 
@@ -600,7 +600,7 @@ body {
  
     </section>
     </div>
-                <!-- /.Final de Expediente del Estudiante -->
+                <!-- /.Final de file del student -->
                 
                 
        <!-- Comienzo de Examinar -->  
@@ -619,25 +619,25 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT id_est, nombre_c, descripción_c, créditos_c, nota_c, año_aprobo_c, estatus_c
-                   FROM expediente_fijo_libre INNER JOIN expediente USING (id_fijo) WHERE id_especial = 2 AND id_est = $id";
+                $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status
+                   FROM file_fijo_libre INNER JOIN file USING (crse_label) WHERE special_id = 2 AND stdnt_number = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                   $modal = 'document.getElementById("id03").style.display="block"';
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                  
-                  if($row['estatus_c'] == 1){
+                  if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
-                  }else if ($row['estatus_c'] == 2){
+                  }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
-                    echo "<td>{$row['nombre_c']}</td>
-                    <td>{$row['descripción_c']}</td>
-                    <td>{$row['créditos_c']}</td>
-                    <td>{$row['nota_c']}</td>
-                    <td>{$row['año_aprobo_c']}</td>
+                    echo "<td>{$row['crse_name']}</td>
+                    <td>{$row['crse_description']}</td>
+                    <td>{$row['crse_credits']}</td>
+                    <td>{$row['crse_grade']}</td>
+                    <td>{$row['semester_pass']}</td>
                     <td><button onclick='$modal' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
                   </tr>";}}?>
                 </tbody>
@@ -744,13 +744,13 @@ body {
 
             <!-- /.Edit -->
 
-            <!-- Expediente -->
+            <!-- file -->
   <div id='id02' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
                 <span onclick='document.getElementById("id02").style.display="none"'
                 class='w3-button w3-display-topright'>&times;</span>
-                <h3>Subir Expediente</h3>
+                <h3>Subir file</h3>
               </header>
               <div class='w3-container'>
                   <br>
@@ -765,7 +765,7 @@ body {
               </footer>
             </div>
           </div>
-            <!-- /.Expediente -->
+            <!-- /.file -->
             <!-- Cursos a Examinar -->
           <div id='id03' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
@@ -817,14 +817,14 @@ body {
                       
           <select name="courses" id="course-list">
           <?php
-                $sql ="SELECT nombre_c, id_fijo
-                FROM expediente_fijo";
+                $sql ="SELECT crse_name, crse_label
+                FROM file_fijo";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 
                  if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                echo "<option value='{$row['id_fijo']}'>{$row['nombre_c']}</option>";
+                echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
                 }} 
                 
                 ?>
