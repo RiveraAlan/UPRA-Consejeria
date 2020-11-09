@@ -1,6 +1,6 @@
 /*!
 
-JSZip v3.5.0 - A JavaScript class for generating and reading zip files
+JSZip v3.5.0 - A JavaScript class for generating and reading zip student_records
 <http://stuartk.com/jszip>
 
 (c) 2009-2016 Stuart Knightley <stuart [at] stuartk.com>
@@ -132,7 +132,7 @@ var DataLengthProbe = require('./stream/DataLengthProbe');
  * @constructor
  * @param {number} compressedSize the size of the data compressed.
  * @param {number} uncompressedSize the size of the data after decompression.
- * @param {number} crc32 the crc32 of the decompressed file.
+ * @param {number} crc32 the crc32 of the decompressed student_record.
  * @param {object} compression the type of compression, see lib/compressions.js.
  * @param {String|ArrayBuffer|Uint8Array|Buffer} data the compressed data.
  */
@@ -437,21 +437,21 @@ var decToHex = function(dec, bytes) {
 };
 
 /**
- * Generate the UNIX part of the external file attributes.
+ * Generate the UNIX part of the external student_record attributes.
  * @param {Object} unixPermissions the unix permissions or null.
  * @param {Boolean} isDir true if the entry is a directory, false otherwise.
  * @return {Number} a 32 bit integer.
  *
- * adapted from http://unix.stackexchange.com/questions/14705/the-zip-formats-external-file-attribute :
+ * adapted from http://unix.stackexchange.com/questions/14705/the-zip-formats-external-student_record-attribute :
  *
  * TTTTsstrwxrwxrwx0000000000ADVSHR
- * ^^^^____________________________ file type, see zipinfo.c (UNX_*)
+ * ^^^^____________________________ student_record type, see zipinfo.c (UNX_*)
  *     ^^^_________________________ setuid, setgid, sticky
  *        ^^^^^^^^^________________ permissions
  *                 ^^^^^^^^^^______ not used ?
- *                           ^^^^^^ DOS attribute bits : Archive, Directory, Volume label, System file, Hidden, Read only
+ *                           ^^^^^^ DOS attribute bits : Archive, Directory, Volume label, System student_record, Hidden, Read only
  */
-var generateUnixExternalFileAttr = function (unixPermissions, isDir) {
+var generateUnixExternalstudent_recordAttr = function (unixPermissions, isDir) {
 
     var result = unixPermissions;
     if (!unixPermissions) {
@@ -464,7 +464,7 @@ var generateUnixExternalFileAttr = function (unixPermissions, isDir) {
 };
 
 /**
- * Generate the DOS part of the external file attributes.
+ * Generate the DOS part of the external student_record attributes.
  * @param {Object} dosPermissions the dos permissions or null.
  * @param {Boolean} isDir true if the entry is a directory, false otherwise.
  * @return {Number} a 32 bit integer.
@@ -476,40 +476,40 @@ var generateUnixExternalFileAttr = function (unixPermissions, isDir) {
  * Bit 4     Directory
  * Bit 5     Archive
  */
-var generateDosExternalFileAttr = function (dosPermissions, isDir) {
+var generateDosExternalstudent_recordAttr = function (dosPermissions, isDir) {
 
     // the dir flag is already set for compatibility
     return (dosPermissions || 0)  & 0x3F;
 };
 
 /**
- * Generate the various parts used in the construction of the final zip file.
- * @param {Object} streamInfo the hash with information about the compressed file.
+ * Generate the various parts used in the construction of the final zip student_record.
+ * @param {Object} streamInfo the hash with information about the compressed student_record.
  * @param {Boolean} streamedContent is the content streamed ?
  * @param {Boolean} streamingEnded is the stream finished ?
- * @param {number} offset the current offset from the start of the zip file.
+ * @param {number} offset the current offset from the start of the zip student_record.
  * @param {String} platform let's pretend we are this platform (change platform dependents fields)
- * @param {Function} encodeFileName the function to encode the file name / comment.
+ * @param {Function} encodestudent_recordName the function to encode the student_record name / comment.
  * @return {Object} the zip parts.
  */
-var generateZipParts = function(streamInfo, streamedContent, streamingEnded, offset, platform, encodeFileName) {
-    var file = streamInfo['file'],
+var generateZipParts = function(streamInfo, streamedContent, streamingEnded, offset, platform, encodestudent_recordName) {
+    var student_record = streamInfo['student_record'],
     compression = streamInfo['compression'],
-    useCustomEncoding = encodeFileName !== utf8.utf8encode,
-    encodedFileName = utils.transformTo("string", encodeFileName(file.name)),
-    utfEncodedFileName = utils.transformTo("string", utf8.utf8encode(file.name)),
-    comment = file.comment,
-    encodedComment = utils.transformTo("string", encodeFileName(comment)),
+    useCustomEncoding = encodestudent_recordName !== utf8.utf8encode,
+    encodedstudent_recordName = utils.transformTo("string", encodestudent_recordName(student_record.name)),
+    utfEncodedstudent_recordName = utils.transformTo("string", utf8.utf8encode(student_record.name)),
+    comment = student_record.comment,
+    encodedComment = utils.transformTo("string", encodestudent_recordName(comment)),
     utfEncodedComment = utils.transformTo("string", utf8.utf8encode(comment)),
-    useUTF8ForFileName = utfEncodedFileName.length !== file.name.length,
+    useUTF8Forstudent_recordName = utfEncodedstudent_recordName.length !== student_record.name.length,
     useUTF8ForComment = utfEncodedComment.length !== comment.length,
     dosTime,
     dosDate,
     extraFields = "",
     unicodePathExtraField = "",
     unicodeCommentExtraField = "",
-    dir = file.dir,
-    date = file.date;
+    dir = student_record.dir,
+    date = student_record.date;
 
 
     var dataInfo = {
@@ -533,24 +533,24 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
         // following the compressed data.
         bitflag |= 0x0008;
     }
-    if (!useCustomEncoding && (useUTF8ForFileName || useUTF8ForComment)) {
+    if (!useCustomEncoding && (useUTF8Forstudent_recordName || useUTF8ForComment)) {
         // Bit 11: Language encoding flag (EFS).
         bitflag |= 0x0800;
     }
 
 
-    var extFileAttr = 0;
+    var extstudent_recordAttr = 0;
     var versionMadeBy = 0;
     if (dir) {
         // dos or unix, we set the dos dir flag
-        extFileAttr |= 0x00010;
+        extstudent_recordAttr |= 0x00010;
     }
     if(platform === "UNIX") {
         versionMadeBy = 0x031E; // UNIX, version 3.0
-        extFileAttr |= generateUnixExternalFileAttr(file.unixPermissions, dir);
+        extstudent_recordAttr |= generateUnixExternalstudent_recordAttr(student_record.unixPermissions, dir);
     } else { // DOS or other, fallback to DOS
         versionMadeBy = 0x0014; // DOS, version 2.0
-        extFileAttr |= generateDosExternalFileAttr(file.dosPermissions, dir);
+        extstudent_recordAttr |= generateDosExternalstudent_recordAttr(student_record.dosPermissions, dir);
     }
 
     // date
@@ -570,7 +570,7 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
     dosDate = dosDate << 5;
     dosDate = dosDate | date.getUTCDate();
 
-    if (useUTF8ForFileName) {
+    if (useUTF8Forstudent_recordName) {
         // set the unicode path extra field. unzip needs at least one extra
         // field to correctly handle unicode path, so using the path is as good
         // as any other information. This could improve the situation with
@@ -584,9 +584,9 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
             // Version
             decToHex(1, 1) +
             // NameCRC32
-            decToHex(crc32(encodedFileName), 4) +
+            decToHex(crc32(encodedstudent_recordName), 4) +
             // UnicodeName
-            utfEncodedFileName;
+            utfEncodedstudent_recordName;
 
         extraFields +=
             // Info-ZIP Unicode Path Extra Field
@@ -624,9 +624,9 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
     header += decToHex(bitflag, 2);
     // compression method
     header += compression.magic;
-    // last mod file time
+    // last mod student_record time
     header += decToHex(dosTime, 2);
-    // last mod file date
+    // last mod student_record date
     header += decToHex(dosDate, 2);
     // crc-32
     header += decToHex(dataInfo.crc32, 4);
@@ -634,54 +634,54 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
     header += decToHex(dataInfo.compressedSize, 4);
     // uncompressed size
     header += decToHex(dataInfo.uncompressedSize, 4);
-    // file name length
-    header += decToHex(encodedFileName.length, 2);
+    // student_record name length
+    header += decToHex(encodedstudent_recordName.length, 2);
     // extra field length
     header += decToHex(extraFields.length, 2);
 
 
-    var fileRecord = signature.LOCAL_FILE_HEADER + header + encodedFileName + extraFields;
+    var student_recordRecord = signature.LOCAL_student_record_HEADER + header + encodedstudent_recordName + extraFields;
 
-    var dirRecord = signature.CENTRAL_FILE_HEADER +
+    var dirRecord = signature.CENTRAL_student_record_HEADER +
         // version made by (00: DOS)
         decToHex(versionMadeBy, 2) +
-        // file header (common to file and central directory)
+        // student_record header (common to student_record and central directory)
         header +
-        // file comment length
+        // student_record comment length
         decToHex(encodedComment.length, 2) +
         // disk number start
         "\x00\x00" +
-        // internal file attributes TODO
+        // internal student_record attributes TODO
         "\x00\x00" +
-        // external file attributes
-        decToHex(extFileAttr, 4) +
+        // external student_record attributes
+        decToHex(extstudent_recordAttr, 4) +
         // relative offset of local header
         decToHex(offset, 4) +
-        // file name
-        encodedFileName +
+        // student_record name
+        encodedstudent_recordName +
         // extra field
         extraFields +
-        // file comment
+        // student_record comment
         encodedComment;
 
     return {
-        fileRecord: fileRecord,
+        student_recordRecord: student_recordRecord,
         dirRecord: dirRecord
     };
 };
 
 /**
  * Generate the EOCD record.
- * @param {Number} entriesCount the number of entries in the zip file.
+ * @param {Number} entriesCount the number of entries in the zip student_record.
  * @param {Number} centralDirLength the length (in bytes) of the central dir.
  * @param {Number} localDirLength the length (in bytes) of the local dir.
- * @param {String} comment the zip file comment as a binary string.
- * @param {Function} encodeFileName the function to encode the comment.
+ * @param {String} comment the zip student_record comment as a binary string.
+ * @param {Function} encodestudent_recordName the function to encode the comment.
  * @return {String} the EOCD record.
  */
-var generateCentralDirectoryEnd = function (entriesCount, centralDirLength, localDirLength, comment, encodeFileName) {
+var generateCentralDirectoryEnd = function (entriesCount, centralDirLength, localDirLength, comment, encodestudent_recordName) {
     var dirEnd = "";
-    var encodedComment = utils.transformTo("string", encodeFileName(comment));
+    var encodedComment = utils.transformTo("string", encodestudent_recordName(comment));
 
     // end of central dir signature
     dirEnd = signature.CENTRAL_DIRECTORY_END +
@@ -697,18 +697,18 @@ var generateCentralDirectoryEnd = function (entriesCount, centralDirLength, loca
         decToHex(centralDirLength, 4) +
         // offset of start of central directory with respect to the starting disk number
         decToHex(localDirLength, 4) +
-        // .ZIP file comment length
+        // .ZIP student_record comment length
         decToHex(encodedComment.length, 2) +
-        // .ZIP file comment
+        // .ZIP student_record comment
         encodedComment;
 
     return dirEnd;
 };
 
 /**
- * Generate data descriptors for a file entry.
+ * Generate data descriptors for a student_record entry.
  * @param {Object} streamInfo the hash generated by a worker, containing information
- * on the file entry.
+ * on the student_record entry.
  * @return {String} the data descriptors.
  */
 var generateDataDescriptors = function (streamInfo) {
@@ -726,27 +726,27 @@ var generateDataDescriptors = function (streamInfo) {
 
 
 /**
- * A worker to concatenate other workers to create a zip file.
- * @param {Boolean} streamFiles `true` to stream the content of the files,
+ * A worker to concatenate other workers to create a zip student_record.
+ * @param {Boolean} streamstudent_records `true` to stream the content of the student_records,
  * `false` to accumulate it.
  * @param {String} comment the comment to use.
  * @param {String} platform the platform to use, "UNIX" or "DOS".
- * @param {Function} encodeFileName the function to encode file names and comments.
+ * @param {Function} encodestudent_recordName the function to encode student_record names and comments.
  */
-function ZipFileWorker(streamFiles, comment, platform, encodeFileName) {
-    GenericWorker.call(this, "ZipFileWorker");
+function Zipstudent_recordWorker(streamstudent_records, comment, platform, encodestudent_recordName) {
+    GenericWorker.call(this, "Zipstudent_recordWorker");
     // The number of bytes written so far. This doesn't count accumulated chunks.
     this.bytesWritten = 0;
-    // The comment of the zip file
+    // The comment of the zip student_record
     this.zipComment = comment;
-    // The platform "generating" the zip file.
+    // The platform "generating" the zip student_record.
     this.zipPlatform = platform;
-    // the function to encode file names and comments.
-    this.encodeFileName = encodeFileName;
-    // Should we stream the content of the files ?
-    this.streamFiles = streamFiles;
-    // If `streamFiles` is false, we will need to accumulate the content of the
-    // files to calculate sizes / crc32 (and write them *before* the content).
+    // the function to encode student_record names and comments.
+    this.encodestudent_recordName = encodestudent_recordName;
+    // Should we stream the content of the student_records ?
+    this.streamstudent_records = streamstudent_records;
+    // If `streamstudent_records` is false, we will need to accumulate the content of the
+    // student_records to calculate sizes / crc32 (and write them *before* the content).
     // This boolean indicates if we are accumulating chunks (it will change a lot
     // during the lifetime of this worker).
     this.accumulate = false;
@@ -754,28 +754,28 @@ function ZipFileWorker(streamFiles, comment, platform, encodeFileName) {
     this.contentBuffer = [];
     // The list of generated directory records.
     this.dirRecords = [];
-    // The offset (in bytes) from the beginning of the zip file for the current source.
+    // The offset (in bytes) from the beginning of the zip student_record for the current source.
     this.currentSourceOffset = 0;
-    // The total number of entries in this zip file.
+    // The total number of entries in this zip student_record.
     this.entriesCount = 0;
-    // the name of the file currently being added, null when handling the end of the zip file.
+    // the name of the student_record currently being added, null when handling the end of the zip student_record.
     // Used for the emitted metadata.
-    this.currentFile = null;
+    this.currentstudent_record = null;
 
 
 
     this._sources = [];
 }
-utils.inherits(ZipFileWorker, GenericWorker);
+utils.inherits(Zipstudent_recordWorker, GenericWorker);
 
 /**
  * @see GenericWorker.push
  */
-ZipFileWorker.prototype.push = function (chunk) {
+Zipstudent_recordWorker.prototype.push = function (chunk) {
 
-    var currentFilePercent = chunk.meta.percent || 0;
+    var currentstudent_recordPercent = chunk.meta.percent || 0;
     var entriesCount = this.entriesCount;
-    var remainingFiles = this._sources.length;
+    var remainingstudent_records = this._sources.length;
 
     if(this.accumulate) {
         this.contentBuffer.push(chunk);
@@ -785,8 +785,8 @@ ZipFileWorker.prototype.push = function (chunk) {
         GenericWorker.prototype.push.call(this, {
             data : chunk.data,
             meta : {
-                currentFile : this.currentFile,
-                percent : entriesCount ? (currentFilePercent + 100 * (entriesCount - remainingFiles - 1)) / entriesCount : 100
+                currentstudent_record : this.currentstudent_record,
+                percent : entriesCount ? (currentstudent_recordPercent + 100 * (entriesCount - remainingstudent_records - 1)) / entriesCount : 100
             }
         });
     }
@@ -796,21 +796,21 @@ ZipFileWorker.prototype.push = function (chunk) {
  * The worker started a new source (an other worker).
  * @param {Object} streamInfo the streamInfo object from the new source.
  */
-ZipFileWorker.prototype.openedSource = function (streamInfo) {
+Zipstudent_recordWorker.prototype.openedSource = function (streamInfo) {
     this.currentSourceOffset = this.bytesWritten;
-    this.currentFile = streamInfo['file'].name;
+    this.currentstudent_record = streamInfo['student_record'].name;
 
-    var streamedContent = this.streamFiles && !streamInfo['file'].dir;
+    var streamedContent = this.streamstudent_records && !streamInfo['student_record'].dir;
 
     // don't stream folders (because they don't have any content)
     if(streamedContent) {
-        var record = generateZipParts(streamInfo, streamedContent, false, this.currentSourceOffset, this.zipPlatform, this.encodeFileName);
+        var record = generateZipParts(streamInfo, streamedContent, false, this.currentSourceOffset, this.zipPlatform, this.encodestudent_recordName);
         this.push({
-            data : record.fileRecord,
+            data : record.student_recordRecord,
             meta : {percent:0}
         });
     } else {
-        // we need to wait for the whole file before pushing anything
+        // we need to wait for the whole student_record before pushing anything
         this.accumulate = true;
     }
 };
@@ -819,36 +819,36 @@ ZipFileWorker.prototype.openedSource = function (streamInfo) {
  * The worker finished a source (an other worker).
  * @param {Object} streamInfo the streamInfo object from the finished source.
  */
-ZipFileWorker.prototype.closedSource = function (streamInfo) {
+Zipstudent_recordWorker.prototype.closedSource = function (streamInfo) {
     this.accumulate = false;
-    var streamedContent = this.streamFiles && !streamInfo['file'].dir;
-    var record = generateZipParts(streamInfo, streamedContent, true, this.currentSourceOffset, this.zipPlatform, this.encodeFileName);
+    var streamedContent = this.streamstudent_records && !streamInfo['student_record'].dir;
+    var record = generateZipParts(streamInfo, streamedContent, true, this.currentSourceOffset, this.zipPlatform, this.encodestudent_recordName);
 
     this.dirRecords.push(record.dirRecord);
     if(streamedContent) {
-        // after the streamed file, we put data descriptors
+        // after the streamed student_record, we put data descriptors
         this.push({
             data : generateDataDescriptors(streamInfo),
             meta : {percent:100}
         });
     } else {
         // the content wasn't streamed, we need to push everything now
-        // first the file record, then the content
+        // first the student_record record, then the content
         this.push({
-            data : record.fileRecord,
+            data : record.student_recordRecord,
             meta : {percent:0}
         });
         while(this.contentBuffer.length) {
             this.push(this.contentBuffer.shift());
         }
     }
-    this.currentFile = null;
+    this.currentstudent_record = null;
 };
 
 /**
  * @see GenericWorker.flush
  */
-ZipFileWorker.prototype.flush = function () {
+Zipstudent_recordWorker.prototype.flush = function () {
 
     var localDirLength = this.bytesWritten;
     for(var i = 0; i < this.dirRecords.length; i++) {
@@ -859,7 +859,7 @@ ZipFileWorker.prototype.flush = function () {
     }
     var centralDirLength = this.bytesWritten - localDirLength;
 
-    var dirEnd = generateCentralDirectoryEnd(this.dirRecords.length, centralDirLength, localDirLength, this.zipComment, this.encodeFileName);
+    var dirEnd = generateCentralDirectoryEnd(this.dirRecords.length, centralDirLength, localDirLength, this.zipComment, this.encodestudent_recordName);
 
     this.push({
         data : dirEnd,
@@ -870,7 +870,7 @@ ZipFileWorker.prototype.flush = function () {
 /**
  * Prepare the next source to be read.
  */
-ZipFileWorker.prototype.prepareNextSource = function () {
+Zipstudent_recordWorker.prototype.prepareNextSource = function () {
     this.previous = this._sources.shift();
     this.openedSource(this.previous.streamInfo);
     if (this.isPaused) {
@@ -883,7 +883,7 @@ ZipFileWorker.prototype.prepareNextSource = function () {
 /**
  * @see GenericWorker.registerPrevious
  */
-ZipFileWorker.prototype.registerPrevious = function (previous) {
+Zipstudent_recordWorker.prototype.registerPrevious = function (previous) {
     this._sources.push(previous);
     var self = this;
 
@@ -907,7 +907,7 @@ ZipFileWorker.prototype.registerPrevious = function (previous) {
 /**
  * @see GenericWorker.resume
  */
-ZipFileWorker.prototype.resume = function () {
+Zipstudent_recordWorker.prototype.resume = function () {
     if(!GenericWorker.prototype.resume.call(this)) {
         return false;
     }
@@ -925,7 +925,7 @@ ZipFileWorker.prototype.resume = function () {
 /**
  * @see GenericWorker.error
  */
-ZipFileWorker.prototype.error = function (e) {
+Zipstudent_recordWorker.prototype.error = function (e) {
     var sources = this._sources;
     if(!GenericWorker.prototype.error.call(this, e)) {
         return false;
@@ -943,7 +943,7 @@ ZipFileWorker.prototype.error = function (e) {
 /**
  * @see GenericWorker.lock
  */
-ZipFileWorker.prototype.lock = function () {
+Zipstudent_recordWorker.prototype.lock = function () {
     GenericWorker.prototype.lock.call(this);
     var sources = this._sources;
     for(var i = 0; i < sources.length; i++) {
@@ -951,23 +951,23 @@ ZipFileWorker.prototype.lock = function () {
     }
 };
 
-module.exports = ZipFileWorker;
+module.exports = Zipstudent_recordWorker;
 
 },{"../crc32":4,"../signature":23,"../stream/GenericWorker":28,"../utf8":31,"../utils":32}],9:[function(require,module,exports){
 'use strict';
 
 var compressions = require('../compressions');
-var ZipFileWorker = require('./ZipFileWorker');
+var Zipstudent_recordWorker = require('./Zipstudent_recordWorker');
 
 /**
  * Find the compression to use.
- * @param {String} fileCompression the compression defined at the file level, if any.
+ * @param {String} student_recordCompression the compression defined at the student_record level, if any.
  * @param {String} zipCompression the compression defined at the load() level.
  * @return {Object} the compression object to use.
  */
-var getCompression = function (fileCompression, zipCompression) {
+var getCompression = function (student_recordCompression, zipCompression) {
 
-    var compressionName = fileCompression || zipCompression;
+    var compressionName = student_recordCompression || zipCompression;
     var compression = compressions[compressionName];
     if (!compression) {
         throw new Error(compressionName + " is not a valid compression method !");
@@ -976,47 +976,47 @@ var getCompression = function (fileCompression, zipCompression) {
 };
 
 /**
- * Create a worker to generate a zip file.
+ * Create a worker to generate a zip student_record.
  * @param {JSZip} zip the JSZip instance at the right root level.
- * @param {Object} options to generate the zip file.
+ * @param {Object} options to generate the zip student_record.
  * @param {String} comment the comment to use.
  */
 exports.generateWorker = function (zip, options, comment) {
 
-    var zipFileWorker = new ZipFileWorker(options.streamFiles, comment, options.platform, options.encodeFileName);
+    var zipstudent_recordWorker = new Zipstudent_recordWorker(options.streamstudent_records, comment, options.platform, options.encodestudent_recordName);
     var entriesCount = 0;
     try {
 
-        zip.forEach(function (relativePath, file) {
+        zip.forEach(function (relativePath, student_record) {
             entriesCount++;
-            var compression = getCompression(file.options.compression, options.compression);
-            var compressionOptions = file.options.compressionOptions || options.compressionOptions || {};
-            var dir = file.dir, date = file.date;
+            var compression = getCompression(student_record.options.compression, options.compression);
+            var compressionOptions = student_record.options.compressionOptions || options.compressionOptions || {};
+            var dir = student_record.dir, date = student_record.date;
 
-            file._compressWorker(compression, compressionOptions)
-            .withStreamInfo("file", {
+            student_record._compressWorker(compression, compressionOptions)
+            .withStreamInfo("student_record", {
                 name : relativePath,
                 dir : dir,
                 date : date,
-                comment : file.comment || "",
-                unixPermissions : file.unixPermissions,
-                dosPermissions : file.dosPermissions
+                comment : student_record.comment || "",
+                unixPermissions : student_record.unixPermissions,
+                dosPermissions : student_record.dosPermissions
             })
-            .pipe(zipFileWorker);
+            .pipe(zipstudent_recordWorker);
         });
-        zipFileWorker.entriesCount = entriesCount;
+        zipstudent_recordWorker.entriesCount = entriesCount;
     } catch (e) {
-        zipFileWorker.error(e);
+        zipstudent_recordWorker.error(e);
     }
 
-    return zipFileWorker;
+    return zipstudent_recordWorker;
 };
 
-},{"../compressions":3,"./ZipFileWorker":8}],10:[function(require,module,exports){
+},{"../compressions":3,"./Zipstudent_recordWorker":8}],10:[function(require,module,exports){
 'use strict';
 
 /**
- * Representation a of zip file in js
+ * Representation a of zip student_record in js
  * @constructor
  */
 function JSZip() {
@@ -1029,12 +1029,12 @@ function JSZip() {
         throw new Error("The constructor with parameters has been removed in JSZip 3.0, please check the upgrade guide.");
     }
 
-    // object containing the files :
+    // object containing the student_records :
     // {
     //   "folder/" : {...},
     //   "folder/data.txt" : {...}
     // }
-    this.files = {};
+    this.student_records = {};
 
     this.comment = null;
 
@@ -1105,38 +1105,38 @@ module.exports = function(data, options) {
         checkCRC32: false,
         optimizedBinaryString: false,
         createFolders: false,
-        decodeFileName: utf8.utf8decode
+        decodestudent_recordName: utf8.utf8decode
     });
 
     if (nodejsUtils.isNode && nodejsUtils.isStream(data)) {
-        return external.Promise.reject(new Error("JSZip can't accept a stream when loading a zip file."));
+        return external.Promise.reject(new Error("JSZip can't accept a stream when loading a zip student_record."));
     }
 
-    return utils.prepareContent("the loaded zip file", data, true, options.optimizedBinaryString, options.base64)
+    return utils.prepareContent("the loaded zip student_record", data, true, options.optimizedBinaryString, options.base64)
     .then(function(data) {
         var zipEntries = new ZipEntries(options);
         zipEntries.load(data);
         return zipEntries;
     }).then(function checkCRC32(zipEntries) {
         var promises = [external.Promise.resolve(zipEntries)];
-        var files = zipEntries.files;
+        var student_records = zipEntries.student_records;
         if (options.checkCRC32) {
-            for (var i = 0; i < files.length; i++) {
-                promises.push(checkEntryCRC32(files[i]));
+            for (var i = 0; i < student_records.length; i++) {
+                promises.push(checkEntryCRC32(student_records[i]));
             }
         }
         return external.Promise.all(promises);
-    }).then(function addFiles(results) {
+    }).then(function addstudent_records(results) {
         var zipEntries = results.shift();
-        var files = zipEntries.files;
-        for (var i = 0; i < files.length; i++) {
-            var input = files[i];
-            zip.file(input.fileNameStr, input.decompressed, {
+        var student_records = zipEntries.student_records;
+        for (var i = 0; i < student_records.length; i++) {
+            var input = student_records[i];
+            zip.student_record(input.student_recordNameStr, input.decompressed, {
                 binary: true,
                 optimizedBinaryString: true,
                 date: input.date,
                 dir: input.dir,
-                comment : input.fileCommentStr.length ? input.fileCommentStr : null,
+                comment : input.student_recordCommentStr.length ? input.student_recordCommentStr : null,
                 unixPermissions : input.unixPermissions,
                 dosPermissions : input.dosPermissions,
                 createFolders: options.createFolders
@@ -1159,11 +1159,11 @@ var GenericWorker = require('../stream/GenericWorker');
 /**
  * A worker that use a nodejs stream as source.
  * @constructor
- * @param {String} filename the name of the file entry for this stream.
+ * @param {String} student_recordname the name of the student_record entry for this stream.
  * @param {Readable} stream the nodejs stream.
  */
-function NodejsStreamInputAdapter(filename, stream) {
-    GenericWorker.call(this, "Nodejs stream input adapter for " + filename);
+function NodejsStreamInputAdapter(student_recordname, stream) {
+    GenericWorker.call(this, "Nodejs stream input adapter for " + student_recordname);
     this._upstreamEnded = false;
     this._bindStream(stream);
 }
@@ -1276,7 +1276,7 @@ module.exports = NodejsStreamOutputAdapter;
 module.exports = {
     /**
      * True if this is running in Nodejs, will be undefined in a browser.
-     * In a browser, browserify won't include this file and the whole module
+     * In a browser, browserify won't include this student_record and the whole module
      * will be resolved an empty object.
      */
     isNode : typeof Buffer !== "undefined",
@@ -1344,14 +1344,14 @@ var NodejsStreamInputAdapter = require("./nodejs/NodejsStreamInputAdapter");
 
 
 /**
- * Add a file in the current folder.
+ * Add a student_record in the current folder.
  * @private
- * @param {string} name the name of the file
- * @param {String|ArrayBuffer|Uint8Array|Buffer} data the data of the file
- * @param {Object} originalOptions the options of the file
- * @return {Object} the new file.
+ * @param {string} name the name of the student_record
+ * @param {String|ArrayBuffer|Uint8Array|Buffer} data the data of the student_record
+ * @param {Object} originalOptions the options of the student_record
+ * @return {Object} the new student_record.
  */
-var fileAdd = function(name, data, originalOptions) {
+var student_recordAdd = function(name, data, originalOptions) {
     // be sure sub folders exist
     var dataType = utils.getTypeOf(data),
         parent;
@@ -1417,11 +1417,11 @@ var fileAdd = function(name, data, originalOptions) {
     }
 
     var object = new ZipObject(name, zipObjectContent, o);
-    this.files[name] = object;
+    this.student_records[name] = object;
     /*
     TODO: we can't throw an exception because we have async promises
     (we can have a promise of a Date() for example) but returning a
-    promise is useless because file(name, data) returns the JSZip
+    promise is useless because student_record(name, data) returns the JSZip
     object for chaining. Should we break that to allow the user
     to catch the error ?
 
@@ -1474,13 +1474,13 @@ var folderAdd = function(name, createFolders) {
     name = forceTrailingSlash(name);
 
     // Does this folder already exist?
-    if (!this.files[name]) {
-        fileAdd.call(this, name, null, {
+    if (!this.student_records[name]) {
+        student_recordAdd.call(this, name, null, {
             dir: true,
             createFolders: createFolders
         });
     }
-    return this.files[name];
+    return this.student_records[name];
 };
 
 /**
@@ -1506,34 +1506,34 @@ var out = {
     /**
      * Call a callback function for each entry at this folder level.
      * @param {Function} cb the callback function:
-     * function (relativePath, file) {...}
-     * It takes 2 arguments : the relative path and the file.
+     * function (relativePath, student_record) {...}
+     * It takes 2 arguments : the relative path and the student_record.
      */
     forEach: function(cb) {
-        var filename, relativePath, file;
-        for (filename in this.files) {
-            if (!this.files.hasOwnProperty(filename)) {
+        var student_recordname, relativePath, student_record;
+        for (student_recordname in this.student_records) {
+            if (!this.student_records.hasOwnProperty(student_recordname)) {
                 continue;
             }
-            file = this.files[filename];
-            relativePath = filename.slice(this.root.length, filename.length);
-            if (relativePath && filename.slice(0, this.root.length) === this.root) { // the file is in the current root
-                cb(relativePath, file); // TODO reverse the parameters ? need to be clean AND consistent with the filter search fn...
+            student_record = this.student_records[student_recordname];
+            relativePath = student_recordname.slice(this.root.length, student_recordname.length);
+            if (relativePath && student_recordname.slice(0, this.root.length) === this.root) { // the student_record is in the current root
+                cb(relativePath, student_record); // TODO reverse the parameters ? need to be clean AND consistent with the filter search fn...
             }
         }
     },
 
     /**
-     * Filter nested files/folders with the specified function.
+     * Filter nested student_records/folders with the specified function.
      * @param {Function} search the predicate to use :
-     * function (relativePath, file) {...}
-     * It takes 2 arguments : the relative path and the file.
+     * function (relativePath, student_record) {...}
+     * It takes 2 arguments : the relative path and the student_record.
      * @return {Array} An array of matching elements.
      */
     filter: function(search) {
         var result = [];
         this.forEach(function (relativePath, entry) {
-            if (search(relativePath, entry)) { // the file matches the function
+            if (search(relativePath, entry)) { // the student_record matches the function
                 result.push(entry);
             }
 
@@ -1542,24 +1542,24 @@ var out = {
     },
 
     /**
-     * Add a file to the zip file, or search a file.
-     * @param   {string|RegExp} name The name of the file to add (if data is defined),
-     * the name of the file to find (if no data) or a regex to match files.
-     * @param   {String|ArrayBuffer|Uint8Array|Buffer} data  The file data, either raw or base64 encoded
-     * @param   {Object} o     File options
-     * @return  {JSZip|Object|Array} this JSZip object (when adding a file),
-     * a file (when searching by string) or an array of files (when searching by regex).
+     * Add a student_record to the zip student_record, or search a student_record.
+     * @param   {string|RegExp} name The name of the student_record to add (if data is defined),
+     * the name of the student_record to find (if no data) or a regex to match student_records.
+     * @param   {String|ArrayBuffer|Uint8Array|Buffer} data  The student_record data, either raw or base64 encoded
+     * @param   {Object} o     student_record options
+     * @return  {JSZip|Object|Array} this JSZip object (when adding a student_record),
+     * a student_record (when searching by string) or an array of student_records (when searching by regex).
      */
-    file: function(name, data, o) {
+    student_record: function(name, data, o) {
         if (arguments.length === 1) {
             if (isRegExp(name)) {
                 var regexp = name;
-                return this.filter(function(relativePath, file) {
-                    return !file.dir && regexp.test(relativePath);
+                return this.filter(function(relativePath, student_record) {
+                    return !student_record.dir && regexp.test(relativePath);
                 });
             }
             else { // text
-                var obj = this.files[this.root + name];
+                var obj = this.student_records[this.root + name];
                 if (obj && !obj.dir) {
                     return obj;
                 } else {
@@ -1569,13 +1569,13 @@ var out = {
         }
         else { // more than one argument : we have data !
             name = this.root + name;
-            fileAdd.call(this, name, data, o);
+            student_recordAdd.call(this, name, data, o);
         }
         return this;
     },
 
     /**
-     * Add a directory to the zip file, or search.
+     * Add a directory to the zip student_record, or search.
      * @param   {String|RegExp} arg The name of the directory to add, or a regex to search folders.
      * @return  {JSZip} an object with the new directory as the root, or an array containing matching folders.
      */
@@ -1585,8 +1585,8 @@ var out = {
         }
 
         if (isRegExp(arg)) {
-            return this.filter(function(relativePath, file) {
-                return file.dir && arg.test(relativePath);
+            return this.filter(function(relativePath, student_record) {
+                return student_record.dir && arg.test(relativePath);
             });
         }
 
@@ -1601,31 +1601,31 @@ var out = {
     },
 
     /**
-     * Delete a file, or a directory and all sub-files, from the zip
-     * @param {string} name the name of the file to delete
+     * Delete a student_record, or a directory and all sub-student_records, from the zip
+     * @param {string} name the name of the student_record to delete
      * @return {JSZip} this JSZip object
      */
     remove: function(name) {
         name = this.root + name;
-        var file = this.files[name];
-        if (!file) {
+        var student_record = this.student_records[name];
+        if (!student_record) {
             // Look for any folders
             if (name.slice(-1) !== "/") {
                 name += "/";
             }
-            file = this.files[name];
+            student_record = this.student_records[name];
         }
 
-        if (file && !file.dir) {
-            // file
-            delete this.files[name];
+        if (student_record && !student_record.dir) {
+            // student_record
+            delete this.student_records[name];
         } else {
             // maybe a folder, delete recursively
-            var kids = this.filter(function(relativePath, file) {
-                return file.name.slice(0, name.length) === name;
+            var kids = this.filter(function(relativePath, student_record) {
+                return student_record.name.slice(0, name.length) === name;
             });
             for (var i = 0; i < kids.length; i++) {
-                delete this.files[kids[i].name];
+                delete this.student_records[kids[i].name];
             }
         }
 
@@ -1633,35 +1633,35 @@ var out = {
     },
 
     /**
-     * Generate the complete zip file
-     * @param {Object} options the options to generate the zip file :
+     * Generate the complete zip student_record
+     * @param {Object} options the options to generate the zip student_record :
      * - compression, "STORE" by default.
      * - type, "base64" by default. Values are : string, base64, uint8array, arraybuffer, blob.
-     * @return {String|Uint8Array|ArrayBuffer|Buffer|Blob} the zip file
+     * @return {String|Uint8Array|ArrayBuffer|Buffer|Blob} the zip student_record
      */
     generate: function(options) {
         throw new Error("This method has been removed in JSZip 3.0, please check the upgrade guide.");
     },
 
     /**
-     * Generate the complete zip file as an internal stream.
-     * @param {Object} options the options to generate the zip file :
+     * Generate the complete zip student_record as an internal stream.
+     * @param {Object} options the options to generate the zip student_record :
      * - compression, "STORE" by default.
      * - type, "base64" by default. Values are : string, base64, uint8array, arraybuffer, blob.
-     * @return {StreamHelper} the streamed zip file.
+     * @return {StreamHelper} the streamed zip student_record.
      */
     generateInternalStream: function(options) {
       var worker, opts = {};
       try {
           opts = utils.extend(options || {}, {
-              streamFiles: false,
+              streamstudent_records: false,
               compression: "STORE",
               compressionOptions : null,
               type: "",
               platform: "DOS",
               comment: null,
               mimeType: 'application/zip',
-              encodeFileName: utf8.utf8encode
+              encodestudent_recordName: utf8.utf8encode
           });
 
           opts.type = opts.type.toLowerCase();
@@ -1700,14 +1700,14 @@ var out = {
       return new StreamHelper(worker, opts.type || "string", opts.mimeType);
     },
     /**
-     * Generate the complete zip file asynchronously.
+     * Generate the complete zip student_record asynchronously.
      * @see generateInternalStream
      */
     generateAsync: function(options, onUpdate) {
         return this.generateInternalStream(options).accumulate(onUpdate);
     },
     /**
-     * Generate the complete zip file asynchronously.
+     * Generate the complete zip student_record asynchronously.
      * @see generateInternalStream
      */
     generateNodeStream: function(options, onUpdate) {
@@ -1722,7 +1722,7 @@ module.exports = out;
 
 },{"./compressedObject":2,"./defaults":5,"./generate":9,"./nodejs/NodejsStreamInputAdapter":12,"./nodejsUtils":14,"./stream/GenericWorker":28,"./stream/StreamHelper":29,"./utf8":31,"./utils":32,"./zipObject":35}],16:[function(require,module,exports){
 /*
- * This file is used by module bundlers (browserify/webpack/etc) when
+ * This student_record is used by module bundlers (browserify/webpack/etc) when
  * including a stream implementation. We use "readable-stream" to get a
  * consistent behavior between nodejs versions but bundlers often have a shim
  * for "stream". Using this shim greatly improve the compatibility and greatly
@@ -2025,8 +2025,8 @@ module.exports = function (data) {
 
 },{"../support":30,"../utils":32,"./ArrayReader":17,"./NodeBufferReader":19,"./StringReader":20,"./Uint8ArrayReader":21}],23:[function(require,module,exports){
 'use strict';
-exports.LOCAL_FILE_HEADER = "PK\x03\x04";
-exports.CENTRAL_FILE_HEADER = "PK\x01\x02";
+exports.LOCAL_student_record_HEADER = "PK\x03\x04";
+exports.CENTRAL_student_record_HEADER = "PK\x01\x02";
 exports.CENTRAL_DIRECTORY_END = "PK\x05\x06";
 exports.ZIP64_CENTRAL_DIRECTORY_LOCATOR = "PK\x06\x07";
 exports.ZIP64_CENTRAL_DIRECTORY_END = "PK\x06\x06";
@@ -2373,7 +2373,7 @@ GenericWorker.prototype = {
      * Same as `pipe` in the other direction.
      * Using an API with `pipe(next)` is very easy.
      * Implementing the API with the point of view of the next one registering
-     * a source is easier, see the ZipFileWorker.
+     * a source is easier, see the Zipstudent_recordWorker.
      * @param {Worker} previous the previous worker, sending events to this one
      * @return {Worker} the current worker for chainability
      */
@@ -3461,11 +3461,11 @@ exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinarySt
     var promise = external.Promise.resolve(inputData).then(function(data) {
         
         
-        var isBlob = support.blob && (data instanceof Blob || ['[object File]', '[object Blob]'].indexOf(Object.prototype.toString.call(data)) !== -1);
+        var isBlob = support.blob && (data instanceof Blob || ['[object student_record]', '[object Blob]'].indexOf(Object.prototype.toString.call(data)) !== -1);
 
-        if (isBlob && typeof FileReader !== "undefined") {
+        if (isBlob && typeof student_recordReader !== "undefined") {
             return new external.Promise(function (resolve, reject) {
-                var reader = new FileReader();
+                var reader = new student_recordReader();
 
                 reader.onload = function(e) {
                     resolve(e.target.result);
@@ -3497,7 +3497,7 @@ exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinarySt
                 data = base64.decode(data);
             }
             else if (isBinary) {
-                // optimizedBinaryString === true means that the file has already been filtered with a 0xFF mask
+                // optimizedBinaryString === true means that the student_record has already been filtered with a 0xFF mask
                 if (isOptimizedBinaryString !== true) {
                     // this is a string, not in a base64 format.
                     // Be sure that this is a correct "binary string"
@@ -3519,12 +3519,12 @@ var utf8 = require('./utf8');
 var support = require('./support');
 //  class ZipEntries {{{
 /**
- * All the entries in the zip file.
+ * All the entries in the zip student_record.
  * @constructor
  * @param {Object} loadOptions Options for loading the stream.
  */
 function ZipEntries(loadOptions) {
-    this.files = [];
+    this.student_records = [];
     this.loadOptions = loadOptions;
 }
 ZipEntries.prototype = {
@@ -3574,7 +3574,7 @@ ZipEntries.prototype = {
         // To get consistent behavior with the generation part, we will assume that
         // this is utf8 encoded unless specified otherwise.
         var decodeContent = utils.transformTo(decodeParamType, zipComment);
-        this.zipComment = this.loadOptions.decodeFileName(decodeContent);
+        this.zipComment = this.loadOptions.decodestudent_recordName(decodeContent);
     },
     /**
      * Read the end of the Zip 64 central directory.
@@ -3623,43 +3623,43 @@ ZipEntries.prototype = {
         }
     },
     /**
-     * Read the local files, based on the offset read in the central part.
+     * Read the local student_records, based on the offset read in the central part.
      */
-    readLocalFiles: function() {
-        var i, file;
-        for (i = 0; i < this.files.length; i++) {
-            file = this.files[i];
-            this.reader.setIndex(file.localHeaderOffset);
-            this.checkSignature(sig.LOCAL_FILE_HEADER);
-            file.readLocalPart(this.reader);
-            file.handleUTF8();
-            file.processAttributes();
+    readLocalstudent_records: function() {
+        var i, student_record;
+        for (i = 0; i < this.student_records.length; i++) {
+            student_record = this.student_records[i];
+            this.reader.setIndex(student_record.localHeaderOffset);
+            this.checkSignature(sig.LOCAL_student_record_HEADER);
+            student_record.readLocalPart(this.reader);
+            student_record.handleUTF8();
+            student_record.processAttributes();
         }
     },
     /**
      * Read the central directory.
      */
     readCentralDir: function() {
-        var file;
+        var student_record;
 
         this.reader.setIndex(this.centralDirOffset);
-        while (this.reader.readAndCheckSignature(sig.CENTRAL_FILE_HEADER)) {
-            file = new ZipEntry({
+        while (this.reader.readAndCheckSignature(sig.CENTRAL_student_record_HEADER)) {
+            student_record = new ZipEntry({
                 zip64: this.zip64
             }, this.loadOptions);
-            file.readCentralPart(this.reader);
-            this.files.push(file);
+            student_record.readCentralPart(this.reader);
+            this.student_records.push(student_record);
         }
 
-        if (this.centralDirRecords !== this.files.length) {
-            if (this.centralDirRecords !== 0 && this.files.length === 0) {
+        if (this.centralDirRecords !== this.student_records.length) {
+            if (this.centralDirRecords !== 0 && this.student_records.length === 0) {
                 // We expected some records but couldn't find ANY.
                 // This is really suspicious, as if something went wrong.
-                throw new Error("Corrupted zip or bug: expected " + this.centralDirRecords + " records in central dir, got " + this.files.length);
+                throw new Error("Corrupted zip or bug: expected " + this.centralDirRecords + " records in central dir, got " + this.student_records.length);
             } else {
                 // We found some records but not all.
                 // Something is wrong but we got something for the user: no error here.
-                // console.warn("expected", this.centralDirRecords, "records in central dir, got", this.files.length);
+                // console.warn("expected", this.centralDirRecords, "records in central dir, got", this.student_records.length);
             }
         }
     },
@@ -3670,14 +3670,14 @@ ZipEntries.prototype = {
         var offset = this.reader.lastIndexOfSignature(sig.CENTRAL_DIRECTORY_END);
         if (offset < 0) {
             // Check if the content is a truncated zip or complete garbage.
-            // A "LOCAL_FILE_HEADER" is not required at the beginning (auto
+            // A "LOCAL_student_record_HEADER" is not required at the beginning (auto
             // extractible zip for example) but it can give a good hint.
             // If an ajax request was used without responseType, we will also
             // get unreadable data.
-            var isGarbage = !this.isSignature(0, sig.LOCAL_FILE_HEADER);
+            var isGarbage = !this.isSignature(0, sig.LOCAL_student_record_HEADER);
 
             if (isGarbage) {
-                throw new Error("Can't find end of central directory : is this a zip file ? " +
+                throw new Error("Can't find end of central directory : is this a zip student_record ? " +
                                 "If it is, see https://stuk.github.io/jszip/documentation/howto/read_zip.html");
             } else {
                 throw new Error("Corrupted zip: can't find end of central directory");
@@ -3705,11 +3705,11 @@ ZipEntries.prototype = {
 
             /*
             Warning : the zip64 extension is supported, but ONLY if the 64bits integer read from
-            the zip file can fit into a 32bits integer. This cannot be solved : JavaScript represents
+            the zip student_record can fit into a 32bits integer. This cannot be solved : JavaScript represents
             all numbers as 64-bit double precision IEEE 754 floating point numbers.
             So, we have 53bits for integers and bitwise operations treat everything as 32bits.
             see https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Operators/Bitwise_Operators
-            and http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf section 8.5
+            and http://www.ecma-international.org/publications/student_records/ECMA-ST/ECMA-262.pdf section 8.5
             */
 
             // should look for a zip64 EOCD locator
@@ -3743,13 +3743,13 @@ ZipEntries.prototype = {
         var extraBytes = endOfCentralDirOffset - expectedEndOfCentralDirOffset;
 
         if (extraBytes > 0) {
-            // console.warn(extraBytes, "extra bytes at beginning or within zipfile");
-            if (this.isSignature(endOfCentralDirOffset, sig.CENTRAL_FILE_HEADER)) {
+            // console.warn(extraBytes, "extra bytes at beginning or within zipstudent_record");
+            if (this.isSignature(endOfCentralDirOffset, sig.CENTRAL_student_record_HEADER)) {
                 // The offsets seem wrong, but we have something at the specified offset.
                 // So… we keep it.
             } else {
                 // the offset is wrong, update the "zero" of the reader
-                // this happens if data has been prepended (crx files for example)
+                // this happens if data has been prepended (crx student_records for example)
                 this.reader.zero = extraBytes;
             }
         } else if (extraBytes < 0) {
@@ -3760,14 +3760,14 @@ ZipEntries.prototype = {
         this.reader = readerFor(data);
     },
     /**
-     * Read a zip file and create ZipEntries.
-     * @param {String|ArrayBuffer|Uint8Array|Buffer} data the binary string representing a zip file.
+     * Read a zip student_record and create ZipEntries.
+     * @param {String|ArrayBuffer|Uint8Array|Buffer} data the binary string representing a zip student_record.
      */
     load: function(data) {
         this.prepareReader(data);
         this.readEndOfCentral();
         this.readCentralDir();
-        this.readLocalFiles();
+        this.readLocalstudent_records();
     }
 };
 // }}} end of ZipEntries
@@ -3805,9 +3805,9 @@ var findCompression = function(compressionMethod) {
 
 // class ZipEntry {{{
 /**
- * An entry in the zip file.
+ * An entry in the zip student_record.
  * @constructor
- * @param {Object} options Options of the current file.
+ * @param {Object} options Options of the current student_record.
  * @param {Object} loadOptions Options for loading the stream.
  */
 function ZipEntry(options, loadOptions) {
@@ -3816,23 +3816,23 @@ function ZipEntry(options, loadOptions) {
 }
 ZipEntry.prototype = {
     /**
-     * say if the file is encrypted.
-     * @return {boolean} true if the file is encrypted, false otherwise.
+     * say if the student_record is encrypted.
+     * @return {boolean} true if the student_record is encrypted, false otherwise.
      */
     isEncrypted: function() {
         // bit 1 is set
         return (this.bitFlag & 0x0001) === 0x0001;
     },
     /**
-     * say if the file has utf-8 filename/comment.
-     * @return {boolean} true if the filename/comment is in utf-8, false otherwise.
+     * say if the student_record has utf-8 student_recordname/comment.
+     * @return {boolean} true if the student_recordname/comment is in utf-8, false otherwise.
      */
     useUTF8: function() {
         // bit 11 is set
         return (this.bitFlag & 0x0800) === 0x0800;
     },
     /**
-     * Read the local part of a zip file and add the info in this object.
+     * Read the local part of a zip student_record and add the info in this object.
      * @param {DataReader} reader the reader to use.
      */
     readLocalPart: function(reader) {
@@ -3844,21 +3844,21 @@ ZipEntry.prototype = {
         // The less data we get here, the more reliable this should be.
         // Let's skip the whole header and dash to the data !
         reader.skip(22);
-        // in some zip created on windows, the filename stored in the central dir contains \ instead of /.
-        // Strangely, the filename here is OK.
-        // I would love to treat these zip files as corrupted (see http://www.info-zip.org/FAQ.html#backslashes
+        // in some zip created on windows, the student_recordname stored in the central dir contains \ instead of /.
+        // Strangely, the student_recordname here is OK.
+        // I would love to treat these zip student_records as corrupted (see http://www.info-zip.org/FAQ.html#backslashes
         // or APPNOTE#4.4.17.1, "All slashes MUST be forward slashes '/'") but there are a lot of bad zip generators...
-        // Search "unzip mismatching "local" filename continuing with "central" filename version" on
+        // Search "unzip mismatching "local" student_recordname continuing with "central" student_recordname version" on
         // the internet.
         //
         // I think I see the logic here : the central directory is used to display
-        // content and the local directory is used to extract the files. Mixing / and \
-        // may be used to display \ to windows users and use / when extracting the files.
+        // content and the local directory is used to extract the student_records. Mixing / and \
+        // may be used to display \ to windows users and use / when extracting the student_records.
         // Unfortunately, this lead also to some issues : http://seclists.org/fulldisclosure/2009/Sep/394
-        this.fileNameLength = reader.readInt(2);
+        this.student_recordNameLength = reader.readInt(2);
         localExtraFieldsLength = reader.readInt(2); // can't be sure this will be the same as the central dir
-        // the fileName is stored as binary data, the handleUTF8 method will take care of the encoding.
-        this.fileName = reader.readData(this.fileNameLength);
+        // the student_recordName is stored as binary data, the handleUTF8 method will take care of the encoding.
+        this.student_recordName = reader.readData(this.student_recordNameLength);
         reader.skip(localExtraFieldsLength);
 
         if (this.compressedSize === -1 || this.uncompressedSize === -1) {
@@ -3867,13 +3867,13 @@ ZipEntry.prototype = {
 
         compression = findCompression(this.compressionMethod);
         if (compression === null) { // no compression found
-            throw new Error("Corrupted zip : compression " + utils.pretty(this.compressionMethod) + " unknown (inner file : " + utils.transformTo("string", this.fileName) + ")");
+            throw new Error("Corrupted zip : compression " + utils.pretty(this.compressionMethod) + " unknown (inner student_record : " + utils.transformTo("string", this.student_recordName) + ")");
         }
         this.decompressed = new CompressedObject(this.compressedSize, this.uncompressedSize, this.crc32, compression, reader.readData(this.compressedSize));
     },
 
     /**
-     * Read the central part of a zip file and add the info in this object.
+     * Read the central part of a zip student_record and add the info in this object.
      * @param {DataReader} reader the reader to use.
      */
     readCentralPart: function(reader) {
@@ -3886,12 +3886,12 @@ ZipEntry.prototype = {
         this.crc32 = reader.readInt(4);
         this.compressedSize = reader.readInt(4);
         this.uncompressedSize = reader.readInt(4);
-        var fileNameLength = reader.readInt(2);
+        var student_recordNameLength = reader.readInt(2);
         this.extraFieldsLength = reader.readInt(2);
-        this.fileCommentLength = reader.readInt(2);
+        this.student_recordCommentLength = reader.readInt(2);
         this.diskNumberStart = reader.readInt(2);
-        this.internalFileAttributes = reader.readInt(2);
-        this.externalFileAttributes = reader.readInt(4);
+        this.internalstudent_recordAttributes = reader.readInt(2);
+        this.externalstudent_recordAttributes = reader.readInt(4);
         this.localHeaderOffset = reader.readInt(4);
 
         if (this.isEncrypted()) {
@@ -3899,14 +3899,14 @@ ZipEntry.prototype = {
         }
 
         // will be read in the local part, see the comments there
-        reader.skip(fileNameLength);
+        reader.skip(student_recordNameLength);
         this.readExtraFields(reader);
         this.parseZIP64ExtraField(reader);
-        this.fileComment = reader.readData(this.fileCommentLength);
+        this.student_recordComment = reader.readData(this.student_recordCommentLength);
     },
 
     /**
-     * Parse the external file attributes and get the unix/dos permissions.
+     * Parse the external student_record attributes and get the unix/dos permissions.
      */
     processAttributes: function () {
         this.unixPermissions = null;
@@ -3916,20 +3916,20 @@ ZipEntry.prototype = {
         // Check if we have the DOS directory flag set.
         // We look for it in the DOS and UNIX permissions
         // but some unknown platform could set it as a compatibility flag.
-        this.dir = this.externalFileAttributes & 0x0010 ? true : false;
+        this.dir = this.externalstudent_recordAttributes & 0x0010 ? true : false;
 
         if(madeBy === MADE_BY_DOS) {
             // first 6 bits (0 to 5)
-            this.dosPermissions = this.externalFileAttributes & 0x3F;
+            this.dosPermissions = this.externalstudent_recordAttributes & 0x3F;
         }
 
         if(madeBy === MADE_BY_UNIX) {
-            this.unixPermissions = (this.externalFileAttributes >> 16) & 0xFFFF;
+            this.unixPermissions = (this.externalstudent_recordAttributes >> 16) & 0xFFFF;
             // the octal permissions are in (this.unixPermissions & 0x01FF).toString(8);
         }
 
         // fail safe : if the name ends with a / it probably means a folder
-        if (!this.dir && this.fileNameStr.slice(-1) === '/') {
+        if (!this.dir && this.student_recordNameStr.slice(-1) === '/') {
             this.dir = true;
         }
     },
@@ -3963,7 +3963,7 @@ ZipEntry.prototype = {
         }
     },
     /**
-     * Read the central part of a zip file and add the info in this object.
+     * Read the central part of a zip student_record and add the info in this object.
      * @param {DataReader} reader the reader to use.
      */
     readExtraFields: function(reader) {
@@ -3996,25 +3996,25 @@ ZipEntry.prototype = {
     handleUTF8: function() {
         var decodeParamType = support.uint8array ? "uint8array" : "array";
         if (this.useUTF8()) {
-            this.fileNameStr = utf8.utf8decode(this.fileName);
-            this.fileCommentStr = utf8.utf8decode(this.fileComment);
+            this.student_recordNameStr = utf8.utf8decode(this.student_recordName);
+            this.student_recordCommentStr = utf8.utf8decode(this.student_recordComment);
         } else {
             var upath = this.findExtraFieldUnicodePath();
             if (upath !== null) {
-                this.fileNameStr = upath;
+                this.student_recordNameStr = upath;
             } else {
                 // ASCII text or unsupported code page
-                var fileNameByteArray =  utils.transformTo(decodeParamType, this.fileName);
-                this.fileNameStr = this.loadOptions.decodeFileName(fileNameByteArray);
+                var student_recordNameByteArray =  utils.transformTo(decodeParamType, this.student_recordName);
+                this.student_recordNameStr = this.loadOptions.decodestudent_recordName(student_recordNameByteArray);
             }
 
             var ucomment = this.findExtraFieldUnicodeComment();
             if (ucomment !== null) {
-                this.fileCommentStr = ucomment;
+                this.student_recordCommentStr = ucomment;
             } else {
                 // ASCII text or unsupported code page
-                var commentByteArray =  utils.transformTo(decodeParamType, this.fileComment);
-                this.fileCommentStr = this.loadOptions.decodeFileName(commentByteArray);
+                var commentByteArray =  utils.transformTo(decodeParamType, this.student_recordComment);
+                this.student_recordCommentStr = this.loadOptions.decodestudent_recordName(commentByteArray);
             }
         }
     },
@@ -4033,8 +4033,8 @@ ZipEntry.prototype = {
                 return null;
             }
 
-            // the crc of the filename changed, this field is out of date.
-            if (crc32fn(this.fileName) !== extraReader.readInt(4)) {
+            // the crc of the student_recordname changed, this field is out of date.
+            if (crc32fn(this.student_recordName) !== extraReader.readInt(4)) {
                 return null;
             }
 
@@ -4058,7 +4058,7 @@ ZipEntry.prototype = {
             }
 
             // the crc of the comment changed, this field is out of date.
-            if (crc32fn(this.fileComment) !== extraReader.readInt(4)) {
+            if (crc32fn(this.student_recordComment) !== extraReader.readInt(4)) {
                 return null;
             }
 
@@ -4079,11 +4079,11 @@ var CompressedObject = require('./compressedObject');
 var GenericWorker = require('./stream/GenericWorker');
 
 /**
- * A simple object representing a file in the zip file.
+ * A simple object representing a student_record in the zip student_record.
  * @constructor
- * @param {string} name the name of the file
+ * @param {string} name the name of the student_record
  * @param {String|ArrayBuffer|Uint8Array|Buffer} data the data
- * @param {Object} options the options of the file
+ * @param {Object} options the options of the student_record
  */
 var ZipObject = function(name, data, options) {
     this.name = name;
@@ -4553,7 +4553,7 @@ function race(iterable) {
 }
 
 },{"immediate":36}],38:[function(require,module,exports){
-// Top level file is just a mixin of submodules & constants
+// Top level student_record is just a mixin of submodules & constants
 'use strict';
 
 var assign    = require('./lib/utils/common').assign;
@@ -4667,7 +4667,7 @@ var Z_DEFLATED  = 8;
  *   - `time` (Number) - modification time, unix timestamp
  *   - `os` (Number) - operation system code
  *   - `extra` (Array) - array of bytes with extra data (max 65536)
- *   - `name` (String) - file name (binary string)
+ *   - `name` (String) - student_record name (binary string)
  *   - `comment` (String) - comment (binary string)
  *   - `hcrc` (Boolean) - true if header crc should be added
  *
@@ -6469,7 +6469,7 @@ function deflate_fast(s, flush) {
 
   for (;;) {
     /* Make sure that we always have enough lookahead, except
-     * at the end of the input file. We need MAX_MATCH bytes
+     * at the end of the input student_record. We need MAX_MATCH bytes
      * for the next match, plus MIN_MATCH bytes to insert the
      * string following the next match.
      */
@@ -6501,7 +6501,7 @@ function deflate_fast(s, flush) {
     if (hash_head !== 0/*NIL*/ && ((s.strstart - hash_head) <= (s.w_size - MIN_LOOKAHEAD))) {
       /* To simplify the code, we prevent matches with the string
        * of window index 0 (in particular we have to avoid a match
-       * of the string with itself at the start of the input file).
+       * of the string with itself at the start of the input student_record).
        */
       s.match_length = longest_match(s, hash_head);
       /* longest_match() sets match_start */
@@ -6600,7 +6600,7 @@ function deflate_slow(s, flush) {
   /* Process the input block. */
   for (;;) {
     /* Make sure that we always have enough lookahead, except
-     * at the end of the input file. We need MAX_MATCH bytes
+     * at the end of the input student_record. We need MAX_MATCH bytes
      * for the next match, plus MIN_MATCH bytes to insert the
      * string following the next match.
      */
@@ -6634,7 +6634,7 @@ function deflate_slow(s, flush) {
         s.strstart - hash_head <= (s.w_size - MIN_LOOKAHEAD)/*MAX_DIST(s)*/) {
       /* To simplify the code, we prevent matches with the string
        * of window index 0 (in particular we have to avoid a match
-       * of the string with itself at the start of the input file).
+       * of the string with itself at the start of the input student_record).
        */
       s.match_length = longest_match(s, hash_head);
       /* longest_match() sets match_start */
@@ -6762,7 +6762,7 @@ function deflate_rle(s, flush) {
 
   for (;;) {
     /* Make sure that we always have enough lookahead, except
-     * at the end of the input file. We need MAX_MATCH bytes
+     * at the end of the input student_record. We need MAX_MATCH bytes
      * for the longest run, plus one for the unrolled loop.
      */
     if (s.lookahead <= MAX_MATCH) {
@@ -6902,8 +6902,8 @@ function deflate_huff(s, flush) {
 
 /* Values for max_lazy_match, good_match and max_chain_length, depending on
  * the desired pack level (0..9). The values given below have been tuned to
- * exclude worst case performance for pathological files. Better values may be
- * found for specific files.
+ * exclude worst case performance for pathological student_records. Better values may be
+ * found for specific student_records.
  */
 function Config(good_length, max_lazy, nice_length, max_chain, func) {
   this.good_length = good_length;
@@ -7100,12 +7100,12 @@ function DeflateState() {
    *     data is still in the window so we can still emit a stored block even
    *     when input comes from standard input.  (This can also be done for
    *     all blocks if lit_bufsize is not greater than 32K.)
-   *   - if compression is not successful for a file smaller than 64K, we can
-   *     even emit a stored file instead of a stored block (saving 5 bytes).
+   *   - if compression is not successful for a student_record smaller than 64K, we can
+   *     even emit a stored student_record instead of a stored block (saving 5 bytes).
    *     This is applicable only for zip (not gzip or zlib).
    *   - creating new Huffman trees less frequently may not provide fast
    *     adaptation to changes in the input data statistics. (Take for
-   *     example a binary file with poorly compressible code followed by
+   *     example a binary student_record with poorly compressible code followed by
    *     a highly compressible string table.) Smaller buffer sizes give
    *     fast adaptation but have of course the overhead of transmitting
    *     trees more frequently.
@@ -7768,7 +7768,7 @@ function GZheader() {
   this.text       = 0;
   /* modification time */
   this.time       = 0;
-  /* extra flags (not used when writing a gzip file) */
+  /* extra flags (not used when writing a gzip student_record) */
   this.xflags     = 0;
   /* operating system */
   this.os         = 0;
@@ -7785,7 +7785,7 @@ function GZheader() {
 
   /* space at extra (only when reading header) */
   // this.extra_max  = 0;
-  /* pointer to zero-terminated file name or Z_NULL */
+  /* pointer to zero-terminated student_record name or Z_NULL */
   this.name       = '';
   /* space at name (only when reading header) */
   // this.name_max   = 0;
@@ -7795,7 +7795,7 @@ function GZheader() {
   // this.comm_max   = 0;
   /* true if there was or will be a header crc */
   this.hcrc       = 0;
-  /* true when done reading gzip header (not used when writing a gzip file) */
+  /* true when done reading gzip header (not used when writing a gzip student_record) */
   this.done       = false;
 }
 
@@ -8221,7 +8221,7 @@ var    TIME = 3;       /* i: waiting for modification time (gzip) */
 var    OS = 4;         /* i: waiting for extra flags and operating system (gzip) */
 var    EXLEN = 5;      /* i: waiting for extra length (gzip) */
 var    EXTRA = 6;      /* i: waiting for extra bytes (gzip) */
-var    NAME = 7;       /* i: waiting for end of file name (gzip) */
+var    NAME = 7;       /* i: waiting for end of student_record name (gzip) */
 var    COMMENT = 8;    /* i: waiting for end of comment (gzip) */
 var    HCRC = 9;       /* i: waiting for header crc (gzip) */
 var    DICTID = 10;    /* i: waiting for dictionary check value */
@@ -10077,7 +10077,7 @@ module.exports = {
   2:      'need dictionary',     /* Z_NEED_DICT       2  */
   1:      'stream end',          /* Z_STREAM_END      1  */
   0:      '',                    /* Z_OK              0  */
-  '-1':   'file error',          /* Z_ERRNO         (-1) */
+  '-1':   'student_record error',          /* Z_ERRNO         (-1) */
   '-2':   'stream error',        /* Z_STREAM_ERROR  (-2) */
   '-3':   'data error',          /* Z_DATA_ERROR    (-3) */
   '-4':   'insufficient memory', /* Z_MEM_ERROR     (-4) */
@@ -11122,7 +11122,7 @@ function _tr_init(s)
   s.bi_buf = 0;
   s.bi_valid = 0;
 
-  /* Initialize the first block of the first file: */
+  /* Initialize the first block of the first student_record: */
   init_block(s);
 }
 
@@ -11134,7 +11134,7 @@ function _tr_stored_block(s, buf, stored_len, last)
 //DeflateState *s;
 //charf *buf;       /* input block */
 //ulg stored_len;   /* length of input block */
-//int last;         /* one if this is the last block for a file */
+//int last;         /* one if this is the last block for a student_record */
 {
   send_bits(s, (STORED_BLOCK << 1) + (last ? 1 : 0), 3);    /* send block type */
   copy_block(s, buf, stored_len, true); /* with header */
@@ -11154,13 +11154,13 @@ function _tr_align(s) {
 
 /* ===========================================================================
  * Determine the best encoding for the current block: dynamic trees, static
- * trees or store, and output the encoded block to the zip file.
+ * trees or store, and output the encoded block to the zip student_record.
  */
 function _tr_flush_block(s, buf, stored_len, last)
 //DeflateState *s;
 //charf *buf;       /* input block, or NULL if too old */
 //ulg stored_len;   /* length of input block */
-//int last;         /* one if this is the last block for a file */
+//int last;         /* one if this is the last block for a student_record */
 {
   var opt_lenb, static_lenb;  /* opt_len and static_len in bytes */
   var max_blindex = 0;        /* index of last bit length code of non zero freq */
@@ -11168,7 +11168,7 @@ function _tr_flush_block(s, buf, stored_len, last)
   /* Build the Huffman trees unless a stored block is forced */
   if (s.level > 0) {
 
-    /* Check if the file is binary or text */
+    /* Check if the student_record is binary or text */
     if (s.strm.data_type === Z_UNKNOWN) {
       s.strm.data_type = detect_data_type(s);
     }
@@ -11227,7 +11227,7 @@ function _tr_flush_block(s, buf, stored_len, last)
     compress_block(s, s.dyn_ltree, s.dyn_dtree);
   }
   // Assert (s->compressed_len == s->bits_sent, "bad compressed size");
-  /* The above check is made mod 2^32, for files larger than 512 MB
+  /* The above check is made mod 2^32, for student_records larger than 512 MB
    * and uLong implemented on 32 bits.
    */
   init_block(s);

@@ -523,12 +523,12 @@
       }
     }
 
-    defineOption('filetype', undefined, 'string', ['ft'], function(name, cm) {
+    defineOption('student_recordtype', undefined, 'string', ['ft'], function(name, cm) {
       // Option is local. Do nothing for global.
       if (cm === undefined) {
         return;
       }
-      // The 'filetype' option proxies to the CodeMirror 'mode' option.
+      // The 'student_recordtype' option proxies to the CodeMirror 'mode' option.
       if (name === undefined) {
         var mode = cm.getOption('mode');
         return mode == 'null' ? '' : mode;

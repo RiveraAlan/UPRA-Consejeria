@@ -57,7 +57,7 @@ if(!isset($_SESSION['id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT nombre_conse, apellido_conseU, apellido_conseD FROM `consejero` WHERE id_conse = $id";
+        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -65,7 +65,7 @@ if(!isset($_SESSION['id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['nombre_conse']} {$row['apellido_conseU']} {$row['apellido_conseD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
         </div>
       </div>
 
@@ -168,8 +168,8 @@ if(!isset($_SESSION['id'])){
 <script src="dist/js/demo.js"></script>
 <!-- Page specific script -->
 <?php
-$sql ="SELECT cita_id, citas.id_est, fecha_cita, estudiante.id_est, nombre_est, apellido_estU, apellido_estD  
-FROM citas, estudiante WHERE citas.id_est = estudiante.id_est";
+$sql ="SELECT cita_id, appointment.stdnt_number, appt_date, student.stdnt_number, stdnt_name, stdnt_lastname1, stdnt_lastname2  
+FROM appointment, student WHERE appointment.stdnt_number = student.stdnt_number";
 $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
 echo "
@@ -198,12 +198,12 @@ echo "
         right : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
       'themeSystem': 'bootstrap',
-      //Citas
+      //appointment
       events    : [";
                       
                         if($resultCheck > 0){
                           while($row = mysqli_fetch_assoc($result)){
-                            $datetime = $row['fecha_cita'];
+                            $datetime = $row['appt_date'];
                           
                             $year = date("Y", strtotime($datetime));
                             $day = date("d", strtotime($datetime));
@@ -213,7 +213,7 @@ echo "
                             $minute = date("i", strtotime($datetime));
                             
                           echo "{
-                            title          : '{$row['nombre_est']} {$row['apellido_estU']} {$row['apellido_estD']}',
+                            title          : '{$row['stdnt_name']} {$row['stdnt_lastname1']} {$row['stdnt_lastname2']}',
                             start          : new Date($year, $month, $day, $hour, $minute),
                             backgroundColor: '#3c8dbc', //Primary (light-blue)
                             borderColor    : '#3c8dbc' //Primary (light-blue)

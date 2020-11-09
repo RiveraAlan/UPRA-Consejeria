@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Kształt: brak',
         dragImageHere: 'Przeciągnij grafikę lub tekst tutaj',
         dropImage: 'Przeciągnij grafikę lub tekst',
-        selectFromFiles: 'Wybierz z dysku',
-        maximumFileSize: 'Limit wielkości pliku',
-        maximumFileSizeError: 'Przekroczono limit wielkości pliku.',
+        selectFromstudent_records: 'Wybierz z dysku',
+        maximumstudent_recordSize: 'Limit wielkości pliku',
+        maximumstudent_recordSizeError: 'Przekroczono limit wielkości pliku.',
         url: 'Adres URL grafiki',
         remove: 'Usuń grafikę',
         original: 'Oryginał'

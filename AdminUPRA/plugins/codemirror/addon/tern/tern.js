@@ -12,13 +12,13 @@
 // * defs: An array of JSON definition data structures.
 // * plugins: An object mapping plugin names to configuration
 //   options.
-// * getFile: A function(name, c) that can be used to access files in
+// * getstudent_record: A function(name, c) that can be used to access student_records in
 //   the project that haven't been loaded yet. Simply do c(null) to
-//   indicate that a file is not available.
-// * fileFilter: A function(value, docName, doc) that will be applied
+//   indicate that a student_record is not available.
+// * student_recordFilter: A function(value, docName, doc) that will be applied
 //   to documents before passing them on to Tern.
 // * switchToDoc: A function(name, doc) that should, when providing a
-//   multi-file view, switch the view or focus to the named file.
+//   multi-student_record view, switch the view or focus to the named student_record.
 // * showError: A function(editor, message) that can be used to
 //   override the way errors are displayed.
 // * completionTip: Customize the content in tooltips for completions.
@@ -64,7 +64,7 @@
       this.server = new WorkerServer(this);
     } else {
       this.server = new tern.Server({
-        getFile: function(name, c) { return getFile(self, name, c); },
+        getstudent_record: function(name, c) { return getstudent_record(self, name, c); },
         async: true,
         defs: this.options.defs || [],
         plugins: plugins
@@ -83,7 +83,7 @@
   CodeMirror.TernServer.prototype = {
     addDoc: function(name, doc) {
       var data = {doc: doc, name: name, changed: null};
-      this.server.addFile(name, docValue(this, data));
+      this.server.addstudent_record(name, docValue(this, data));
       CodeMirror.on(doc, "change", this.trackChange);
       return this.docs[name] = data;
     },
@@ -93,7 +93,7 @@
       if (!found) return;
       CodeMirror.off(found.doc, "change", this.trackChange);
       delete this.docs[found.name];
-      this.server.delFile(found.name);
+      this.server.delstudent_record(found.name);
     },
 
     hideDoc: function(id) {
@@ -147,12 +147,12 @@
   var cls = "CodeMirror-Tern-";
   var bigDoc = 250;
 
-  function getFile(ts, name, c) {
+  function getstudent_record(ts, name, c) {
     var buf = ts.docs[name];
     if (buf)
       c(docValue(ts, buf));
-    else if (ts.options.getFile)
-      ts.options.getFile(name, c);
+    else if (ts.options.getstudent_record)
+      ts.options.getstudent_record(name, c);
     else
       c(null);
   }
@@ -196,7 +196,7 @@
   }
 
   function sendDoc(ts, doc) {
-    ts.server.request({files: [{type: "full", name: doc.name, text: docValue(ts, doc)}]}, function(error) {
+    ts.server.request({student_records: [{type: "full", name: doc.name, text: docValue(ts, doc)}]}, function(error) {
       if (error) window.console.error(error);
       else doc.changed = null;
     });
@@ -380,12 +380,12 @@
       var doc = findDoc(ts, cm.getDoc());
       ts.server.request(buildRequest(ts, doc, req), function(error, data) {
         if (error) return showError(ts, cm, error);
-        if (!data.file && data.url) { window.open(data.url); return; }
+        if (!data.student_record && data.url) { window.open(data.url); return; }
 
-        if (data.file) {
-          var localDoc = ts.docs[data.file], found;
+        if (data.student_record) {
+          var localDoc = ts.docs[data.student_record], found;
           if (localDoc && (found = findContext(localDoc.doc, data))) {
-            ts.jumpStack.push({file: doc.name,
+            ts.jumpStack.push({student_record: doc.name,
                                start: cm.getCursor("from"),
                                end: cm.getCursor("to")});
             moveTo(ts, doc, localDoc, found.start, found.end);
@@ -403,7 +403,7 @@
   }
 
   function jumpBack(ts, cm) {
-    var pos = ts.jumpStack.pop(), doc = pos && ts.docs[pos.file];
+    var pos = ts.jumpStack.pop(), doc = pos && ts.docs[pos.student_record];
     if (!doc) return;
     moveTo(ts, findDoc(ts, cm.getDoc()), doc, pos.start, pos.end);
   }
@@ -474,7 +474,7 @@
       var curPos = cm.getCursor();
       for (var i = 0; i < data.refs.length; i++) {
         var ref = data.refs[i];
-        if (ref.file == name) {
+        if (ref.student_record == name) {
           ranges.push({anchor: ref.start, head: ref.end});
           if (cmpPos(curPos, ref.start) >= 0 && cmpPos(curPos, ref.end) <= 0)
             cur = ranges.length - 1;
@@ -486,13 +486,13 @@
 
   var nextChangeOrig = 0;
   function applyChanges(ts, changes) {
-    var perFile = Object.create(null);
+    var perstudent_record = Object.create(null);
     for (var i = 0; i < changes.length; ++i) {
       var ch = changes[i];
-      (perFile[ch.file] || (perFile[ch.file] = [])).push(ch);
+      (perstudent_record[ch.student_record] || (perstudent_record[ch.student_record] = [])).push(ch);
     }
-    for (var file in perFile) {
-      var known = ts.docs[file], chs = perFile[file];;
+    for (var student_record in perstudent_record) {
+      var known = ts.docs[student_record], chs = perstudent_record[student_record];;
       if (!known) continue;
       chs.sort(function(a, b) { return cmpPos(b.start, a.start); });
       var origin = "*rename" + (++nextChangeOrig);
@@ -506,7 +506,7 @@
   // Generic request-building helper
 
   function buildRequest(ts, doc, query, pos) {
-    var files = [], offsetLines = 0, allowFragments = !query.fullDocs;
+    var student_records = [], offsetLines = 0, allowFragments = !query.fullDocs;
     if (!allowFragments) delete query.fullDocs;
     if (typeof query == "string") query = {type: query};
     query.lineCharPositions = true;
@@ -521,30 +521,30 @@
       if (doc.doc.lineCount() > bigDoc && allowFragments !== false &&
           doc.changed.to - doc.changed.from < 100 &&
           doc.changed.from <= startPos.line && doc.changed.to > query.end.line) {
-        files.push(getFragmentAround(doc, startPos, query.end));
-        query.file = "#0";
-        var offsetLines = files[0].offsetLines;
+        student_records.push(getFragmentAround(doc, startPos, query.end));
+        query.student_record = "#0";
+        var offsetLines = student_records[0].offsetLines;
         if (query.start != null) query.start = Pos(query.start.line - -offsetLines, query.start.ch);
         query.end = Pos(query.end.line - offsetLines, query.end.ch);
       } else {
-        files.push({type: "full",
+        student_records.push({type: "full",
                     name: doc.name,
                     text: docValue(ts, doc)});
-        query.file = doc.name;
+        query.student_record = doc.name;
         doc.changed = null;
       }
     } else {
-      query.file = doc.name;
+      query.student_record = doc.name;
     }
     for (var name in ts.docs) {
       var cur = ts.docs[name];
       if (cur.changed && cur != doc) {
-        files.push({type: "full", name: cur.name, text: docValue(ts, cur)});
+        student_records.push({type: "full", name: cur.name, text: docValue(ts, cur)});
         cur.changed = null;
       }
     }
 
-    return {query: query, files: files};
+    return {query: query, student_records: student_records};
   }
 
   function getFragmentAround(data, start, end) {
@@ -673,7 +673,7 @@
 
   function docValue(ts, doc) {
     var val = doc.doc.getValue();
-    if (ts.options.fileFilter) val = ts.options.fileFilter(val, doc.name, doc.doc);
+    if (ts.options.student_recordFilter) val = ts.options.student_recordFilter(val, doc.name, doc.doc);
     return val;
   }
 
@@ -696,9 +696,9 @@
     }
     worker.onmessage = function(e) {
       var data = e.data;
-      if (data.type == "getFile") {
-        getFile(ts, data.name, function(err, text) {
-          send({type: "getFile", err: String(err), text: text, id: data.id});
+      if (data.type == "getstudent_record") {
+        getstudent_record(ts, data.name, function(err, text) {
+          send({type: "getstudent_record", err: String(err), text: text, id: data.id});
         });
       } else if (data.type == "debug") {
         window.console.log(data.message);
@@ -712,8 +712,8 @@
       pending = {};
     };
 
-    this.addFile = function(name, text) { send({type: "add", name: name, text: text}); };
-    this.delFile = function(name) { send({type: "del", name: name}); };
+    this.addstudent_record = function(name, text) { send({type: "add", name: name, text: text}); };
+    this.delstudent_record = function(name) { send({type: "del", name: name}); };
     this.request = function(body, c) { send({type: "req", body: body}, c); };
   }
 });

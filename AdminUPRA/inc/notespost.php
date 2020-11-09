@@ -4,13 +4,13 @@ require 'connection.php';
     $note = mysqli_real_escape_string($conn, $_POST['text']);
     $id = mysqli_real_escape_string($conn, $_POST['id']);
     
-    $sql = "SELECT comentarios_e FROM exp_detalles WHERE id_est = $id";
+    $sql = "SELECT adv_comments FROM student_record_details WHERE stdnt_number = $id";
     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-    $sql = "UPDATE exp_detalles SET comentarios_e = '$note' WHERE id_est = $id";
+    $sql = "UPDATE student_record_details SET adv_comments = '$note' WHERE stdnt_number = $id";
                     
     }
     }

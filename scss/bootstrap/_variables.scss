@@ -553,24 +553,24 @@ $custom-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-btn-focu
 $custom-range-thumb-focus-box-shadow-width:  $input-btn-focus-width !default; // For focus box shadow issue in IE/Edge
 $custom-range-thumb-active-bg:               lighten($component-active-bg, 35%) !default;
 
-$custom-file-height:                $input-height !default;
-$custom-file-height-inner:          $input-height-inner !default;
-$custom-file-focus-border-color:    $input-focus-border-color !default;
-$custom-file-focus-box-shadow:      $input-btn-focus-box-shadow !default;
-$custom-file-disabled-bg:           $input-disabled-bg !default;
+$custom-student_record-height:                $input-height !default;
+$custom-student_record-height-inner:          $input-height-inner !default;
+$custom-student_record-focus-border-color:    $input-focus-border-color !default;
+$custom-student_record-focus-box-shadow:      $input-btn-focus-box-shadow !default;
+$custom-student_record-disabled-bg:           $input-disabled-bg !default;
 
-$custom-file-padding-y:             $input-btn-padding-y !default;
-$custom-file-padding-x:             $input-btn-padding-x !default;
-$custom-file-line-height:           $input-btn-line-height !default;
-$custom-file-color:                 $input-color !default;
-$custom-file-bg:                    $input-bg !default;
-$custom-file-border-width:          $input-btn-border-width !default;
-$custom-file-border-color:          $input-border-color !default;
-$custom-file-border-radius:         $input-border-radius !default;
-$custom-file-box-shadow:            $input-box-shadow !default;
-$custom-file-button-color:          $custom-file-color !default;
-$custom-file-button-bg:             $input-group-addon-bg !default;
-$custom-file-text: (
+$custom-student_record-padding-y:             $input-btn-padding-y !default;
+$custom-student_record-padding-x:             $input-btn-padding-x !default;
+$custom-student_record-line-height:           $input-btn-line-height !default;
+$custom-student_record-color:                 $input-color !default;
+$custom-student_record-bg:                    $input-bg !default;
+$custom-student_record-border-width:          $input-btn-border-width !default;
+$custom-student_record-border-color:          $input-border-color !default;
+$custom-student_record-border-radius:         $input-border-radius !default;
+$custom-student_record-box-shadow:            $input-box-shadow !default;
+$custom-student_record-button-color:          $custom-student_record-color !default;
+$custom-student_record-button-bg:             $input-group-addon-bg !default;
+$custom-student_record-text: (
   en: "Browse"
 ) !default;
 

@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Form: Ingen',
         dragImageHere: 'Træk billede hertil',
         dropImage: 'Slip billede',
-        selectFromFiles: 'Vælg billed-fil',
-        maximumFileSize: 'Maks fil størrelse',
-        maximumFileSizeError: 'Filen er større end maks tilladte fil størrelse!',
+        selectFromstudent_records: 'Vælg billed-fil',
+        maximumstudent_recordSize: 'Maks fil størrelse',
+        maximumstudent_recordSizeError: 'student_recordn er større end maks tilladte fil størrelse!',
         url: 'Billede URL',
         remove: 'Fjern billede',
         original: 'Original'

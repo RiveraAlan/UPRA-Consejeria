@@ -11,7 +11,7 @@
     OPTIONS:
       MINOR:
     CATALOG: B71                             B71
- PLAN FILED: N                               Y
+ PLAN student_recordD: N                               Y
 
                        T E R M S   R E G I S T E R E D
 

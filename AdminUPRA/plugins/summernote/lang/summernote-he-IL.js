@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'גרור תמונה לכאן',
         dropImage: 'Drop image or Text',
-        selectFromFiles: 'בחר מתוך קבצים',
-        maximumFileSize: 'Maximum file size',
-        maximumFileSizeError: 'Maximum file size exceeded.',
+        selectFromstudent_records: 'בחר מתוך קבצים',
+        maximumstudent_recordSize: 'Maximum student_record size',
+        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
         url: 'נתיב לתמונה',
         remove: 'הסר תמונה',
         original: 'Original'

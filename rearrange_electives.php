@@ -3,8 +3,8 @@
 echo '<h1>Rearrange Electives:</h1>';
 
 
-$myfile = fopen("expediente_formatted.txt", "r+") or die("Unable to open file!");
-//fwrite($myfile, $txt);
+$mystudent_record = fopen("student_record_formatted.txt", "r+") or die("Unable to open student_record!");
+//fwrite($mystudent_record, $txt);
 
 $electives = array();
 $department_electives = array();
@@ -34,27 +34,27 @@ $int_department_electives = array(
 
 
 $delete = FALSE;
-while(!feof($myfile)) {
-    $line = fgets($myfile);
+while(!feof($mystudent_record)) {
+    $line = fgets($mystudent_record);
 
     if($delete){
      
         array_push($electives, $line);
-        $contents = file_get_contents('expediente_formatted.txt');
+        $contents = student_record_get_contents('student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('expediente_formatted.txt', $contents);
+        student_record_put_contents('student_record_formatted.txt', $contents);
     }elseif(trim($line) === '- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -'){
         
         $delete = TRUE;
         array_push($electives, $line);
-        $contents = file_get_contents('expediente_formatted.txt');
+        $contents = student_record_get_contents('student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('expediente_formatted.txt', $contents);
+        student_record_put_contents('student_record_formatted.txt', $contents);
     }
    
   }
 
-fclose($myfile);
+fclose($mystudent_record);
 
  for($i=0; $i < count($electives); $i++){
      $matches = array();
@@ -81,8 +81,8 @@ fclose($myfile);
         preg_match("/\s[A-F]{1}\s/", $temp, $grade);
         $temp = preg_replace("/\s[A-F]{1}\s/", '', $temp);
     
-        $department_elective = array("nombre_c" => $course_code[0], "descripción_c" => trim($temp),
-                                     "año_aprobó_c" => $semester[0], "créditos_c" => $credits[0], "nota_c" => $grade[0]);
+        $department_elective = array("crse_name" => $course_code[0], "crse_description" => trim($temp),
+                                     "año_aprobó_c" => $semester[0], "crse_credits" => $credits[0], "crse_grade" => $grade[0]);
         array_push($department_electives, $department_elective);
         unset($electives[$i]);
     } elseif(preg_match("/^[A-Z]{4} \d{4}/", $temp)){
@@ -101,23 +101,23 @@ fclose($myfile);
          $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
     
          // MAKE SURE TO TAKE "REGISTERED" INTO CONSIDERATION
-        $free_elective = array("nombre_c" => $course_code[0], "descripción_c" => trim($temp),
-                                     "año_aprobó_c" => $semester[0], "créditos_c" => $credits[0], "nota_c" => $grade[0]);
+        $free_elective = array("crse_name" => $course_code[0], "crse_description" => trim($temp),
+                                     "año_aprobó_c" => $semester[0], "crse_credits" => $credits[0], "crse_grade" => $grade[0]);
         array_push($free_electives, $free_elective);
     }       
 } 
 
 
 usort($department_electives, function ($item1, $item2) {
-    return $item1["nombre_c"] <=> $item2["nombre_c"];
+    return $item1["crse_name"] <=> $item2["crse_name"];
 });
 
 
 for($i=0; $i < count($department_electives) - 1; $i++){
-    if($department_electives[$i]["nombre_c"] === $department_electives[$i+1]["nombre_c"] AND $department_electives[$i]["año_aprobó_c"] === $department_electives[$i+1]["año_aprobó_c"]){
-        $credits = floatval($department_electives[$i]["créditos_c"]) +  floatval($department_electives[$i+1]["créditos_c"]);
+    if($department_electives[$i]["crse_name"] === $department_electives[$i+1]["crse_name"] AND $department_electives[$i]["año_aprobó_c"] === $department_electives[$i+1]["año_aprobó_c"]){
+        $credits = floatval($department_electives[$i]["crse_credits"]) +  floatval($department_electives[$i+1]["crse_credits"]);
         $credits = number_format($credits, 2);
-        $department_electives[$i+1]["créditos_c"] = strval($credits);
+        $department_electives[$i+1]["crse_credits"] = strval($credits);
         unset($department_electives[$i]);
     }
 }
@@ -130,33 +130,33 @@ $int_credits = 0;
 foreach($department_electives as $department_elective_idx => $department_elective_info){
     //ccom 4307
     
-    if(in_array(trim($department_elective_info["nombre_c"]), $adv_department_electives)){
-        $adv_credits += intval($department_elective_info["créditos_c"]);
+    if(in_array(trim($department_elective_info["crse_name"]), $adv_department_electives)){
+        $adv_credits += intval($department_elective_info["crse_credits"]);
     } else {
         /*  if($int_credits >= 6){
-             echo"<h1>Go to Elective: </h1>". $department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"];
-             $free_elective = $department_elective_info["nombre_c"]." ".$department_elective_info["descripción_c"]." ".$department_elective_info["año_aprobó_c"]." ".$department_elective_info["créditos_c"]." ".$department_elective_info["nota_c"];
+             echo"<h1>Go to Elective: </h1>". $department_elective_info["crse_name"]." ".$department_elective_info["crse_description"];
+             $free_elective = $department_elective_info["crse_name"]." ".$department_elective_info["crse_description"]." ".$department_elective_info["año_aprobó_c"]." ".$department_elective_info["crse_credits"]." ".$department_elective_info["crse_grade"];
              array_push($free_electives, $free_elective);
              // Delete course from dept electives.
                unset($department_electives[$department_elective_idx]);
 
          } else {
-            $int_credits += intval($department_elective_info["créditos_c"]);
+            $int_credits += intval($department_elective_info["crse_credits"]);
          } */
     }
 }
 
 
 usort($free_electives, function ($item1, $item2) {
-    return $item1["nombre_c"] <=> $item2["nombre_c"];
+    return $item1["crse_name"] <=> $item2["crse_name"];
 });
 
  for($i=0; $i < count($free_electives) - 1; $i++){
      
-    if($free_electives[$i]["nombre_c"] === $free_electives[$i+1]["nombre_c"] AND $free_electives[$i]["año_aprobó_c"] === $free_electives[$i+1]["año_aprobó_c"]){
-        $credits = floatval($free_electives[$i]["créditos_c"]) +  floatval($free_electives[$i+1]["créditos_c"]);
+    if($free_electives[$i]["crse_name"] === $free_electives[$i+1]["crse_name"] AND $free_electives[$i]["año_aprobó_c"] === $free_electives[$i+1]["año_aprobó_c"]){
+        $credits = floatval($free_electives[$i]["crse_credits"]) +  floatval($free_electives[$i+1]["crse_credits"]);
         $credits = number_format($credits, 2);
-        $free_electives[$i+1]["créditos_c"] = strval($credits);
+        $free_electives[$i+1]["crse_credits"] = strval($credits);
         unset($free_electives[$i]);
     }
 } 
@@ -164,52 +164,52 @@ usort($free_electives, function ($item1, $item2) {
 
 echo "\n"."<h3>Department electives:</h3>";
 foreach($department_electives as $department_elective){
-    echo "<p>".$department_elective['nombre_c']. " ".$department_elective['descripción_c']." ".$department_elective['año_aprobó_c']." ".$department_elective['créditos_c']." ".$department_elective['nota_c']."</p>";
+    echo "<p>".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."</p>";
 }
  
 
 echo "\n"."<h3>Free lectives:</h3>";
 foreach($free_electives as $free_elective){
-    echo "<p>".$free_elective['nombre_c']. " ".$free_elective['descripción_c']." ".$free_elective['año_aprobó_c']." ".$free_elective['créditos_c']." ".$free_elective['nota_c']."</p>";
+    echo "<p>".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."</p>";
 }
 echo "<h3>End of Free Electives</h3>";
 
 
 
 
-$myfile = fopen('expediente_formatted.txt', 'a');//opens file in append mode  
+$mystudent_record = fopen('student_record_formatted.txt', 'a');//opens student_record in append mode  
   
  
 
-fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
+fwrite($mystudent_record, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
 foreach($department_electives as $department_elective){
-    fwrite($myfile, "\n".$department_elective['nombre_c']. " ".$department_elective['descripción_c']." ".$department_elective['año_aprobó_c']." ".$department_elective['créditos_c']." ".$department_elective['nota_c']."\n");
+    fwrite($mystudent_record, "\n".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."\n");
 }
 
-fwrite($myfile, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
+fwrite($mystudent_record, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
 foreach($free_electives as $free_elective){
-    fwrite($myfile,"\n".$free_elective['nombre_c']. " ".$free_elective['descripción_c']." ".$free_elective['año_aprobó_c']." ".$free_elective['créditos_c']." ".$free_elective['nota_c']."\n");
+    fwrite($mystudent_record,"\n".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."\n");
 }
 
 $delete = FALSE;
 foreach($electives as $course){
     if($delete)
-        fwrite($myfile, $course);
+        fwrite($mystudent_record, $course);
     elseif(trim($course) === '***********************************************'){
         $delete = TRUE;
         
-        fwrite($myfile ,"\nSECTION 3 - Work Not Applicable to this Program\n");
-        fwrite($myfile ,"\n***********************************************\n");
+        fwrite($mystudent_record ,"\nSECTION 3 - Work Not Applicable to this Program\n");
+        fwrite($mystudent_record ,"\n***********************************************\n");
     }
         
     
 }
 
-fclose($myfile); 
+fclose($mystudent_record); 
 
 
 /* PUT THIS CODE INSIDE A FUNCTION
-$contents = file_get_contents('expediente_formatted.txt');
+$contents = student_record_get_contents('student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('expediente_formatted.txt', $contents);        
+        student_record_put_contents('student_record_formatted.txt', $contents);        
 */

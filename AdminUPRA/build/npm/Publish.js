@@ -30,10 +30,10 @@ class Publish {
   }
 
   run() {
-    // Publish files
+    // Publish student_records
     Plugins.forEach(module => {
       const fseOptions = {
-        // Skip copying dot files
+        // Skip copying dot student_records
         filter(src) {
           return !path.basename(src).startsWith('.')
         }

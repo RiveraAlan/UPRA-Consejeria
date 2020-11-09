@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Forma: orģināla',
         dragImageHere: 'Ievēlciet attēlu šeit',
         dropImage: 'Drop image or Text',
-        selectFromFiles: 'Izvēlēties failu',
-        maximumFileSize: 'Maksimālais faila izmērs',
-        maximumFileSizeError: 'Faila izmērs pārāk liels!',
+        selectFromstudent_records: 'Izvēlēties failu',
+        maximumstudent_recordSize: 'Maksimālais faila izmērs',
+        maximumstudent_recordSizeError: 'Faila izmērs pārāk liels!',
         url: 'Attēla URL',
         remove: 'Dzēst attēlu',
         original: 'Original'
@@ -209,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
       },
       color: {
         recent: 'Nesen izmantotās',
-        more: 'Citas krāsas',
+        more: 'appointment krāsas',
         background: 'Fona krāsa',
         foreground: 'Fonta krāsa',
         transparent: 'Caurspīdīgs',
@@ -224,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
         action: 'Darbība',
         paragraphFormatting: 'Paragrāfa formatēšana',
         documentStyle: 'Dokumenta stils',
-        extraKeys: 'Citas taustiņu kombinācijas'
+        extraKeys: 'appointment taustiņu kombinācijas'
       },
       help: {
         insertParagraph: 'Ievietot Paragrāfu',

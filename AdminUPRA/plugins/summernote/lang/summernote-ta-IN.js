@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'வடிவத்தை நீக்கு',
         dragImageHere: 'படத்தை இங்கே இழுத்துவை',
         dropImage: 'படத்தை விடு',
-        selectFromFiles: 'கோப்புகளை தேர்வு செய்',
-        maximumFileSize: 'அதிகபட்ச கோப்பு அளவு',
-        maximumFileSizeError: 'கோப்பு அதிகபட்ச அளவை மீறிவிட்டது',
+        selectFromstudent_records: 'கோப்புகளை தேர்வு செய்',
+        maximumstudent_recordSize: 'அதிகபட்ச கோப்பு அளவு',
+        maximumstudent_recordSizeError: 'கோப்பு அதிகபட்ச அளவை மீறிவிட்டது',
         url: 'இணையதள முகவரி',
         remove: 'படத்தை நீக்கு',
         original: 'Original'

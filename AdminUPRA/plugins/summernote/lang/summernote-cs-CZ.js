@@ -138,7 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Přetáhnout sem obrázek',
         dropImage: 'Drop image or Text',
-        selectFromFiles: 'Vybrat soubor',
+        selectFromstudent_records: 'Vybrat soubor',
         url: 'URL obrázku',
         remove: 'Remove Image',
         original: 'Original'

@@ -25,7 +25,7 @@
         filters = ["add", "addslashes", "capfirst", "center", "cut", "date",
                    "default", "default_if_none", "dictsort",
                    "dictsortreversed", "divisibleby", "escape", "escapejs",
-                   "filesizeformat", "first", "floatformat", "force_escape",
+                   "student_recordsizeformat", "first", "floatformat", "force_escape",
                    "get_digit", "iriencode", "join", "last", "length",
                    "length_is", "linebreaks", "linebreaksbr", "linenumbers",
                    "ljust", "lower", "make_list", "phone2numeric", "pluralize",

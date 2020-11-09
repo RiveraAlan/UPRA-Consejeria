@@ -1825,7 +1825,7 @@ DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
 	}
 
 	return {
-		filename: _filename( conf ),
+		student_recordname: _student_recordname( conf ),
 		title: _title( conf ),
 		messageTop: _message(this, conf.message || conf.messageTop, 'top'),
 		messageBottom: _message(this, conf.messageBottom, 'bottom')
@@ -1835,39 +1835,39 @@ DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
 
 
 /**
- * Get the file name for an exported file.
+ * Get the student_record name for an exported student_record.
  *
  * @param {object}	config Button configuration
- * @param {boolean} incExtension Include the file name extension
+ * @param {boolean} incExtension Include the student_record name extension
  */
-var _filename = function ( config )
+var _student_recordname = function ( config )
 {
 	// Backwards compatibility
-	var filename = config.filename === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
+	var student_recordname = config.student_recordname === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
 		config.title :
-		config.filename;
+		config.student_recordname;
 
-	if ( typeof filename === 'function' ) {
-		filename = filename();
+	if ( typeof student_recordname === 'function' ) {
+		student_recordname = student_recordname();
 	}
 
-	if ( filename === undefined || filename === null ) {
+	if ( student_recordname === undefined || student_recordname === null ) {
 		return null;
 	}
 
-	if ( filename.indexOf( '*' ) !== -1 ) {
-		filename = $.trim( filename.replace( '*', $('head > title').text() ) );
+	if ( student_recordname.indexOf( '*' ) !== -1 ) {
+		student_recordname = $.trim( student_recordname.replace( '*', $('head > title').text() ) );
 	}
 
 	// Strip characters which the OS will object to
-	filename = filename.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
+	student_recordname = student_recordname.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
 
 	var extension = _stringOrFunction( config.extension );
 	if ( ! extension ) {
 		extension = '';
 	}
 
-	return filename + extension;
+	return student_recordname + extension;
 };
 
 /**
@@ -1888,7 +1888,7 @@ var _stringOrFunction = function ( option )
 };
 
 /**
- * Get the title for an exported file.
+ * Get the title for an exported student_record.
  *
  * @param {object} config	Button configuration
  */

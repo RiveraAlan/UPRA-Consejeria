@@ -75,20 +75,20 @@ $.validator.addMethod( "abaRoutingNumber", function( value ) {
 	return false;
 }, "Please enter a valid routing number." );
 
-// Accept a value from a file input based on a required mimetype
+// Accept a value from a student_record input based on a required mimetype
 $.validator.addMethod( "accept", function( value, element, param ) {
 
 	// Split mime on commas in case we have multiple types we can accept
 	var typeParam = typeof param === "string" ? param.replace( /\s/g, "" ) : "image/*",
 		optionalValue = this.optional( element ),
-		i, file, regex;
+		i, student_record, regex;
 
 	// Element is optional
 	if ( optionalValue ) {
 		return optionalValue;
 	}
 
-	if ( $( element ).attr( "type" ) === "file" ) {
+	if ( $( element ).attr( "type" ) === "student_record" ) {
 
 		// Escape string to be used in the regex
 		// see: https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
@@ -98,22 +98,22 @@ $.validator.addMethod( "accept", function( value, element, param ) {
 				.replace( /,/g, "|" )
 				.replace( /\/\*/g, "/.*" );
 
-		// Check if the element has a FileList before checking each file
-		if ( element.files && element.files.length ) {
+		// Check if the element has a student_recordList before checking each student_record
+		if ( element.student_records && element.student_records.length ) {
 			regex = new RegExp( ".?(" + typeParam + ")$", "i" );
-			for ( i = 0; i < element.files.length; i++ ) {
-				file = element.files[ i ];
+			for ( i = 0; i < element.student_records.length; i++ ) {
+				student_record = element.student_records[ i ];
 
-				// Grab the mimetype from the loaded file, verify it matches
-				if ( !file.type.match( regex ) ) {
+				// Grab the mimetype from the loaded student_record, verify it matches
+				if ( !student_record.type.match( regex ) ) {
 					return false;
 				}
 			}
 		}
 	}
 
-	// Either return true because we've validated each file, or because the
-	// browser does not support element.files and the FileList feature
+	// Either return true because we've validated each student_record, or because the
+	// browser does not support element.student_records and the student_recordList feature
 	return true;
 }, $.validator.format( "Please enter a value with a valid mimetype." ) );
 
@@ -680,7 +680,7 @@ $.validator.addMethod( "dateNL", function( value, element ) {
 	return this.optional( element ) || /^(0?[1-9]|[12]\d|3[01])[\.\/\-](0?[1-9]|1[012])[\.\/\-]([12]\d)?(\d\d)$/.test( value );
 }, $.validator.messages.date );
 
-// Older "accept" file extension method. Old docs: http://docs.jquery.com/Plugins/Validation/Methods/accept
+// Older "accept" student_record extension method. Old docs: http://docs.jquery.com/Plugins/Validation/Methods/accept
 $.validator.addMethod( "extension", function( value, element, param ) {
 	param = typeof param === "string" ? param.replace( /,/g, "|" ) : "png|jpe?g|gif";
 	return this.optional( element ) || value.match( new RegExp( "\\.(" + param + ")$", "i" ) );
@@ -898,31 +898,31 @@ $.validator.addMethod( "letterswithbasicpunc", function( value, element ) {
 	return this.optional( element ) || /^[a-z\-.,()'"\s]+$/i.test( value );
 }, "Letters or punctuation only please" );
 
-// Limit the number of files in a FileList.
-$.validator.addMethod( "maxfiles", function( value, element, param ) {
+// Limit the number of student_records in a student_recordList.
+$.validator.addMethod( "maxstudent_records", function( value, element, param ) {
 	if ( this.optional( element ) ) {
 		return true;
 	}
 
-	if ( $( element ).attr( "type" ) === "file" ) {
-		if ( element.files && element.files.length > param ) {
+	if ( $( element ).attr( "type" ) === "student_record" ) {
+		if ( element.student_records && element.student_records.length > param ) {
 			return false;
 		}
 	}
 
 	return true;
-}, $.validator.format( "Please select no more than {0} files." ) );
+}, $.validator.format( "Please select no more than {0} student_records." ) );
 
-// Limit the size of each individual file in a FileList.
+// Limit the size of each individual student_record in a student_recordList.
 $.validator.addMethod( "maxsize", function( value, element, param ) {
 	if ( this.optional( element ) ) {
 		return true;
 	}
 
-	if ( $( element ).attr( "type" ) === "file" ) {
-		if ( element.files && element.files.length ) {
-			for ( var i = 0; i < element.files.length; i++ ) {
-				if ( element.files[ i ].size > param ) {
+	if ( $( element ).attr( "type" ) === "student_record" ) {
+		if ( element.student_records && element.student_records.length ) {
+			for ( var i = 0; i < element.student_records.length; i++ ) {
+				if ( element.student_records[ i ].size > param ) {
 					return false;
 				}
 			}
@@ -930,20 +930,20 @@ $.validator.addMethod( "maxsize", function( value, element, param ) {
 	}
 
 	return true;
-}, $.validator.format( "File size must not exceed {0} bytes each." ) );
+}, $.validator.format( "student_record size must not exceed {0} bytes each." ) );
 
-// Limit the size of all files in a FileList.
+// Limit the size of all student_records in a student_recordList.
 $.validator.addMethod( "maxsizetotal", function( value, element, param ) {
 	if ( this.optional( element ) ) {
 		return true;
 	}
 
-	if ( $( element ).attr( "type" ) === "file" ) {
-		if ( element.files && element.files.length ) {
+	if ( $( element ).attr( "type" ) === "student_record" ) {
+		if ( element.student_records && element.student_records.length ) {
 			var totalSize = 0;
 
-			for ( var i = 0; i < element.files.length; i++ ) {
-				totalSize += element.files[ i ].size;
+			for ( var i = 0; i < element.student_records.length; i++ ) {
+				totalSize += element.student_records[ i ].size;
 				if ( totalSize > param ) {
 					return false;
 				}
@@ -952,7 +952,7 @@ $.validator.addMethod( "maxsizetotal", function( value, element, param ) {
 	}
 
 	return true;
-}, $.validator.format( "Total size of all files must not exceed {0} bytes." ) );
+}, $.validator.format( "Total size of all student_records must not exceed {0} bytes." ) );
 
 
 $.validator.addMethod( "mobileNL", function( value, element ) {

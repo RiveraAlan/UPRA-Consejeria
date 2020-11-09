@@ -40,7 +40,7 @@
     "prepare-release": "npm-run-all --sequential production docs",
     "test": "npm-run-all lint production",
     "plugins": "node build/npm/Publish.js -v",
-    "sync": "browser-sync start --server --files *.html pages/ dist/",
+    "sync": "browser-sync start --server --student_records *.html pages/ dist/",
     "watch": "npm-run-all --parallel watch-css watch-js",
     "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-lint css\"",
     "watch-js": "nodemon --watch build/js -e js -x \"npm-run-all js-lint js\""
@@ -81,7 +81,7 @@
     "bootstrap-slider": "^11.0.2",
     "bootstrap-switch": "3.3.4",
     "bootstrap4-duallistbox": "^4.0.2",
-    "bs-custom-file-input": "^1.3.4",
+    "bs-custom-student_record-input": "^1.3.4",
     "bs-stepper": "^1.7.0",
     "chart.js": "^2.9.3",
     "codemirror": "^5.56.0",

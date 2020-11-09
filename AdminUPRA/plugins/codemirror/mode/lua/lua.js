@@ -28,8 +28,8 @@ CodeMirror.defineMode("lua", function(config, parserConfig) {
 
   // long list of standard functions from lua manual
   var builtins = wordRE([
-    "_G","_VERSION","assert","collectgarbage","dofile","error","getfenv","getmetatable","ipairs","load",
-    "loadfile","loadstring","module","next","pairs","pcall","print","rawequal","rawget","rawset","require",
+    "_G","_VERSION","assert","collectgarbage","dostudent_record","error","getfenv","getmetatable","ipairs","load",
+    "loadstudent_record","loadstring","module","next","pairs","pcall","print","rawequal","rawget","rawset","require",
     "select","setfenv","setmetatable","tonumber","tostring","type","unpack","xpcall",
 
     "coroutine.create","coroutine.resume","coroutine.running","coroutine.status","coroutine.wrap","coroutine.yield",
@@ -41,7 +41,7 @@ CodeMirror.defineMode("lua", function(config, parserConfig) {
     "close","flush","lines","read","seek","setvbuf","write",
 
     "io.close","io.flush","io.input","io.lines","io.open","io.output","io.popen","io.read","io.stderr","io.stdin",
-    "io.stdout","io.tmpfile","io.type","io.write",
+    "io.stdout","io.tmpstudent_record","io.type","io.write",
 
     "math.abs","math.acos","math.asin","math.atan","math.atan2","math.ceil","math.cos","math.cosh","math.deg",
     "math.exp","math.floor","math.fmod","math.frexp","math.huge","math.ldexp","math.log","math.log10","math.max",

@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Povuci sliku ovdje',
         dropImage: 'Drop image or Text',
-        selectFromFiles: 'Izaberi iz datoteke',
-        maximumFileSize: 'Maximum file size',
-        maximumFileSizeError: 'Maximum file size exceeded.',
+        selectFromstudent_records: 'Izaberi iz datoteke',
+        maximumstudent_recordSize: 'Maximum student_record size',
+        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
         url: 'Adresa slike',
         remove: 'Ukloni sliku',
         original: 'Original'

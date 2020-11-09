@@ -6,17 +6,17 @@
  * @summary     KeyTable
  * @description Spreadsheet like keyboard navigation for DataTables
  * @version     2.5.2
- * @file        dataTables.keyTable.js
+ * @student_record        dataTables.keyTable.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2009-2020 SpryMedia Ltd.
  *
- * This source file is free software, available under the following license:
+ * This source student_record is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
  *
- * This source file is distributed in the hope that it will be useful, but
+ * This source student_record is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the license student_records for details.
  *
  * For details please refer to: http://www.datatables.net
  */

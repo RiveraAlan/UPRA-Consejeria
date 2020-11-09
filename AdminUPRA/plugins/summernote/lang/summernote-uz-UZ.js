@@ -141,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Шакли: Йўқ',
         dragImageHere: 'Суратни кўчириб ўтинг',
         dropImage: 'Суратни кўчириб ўтинг',
-        selectFromFiles: 'Файллардан бирини танлаш',
+        selectFromstudent_records: 'Файллардан бирини танлаш',
         url: 'суратлар URL и',
         remove: 'Суратни ўчириш'
       },

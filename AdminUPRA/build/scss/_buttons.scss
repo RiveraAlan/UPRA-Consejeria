@@ -15,12 +15,12 @@
     box-shadow: none;
   }
 
-  // input file btn
-  &.btn-file {
+  // input student_record btn
+  &.btn-student_record {
     overflow: hidden;
     position: relative;
 
-    > input[type="file"] {
+    > input[type="student_record"] {
       background-color: $white;
       cursor: inherit;
       display: block;

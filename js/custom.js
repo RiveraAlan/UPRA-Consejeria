@@ -1,5 +1,5 @@
 /**************************************
-    File Name: custom.js
+    student_record Name: custom.js
 **************************************/
 
 (function ($) {

@@ -2,7 +2,7 @@
 require('fpdf.php');
 require('inc/connection.php');
 session_start();
-$id= $_SESSION['id_est'];
+$id= $_SESSION['stdnt_number'];
 
 
 class PDF extends FPDF
@@ -17,7 +17,7 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,utf8_decode('Expediente Académico'),0,0,'C');
+    $this->Cell(30,10,utf8_decode('student_record Académico'),0,0,'C');
     // Line break
     $this->Ln(20);
     
@@ -42,8 +42,8 @@ function Footer()
 }
     
 
-$consulta = "SELECT nombre_c, descripción_c, créditos_c, nota_c, año_aprobo_c
-FROM expediente WHERE id_est = $id";
+$consulta = "SELECT crse_name, crse_description, crse_credits, crse_grade, semester_pass
+FROM student_record WHERE stdnt_number = $id";
 $resultado = $conn->query($consulta);
 
 
@@ -55,11 +55,11 @@ $pdf->AddPage();
 $pdf->SetFont('Arial','',16);
 
 while($row = $resultado->fetch_assoc()){
-    $pdf->Cell(40, 10, $row['nombre_c'], 1, 0, 'C', 0);
-    $pdf->Cell(105, 10, utf8_decode($row['descripción_c']), 1, 0, 'C', 0);
-    $pdf->Cell(27, 10, $row['créditos_c'], 1, 0, 'C', 0);
-    $pdf->Cell(15, 10, $row['nota_c'], 1, 1, 'C', 0);
-    $pdf->Cell(105, 10, utf8_decode($row['año_aprobo_c']), 1, 0, 'C', 0);
+    $pdf->Cell(40, 10, $row['crse_name'], 1, 0, 'C', 0);
+    $pdf->Cell(105, 10, utf8_decode($row['crse_description']), 1, 0, 'C', 0);
+    $pdf->Cell(27, 10, $row['crse_credits'], 1, 0, 'C', 0);
+    $pdf->Cell(15, 10, $row['crse_grade'], 1, 1, 'C', 0);
+    $pdf->Cell(105, 10, utf8_decode($row['semester_pass']), 1, 0, 'C', 0);
 }
 
 $pdf->Output();

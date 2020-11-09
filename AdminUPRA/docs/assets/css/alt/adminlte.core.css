@@ -338,7 +338,7 @@ progress {
   -webkit-appearance: none;
 }
 
-::-webkit-file-upload-button {
+::-webkit-student_record-upload-button {
   font: inherit;
   -webkit-appearance: button;
 }
@@ -1915,7 +1915,7 @@ select.form-control:focus::-ms-value {
   background-color: #ffffff;
 }
 
-.form-control-file,
+.form-control-student_record,
 .form-control-range {
   display: block;
   width: 100%;
@@ -2133,11 +2133,11 @@ textarea.form-control {
   border-color: #28a745;
 }
 
-.was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label {
+.was-validated .custom-student_record-input:valid ~ .custom-student_record-label, .custom-student_record-input.is-valid ~ .custom-student_record-label {
   border-color: #28a745;
 }
 
-.was-validated .custom-file-input:valid:focus ~ .custom-file-label, .custom-file-input.is-valid:focus ~ .custom-file-label {
+.was-validated .custom-student_record-input:valid:focus ~ .custom-student_record-label, .custom-student_record-input.is-valid:focus ~ .custom-student_record-label {
   border-color: #28a745;
   box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.25);
 }
@@ -2233,11 +2233,11 @@ textarea.form-control {
   border-color: #dc3545;
 }
 
-.was-validated .custom-file-input:invalid ~ .custom-file-label, .custom-file-input.is-invalid ~ .custom-file-label {
+.was-validated .custom-student_record-input:invalid ~ .custom-student_record-label, .custom-student_record-input.is-invalid ~ .custom-student_record-label {
   border-color: #dc3545;
 }
 
-.was-validated .custom-file-input:invalid:focus ~ .custom-file-label, .custom-file-input.is-invalid:focus ~ .custom-file-label {
+.was-validated .custom-student_record-input:invalid:focus ~ .custom-student_record-label, .custom-student_record-input.is-invalid:focus ~ .custom-student_record-label {
   border-color: #dc3545;
   box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.25);
 }
@@ -3376,7 +3376,7 @@ input[type="button"].btn-block {
 .input-group > .form-control,
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
-.input-group > .custom-file {
+.input-group > .custom-student_record {
   position: relative;
   flex: 1 1 0%;
   min-width: 0;
@@ -3385,26 +3385,26 @@ input[type="button"].btn-block {
 
 .input-group > .form-control + .form-control,
 .input-group > .form-control + .custom-select,
-.input-group > .form-control + .custom-file,
+.input-group > .form-control + .custom-student_record,
 .input-group > .form-control-plaintext + .form-control,
 .input-group > .form-control-plaintext + .custom-select,
-.input-group > .form-control-plaintext + .custom-file,
+.input-group > .form-control-plaintext + .custom-student_record,
 .input-group > .custom-select + .form-control,
 .input-group > .custom-select + .custom-select,
-.input-group > .custom-select + .custom-file,
-.input-group > .custom-file + .form-control,
-.input-group > .custom-file + .custom-select,
-.input-group > .custom-file + .custom-file {
+.input-group > .custom-select + .custom-student_record,
+.input-group > .custom-student_record + .form-control,
+.input-group > .custom-student_record + .custom-select,
+.input-group > .custom-student_record + .custom-student_record {
   margin-left: -1px;
 }
 
 .input-group > .form-control:focus,
 .input-group > .custom-select:focus,
-.input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
+.input-group > .custom-student_record .custom-student_record-input:focus ~ .custom-student_record-label {
   z-index: 3;
 }
 
-.input-group > .custom-file .custom-file-input:focus {
+.input-group > .custom-student_record .custom-student_record-input:focus {
   z-index: 4;
 }
 
@@ -3420,18 +3420,18 @@ input[type="button"].btn-block {
   border-bottom-left-radius: 0;
 }
 
-.input-group > .custom-file {
+.input-group > .custom-student_record {
   display: flex;
   align-items: center;
 }
 
-.input-group > .custom-file:not(:last-child) .custom-file-label,
-.input-group > .custom-file:not(:last-child) .custom-file-label::after {
+.input-group > .custom-student_record:not(:last-child) .custom-student_record-label,
+.input-group > .custom-student_record:not(:last-child) .custom-student_record-label::after {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.input-group > .custom-file:not(:first-child) .custom-file-label {
+.input-group > .custom-student_record:not(:first-child) .custom-student_record-label {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -3771,7 +3771,7 @@ input[type="button"].btn-block {
   font-size: 125%;
 }
 
-.custom-file {
+.custom-student_record {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -3779,7 +3779,7 @@ input[type="button"].btn-block {
   margin-bottom: 0;
 }
 
-.custom-file-input {
+.custom-student_record-input {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -3788,25 +3788,25 @@ input[type="button"].btn-block {
   opacity: 0;
 }
 
-.custom-file-input:focus ~ .custom-file-label {
+.custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #80bdff;
   box-shadow: none;
 }
 
-.custom-file-input[disabled] ~ .custom-file-label,
-.custom-file-input:disabled ~ .custom-file-label {
+.custom-student_record-input[disabled] ~ .custom-student_record-label,
+.custom-student_record-input:disabled ~ .custom-student_record-label {
   background-color: #e9ecef;
 }
 
-.custom-file-input:lang(en) ~ .custom-file-label::after {
+.custom-student_record-input:lang(en) ~ .custom-student_record-label::after {
   content: "Browse";
 }
 
-.custom-file-input ~ .custom-file-label[data-browse]::after {
+.custom-student_record-input ~ .custom-student_record-label[data-browse]::after {
   content: attr(data-browse);
 }
 
-.custom-file-label {
+.custom-student_record-label {
   position: absolute;
   top: 0;
   right: 0;
@@ -3823,7 +3823,7 @@ input[type="button"].btn-block {
   box-shadow: none;
 }
 
-.custom-file-label::after {
+.custom-student_record-label::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -4000,14 +4000,14 @@ input[type="button"].btn-block {
 }
 
 .custom-control-label::before,
-.custom-file-label,
+.custom-student_record-label,
 .custom-select {
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .custom-control-label::before,
-  .custom-file-label,
+  .custom-student_record-label,
   .custom-select {
     transition: none;
   }
@@ -15551,7 +15551,7 @@ a.text-muted:hover {
 .accent-primary .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-primary .custom-select:focus,
 .accent-primary .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-primary .custom-file-input:focus ~ .custom-file-label {
+.accent-primary .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #80bdff;
 }
 
@@ -15616,7 +15616,7 @@ a.text-muted:hover {
 .accent-secondary .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-secondary .custom-select:focus,
 .accent-secondary .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-secondary .custom-file-input:focus ~ .custom-file-label {
+.accent-secondary .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #afb5ba;
 }
 
@@ -15681,7 +15681,7 @@ a.text-muted:hover {
 .accent-success .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-success .custom-select:focus,
 .accent-success .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-success .custom-file-input:focus ~ .custom-file-label {
+.accent-success .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #71dd8a;
 }
 
@@ -15746,7 +15746,7 @@ a.text-muted:hover {
 .accent-info .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-info .custom-select:focus,
 .accent-info .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-info .custom-file-input:focus ~ .custom-file-label {
+.accent-info .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #63d9ec;
 }
 
@@ -15811,7 +15811,7 @@ a.text-muted:hover {
 .accent-warning .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-warning .custom-select:focus,
 .accent-warning .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-warning .custom-file-input:focus ~ .custom-file-label {
+.accent-warning .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #ffe187;
 }
 
@@ -15876,7 +15876,7 @@ a.text-muted:hover {
 .accent-danger .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-danger .custom-select:focus,
 .accent-danger .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-danger .custom-file-input:focus ~ .custom-file-label {
+.accent-danger .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #efa2a9;
 }
 
@@ -15941,7 +15941,7 @@ a.text-muted:hover {
 .accent-light .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-light .custom-select:focus,
 .accent-light .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-light .custom-file-input:focus ~ .custom-file-label {
+.accent-light .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: white;
 }
 
@@ -16006,7 +16006,7 @@ a.text-muted:hover {
 .accent-dark .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-dark .custom-select:focus,
 .accent-dark .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-dark .custom-file-input:focus ~ .custom-file-label {
+.accent-dark .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #6d7a86;
 }
 
@@ -16071,7 +16071,7 @@ a.text-muted:hover {
 .accent-lightblue .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-lightblue .custom-select:focus,
 .accent-lightblue .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-lightblue .custom-file-input:focus ~ .custom-file-label {
+.accent-lightblue .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #99c5de;
 }
 
@@ -16136,7 +16136,7 @@ a.text-muted:hover {
 .accent-navy .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-navy .custom-select:focus,
 .accent-navy .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-navy .custom-file-input:focus ~ .custom-file-label {
+.accent-navy .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #005ebf;
 }
 
@@ -16201,7 +16201,7 @@ a.text-muted:hover {
 .accent-olive .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-olive .custom-select:focus,
 .accent-olive .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-olive .custom-file-input:focus ~ .custom-file-label {
+.accent-olive .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #87cfaf;
 }
 
@@ -16266,7 +16266,7 @@ a.text-muted:hover {
 .accent-lime .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-lime .custom-select:focus,
 .accent-lime .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-lime .custom-file-input:focus ~ .custom-file-label {
+.accent-lime .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #81ffb8;
 }
 
@@ -16331,7 +16331,7 @@ a.text-muted:hover {
 .accent-fuchsia .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-fuchsia .custom-select:focus,
 .accent-fuchsia .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-fuchsia .custom-file-input:focus ~ .custom-file-label {
+.accent-fuchsia .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #f88adf;
 }
 
@@ -16396,7 +16396,7 @@ a.text-muted:hover {
 .accent-maroon .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-maroon .custom-select:focus,
 .accent-maroon .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-maroon .custom-file-input:focus ~ .custom-file-label {
+.accent-maroon .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #f083ab;
 }
 
@@ -16461,7 +16461,7 @@ a.text-muted:hover {
 .accent-blue .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-blue .custom-select:focus,
 .accent-blue .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-blue .custom-file-input:focus ~ .custom-file-label {
+.accent-blue .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #80bdff;
 }
 
@@ -16526,7 +16526,7 @@ a.text-muted:hover {
 .accent-indigo .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-indigo .custom-select:focus,
 .accent-indigo .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-indigo .custom-file-input:focus ~ .custom-file-label {
+.accent-indigo .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #b389f9;
 }
 
@@ -16591,7 +16591,7 @@ a.text-muted:hover {
 .accent-purple .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-purple .custom-select:focus,
 .accent-purple .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-purple .custom-file-input:focus ~ .custom-file-label {
+.accent-purple .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #b8a2e0;
 }
 
@@ -16656,7 +16656,7 @@ a.text-muted:hover {
 .accent-pink .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-pink .custom-select:focus,
 .accent-pink .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-pink .custom-file-input:focus ~ .custom-file-label {
+.accent-pink .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #f6b0d0;
 }
 
@@ -16721,7 +16721,7 @@ a.text-muted:hover {
 .accent-red .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-red .custom-select:focus,
 .accent-red .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-red .custom-file-input:focus ~ .custom-file-label {
+.accent-red .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #efa2a9;
 }
 
@@ -16786,7 +16786,7 @@ a.text-muted:hover {
 .accent-orange .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-orange .custom-select:focus,
 .accent-orange .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-orange .custom-file-input:focus ~ .custom-file-label {
+.accent-orange .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #fec392;
 }
 
@@ -16851,7 +16851,7 @@ a.text-muted:hover {
 .accent-yellow .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-yellow .custom-select:focus,
 .accent-yellow .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-yellow .custom-file-input:focus ~ .custom-file-label {
+.accent-yellow .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #ffe187;
 }
 
@@ -16916,7 +16916,7 @@ a.text-muted:hover {
 .accent-green .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-green .custom-select:focus,
 .accent-green .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-green .custom-file-input:focus ~ .custom-file-label {
+.accent-green .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #71dd8a;
 }
 
@@ -16981,7 +16981,7 @@ a.text-muted:hover {
 .accent-teal .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-teal .custom-select:focus,
 .accent-teal .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-teal .custom-file-input:focus ~ .custom-file-label {
+.accent-teal .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #7eeaca;
 }
 
@@ -17046,7 +17046,7 @@ a.text-muted:hover {
 .accent-cyan .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-cyan .custom-select:focus,
 .accent-cyan .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-cyan .custom-file-input:focus ~ .custom-file-label {
+.accent-cyan .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #63d9ec;
 }
 
@@ -17111,7 +17111,7 @@ a.text-muted:hover {
 .accent-white .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-white .custom-select:focus,
 .accent-white .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-white .custom-file-input:focus ~ .custom-file-label {
+.accent-white .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: white;
 }
 
@@ -17176,7 +17176,7 @@ a.text-muted:hover {
 .accent-gray .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-gray .custom-select:focus,
 .accent-gray .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-gray .custom-file-input:focus ~ .custom-file-label {
+.accent-gray .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #afb5ba;
 }
 
@@ -17241,7 +17241,7 @@ a.text-muted:hover {
 .accent-gray-dark .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
 .accent-gray-dark .custom-select:focus,
 .accent-gray-dark .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-.accent-gray-dark .custom-file-input:focus ~ .custom-file-label {
+.accent-gray-dark .custom-student_record-input:focus ~ .custom-student_record-label {
   border-color: #6d7a86;
 }
 

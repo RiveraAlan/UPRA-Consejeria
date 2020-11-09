@@ -66,8 +66,8 @@
     } else {
       var identifiers = parserConf.identifiers|| /^[_A-Za-z][_A-Za-z0-9]*/;
       myKeywords = myKeywords.concat(["exec", "print"]);
-      myBuiltins = myBuiltins.concat(["apply", "basestring", "buffer", "cmp", "coerce", "execfile",
-                                      "file", "intern", "long", "raw_input", "reduce", "reload",
+      myBuiltins = myBuiltins.concat(["apply", "basestring", "buffer", "cmp", "coerce", "execstudent_record",
+                                      "student_record", "intern", "long", "raw_input", "reduce", "reload",
                                       "unichr", "unicode", "xrange", "False", "True", "None"]);
       var stringPrefixes = new RegExp("^(([rubf]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
     }

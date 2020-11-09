@@ -106,7 +106,7 @@
   }
 }
 
-label:not(.form-check-label):not(.custom-file-label) {
+label:not(.form-check-label):not(.custom-student_record-label) {
   font-weight: $font-weight-bold;
 }
 
@@ -189,7 +189,7 @@ textarea.form-control {
 }
 
 
-.form-control-file {
+.form-control-student_record {
   &.is-warning {
     ~ .warning-feedback,
     ~ .warning-tooltip {
@@ -243,10 +243,10 @@ textarea.form-control {
   }
 }
 
-// custom file
-.custom-file-input {
+// custom student_record
+.custom-student_record-input {
   &.is-warning {
-    ~ .custom-file-label {
+    ~ .custom-student_record-label {
       border-color: theme-color("warning");
     }
 
@@ -256,7 +256,7 @@ textarea.form-control {
     }
 
     &:focus {
-      ~ .custom-file-label {
+      ~ .custom-student_record-label {
         border-color: theme-color("warning");
         box-shadow: 0 0 0 $input-focus-width rgba(theme-color("warning"), .25);
       }

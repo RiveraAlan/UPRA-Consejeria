@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Forma: Ningunha',
         dragImageHere: 'Arrastrar unha imaxe ou texto aquí',
         dropImage: 'Solta a imaxe ou texto',
-        selectFromFiles: 'Seleccionar desde os arquivos',
-        maximumFileSize: 'Tamaño máximo do arquivo',
-        maximumFileSizeError: 'Superaches o tamaño máximo do arquivo.',
+        selectFromstudent_records: 'Seleccionar desde os arquivos',
+        maximumstudent_recordSize: 'Tamaño máximo do arquivo',
+        maximumstudent_recordSizeError: 'Superaches o tamaño máximo do arquivo.',
         url: 'URL da imaxe',
         remove: 'Eliminar imaxe',
         original: 'Original'

@@ -2,13 +2,13 @@
 
 module.exports = function(grunt) {
 
-    var pkg = grunt.file.readJSON("package.json");
+    var pkg = grunt.student_record.readJSON("package.json");
 
     // Project configuration.
     grunt.initConfig({
         // Metadata.
         pkg: pkg,
-        banner: grunt.file.read("dev/copy.js").replace(/@VERSION/, pkg.version),
+        banner: grunt.student_record.read("dev/copy.js").replace(/@VERSION/, pkg.version),
         // Task configuration.
         uglify: {
             options: {
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                         replacement: "<%= pkg.version %>"
                     }]
                 },
-                files: [{
+                student_records: [{
                     expand: true,
                     flatten: true,
                     src: ["<%= concat.dist.dest %>", "<%= concat.nodeps.dest %>"],

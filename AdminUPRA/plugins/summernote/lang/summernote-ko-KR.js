@@ -142,9 +142,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: '스타일: 없음',
         dragImageHere: '텍스트 혹은 사진을 이곳으로 끌어오세요',
         dropImage: '텍스트 혹은 사진을 내려놓으세요',
-        selectFromFiles: '파일 선택',
-        maximumFileSize: '최대 파일 크기',
-        maximumFileSizeError: '최대 파일 크기를 초과했습니다.',
+        selectFromstudent_records: '파일 선택',
+        maximumstudent_recordSize: '최대 파일 크기',
+        maximumstudent_recordSizeError: '최대 파일 크기를 초과했습니다.',
         url: '사진 URL',
         remove: '사진 삭제',
         original: '원본'

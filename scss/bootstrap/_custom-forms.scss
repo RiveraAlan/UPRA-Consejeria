@@ -233,60 +233,60 @@
 }
 
 
-// File
+// student_record
 //
-// Custom file input.
+// Custom student_record input.
 
-.custom-file {
+.custom-student_record {
   position: relative;
   display: inline-block;
   width: 100%;
-  height: $custom-file-height;
+  height: $custom-student_record-height;
   margin-bottom: 0;
 }
 
-.custom-file-input {
+.custom-student_record-input {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: $custom-file-height;
+  height: $custom-student_record-height;
   margin: 0;
   opacity: 0;
 
-  &:focus ~ .custom-file-label {
-    border-color: $custom-file-focus-border-color;
-    box-shadow: $custom-file-focus-box-shadow;
+  &:focus ~ .custom-student_record-label {
+    border-color: $custom-student_record-focus-border-color;
+    box-shadow: $custom-student_record-focus-box-shadow;
 
     &::after {
-      border-color: $custom-file-focus-border-color;
+      border-color: $custom-student_record-focus-border-color;
     }
   }
 
-  &:disabled ~ .custom-file-label {
-    background-color: $custom-file-disabled-bg;
+  &:disabled ~ .custom-student_record-label {
+    background-color: $custom-student_record-disabled-bg;
   }
 
-  @each $lang, $value in $custom-file-text {
-    &:lang(#{$lang}) ~ .custom-file-label::after {
+  @each $lang, $value in $custom-student_record-text {
+    &:lang(#{$lang}) ~ .custom-student_record-label::after {
       content: $value;
     }
   }
 }
 
-.custom-file-label {
+.custom-student_record-label {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1;
-  height: $custom-file-height;
-  padding: $custom-file-padding-y $custom-file-padding-x;
-  line-height: $custom-file-line-height;
-  color: $custom-file-color;
-  background-color: $custom-file-bg;
-  border: $custom-file-border-width solid $custom-file-border-color;
-  @include border-radius($custom-file-border-radius);
-  @include box-shadow($custom-file-box-shadow);
+  height: $custom-student_record-height;
+  padding: $custom-student_record-padding-y $custom-student_record-padding-x;
+  line-height: $custom-student_record-line-height;
+  color: $custom-student_record-color;
+  background-color: $custom-student_record-bg;
+  border: $custom-student_record-border-width solid $custom-student_record-border-color;
+  @include border-radius($custom-student_record-border-radius);
+  @include box-shadow($custom-student_record-box-shadow);
 
   &::after {
     position: absolute;
@@ -295,14 +295,14 @@
     bottom: 0;
     z-index: 3;
     display: block;
-    height: $custom-file-height-inner;
-    padding: $custom-file-padding-y $custom-file-padding-x;
-    line-height: $custom-file-line-height;
-    color: $custom-file-button-color;
+    height: $custom-student_record-height-inner;
+    padding: $custom-student_record-padding-y $custom-student_record-padding-x;
+    line-height: $custom-student_record-line-height;
+    color: $custom-student_record-button-color;
     content: "Browse";
-    @include gradient-bg($custom-file-button-bg);
-    border-left: $custom-file-border-width solid $custom-file-border-color;
-    @include border-radius(0 $custom-file-border-radius $custom-file-border-radius 0);
+    @include gradient-bg($custom-student_record-button-bg);
+    border-left: $custom-student_record-border-width solid $custom-student_record-border-color;
+    @include border-radius(0 $custom-student_record-border-radius $custom-student_record-border-radius 0);
   }
 }
 
@@ -427,7 +427,7 @@
 }
 
 .custom-control-label::before,
-.custom-file-label,
+.custom-student_record-label,
 .custom-select {
   @include transition($custom-forms-transition);
 }

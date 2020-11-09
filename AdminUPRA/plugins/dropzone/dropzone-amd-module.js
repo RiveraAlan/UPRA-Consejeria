@@ -47,7 +47,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * Copyright (c) 2012, Matias Meno
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
+ * of this software and associated documentation student_records (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -173,19 +173,19 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         dropzone.on("dragEnter", function() { });
         */
 
-      this.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "addedfiles", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached", "queuecomplete"];
+      this.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedstudent_record", "addedstudent_records", "removedstudent_record", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxstudent_recordsexceeded", "maxstudent_recordsreached", "queuecomplete"];
       this.prototype.defaultOptions = {
         /**
          * Has to be specified on elements other than form (or when the form
          * doesn't have an `action` attribute). You can also
-         * provide a function that will be called with `files` and
+         * provide a function that will be called with `student_records` and
          * must return the url (since `v3.12.0`)
          */
         url: null,
 
         /**
          * Can be changed to `"put"` if necessary. You can also provide a function
-         * that will be called with `files` and must return the method (since `v3.12.0`).
+         * that will be called with `student_records` and must return the method (since `v3.12.0`).
          */
         method: "post",
 
@@ -200,14 +200,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         timeout: 30000,
 
         /**
-         * How many file uploads to process in parallel (See the
-         * Enqueuing file uploads documentation section for more info)
+         * How many student_record uploads to process in parallel (See the
+         * Enqueuing student_record uploads documentation section for more info)
          */
         parallelUploads: 2,
 
         /**
-         * Whether to send multiple files in one request. If
-         * this it set to true, then the fallback file input element will
+         * Whether to send multiple student_records in one request. If
+         * this it set to true, then the fallback student_record input element will
          * have the `multiple` attribute as well. This option will
          * also trigger additional events (like `processingmultiple`). See the events
          * documentation section for more information.
@@ -215,7 +215,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         uploadMultiple: false,
 
         /**
-         * Whether you want files to be uploaded in chunks to your server. This can't be
+         * Whether you want student_records to be uploaded in chunks to your server. This can't be
          * used in combination with `uploadMultiple`.
          *
          * See [chunksUploaded](#config-chunksUploaded) for the callback to finalise an upload.
@@ -223,8 +223,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         chunking: false,
 
         /**
-         * If `chunking` is enabled, this defines whether **every** file should be chunked,
-         * even if the file size is below chunkSize. This means, that the additional chunk
+         * If `chunking` is enabled, this defines whether **every** student_record should be chunked,
+         * even if the student_record size is below chunkSize. This means, that the additional chunk
          * form data will be submitted and the `chunksUploaded` callback will be invoked.
          */
         forceChunking: false,
@@ -235,7 +235,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         chunkSize: 2000000,
 
         /**
-         * If `true`, the individual chunks of a file are being uploaded simultaneously.
+         * If `true`, the individual chunks of a student_record are being uploaded simultaneously.
          */
         parallelChunkUploads: false,
 
@@ -250,18 +250,18 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         retryChunksLimit: 3,
 
         /**
-         * If not `null` defines how many files this Dropzone handles. If it exceeds,
-         * the event `maxfilesexceeded` will be called. The dropzone element gets the
-         * class `dz-max-files-reached` accordingly so you can provide visual feedback.
+         * If not `null` defines how many student_records this Dropzone handles. If it exceeds,
+         * the event `maxstudent_recordsexceeded` will be called. The dropzone element gets the
+         * class `dz-max-student_records-reached` accordingly so you can provide visual feedback.
          */
-        maxFilesize: 256,
+        maxstudent_recordsize: 256,
 
         /**
-         * The name of the file param that gets transferred.
+         * The name of the student_record param that gets transferred.
          * **NOTE**: If you have the option  `uploadMultiple` set to `true`, then
          * Dropzone will append `[]` to the name.
          */
-        paramName: "file",
+        paramName: "student_record",
 
         /**
          * Whether thumbnails for images should be generated
@@ -269,9 +269,9 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         createImageThumbnails: true,
 
         /**
-         * In MB. When the filename exceeds this limit, the thumbnail will not be generated.
+         * In MB. When the student_recordname exceeds this limit, the thumbnail will not be generated.
          */
-        maxThumbnailFilesize: 10,
+        maxThumbnailstudent_recordsize: 10,
 
         /**
          * If `null`, the ratio of the image will be used to calculate it.
@@ -292,9 +292,9 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         /**
          * If set, images will be resized to these dimensions before being **uploaded**.
          * If only one, `resizeWidth` **or** `resizeHeight` is provided, the original aspect
-         * ratio of the file will be preserved.
+         * ratio of the student_record will be preserved.
          *
-         * The `options.transformFile` function uses these options, so if the `transformFile` function
+         * The `options.transformstudent_record` function uses these options, so if the `transformstudent_record` function
          * is overridden, these options don't do anything.
          */
         resizeWidth: null,
@@ -323,17 +323,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         resizeMethod: 'contain',
 
         /**
-         * The base that is used to calculate the filesize. You can change this to
+         * The base that is used to calculate the student_recordsize. You can change this to
          * 1024 if you would rather display kibibytes, mebibytes, etc...
          * 1024 is technically incorrect, because `1024 bytes` are `1 kibibyte` not `1 kilobyte`.
          * You can change this to `1024` if you don't care about validity.
          */
-        filesizeBase: 1000,
+        student_recordsizeBase: 1000,
 
         /**
-         * Can be used to limit the maximum number of files that will be handled by this Dropzone
+         * Can be used to limit the maximum number of student_records that will be handled by this Dropzone
          */
-        maxFiles: null,
+        maxstudent_records: null,
 
         /**
          * An optional object to send additional headers to the server. Eg:
@@ -352,56 +352,56 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         clickable: true,
 
         /**
-         * Whether hidden files in directories should be ignored.
+         * Whether hidden student_records in directories should be ignored.
          */
-        ignoreHiddenFiles: true,
+        ignoreHiddenstudent_records: true,
 
         /**
-         * The default implementation of `accept` checks the file's mime type or
+         * The default implementation of `accept` checks the student_record's mime type or
          * extension against this list. This is a comma separated list of mime
-         * types or file extensions.
+         * types or student_record extensions.
          *
          * Eg.: `image/*,application/pdf,.psd`
          *
          * If the Dropzone is `clickable` this option will also be used as
          * [`accept`](https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept)
-         * parameter on the hidden file input as well.
+         * parameter on the hidden student_record input as well.
          */
-        acceptedFiles: null,
+        acceptedstudent_records: null,
 
         /**
          * **Deprecated!**
-         * Use acceptedFiles instead.
+         * Use acceptedstudent_records instead.
          */
         acceptedMimeTypes: null,
 
         /**
-         * If false, files will be added to the queue but the queue will not be
+         * If false, student_records will be added to the queue but the queue will not be
          * processed automatically.
          * This can be useful if you need some additional user input before sending
-         * files (or if you want want all files sent at once).
-         * If you're ready to send the file simply call `myDropzone.processQueue()`.
+         * student_records (or if you want want all student_records sent at once).
+         * If you're ready to send the student_record simply call `myDropzone.processQueue()`.
          *
-         * See the [enqueuing file uploads](#enqueuing-file-uploads) documentation
+         * See the [enqueuing student_record uploads](#enqueuing-student_record-uploads) documentation
          * section for more information.
          */
         autoProcessQueue: true,
 
         /**
-         * If false, files added to the dropzone will not be queued by default.
-         * You'll have to call `enqueueFile(file)` manually.
+         * If false, student_records added to the dropzone will not be queued by default.
+         * You'll have to call `enqueuestudent_record(student_record)` manually.
          */
         autoQueue: true,
 
         /**
-         * If `true`, this will add a link to every file preview to remove or cancel (if
-         * already uploading) the file. The `dictCancelUpload`, `dictCancelUploadConfirmation`
-         * and `dictRemoveFile` options are used for the wording.
+         * If `true`, this will add a link to every student_record preview to remove or cancel (if
+         * already uploading) the student_record. The `dictCancelUpload`, `dictCancelUploadConfirmation`
+         * and `dictRemovestudent_record` options are used for the wording.
          */
         addRemoveLinks: false,
 
         /**
-         * Defines where to display the file previews – if `null` the
+         * Defines where to display the student_record previews – if `null` the
          * Dropzone element itself is used. Can be a plain `HTMLElement` or a CSS
          * selector. The element should have the `dropzone-previews` class so
          * the previews are displayed properly.
@@ -410,7 +410,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         /**
          * This is the element the hidden input field (which is used when clicking on the
-         * dropzone to trigger file selection) will be appended to. This might
+         * dropzone to trigger student_record selection) will be appended to. This might
          * be important in case you use frameworks to switch the content of your page.
          *
          * Can be a selector string, or an element directly.
@@ -419,25 +419,25 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         /**
          * If null, no capture type will be specified
-         * If camera, mobile devices will skip the file selection and choose camera
-         * If microphone, mobile devices will skip the file selection and choose the microphone
-         * If camcorder, mobile devices will skip the file selection and choose the camera in video mode
-         * On apple devices multiple must be set to false.  AcceptedFiles may need to
+         * If camera, mobile devices will skip the student_record selection and choose camera
+         * If microphone, mobile devices will skip the student_record selection and choose the microphone
+         * If camcorder, mobile devices will skip the student_record selection and choose the camera in video mode
+         * On apple devices multiple must be set to false.  Acceptedstudent_records may need to
          * be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
          */
         capture: null,
 
         /**
-         * **Deprecated**. Use `renameFile` instead.
+         * **Deprecated**. Use `renamestudent_record` instead.
          */
-        renameFilename: null,
+        renamestudent_recordname: null,
 
         /**
-         * A function that is invoked before the file is uploaded to the server and renames the file.
-         * This function gets the `File` as argument and can use the `file.name`. The actual name of the
-         * file that gets used during the upload can be accessed through `file.upload.filename`.
+         * A function that is invoked before the student_record is uploaded to the server and renames the student_record.
+         * This function gets the `student_record` as argument and can use the `student_record.name`. The actual name of the
+         * student_record that gets used during the upload can be accessed through `student_record.upload.student_recordname`.
          */
-        renameFile: null,
+        renamestudent_record: null,
 
         /**
          * If `true` the fallback will be forced. This is very useful to test your server
@@ -448,32 +448,32 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         forceFallback: false,
 
         /**
-         * The text used before any files are dropped.
+         * The text used before any student_records are dropped.
          */
-        dictDefaultMessage: "Drop files here to upload",
+        dictDefaultMessage: "Drop student_records here to upload",
 
         /**
          * The text that replaces the default message text it the browser is not supported.
          */
-        dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
+        dictFallbackMessage: "Your browser does not support drag'n'drop student_record uploads.",
 
         /**
          * The text that will be added before the fallback form.
          * If you provide a  fallback element yourself, or if this option is `null` this will
          * be ignored.
          */
-        dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+        dictFallbackText: "Please use the fallback form below to upload your student_records like in the olden days.",
 
         /**
-         * If the filesize is too big.
-         * `{{filesize}}` and `{{maxFilesize}}` will be replaced with the respective configuration values.
+         * If the student_recordsize is too big.
+         * `{{student_recordsize}}` and `{{maxstudent_recordsize}}` will be replaced with the respective configuration values.
          */
-        dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
+        dictstudent_recordTooBig: "student_record is too big ({{student_recordsize}}MiB). Max student_recordsize: {{maxstudent_recordsize}}MiB.",
 
         /**
-         * If the file doesn't match the file type.
+         * If the student_record doesn't match the student_record type.
          */
-        dictInvalidFileType: "You can't upload files of this type.",
+        dictInvalidstudent_recordType: "You can't upload student_records of this type.",
 
         /**
          * If the server response was invalid.
@@ -497,26 +497,26 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
 
         /**
-         * If `addRemoveLinks` is true, the text to be used to remove a file.
+         * If `addRemoveLinks` is true, the text to be used to remove a student_record.
          */
-        dictRemoveFile: "Remove file",
+        dictRemovestudent_record: "Remove student_record",
 
         /**
-         * If this is not null, then the user will be prompted before removing a file.
+         * If this is not null, then the user will be prompted before removing a student_record.
          */
-        dictRemoveFileConfirmation: null,
+        dictRemovestudent_recordConfirmation: null,
 
         /**
-         * Displayed if `maxFiles` is st and exceeded.
-         * The string `{{maxFiles}}` will be replaced by the configuration value.
+         * Displayed if `maxstudent_records` is st and exceeded.
+         * The string `{{maxstudent_records}}` will be replaced by the configuration value.
          */
-        dictMaxFilesExceeded: "You can not upload any more files.",
+        dictMaxstudent_recordsExceeded: "You can not upload any more student_records.",
 
         /**
          * Allows you to translate the different units. Starting with `tb` for terabytes and going down to
          * `b` for bytes.
          */
-        dictFileSizeUnits: {
+        dictstudent_recordSizeUnits: {
           tb: "TB",
           gb: "GB",
           mb: "MB",
@@ -532,7 +532,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         /**
          * Can be an **object** of additional parameters to transfer to the server, **or** a `Function`
-         * that gets invoked with the `files`, `xhr` and, if it's a chunked upload, `chunk` arguments. In case
+         * that gets invoked with the `student_records`, `xhr` and, if it's a chunked upload, `chunk` arguments. In case
          * of a function, this needs to return a map.
          *
          * The default implementation does nothing for normal uploads, but adds relevant information for
@@ -540,39 +540,39 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          *
          * This is the same as adding hidden input fields in the form element.
          */
-        params: function params(files, xhr, chunk) {
+        params: function params(student_records, xhr, chunk) {
           if (chunk) {
             return {
-              dzuuid: chunk.file.upload.uuid,
+              dzuuid: chunk.student_record.upload.uuid,
               dzchunkindex: chunk.index,
-              dztotalfilesize: chunk.file.size,
+              dztotalstudent_recordsize: chunk.student_record.size,
               dzchunksize: this.options.chunkSize,
-              dztotalchunkcount: chunk.file.upload.totalChunkCount,
+              dztotalchunkcount: chunk.student_record.upload.totalChunkCount,
               dzchunkbyteoffset: chunk.index * this.options.chunkSize
             };
           }
         },
 
         /**
-         * A function that gets a [file](https://developer.mozilla.org/en-US/docs/DOM/File)
+         * A function that gets a [student_record](https://developer.mozilla.org/en-US/docs/DOM/student_record)
          * and a `done` function as parameters.
          *
-         * If the done function is invoked without arguments, the file is "accepted" and will
-         * be processed. If you pass an error message, the file is rejected, and the error
+         * If the done function is invoked without arguments, the student_record is "accepted" and will
+         * be processed. If you pass an error message, the student_record is rejected, and the error
          * message will be displayed.
-         * This function will not be called if the file is too big or doesn't match the mime types.
+         * This function will not be called if the student_record is too big or doesn't match the mime types.
          */
-        accept: function accept(file, done) {
+        accept: function accept(student_record, done) {
           return done();
         },
 
         /**
-         * The callback that will be invoked when all chunks have been uploaded for a file.
-         * It gets the file for which the chunks have been uploaded as the first parameter,
+         * The callback that will be invoked when all chunks have been uploaded for a student_record.
+         * It gets the student_record for which the chunks have been uploaded as the first parameter,
          * and the `done` function as second. `done()` needs to be invoked when everything
          * needed to finish the upload process is done.
          */
-        chunksUploaded: function chunksUploaded(file, done) {
+        chunksUploaded: function chunksUploaded(student_record, done) {
           done();
         },
 
@@ -627,7 +627,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         /**
          * Gets called to calculate the thumbnail dimensions.
          *
-         * It gets `file`, `width` and `height` (both may be `null`) as parameters and must return an object containing:
+         * It gets `student_record`, `width` and `height` (both may be `null`) as parameters and must return an object containing:
          *
          *  - `srcWidth` & `srcHeight` (required)
          *  - `trgWidth` & `trgHeight` (required)
@@ -636,14 +636,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          *
          * Those values are going to be used by `ctx.drawImage()`.
          */
-        resize: function resize(file, width, height, resizeMethod) {
+        resize: function resize(student_record, width, height, resizeMethod) {
           var info = {
             srcX: 0,
             srcY: 0,
-            srcWidth: file.width,
-            srcHeight: file.height
+            srcWidth: student_record.width,
+            srcHeight: student_record.height
           };
-          var srcRatio = file.width / file.height; // Automatically calculate dimensions if not specified
+          var srcRatio = student_record.width / student_record.height; // Automatically calculate dimensions if not specified
 
           if (width == null && height == null) {
             width = info.srcWidth;
@@ -663,10 +663,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             // Image is bigger and needs rescaling
             if (resizeMethod === 'crop') {
               if (srcRatio > trgRatio) {
-                info.srcHeight = file.height;
+                info.srcHeight = student_record.height;
                 info.srcWidth = info.srcHeight * trgRatio;
               } else {
-                info.srcWidth = file.width;
+                info.srcWidth = student_record.width;
                 info.srcHeight = info.srcWidth / trgRatio;
               }
             } else if (resizeMethod === 'contain') {
@@ -681,33 +681,33 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
           }
 
-          info.srcX = (file.width - info.srcWidth) / 2;
-          info.srcY = (file.height - info.srcHeight) / 2;
+          info.srcX = (student_record.width - info.srcWidth) / 2;
+          info.srcY = (student_record.height - info.srcHeight) / 2;
           info.trgWidth = width;
           info.trgHeight = height;
           return info;
         },
 
         /**
-         * Can be used to transform the file (for example, resize an image if necessary).
+         * Can be used to transform the student_record (for example, resize an image if necessary).
          *
          * The default implementation uses `resizeWidth` and `resizeHeight` (if provided) and resizes
          * images according to those dimensions.
          *
-         * Gets the `file` as the first parameter, and a `done()` function as the second, that needs
-         * to be invoked with the file when the transformation is done.
+         * Gets the `student_record` as the first parameter, and a `done()` function as the second, that needs
+         * to be invoked with the student_record when the transformation is done.
          */
-        transformFile: function transformFile(file, done) {
-          if ((this.options.resizeWidth || this.options.resizeHeight) && file.type.match(/image.*/)) {
-            return this.resizeImage(file, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
+        transformstudent_record: function transformstudent_record(student_record, done) {
+          if ((this.options.resizeWidth || this.options.resizeHeight) && student_record.type.match(/image.*/)) {
+            return this.resizeImage(student_record, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
           } else {
-            return done(file);
+            return done(student_record);
           }
         },
 
         /**
          * A string that contains the template used for each dropped
-         * file. Change it to fulfill your needs but make sure to properly
+         * student_record. Change it to fulfill your needs but make sure to properly
          * provide all elements.
          *
          * If you want to use an actual HTML element instead of providing a String
@@ -719,7 +719,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          *       .innerHTML
          *
          */
-        previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Check</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\"></path>\n      </g>\n    </svg>\n  </div>\n  <div class=\"dz-error-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Error</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\">\n          <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>",
+        previewTemplate: "<div class=\"dz-preview dz-student_record-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-student_recordname\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Check</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\"></path>\n      </g>\n    </svg>\n  </div>\n  <div class=\"dz-error-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Error</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\">\n          <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>",
         // END OPTIONS
         // (Required by the dropzone documentation parser)
 
@@ -749,14 +749,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           return this.element.classList.remove("dz-drag-hover");
         },
         paste: function paste(e) {},
-        // Called whenever there are no files left in the dropzone anymore, and the
+        // Called whenever there are no student_records left in the dropzone anymore, and the
         // dropzone should be displayed as if in the initial state.
         reset: function reset() {
           return this.element.classList.remove("dz-started");
         },
-        // Called when a file is added to the queue
-        // Receives `file`
-        addedfile: function addedfile(file) {
+        // Called when a student_record is added to the queue
+        // Receives `student_record`
+        addedstudent_record: function addedstudent_record(student_record) {
           var _this2 = this;
 
           if (this.element === this.previewsContainer) {
@@ -764,18 +764,18 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }
 
           if (this.previewsContainer) {
-            file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
-            file.previewTemplate = file.previewElement; // Backwards compatibility
+            student_record.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
+            student_record.previewTemplate = student_record.previewElement; // Backwards compatibility
 
-            this.previewsContainer.appendChild(file.previewElement);
+            this.previewsContainer.appendChild(student_record.previewElement);
 
-            var _iterator3 = _createForOfIteratorHelper(file.previewElement.querySelectorAll("[data-dz-name]")),
+            var _iterator3 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-name]")),
                 _step3;
 
             try {
               for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
                 var node = _step3.value;
-                node.textContent = file.name;
+                node.textContent = student_record.name;
               }
             } catch (err) {
               _iterator3.e(err);
@@ -783,13 +783,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
               _iterator3.f();
             }
 
-            var _iterator4 = _createForOfIteratorHelper(file.previewElement.querySelectorAll("[data-dz-size]")),
+            var _iterator4 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-size]")),
                 _step4;
 
             try {
               for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
                 node = _step4.value;
-                node.innerHTML = this.filesize(file.size);
+                node.innerHTML = this.student_recordsize(student_record.size);
               }
             } catch (err) {
               _iterator4.e(err);
@@ -798,36 +798,36 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
 
             if (this.options.addRemoveLinks) {
-              file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>".concat(this.options.dictRemoveFile, "</a>"));
-              file.previewElement.appendChild(file._removeLink);
+              student_record._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>".concat(this.options.dictRemovestudent_record, "</a>"));
+              student_record.previewElement.appendChild(student_record._removeLink);
             }
 
-            var removeFileEvent = function removeFileEvent(e) {
+            var removestudent_recordEvent = function removestudent_recordEvent(e) {
               e.preventDefault();
               e.stopPropagation();
 
-              if (file.status === Dropzone.UPLOADING) {
+              if (student_record.status === Dropzone.UPLOADING) {
                 return Dropzone.confirm(_this2.options.dictCancelUploadConfirmation, function () {
-                  return _this2.removeFile(file);
+                  return _this2.removestudent_record(student_record);
                 });
               } else {
-                if (_this2.options.dictRemoveFileConfirmation) {
-                  return Dropzone.confirm(_this2.options.dictRemoveFileConfirmation, function () {
-                    return _this2.removeFile(file);
+                if (_this2.options.dictRemovestudent_recordConfirmation) {
+                  return Dropzone.confirm(_this2.options.dictRemovestudent_recordConfirmation, function () {
+                    return _this2.removestudent_record(student_record);
                   });
                 } else {
-                  return _this2.removeFile(file);
+                  return _this2.removestudent_record(student_record);
                 }
               }
             };
 
-            var _iterator5 = _createForOfIteratorHelper(file.previewElement.querySelectorAll("[data-dz-remove]")),
+            var _iterator5 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-remove]")),
                 _step5;
 
             try {
               for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
                 var removeLink = _step5.value;
-                removeLink.addEventListener("click", removeFileEvent);
+                removeLink.addEventListener("click", removestudent_recordEvent);
               }
             } catch (err) {
               _iterator5.e(err);
@@ -836,27 +836,27 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
           }
         },
-        // Called whenever a file is removed.
-        removedfile: function removedfile(file) {
-          if (file.previewElement != null && file.previewElement.parentNode != null) {
-            file.previewElement.parentNode.removeChild(file.previewElement);
+        // Called whenever a student_record is removed.
+        removedstudent_record: function removedstudent_record(student_record) {
+          if (student_record.previewElement != null && student_record.previewElement.parentNode != null) {
+            student_record.previewElement.parentNode.removeChild(student_record.previewElement);
           }
 
-          return this._updateMaxFilesReachedClass();
+          return this._updateMaxstudent_recordsReachedClass();
         },
         // Called when a thumbnail has been generated
-        // Receives `file` and `dataUrl`
-        thumbnail: function thumbnail(file, dataUrl) {
-          if (file.previewElement) {
-            file.previewElement.classList.remove("dz-file-preview");
+        // Receives `student_record` and `dataUrl`
+        thumbnail: function thumbnail(student_record, dataUrl) {
+          if (student_record.previewElement) {
+            student_record.previewElement.classList.remove("dz-student_record-preview");
 
-            var _iterator6 = _createForOfIteratorHelper(file.previewElement.querySelectorAll("[data-dz-thumbnail]")),
+            var _iterator6 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-thumbnail]")),
                 _step6;
 
             try {
               for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
                 var thumbnailElement = _step6.value;
-                thumbnailElement.alt = file.name;
+                thumbnailElement.alt = student_record.name;
                 thumbnailElement.src = dataUrl;
               }
             } catch (err) {
@@ -866,21 +866,21 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
 
             return setTimeout(function () {
-              return file.previewElement.classList.add("dz-image-preview");
+              return student_record.previewElement.classList.add("dz-image-preview");
             }, 1);
           }
         },
         // Called whenever an error occurs
-        // Receives `file` and `message`
-        error: function error(file, message) {
-          if (file.previewElement) {
-            file.previewElement.classList.add("dz-error");
+        // Receives `student_record` and `message`
+        error: function error(student_record, message) {
+          if (student_record.previewElement) {
+            student_record.previewElement.classList.add("dz-error");
 
             if (typeof message !== "string" && message.error) {
               message = message.error;
             }
 
-            var _iterator7 = _createForOfIteratorHelper(file.previewElement.querySelectorAll("[data-dz-errormessage]")),
+            var _iterator7 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-errormessage]")),
                 _step7;
 
             try {
@@ -896,25 +896,25 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }
         },
         errormultiple: function errormultiple() {},
-        // Called when a file gets processed. Since there is a cue, not all added
-        // files are processed immediately.
-        // Receives `file`
-        processing: function processing(file) {
-          if (file.previewElement) {
-            file.previewElement.classList.add("dz-processing");
+        // Called when a student_record gets processed. Since there is a cue, not all added
+        // student_records are processed immediately.
+        // Receives `student_record`
+        processing: function processing(student_record) {
+          if (student_record.previewElement) {
+            student_record.previewElement.classList.add("dz-processing");
 
-            if (file._removeLink) {
-              return file._removeLink.innerHTML = this.options.dictCancelUpload;
+            if (student_record._removeLink) {
+              return student_record._removeLink.innerHTML = this.options.dictCancelUpload;
             }
           }
         },
         processingmultiple: function processingmultiple() {},
         // Called whenever the upload progress gets updated.
-        // Receives `file`, `progress` (percentage 0-100) and `bytesSent`.
-        // To get the total number of bytes of the file, use `file.size`
-        uploadprogress: function uploadprogress(file, progress, bytesSent) {
-          if (file.previewElement) {
-            var _iterator8 = _createForOfIteratorHelper(file.previewElement.querySelectorAll("[data-dz-uploadprogress]")),
+        // Receives `student_record`, `progress` (percentage 0-100) and `bytesSent`.
+        // To get the total number of bytes of the student_record, use `student_record.size`
+        uploadprogress: function uploadprogress(student_record, progress, bytesSent) {
+          if (student_record.previewElement) {
+            var _iterator8 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-uploadprogress]")),
                 _step8;
 
             try {
@@ -932,40 +932,40 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         // Called whenever the total upload progress gets updated.
         // Called with totalUploadProgress (0-100), totalBytes and totalBytesSent
         totaluploadprogress: function totaluploadprogress() {},
-        // Called just before the file is sent. Gets the `xhr` object as second
+        // Called just before the student_record is sent. Gets the `xhr` object as second
         // parameter, so you can modify it (for example to add a CSRF token) and a
         // `formData` object to add additional information.
         sending: function sending() {},
         sendingmultiple: function sendingmultiple() {},
         // When the complete upload is finished and successful
-        // Receives `file`
-        success: function success(file) {
-          if (file.previewElement) {
-            return file.previewElement.classList.add("dz-success");
+        // Receives `student_record`
+        success: function success(student_record) {
+          if (student_record.previewElement) {
+            return student_record.previewElement.classList.add("dz-success");
           }
         },
         successmultiple: function successmultiple() {},
         // When the upload is canceled.
-        canceled: function canceled(file) {
-          return this.emit("error", file, this.options.dictUploadCanceled);
+        canceled: function canceled(student_record) {
+          return this.emit("error", student_record, this.options.dictUploadCanceled);
         },
         canceledmultiple: function canceledmultiple() {},
         // When the upload is finished, either with success or an error.
-        // Receives `file`
-        complete: function complete(file) {
-          if (file._removeLink) {
-            file._removeLink.innerHTML = this.options.dictRemoveFile;
+        // Receives `student_record`
+        complete: function complete(student_record) {
+          if (student_record._removeLink) {
+            student_record._removeLink.innerHTML = this.options.dictRemovestudent_record;
           }
 
-          if (file.previewElement) {
-            return file.previewElement.classList.add("dz-complete");
+          if (student_record.previewElement) {
+            return student_record.previewElement.classList.add("dz-complete");
           }
         },
         completemultiple: function completemultiple() {},
-        maxfilesexceeded: function maxfilesexceeded() {},
-        maxfilesreached: function maxfilesreached() {},
+        maxstudent_recordsexceeded: function maxstudent_recordsexceeded() {},
+        maxstudent_recordsreached: function maxstudent_recordsreached() {},
         queuecomplete: function queuecomplete() {},
-        addedfiles: function addedfiles() {}
+        addedstudent_records: function addedstudent_records() {}
       };
       this.prototype._thumbnailQueue = [];
       this.prototype._processingThumbnail = false;
@@ -1004,7 +1004,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     _this.defaultOptions.previewTemplate = _this.defaultOptions.previewTemplate.replace(/\n*/g, "");
     _this.clickableElements = [];
     _this.listeners = [];
-    _this.files = []; // All files
+    _this.student_records = []; // All student_records
 
     if (typeof _this.element === "string") {
       _this.element = document.querySelector(_this.element);
@@ -1039,8 +1039,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       throw new Error("No URL provided.");
     }
 
-    if (_this.options.acceptedFiles && _this.options.acceptedMimeTypes) {
-      throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
+    if (_this.options.acceptedstudent_records && _this.options.acceptedMimeTypes) {
+      throw new Error("You can't provide both 'acceptedstudent_records' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
     }
 
     if (_this.options.uploadMultiple && _this.options.chunking) {
@@ -1049,14 +1049,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
 
     if (_this.options.acceptedMimeTypes) {
-      _this.options.acceptedFiles = _this.options.acceptedMimeTypes;
+      _this.options.acceptedstudent_records = _this.options.acceptedMimeTypes;
       delete _this.options.acceptedMimeTypes;
     } // Backwards compatibility
 
 
-    if (_this.options.renameFilename != null) {
-      _this.options.renameFile = function (file) {
-        return _this.options.renameFilename.call(_assertThisInitialized(_this), file.name, file);
+    if (_this.options.renamestudent_recordname != null) {
+      _this.options.renamestudent_record = function (student_record) {
+        return _this.options.renamestudent_recordname.call(_assertThisInitialized(_this), student_record.name, student_record);
       };
     }
 
@@ -1089,62 +1089,62 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     _this.init();
 
     return _this;
-  } // Returns all files that have been accepted
+  } // Returns all student_records that have been accepted
 
 
   _createClass(Dropzone, [{
-    key: "getAcceptedFiles",
-    value: function getAcceptedFiles() {
-      return this.files.filter(function (file) {
-        return file.accepted;
-      }).map(function (file) {
-        return file;
+    key: "getAcceptedstudent_records",
+    value: function getAcceptedstudent_records() {
+      return this.student_records.filter(function (student_record) {
+        return student_record.accepted;
+      }).map(function (student_record) {
+        return student_record;
       });
-    } // Returns all files that have been rejected
+    } // Returns all student_records that have been rejected
     // Not sure when that's going to be useful, but added for completeness.
 
   }, {
-    key: "getRejectedFiles",
-    value: function getRejectedFiles() {
-      return this.files.filter(function (file) {
-        return !file.accepted;
-      }).map(function (file) {
-        return file;
+    key: "getRejectedstudent_records",
+    value: function getRejectedstudent_records() {
+      return this.student_records.filter(function (student_record) {
+        return !student_record.accepted;
+      }).map(function (student_record) {
+        return student_record;
       });
     }
   }, {
-    key: "getFilesWithStatus",
-    value: function getFilesWithStatus(status) {
-      return this.files.filter(function (file) {
-        return file.status === status;
-      }).map(function (file) {
-        return file;
+    key: "getstudent_recordsWithStatus",
+    value: function getstudent_recordsWithStatus(status) {
+      return this.student_records.filter(function (student_record) {
+        return student_record.status === status;
+      }).map(function (student_record) {
+        return student_record;
       });
-    } // Returns all files that are in the queue
+    } // Returns all student_records that are in the queue
 
   }, {
-    key: "getQueuedFiles",
-    value: function getQueuedFiles() {
-      return this.getFilesWithStatus(Dropzone.QUEUED);
+    key: "getQueuedstudent_records",
+    value: function getQueuedstudent_records() {
+      return this.getstudent_recordsWithStatus(Dropzone.QUEUED);
     }
   }, {
-    key: "getUploadingFiles",
-    value: function getUploadingFiles() {
-      return this.getFilesWithStatus(Dropzone.UPLOADING);
+    key: "getUploadingstudent_records",
+    value: function getUploadingstudent_records() {
+      return this.getstudent_recordsWithStatus(Dropzone.UPLOADING);
     }
   }, {
-    key: "getAddedFiles",
-    value: function getAddedFiles() {
-      return this.getFilesWithStatus(Dropzone.ADDED);
-    } // Files that are either queued or uploading
+    key: "getAddedstudent_records",
+    value: function getAddedstudent_records() {
+      return this.getstudent_recordsWithStatus(Dropzone.ADDED);
+    } // student_records that are either queued or uploading
 
   }, {
-    key: "getActiveFiles",
-    value: function getActiveFiles() {
-      return this.files.filter(function (file) {
-        return file.status === Dropzone.UPLOADING || file.status === Dropzone.QUEUED;
-      }).map(function (file) {
-        return file;
+    key: "getActivestudent_records",
+    value: function getActivestudent_records() {
+      return this.student_records.filter(function (student_record) {
+        return student_record.status === Dropzone.UPLOADING || student_record.status === Dropzone.QUEUED;
+      }).map(function (student_record) {
+        return student_record;
       });
     } // The function that gets called when Dropzone is initialized. You
     // can (and should) setup event listeners inside this function.
@@ -1164,50 +1164,50 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.clickableElements.length) {
-        var setupHiddenFileInput = function setupHiddenFileInput() {
-          if (_this3.hiddenFileInput) {
-            _this3.hiddenFileInput.parentNode.removeChild(_this3.hiddenFileInput);
+        var setupHiddenstudent_recordInput = function setupHiddenstudent_recordInput() {
+          if (_this3.hiddenstudent_recordInput) {
+            _this3.hiddenstudent_recordInput.parentNode.removeChild(_this3.hiddenstudent_recordInput);
           }
 
-          _this3.hiddenFileInput = document.createElement("input");
+          _this3.hiddenstudent_recordInput = document.createElement("input");
 
-          _this3.hiddenFileInput.setAttribute("type", "file");
+          _this3.hiddenstudent_recordInput.setAttribute("type", "student_record");
 
-          if (_this3.options.maxFiles === null || _this3.options.maxFiles > 1) {
-            _this3.hiddenFileInput.setAttribute("multiple", "multiple");
+          if (_this3.options.maxstudent_records === null || _this3.options.maxstudent_records > 1) {
+            _this3.hiddenstudent_recordInput.setAttribute("multiple", "multiple");
           }
 
-          _this3.hiddenFileInput.className = "dz-hidden-input";
+          _this3.hiddenstudent_recordInput.className = "dz-hidden-input";
 
-          if (_this3.options.acceptedFiles !== null) {
-            _this3.hiddenFileInput.setAttribute("accept", _this3.options.acceptedFiles);
+          if (_this3.options.acceptedstudent_records !== null) {
+            _this3.hiddenstudent_recordInput.setAttribute("accept", _this3.options.acceptedstudent_records);
           }
 
           if (_this3.options.capture !== null) {
-            _this3.hiddenFileInput.setAttribute("capture", _this3.options.capture);
+            _this3.hiddenstudent_recordInput.setAttribute("capture", _this3.options.capture);
           } // Not setting `display="none"` because some browsers don't accept clicks
           // on elements that aren't displayed.
 
 
-          _this3.hiddenFileInput.style.visibility = "hidden";
-          _this3.hiddenFileInput.style.position = "absolute";
-          _this3.hiddenFileInput.style.top = "0";
-          _this3.hiddenFileInput.style.left = "0";
-          _this3.hiddenFileInput.style.height = "0";
-          _this3.hiddenFileInput.style.width = "0";
-          Dropzone.getElement(_this3.options.hiddenInputContainer, 'hiddenInputContainer').appendChild(_this3.hiddenFileInput);
-          return _this3.hiddenFileInput.addEventListener("change", function () {
-            var files = _this3.hiddenFileInput.files;
+          _this3.hiddenstudent_recordInput.style.visibility = "hidden";
+          _this3.hiddenstudent_recordInput.style.position = "absolute";
+          _this3.hiddenstudent_recordInput.style.top = "0";
+          _this3.hiddenstudent_recordInput.style.left = "0";
+          _this3.hiddenstudent_recordInput.style.height = "0";
+          _this3.hiddenstudent_recordInput.style.width = "0";
+          Dropzone.getElement(_this3.options.hiddenInputContainer, 'hiddenInputContainer').appendChild(_this3.hiddenstudent_recordInput);
+          return _this3.hiddenstudent_recordInput.addEventListener("change", function () {
+            var student_records = _this3.hiddenstudent_recordInput.student_records;
 
-            if (files.length) {
-              var _iterator9 = _createForOfIteratorHelper(files),
+            if (student_records.length) {
+              var _iterator9 = _createForOfIteratorHelper(student_records),
                   _step9;
 
               try {
                 for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
-                  var file = _step9.value;
+                  var student_record = _step9.value;
 
-                  _this3.addFile(file);
+                  _this3.addstudent_record(student_record);
                 }
               } catch (err) {
                 _iterator9.e(err);
@@ -1216,13 +1216,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
               }
             }
 
-            _this3.emit("addedfiles", files);
+            _this3.emit("addedstudent_records", student_records);
 
-            return setupHiddenFileInput();
+            return setupHiddenstudent_recordInput();
           });
         };
 
-        setupHiddenFileInput();
+        setupHiddenstudent_recordInput();
       }
 
       this.URL = window.URL !== null ? window.URL : window.webkitURL; // Setup all event listeners on the Dropzone object itself.
@@ -1246,15 +1246,15 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       this.on("uploadprogress", function () {
         return _this3.updateTotalUploadProgress();
       });
-      this.on("removedfile", function () {
+      this.on("removedstudent_record", function () {
         return _this3.updateTotalUploadProgress();
       });
-      this.on("canceled", function (file) {
-        return _this3.emit("complete", file);
-      }); // Emit a `queuecomplete` event if all files finished uploading.
+      this.on("canceled", function (student_record) {
+        return _this3.emit("complete", student_record);
+      }); // Emit a `queuecomplete` event if all student_records finished uploading.
 
-      this.on("complete", function (file) {
-        if (_this3.getAddedFiles().length === 0 && _this3.getUploadingFiles().length === 0 && _this3.getQueuedFiles().length === 0) {
+      this.on("complete", function (student_record) {
+        if (_this3.getAddedstudent_records().length === 0 && _this3.getUploadingstudent_records().length === 0 && _this3.getQueuedstudent_records().length === 0) {
           // This needs to be deferred so that `queuecomplete` really triggers after `complete`
           return setTimeout(function () {
             return _this3.emit("queuecomplete");
@@ -1262,13 +1262,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       });
 
-      var containsFiles = function containsFiles(e) {
+      var containsstudent_records = function containsstudent_records(e) {
         if (e.dataTransfer.types) {
           // Because e.dataTransfer.types is an Object in
           // IE, we need to iterate like this instead of
           // using e.dataTransfer.types.some()
           for (var i = 0; i < e.dataTransfer.types.length; i++) {
-            if (e.dataTransfer.types[i] === "Files") return true;
+            if (e.dataTransfer.types[i] === "student_records") return true;
           }
         }
 
@@ -1276,10 +1276,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       };
 
       var noPropagation = function noPropagation(e) {
-        // If there are no files, we don't want to stop
+        // If there are no student_records, we don't want to stop
         // propagation so we don't interfere with other
         // drag and drop behaviour.
-        if (!containsFiles(e)) return;
+        if (!containsstudent_records(e)) return;
         e.stopPropagation();
 
         if (e.preventDefault) {
@@ -1301,8 +1301,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             return _this3.emit("dragenter", e);
           },
           "dragover": function dragover(e) {
-            // Makes it possible to drag files from chrome's download bar
-            // http://stackoverflow.com/questions/19526430/drag-and-drop-file-uploads-from-chrome-downloads-bar
+            // Makes it possible to drag student_records from chrome's download bar
+            // http://stackoverflow.com/questions/19526430/drag-and-drop-student_record-uploads-from-chrome-downloads-bar
             // Try is required to prevent bug in Internet Explorer 11 (SCRIPT65535 exception)
             var efct;
 
@@ -1335,9 +1335,9 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           element: clickableElement,
           events: {
             "click": function click(evt) {
-              // Only the actual dropzone or the message element should trigger file selection
+              // Only the actual dropzone or the message element should trigger student_record selection
               if (clickableElement !== _this3.element || evt.target === _this3.element || Dropzone.elementInside(evt.target, _this3.element.querySelector(".dz-message"))) {
-                _this3.hiddenFileInput.click(); // Forward the click
+                _this3.hiddenstudent_recordInput.click(); // Forward the click
 
               }
 
@@ -1354,11 +1354,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     key: "destroy",
     value: function destroy() {
       this.disable();
-      this.removeAllFiles(true);
+      this.removeAllstudent_records(true);
 
-      if (this.hiddenFileInput != null ? this.hiddenFileInput.parentNode : undefined) {
-        this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
-        this.hiddenFileInput = null;
+      if (this.hiddenstudent_recordInput != null ? this.hiddenstudent_recordInput.parentNode : undefined) {
+        this.hiddenstudent_recordInput.parentNode.removeChild(this.hiddenstudent_recordInput);
+        this.hiddenstudent_recordInput = null;
       }
 
       delete this.element.dropzone;
@@ -1370,17 +1370,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       var totalUploadProgress;
       var totalBytesSent = 0;
       var totalBytes = 0;
-      var activeFiles = this.getActiveFiles();
+      var activestudent_records = this.getActivestudent_records();
 
-      if (activeFiles.length) {
-        var _iterator11 = _createForOfIteratorHelper(this.getActiveFiles()),
+      if (activestudent_records.length) {
+        var _iterator11 = _createForOfIteratorHelper(this.getActivestudent_records()),
             _step11;
 
         try {
           for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
-            var file = _step11.value;
-            totalBytesSent += file.upload.bytesSent;
-            totalBytes += file.upload.total;
+            var student_record = _step11.value;
+            totalBytesSent += student_record.upload.bytesSent;
+            totalBytes += student_record.upload.total;
           }
         } catch (err) {
           _iterator11.e(err);
@@ -1395,7 +1395,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       return this.emit("totaluploadprogress", totalUploadProgress, totalBytes, totalBytesSent);
     } // @options.paramName can be a function taking one parameter rather than a string.
-    // A parameter name for a file is obtained simply by calling this with an index number.
+    // A parameter name for a student_record is obtained simply by calling this with an index number.
 
   }, {
     key: "_getParamName",
@@ -1405,17 +1405,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       } else {
         return "".concat(this.options.paramName).concat(this.options.uploadMultiple ? "[".concat(n, "]") : "");
       }
-    } // If @options.renameFile is a function,
-    // the function will be used to rename the file.name before appending it to the formData
+    } // If @options.renamestudent_record is a function,
+    // the function will be used to rename the student_record.name before appending it to the formData
 
   }, {
-    key: "_renameFile",
-    value: function _renameFile(file) {
-      if (typeof this.options.renameFile !== "function") {
-        return file.name;
+    key: "_renamestudent_record",
+    value: function _renamestudent_record(student_record) {
+      if (typeof this.options.renamestudent_record !== "function") {
+        return student_record.name;
       }
 
-      return this.options.renameFile(file);
+      return this.options.renamestudent_record(student_record);
     } // Returns a form that can be used as fallback if the browser does not support DragnDrop
     //
     // If the dropzone is already a form, only the input field and button are returned. Otherwise a complete form element is provided.
@@ -1436,7 +1436,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         fieldsString += "<p>".concat(this.options.dictFallbackText, "</p>");
       }
 
-      fieldsString += "<input type=\"file\" name=\"".concat(this._getParamName(0), "\" ").concat(this.options.uploadMultiple ? 'multiple="multiple"' : undefined, " /><input type=\"submit\" value=\"Upload!\"></div>");
+      fieldsString += "<input type=\"student_record\" name=\"".concat(this._getParamName(0), "\" ").concat(this.options.uploadMultiple ? 'multiple="multiple"' : undefined, " /><input type=\"submit\" value=\"Upload!\"></div>");
       var fields = Dropzone.createElement(fieldsString);
 
       if (this.element.tagName !== "FORM") {
@@ -1517,7 +1517,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           return result;
         }();
       });
-    } // Removes all event listeners and cancels all files in the queue or being processed.
+    } // Removes all event listeners and cancels all student_records in the queue or being processed.
 
   }, {
     key: "disable",
@@ -1529,8 +1529,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       });
       this.removeEventListeners();
       this.disabled = true;
-      return this.files.map(function (file) {
-        return _this4.cancelUpload(file);
+      return this.student_records.map(function (student_record) {
+        return _this4.cancelUpload(student_record);
       });
     }
   }, {
@@ -1541,11 +1541,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         return element.classList.add("dz-clickable");
       });
       return this.setupEventListeners();
-    } // Returns a nicely formatted filesize
+    } // Returns a nicely formatted student_recordsize
 
   }, {
-    key: "filesize",
-    value: function filesize(size) {
+    key: "student_recordsize",
+    value: function student_recordsize(size) {
       var selectedSize = 0;
       var selectedUnit = "b";
 
@@ -1554,10 +1554,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         for (var i = 0; i < units.length; i++) {
           var unit = units[i];
-          var cutoff = Math.pow(this.options.filesizeBase, 4 - i) / 10;
+          var cutoff = Math.pow(this.options.student_recordsizeBase, 4 - i) / 10;
 
           if (size >= cutoff) {
-            selectedSize = size / Math.pow(this.options.filesizeBase, 4 - i);
+            selectedSize = size / Math.pow(this.options.student_recordsizeBase, 4 - i);
             selectedUnit = unit;
             break;
           }
@@ -1566,20 +1566,20 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         selectedSize = Math.round(10 * selectedSize) / 10; // Cutting of digits
       }
 
-      return "<strong>".concat(selectedSize, "</strong> ").concat(this.options.dictFileSizeUnits[selectedUnit]);
-    } // Adds or removes the `dz-max-files-reached` class from the form.
+      return "<strong>".concat(selectedSize, "</strong> ").concat(this.options.dictstudent_recordSizeUnits[selectedUnit]);
+    } // Adds or removes the `dz-max-student_records-reached` class from the form.
 
   }, {
-    key: "_updateMaxFilesReachedClass",
-    value: function _updateMaxFilesReachedClass() {
-      if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
-        if (this.getAcceptedFiles().length === this.options.maxFiles) {
-          this.emit('maxfilesreached', this.files);
+    key: "_updateMaxstudent_recordsReachedClass",
+    value: function _updateMaxstudent_recordsReachedClass() {
+      if (this.options.maxstudent_records != null && this.getAcceptedstudent_records().length >= this.options.maxstudent_records) {
+        if (this.getAcceptedstudent_records().length === this.options.maxstudent_records) {
+          this.emit('maxstudent_recordsreached', this.student_records);
         }
 
-        return this.element.classList.add("dz-max-files-reached");
+        return this.element.classList.add("dz-max-student_records-reached");
       } else {
-        return this.element.classList.remove("dz-max-files-reached");
+        return this.element.classList.remove("dz-max-student_records-reached");
       }
     }
   }, {
@@ -1589,28 +1589,28 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         return;
       }
 
-      this.emit("drop", e); // Convert the FileList to an Array
+      this.emit("drop", e); // Convert the student_recordList to an Array
       // This is necessary for IE11
 
-      var files = [];
+      var student_records = [];
 
-      for (var i = 0; i < e.dataTransfer.files.length; i++) {
-        files[i] = e.dataTransfer.files[i];
-      } // Even if it's a folder, files.length will contain the folders.
+      for (var i = 0; i < e.dataTransfer.student_records.length; i++) {
+        student_records[i] = e.dataTransfer.student_records[i];
+      } // Even if it's a folder, student_records.length will contain the folders.
 
 
-      if (files.length) {
+      if (student_records.length) {
         var items = e.dataTransfer.items;
 
         if (items && items.length && items[0].webkitGetAsEntry != null) {
-          // The browser supports dropping of folders, so handle items instead of files
-          this._addFilesFromItems(items);
+          // The browser supports dropping of folders, so handle items instead of student_records
+          this._addstudent_recordsFromItems(items);
         } else {
-          this.handleFiles(files);
+          this.handlestudent_records(student_records);
         }
       }
 
-      this.emit("addedfiles", files);
+      this.emit("addedstudent_records", student_records);
     }
   }, {
     key: "paste",
@@ -1625,31 +1625,31 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       var items = e.clipboardData.items;
 
       if (items.length) {
-        return this._addFilesFromItems(items);
+        return this._addstudent_recordsFromItems(items);
       }
     }
   }, {
-    key: "handleFiles",
-    value: function handleFiles(files) {
-      var _iterator13 = _createForOfIteratorHelper(files),
+    key: "handlestudent_records",
+    value: function handlestudent_records(student_records) {
+      var _iterator13 = _createForOfIteratorHelper(student_records),
           _step13;
 
       try {
         for (_iterator13.s(); !(_step13 = _iterator13.n()).done;) {
-          var file = _step13.value;
-          this.addFile(file);
+          var student_record = _step13.value;
+          this.addstudent_record(student_record);
         }
       } catch (err) {
         _iterator13.e(err);
       } finally {
         _iterator13.f();
       }
-    } // When a folder is dropped (or files are pasted), items must be handled
-    // instead of files.
+    } // When a folder is dropped (or student_records are pasted), items must be handled
+    // instead of student_records.
 
   }, {
-    key: "_addFilesFromItems",
-    value: function _addFilesFromItems(items) {
+    key: "_addstudent_recordsFromItems",
+    value: function _addstudent_recordsFromItems(items) {
       var _this5 = this;
 
       return function () {
@@ -1664,17 +1664,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             var entry;
 
             if (item.webkitGetAsEntry != null && (entry = item.webkitGetAsEntry())) {
-              if (entry.isFile) {
-                result.push(_this5.addFile(item.getAsFile()));
+              if (entry.isstudent_record) {
+                result.push(_this5.addstudent_record(item.getAsstudent_record()));
               } else if (entry.isDirectory) {
-                // Append all files from that directory to files
-                result.push(_this5._addFilesFromDirectory(entry, entry.name));
+                // Append all student_records from that directory to student_records
+                result.push(_this5._addstudent_recordsFromDirectory(entry, entry.name));
               } else {
                 result.push(undefined);
               }
-            } else if (item.getAsFile != null) {
-              if (item.kind == null || item.kind === "file") {
-                result.push(_this5.addFile(item.getAsFile()));
+            } else if (item.getAsstudent_record != null) {
+              if (item.kind == null || item.kind === "student_record") {
+                result.push(_this5.addstudent_record(item.getAsstudent_record()));
               } else {
                 result.push(undefined);
               }
@@ -1690,11 +1690,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         return result;
       }();
-    } // Goes through the directory, and adds each file it finds recursively
+    } // Goes through the directory, and adds each student_record it finds recursively
 
   }, {
-    key: "_addFilesFromDirectory",
-    value: function _addFilesFromDirectory(directory, path) {
+    key: "_addstudent_recordsFromDirectory",
+    value: function _addstudent_recordsFromDirectory(directory, path) {
       var _this6 = this;
 
       var dirReader = directory.createReader();
@@ -1715,17 +1715,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
               for (_iterator15.s(); !(_step15 = _iterator15.n()).done;) {
                 var entry = _step15.value;
 
-                if (entry.isFile) {
-                  entry.file(function (file) {
-                    if (_this6.options.ignoreHiddenFiles && file.name.substring(0, 1) === '.') {
+                if (entry.isstudent_record) {
+                  entry.student_record(function (student_record) {
+                    if (_this6.options.ignoreHiddenstudent_records && student_record.name.substring(0, 1) === '.') {
                       return;
                     }
 
-                    file.fullPath = "".concat(path, "/").concat(file.name);
-                    return _this6.addFile(file);
+                    student_record.fullPath = "".concat(path, "/").concat(student_record.name);
+                    return _this6.addstudent_record(student_record);
                   });
                 } else if (entry.isDirectory) {
-                  _this6._addFilesFromDirectory(entry, "".concat(path, "/").concat(entry.name));
+                  _this6._addstudent_recordsFromDirectory(entry, "".concat(path, "/").concat(entry.name));
                 }
               } // Recursively call readEntries() again, since browser only handle
               // the first 100 entries.
@@ -1745,79 +1745,79 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       };
 
       return readEntries();
-    } // If `done()` is called without argument the file is accepted
-    // If you call it with an error message, the file is rejected
+    } // If `done()` is called without argument the student_record is accepted
+    // If you call it with an error message, the student_record is rejected
     // (This allows for asynchronous validation)
     //
-    // This function checks the filesize, and if the file.type passes the
-    // `acceptedFiles` check.
+    // This function checks the student_recordsize, and if the student_record.type passes the
+    // `acceptedstudent_records` check.
 
   }, {
     key: "accept",
-    value: function accept(file, done) {
-      if (this.options.maxFilesize && file.size > this.options.maxFilesize * 1024 * 1024) {
-        done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
-      } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
-        done(this.options.dictInvalidFileType);
-      } else if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
-        done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
-        this.emit("maxfilesexceeded", file);
+    value: function accept(student_record, done) {
+      if (this.options.maxstudent_recordsize && student_record.size > this.options.maxstudent_recordsize * 1024 * 1024) {
+        done(this.options.dictstudent_recordTooBig.replace("{{student_recordsize}}", Math.round(student_record.size / 1024 / 10.24) / 100).replace("{{maxstudent_recordsize}}", this.options.maxstudent_recordsize));
+      } else if (!Dropzone.isValidstudent_record(student_record, this.options.acceptedstudent_records)) {
+        done(this.options.dictInvalidstudent_recordType);
+      } else if (this.options.maxstudent_records != null && this.getAcceptedstudent_records().length >= this.options.maxstudent_records) {
+        done(this.options.dictMaxstudent_recordsExceeded.replace("{{maxstudent_records}}", this.options.maxstudent_records));
+        this.emit("maxstudent_recordsexceeded", student_record);
       } else {
-        this.options.accept.call(this, file, done);
+        this.options.accept.call(this, student_record, done);
       }
     }
   }, {
-    key: "addFile",
-    value: function addFile(file) {
+    key: "addstudent_record",
+    value: function addstudent_record(student_record) {
       var _this7 = this;
 
-      file.upload = {
+      student_record.upload = {
         uuid: Dropzone.uuidv4(),
         progress: 0,
-        // Setting the total upload size to file.size for the beginning
+        // Setting the total upload size to student_record.size for the beginning
         // It's actual different than the size to be transmitted.
-        total: file.size,
+        total: student_record.size,
         bytesSent: 0,
-        filename: this._renameFile(file) // Not setting chunking information here, because the acutal data — and
-        // thus the chunks — might change if `options.transformFile` is set
+        student_recordname: this._renamestudent_record(student_record) // Not setting chunking information here, because the acutal data — and
+        // thus the chunks — might change if `options.transformstudent_record` is set
         // and does something to the data.
 
       };
-      this.files.push(file);
-      file.status = Dropzone.ADDED;
-      this.emit("addedfile", file);
+      this.student_records.push(student_record);
+      student_record.status = Dropzone.ADDED;
+      this.emit("addedstudent_record", student_record);
 
-      this._enqueueThumbnail(file);
+      this._enqueueThumbnail(student_record);
 
-      this.accept(file, function (error) {
+      this.accept(student_record, function (error) {
         if (error) {
-          file.accepted = false;
+          student_record.accepted = false;
 
-          _this7._errorProcessing([file], error); // Will set the file.status
+          _this7._errorProcessing([student_record], error); // Will set the student_record.status
 
         } else {
-          file.accepted = true;
+          student_record.accepted = true;
 
           if (_this7.options.autoQueue) {
-            _this7.enqueueFile(file);
+            _this7.enqueuestudent_record(student_record);
           } // Will set .accepted = true
 
         }
 
-        _this7._updateMaxFilesReachedClass();
+        _this7._updateMaxstudent_recordsReachedClass();
       });
-    } // Wrapper for enqueueFile
+    } // Wrapper for enqueuestudent_record
 
   }, {
-    key: "enqueueFiles",
-    value: function enqueueFiles(files) {
-      var _iterator16 = _createForOfIteratorHelper(files),
+    key: "enqueuestudent_records",
+    value: function enqueuestudent_records(student_records) {
+      var _iterator16 = _createForOfIteratorHelper(student_records),
           _step16;
 
       try {
         for (_iterator16.s(); !(_step16 = _iterator16.n()).done;) {
-          var file = _step16.value;
-          this.enqueueFile(file);
+          var student_record = _step16.value;
+          this.enqueuestudent_record(student_record);
         }
       } catch (err) {
         _iterator16.e(err);
@@ -1828,12 +1828,12 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return null;
     }
   }, {
-    key: "enqueueFile",
-    value: function enqueueFile(file) {
+    key: "enqueuestudent_record",
+    value: function enqueuestudent_record(student_record) {
       var _this8 = this;
 
-      if (file.status === Dropzone.ADDED && file.accepted === true) {
-        file.status = Dropzone.QUEUED;
+      if (student_record.status === Dropzone.ADDED && student_record.accepted === true) {
+        student_record.status = Dropzone.QUEUED;
 
         if (this.options.autoProcessQueue) {
           return setTimeout(function () {
@@ -1841,16 +1841,16 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }, 0); // Deferring the call
         }
       } else {
-        throw new Error("This file can't be queued because it has already been processed or was rejected.");
+        throw new Error("This student_record can't be queued because it has already been processed or was rejected.");
       }
     }
   }, {
     key: "_enqueueThumbnail",
-    value: function _enqueueThumbnail(file) {
+    value: function _enqueueThumbnail(student_record) {
       var _this9 = this;
 
-      if (this.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.options.maxThumbnailFilesize * 1024 * 1024) {
-        this._thumbnailQueue.push(file);
+      if (this.options.createImageThumbnails && student_record.type.match(/image.*/) && student_record.size <= this.options.maxThumbnailstudent_recordsize * 1024 * 1024) {
+        this._thumbnailQueue.push(student_record);
 
         return setTimeout(function () {
           return _this9._processThumbnailQueue();
@@ -1868,48 +1868,48 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       this._processingThumbnail = true;
 
-      var file = this._thumbnailQueue.shift();
+      var student_record = this._thumbnailQueue.shift();
 
-      return this.createThumbnail(file, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (dataUrl) {
-        _this10.emit("thumbnail", file, dataUrl);
+      return this.createThumbnail(student_record, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (dataUrl) {
+        _this10.emit("thumbnail", student_record, dataUrl);
 
         _this10._processingThumbnail = false;
         return _this10._processThumbnailQueue();
       });
-    } // Can be called by the user to remove a file
+    } // Can be called by the user to remove a student_record
 
   }, {
-    key: "removeFile",
-    value: function removeFile(file) {
-      if (file.status === Dropzone.UPLOADING) {
-        this.cancelUpload(file);
+    key: "removestudent_record",
+    value: function removestudent_record(student_record) {
+      if (student_record.status === Dropzone.UPLOADING) {
+        this.cancelUpload(student_record);
       }
 
-      this.files = without(this.files, file);
-      this.emit("removedfile", file);
+      this.student_records = without(this.student_records, student_record);
+      this.emit("removedstudent_record", student_record);
 
-      if (this.files.length === 0) {
+      if (this.student_records.length === 0) {
         return this.emit("reset");
       }
-    } // Removes all files that aren't currently processed from the list
+    } // Removes all student_records that aren't currently processed from the list
 
   }, {
-    key: "removeAllFiles",
-    value: function removeAllFiles(cancelIfNecessary) {
-      // Create a copy of files since removeFile() changes the @files array.
+    key: "removeAllstudent_records",
+    value: function removeAllstudent_records(cancelIfNecessary) {
+      // Create a copy of student_records since removestudent_record() changes the @student_records array.
       if (cancelIfNecessary == null) {
         cancelIfNecessary = false;
       }
 
-      var _iterator17 = _createForOfIteratorHelper(this.files.slice()),
+      var _iterator17 = _createForOfIteratorHelper(this.student_records.slice()),
           _step17;
 
       try {
         for (_iterator17.s(); !(_step17 = _iterator17.n()).done;) {
-          var file = _step17.value;
+          var student_record = _step17.value;
 
-          if (file.status !== Dropzone.UPLOADING || cancelIfNecessary) {
-            this.removeFile(file);
+          if (student_record.status !== Dropzone.UPLOADING || cancelIfNecessary) {
+            this.removestudent_record(student_record);
           }
         }
       } catch (err) {
@@ -1920,30 +1920,30 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       return null;
     } // Resizes an image before it gets sent to the server. This function is the default behavior of
-    // `options.transformFile` if `resizeWidth` or `resizeHeight` are set. The callback is invoked with
+    // `options.transformstudent_record` if `resizeWidth` or `resizeHeight` are set. The callback is invoked with
     // the resized blob.
 
   }, {
     key: "resizeImage",
-    value: function resizeImage(file, width, height, resizeMethod, callback) {
+    value: function resizeImage(student_record, width, height, resizeMethod, callback) {
       var _this11 = this;
 
-      return this.createThumbnail(file, width, height, resizeMethod, true, function (dataUrl, canvas) {
+      return this.createThumbnail(student_record, width, height, resizeMethod, true, function (dataUrl, canvas) {
         if (canvas == null) {
           // The image has not been resized
-          return callback(file);
+          return callback(student_record);
         } else {
           var resizeMimeType = _this11.options.resizeMimeType;
 
           if (resizeMimeType == null) {
-            resizeMimeType = file.type;
+            resizeMimeType = student_record.type;
           }
 
           var resizedDataURL = canvas.toDataURL(resizeMimeType, _this11.options.resizeQuality);
 
           if (resizeMimeType === 'image/jpeg' || resizeMimeType === 'image/jpg') {
             // Now add the original EXIF information
-            resizedDataURL = ExifRestore.restore(file.dataURL, resizedDataURL);
+            resizedDataURL = ExifRestore.restore(student_record.dataURL, resizedDataURL);
           }
 
           return callback(Dropzone.dataURItoBlob(resizedDataURL));
@@ -1952,59 +1952,59 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     }
   }, {
     key: "createThumbnail",
-    value: function createThumbnail(file, width, height, resizeMethod, fixOrientation, callback) {
+    value: function createThumbnail(student_record, width, height, resizeMethod, fixOrientation, callback) {
       var _this12 = this;
 
-      var fileReader = new FileReader();
+      var student_recordReader = new student_recordReader();
 
-      fileReader.onload = function () {
-        file.dataURL = fileReader.result; // Don't bother creating a thumbnail for SVG images since they're vector
+      student_recordReader.onload = function () {
+        student_record.dataURL = student_recordReader.result; // Don't bother creating a thumbnail for SVG images since they're vector
 
-        if (file.type === "image/svg+xml") {
+        if (student_record.type === "image/svg+xml") {
           if (callback != null) {
-            callback(fileReader.result);
+            callback(student_recordReader.result);
           }
 
           return;
         }
 
-        _this12.createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback);
+        _this12.createThumbnailFromUrl(student_record, width, height, resizeMethod, fixOrientation, callback);
       };
 
-      fileReader.readAsDataURL(file);
-    } // `mockFile` needs to have these attributes:
+      student_recordReader.readAsDataURL(student_record);
+    } // `mockstudent_record` needs to have these attributes:
     // 
     //     { name: 'name', size: 12345, imageUrl: '' }
     //
     // `callback` will be invoked when the image has been downloaded and displayed.
-    // `crossOrigin` will be added to the `img` tag when accessing the file.
+    // `crossOrigin` will be added to the `img` tag when accessing the student_record.
 
   }, {
-    key: "displayExistingFile",
-    value: function displayExistingFile(mockFile, imageUrl, callback, crossOrigin) {
+    key: "displayExistingstudent_record",
+    value: function displayExistingstudent_record(mockstudent_record, imageUrl, callback, crossOrigin) {
       var _this13 = this;
 
       var resizeThumbnail = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
-      this.emit("addedfile", mockFile);
-      this.emit("complete", mockFile);
+      this.emit("addedstudent_record", mockstudent_record);
+      this.emit("complete", mockstudent_record);
 
       if (!resizeThumbnail) {
-        this.emit("thumbnail", mockFile, imageUrl);
+        this.emit("thumbnail", mockstudent_record, imageUrl);
         if (callback) callback();
       } else {
         var onDone = function onDone(thumbnail) {
-          _this13.emit('thumbnail', mockFile, thumbnail);
+          _this13.emit('thumbnail', mockstudent_record, thumbnail);
 
           if (callback) callback();
         };
 
-        mockFile.dataURL = imageUrl;
-        this.createThumbnailFromUrl(mockFile, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.resizeMethod, this.options.fixOrientation, onDone, crossOrigin);
+        mockstudent_record.dataURL = imageUrl;
+        this.createThumbnailFromUrl(mockstudent_record, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.resizeMethod, this.options.fixOrientation, onDone, crossOrigin);
       }
     }
   }, {
     key: "createThumbnailFromUrl",
-    value: function createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
+    value: function createThumbnailFromUrl(student_record, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
       var _this14 = this;
 
       // Not using `new Image` here because of a bug in latest Chrome versions.
@@ -2032,10 +2032,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
 
         return loadExif(function (orientation) {
-          file.width = img.width;
-          file.height = img.height;
+          student_record.width = img.width;
+          student_record.height = img.height;
 
-          var resizeInfo = _this14.options.resize.call(_this14, file, width, height, resizeMethod);
+          var resizeInfo = _this14.options.resize.call(_this14, student_record, width, height, resizeMethod);
 
           var canvas = document.createElement("canvas");
           var ctx = canvas.getContext("2d");
@@ -2106,61 +2106,61 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         img.onerror = callback;
       }
 
-      return img.src = file.dataURL;
-    } // Goes through the queue and processes files if there aren't too many already.
+      return img.src = student_record.dataURL;
+    } // Goes through the queue and processes student_records if there aren't too many already.
 
   }, {
     key: "processQueue",
     value: function processQueue() {
       var parallelUploads = this.options.parallelUploads;
-      var processingLength = this.getUploadingFiles().length;
-      var i = processingLength; // There are already at least as many files uploading than should be
+      var processingLength = this.getUploadingstudent_records().length;
+      var i = processingLength; // There are already at least as many student_records uploading than should be
 
       if (processingLength >= parallelUploads) {
         return;
       }
 
-      var queuedFiles = this.getQueuedFiles();
+      var queuedstudent_records = this.getQueuedstudent_records();
 
-      if (!(queuedFiles.length > 0)) {
+      if (!(queuedstudent_records.length > 0)) {
         return;
       }
 
       if (this.options.uploadMultiple) {
-        // The files should be uploaded in one request
-        return this.processFiles(queuedFiles.slice(0, parallelUploads - processingLength));
+        // The student_records should be uploaded in one request
+        return this.processstudent_records(queuedstudent_records.slice(0, parallelUploads - processingLength));
       } else {
         while (i < parallelUploads) {
-          if (!queuedFiles.length) {
+          if (!queuedstudent_records.length) {
             return;
           } // Nothing left to process
 
 
-          this.processFile(queuedFiles.shift());
+          this.processstudent_record(queuedstudent_records.shift());
           i++;
         }
       }
-    } // Wrapper for `processFiles`
+    } // Wrapper for `processstudent_records`
 
   }, {
-    key: "processFile",
-    value: function processFile(file) {
-      return this.processFiles([file]);
-    } // Loads the file, then calls finishedLoading()
+    key: "processstudent_record",
+    value: function processstudent_record(student_record) {
+      return this.processstudent_records([student_record]);
+    } // Loads the student_record, then calls finishedLoading()
 
   }, {
-    key: "processFiles",
-    value: function processFiles(files) {
-      var _iterator18 = _createForOfIteratorHelper(files),
+    key: "processstudent_records",
+    value: function processstudent_records(student_records) {
+      var _iterator18 = _createForOfIteratorHelper(student_records),
           _step18;
 
       try {
         for (_iterator18.s(); !(_step18 = _iterator18.n()).done;) {
-          var file = _step18.value;
-          file.processing = true; // Backwards compatibility
+          var student_record = _step18.value;
+          student_record.processing = true; // Backwards compatibility
 
-          file.status = Dropzone.UPLOADING;
-          this.emit("processing", file);
+          student_record.status = Dropzone.UPLOADING;
+          this.emit("processing", student_record);
         }
       } catch (err) {
         _iterator18.e(err);
@@ -2169,38 +2169,38 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("processingmultiple", files);
+        this.emit("processingmultiple", student_records);
       }
 
-      return this.uploadFiles(files);
+      return this.uploadstudent_records(student_records);
     }
   }, {
-    key: "_getFilesWithXhr",
-    value: function _getFilesWithXhr(xhr) {
-      var files;
-      return files = this.files.filter(function (file) {
-        return file.xhr === xhr;
-      }).map(function (file) {
-        return file;
+    key: "_getstudent_recordsWithXhr",
+    value: function _getstudent_recordsWithXhr(xhr) {
+      var student_records;
+      return student_records = this.student_records.filter(function (student_record) {
+        return student_record.xhr === xhr;
+      }).map(function (student_record) {
+        return student_record;
       });
-    } // Cancels the file upload and sets the status to CANCELED
-    // **if** the file is actually being uploaded.
-    // If it's still in the queue, the file is being removed from it and the status
+    } // Cancels the student_record upload and sets the status to CANCELED
+    // **if** the student_record is actually being uploaded.
+    // If it's still in the queue, the student_record is being removed from it and the status
     // set to CANCELED.
 
   }, {
     key: "cancelUpload",
-    value: function cancelUpload(file) {
-      if (file.status === Dropzone.UPLOADING) {
-        var groupedFiles = this._getFilesWithXhr(file.xhr);
+    value: function cancelUpload(student_record) {
+      if (student_record.status === Dropzone.UPLOADING) {
+        var groupedstudent_records = this._getstudent_recordsWithXhr(student_record.xhr);
 
-        var _iterator19 = _createForOfIteratorHelper(groupedFiles),
+        var _iterator19 = _createForOfIteratorHelper(groupedstudent_records),
             _step19;
 
         try {
           for (_iterator19.s(); !(_step19 = _iterator19.n()).done;) {
-            var groupedFile = _step19.value;
-            groupedFile.status = Dropzone.CANCELED;
+            var groupedstudent_record = _step19.value;
+            groupedstudent_record.status = Dropzone.CANCELED;
           }
         } catch (err) {
           _iterator19.e(err);
@@ -2208,17 +2208,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator19.f();
         }
 
-        if (typeof file.xhr !== 'undefined') {
-          file.xhr.abort();
+        if (typeof student_record.xhr !== 'undefined') {
+          student_record.xhr.abort();
         }
 
-        var _iterator20 = _createForOfIteratorHelper(groupedFiles),
+        var _iterator20 = _createForOfIteratorHelper(groupedstudent_records),
             _step20;
 
         try {
           for (_iterator20.s(); !(_step20 = _iterator20.n()).done;) {
-            var _groupedFile = _step20.value;
-            this.emit("canceled", _groupedFile);
+            var _groupedstudent_record = _step20.value;
+            this.emit("canceled", _groupedstudent_record);
           }
         } catch (err) {
           _iterator20.e(err);
@@ -2227,14 +2227,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
 
         if (this.options.uploadMultiple) {
-          this.emit("canceledmultiple", groupedFiles);
+          this.emit("canceledmultiple", groupedstudent_records);
         }
-      } else if (file.status === Dropzone.ADDED || file.status === Dropzone.QUEUED) {
-        file.status = Dropzone.CANCELED;
-        this.emit("canceled", file);
+      } else if (student_record.status === Dropzone.ADDED || student_record.status === Dropzone.QUEUED) {
+        student_record.status = Dropzone.CANCELED;
+        this.emit("canceled", student_record);
 
         if (this.options.uploadMultiple) {
-          this.emit("canceledmultiple", [file]);
+          this.emit("canceledmultiple", [student_record]);
         }
       }
 
@@ -2256,53 +2256,53 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return option;
     }
   }, {
-    key: "uploadFile",
-    value: function uploadFile(file) {
-      return this.uploadFiles([file]);
+    key: "uploadstudent_record",
+    value: function uploadstudent_record(student_record) {
+      return this.uploadstudent_records([student_record]);
     }
   }, {
-    key: "uploadFiles",
-    value: function uploadFiles(files) {
+    key: "uploadstudent_records",
+    value: function uploadstudent_records(student_records) {
       var _this15 = this;
 
-      this._transformFiles(files, function (transformedFiles) {
+      this._transformstudent_records(student_records, function (transformedstudent_records) {
         if (_this15.options.chunking) {
           // Chunking is not allowed to be used with `uploadMultiple` so we know
-          // that there is only __one__file.
-          var transformedFile = transformedFiles[0];
-          files[0].upload.chunked = _this15.options.chunking && (_this15.options.forceChunking || transformedFile.size > _this15.options.chunkSize);
-          files[0].upload.totalChunkCount = Math.ceil(transformedFile.size / _this15.options.chunkSize);
+          // that there is only __one__student_record.
+          var transformedstudent_record = transformedstudent_records[0];
+          student_records[0].upload.chunked = _this15.options.chunking && (_this15.options.forceChunking || transformedstudent_record.size > _this15.options.chunkSize);
+          student_records[0].upload.totalChunkCount = Math.ceil(transformedstudent_record.size / _this15.options.chunkSize);
         }
 
-        if (files[0].upload.chunked) {
-          // This file should be sent in chunks!
-          // If the chunking option is set, we **know** that there can only be **one** file, since
+        if (student_records[0].upload.chunked) {
+          // This student_record should be sent in chunks!
+          // If the chunking option is set, we **know** that there can only be **one** student_record, since
           // uploadMultiple is not allowed with this option.
-          var file = files[0];
-          var _transformedFile = transformedFiles[0];
+          var student_record = student_records[0];
+          var _transformedstudent_record = transformedstudent_records[0];
           var startedChunkCount = 0;
-          file.upload.chunks = [];
+          student_record.upload.chunks = [];
 
           var handleNextChunk = function handleNextChunk() {
-            var chunkIndex = 0; // Find the next item in file.upload.chunks that is not defined yet.
+            var chunkIndex = 0; // Find the next item in student_record.upload.chunks that is not defined yet.
 
-            while (file.upload.chunks[chunkIndex] !== undefined) {
+            while (student_record.upload.chunks[chunkIndex] !== undefined) {
               chunkIndex++;
             } // This means, that all chunks have already been started.
 
 
-            if (chunkIndex >= file.upload.totalChunkCount) return;
+            if (chunkIndex >= student_record.upload.totalChunkCount) return;
             startedChunkCount++;
             var start = chunkIndex * _this15.options.chunkSize;
-            var end = Math.min(start + _this15.options.chunkSize, _transformedFile.size);
+            var end = Math.min(start + _this15.options.chunkSize, _transformedstudent_record.size);
             var dataBlock = {
               name: _this15._getParamName(0),
-              data: _transformedFile.webkitSlice ? _transformedFile.webkitSlice(start, end) : _transformedFile.slice(start, end),
-              filename: file.upload.filename,
+              data: _transformedstudent_record.webkitSlice ? _transformedstudent_record.webkitSlice(start, end) : _transformedstudent_record.slice(start, end),
+              student_recordname: student_record.upload.student_recordname,
               chunkIndex: chunkIndex
             };
-            file.upload.chunks[chunkIndex] = {
-              file: file,
+            student_record.upload.chunks[chunkIndex] = {
+              student_record: student_record,
               index: chunkIndex,
               dataBlock: dataBlock,
               // In case we want to retry.
@@ -2312,10 +2312,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
             };
 
-            _this15._uploadData(files, [dataBlock]);
+            _this15._uploadData(student_records, [dataBlock]);
           };
 
-          file.upload.finishedChunkUpload = function (chunk) {
+          student_record.upload.finishedChunkUpload = function (chunk) {
             var allFinished = true;
             chunk.status = Dropzone.SUCCESS; // Clear the data from the chunk
 
@@ -2323,25 +2323,25 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
             chunk.xhr = null;
 
-            for (var i = 0; i < file.upload.totalChunkCount; i++) {
-              if (file.upload.chunks[i] === undefined) {
+            for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
+              if (student_record.upload.chunks[i] === undefined) {
                 return handleNextChunk();
               }
 
-              if (file.upload.chunks[i].status !== Dropzone.SUCCESS) {
+              if (student_record.upload.chunks[i].status !== Dropzone.SUCCESS) {
                 allFinished = false;
               }
             }
 
             if (allFinished) {
-              _this15.options.chunksUploaded(file, function () {
-                _this15._finished(files, '', null);
+              _this15.options.chunksUploaded(student_record, function () {
+                _this15._finished(student_records, '', null);
               });
             }
           };
 
           if (_this15.options.parallelChunkUploads) {
-            for (var i = 0; i < file.upload.totalChunkCount; i++) {
+            for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
               handleNextChunk();
             }
           } else {
@@ -2350,45 +2350,45 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         } else {
           var dataBlocks = [];
 
-          for (var _i3 = 0; _i3 < files.length; _i3++) {
+          for (var _i3 = 0; _i3 < student_records.length; _i3++) {
             dataBlocks[_i3] = {
               name: _this15._getParamName(_i3),
-              data: transformedFiles[_i3],
-              filename: files[_i3].upload.filename
+              data: transformedstudent_records[_i3],
+              student_recordname: student_records[_i3].upload.student_recordname
             };
           }
 
-          _this15._uploadData(files, dataBlocks);
+          _this15._uploadData(student_records, dataBlocks);
         }
       });
-    } /// Returns the right chunk for given file and xhr
+    } /// Returns the right chunk for given student_record and xhr
 
   }, {
     key: "_getChunk",
-    value: function _getChunk(file, xhr) {
-      for (var i = 0; i < file.upload.totalChunkCount; i++) {
-        if (file.upload.chunks[i] !== undefined && file.upload.chunks[i].xhr === xhr) {
-          return file.upload.chunks[i];
+    value: function _getChunk(student_record, xhr) {
+      for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
+        if (student_record.upload.chunks[i] !== undefined && student_record.upload.chunks[i].xhr === xhr) {
+          return student_record.upload.chunks[i];
         }
       }
-    } // This function actually uploads the file(s) to the server.
+    } // This function actually uploads the student_record(s) to the server.
     // If dataBlocks contains the actual data to upload (meaning, that this could either be transformed
-    // files, or individual chunks for chunked upload).
+    // student_records, or individual chunks for chunked upload).
 
   }, {
     key: "_uploadData",
-    value: function _uploadData(files, dataBlocks) {
+    value: function _uploadData(student_records, dataBlocks) {
       var _this16 = this;
 
-      var xhr = new XMLHttpRequest(); // Put the xhr object in the file objects to be able to reference it later.
+      var xhr = new XMLHttpRequest(); // Put the xhr object in the student_record objects to be able to reference it later.
 
-      var _iterator21 = _createForOfIteratorHelper(files),
+      var _iterator21 = _createForOfIteratorHelper(student_records),
           _step21;
 
       try {
         for (_iterator21.s(); !(_step21 = _iterator21.n()).done;) {
-          var file = _step21.value;
-          file.xhr = xhr;
+          var student_record = _step21.value;
+          student_record.xhr = xhr;
         }
       } catch (err) {
         _iterator21.e(err);
@@ -2396,36 +2396,36 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         _iterator21.f();
       }
 
-      if (files[0].upload.chunked) {
+      if (student_records[0].upload.chunked) {
         // Put the xhr object in the right chunk object, so it can be associated later, and found with _getChunk
-        files[0].upload.chunks[dataBlocks[0].chunkIndex].xhr = xhr;
+        student_records[0].upload.chunks[dataBlocks[0].chunkIndex].xhr = xhr;
       }
 
-      var method = this.resolveOption(this.options.method, files);
-      var url = this.resolveOption(this.options.url, files);
+      var method = this.resolveOption(this.options.method, student_records);
+      var url = this.resolveOption(this.options.url, student_records);
       xhr.open(method, url, true); // Setting the timeout after open because of IE11 issue: https://gitlab.com/meno/dropzone/issues/8
 
-      xhr.timeout = this.resolveOption(this.options.timeout, files); // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
+      xhr.timeout = this.resolveOption(this.options.timeout, student_records); // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
 
       xhr.withCredentials = !!this.options.withCredentials;
 
       xhr.onload = function (e) {
-        _this16._finishedUploading(files, xhr, e);
+        _this16._finishedUploading(student_records, xhr, e);
       };
 
       xhr.ontimeout = function () {
-        _this16._handleUploadError(files, xhr, "Request timedout after ".concat(_this16.options.timeout / 1000, " seconds"));
+        _this16._handleUploadError(student_records, xhr, "Request timedout after ".concat(_this16.options.timeout / 1000, " seconds"));
       };
 
       xhr.onerror = function () {
-        _this16._handleUploadError(files, xhr);
+        _this16._handleUploadError(student_records, xhr);
       }; // Some browsers do not have the .upload property
 
 
       var progressObj = xhr.upload != null ? xhr.upload : xhr;
 
       progressObj.onprogress = function (e) {
-        return _this16._updateFilesUploadProgress(files, xhr, e);
+        return _this16._updatestudent_recordsUploadProgress(student_records, xhr, e);
       };
 
       var headers = {
@@ -2452,7 +2452,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         var additionalParams = this.options.params;
 
         if (typeof additionalParams === 'function') {
-          additionalParams = additionalParams.call(this, files, xhr, files[0].upload.chunked ? this._getChunk(files[0], xhr) : null);
+          additionalParams = additionalParams.call(this, student_records, xhr, student_records[0].upload.chunked ? this._getChunk(student_records[0], xhr) : null);
         }
 
         for (var key in additionalParams) {
@@ -2472,13 +2472,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       } // Let the user add additional data if necessary
 
 
-      var _iterator22 = _createForOfIteratorHelper(files),
+      var _iterator22 = _createForOfIteratorHelper(student_records),
           _step22;
 
       try {
         for (_iterator22.s(); !(_step22 = _iterator22.n()).done;) {
-          var _file = _step22.value;
-          this.emit("sending", _file, xhr, formData);
+          var _student_record = _step22.value;
+          this.emit("sending", _student_record, xhr, formData);
         }
       } catch (err) {
         _iterator22.e(err);
@@ -2487,41 +2487,41 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("sendingmultiple", files, xhr, formData);
+        this.emit("sendingmultiple", student_records, xhr, formData);
       }
 
-      this._addFormElementData(formData); // Finally add the files
-      // Has to be last because some servers (eg: S3) expect the file to be the last parameter
+      this._addFormElementData(formData); // Finally add the student_records
+      // Has to be last because some servers (eg: S3) expect the student_record to be the last parameter
 
 
       for (var _i4 = 0; _i4 < dataBlocks.length; _i4++) {
         var dataBlock = dataBlocks[_i4];
-        formData.append(dataBlock.name, dataBlock.data, dataBlock.filename);
+        formData.append(dataBlock.name, dataBlock.data, dataBlock.student_recordname);
       }
 
-      this.submitRequest(xhr, formData, files);
-    } // Transforms all files with this.options.transformFile and invokes done with the transformed files when done.
+      this.submitRequest(xhr, formData, student_records);
+    } // Transforms all student_records with this.options.transformstudent_record and invokes done with the transformed student_records when done.
 
   }, {
-    key: "_transformFiles",
-    value: function _transformFiles(files, done) {
+    key: "_transformstudent_records",
+    value: function _transformstudent_records(student_records, done) {
       var _this17 = this;
 
-      var transformedFiles = []; // Clumsy way of handling asynchronous calls, until I get to add a proper Future library.
+      var transformedstudent_records = []; // Clumsy way of handling asynchronous calls, until I get to add a proper Future library.
 
       var doneCounter = 0;
 
       var _loop = function _loop(i) {
-        _this17.options.transformFile.call(_this17, files[i], function (transformedFile) {
-          transformedFiles[i] = transformedFile;
+        _this17.options.transformstudent_record.call(_this17, student_records[i], function (transformedstudent_record) {
+          transformedstudent_records[i] = transformedstudent_record;
 
-          if (++doneCounter === files.length) {
-            done(transformedFiles);
+          if (++doneCounter === student_records.length) {
+            done(transformedstudent_records);
           }
         });
       };
 
-      for (var i = 0; i < files.length; i++) {
+      for (var i = 0; i < student_records.length; i++) {
         _loop(i);
       }
     } // Takes care of adding other input elements of the form to the AJAX request
@@ -2571,51 +2571,51 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator23.f();
         }
       }
-    } // Invoked when there is new progress information about given files.
+    } // Invoked when there is new progress information about given student_records.
     // If e is not provided, it is assumed that the upload is finished.
 
   }, {
-    key: "_updateFilesUploadProgress",
-    value: function _updateFilesUploadProgress(files, xhr, e) {
+    key: "_updatestudent_recordsUploadProgress",
+    value: function _updatestudent_recordsUploadProgress(student_records, xhr, e) {
       var progress;
 
       if (typeof e !== 'undefined') {
         progress = 100 * e.loaded / e.total;
 
-        if (files[0].upload.chunked) {
-          var file = files[0]; // Since this is a chunked upload, we need to update the appropriate chunk progress.
+        if (student_records[0].upload.chunked) {
+          var student_record = student_records[0]; // Since this is a chunked upload, we need to update the appropriate chunk progress.
 
-          var chunk = this._getChunk(file, xhr);
+          var chunk = this._getChunk(student_record, xhr);
 
           chunk.progress = progress;
           chunk.total = e.total;
           chunk.bytesSent = e.loaded;
-          var fileProgress = 0,
-              fileTotal,
-              fileBytesSent;
-          file.upload.progress = 0;
-          file.upload.total = 0;
-          file.upload.bytesSent = 0;
+          var student_recordProgress = 0,
+              student_recordTotal,
+              student_recordBytesSent;
+          student_record.upload.progress = 0;
+          student_record.upload.total = 0;
+          student_record.upload.bytesSent = 0;
 
-          for (var i = 0; i < file.upload.totalChunkCount; i++) {
-            if (file.upload.chunks[i] !== undefined && file.upload.chunks[i].progress !== undefined) {
-              file.upload.progress += file.upload.chunks[i].progress;
-              file.upload.total += file.upload.chunks[i].total;
-              file.upload.bytesSent += file.upload.chunks[i].bytesSent;
+          for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
+            if (student_record.upload.chunks[i] !== undefined && student_record.upload.chunks[i].progress !== undefined) {
+              student_record.upload.progress += student_record.upload.chunks[i].progress;
+              student_record.upload.total += student_record.upload.chunks[i].total;
+              student_record.upload.bytesSent += student_record.upload.chunks[i].bytesSent;
             }
           }
 
-          file.upload.progress = file.upload.progress / file.upload.totalChunkCount;
+          student_record.upload.progress = student_record.upload.progress / student_record.upload.totalChunkCount;
         } else {
-          var _iterator25 = _createForOfIteratorHelper(files),
+          var _iterator25 = _createForOfIteratorHelper(student_records),
               _step25;
 
           try {
             for (_iterator25.s(); !(_step25 = _iterator25.n()).done;) {
-              var _file2 = _step25.value;
-              _file2.upload.progress = progress;
-              _file2.upload.total = e.total;
-              _file2.upload.bytesSent = e.loaded;
+              var _student_record2 = _step25.value;
+              _student_record2.upload.progress = progress;
+              _student_record2.upload.total = e.total;
+              _student_record2.upload.bytesSent = e.loaded;
             }
           } catch (err) {
             _iterator25.e(err);
@@ -2624,13 +2624,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }
         }
 
-        var _iterator26 = _createForOfIteratorHelper(files),
+        var _iterator26 = _createForOfIteratorHelper(student_records),
             _step26;
 
         try {
           for (_iterator26.s(); !(_step26 = _iterator26.n()).done;) {
-            var _file3 = _step26.value;
-            this.emit("uploadprogress", _file3, _file3.upload.progress, _file3.upload.bytesSent);
+            var _student_record3 = _step26.value;
+            this.emit("uploadprogress", _student_record3, _student_record3.upload.progress, _student_record3.upload.bytesSent);
           }
         } catch (err) {
           _iterator26.e(err);
@@ -2638,24 +2638,24 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator26.f();
         }
       } else {
-        // Called when the file finished uploading
-        var allFilesFinished = true;
+        // Called when the student_record finished uploading
+        var allstudent_recordsFinished = true;
         progress = 100;
 
-        var _iterator27 = _createForOfIteratorHelper(files),
+        var _iterator27 = _createForOfIteratorHelper(student_records),
             _step27;
 
         try {
           for (_iterator27.s(); !(_step27 = _iterator27.n()).done;) {
-            var _file4 = _step27.value;
+            var _student_record4 = _step27.value;
 
-            if (_file4.upload.progress !== 100 || _file4.upload.bytesSent !== _file4.upload.total) {
-              allFilesFinished = false;
+            if (_student_record4.upload.progress !== 100 || _student_record4.upload.bytesSent !== _student_record4.upload.total) {
+              allstudent_recordsFinished = false;
             }
 
-            _file4.upload.progress = progress;
-            _file4.upload.bytesSent = _file4.upload.total;
-          } // Nothing to do, all files already at 100%
+            _student_record4.upload.progress = progress;
+            _student_record4.upload.bytesSent = _student_record4.upload.total;
+          } // Nothing to do, all student_records already at 100%
 
         } catch (err) {
           _iterator27.e(err);
@@ -2663,17 +2663,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator27.f();
         }
 
-        if (allFilesFinished) {
+        if (allstudent_recordsFinished) {
           return;
         }
 
-        var _iterator28 = _createForOfIteratorHelper(files),
+        var _iterator28 = _createForOfIteratorHelper(student_records),
             _step28;
 
         try {
           for (_iterator28.s(); !(_step28 = _iterator28.n()).done;) {
-            var _file5 = _step28.value;
-            this.emit("uploadprogress", _file5, progress, _file5.upload.bytesSent);
+            var _student_record5 = _step28.value;
+            this.emit("uploadprogress", _student_record5, progress, _student_record5.upload.bytesSent);
           }
         } catch (err) {
           _iterator28.e(err);
@@ -2684,10 +2684,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     }
   }, {
     key: "_finishedUploading",
-    value: function _finishedUploading(files, xhr, e) {
+    value: function _finishedUploading(student_records, xhr, e) {
       var response;
 
-      if (files[0].status === Dropzone.CANCELED) {
+      if (student_records[0].status === Dropzone.CANCELED) {
         return;
       }
 
@@ -2708,30 +2708,30 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       }
 
-      this._updateFilesUploadProgress(files);
+      this._updatestudent_recordsUploadProgress(student_records);
 
       if (!(200 <= xhr.status && xhr.status < 300)) {
-        this._handleUploadError(files, xhr, response);
+        this._handleUploadError(student_records, xhr, response);
       } else {
-        if (files[0].upload.chunked) {
-          files[0].upload.finishedChunkUpload(this._getChunk(files[0], xhr));
+        if (student_records[0].upload.chunked) {
+          student_records[0].upload.finishedChunkUpload(this._getChunk(student_records[0], xhr));
         } else {
-          this._finished(files, response, e);
+          this._finished(student_records, response, e);
         }
       }
     }
   }, {
     key: "_handleUploadError",
-    value: function _handleUploadError(files, xhr, response) {
-      if (files[0].status === Dropzone.CANCELED) {
+    value: function _handleUploadError(student_records, xhr, response) {
+      if (student_records[0].status === Dropzone.CANCELED) {
         return;
       }
 
-      if (files[0].upload.chunked && this.options.retryChunks) {
-        var chunk = this._getChunk(files[0], xhr);
+      if (student_records[0].upload.chunked && this.options.retryChunks) {
+        var chunk = this._getChunk(student_records[0], xhr);
 
         if (chunk.retries++ < this.options.retryChunksLimit) {
-          this._uploadData(files, [chunk.dataBlock]);
+          this._uploadData(student_records, [chunk.dataBlock]);
 
           return;
         } else {
@@ -2739,27 +2739,27 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       }
 
-      this._errorProcessing(files, response || this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr);
+      this._errorProcessing(student_records, response || this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr);
     }
   }, {
     key: "submitRequest",
-    value: function submitRequest(xhr, formData, files) {
+    value: function submitRequest(xhr, formData, student_records) {
       xhr.send(formData);
     } // Called internally when processing is finished.
     // Individual callbacks have to be called in the appropriate sections.
 
   }, {
     key: "_finished",
-    value: function _finished(files, responseText, e) {
-      var _iterator29 = _createForOfIteratorHelper(files),
+    value: function _finished(student_records, responseText, e) {
+      var _iterator29 = _createForOfIteratorHelper(student_records),
           _step29;
 
       try {
         for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
-          var file = _step29.value;
-          file.status = Dropzone.SUCCESS;
-          this.emit("success", file, responseText, e);
-          this.emit("complete", file);
+          var student_record = _step29.value;
+          student_record.status = Dropzone.SUCCESS;
+          this.emit("success", student_record, responseText, e);
+          this.emit("complete", student_record);
         }
       } catch (err) {
         _iterator29.e(err);
@@ -2768,8 +2768,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("successmultiple", files, responseText, e);
-        this.emit("completemultiple", files);
+        this.emit("successmultiple", student_records, responseText, e);
+        this.emit("completemultiple", student_records);
       }
 
       if (this.options.autoProcessQueue) {
@@ -2780,16 +2780,16 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
   }, {
     key: "_errorProcessing",
-    value: function _errorProcessing(files, message, xhr) {
-      var _iterator30 = _createForOfIteratorHelper(files),
+    value: function _errorProcessing(student_records, message, xhr) {
+      var _iterator30 = _createForOfIteratorHelper(student_records),
           _step30;
 
       try {
         for (_iterator30.s(); !(_step30 = _iterator30.n()).done;) {
-          var file = _step30.value;
-          file.status = Dropzone.ERROR;
-          this.emit("error", file, message, xhr);
-          this.emit("complete", file);
+          var student_record = _step30.value;
+          student_record.status = Dropzone.ERROR;
+          this.emit("error", student_record, message, xhr);
+          this.emit("complete", student_record);
         }
       } catch (err) {
         _iterator30.e(err);
@@ -2798,8 +2798,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("errormultiple", files, message, xhr);
-        this.emit("completemultiple", files);
+        this.emit("errormultiple", student_records, message, xhr);
+        this.emit("completemultiple", student_records);
       }
 
       if (this.options.autoProcessQueue) {
@@ -2826,7 +2826,7 @@ Dropzone.version = "5.7.2"; // This is a map of options for your different dropz
 //
 // Example:
 //
-//     Dropzone.options.myDropzoneElementId = { maxFilesize: 1 };
+//     Dropzone.options.myDropzoneElementId = { maxstudent_recordsize: 1 };
 //
 // To disable autoDiscover for a specific element, you can set `false` as an option:
 //
@@ -2942,13 +2942,13 @@ Dropzone.discover = function () {
 //
 
 
-Dropzone.blacklistedBrowsers = [// The mac os and windows phone version of opera 12 seems to have a problem with the File drag'n'drop API.
+Dropzone.blacklistedBrowsers = [// The mac os and windows phone version of opera 12 seems to have a problem with the student_record drag'n'drop API.
 /opera.*(Macintosh|Windows Phone).*version\/12/i]; // Checks if the browser is supported
 
 Dropzone.isBrowserSupported = function () {
   var capableBrowser = true;
 
-  if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
+  if (window.student_record && window.student_recordReader && window.student_recordList && window.Blob && window.FormData && document.querySelector) {
     if (!("classList" in document.createElement("a"))) {
       capableBrowser = false;
     } else {
@@ -3118,17 +3118,17 @@ Dropzone.confirm = function (question, accepted, rejected) {
 // https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
 
 
-Dropzone.isValidFile = function (file, acceptedFiles) {
-  if (!acceptedFiles) {
+Dropzone.isValidstudent_record = function (student_record, acceptedstudent_records) {
+  if (!acceptedstudent_records) {
     return true;
   } // If there are no accepted mime types, it's OK
 
 
-  acceptedFiles = acceptedFiles.split(",");
-  var mimeType = file.type;
+  acceptedstudent_records = acceptedstudent_records.split(",");
+  var mimeType = student_record.type;
   var baseMimeType = mimeType.replace(/\/.*$/, "");
 
-  var _iterator36 = _createForOfIteratorHelper(acceptedFiles),
+  var _iterator36 = _createForOfIteratorHelper(acceptedstudent_records),
       _step36;
 
   try {
@@ -3137,7 +3137,7 @@ Dropzone.isValidFile = function (file, acceptedFiles) {
       validType = validType.trim();
 
       if (validType.charAt(0) === ".") {
-        if (file.name.toLowerCase().indexOf(validType.toLowerCase(), file.name.length - validType.length) !== -1) {
+        if (student_record.name.toLowerCase().indexOf(validType.toLowerCase(), student_record.name.length - validType.length) !== -1) {
           return true;
         }
       } else if (/\/\*$/.test(validType)) {
@@ -3173,11 +3173,11 @@ if (typeof module !== 'undefined' && module !== null) {
   module.exports = Dropzone;
 } else {
   window.Dropzone = Dropzone;
-} // Dropzone file status codes
+} // Dropzone student_record status codes
 
 
 Dropzone.ADDED = "added";
-Dropzone.QUEUED = "queued"; // For backwards compatibility. Now, if a file is accepted, it's either queued
+Dropzone.QUEUED = "queued"; // For backwards compatibility. Now, if a student_record is accepted, it's either queued
 // or uploading.
 
 Dropzone.ACCEPTED = Dropzone.QUEUED;
@@ -3191,12 +3191,12 @@ Dropzone.SUCCESS = "success";
 
  Bugfix for iOS 6 and 7
  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
- based on the work of https://github.com/stomita/ios-imagefile-megapixel
+ based on the work of https://github.com/stomita/ios-imagestudent_record-megapixel
 
  */
 // Detecting vertical squash in loaded image.
 // Fixes a bug which squash image vertically while drawing into canvas for some images.
-// This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagefile-megapixel
+// This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagestudent_record-megapixel
 
 var detectVerticalSquash = function detectVerticalSquash(img) {
   var iw = img.naturalWidth;
@@ -3242,7 +3242,7 @@ var drawImageIOSFix = function drawImageIOSFix(ctx, img, sx, sy, sw, sh, dx, dy,
   var vertSquashRatio = detectVerticalSquash(img);
   return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
 }; // Based on MinifyJpeg
-// Source: http://www.perry.cz/files/ExifRestorer.js
+// Source: http://www.perry.cz/student_records/ExifRestorer.js
 // http://elicon.blog57.fc2.com/blog-entry-206.html
 
 
@@ -3297,21 +3297,21 @@ var ExifRestore = /*#__PURE__*/function () {
     }
   }, {
     key: "restore",
-    value: function restore(origFileBase64, resizedFileBase64) {
-      if (!origFileBase64.match('data:image/jpeg;base64,')) {
-        return resizedFileBase64;
+    value: function restore(origstudent_recordBase64, resizedstudent_recordBase64) {
+      if (!origstudent_recordBase64.match('data:image/jpeg;base64,')) {
+        return resizedstudent_recordBase64;
       }
 
-      var rawImage = this.decode64(origFileBase64.replace('data:image/jpeg;base64,', ''));
+      var rawImage = this.decode64(origstudent_recordBase64.replace('data:image/jpeg;base64,', ''));
       var segments = this.slice2Segments(rawImage);
-      var image = this.exifManipulation(resizedFileBase64, segments);
+      var image = this.exifManipulation(resizedstudent_recordBase64, segments);
       return "data:image/jpeg;base64,".concat(this.encode64(image));
     }
   }, {
     key: "exifManipulation",
-    value: function exifManipulation(resizedFileBase64, segments) {
+    value: function exifManipulation(resizedstudent_recordBase64, segments) {
       var exifArray = this.getExifArray(segments);
-      var newImageArray = this.insertExif(resizedFileBase64, exifArray);
+      var newImageArray = this.insertExif(resizedstudent_recordBase64, exifArray);
       var aBuffer = new Uint8Array(newImageArray);
       return aBuffer;
     }
@@ -3335,8 +3335,8 @@ var ExifRestore = /*#__PURE__*/function () {
     }
   }, {
     key: "insertExif",
-    value: function insertExif(resizedFileBase64, exifArray) {
-      var imageData = resizedFileBase64.replace('data:image/jpeg;base64,', '');
+    value: function insertExif(resizedstudent_recordBase64, exifArray) {
+      var imageData = resizedstudent_recordBase64.replace('data:image/jpeg;base64,', '');
       var buf = this.decode64(imageData);
       var separatePoint = buf.indexOf(255, 3);
       var mae = buf.slice(0, separatePoint);

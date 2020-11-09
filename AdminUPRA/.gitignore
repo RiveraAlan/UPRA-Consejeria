@@ -1,4 +1,4 @@
-# System / Log files
+# System / Log student_records
 *.DS_Store
 *.log
 
@@ -8,7 +8,7 @@
 # Sass Cache
 .sass-cache
 
-# Project files
+# Project student_records
 .idea
 nbproject
 nbproject/private
