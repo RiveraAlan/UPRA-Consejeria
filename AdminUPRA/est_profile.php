@@ -145,7 +145,7 @@ body {
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="inicio.php" class="nav-link">Inicio</a>
       </li>
     </ul>
   </nav>
@@ -162,7 +162,7 @@ body {
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -170,7 +170,7 @@ body {
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']}</a>" ?>
         </div>
       </div>
 <!-- Sidebar Menu -->
@@ -212,12 +212,11 @@ body {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">file Académico del student</h1>
-          </div><!-- /.col -->
+            <h1 class="m-0 text-dark">Expediente Académico del Estudiante</h1></div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">file Académico del student</li>
+              <li class="breadcrumb-item active">Expediente Académico del Estudiante</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -235,7 +234,7 @@ body {
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_number, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, crse_label
+                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_cohort
                     FROM student WHERE stdnt_number = $id";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -278,11 +277,11 @@ body {
                     <b>Año</b> <a class='float-right'>4</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Secuencia:</b> <a class='float-right'>{$row['crse_label']}</a>
+                    <b>Secuencia:</b> <a class='float-right'>{$row['stdnt_cohort']}</a>
                   </li>
                    
                 </ul>";?>
-                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar file</button>
+                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar Expediente</button>
               <?php
                 echo "</div>
               <!-- /.card-body -->
@@ -307,11 +306,6 @@ body {
           </div>";
               }
           ?>
-          <script>
-              $(document).ready(function(){
-                 $('#text').autosize();
-            });
-            </script>
           <!-- /.col -->
           <div class="card" id="style-2" style="overflow-y: scroll; overflow-x: auto; height: 850px; width: 75%;border-top: 3px solid #e0c200;">
         <div class="row">
@@ -326,7 +320,7 @@ body {
                 <!-- /.Comienzo de file del student -->
             <div class="container tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openCity(event, 'file')">file del student</button>
+                    <button class="tablinks active" onclick="openCity(event, 'file')">Expediente del Estudiante</button>
                     <button class="tablinks" onclick="openCity(event, 'Examinar')">Cursos a Examinar</button>
                   </div>
                 
@@ -395,9 +389,7 @@ body {
                     echo"
                     <td>{$row['semester_pass']}</td>
                     <td></td>
-                  </tr> ";}}?>
- 
-                     
+                  </tr> ";}}?> 
                 </tbody>
                   </table>
                   <br>
@@ -646,13 +638,8 @@ body {
          </div>
       </div>
               <!-- /.Final de Examinar -->  
-                
-
 
             <!-- Modals -->
-
-
-
             <!-- Edit -->
     <div id="id01" class="w3-modal" style="padding-left:20%">
     <div class="w3-modal-content w3-animate-zoom">
@@ -726,6 +713,7 @@ body {
                             </div>
                           </div>
                         </div>
+          
                           <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='CONVALIDACIÓN'>
                           <div class='input-group-append'>
@@ -744,13 +732,13 @@ body {
 
             <!-- /.Edit -->
 
-            <!-- file -->
-  <div id='id02' class='w3-modal' style='padding-left:20%'>
+            <!-- Expediente -->
+        <div id='id02' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
                 <span onclick='document.getElementById("id02").style.display="none"'
                 class='w3-button w3-display-topright'>&times;</span>
-                <h3>Subir file</h3>
+                <h3>Subir Expediente</h3>
               </header>
               <div class='w3-container'>
                   <br>
@@ -765,7 +753,7 @@ body {
               </footer>
             </div>
           </div>
-            <!-- /.file -->
+            <!-- /.Expediente -->
             <!-- Cursos a Examinar -->
           <div id='id03' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
@@ -780,72 +768,53 @@ body {
                 <div class="grid-container">
                 <div class='item-1'>
                           <button type="button" name="tabla" value="1" class='btn btn-primary' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i>
-                              Concentración
-                  </button>
+                            <i class='fas fa-pencil-alt'></i>Concentración</button>
                   </div>
                 <div class='item-2'>
                           <button type="button" name="tabla" value="2" class='btn btn-warning' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i>
-                              General Obli.
-                  </button>
+                              <i class='fas fa-pencil-alt'></i>General Obli.</button>
                   </div>
                           <div class='item-3'>
                           <button type="button" name="tabla" value="3" class='btn btn-danger'style="width: 100%; color: white">
-                             <i class='fas fa-pencil-alt'></i>
-                              Elect. Dept.
-                  </button>
+                             <i class='fas fa-pencil-alt'></i>Elect. Dept.</button>
                         </div>
                         <div class='item-4'>
                           <button type="button" name="tabla" value="4" class='btn btn-info' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i>
-                              Elect. Libre
-                  </button>
+                              <i class='fas fa-pencil-alt'></i>Elect. Libre</button>
                         </div>
                   </div>
               </div>
               <div class="grid-container" style="margin-left:18%">
-              <div class='item-1'>
-                    <input type="radio" name="tipo" value="convalidacion"> Convalidación</input>
-                  </div>
-                  <div class='item-2'>
-                    <input type="radio" name="tipo" value="equivalencia"> Equivalencia</input>
-                  </div>
+              <div class='item-1'><input type="radio" name="tipo" value="convalidacion"> Convalidación</input></div>
+              <div class='item-2'><input type="radio" name="tipo" value="equivalencia"> Equivalencia</input></div>
               </div>
-              <div class="select-box">
-                
-                      
-          <select name="courses" id="course-list">
-          <?php
-                $sql ="SELECT crse_name, crse_label
-                FROM mandatory_courses";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
+              
+              <div class="select-box">          
+                  <select name="courses" id="course-list">
+                  <?php
+                        $sql ="SELECT crse_name, crse_label
+                        FROM mandatory_courses";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
 
-                 if($resultCheck > 0){
-                while($row = mysqli_fetch_assoc($result)){
-                echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
-                }} 
-                
-                ?>
-          </select>
+                         if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                        echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                        }} ?>
+                  </select>
 
               </div>
+              
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               <button type='submit' class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;'>APLICAR</button>
-              </form>
               </footer>
+              </form>
             </div>
           </div>
             <!-- /.Cursos a Examinar -->
-            
             <!-- /.Modals -->
-              <!-- /.card-body -->
+             
             </div>
-            <!-- /.card -->
-
-           
-            <!-- /.card -->
           </div>
           <!-- /.col -->
         </div>
@@ -858,9 +827,10 @@ body {
           </div>
           <!-- /.col -->
         </div>
+      </section>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
+      </div>
+    </div><!-- /.container-fluid -->
     <!-- /.content -->
   </div>
 <script>
@@ -933,6 +903,10 @@ $("status").innerHTML = "Upload Aborted";
 </div>
 
 <!-- jQuery -->
+<script>
+$(document).ready(function(){
+    $('#text').autosize();});
+</script>
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -940,9 +914,7 @@ $("status").innerHTML = "Upload Aborted";
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-
 <script>
-
   // REDIRECT TO PHP SCRIPT THAT WILL PUT THE STUDENT RECORD IN A TXT FILE
     function $(el){
         return document.getElementById(el);
@@ -958,9 +930,7 @@ $("status").innerHTML = "Upload Aborted";
 	ajax.upload.addEventListener("progress", progressHandler, false);
 	ajax.open("POST", "inc/add_record_to_project.php");
 	ajax.send(formdata);
-
     }
-    
 </script>
 </body>
 </html>
