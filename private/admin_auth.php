@@ -29,8 +29,6 @@ if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor 
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
-        
-        
         // =============REMEMBER TO USE PASSWORD ENCRYPTION ====================
         if ($_POST['password'] === $password) {
             // Verification success! User has loggedin!
