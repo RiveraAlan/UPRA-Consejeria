@@ -2,31 +2,31 @@
 include_once 'connection.php';
 session_start();
 
-$student_recordName = $_student_recordS["student_record1"]["name"]; // The student_record name
-$student_recordTmpLoc = $_student_recordS["student_record1"]["tmp_name"]; // student_record in the PHP tmp folder
-$student_recordType = $_student_recordS["student_record1"]["type"]; // The type of student_record it is
-$student_recordSize = $_student_recordS["student_record1"]["size"]; // student_record size in bytes
-$student_recordErrorMsg = $_student_recordS["student_record1"]["error"]; // 0 for false... and 1 for true
-if (!$student_recordTmpLoc) { // if student_record not chosen
-    echo "ERROR: Please browse for a student_record before clicking the upload button.";
+$fileName = $_FILES["file1"]["name"]; // The file name
+$fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
+$fileType = $_FILES["file1"]["type"]; // The type of file it is
+$fileSize = $_FILES["file1"]["size"]; // File size in bytes
+$fileErrorMsg = $_FILES["file1"]["error"]; // 0 for false... and 1 for true
+if (!$fileTmpLoc) { // if file not chosen
+    echo "ERROR: Please browse for a file before clicking the upload button.";
     exit();
 }
-if(move_uploaded_student_record($student_recordTmpLoc, "../academic_record.txt")){
+if(move_uploaded_file($fileTmpLoc, "../academic_record.txt")){
     
     // UPLOAD IS COMPLETE";
- student_record_put_contents('../academic_record_formatted.txt',
+ file_put_contents('../academic_record_formatted.txt',
  preg_replace(
      '~[\r\n]+~',
      "\r\n",
-     trim(student_record_get_contents('../academic_record.txt'))
+     trim(file_get_contents('../academic_record.txt'))
  )
 );
 
 //  ======= REARRANGE ELECTIVES =========
 
 
-$mystudent_record = fopen("../academic_record_formatted.txt", "r+") or die("Unable to open student_record!");
-//fwrite($mystudent_record, $txt);
+$myfile = fopen("../academic_record_formatted.txt", "r+") or die("Unable to open file!");
+//fwrite($myfile, $txt);
 
 $electives = array();
 $department_electives = array();
@@ -56,27 +56,27 @@ $int_department_electives = array(
 
 
 $delete = FALSE;
-while(!feof($mystudent_record)) {
-    $line = fgets($mystudent_record);
+while(!feof($myfile)) {
+    $line = fgets($myfile);
 
     if($delete){
      
         array_push($electives, $line);
-        $contents = student_record_get_contents('../academic_record_formatted.txt');
+        $contents = file_get_contents('../academic_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        student_record_put_contents('../academic_record_formatted.txt', $contents);
+        file_put_contents('../academic_record_formatted.txt', $contents);
     }elseif(trim($line) === '- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -'){
         
         $delete = TRUE;
         array_push($electives, $line);
-        $contents = student_record_get_contents('../academic_record_formatted.txt');
+        $contents = file_get_contents('../academic_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        student_record_put_contents('../academic_record_formatted.txt', $contents);
+        file_put_contents('../academic_record_formatted.txt', $contents);
     }
    
   }
 
-fclose($mystudent_record);
+fclose($myfile);
 
  for($i=0; $i < count($electives); $i++){
      $matches = array();
@@ -101,8 +101,8 @@ fclose($mystudent_record);
         preg_match("/\s[A-F]{1}\s/", $temp, $grade);
         $temp = preg_replace("/\s[A-F]{1}\s/", '', $temp);
     
-        $department_elective = array("crse_name" => $course_code[0], "crse_description" => trim($temp),
-                                     "año_aprobó_c" => $semester[0], "crse_credits" => $credits[0], "crse_grade" => $grade[0]);
+        $department_elective = array("nombre_c" => $course_code[0], "descripción_c" => trim($temp),
+                                     "año_aprobó_c" => $semester[0], "créditos_c" => $credits[0], "nota_c" => $grade[0]);
         array_push($department_electives, $department_elective);
         unset($electives[$i]);
     } elseif(preg_match("/^[A-Z]{4} \d{4}/", $temp)){
@@ -121,21 +121,21 @@ fclose($mystudent_record);
          $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
     
          // MAKE SURE TO TAKE "REGISTERED" INTO CONSIDERATION
-        $free_elective = array("crse_name" => $course_code[0], "crse_description" => trim($temp),
-                                     "año_aprobó_c" => $semester[0], "crse_credits" => $credits[0], "crse_grade" => $grade[0]);
+        $free_elective = array("nombre_c" => $course_code[0], "descripción_c" => trim($temp),
+                                     "año_aprobó_c" => $semester[0], "créditos_c" => $credits[0], "nota_c" => $grade[0]);
         array_push($free_electives, $free_elective);
     }       
 } 
 
 usort($department_electives, function ($item1, $item2) {
-    return $item1["crse_name"] <=> $item2["crse_name"];
+    return $item1["nombre_c"] <=> $item2["nombre_c"];
 });
 
 for($i=0; $i < count($department_electives) - 1; $i++){
-    if($department_electives[$i]["crse_name"] === $department_electives[$i+1]["crse_name"] AND $department_electives[$i]["año_aprobó_c"] === $department_electives[$i+1]["año_aprobó_c"]){
-        $credits = floatval($department_electives[$i]["crse_credits"]) +  floatval($department_electives[$i+1]["crse_credits"]);
+    if($department_electives[$i]["nombre_c"] === $department_electives[$i+1]["nombre_c"] AND $department_electives[$i]["año_aprobó_c"] === $department_electives[$i+1]["año_aprobó_c"]){
+        $credits = floatval($department_electives[$i]["créditos_c"]) +  floatval($department_electives[$i+1]["créditos_c"]);
         $credits = number_format($credits, 2);
-        $department_electives[$i+1]["crse_credits"] = strval($credits);
+        $department_electives[$i+1]["créditos_c"] = strval($credits);
         unset($department_electives[$i]);
     }
 }
@@ -145,8 +145,8 @@ $int_credits = 0;
 
 foreach($department_electives as $department_elective_idx => $department_elective_info){
     
-    if(in_array(trim($department_elective_info["crse_name"]), $adv_department_electives)){
-        $adv_credits += intval($department_elective_info["crse_credits"]);
+    if(in_array(trim($department_elective_info["nombre_c"]), $adv_department_electives)){
+        $adv_credits += intval($department_elective_info["créditos_c"]);
     } else {
         
     }
@@ -154,15 +154,15 @@ foreach($department_electives as $department_elective_idx => $department_electiv
 
 
 usort($free_electives, function ($item1, $item2) {
-    return $item1["crse_name"] <=> $item2["crse_name"];
+    return $item1["nombre_c"] <=> $item2["nombre_c"];
 });
 
  for($i=0; $i < count($free_electives) - 1; $i++){
      
-    if($free_electives[$i]["crse_name"] === $free_electives[$i+1]["crse_name"] AND $free_electives[$i]["año_aprobó_c"] === $free_electives[$i+1]["año_aprobó_c"]){
-        $credits = floatval($free_electives[$i]["crse_credits"]) +  floatval($free_electives[$i+1]["crse_credits"]);
+    if($free_electives[$i]["nombre_c"] === $free_electives[$i+1]["nombre_c"] AND $free_electives[$i]["año_aprobó_c"] === $free_electives[$i+1]["año_aprobó_c"]){
+        $credits = floatval($free_electives[$i]["créditos_c"]) +  floatval($free_electives[$i+1]["créditos_c"]);
         $credits = number_format($credits, 2);
-        $free_electives[$i+1]["crse_credits"] = strval($credits);
+        $free_electives[$i+1]["créditos_c"] = strval($credits);
         unset($free_electives[$i]);
     }
 } 
@@ -170,109 +170,109 @@ usort($free_electives, function ($item1, $item2) {
 
 echo "\n"."<h3>Department electives:</h3>";
 foreach($department_electives as $department_elective){
-    echo "<p>".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."</p>";
+    echo "<p>".$department_elective['nombre_c']. " ".$department_elective['descripción_c']." ".$department_elective['año_aprobó_c']." ".$department_elective['créditos_c']." ".$department_elective['nota_c']."</p>";
 }
  
 
 echo "\n"."<h3>Free lectives:</h3>";
 foreach($free_electives as $free_elective){
-    echo "<p>".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."</p>";
+    echo "<p>".$free_elective['nombre_c']. " ".$free_elective['descripción_c']." ".$free_elective['año_aprobó_c']." ".$free_elective['créditos_c']." ".$free_elective['nota_c']."</p>";
 }
 echo "<h3>End of Free Electives</h3>";
 
-fclose($mystudent_record); 
+fclose($myfile); 
 
-$mystudent_record = fopen('../academic_record_formatted.txt', 'a');//opens student_record in append mode  
+$myfile = fopen('../academic_record_formatted.txt', 'a');//opens file in append mode  
   
  
 
-fwrite($mystudent_record, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
+fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
 foreach($department_electives as $department_elective){
-    fwrite($mystudent_record, "\n".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['año_aprobó_c']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."\n");
+    fwrite($myfile, "\n".$department_elective['nombre_c']. " ".$department_elective['descripción_c']." ".$department_elective['año_aprobó_c']." ".$department_elective['créditos_c']." ".$department_elective['nota_c']."\n");
 }
 
-fwrite($mystudent_record, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
+fwrite($myfile, "\n- - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -\n");
 foreach($free_electives as $free_elective){
-    fwrite($mystudent_record,"\n".$free_elective['crse_name']. " ".$free_elective['crse_description']." ".$free_elective['año_aprobó_c']." ".$free_elective['crse_credits']." ".$free_elective['crse_grade']."\n");
+    fwrite($myfile,"\n".$free_elective['nombre_c']. " ".$free_elective['descripción_c']." ".$free_elective['año_aprobó_c']." ".$free_elective['créditos_c']." ".$free_elective['nota_c']."\n");
 }
 
 $delete = FALSE;
 foreach($electives as $course){
     if($delete)
-        fwrite($mystudent_record, $course);
+        fwrite($myfile, $course);
     elseif(trim($course) === '***********************************************'){
         $delete = TRUE;
-        fwrite($mystudent_record ,"\nSECTION 3 - Work Not Applicable to this Program\n");
-        fwrite($mystudent_record ,"\n***********************************************\n");
+        fwrite($myfile ,"\nSECTION 3 - Work Not Applicable to this Program\n");
+        fwrite($myfile ,"\n***********************************************\n");
     }
         
     
 }
 
-fclose($mystudent_record); 
+fclose($myfile); 
 
 /* PUT THIS CODE INSIDE A FUNCTION
-$contents = student_record_get_contents('student_record_formatted.txt');
+$contents = file_get_contents('expediente_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        student_record_put_contents('student_record_formatted.txt', $contents);        
+        file_put_contents('expediente_formatted.txt', $contents);        
 */
 
 
 
 
 
-// ASSOCIATE COURSE WITH crse_label AND UPLOAD TO DATABASE
+// ASSOCIATE COURSE WITH ID_FIJO AND UPLOAD TO DATABASE
 
 
 
-$mystudent_record = fopen("student_record_formatted.txt", "r") or die("Unable to open student_record!");
+$myfile = fopen("expediente_formatted.txt", "r") or die("Unable to open file!");
 $courses = array();
-$mandatory_courses = array();
-$general_courses = array();
-$course_category = array();
+$expediente_fijo = array();
+$expediente_fijo_generales = array();
+$posicion_cursos = array();
 $courses_below_section3 = array();
 
-//student_record FIJO
-$query = "SELECT  * FROM mandatory_courses";
+//EXPEDIENTE FIJO
+$query = "SELECT  * FROM expediente_fijo";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
-        $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
-        array_push($mandatory_courses, $arr);
+        $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"], "id_rol" => $row["id_rol"]);
+        array_push($expediente_fijo, $arr);
   }
 }
 
- //student_record FIJO DEPARTAMENTALES
-$query = "SELECT  * FROM departmental_courses";
+ //EXPEDIENTE FIJO DEPARTAMENTALES
+$query = "SELECT  * FROM expediente_fijo_departamentales";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
-        $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
-        array_push($mandatory_courses, $arr);
+        $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"], "id_rol" => $row["id_rol"]);
+        array_push($expediente_fijo, $arr);
   }
 }
 
- //student_record FIJO GENERALES
- $query = "SELECT  * FROM general_courses";
+ //EXPEDIENTE FIJO GENERALES
+ $query = "SELECT  * FROM expediente_fijo_generales";
  $result = mysqli_query($conn,$query);
  $resultCheck = mysqli_num_rows($result);
  
  if($resultCheck > 0){
    while($row = mysqli_fetch_assoc($result)) {
-         $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
-         array_push($mandatory_courses, $arr);
+         $arr = array("id_fijo" => $row["id_fijo"], "nombre_c" => $row["nombre_c"], "id_rol" => $row["id_rol"]);
+         array_push($expediente_fijo, $arr);
    }
  }
 
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
 
-while(!feof($mystudent_record)){
-    $temp = ltrim(fgets($mystudent_record));
+while(!feof($myfile)){
+    $temp = ltrim(fgets($myfile));
     $course_code;
     $semester;
     $credits;
@@ -320,29 +320,29 @@ while(!feof($mystudent_record)){
         }
 
         
-         // ASSIGN crse_status
+         // ASSIGN ESTATUS_C
          
         if(preg_match("/Registered/", $temp)){
             $temp = preg_replace("/Registered/", '', $temp);
-            $crse_status = 2;
+            $estatus_c = 2;
             
         }else {
-            $crse_status = 1;
+            $estatus_c = 1;
         }
                
 
-            $course = array("stdnt_number" => -1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
-                            "crse_description" => $temp, "crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
-                            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "estatus_R" => NULL, "crse_name" => $course_code[0],
-                            "crse_id" => NULL
+            $course = array("id_est" => -1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
+                            "descripción_c" => $temp, "estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
+                            "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
+                            "id_rol" => NULL
                             );
 
-            // ASSIGN crse_label
-            foreach($mandatory_courses as $idx => $e_f){
-                if($e_f["crse_name"] === $course["crse_name"]){
-                    $course["crse_label"] = $e_f["crse_label"];
-                    $course["crse_id"] = $e_f["crse_id"];
-                    unset($mandatory_courses[$idx]);
+            // ASSIGN ID_FIJO
+            foreach($expediente_fijo as $idx => $e_f){
+                if($e_f["nombre_c"] === $course["nombre_c"]){
+                    $course["id_fijo"] = $e_f["id_fijo"];
+                    $course["id_rol"] = $e_f["id_rol"];
+                    unset($expediente_fijo[$idx]);
                 }
                    
             }
@@ -355,7 +355,7 @@ while(!feof($mystudent_record)){
 
 }
 
-fclose($mystudent_record);
+fclose($myfile);
 
 // ADD COURSES FROM SECTION 3 TO COURSES ARRAY
 for($i=0; $i < count($courses_below_section3); $i++){
@@ -393,27 +393,27 @@ for($i=0; $i < count($courses_below_section3); $i++){
             $temp = preg_replace("/\( \)/", '', $temp);
         }
 
-         // ASSIGN crse_status
+         // ASSIGN ESTATUS_C
          if(preg_match("/Registered/", $courses_below_section3[$i + 1])){
-            $crse_status = 2;
+            $estatus_c = 2;
         }else {
-            $crse_status = 1;
+            $estatus_c = 1;
         }
          if(preg_match("/EDFU 3005|INGL 0060/", $course_code[0])){
             continue;
         } 
         
-            $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
-            "crse_description" => $temp,"crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "estatus_R" => NULL, "crse_name" => $course_code[0],
-            "crse_id" => NULL
+            $course = array("id_est" =>-1, "id_fijo" => NULL, "id_especial" => NULL, "nota_c" => $grade[0],
+            "descripción_c" => $temp,"estatus_c" => $estatus_c, "año_aprobo_c" => $semester[0],"convalidacion_c" => NULL,
+            "equivalencia_c" => NULL, "créditos_c" => $credits[0], "estatus_R" => NULL, "nombre_c" => $course_code[0],
+            "id_rol" => NULL
                         );
                         
-            foreach($mandatory_courses as $idx => $e_f){
-                if($e_f["crse_name"] === $course["crse_name"]){
-                    $course["crse_label"] = $e_f["crse_label"];
-                    $course["crse_id"] = $e_f["crse_id"];
-                    unset($mandatory_courses[$idx]);
+            foreach($expediente_fijo as $idx => $e_f){
+                if($e_f["nombre_c"] === $course["nombre_c"]){
+                    $course["id_fijo"] = $e_f["id_fijo"];
+                    $course["id_rol"] = $e_f["id_rol"];
+                    unset($expediente_fijo[$idx]);
                 }
                    
             }
@@ -423,55 +423,55 @@ for($i=0; $i < count($courses_below_section3); $i++){
 }
 
 
-foreach($mandatory_courses as $e_f){
-    if($e_f["crse_label"] >= 1 AND $e_f["crse_label"] <= 30){
-        $course = array("stdnt_number" => -1, "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
-            "crse_status" => 0, "semester_pass" => NULL,"convalidacion_c" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => NULL, "estatus_R" => NULL, "crse_name" => $e_f["crse_name"]
+foreach($expediente_fijo as $e_f){
+    if($e_f["id_fijo"] >= 1 AND $e_f["id_fijo"] <= 40){
+        $course = array("id_est" => -1, "id_fijo" => $e_f["id_fijo"], "id_especial" => NULL, "nota_c" => NULL,
+            "estatus_c" => 0, "año_aprobo_c" => NULL,"convalidacion_c" => NULL,
+            "equivalencia_c" => NULL, "créditos_c" => NULL, "estatus_R" => NULL, "nombre_c" => $e_f["nombre_c"]
                         );
         array_push($courses, $course);
     } 
 }
 
-$crse_label_start_point = 100;
+$id_fijo_start_point = 100;
 
 echo "<h1>Electivas Libres</h1>";
 foreach($courses as &$course){
    
-    if($course["crse_label"] === NULL){
-        $course["crse_id"] = 7;
+    if($course["id_fijo"] === NULL){
+        $course["id_rol"] = 7;
         //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
-        $query1 = "SELECT crse_label FROM free_courses WHERE crse_name = '".$course["crse_name"]."';";
+        $query1 = "SELECT id_fijo FROM expediente_fijo_libre WHERE nombre_c = '".$course["nombre_c"]."';";
 
         //  =====LA BASE DATOS NO ESTA USANDO EL 100, ESTA AUTO INCREMENTANDOSE Y YA NO EMPIEZA EN 100. =======
 
         $result1 = mysqli_query($conn,$query1);
         $resultCheck1 = mysqli_num_rows($result1);
-        $crse_label_from_query1 = mysqli_fetch_assoc($result1);
-        $query2 = "SELECT MAX(crse_label)AS max_crse_label FROM free_courses;";
+        $id_fijo_from_query1 = mysqli_fetch_assoc($result1);
+        $query2 = "SELECT MAX(id_fijo)AS max_id_fijo FROM expediente_fijo_libre;";
         $result2 = mysqli_query($conn,$query2);
         $resultCheck2 = mysqli_num_rows($result2);
         
-        $crse_label_from_query2 = mysqli_fetch_assoc($result2);
+        $id_fijo_from_query2 = mysqli_fetch_assoc($result2);
 
         if($resultCheck1 === 1){
-            $course["crse_label"] = $crse_label_from_query1["crse_label"];
+            $course["id_fijo"] = $id_fijo_from_query1["id_fijo"];
             
-        } elseif($resultCheck2 === 1 AND $crse_label_from_query2["max_crse_label"] !== NULL) {
-            $course["crse_label"] = $crse_label_from_query2["max_crse_label"] + 1;
+        } elseif($resultCheck2 === 1 AND $id_fijo_from_query2["max_id_fijo"] !== NULL) {
+            $course["id_fijo"] = $id_fijo_from_query2["max_id_fijo"] + 1;
             
-            $query = "INSERT INTO free_courses(crse_label, crse_name, crse_description, crse_credits, crse_id) 
-            VALUES(".$course["crse_label"].", '".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].", 7);";
+            $query = "INSERT INTO expediente_fijo_libre(id_fijo, nombre_c, descripción_c, créditos_c, id_rol) 
+            VALUES(".$course["id_fijo"].", '".$course["nombre_c"]."','".$course["descripción_c"]."',".$course["créditos_c"].", 7);";
             echo "<h1>".$query."</h1>";
 
             mysqli_query($conn,$query);
             
         } else {
-            $course["crse_label"] = $crse_label_start_point;
-            $crse_label_start_point++;
+            $course["id_fijo"] = $id_fijo_start_point;
+            $id_fijo_start_point++;
             //INSERT INTO DB
-            $query = "INSERT INTO free_courses(crse_name, crse_description, crse_credits, crse_id) 
-            VALUES('".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].
+            $query = "INSERT INTO expediente_fijo_libre(nombre_c, descripción_c, créditos_c, id_rol) 
+            VALUES('".$course["nombre_c"]."','".$course["descripción_c"]."',".$course["créditos_c"].
              ", 7);";
         
             mysqli_query($conn,$query);
@@ -484,45 +484,45 @@ $creditos_huma= 0;
 $creditos_intermedias = 0;
 
 foreach($courses as &$course){
-    if($course["crse_id"] !== NULL){
-    if($course['crse_name'] === 'MATE 3026' OR 
-        $course['crse_name'] === 'BIOL 3011' OR 
-        $course['crse_name'] === 'BIOL 3012' OR 
-        $course['crse_name'] === 'FISI 3171' OR 
-        $course['crse_name'] === 'FISI 3172' OR 
-        $course['crse_name'] === 'FISI 3173' OR 
-        $course['crse_name'] === 'MATE 3174' OR   
-        $course['crse_name'] === 'CCOM 3135')
-            $course['special_id'] = 2;
+    if($course["id_rol"] !== NULL){
+    if($course['nombre_c'] === 'MATE 3026' OR 
+        $course['nombre_c'] === 'BIOL 3011' OR 
+        $course['nombre_c'] === 'BIOL 3012' OR 
+        $course['nombre_c'] === 'FISI 3171' OR 
+        $course['nombre_c'] === 'FISI 3172' OR 
+        $course['nombre_c'] === 'FISI 3173' OR 
+        $course['nombre_c'] === 'MATE 3174' OR   
+        $course['nombre_c'] === 'CCOM 3135')
+            $course['id_especial'] = 2;
         
-       elseif($course['crse_id'] === 5 AND $creditos_ciso >= 6) {
-            $course['special_id'] = 1;
+       elseif($course['id_rol'] === 5 AND $creditos_ciso >= 6) {
+            $course['id_especial'] = 1;
         }
-        elseif($course['crse_id'] === 5 AND $creditos_ciso < 6){
-            $creditos_ciso +=$course['crse_credits'];       
+        elseif($course['id_rol'] === 5 AND $creditos_ciso < 6){
+            $creditos_ciso +=$course['créditos_c'];       
         }
-        elseif($course['crse_id'] === 6 AND $creditos_huma >= 6) {
-            $course['special_id'] = 1;
+        elseif($course['id_rol'] === 6 AND $creditos_huma >= 6) {
+            $course['id_especial'] = 1;
         }
-        elseif($course['crse_id'] === 5 AND $creditos_huma < 6) {
-            $creditos_huma +=$course['crse_credits']; 
+        elseif($course['id_rol'] === 5 AND $creditos_huma < 6) {
+            $creditos_huma +=$course['créditos_c']; 
         }
-        elseif($course['crse_id'] === 9 AND ($course['crse_name'] === 'CCOM 3027' OR 
-                $course['crse_name'] === 'CCOM 3036' OR 
-                $course['crse_name'] === 'CCOM 4305' OR 
-                $course['crse_name'] === 'CCOM 4306' OR
-                $course['crse_name'] === 'CCOM 4501') AND 
+        elseif($course['id_rol'] === 9 AND ($course['nombre_c'] === 'CCOM 3027' OR 
+                $course['nombre_c'] === 'CCOM 3036' OR 
+                $course['nombre_c'] === 'CCOM 4305' OR 
+                $course['nombre_c'] === 'CCOM 4306' OR
+                $course['nombre_c'] === 'CCOM 4501') AND 
                 $creditos_intermedias > 6){
-                   $course['special_id'] = 1;
+                   $course['id_especial'] = 1;
         }
-        elseif($course['crse_id'] === 9 AND
-                ($course['crse_name'] === 'CCOM 3027' OR 
-                $course['crse_name'] === 'CCOM 3036' OR 
-                $course['crse_name'] === 'CCOM 4305' OR 
-                $course['crse_name'] === 'CCOM 4306' OR
-                $course['crse_name'] === 'CCOM 4501') AND 
+        elseif($course['id_rol'] === 9 AND
+                ($course['nombre_c'] === 'CCOM 3027' OR 
+                $course['nombre_c'] === 'CCOM 3036' OR 
+                $course['nombre_c'] === 'CCOM 4305' OR 
+                $course['nombre_c'] === 'CCOM 4306' OR
+                $course['nombre_c'] === 'CCOM 4501') AND 
                 $creditos_intermedias < 6){
-                    $creditos_intermedias +=$course['crse_credits'];
+                    $creditos_intermedias +=$course['créditos_c'];
         }
         else {
             
@@ -534,24 +534,24 @@ foreach($courses as &$course){
 echo "<h2>courses:"."</h2>";
 
 foreach($courses as $course){
-    echo "<p>codigo: ".$course["crse_name"]. " "."id fijo: ".$course["crse_label"]." "."crse_grade: ".$course["crse_grade"]." "."crse_status: ".$course["crse_status"]." "."ano_aprobo_c: ".$course["semester_pass"]." "."creditos_c: ".$course["crse_credits"]." "."crse_id: ".$course["crse_id"]." "."special_id: ".$course["special_id"]."</p>";
+    echo "<p>codigo: ".$course["nombre_c"]. " "."id fijo: ".$course["id_fijo"]." "."nota_c: ".$course["nota_c"]." "."estatus_c: ".$course["estatus_c"]." "."ano_aprobo_c: ".$course["año_aprobo_c"]." "."creditos_c: ".$course["créditos_c"]." "."id_rol: ".$course["id_rol"]." "."id_especial: ".$course["id_especial"]."</p>";
    
 }
 
-$sql ="SELECT stdnt_number FROM student_record";
+$sql ="SELECT id_est FROM expediente";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
                 if($resultCheck === 0){
                     foreach($courses as $course){
-                        if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                            $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
+                        if (($course["nombre_c"] !== "INGL 3113") AND ($course["nombre_c"] !== "INGL 3114") AND ($course["nombre_c"] !== "EDFU 3005") AND ($course["nombre_c"] !== "INGL 0060")){
+                            $stmt = $conn->prepare("INSERT INTO expediente (id_est,	id_fijo, id_especial, nota_c, estatus_c, año_aprobo_c) VALUES (?, ?, ?, ?, ?, ?)");
 
-                $stmt->bind_param('iiisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
+                $stmt->bind_param('iiisis', $_SESSION['id_est'], $course['id_fijo'], $course['id_especial'], $course['nota_c'], $course['estatus_c'], $course['año_aprobo_c']);
                         
                
                 if ($stmt->execute()) {
-                    //  header('Location: ../est_prostudent_record.php');
+                    //  header('Location: ../est_profile.php');
                     echo "Uploaded to Database successfully";
                 } else {
                 echo "Unable to create record";
@@ -572,9 +572,9 @@ mysqli_close($conn);
 
 
     
-   //header('Location: ../est_prostudent_record.php');
+   //header('Location: ../est_profile.php');
 } else {
-    echo "move_uploaded_student_record function failed";
+    echo "move_uploaded_file function failed";
 }
 
 
