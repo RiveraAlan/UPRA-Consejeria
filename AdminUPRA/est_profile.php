@@ -13,6 +13,8 @@ if(!isset($student_id)){
   header("Location: index.php");
     exit();
 }
+
+$modal = 'document.getElementById("id03").style.display="block"';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +46,7 @@ if(!isset($student_id)){
   <!-- page css -->
   <link rel="stylesheet" href="dist/css/adminlte.css">
   <link rel="stylesheet" href="../css/conse.css">
+  <link rel="stylesheet" href="login.css">
 
   <style>
     #drop_zone {
@@ -136,6 +139,7 @@ body {
   border-left: 5px solid #fff;
 }
   </style>
+
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -266,10 +270,10 @@ body {
                 if ($creditos['SUM(C)'] === NULL){
                   $creditos['SUM(C)']=0;
               }
-               
            
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
+              $año = date('Y')-(substr($row['stdnt_number'], 4,2) + 1999);
                echo "<h3 class='profile-username text-center'>{$row['stdnt_name']} {$row['stdnt_lastname1']} {$row['stdnt_lastname2']}</h3>
                 <p class='text-muted text-center'>{$row['stdnt_email']}</p>
                 <p class='text-muted text-center'>{$row['stdnt_number']}</p>
@@ -278,7 +282,7 @@ body {
                     <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(C)']}</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Año</b> <a class='float-right'>4</a>
+                    <b>Año</b> <a class='float-right'>$año</a>
                   </li>
                   <li class='list-group-item'>
                     <b>Secuencia:</b> <a class='float-right'>{$row['stdnt_cohort']}</a>
@@ -301,7 +305,7 @@ body {
               <div>
 
               <form id='paper' method='get' action=''>
-           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></textarea>
+           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
               </div><button type='submit' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
               <!-- /.card-body -->
@@ -331,6 +335,44 @@ body {
                   <!-- Tab content -->
     <div id="file" class="tabcontent active">
     <section class="content">
+    <?php
+    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_cohort
+                    FROM student WHERE stdnt_number = '$student_id'";
+                  $result = mysqli_query($conn, $sql);
+                  $resultCheck = mysqli_num_rows($result);
+            
+                $sentenciaSQL= "SELECT SUM(C)
+                FROM ((SELECT crse_credits AS C
+                FROM mandatory_courses
+                INNER JOIN  student_record USING(crse_label)
+                WHERE student_record.stdnt_number = '$student_id' AND student_record.estatus_R = 1)
+                UNION ALL
+                (SELECT crse_credits AS C
+                FROM general_courses
+                INNER JOIN student_record USING(crse_label)
+                WHERE student_record.stdnt_number = '$student_id' AND student_record.estatus_R = 1)
+                UNION ALL (SELECT crse_credits AS C
+                FROM departmental_courses
+                INNER JOIN student_record USING(crse_label)
+                WHERE student_record.stdnt_number = '$student_id' AND student_record.estatus_R = 1)
+                UNION ALL (SELECT crse_credits AS C
+                FROM free_courses
+                INNER JOIN student_record USING(crse_label)
+                WHERE student_record.stdnt_number = '$student_id' AND student_record.estatus_R = 1)) t1";
+                $resultSUM = mysqli_query($conn, $sentenciaSQL);
+                $creditos=mysqli_fetch_assoc($resultSUM);
+               
+           
+              if($resultCheck > 0){
+                if($creditos['SUM(C)'] <= 11){
+              echo "
+              <div class='error-message'><h4>¡Recomendar más créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
+                } else if ($creditos['SUM(C)'] > 21){
+                  echo "
+              <div class='error-message'><h4>¡Recomendar menos créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
+                }
+              }
+              ?>
       <div class="card-body">
                 <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
 <!-- </div>   -->
@@ -350,12 +392,7 @@ body {
                   <tbody>
                 <?php
                    $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'
-                   UNION
-                   (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
-                   FROM mandatory_courses WHERE crse_label 
-                   NOT IN (SELECT crse_label
-                   FROM student_record WHERE student_record.stdnt_number = '$student_id'))";
+                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -375,14 +412,14 @@ body {
                     <td>{$row['crse_grade']}</td>";
                     if($row['estatus_R'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id '>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$id'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id '>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
                       <input type='hidden' id='estatus_R' name='estatus_R' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
@@ -414,12 +451,7 @@ body {
                   <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'
-                UNION
-                (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
-                FROM general_courses WHERE crse_label 
-                NOT IN (SELECT crse_label
-                FROM student_record WHERE student_record.stdnt_number = '$student_id'))";
+                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -479,12 +511,7 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
-                UNION
-                (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
-                FROM free_courses WHERE crse_label 
-                NOT IN (SELECT crse_label
-                FROM student_record WHERE student_record.stdnt_number = '$student_id'))";
+                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -522,7 +549,7 @@ body {
                     }
                     echo"
                     <td>{$row['semester_pass']}</td>
-                    <td></td>
+                    <td><button onclick='$modal' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
                   </tr> ";}}?>
                 </tbody>
                   </table>
@@ -544,12 +571,7 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, estatus_R
-                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'
-                UNION
-                (SELECT crse_label, crse_name, crse_description, crse_credits, '', '', '', ''
-                FROM departmental_courses WHERE crse_label 
-                NOT IN (SELECT crse_label
-                FROM student_record WHERE student_record.stdnt_number = $student_id))";
+                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -619,7 +641,7 @@ body {
                    FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-                  $modal = 'document.getElementById("id03").style.display="block"';
+                  
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                  
@@ -759,6 +781,22 @@ body {
           </div>
             <!-- /.Expediente -->
             <!-- Cursos a Examinar -->
+            <!-- script to determine equivalencia/convalidacion -->
+          <script>
+          function equi_conv(elmnt,tabla) {
+            console.log(tabla);
+            if(tabla == 'concentracion' || tabla == 'general'){
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } else {
+              x.style.display = "block";
+            }
+            }
+              <?php $tabla = 'mandatory_courses'; ?>
+            
+          }
+          </script>
           <div id='id03' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
@@ -771,20 +809,20 @@ body {
                 <form action="conv_env.php" method="POST">
                 <div class="grid-container">
                 <div class='item-1'>
-                          <button type="button" name="tabla" value="1" class='btn btn-primary' style="width: 100%; color: white">
-                            <i class='fas fa-pencil-alt'></i>Concentración</button>
+                          <a onclick="equi_conv(this, 'concentracion')" class='btn btn-primary' style="width: 100%; color: white">
+                            <i class='fas fa-pencil-alt'></i>Concentración</a>
                   </div>
                 <div class='item-2'>
-                          <button type="button" name="tabla" value="2" class='btn btn-warning' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i>General Obli.</button>
+                          <a onclick="equi_conv(this, 'general')" class='btn btn-warning' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i>General Obli.</a>
                   </div>
                           <div class='item-3'>
-                          <button type="button" name="tabla" value="3" class='btn btn-danger'style="width: 100%; color: white">
-                             <i class='fas fa-pencil-alt'></i>Elect. Dept.</button>
+                          <a onclick="equi_conv(this, 'departamental')" class='btn btn-danger'style="width: 100%; color: white">
+                             <i class='fas fa-pencil-alt'></i>Elect. Dept.</a>
                         </div>
                         <div class='item-4'>
-                          <button type="button" name="tabla" value="4" class='btn btn-info' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i>Elect. Libre</button>
+                          <a onclick="equi_conv(this, 'libre')" class='btn btn-info' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i>Elect. Libre</a>
                         </div>
                   </div>
               </div>
@@ -793,18 +831,19 @@ body {
               <div class='item-2'><input type="radio" name="tipo" value="equivalencia"> Equivalencia</input></div>
               </div>
               
-              <div class="select-box">          
+              <div id='myDIV' style="display: none" class="select-box">          
                   <select name="courses" id="course-list">
                   <?php
                         $sql ="SELECT crse_name, crse_label
-                        FROM mandatory_courses";
+                        FROM $tabla";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
 
                          if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
-                        echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
-                        }} ?>
+                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                        }
+                        } ?>
                   </select>
 
               </div>
@@ -936,5 +975,7 @@ $(document).ready(function(){
 	ajax.send(formdata);
     }
 </script>
+
+
 </body>
 </html>

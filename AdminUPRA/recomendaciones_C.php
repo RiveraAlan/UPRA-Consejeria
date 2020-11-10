@@ -15,7 +15,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 1";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 1";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -31,7 +31,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 2";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 2";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -45,7 +45,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 3";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 3";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -60,7 +60,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 5";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 5";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -74,7 +74,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 6";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 6";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -89,7 +89,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 7";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 7";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -106,7 +106,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 8";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 8";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -121,7 +121,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 9";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 9";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -135,8 +135,10 @@ include '../private/dbconnect.php';
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
+       echo "funciona mano";
+       echo '$stdnt_number';
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 10";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = ''$stdnt_number'' AND crse_label = 10";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -153,7 +155,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 3 && $resultCheck < 5){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 11";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 11";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -168,7 +170,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 12";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 12";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -184,7 +186,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 13";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 13";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -199,7 +201,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 14";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 14";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -217,7 +219,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 4 && $resultCheck < 6){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 15";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 15";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -233,7 +235,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 16";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 16";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -250,7 +252,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 19";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 19";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -265,7 +267,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 20";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 20";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -280,7 +282,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 23";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 23";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -294,7 +296,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND (crse_label = 24 OR crse_label = 26 OR crse_label = 28)";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND (crse_label = 24 OR crse_label = 26 OR crse_label = 28)";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -309,7 +311,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND (crse_label = 25 OR crse_label = 27 OR crse_label = 29)";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND (crse_label = 25 OR crse_label = 27 OR crse_label = 29)";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -324,7 +326,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 30";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 30";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -338,7 +340,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 32";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 32";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -353,7 +355,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 33";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 33";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -368,7 +370,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 34";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 34";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -382,7 +384,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 AND $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND (crse_label = 17 OR crse_label = 18)";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND (crse_label = 17 OR crse_label = 18)";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -396,7 +398,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 35";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 35";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -411,7 +413,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 36";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 36";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -426,7 +428,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 37";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 37";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -441,7 +443,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 38";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 38";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -456,7 +458,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 39";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 39";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -471,7 +473,7 @@ include '../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = $stdnt_number AND crse_label = 40";
+         $sql = "UPDATE student_record SET estatus_R = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 40";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -488,7 +490,7 @@ include '../private/dbconnect.php';
          $row = mysqli_fetch_assoc($result);
          $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-$stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+$stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}    
@@ -502,7 +504,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}   
@@ -516,7 +518,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
@@ -530,7 +532,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
@@ -544,7 +546,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}   
@@ -558,7 +560,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}  
@@ -572,7 +574,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
@@ -586,7 +588,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
@@ -600,7 +602,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}  
@@ -614,7 +616,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();}  
@@ -628,7 +630,7 @@ $query = " SELECT crse_label FROM student_record
    $row = mysqli_fetch_assoc($result);
    $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
 
-   $stmt->bind_param('iii', $stdnt_number, $row['crse_label'], $estatus_R);
+   $stmt->bind_param('sii', '$stdnt_number', $row['crse_label'], $estatus_R);
 // Prepare statement    
 $stmt->execute();
    $stmt->close();} 
