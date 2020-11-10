@@ -185,7 +185,6 @@ fclose($myfile);
 $myfile = fopen('../academic_record_formatted.txt', 'a');//opens file in append mode  
   
  
-
 fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
 foreach($department_electives as $department_elective){
     fwrite($myfile, "\n".$department_elective['crse_name']. " ".$department_elective['crse_description']." ".$department_elective['semester_pass']." ".$department_elective['crse_credits']." ".$department_elective['crse_grade']."\n");
@@ -217,14 +216,7 @@ $contents = file_get_contents('expediente_formatted.txt');
         file_put_contents('expediente_formatted.txt', $contents);        
 */
 
-
-
-
-
 // ASSOCIATE COURSE WITH ID_FIJO AND UPLOAD TO DATABASE
-
-
-
 $myfile = fopen("expediente_formatted.txt", "r") or die("Unable to open file!");
 $courses = array();
 $expediente_fijo = array();
@@ -568,7 +560,4 @@ mysqli_close($conn);
 } else {
     echo "move_uploaded_file function failed";
 }
-
-
-
 
