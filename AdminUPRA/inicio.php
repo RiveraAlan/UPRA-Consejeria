@@ -131,7 +131,7 @@ if(!isset($_SESSION['adv_id'])){
             <div class="small-box bg-info">
               <div class="inner">
             <?php
-                $sql = "SELECT count(*) stdnt_number FROM `student`";
+                $sql = "SELECT count(*) AS amount_of_students FROM `student`";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -139,7 +139,7 @@ if(!isset($_SESSION['adv_id'])){
                 $row = mysqli_fetch_assoc($result);
                 ;}
               ?>
-                <?php echo "<h3>{$row['stdnt_number']}</h3>" ?>
+                <?php echo "<h3>{$row['amount_of_students']}</h3>" ?>
 
                 <p>Estudiantes de CCOM</p>
               </div>
@@ -203,7 +203,7 @@ if(!isset($_SESSION['adv_id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="Buscar Estudiante..." title="Type in a name">
+        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="Buscar Estudiante Por Nombre Completo o Por Número de Estudiante..." title="Type in a name">
         
             <ul id="myUL">
       
@@ -309,7 +309,7 @@ function myFunction() {
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
               
-                  array_push($students, array("stdnt_name" =>$row["stdnt_name"], "stdnt_number" => $row["stdnt_number"]));
+                  array_push($students, array("stdnt_name" =>$row["stdnt_name"].' '.$row["stdnt_lastname1"].' '.$row["stdnt_lastname2"], "stdnt_number" => $row["stdnt_number"]));
              echo "  
                   <tr>
                       <td>
@@ -404,7 +404,7 @@ function searchStudent(str){
     
 
     students.map((student, index) => {
-        if(re.test(student.stdnt_name)){
+        if(re.test(student.stdnt_name) || re.test(student.stdnt_number)){
               searchList += `<li><a href='est_profile.php?stdnt_number=${student.stdnt_number}'>${student.stdnt_name}</a></li>`;
         }
     }); 
