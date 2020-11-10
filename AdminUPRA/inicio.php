@@ -215,7 +215,8 @@ if(!isset($_SESSION['adv_id'])){
 }
 
 #myInput {
-  background-image: url('/css/searchicon.png');
+  background-image: url('../photos/search.png');
+  background-size: 18px 18px;
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 100%;
@@ -247,25 +248,6 @@ if(!isset($_SESSION['adv_id'])){
 }
 </style>
 
-
-<script>
-function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
-</script>
             
             <!-- TERMINAR EL SEARCH -->
           <div class="card-tools">
