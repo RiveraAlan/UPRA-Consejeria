@@ -1,7 +1,12 @@
 <?php
 session_start();
 include("inc/connection.php");
-$student_id = $_SESSION['stdnt_number'];
+
+if(isset($_GET["stdnt_number"])){
+  $student_id = $_GET['stdnt_number'];
+} else {
+  $student_id = $_SESSION['stdnt_number'];
+}
 $advisor_id = $_SESSION['adv_id'];
 
 if(!isset($student_id)){
