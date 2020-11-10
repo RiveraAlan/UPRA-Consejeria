@@ -1,10 +1,10 @@
 <?php
 include("inc/connection.php");
 session_start();
-$id= $_SESSION['id'];
-$name = $_SESSION['name'];
+$advisor_id= $_SESSION['adv_id'];
+$advisor_name = $_SESSION['adv_name'];
 
-if(!isset($_SESSION['id'])){
+if(!isset($_SESSION['adv_id'])){
   header("Location: index.php");
     exit();
 }
@@ -57,7 +57,7 @@ if(!isset($_SESSION['id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -168,7 +168,7 @@ if(!isset($_SESSION['id'])){
 <script src="dist/js/demo.js"></script>
 <!-- Page specific script -->
 <?php
-$sql ="SELECT cita_id, appointment.stdnt_number, appt_date, student.stdnt_number, stdnt_name, stdnt_lastname1, stdnt_lastname2  
+$sql ="SELECT appt_id, appointment.stdnt_number, appt_date, student.stdnt_number, stdnt_name, stdnt_lastname1, stdnt_lastname2  
 FROM appointment, student WHERE appointment.stdnt_number = student.stdnt_number";
 $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
