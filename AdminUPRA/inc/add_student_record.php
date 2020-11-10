@@ -564,17 +564,11 @@ $sql ="SELECT id_est FROM expediente";
                 }
                     
 mysqli_close($conn);
-
-
-
-
-
-
-
-    
    //header('Location: ../est_profile.php');
 } else {
     echo "move_uploaded_file function failed";
 }
+
+
 
 
