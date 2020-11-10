@@ -156,7 +156,7 @@ if(!isset($_SESSION['adv_id'])){
               <div class="inner">
                 <h3>70<sup style="font-size: 20px">%</sup></h3>
 
-                <p>Realización Consejería</p>
+                <p>Realizaron Consejería</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -203,7 +203,7 @@ if(!isset($_SESSION['adv_id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="BUSCAR student.." title="Type in a name">
+        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="Buscar Estudiante..." title="Type in a name">
         
             <ul id="myUL">
       
@@ -309,7 +309,7 @@ function myFunction() {
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
               
-                  array_push($students, $row["stdnt_name"]);
+                  array_push($students, array("stdnt_name" =>$row["stdnt_name"], "stdnt_number" => $row["stdnt_number"]));
              echo "  
                   <tr>
                       <td>
@@ -404,8 +404,8 @@ function searchStudent(str){
     
 
     students.map((student, index) => {
-        if(re.test(student)){
-              searchList += `<ul>${student}</ul>`;
+        if(re.test(student.stdnt_name)){
+              searchList += `<li><a href='est_profile.php?stdnt_number=${student.stdnt_number}'>${student.stdnt_name}</a></li>`;
         }
     }); 
 
