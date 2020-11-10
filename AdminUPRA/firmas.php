@@ -1,16 +1,16 @@
 <?php
 session_start();
 include("inc/connection.php");
-$id= $_SESSION['id'];
-$name = $_SESSION['name'];
+$advisor_id= $_SESSION['adv_id'];
+$advisor_name = $_SESSION['adv_name'];
 
-if(!isset($_SESSION['id'])){
+if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
 }
-if (isset($_POST['class-submit'])) {
-$crse_label = mysqli_real_escape_string($conn, $_POST['crse_label']);
-$crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
+if (isset($_GET['crse_label']) AND (isset($_GET['crse_name']))) {
+$crse_label = $_GET['crse_label'];
+$crse_name =  $_GET['crse_name'];
 }
 ?>
 <!DOCTYPE html>
@@ -89,7 +89,7 @@ $crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastnameU, adv_lastnameD FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -97,7 +97,7 @@ $crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
                 $row = mysqli_fetch_assoc($result);
                 ;}
             ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastnameU']} {$row['adv_lastnameD']}</a>" ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']}</a>" ?>
         </div>
       </div>
 
@@ -142,7 +142,7 @@ $crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>LISTA DE studentS <?php echo $crse_name ?></h1>
+            <h1>Lista De Estudiantes: <?php echo $crse_name ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -175,7 +175,7 @@ $crse_name = mysqli_real_escape_string($conn, $_POST['crse_name']);
         $sql ="SELECT stdnt_email FROM student_record 
         INNER JOIN student USING (stdnt_number)
         INNER JOIN departmental_courses USING (crse_label) 
-               WHERE crse_status = 4 AND crse_label = $crse_label";
+               WHERE crse_status = 4 AND crse_label = '$crse_label'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;

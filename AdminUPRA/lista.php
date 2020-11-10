@@ -1,10 +1,10 @@
 <?php
 include("inc/connection.php");
 session_start();
-$id= $_SESSION['id'];
-$name = $_SESSION['name'];
+$advisor_id= $_SESSION['adv_id'];
+$advisor_name = $_SESSION['adv_name'];
 
-if(!isset($_SESSION['id'])){
+if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
 }
@@ -71,7 +71,7 @@ if(!isset($_SESSION['id'])){
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -166,6 +166,7 @@ if(!isset($_SESSION['id'])){
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  <form action="firmas.php" method="POST">
                                   <?php
                                        $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
                                         FROM departmental_courses";
@@ -174,24 +175,24 @@ if(!isset($_SESSION['id'])){
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
-                    echo '
-                                  <form action="firmas.php" method="POST">   
-                                  <tr class="row100">
-                                     <input type="hidden" name="crse_label" value="'.$row['crse_label'].'"></input> 
-                                     <input type="hidden" name="crse_name" value="'.$row['crse_name'].'"></input> 
-                                    <td class="column100 column1" data-column="column1">'.$row['crse_name'].'</td>
-                                    <td class="column100 column2" data-column="column2">'.$row['crse_description'].'</td>
-                                    <td class="column100 column3" data-column="column3">'.$row['crse_credits'].'</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="class()" name="class-submit" class="nav-link"></button>
-                                    <b>Lista '.$row['crse_name'].'</b></td>
-                                  </tr>
-                                  </form>';}}?>
+                                      echo "
+                                    
+                                      <tr class='row100'>
+                                        <td class='' data-column='column1'>".$row['crse_name']."</td>
+                                        <td class='' data-column='column2'>".$row['crse_description']."</td>
+                                        <td class='' data-column='column3'>".$row['crse_credits']."</td>
+                                        <td class='' data-column='column4'>--</td>
+                                        <td class='' data-column='column5'>
+                                         <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
+                                        </td>
+                                      </tr>
+                                         ";}}?>
+                                  </form>
                                 </tbody>
                               </table>
                             </div>
                           </div>
-                        </div>             
+                        </div>                
         </div>
       </div>
 
@@ -212,26 +213,25 @@ if(!isset($_SESSION['id'])){
                                 </thead>
                                 <tbody>
                                 <?php
-                                   $sql =" SELECT crse_name, crse_description, crse_credits, crse_label
-                                   FROM mandatory_courses";
-                                    $result = mysqli_query($conn, $sql);
-                                    $resultCheck = mysqli_num_rows($result);
+                                       $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                        FROM mandatory_courses";
+                                        $result = mysqli_query($conn, $sql);
+                                        $resultCheck = mysqli_num_rows($result);
 
-                                if($resultCheck > 0){
-                                while($row = mysqli_fetch_assoc($result)){
-                        echo '
-                                  <form action="firmas.php" method="POST"> 
-                                  <tr class="row100">
-                                     <input type="hidden" name="crse_label" value="'.$row['crse_label'].'"></input> 
-                                    <td class="column100 column1" data-column="column1">'.$row['crse_name'].'</td>
-                                    <td class="column100 column2" data-column="column2">'.$row['crse_description'].'</td>
-                                    <td class="column100 column3" data-column="column3">'.$row['crse_credits'].'</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
-                                    <b>Lista '.$row['crse_name'].'</b></td>
+                                    if($resultCheck > 0){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                    echo "
+                                    
+                                  <tr class='row100'>
+                                    <td class='' data-column='column1'>".$row['crse_name']."</td>
+                                    <td class='' data-column='column2'>".$row['crse_description']."</td>
+                                    <td class='' data-column='column3'>".$row['crse_credits']."</td>
+                                    <td class='' data-column='column4'>--</td>
+                                    <td class='' data-column='column5'>
+                                     <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
+                                    </td>
                                   </tr>
-                                  </form>';}}?>
-                                  
+                                     ";}}?>
                                 </tbody>
                               </table>
                             </div>
@@ -256,25 +256,28 @@ if(!isset($_SESSION['id'])){
                                   </tr>
                                 </thead>
                                 <tbody>
-                                 <?php
-                                $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
-                                   FROM general_courses";
-                                    $result = mysqli_query($conn, $sql);
-                                    $resultCheck = mysqli_num_rows($result);
-                                if($resultCheck > 0){
-                                while($row = mysqli_fetch_assoc($result)){
-                           echo '
-                                  <form action="firmas.php" method="POST"> 
-                                  <tr class="row100">
-                                    <input type="hidden" name="crse_label" value="'.$row['crse_label'].'"></input> 
-                                    <td class="column100 column1" data-column="column1">'.$row['crse_name'].'</td>
-                                    <td class="column100 column2" data-column="column2">'.$row['crse_description'].'</td>
-                                    <td class="column100 column3" data-column="column3">'.$row['crse_credits'].'</td>
-                                    <td class="column100 column4" data-column="column4">--</td>
-                                    <td class="column100 column5" data-column="column5"><button type="submit" onclick="clase()" name="class-submit" class="nav-link"></button>
-                                    <b>Lista '.$row['crse_name'].'</b></td>
-                                  </tr>
-                                  </form>';}}?>
+                                <form action="firmas.php" method="POST">
+                                <?php
+                                       $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                        FROM general_courses";
+                                        $result = mysqli_query($conn, $sql);
+                                        $resultCheck = mysqli_num_rows($result);
+
+                                    if($resultCheck > 0){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                      echo "
+                                    
+                                      <tr class='row100'>
+                                        <td class='' data-column='column1'>".$row['crse_name']."</td>
+                                        <td class='' data-column='column2'>".$row['crse_description']."</td>
+                                        <td class='' data-column='column3'>".$row['crse_credits']."</td>
+                                        <td class='' data-column='column4'>--</td>
+                                        <td class='' data-column='column5'>
+                                         <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
+                                        </td>
+                                      </tr>
+                                         ";}}?>
+                                     </form>
                                 </tbody>
                               </table>
                             </div>
