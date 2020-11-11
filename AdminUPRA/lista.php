@@ -150,7 +150,7 @@ if(!isset($advisor_id)){
             <button class="tablinks" onclick="openCity(event, 'Otros')">Generales</button>
             </div>
 
-        <div id="ElectDept" class="tabcontent active">
+        <div id="ElectDept" class="tabcontent active" style="display: block;">
             <div class="table">
                 <div class="container-table100">
                           <div class="wrap-table100">
