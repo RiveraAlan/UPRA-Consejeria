@@ -1,10 +1,18 @@
 <?php
-$dbServername = "localhost";
-$dbUsername = "root";
+
+$serverName = "localhost";
+$dbUserName = "root";
 $dbPassword = "";
 $dbName = "counseling";
 
-$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+/*
+$serverName = '136.145.29.193';
+$dbUserName = 'chrtirmo';
+$dbPassword = 'chrtirmo840$cuta';
+$dbName = 'chrtirmo_db';
+*/
+
+$conn = mysqli_connect($serverName, $dbUserName, $dbPassword, $dbName);
 
 if (!$conn) {
     die("Connection failed: ".mysqli_connect_error());

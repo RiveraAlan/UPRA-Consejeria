@@ -152,9 +152,30 @@ if(!isset($_SESSION['adv_id'])){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
+            <?php
+                $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM student_record_details S_R_D1 
+                        WHERE S_R_D1.conducted_counseling = 1;";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+                $students_t_c_c = mysqli_fetch_array($result, MYSQLI_NUM);
+
+                $sql = "SELECT COUNT(*) AS total_students FROM student_record_details;";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+                $total_students =  mysqli_fetch_array($result, MYSQLI_NUM);
+
+                $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_dn_c_c FROM student_record_details S_R_D1 
+                WHERE S_R_D1.conducted_counseling = 0;";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+                $students_t_dn_c_c = mysqli_fetch_array($result, MYSQLI_NUM);
+                
+
+              ?>
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>70<sup style="font-size: 20px">%</sup></h3>
+                <?php echo "<h3>".(($students_t_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
+                
 
                 <p>Realizaron Consejería</p>
               </div>
@@ -184,7 +205,8 @@ if(!isset($_SESSION['adv_id'])){
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>30<sup style="font-size: 20px">%</sup></h3>
+              <?php echo "<h3>".(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
+                
 
                 <p>No ha realizado Consejería</p>
               </div>
@@ -282,8 +304,8 @@ if(!isset($_SESSION['adv_id'])){
               </thead>
               <tbody> 
               <?php
-              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial
-                      FROM student";
+              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, conducted_counseling
+              FROM student NATURAL JOIN student_record_details;";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
               
@@ -292,7 +314,11 @@ if(!isset($_SESSION['adv_id'])){
                 while($row = mysqli_fetch_assoc($result)){
               
                   array_push($students, array("stdnt_name" =>$row["stdnt_name"].' '.$row["stdnt_lastname1"].' '.$row["stdnt_lastname2"], "stdnt_number" => $row["stdnt_number"]));
-             echo "  
+                  if(boolval($row["conducted_counseling"]))
+                    $conducted_counseling = "<span class='badge badge-success'>Sí</span>";
+                  else 
+                    $conducted_counseling = "<span class='badge badge-danger'>No</span>";
+                  echo "  
                   <tr>
                       <td>
                           {$row['stdnt_number']}
@@ -317,7 +343,7 @@ if(!isset($_SESSION['adv_id'])){
                           </ul>
                       </td>
                       <td class='project-state'>
-                          <span class='badge badge-success'>SI</span>
+                          $conducted_counseling
                       </td>
                       <td class='project-actions text-right'>
                           

@@ -8,6 +8,10 @@ if(!isset($_SESSION['adv_id'])){
   header("Location: index.php");
     exit();
 }
+$sql = "DELETE FROM `appointment` WHERE appt_date < NOW();";
+$result = mysqli_query($conn, $sql);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
