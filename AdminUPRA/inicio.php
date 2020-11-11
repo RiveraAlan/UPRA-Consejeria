@@ -225,33 +225,46 @@ if(!isset($_SESSION['adv_id'])){
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <input type="text" id="myInput" onkeyup="searchStudent(this.value)" placeholder="Buscar Estudiante Por Nombre Completo o Por Número de Estudiante..." title="Type in a name">
-        
-            <ul id="myUL">
-      
-            </ul>
+        <div class="search-bar">
+        <input type="text" class="search-bar_input" onkeyup="searchStudent(this.value)" placeholder="Buscar Estudiante Por Nombre Completo o Por Número de Estudiante..." >
+        <img class="search-bar_icon" src="img/search-solid.svg" />
+        </div>
+        <ul id="myUL"></ul>
+            
             
 <style>
 * {
   box-sizing: border-box;
 }
 
-#myInput {
-  background-image: url('../photos/search.png');
-  background-size: 18px 18px;
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 50%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
+  margin: auto;
+}
+.search-bar_input {
+  min-width: 500px;
+  border: none;
+  outline: none;
+}
+.search-bar_icon {
+ width: 20px;
+ height: 20px;
+margin-left: auto;
 }
 
+
+
 #myUL {
+  width: 50%;
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 }
 
 #myUL li a {
@@ -280,6 +293,9 @@ if(!isset($_SESSION['adv_id'])){
               <i class="fas fa-times"></i>
             </button>
           </div>
+
+          <ul id="myUL"></ul>
+      
         </div>
         <div class="card-body p-0">
           <table class="table table-striped projects">
