@@ -16,15 +16,14 @@ if(!isset($student_id)){
 
 $modal = 'document.getElementById("id03").style.display="block"';
 
-if($_POST['action'] == 'call_this') {
+// if($_POST['action'] == 'call_this') {
     $parts= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $tabla = explode('=', $parts);
-}
+// }
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
           function equi_conv(elmnt,tabla) {
-            // console.log(tabla);
             if(tabla == 'mandatory_courses' || tabla == 'general_courses'){
             var x = document.getElementById("myDIV");
             if (x.style.display === "block") {
@@ -33,14 +32,14 @@ if($_POST['action'] == 'call_this') {
               x.style.display = "block";
             }
             history.pushState({pageID: 'Tabla'}, 'Tabla', '?tabla=' + tabla);
-            $.ajax({
-           type: "POST",
-           data:{action:'call_this'},
-           success:function(html) {
-             alert(html);
-           }
+          //   $.ajax({
+          //  type: "POST",
+          //  data:{action:'call_this'},
+          //  success:function(html) {
+          //    alert(html);
+          //  }
 
-      });
+      // });
           }
           }
           </script>
@@ -122,7 +121,7 @@ body {
 
 
 #course-list {
-  background-color: #ececec;
+  background-color: #d3d3d3;
   padding: 0.5rem 1rem;
   width: 100%;
   border-radius: 0.5rem;
