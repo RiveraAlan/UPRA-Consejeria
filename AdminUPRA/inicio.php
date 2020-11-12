@@ -171,7 +171,6 @@ if(!isset($_SESSION['adv_id'])){
                 $students_t_dn_c_c = mysqli_fetch_array($result, MYSQLI_NUM);
                 
 
-
               ?>
             <div class="small-box bg-success">
               <div class="inner">
@@ -187,12 +186,7 @@ if(!isset($_SESSION['adv_id'])){
             </div>
           </div>
           <!-- ./col -->
-<<<<<<< Updated upstream
             <div class="col-lg-3 col-6">
-=======
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
->>>>>>> Stashed changes
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
@@ -210,19 +204,11 @@ if(!isset($_SESSION['adv_id'])){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-<<<<<<< Updated upstream
             <div class="small-box bg-purple">
               <div class="inner" style="color: white">
                 <h3>44</h3>
 
                 <p>Candidatos a Graduación de CCOM</p>
-=======
-            <div class="small-box bg-warning">
-              <div class="inner" style="color: white">
-                <h3>44</h3>
-
-                <p>Candidatos a Graduación</p>
->>>>>>> Stashed changes
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -230,6 +216,7 @@ if(!isset($_SESSION['adv_id'])){
               <a href="#" class="small-box-footer"></a>
             </div>
           </div>
+          <!-- ./col -->
         </div>
   
       </div><!-- /.container-fluid -->           
@@ -253,7 +240,7 @@ if(!isset($_SESSION['adv_id'])){
 .search-bar {
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 50%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
@@ -261,7 +248,7 @@ if(!isset($_SESSION['adv_id'])){
   margin: auto;
 }
 .search-bar_input {
-  min-width: 80%;
+  min-width: 500px;
   border: none;
   outline: none;
 }
@@ -274,7 +261,7 @@ margin-left: auto;
 
 
 #myUL {
-  width: 60%;
+  width: 50%;
   list-style-type: none;
   padding: 0;
   margin: 0 auto;
