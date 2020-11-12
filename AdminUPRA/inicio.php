@@ -311,6 +311,9 @@ margin-left: auto;
                       <th style="width: 8%" class="text-center">
                           Estatus
                       </th>
+                      <th style="width: 8%" class="text-center">
+                          
+                      </th>
                   </tr>
               </thead>
               <tbody> 
@@ -323,12 +326,11 @@ margin-left: auto;
               $students = array();
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-              
                   array_push($students, array("stdnt_name" =>$row["stdnt_name"].' '.$row["stdnt_lastname1"].' '.$row["stdnt_lastname2"], "stdnt_number" => $row["stdnt_number"]));
                   if(boolval($row["conducted_counseling"]))
-                    $conducted_counseling = "<span class='badge badge-success'>Sí</span>";
+                    $conducted_counseling = "<span class='badge badge-success'>SI</span>";
                   else 
-                    $conducted_counseling = "<span class='badge badge-danger'>No</span>";
+                    $conducted_counseling = "<span class='badge badge-danger'>NO</span>";
                   echo "  
                   <tr>
                       <td>
@@ -356,6 +358,7 @@ margin-left: auto;
                       <td class='project-state'>
                           $conducted_counseling
                       </td>
+                      <td> </td>
                       <td class='project-actions text-right'>
                           
                           <div style='padding-top: 10px;'>
