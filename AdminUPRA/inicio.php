@@ -22,6 +22,7 @@ if(!isset($_SESSION['adv_id'])){
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -128,7 +129,7 @@ if(!isset($_SESSION['adv_id'])){
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-teal">
+            <div class="small-box bg-blue">
               <div class="inner">
             <?php
                 $sql = "SELECT count(*) AS amount_of_students FROM `student`";
@@ -318,7 +319,7 @@ margin-left: auto;
               </thead>
               <tbody> 
               <?php
-              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, conducted_counseling
+              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, conducted_counseling, record_status, stdnt_cohort
               FROM student NATURAL JOIN student_record_details;";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
@@ -333,19 +334,19 @@ margin-left: auto;
                     $conducted_counseling = "<span class='badge badge-danger'>NO</span>";
                   echo "  
                   <tr>
-                      <td>
+                      <td align='center'>
                           {$row['stdnt_number']}
                       </td>
-                      <td>
+                      <td align='center'>
                               {$row['stdnt_name']}
                               {$row['stdnt_lastname1']}
                               {$row['stdnt_lastname2']}
                           <br/>
                           <small>
-                              Cohorte 2017
+                              {$row['stdnt_cohort']}
                           </small>
                       </td>
-                      <td>
+                      <td align='center'>
                           <ul class='list-inline'> <div align='center'>
                           <form action='inc/exp_session.php' method='post'>
                               <li class='list-inline-item'>
@@ -357,23 +358,29 @@ margin-left: auto;
                       </td>
                       <td class='project-state'>
                           $conducted_counseling
-                      </td>
-                      <td> </td>
-                      <td class='project-actions text-right'>
-                          
+                      </td>";
+                      if($row['record_status'] == 1){
+                        echo "<td class='project-actions' align='center'>Activo</td>";
+                      }else{
+                      echo "<td class='project-actions' align='center'>Inactivo</td>";}
+                      echo "
+                      <form action='inc/status_est.php' method='POST'>
+                      <td class='project-actions text-right' align='center'>
+                          <input type='hidden' value='{$row['stdnt_number']}' name='stdnt_number'></input>
                           <div style='padding-top: 10px;'>
-                          <a class='btn btn-danger btn-sm' href='#''>
+                          <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>
                              <i class='fas fa-user-times'></i>
                               Inactivo
-                          </a>
+                          </button>
                         </div>
                         <div style='padding-top: 10px;'>
-                          <a class='btn btn-info btn-sm' href='#'>
+                          <button type='submit' value='1' onclick='student()' name='status-submit'class='btn btn-info btn-sm' href='#'>
                               <i class='fas fa-user-plus'></i>
-                              Activo
-                          </a>
+                              Activo &nbsp;&nbsp;&nbsp;
+                          </button>
                         </div>
                       </td>
+                      </form>
                   </tr>
                   ";
                 }
