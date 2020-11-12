@@ -128,7 +128,7 @@ if(!isset($_SESSION['adv_id'])){
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-navy">
+            <div class="small-box bg-teal">
               <div class="inner">
             <?php
                 $sql = "SELECT count(*) AS amount_of_students FROM `student`";
