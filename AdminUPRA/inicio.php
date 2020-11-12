@@ -353,7 +353,7 @@ margin-left: auto;
                           <form action='inc/exp_session.php' method='post'>
                               <li class='list-inline-item'>
                               <input type='hidden' id='stdnt_number' name='stdnt_number' value='{$row['stdnt_number']}'> 
-                                  <button title='UPRA' onclick='student()' name='est-submit' style='border: none'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></button>
+                                  <button title='UPRA' onclick='student()' name='est-submit' style='background-color: transparent; border: none'><img alt='Folder' class='table-avatar' src='img/folder.svg' alt='UPRA' /></button>
                               </li></div>
                             </form>
                           </ul>
