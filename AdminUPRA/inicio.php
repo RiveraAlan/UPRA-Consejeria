@@ -282,8 +282,6 @@ margin-left: auto;
   background-color: #eee;
 }
 </style>
-
-            
             <!-- TERMINAR EL SEARCH -->
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
