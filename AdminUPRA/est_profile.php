@@ -15,7 +15,38 @@ if(!isset($student_id)){
 }
 
 $modal = 'document.getElementById("id03").style.display="block"';
+
+if($_POST['action'] == 'call_this') {
+    $parts= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $tabla = explode('=', $parts);
+}
 ?>
+ <!-- script to determine equivalencia/convalidacion -->
+ <script>
+          function equi_conv(elmnt,tabla) {
+            // console.log(tabla);
+            if(tabla == 'mandatory_courses' || tabla == 'general_courses'){
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } else {
+              x.style.display = "block";
+            }
+            history.pushState({pageID: 'Tabla'}, 'Tabla', '?tabla=' + tabla);
+            $.ajax({
+           type: "POST",
+           data:{action:'call_this'},
+           success:function(html) {
+             alert(html);
+           }
+
+      });
+          }
+          }
+          </script>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -781,22 +812,7 @@ body {
           </div>
             <!-- /.Expediente -->
             <!-- Cursos a Examinar -->
-            <!-- script to determine equivalencia/convalidacion -->
-          <script>
-          function equi_conv(elmnt,tabla) {
-            console.log(tabla);
-            if(tabla == 'concentracion' || tabla == 'general'){
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "block") {
-              x.style.display = "none";
-            } else {
-              x.style.display = "block";
-            }
-            }
-              <?php $tabla = 'mandatory_courses'; ?>
-            
-          }
-          </script>
+           
           <div id='id03' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
@@ -809,11 +825,11 @@ body {
                 <form action="conv_env.php" method="POST">
                 <div class="grid-container">
                 <div class='item-1'>
-                          <a onclick="equi_conv(this, 'concentracion')" class='btn btn-primary' style="width: 100%; color: white">
+                          <a onclick="equi_conv(this, 'mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
                             <i class='fas fa-pencil-alt'></i>Concentración</a>
                   </div>
                 <div class='item-2'>
-                          <a onclick="equi_conv(this, 'general')" class='btn btn-warning' style="width: 100%; color: white">
+                          <a onclick="equi_conv(this, 'general_courses')" class='btn btn-warning' style="width: 100%; color: white">
                               <i class='fas fa-pencil-alt'></i>General Obli.</a>
                   </div>
                           <div class='item-3'>
@@ -835,7 +851,7 @@ body {
                   <select name="courses" id="course-list">
                   <?php
                         $sql ="SELECT crse_name, crse_label
-                        FROM $tabla";
+                        FROM $tabla[1]";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
 
