@@ -108,19 +108,18 @@ if(!isset($_SESSION['stdnt_number'])){
                     Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
-                    Número de student: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendados: <b>{$reco['SUM(C)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><br></div>";?>
+                    Número de student: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Créditos Recomendados: <b>{$reco['SUM(C)']}</b></b><br></div>";?>
                 </div>
               </div>
             </div>
  <!-- Aqui se muestran los distinto TABS que estan en la pagina del student. -->
        <div class="container tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openCity(event, 'appointment')">Sacar Cita con su advisor/a</button>
+                    <button class="tablinks active" onclick="openCity(event, 'appointment')">Sacar Cita con su Consejero/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
                      <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Hacer Sugerencias de Clases</button>
-                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del advisor/a</button>
+                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del Consejero/a</button>
                   </div>
  <!-- Culmina la parte de los TABS. -->                
  <!-- Comienza el TAB de la realizacion de consejeria donde el student puede ver su file y confirmar su consejeria academica y tambien sugerir al momento de darle 'click' en consejeria 'otros cursos'. -->
@@ -421,9 +420,8 @@ if(!isset($_SESSION['stdnt_number'])){
     </div>
 <!-- Culmina la parte del student_record academico. -->          
 <!-- TAB para appointment. El student puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
-    <div id="appointment" class="tabcontent">
+    <div id="appointment" class="tabcontent active">
     <section class="appointment">
-    <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">                 
     <?php 
         include 'private/appointment-status.php';
