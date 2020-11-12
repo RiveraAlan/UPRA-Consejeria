@@ -128,7 +128,7 @@ if(!isset($_SESSION['adv_id'])){
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-fuchsia">
               <div class="inner">
             <?php
                 $sql = "SELECT count(*) AS amount_of_students FROM `student`";
@@ -186,22 +186,7 @@ if(!isset($_SESSION['adv_id'])){
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner" style="color: white">
-                <h3>44</h3>
-
-                <p>Candidatos a Graduación de CCOM</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer"></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
@@ -212,6 +197,21 @@ if(!isset($_SESSION['adv_id'])){
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer"></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-purple">
+              <div class="inner" style="color: white">
+                <h3>44</h3>
+
+                <p>Candidatos a Graduación de CCOM</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
               </div>
               <a href="#" class="small-box-footer"></a>
             </div>
