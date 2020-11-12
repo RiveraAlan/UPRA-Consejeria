@@ -14,7 +14,7 @@ if(!isset($_SESSION['adv_id'])){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | EXP-studentS</title>
+  <title>CONSEJERÍA-UPRA | EXP-ESTUDIANTES</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,7 +35,7 @@ if(!isset($_SESSION['adv_id'])){
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="inicio.php" class="nav-link">Inicio</a>
       </li>
     </ul>
   </nav>
@@ -298,13 +298,13 @@ margin-left: auto;
               <thead>
                   <tr>
                       <th style="width: 12%"> <div align='center'>
-                          # student</div>
+                          # Estudiante</div>
                       </th>
                       <th style="width: 20%">  <div align='center'>
-                          Nombre del student</div>
+                          Nombre del Estudiante</div>
                       </th>
                       <th style="width: 30%"> <div align='center'>
-                          Programa Académico del student</div>
+                          Programa Académico del Estudiante</div>
                       </th>
                       <th> <div align='center'>
                           Realización de Consejería</div>

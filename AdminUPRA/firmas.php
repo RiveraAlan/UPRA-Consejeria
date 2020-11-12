@@ -70,7 +70,7 @@ $crse_name =  $_GET['crse_name'];
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="inicio.php" class="nav-link">Inicio</a>
       </li>
     </ul>
   </nav>
@@ -81,7 +81,7 @@ $crse_name =  $_GET['crse_name'];
     <!-- Brand Logo -->
     <a href="inicio.php" class="brand-link">
       <img src="img/university.jpg" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CONSEJERIA UPRA</span>
+      <span class="brand-text font-weight-light">CONSEJERÍA UPRA</span>
     </a>
 
     <!-- Sidebar -->
