@@ -63,7 +63,7 @@ while(!feof($mystudent_record)){
 }
 fclose($mystudent_record);
 
-$query = "SELECT crse_name, stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, estatus_R FROM (SELECT * FROM student_record JOIN mandatory_courses USING(crse_label)
+$query = "SELECT crse_name, stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, crseR_status FROM (SELECT * FROM student_record JOIN mandatory_courses USING(crse_label)
             UNION 
             SELECT * FROM student_record JOIN departmental_courses USING(crse_label) 
             UNION 
@@ -114,7 +114,7 @@ foreach($coursesForNextSemester as $key => $grade){
    if($resultCheck === 1){
        while($row = mysqli_fetch_assoc($result)) {
         $query = "INSERT INTO student_record(stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, 
-                  crse_recognition, crse_equivalence, crse_credits_ER, estatus_R) 
+                  crse_recognition, crse_equivalence, crse_credits_ER, crseR_status) 
                   VALUES (NULL, $row[crse_label], NULL, NULL, 2, NULL, NULL, NULL, $row[crse_credits], NULL);";
           echo "<p>$query</p>";
        }

@@ -110,7 +110,7 @@ while(!feof($mystudent_record)){
 
             $course = array("stdnt_number" => -1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
                             "crse_description" => $temp, "crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
-                            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "estatus_R" => NULL, "crse_name" => $course_code[0],
+                            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
                             "crse_id" => NULL
                             );
 
@@ -182,7 +182,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
         
             $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
             "crse_description" => $temp,"crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "estatus_R" => NULL, "crse_name" => $course_code[0],
+            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
             "crse_id" => NULL
                         );
                         
@@ -204,7 +204,7 @@ foreach($mandatory_courses as $e_f){
     if($e_f["crse_label"] >= 1 AND $e_f["crse_label"] <= 30){
         $course = array("stdnt_number" => -1, "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
             "crse_status" => 0, "semester_pass" => NULL,"convalidacion_c" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => NULL, "estatus_R" => NULL, "crse_name" => $e_f["crse_name"]
+            "crse_equivalence" => NULL, "crse_credits" => NULL, "crseR_status" => NULL, "crse_name" => $e_f["crse_name"]
                         );
         array_push($courses, $course);
     } 
@@ -386,7 +386,7 @@ if(preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp)){
         
             $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
             "crse_description" => $temp,"crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "estatus_R" => NULL, "crse_name" => $course_code[0],
+            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
             "crse_id" => NULL
                         );
                         

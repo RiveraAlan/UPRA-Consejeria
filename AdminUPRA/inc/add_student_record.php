@@ -325,7 +325,7 @@ while(!feof($myfile)){
 
             $course = array("stdnt_number" => -1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
                             "crse_description" => $temp, "crse_status" => $estatus_c, "semester_pass" => $semester[0],"crse_recognition" => NULL,
-                            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "estatus_R" => NULL, "crse_name" => $course_code[0],
+                            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
                             "crse_id" => NULL
                             );
 
@@ -397,7 +397,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
         
             $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
             "crse_description" => $temp,"crse_status" => $estatus_c, "semester_pass" => $semester[0],"crse_recognition" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "estatus_R" => NULL, "crse_name" => $course_code[0],
+            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
             "crse_id" => NULL
                         );
                         
@@ -419,7 +419,7 @@ foreach($expediente_fijo as $e_f){
     if($e_f["crse_label"] >= 1 AND $e_f["crse_label"] <= 40){
         $course = array("stdnt_number" => -1, "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
             "crse_status" => 0, "semester_pass" => NULL,"crse_recognition" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => NULL, "estatus_R" => NULL, "crse_name" => $e_f["crse_name"]
+            "crse_equivalence" => NULL, "crse_credits" => NULL, "crseR_status" => NULL, "crse_name" => $e_f["crse_name"]
                         );
         array_push($courses, $course);
     } 

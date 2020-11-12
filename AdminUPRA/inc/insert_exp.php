@@ -10,7 +10,7 @@ foreach($courses as $course ){
   echo $course['crse_description'];
   echo "  "
 }
-$stmt = $conn->prepare("INSERT INTO student_record (crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, estatus_R) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO student_record (crse_label, special_id, crse_grade, crse_status, semester_pass, crse_recognition, crse_equivalence, crse_credits_ER, crseR_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 // Now we tell the script which variable each placeholder actually refers to using the bindParam() method
 // First parameter is the placeholder in the statement above - the second parameter is a variable that it should refer to
