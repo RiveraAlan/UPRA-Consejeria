@@ -821,7 +821,7 @@ body {
               </header>
               <div class='w3-container'>
                   <br>
-                <form action="conv_env.php" method="POST">
+                <form action="inc/conv_env.php" method="POST">
                 <div class="grid-container">
                 <div class='item-1'>
                           <a onclick="equi_conv(this, 'mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
@@ -856,7 +856,7 @@ body {
 
                          if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
-                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                            echo "<option name='clase' value='{$row['crse_name']}'>{$row['crse_name']}</option>";
                         }
                         } ?>
                   </select>
