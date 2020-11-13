@@ -248,7 +248,7 @@ if(!isset($_SESSION['adv_id'])){
   margin: auto;
 }
 .search-bar_input {
-  min-width: 500px;
+  width: 50rem;
   border: none;
   outline: none;
 }
