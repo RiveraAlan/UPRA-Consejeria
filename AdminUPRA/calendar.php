@@ -142,7 +142,7 @@ $result = mysqli_query($conn, $sql);
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

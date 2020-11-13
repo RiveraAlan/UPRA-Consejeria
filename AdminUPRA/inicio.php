@@ -51,7 +51,7 @@ $sql = "SELECT stdnt_number
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | EXP-ESTUDIANTES</title>
+  <title>CONSEJERÍA-UPRA | INICIO</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -438,7 +438,7 @@ margin-left: auto;
 
   <footer class="main-footer">
     
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

@@ -19,7 +19,7 @@ $crse_name =  $_GET['crse_name'];
    
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | LISTA</title>
+  <title>CONSEJERÍA-UPRA | FIRMAS-EST</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
@@ -142,7 +142,7 @@ $crse_name =  $_GET['crse_name'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Lista De Estudiantes: <?php echo $crse_name ?></h1>
+            <h1>Lista de Estudiantes: <?php echo $crse_name ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -193,7 +193,7 @@ $crse_name =  $_GET['crse_name'];
 
   <footer class="main-footer">
     
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

@@ -124,7 +124,7 @@ if(!isset($advisor_id)){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Conteo de los Estudiantes por Clases</h1>
+            <h1>Conteo de los Estudiantes por clases</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -311,7 +311,7 @@ if(!isset($advisor_id)){
 
   <footer class="main-footer">
     
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

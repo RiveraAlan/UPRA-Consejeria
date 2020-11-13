@@ -41,7 +41,7 @@ if(!isset($student_id)){
 <head> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | EXP.student</title>
+  <title>CONSEJERÍA-UPRA | EXP-EST</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -183,7 +183,7 @@ body {
     <!-- Brand Logo -->
     <a href="inicio.php" class="brand-link">
       <img src="img/university.jpg" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CONSEJERIA UPRA</span>
+      <span class="brand-text font-weight-light">CONSEJERÍA UPRA</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -942,7 +942,7 @@ $("status").innerHTML = "Upload Aborted";
 </script> 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
