@@ -4,7 +4,7 @@ if (isset($_POST['suge-submit'])) {
 require 'dbconnect.php';
     $stdnt_number = $_SESSION['stdnt_number'];
     $ids = (isset($_POST['sugerencia'])) ? $_POST['sugerencia'] : array();
-    $crse_status = 3;
+    $crse_status = 4;
     if (count($ids) > 0) { 
       foreach ($ids as $crse_label) {  
         $sql ="SELECT  crse_label
@@ -16,8 +16,8 @@ require 'dbconnect.php';
       echo "No se pudo procesar su sugerencia.";
 }  else {
 $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, crse_status) VALUES (?, ?, ?)");
-
-$stmt->bind_param('iii', $stdnt_number, $crse_label, $crse_status);
+echo "helloooooo";
+$stmt->bind_param('sii', $stdnt_number, $crse_label, $crse_status);
 // Prepare statement    
 if ($stmt->execute()) {
 header('Location: ../consejeria.php');

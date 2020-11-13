@@ -30,7 +30,7 @@ if ($stmt = $conn->prepare('SELECT adv_id, adv_password, adv_name  FROM advisor 
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
         // =============REMEMBER TO USE PASSWORD ENCRYPTION ====================
        
-        if (password_verify($_POST['password'], $password)) {
+        if ($_POST['password'] === $password) {
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
             session_regenerate_id();

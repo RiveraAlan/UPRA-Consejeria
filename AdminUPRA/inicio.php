@@ -8,13 +8,50 @@ if(!isset($_SESSION['adv_id'])){
   header("Location: index.php");
     exit();
 }
+
+$count = 0;
+$sql = "SELECT stdnt_number
+                    FROM student";
+                  $result = mysqli_query($conn, $sql);
+                  $resultCheck = mysqli_num_rows($result);
+
+                  if($resultCheck > 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                  $sum = "SELECT 131 - SUM(C) AS sum
+                  FROM ((SELECT crse_credits AS C
+                  FROM mandatory_courses
+                  INNER JOIN  student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL
+                  (SELECT crse_credits AS C
+                  FROM general_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM departmental_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM free_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')) t1";
+                  $sum_result = mysqli_query($conn, $sum);
+                  $sum_resultCheck = mysqli_num_rows($sum_result);
+                  $creditos = mysqli_fetch_assoc($sum_result);
+                  if($sum_resultCheck > 0){
+                    if(($creditos['sum'] < 21) && ($creditos['sum'] != NULL)){
+                      $count++;
+                    }
+                    }
+                  }
+                }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | EXP-studentS</title>
+  <title>CONSEJERÍA-UPRA | INICIO</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,6 +59,7 @@ if(!isset($_SESSION['adv_id'])){
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -34,7 +72,7 @@ if(!isset($_SESSION['adv_id'])){
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="inicio.php" class="nav-link">Inicio</a>
       </li>
     </ul>
   </nav>
@@ -128,7 +166,7 @@ if(!isset($_SESSION['adv_id'])){
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-teal">
+            <div class="small-box bg-blue">
               <div class="inner">
             <?php
                 $sql = "SELECT count(*) AS amount_of_students FROM `student`";
@@ -186,27 +224,28 @@ if(!isset($_SESSION['adv_id'])){
             </div>
           </div>
           <!-- ./col -->
+           
             <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-              <div class="inner">
+            
+              <div class="inner"><a href="cons_noR.php" style="color:white">
               <?php echo "<h3>".(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
-                
-
                 <p>No ha realizado Consejería</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer"></a>
-            </div>
+              <a class="small-box-footer"></a>
+            </a></div>
+            
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner" style="color: white">
-                <h3>44</h3>
+                <h3><?php echo $count;?></h3>
 
                 <p>Candidatos a Graduación de CCOM</p>
               </div>
@@ -297,13 +336,13 @@ margin-left: auto;
               <thead>
                   <tr>
                       <th style="width: 12%"> <div align='center'>
-                          # student</div>
+                          # Estudiante</div>
                       </th>
                       <th style="width: 20%">  <div align='center'>
-                          Nombre del student</div>
+                          Nombre del Estudiante</div>
                       </th>
                       <th style="width: 30%"> <div align='center'>
-                          Programa Académico del student</div>
+                          Programa Académico del Estudiante</div>
                       </th>
                       <th> <div align='center'>
                           Realización de Consejería</div>
@@ -311,11 +350,14 @@ margin-left: auto;
                       <th style="width: 8%" class="text-center">
                           Estatus
                       </th>
+                      <th style="width: 8%" class="text-center">
+                          
+                      </th>
                   </tr>
               </thead>
               <tbody> 
               <?php
-              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, conducted_counseling
+              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, conducted_counseling, record_status, stdnt_cohort
               FROM student NATURAL JOIN student_record_details;";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
@@ -323,27 +365,26 @@ margin-left: auto;
               $students = array();
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-              
                   array_push($students, array("stdnt_name" =>$row["stdnt_name"].' '.$row["stdnt_lastname1"].' '.$row["stdnt_lastname2"], "stdnt_number" => $row["stdnt_number"]));
                   if(boolval($row["conducted_counseling"]))
-                    $conducted_counseling = "<span class='badge badge-success'>Sí</span>";
+                    $conducted_counseling = "<span class='badge badge-success'>SI</span>";
                   else 
-                    $conducted_counseling = "<span class='badge badge-danger'>No</span>";
+                    $conducted_counseling = "<span class='badge badge-danger'>NO</span>";
                   echo "  
                   <tr>
-                      <td>
+                      <td align='center'>
                           {$row['stdnt_number']}
                       </td>
-                      <td>
+                      <td align='center'>
                               {$row['stdnt_name']}
                               {$row['stdnt_lastname1']}
                               {$row['stdnt_lastname2']}
                           <br/>
                           <small>
-                              Cohorte 2017
+                              {$row['stdnt_cohort']}
                           </small>
                       </td>
-                      <td>
+                      <td align='center'>
                           <ul class='list-inline'> <div align='center'>
                           <form action='inc/exp_session.php' method='post'>
                               <li class='list-inline-item'>
@@ -355,22 +396,29 @@ margin-left: auto;
                       </td>
                       <td class='project-state'>
                           $conducted_counseling
-                      </td>
-                      <td class='project-actions text-right'>
-                          
+                      </td>";
+                      if($row['record_status'] == 1){
+                        echo "<td class='project-actions' align='center'>Activo</td>";
+                      }else{
+                      echo "<td class='project-actions' align='center'>Inactivo</td>";}
+                      echo "
+                      <form action='inc/status_est.php' method='POST'>
+                      <td class='project-actions text-right' align='center'>
+                          <input type='hidden' value='{$row['stdnt_number']}' name='stdnt_number'></input>
                           <div style='padding-top: 10px;'>
-                          <a class='btn btn-danger btn-sm' href='#''>
+                          <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>
                              <i class='fas fa-user-times'></i>
                               Inactivo
-                          </a>
+                          </button>
                         </div>
                         <div style='padding-top: 10px;'>
-                          <a class='btn btn-info btn-sm' href='#'>
+                          <button type='submit' value='1' onclick='student()' name='status-submit'class='btn btn-info btn-sm' href='#'>
                               <i class='fas fa-user-plus'></i>
-                              Activo
-                          </a>
+                              Activo &nbsp;&nbsp;&nbsp;
+                          </button>
                         </div>
                       </td>
+                      </form>
                   </tr>
                   ";
                 }
@@ -390,7 +438,7 @@ margin-left: auto;
 
   <footer class="main-footer">
     
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

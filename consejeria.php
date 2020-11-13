@@ -1,6 +1,6 @@
 <?php
 session_start();
-$id= $_SESSION['stdnt_number'];
+$id = $_SESSION['stdnt_number'];
 // Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
 include_once 'private/dbconnect.php';
 if(!isset($_SESSION['stdnt_number'])){
@@ -79,20 +79,20 @@ if(!isset($_SESSION['stdnt_number'])){
                  FROM ((SELECT crse_credits AS C
                  FROM mandatory_courses
                  INNER JOIN  student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = $id)
+                 WHERE student_record.stdnt_number = '$id')
                  UNION ALL
                  (SELECT crse_credits AS C
                  FROM general_courses
                  INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = $id)
+                 WHERE student_record.stdnt_number = '$id')
                  UNION ALL (SELECT crse_credits AS C
                  FROM departmental_courses
                  INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = $id)
+                 WHERE student_record.stdnt_number = '$id')
                  UNION ALL (SELECT crse_credits AS C
                  FROM free_courses
                  INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = $id)) t1";
+                 WHERE student_record.stdnt_number = '$id')) t1";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
                 
@@ -108,19 +108,18 @@ if(!isset($_SESSION['stdnt_number'])){
                     Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
-                    Número de student: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendados: <b>{$reco['SUM(C)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><br></div>";?>
+                    Número de student: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Créditos Recomendados: <b>{$reco['SUM(C)']}</b></b><br></div>";?>
                 </div>
               </div>
             </div>
  <!-- Aqui se muestran los distinto TABS que estan en la pagina del student. -->
        <div class="container tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openCity(event, 'appointment')">Sacar Cita con su advisor/a</button>
+                    <button class="tablinks active" onclick="openCity(event, 'appointment')">Sacar Cita con su Consejero/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
                      <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Hacer Sugerencias de Clases</button>
-                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del advisor/a</button>
+                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del Consejero/a</button>
                   </div>
  <!-- Culmina la parte de los TABS. -->                
  <!-- Comienza el TAB de la realizacion de consejeria donde el student puede ver su file y confirmar su consejeria academica y tambien sugerir al momento de darle 'click' en consejeria 'otros cursos'. -->
@@ -135,20 +134,20 @@ if(!isset($_SESSION['stdnt_number'])){
                              FROM ((SELECT crse_credits AS C
                              FROM mandatory_courses
                              INNER JOIN  student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = $id AND (crseR_status = 1 OR crse_status = 3))
+                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
                              UNION ALL
                              (SELECT crse_credits AS C
                              FROM general_courses
                              INNER JOIN student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = $id AND (crseR_status = 1 OR crse_status = 3))
+                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
                              UNION ALL (SELECT crse_credits AS C
                              FROM departmental_courses
                              INNER JOIN student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = $id AND (crseR_status = 1 OR crse_status = 3))
+                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
                              UNION ALL (SELECT crse_credits AS C
                              FROM free_courses
                              INNER JOIN student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = $id AND (crseR_status = 1 OR crse_status = 3))) t1";
+                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))) t1";
                              $resultRecom = mysqli_query($conn, $sentenciaSQL);
                              $reco=mysqli_fetch_assoc($resultRecom);
                          
@@ -187,19 +186,19 @@ if(!isset($_SESSION['stdnt_number'])){
                                     $sql ="SELECT crse_label, crse_name, crse_description, crse_credits
                                     FROM student_record
                                     INNER JOIN mandatory_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = $id AND (student_record.crseR_status = 1 OR student_record.crse_status = 3)
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3)
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits
                                     FROM student_record
                                     INNER JOIN general_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = $id AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits
                                     FROM student_record
                                     INNER JOIN departmental_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = $id AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits
                                     FROM student_record
                                     INNER JOIN free_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = $id AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))";
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
@@ -252,7 +251,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
-                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id
+                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'
                    ORDER by crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -297,7 +296,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
-                   FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id";
+                   FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -341,7 +340,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
-                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id";
+                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -385,7 +384,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
-                   FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = $id";
+                   FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -421,13 +420,12 @@ if(!isset($_SESSION['stdnt_number'])){
     </div>
 <!-- Culmina la parte del student_record academico. -->          
 <!-- TAB para appointment. El student puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
-    <div id="appointment" class="tabcontent">
+    <div id="appointment" class="tabcontent active">
     <section class="appointment">
-    <h2 class="appointment-form-title">Sacar cita</h2>
     <form action="private/process-appointment.php" method="POST" class="appointment-form">                 
     <?php 
         include 'private/appointment-status.php';
-        $sql ="SELECT appt_id FROM appointment WHERE stdnt_number = $id";
+        $sql ="SELECT appt_id FROM appointment WHERE stdnt_number = '$id'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
              
@@ -440,7 +438,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     echo ' 
                     <input type="hidden" name="first-name" value="'.$_SESSION['stdnt_name'].'" placeholder="First Name" class="form-control" readonly>
                     <input type="hidden" name="last-name" value="'.$_SESSION['stdnt_lastname1'].' '.$_SESSION['stdnt_lastname2'].'" placeholder="Last Name"  class="form-control" readonly>
-                           <input type="hidden" name="email"  value="'. $_SESSION['stdnt_email'].'" class="form-control" readonly> 
+                           <input type="hidden" name="email"  value="'.$_SESSION['stdnt_email'].'" class="form-control" readonly> 
                                  <h3>Escoger Fecha y Hora</h3>  <div class="form-group d-flex">
                                          <div class="calendar-box">';
 
@@ -518,7 +516,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <!-- Notes -->
              <?php
                 $sql ="SELECT adv_comments
-                      FROM student_record_details WHERE stdnt_number = $id";
+                      FROM student_record_details WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               

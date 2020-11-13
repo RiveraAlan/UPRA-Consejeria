@@ -14,14 +14,34 @@ if(!isset($student_id)){
     exit();
 }
 
-$modal = 'document.getElementById("id03").style.display="block"';
+    $modal = 'document.getElementById("id03").style.display="block"';
+
+    $parts= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $tabla = explode('=', $parts);
 ?>
+ <!-- script to determine equivalencia/convalidacion -->
+ <script>
+          function equi_conv(elmnt,tabla) {
+            if(tabla == 'mandatory_courses' || tabla == 'general_courses'){
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } else {
+              x.style.display = "block";
+            }
+            history.pushState({pageID: 'Tabla'}, 'Tabla', '?tabla=' + tabla);
+          }
+          }
+          </script>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | EXP.student</title>
+  <title>CONSEJERÍA-UPRA | EXP-EST</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -58,7 +78,7 @@ $modal = 'document.getElementById("id03").style.display="block"';
             font-size: 18px;
         }
 
-        .grid-container {
+.grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
@@ -91,7 +111,7 @@ body {
 
 
 #course-list {
-  background-color: #ececec;
+  background-color: #d3d3d3;
   padding: 0.5rem 1rem;
   width: 100%;
   border-radius: 0.5rem;
@@ -163,7 +183,7 @@ body {
     <!-- Brand Logo -->
     <a href="inicio.php" class="brand-link">
       <img src="img/university.jpg" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CONSEJERIA UPRA</span>
+      <span class="brand-text font-weight-light">CONSEJERÍA UPRA</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -361,7 +381,9 @@ body {
                 WHERE student_record.stdnt_number = '$student_id' AND student_record.crseR_status = 1)) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
-               
+               if($creditos['SUM(C)'] < 1){
+                  $creditos['SUM(C)'] = 0;
+               }
            
               if($resultCheck > 0){
                 if($creditos['SUM(C)'] <= 11){
@@ -781,22 +803,7 @@ body {
           </div>
             <!-- /.Expediente -->
             <!-- Cursos a Examinar -->
-            <!-- script to determine equivalencia/convalidacion -->
-          <script>
-          function equi_conv(elmnt,tabla) {
-            console.log(tabla);
-            if(tabla == 'concentracion' || tabla == 'general'){
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "block") {
-              x.style.display = "none";
-            } else {
-              x.style.display = "block";
-            }
-            }
-              <?php $tabla = 'mandatory_courses'; ?>
-            
-          }
-          </script>
+           
           <div id='id03' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
@@ -806,14 +813,14 @@ body {
               </header>
               <div class='w3-container'>
                   <br>
-                <form action="conv_env.php" method="POST">
+                <form action="inc/conv_env.php" method="POST">
                 <div class="grid-container">
                 <div class='item-1'>
-                          <a onclick="equi_conv(this, 'concentracion')" class='btn btn-primary' style="width: 100%; color: white">
+                          <a onclick="equi_conv(this, 'mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
                             <i class='fas fa-pencil-alt'></i>Concentración</a>
                   </div>
                 <div class='item-2'>
-                          <a onclick="equi_conv(this, 'general')" class='btn btn-warning' style="width: 100%; color: white">
+                          <a onclick="equi_conv(this, 'general_courses')" class='btn btn-warning' style="width: 100%; color: white">
                               <i class='fas fa-pencil-alt'></i>General Obli.</a>
                   </div>
                           <div class='item-3'>
@@ -835,13 +842,13 @@ body {
                   <select name="courses" id="course-list">
                   <?php
                         $sql ="SELECT crse_name, crse_label
-                        FROM $tabla";
+                        FROM $tabla[1]";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
 
                          if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
-                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                            echo "<option name='clase' value='{$row['crse_label']}'>{$row['crse_name']}</option>";
                         }
                         } ?>
                   </select>
@@ -935,7 +942,7 @@ $("status").innerHTML = "Upload Aborted";
 </script> 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
