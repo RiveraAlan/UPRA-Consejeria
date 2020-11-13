@@ -8,10 +8,6 @@ if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
 }
-if (isset($_GET['crse_label']) AND (isset($_GET['crse_name']))) {
-$crse_label = $_GET['crse_label'];
-$crse_name =  $_GET['crse_name'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,7 +138,7 @@ $crse_name =  $_GET['crse_name'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Lista De Estudiantes: <?php echo $crse_name ?></h1>
+            <h1>Lista De Estudiantes que no han realizado consejeria:</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -172,10 +168,9 @@ $crse_name =  $_GET['crse_name'];
         <div class="card-body p-0">
             <div align='center'><h3>FIRMAS</h3></div>
             <?php
-        $sql ="SELECT stdnt_email FROM student_record 
+        $sql ="SELECT stdnt_email FROM student_record_details
         INNER JOIN student USING (stdnt_number)
-        INNER JOIN departmental_courses USING (crse_label) 
-               WHERE crse_status = 4 AND crse_label = $crse_label";
+        WHERE conducted_counseling = 0";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;

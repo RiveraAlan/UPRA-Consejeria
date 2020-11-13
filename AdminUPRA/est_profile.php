@@ -14,12 +14,10 @@ if(!isset($student_id)){
     exit();
 }
 
-$modal = 'document.getElementById("id03").style.display="block"';
+    $modal = 'document.getElementById("id03").style.display="block"';
 
-// if($_POST['action'] == 'call_this') {
     $parts= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $tabla = explode('=', $parts);
-// }
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
@@ -32,14 +30,6 @@ $modal = 'document.getElementById("id03").style.display="block"';
               x.style.display = "block";
             }
             history.pushState({pageID: 'Tabla'}, 'Tabla', '?tabla=' + tabla);
-          //   $.ajax({
-          //  type: "POST",
-          //  data:{action:'call_this'},
-          //  success:function(html) {
-          //    alert(html);
-          //  }
-
-      // });
           }
           }
           </script>
@@ -88,7 +78,7 @@ $modal = 'document.getElementById("id03").style.display="block"';
             font-size: 18px;
         }
 
-        .grid-container {
+.grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
@@ -391,7 +381,9 @@ body {
                 WHERE student_record.stdnt_number = '$student_id' AND student_record.crseR_status = 1)) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
-               
+               if($creditos['SUM(C)'] < 1){
+                  $creditos['SUM(C)'] = 0;
+               }
            
               if($resultCheck > 0){
                 if($creditos['SUM(C)'] <= 11){
@@ -856,7 +848,7 @@ body {
 
                          if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
-                            echo "<option name='clase' value='{$row['crse_name']}'>{$row['crse_name']}</option>";
+                            echo "<option name='clase' value='{$row['crse_label']}'>{$row['crse_name']}</option>";
                         }
                         } ?>
                   </select>

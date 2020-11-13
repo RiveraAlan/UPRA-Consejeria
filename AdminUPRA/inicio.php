@@ -8,6 +8,43 @@ if(!isset($_SESSION['adv_id'])){
   header("Location: index.php");
     exit();
 }
+
+$count = 0;
+$sql = "SELECT stdnt_number
+                    FROM student";
+                  $result = mysqli_query($conn, $sql);
+                  $resultCheck = mysqli_num_rows($result);
+
+                  if($resultCheck > 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                  $sum = "SELECT 131 - SUM(C) AS sum
+                  FROM ((SELECT crse_credits AS C
+                  FROM mandatory_courses
+                  INNER JOIN  student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL
+                  (SELECT crse_credits AS C
+                  FROM general_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM departmental_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM free_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')) t1";
+                  $sum_result = mysqli_query($conn, $sum);
+                  $sum_resultCheck = mysqli_num_rows($sum_result);
+                  $creditos = mysqli_fetch_assoc($sum_result);
+                  if($sum_resultCheck > 0){
+                    if(($creditos['sum'] < 21) && ($creditos['sum'] != NULL)){
+                      $count++;
+                    }
+                    }
+                  }
+                }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -187,27 +224,28 @@ if(!isset($_SESSION['adv_id'])){
             </div>
           </div>
           <!-- ./col -->
+           
             <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-              <div class="inner">
+            
+              <div class="inner"><a href="cons_noR.php" style="color:white">
               <?php echo "<h3>".(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
-                
-
                 <p>No ha realizado Consejería</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer"></a>
-            </div>
+              <a class="small-box-footer"></a>
+            </a></div>
+            
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner" style="color: white">
-                <h3>44</h3>
+                <h3><?php echo $count;?></h3>
 
                 <p>Candidatos a Graduación de CCOM</p>
               </div>
