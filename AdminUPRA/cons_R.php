@@ -8,6 +8,9 @@ if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
 }
+
+if (isset($_POST['conse'])) {
+    $conse = mysqli_real_escape_string($conn, $_POST['conse']);}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -170,7 +173,7 @@ if(!isset($advisor_id)){
             <?php
         $sql ="SELECT stdnt_email FROM student_record_details
         INNER JOIN student USING (stdnt_number)
-        WHERE conducted_counseling = 0";
+        WHERE conducted_counseling = $conse";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;

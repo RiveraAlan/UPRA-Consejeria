@@ -8,13 +8,11 @@ if(!isset($_SESSION['adv_id'])){
   header("Location: index.php");
     exit();
 }
-
 $count = 0;
 $sql = "SELECT stdnt_number
                     FROM student";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-
                   if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
                   $sum = "SELECT 131 - SUM(C) AS sum
@@ -158,7 +156,6 @@ $sql = "SELECT stdnt_number
     </section>
 
     <!-- Main content -->
-    
     <section class="content">
     <!-- bloques de estadisticas -->
     <div class="container-fluid">
@@ -178,13 +175,12 @@ $sql = "SELECT stdnt_number
                 ;}
               ?>
                 <?php echo "<h3>{$row['amount_of_students']}</h3>" ?>
-
                 <p>Estudiantes de CCOM</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer"></a>
+              <a class="small-box-footer"></a>
             </div>
           </div>
           <!-- ./col -->
@@ -206,21 +202,16 @@ $sql = "SELECT stdnt_number
                 WHERE S_R_D1.conducted_counseling = 0;";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
-                $students_t_dn_c_c = mysqli_fetch_array($result, MYSQLI_NUM);
-                
-
-              ?>
+                $students_t_dn_c_c = mysqli_fetch_array($result, MYSQLI_NUM); ?>
             <div class="small-box bg-success">
-              <div class="inner">
+              <div class="inner"><a href="cons_R.php" style="color:white">
                 <?php echo "<h3>".(($students_t_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
-                
-
                 <p>Realizaron Consejería</p>
-              </div>
+                  </a></div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer"></a>
+              <a class="small-box-footer"></a>
             </div>
           </div>
           <!-- ./col -->
@@ -228,31 +219,29 @@ $sql = "SELECT stdnt_number
             <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-            
-              <div class="inner"><a href="cons_noR.php" style="color:white">
+              <div class="inner"><a href="cons_R.php" style="color:white">
               <?php echo "<h3>".(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
                 <p>No ha realizado Consejería</p>
-              </div>
+              </a></div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
               <a class="small-box-footer"></a>
-            </a></div>
-            
+            </div>
           </div>
           <!-- ./col -->
+            
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner" style="color: white">
                 <h3><?php echo $count;?></h3>
-
                 <p>Candidatos a Graduación de CCOM</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer"></a>
+              <a class="small-box-footer"></a>
             </div>
           </div>
           <!-- ./col -->
@@ -265,11 +254,10 @@ $sql = "SELECT stdnt_number
       <div class="card">
         <div class="card-header">
         <div class="search-bar">
-        <input type="text" class="search-bar_input" onkeyup="searchStudent(this.value)" placeholder="Buscar Estudiante Por Nombre Completo o Por Número de Estudiante..." >
+        <input type="text" class="search-bar_input" onkeyup="searchStudent(this.value)" placeholder="Buscar por Nombre Completo o Número de Estudiante..." >
         <img class="search-bar_icon" src="img/search-solid.svg" />
         </div>
-        <ul id="myUL"></ul>
-            
+        <ul id="myUL"></ul>   
             
 <style>
 * {
@@ -435,12 +423,9 @@ margin-left: auto;
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
   <footer class="main-footer">
-    
     <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -448,7 +433,6 @@ margin-left: auto;
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
