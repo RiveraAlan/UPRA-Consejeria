@@ -12,10 +12,10 @@ if(!isset($advisor_id)){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERIA-UPRA | LISTA</title>
+  <title>CONSEJERÍA-UPRA | NO-REALIZAR</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
@@ -88,7 +88,7 @@ if(!isset($advisor_id)){
         <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+
                 if($resultCheck > 0){
                 $row = mysqli_fetch_assoc($result);
                 ;}
@@ -138,12 +138,12 @@ if(!isset($advisor_id)){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Lista De Estudiantes que no han realizado consejeria:</h1>
+            <h1>Estudiantes que <b>NO</b> han realizado Consejería:</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Lista de Clases</li>
+              <li class="breadcrumb-item"><a href="cons_R.php">Realizaron Consejería</a></li>
+              <li class="breadcrumb-item active">No realizaron Consejería</li>
             </ol>
           </div>
         </div>
@@ -160,13 +160,10 @@ if(!isset($advisor_id)){
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
           </div>
         </div>
         <div class="card-body p-0">
-            <div align='center'><h3>FIRMAS</h3></div>
+            <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
         $sql ="SELECT stdnt_email FROM student_record_details
         INNER JOIN student USING (stdnt_number)
@@ -184,11 +181,11 @@ if(!isset($advisor_id)){
       </div>
     </section>
   </div>
-  
+
 
   <footer class="main-footer">
-    
-    <strong>Copyright &copy; 2020 <a>CONSEJERIA-UPRA</a>.</strong> All rights reserved.
+
+    <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

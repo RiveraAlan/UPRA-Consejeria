@@ -8,18 +8,14 @@ if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
 }
-if (isset($_GET['crse_label']) AND (isset($_GET['crse_name']))) {
-$crse_label = $_GET['crse_label'];
-$crse_name =  $_GET['crse_name'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | FIRMAS-EST</title>
+  <title>CONSEJERÍA-UPRA | REALIZAR</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
@@ -92,7 +88,7 @@ $crse_name =  $_GET['crse_name'];
         <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-              
+
                 if($resultCheck > 0){
                 $row = mysqli_fetch_assoc($result);
                 ;}
@@ -142,12 +138,12 @@ $crse_name =  $_GET['crse_name'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Lista de Estudiantes: <?php echo $crse_name ?></h1>
+            <h1>Estudiantes que <b>SI</b> han realizado consejería:</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Lista de Clases</li>
+              <li class="breadcrumb-item"><a href="cons_NOR.php">No Realizaron Consejería</a></li>
+              <li class="breadcrumb-item active">Realizaron Consejería</li>
             </ol>
           </div>
         </div>
@@ -167,12 +163,11 @@ $crse_name =  $_GET['crse_name'];
           </div>
         </div>
         <div class="card-body p-0">
-            <div align='center'><h3>FIRMAS</h3></div>
+            <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
-        $sql ="SELECT stdnt_email FROM student_record 
+        $sql ="SELECT stdnt_email FROM student_record_details
         INNER JOIN student USING (stdnt_number)
-        INNER JOIN departmental_courses USING (crse_label) 
-               WHERE crse_status = 4 AND crse_label = $crse_label";
+        WHERE conducted_counseling = 1";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;
@@ -186,10 +181,10 @@ $crse_name =  $_GET['crse_name'];
       </div>
     </section>
   </div>
-  
+
 
   <footer class="main-footer">
-    
+
     <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
 
