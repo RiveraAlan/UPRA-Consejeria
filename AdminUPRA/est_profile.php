@@ -350,6 +350,7 @@ body {
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'file')">Expediente del Estudiante</button>
                     <button class="tablinks" onclick="openCity(event, 'Examinar')">Cursos a Examinar</button>
+                    <button class="tablinks" onclick="openCity(event, 'Leyendas')">Leyendas</button>
                   </div>
                 
                   <!-- Tab content -->
@@ -408,7 +409,7 @@ body {
                     <th>Nota</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación/Equivalencia</th>
+                    <th>Convalidación/<br>Equivalencia</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -420,7 +421,6 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -428,8 +428,67 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
                   }
-                    echo "<td>{$row['crse_name']}</td>
-                    <td>{$row['crse_description']}</td>
+                
+                 if($row['crse_name'] === 'CCOM 3001' OR 
+                    $row['crse_name'] === 'INGL 3101' OR 
+                    $row['crse_name'] === 'INGL 3113' OR 
+                    $row['crse_name'] === 'CCOM 3010' OR 
+                    $row['crse_name'] === 'CCOM 3025' OR 
+                    $row['crse_name'] === 'MATE 3171')
+                   echo "<td href='#' title='Primer Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    
+                   elseif($row['crse_name'] === 'CCOM 3002' OR 
+                    $row['crse_name'] === 'INGL 3102' OR 
+                    $row['crse_name'] === 'INGL 3114' OR 
+                    $row['crse_name'] === 'CCOM 3015' OR 
+                    $row['crse_name'] === 'CCOM 3035' OR 
+                    $row['crse_name'] === 'MATE 3172'){
+                    echo "<td href='#' title='Primer Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                    }
+                    
+                    elseif($row['crse_name'] === 'CCOM 4005' OR 
+                    $row['crse_name'] === 'MATE 3031' OR 
+                    $row['crse_name'] === 'CCOM 3020' OR 
+                    $row['crse_name'] === 'ESPA 3101' OR 
+                    $row['crse_name'] === 'CIBI 3001'){
+                    echo "<td href='#' title='Segundo Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    }
+                    
+                    elseif($row['crse_name'] === 'CCOM 4006' OR 
+                    $row['crse_name'] === 'CCOM 4007' OR 
+                    $row['crse_name'] === 'CCOM 4065' OR 
+                    $row['crse_name'] === 'ESPA 3102' OR 
+                    $row['crse_name'] === 'CIBI 3002'){
+                    echo "<td href='#' title='Segundo Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                    }
+                    
+                    elseif($row['crse_name'] === 'FISI 3011' OR 
+                    $row['crse_name'] === 'FISI 3013' OR 
+                    $row['crse_name'] === 'ESPA 3208' OR 
+                    $row['crse_name'] === 'CCOM 3041' OR 
+                    $row['crse_name'] === 'CCOM 4025'){
+                    echo "<td href='#' title='Tercer Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    }
+                    
+                    elseif($row['crse_name'] === 'FISI 3012' OR 
+                    $row['crse_name'] === 'FISI 3014' OR 
+                    $row['crse_name'] === 'INGL 3015' OR 
+                    $row['crse_name'] === 'CCOM 4115'){
+                    echo "<td href='#' title='Tercer Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                    }
+                           
+                    elseif($row['crse_name'] === 'CCOM 4075'){
+                    echo "<td href='#' title='Cuarto Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    }
+                    
+                    elseif($row['crse_name'] === 'CCOM 4095'){
+                    echo "<td href='#' title='Cuarto Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                    }
+                    
+                    else
+                    echo "<td>{$row['crse_name']}</td>";
+                    
+            echo    " <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
                     if($row['crseR_status'] == 1){
@@ -467,7 +526,7 @@ body {
                     <th>Nota</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación/Equivalencia</th>
+                    <th>Convalidación/<br>Equivalencia</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -527,7 +586,7 @@ body {
                     <th>Nota</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación/Equivalencia</th>
+                    <th>Convalidación/<br>Equivalencia</th>
                   </tr>
                   </thead>
                 <tbody>
@@ -587,7 +646,7 @@ body {
                     <th>Nota</th>
                     <th>Recomendación</th>
                     <th>Año Aprobó</th>
-                    <th>Convalidación/Equivalencia</th>
+                    <th>Convalidación/<br>Equivalencia</th>
                   </tr>
                   </thead>
                 <tbody>
@@ -633,17 +692,11 @@ body {
                     <td>{$row['semester_pass']}</td>
                     <td></td>
                   </tr> ";}}?>
-
-                    </table>
-                 
+                    </table>   
               </div>
- 
     </section>
-    </div>
-                <!-- /.Final de file del student -->
-                
-                
-       <!-- Comienzo de Examinar -->  
+    </div><!-- /.Final de file del student -->  
+<!-- Comienzo de Examinar -->  
    <div id="Examinar" class="tabcontent">
             <section>
                 <table id="example2" class="table table-bordered table-hover">
@@ -684,11 +737,19 @@ body {
                   </table>
             </section>    
          </div>
-      </div>
-              <!-- /.Final de Examinar -->  
-
-            <!-- Modals -->
-            <!-- Edit -->
+      </div><!-- /.Final de Examinar --> 
+<!-- Comienzo de Leyendas -->
+        <div id="Leyendas" class="tabcontent ">
+            <section>
+            <h1>Leyenda Estatus del Curso</h1>
+            <p>Esta leyenda está relacionada con los colores de las filas dentro de los expedientes.</p>
+            <div></div>
+            <p style="background:rgb(51,85,255,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; font-size:22px;"></p>
+            <p style="background:rgb(230,0,38,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; font-size:22px;"></p>
+            </section>
+        </div><!-- /.Final de Leyendas -->
+<!-- Modals -->
+<!-- Edit -->
     <div id="id01" class="w3-modal" style="padding-left:20%">
     <div class="w3-modal-content w3-animate-zoom">
       <header class="w3-container" style="padding-top:5px">
@@ -776,11 +837,8 @@ body {
       <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APLICAR</button> 
       </footer>   
     </div>
-  </div>
-
-            <!-- /.Edit -->
-
-            <!-- Expediente -->
+  </div><!-- /.Edit -->
+<!-- Expediente -->
         <div id='id02' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
@@ -800,10 +858,8 @@ body {
               <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button>
               </footer>
             </div>
-          </div>
-            <!-- /.Expediente -->
-            <!-- Cursos a Examinar -->
-           
+          </div><!-- /.Expediente -->
+<!-- Cursos a Examinar -->
           <div id='id03' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>

@@ -138,12 +138,12 @@ if(!isset($advisor_id)){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Estudiantes que <b>NO</b> han realizado Consejería:</h1>
+            <h1>Estudiantes Candidatos a Graduación:</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="cons_R.php">Realizaron Consejería</a></li>
-              <li class="breadcrumb-item active">No realizaron Consejería</li>
+              <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
+              <li class="breadcrumb-item active">Candidatos a Graduación</li>
             </ol>
           </div>
         </div>
@@ -165,9 +165,9 @@ if(!isset($advisor_id)){
         <div class="card-body p-0">
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
-        $sql ="SELECT stdnt_email FROM student_record_details
-        INNER JOIN student USING (stdnt_number)
-        WHERE conducted_counseling = 0";
+        $sql ="SELECT stdnt_email FROM student
+        student_record USING(crse_label)
+         WHERE student_record.stdnt_number = '{$row['stdnt_number']}' t1";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;
@@ -181,13 +181,9 @@ if(!isset($advisor_id)){
       </div>
     </section>
   </div>
-
-
   <footer class="main-footer">
-
     <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
   </footer>
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -195,7 +191,6 @@ if(!isset($advisor_id)){
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
