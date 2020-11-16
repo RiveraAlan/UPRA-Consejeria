@@ -219,7 +219,7 @@ $sql = "SELECT stdnt_number
             <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-              <div class="inner"><a href="cons_R.php" style="color:white">
+              <div class="inner"><a href="cons_NOR.php" style="color:white">
               <?php echo "<h3>".(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
                 <p>No ha realizado Consejería</p>
               </a></div>

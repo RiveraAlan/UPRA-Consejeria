@@ -15,7 +15,7 @@ if(!isset($advisor_id)){
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONSEJERÍA-UPRA | REALIZAR</title>
+  <title>CONSEJERÍA-UPRA | NO-REALIZAR</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
@@ -138,12 +138,12 @@ if(!isset($advisor_id)){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Estudiantes que <b>SI</b> han realizado consejería:</h1>
+            <h1>Estudiantes que <b>NO</b> han realizado Consejería:</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Realizaron Consejería</li>
+              <li class="breadcrumb-item active">No realizaron Consejería</li>
             </ol>
           </div>
         </div>
@@ -167,7 +167,7 @@ if(!isset($advisor_id)){
             <?php
         $sql ="SELECT stdnt_email FROM student_record_details
         INNER JOIN student USING (stdnt_number)
-        WHERE conducted_counseling = 1";
+        WHERE conducted_counseling = 0";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;
