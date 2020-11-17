@@ -18,64 +18,134 @@ if(!isset($student_id)){
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
-          function equi_conv(elmnt,tabla) { 
+          function equi_conv(elmnt,tabla) {
             if(tabla == 'mandatory_courses'){
-            var x = document.getElementById("mand");
-            if (x.style.display === "block") {
+              var x = document.getElementById("mand");
+              var y = document.getElementById("mandatory");
+            if ((x.style.display === "block") && (y.style.display === "block")) {
               x.style.display = "none";
+              y.style.display = "none";
             } else {
               x.style.display = "block";
+              y.style.display = "block";
             }
             var x = document.getElementById("gen");
+            var y = document.getElementById("general");
             if (x.style.display === "block") {
               x.style.display = "none";
             }
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
             var x = document.getElementById("dept");
+            var y = document.getElementById("depart");
             if (x.style.display === "block") {
               x.style.display = "none";
             } 
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
+            var y = document.getElementById("free");
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
           }else if(tabla == 'general_courses'){
             var x = document.getElementById("gen");
-            if (x.style.display === "block") {
+            var y = document.getElementById("general");
+            if ((x.style.display === "block") && (y.style.display === "block")) {
               x.style.display = "none";
+              y.style.display = "none";
             } else {
               x.style.display = "block";
+              y.style.display = "block";
             }
             var x = document.getElementById("mand");
+            var y = document.getElementById("mandatory");
             if (x.style.display === "block") {
               x.style.display = "none";
             }
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
             var x = document.getElementById("dept");
+            var y = document.getElementById("depart");
             if (x.style.display === "block") {
               x.style.display = "none";
             } 
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
+            var y = document.getElementById("free");
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
           }else if(tabla == 'departamental_courses'){
             var x = document.getElementById("dept");
-            if (x.style.display === "block") {
+            var y = document.getElementById("depart");
+            if ((x.style.display === "block") && (y.style.display === "block")) {
               x.style.display = "none";
+              y.style.display = "none";
             } else {
               x.style.display = "block";
+              y.style.display = "block";
             }
             var x = document.getElementById("mand");
+            var y = document.getElementById("mandatory");
             if (x.style.display === "block") {
               x.style.display = "none";
             }
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
             var x = document.getElementById("gen");
+            var y = document.getElementById("general");
             if (x.style.display === "block") {
               x.style.display = "none";
+            }
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
+            var y = document.getElementById("general");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
+            var y = document.getElementById("free");
+            if (y.style.display === "block") {
+              y.style.display = "none";
             }
           }else{
-            var x = document.getElementById("dept");
-            if (x.style.display === "block") {
-              x.style.display = "none";
-            } 
+            var y = document.getElementById("free");
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            } else {
+              y.style.display = "block";
+            }
             var x = document.getElementById("mand");
+            var y = document.getElementById("mandatory");
             if (x.style.display === "block") {
               x.style.display = "none";
             }
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
             var x = document.getElementById("gen");
+            var y = document.getElementById("general");
             if (x.style.display === "block") {
               x.style.display = "none";
+            }
+            if (y.style.display === "block") {
+              y.style.display = "none";
+            }
+            var x = document.getElementById("dept");
+            var y = document.getElementById("depart");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
+            if (y.style.display === "block") {
+              y.style.display = "none";
             }
           }
           }
@@ -135,10 +205,9 @@ if(!isset($student_id)){
 
 .grid-item > div {
   background-color: transparent;
-  text-align: top;
+  text-align: center;
   padding: 20px 0;
   font-size: 30px;
-  font-weight: bold;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
@@ -941,19 +1010,19 @@ body {
                 <div class="grid-container">
                 <div class='item-1'>
                           <a onclick="equi_conv(this, 'mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
-                            <i class='fas fa-pencil-alt'></i>Concentración</a>
+                            <i class='fas fa-pencil-alt'></i> Concentración</a>
                   </div>
                 <div class='item-2'>
                           <a onclick="equi_conv(this, 'general_courses')" class='btn btn-warning' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i>General Obli.</a>
+                              <i class='fas fa-pencil-alt'></i> General Obli.</a>
                   </div>
                           <div class='item-3'>
                           <a onclick="equi_conv(this, 'departamental_courses')" class='btn btn-danger'style="width: 100%; color: white">
-                             <i class='fas fa-pencil-alt'></i>Elect. Dept.</a>
+                             <i class='fas fa-pencil-alt'></i> Elect. Dept.</a>
                         </div>
                         <div class='item-4'>
                           <a onclick="equi_conv(this, 'libre')" class='btn btn-info' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i>Elect. Libre</a>
+                              <i class='fas fa-pencil-alt'></i> Elect. Libre</a>
                         </div>
                   </div>
               </div>
@@ -963,7 +1032,7 @@ body {
               </div>
               
               <div id='mand' style="display: none" class="select-box">          
-                  <select name="courses" id="course-list">
+                  <select name="course_mand" id="course-list">
                   <?php
                         $sql ="SELECT crse_name, crse_label
                         FROM mandatory_courses";
@@ -980,7 +1049,7 @@ body {
               </div>
 
               <div id='gen' style="display: none" class="select-box">          
-                  <select name="courses" id="course-list">
+                  <select name="course_gen" id="course-list">
                   <?php
                         $sql ="SELECT crse_name, crse_label
                         FROM general_courses";
@@ -997,7 +1066,7 @@ body {
               </div>
 
               <div id='dept' style="display: none" class="select-box">          
-                  <select name="courses" id="course-list">
+                  <select name="course_dept" id="course-list">
                   <?php
                         $sql ="SELECT crse_name, crse_label
                         FROM 	departmental_courses";
@@ -1014,7 +1083,10 @@ body {
               </div>
               
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-              <button type='submit' class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;'>APLICAR</button>
+              <button type='submit' id="mandatory" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
+              <button type='submit' id="general" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="general_courses" ; ?>APLICAR</button>
+              <button type='submit' id="depart" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="departamental_courses" ; ?>APLICAR</button>
+              <button type='submit' id="free" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="free_courses" ; ?>APLICAR</button>
               </footer>
               </form>
             </div>
