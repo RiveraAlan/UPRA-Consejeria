@@ -9,7 +9,7 @@ if(!isset($_SESSION['adv_id'])){
     exit();
 }
 $count = 0;
-$sql = "SELECT stdnt_number
+$sql = "SELECT stdnt_number 
                     FROM student";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
