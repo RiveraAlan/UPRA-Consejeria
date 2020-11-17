@@ -15,21 +15,68 @@ if(!isset($student_id)){
 }
 
     $modal = 'document.getElementById("id03").style.display="block"';
-
-    $parts= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    $tabla = explode('=', $parts);
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
-          function equi_conv(elmnt,tabla) {
-            if(tabla == 'mandatory_courses' || tabla == 'general_courses'){
-            var x = document.getElementById("myDIV");
+          function equi_conv(elmnt,tabla) { 
+            if(tabla == 'mandatory_courses'){
+            var x = document.getElementById("mand");
             if (x.style.display === "block") {
               x.style.display = "none";
             } else {
               x.style.display = "block";
             }
-            history.pushState({pageID: 'Tabla'}, 'Tabla', '?tabla=' + tabla);
+            var x = document.getElementById("gen");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
+            var x = document.getElementById("dept");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } 
+          }else if(tabla == 'general_courses'){
+            var x = document.getElementById("gen");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } else {
+              x.style.display = "block";
+            }
+            var x = document.getElementById("mand");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
+            var x = document.getElementById("dept");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } 
+          }else if(tabla == 'departamental_courses'){
+            var x = document.getElementById("dept");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } else {
+              x.style.display = "block";
+            }
+            var x = document.getElementById("mand");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
+            var x = document.getElementById("gen");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
+          }else{
+            var x = document.getElementById("dept");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            } 
+            var x = document.getElementById("mand");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
+            var x = document.getElementById("gen");
+            if (x.style.display === "block") {
+              x.style.display = "none";
+            }
           }
           }
           </script>
@@ -871,7 +918,7 @@ body {
               </header>
               <div class='w3-container'>
                   <br>
-                <form action="inc/conv_env.php" method="POST">
+                <form action="inc/conv_equi.php" method="POST">
                 <div class="grid-container">
                 <div class='item-1'>
                           <a onclick="equi_conv(this, 'mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
@@ -882,7 +929,7 @@ body {
                               <i class='fas fa-pencil-alt'></i>General Obli.</a>
                   </div>
                           <div class='item-3'>
-                          <a onclick="equi_conv(this, 'departamental')" class='btn btn-danger'style="width: 100%; color: white">
+                          <a onclick="equi_conv(this, 'departamental_courses')" class='btn btn-danger'style="width: 100%; color: white">
                              <i class='fas fa-pencil-alt'></i>Elect. Dept.</a>
                         </div>
                         <div class='item-4'>
@@ -896,17 +943,51 @@ body {
               <div class='item-2'><input type="radio" name="tipo" value="equivalencia"> Equivalencia</input></div>
               </div>
               
-              <div id='myDIV' style="display: none" class="select-box">          
+              <div id='mand' style="display: none" class="select-box">          
                   <select name="courses" id="course-list">
                   <?php
                         $sql ="SELECT crse_name, crse_label
-                        FROM $tabla[1]";
+                        FROM mandatory_courses";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
 
                          if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
-                            echo "<option name='clase' value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                        }
+                        } ?>
+                  </select>
+
+              </div>
+
+              <div id='gen' style="display: none" class="select-box">          
+                  <select name="courses" id="course-list">
+                  <?php
+                        $sql ="SELECT crse_name, crse_label
+                        FROM general_courses";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                         if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                        }
+                        } ?>
+                  </select>
+
+              </div>
+
+              <div id='dept' style="display: none" class="select-box">          
+                  <select name="courses" id="course-list">
+                  <?php
+                        $sql ="SELECT crse_name, crse_label
+                        FROM 	departmental_courses";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                         if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
                         }
                         } ?>
                   </select>

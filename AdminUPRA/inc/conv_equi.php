@@ -6,6 +6,6 @@ session_start();
     $tipo = $_POST['tipo'];
     $clase = mysqli_real_escape_string($conn, $_POST['courses']);
 
-    
+    echo $student_id, $tipo, $clase;
 }
 ?>
