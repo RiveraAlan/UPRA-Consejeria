@@ -18,6 +18,12 @@ if(!isset($student_id)){
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
+
+          function myFunction(className) {
+                    console.log(className); 
+                    document.getElementById("og_crse").value = className;
+                    document.getElementById('id03').style.display='block';
+          }
           function equi_conv(elmnt,tabla) {
             if(tabla == 'mandatory_courses'){
               var x = document.getElementById("mand");
@@ -724,7 +730,7 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 
+                  $crse = "{$row['crse_label']}";
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -756,8 +762,8 @@ body {
                     }
                     echo"
                     <td>{$row['semester_pass']}</td>
-                    <td><button onclick='$modal' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
-                  </tr> ";}}?>
+                    <td><button onclick='myFunction($crse)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
+                  </tr>";}}?>
                 </tbody>
                   </table>
                   <br>
@@ -845,7 +851,6 @@ body {
                   
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
                   }else if ($row['crse_status'] == 2){
@@ -857,7 +862,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
                     <td>{$row['semester_pass']}</td>
-                    <td><button onclick='$modal' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
+                    <td><button onClick='$modal' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
                   </tr>";}}?>
                 </tbody>
                   </table>
@@ -1003,8 +1008,8 @@ body {
                   </div>
               </div>
               <div class="grid-container" style="margin-left:18%">
-              <div class='item-1'><input type="radio" name="tipo" value="convalidacion"> Convalidación</input></div>
-              <div class='item-2'><input type="radio" name="tipo" value="equivalencia"> Equivalencia</input></div>
+              <div class='item-1'><input type="radio" name="tipo" value="crse_recognition"> Convalidación</input></div>
+              <div class='item-2'><input type="radio" name="tipo" value="crse_equivalence"> Equivalencia</input></div>
               </div>
               
               <div id='mand' style="display: none" class="select-box">          
@@ -1057,7 +1062,7 @@ body {
                   </select>
 
               </div>
-              
+              <input type='hidden' id='og_crse' value='' name='og_crse'>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               <button type='submit' id="mandatory" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
               <button type='submit' id="general" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="general_courses" ; ?>APLICAR</button>
