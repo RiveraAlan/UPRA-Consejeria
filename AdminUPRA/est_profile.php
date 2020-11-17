@@ -746,6 +746,8 @@ body {
             <div style="background:rgb(85,255,0,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>Ya el estudiante pasó el curso</p> 
             <div style="background:rgb(51,85,255,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>El estudiante está tomando el curso</p>
             <div style="background:rgb(230,0,38,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>El estudiante no ha tomando el curso</p>
+            <h1>Leyenda Botón Recomendación</h1>
+            <p>Esta leyenda está relacionada con los colores de los botones de recomendación.</p>
             </section>
         </div><!-- /.Final de Leyendas -->
 <!-- Modals -->
