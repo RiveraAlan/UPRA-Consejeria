@@ -231,7 +231,7 @@ $sql = "SELECT stdnt_number
             </div>
           </div><!-- ./col Candidatos a Graduacion -->
         </div>
-      </div><!-- /.container-fluid -->           
+      </div><!-- /.container-fluid -->
 <!-- /. bloques de estadisticas -->
       <!-- Default box -->
       <div class="card">
