@@ -133,11 +133,12 @@ if(!isset($student_id)){
   padding: 10px;
 }
 
-.grid-container > div {
+.grid-item > div {
   background-color: transparent;
-  text-align: center;
+  text-align: top;
   padding: 20px 0;
   font-size: 30px;
+  font-weight: bold;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
@@ -204,6 +205,15 @@ body {
   top: 0;
   padding: 5px 15px;
   border-left: 5px solid #fff;
+}
+
+.leyenda{
+  border: none;
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
 }
   </style>
 
@@ -790,9 +800,11 @@ body {
             <section>
             <h1>Leyenda Estatus del Curso</h1>
             <p>Esta leyenda está relacionada con los colores de las filas dentro de los expedientes.</p>
-            <div style="background:rgb(85,255,0,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>Ya el estudiante pasó el curso</p> 
-            <div style="background:rgb(51,85,255,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>El estudiante está tomando el curso</p>
-            <div style="background:rgb(230,0,38,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>El estudiante no ha tomando el curso</p>
+            <div class="grid-container">
+            <div><a class="leyenda" style="background:rgb(85,255,0,0.3);"></a> Ya el estudiante pasó el curso      </div> 
+            <div><a class="leyenda" style="background:rgb(51,85,255,0.3);"></a> El estudiante está tomando el curso</div> 
+            <div><a class="leyenda" style="background:rgb(230,0,38,0.3);"></a> El estudiante no ha tomando el curso</div> 
+            </div>
             <h1>Leyenda Botón Recomendación</h1>
             <p>Esta leyenda está relacionada con los colores de los botones de recomendación.</p>
             </section>
