@@ -13,5 +13,18 @@ session_start();
     }else if($tabla == "departamental_courses"){
         $clase = mysqli_real_escape_string($conn, $_POST['course_dept']);
     }
+
+        $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number, crse_label, crseR_status) VALUES (?, ?, ?)");
+    
+        $stmt->bind_param('iii', $stdnt_number, $crse_label, $crseR_status);
+        // Prepare statement
+        if ($stmt->execute()) {
+            header('Location: ../est_prostudent_record.php');
+            $stmt->close();
+        }else {
+            echo "No se pudo procesar su sugerencia.";
+        }
+        
+
 }
 ?>
