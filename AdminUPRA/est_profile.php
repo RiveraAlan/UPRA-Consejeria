@@ -947,7 +947,7 @@ body {
       </div>                                                     
       <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
 <!-- HAY QUE BREGARLO!  -->
-          <button type='submit' id="mandatory" style="display: none" class='btn btn-default' onclick='edit_env()' name='edit_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
+          <button type='submit' class='btn btn-default' onclick='edit_env()' name='edit_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
       </footer>   
     </div>
   </div><!-- /.Edit -->
