@@ -743,9 +743,9 @@ body {
             <section>
             <h1>Leyenda Estatus del Curso</h1>
             <p>Esta leyenda está relacionada con los colores de las filas dentro de los expedientes.</p>
-            <div style="background:rgb(85,255,0,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; height:5px;"></div>
-            <p style="background:rgb(51,85,255,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; font-size:22px;"></p>
-            <p style="background:rgb(230,0,38,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; font-size:22px;"></p>
+            <div style="background:rgb(85,255,0,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>Ya el estudiante pasó el curso</p> 
+            <div style="background:rgb(51,85,255,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>El estudiante está tomando el curso</p>
+            <div style="background:rgb(230,0,38,0.3); font-weight:bold; padding:15px; margin-top:40px; margin-bottom:40px; text-align:center; width:5px;"></div> <p>El estudiante no ha tomando el curso</p>
             </section>
         </div><!-- /.Final de Leyendas -->
 <!-- Modals -->
