@@ -896,7 +896,7 @@ body {
       </header>
       <div class="w3-container">
           <br>
-      <form action='edtiest.php' method='post'>
+      <form action='edtiest.php' method='POST'>
           <div class="grid-container">
 <!-- Dos select Box --> 
           <div class="select-box">          
@@ -946,7 +946,8 @@ body {
           </form>           
       </div>                                                     
       <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
-      <button type='button' class='btn btn-default' data-dismiss='modal' style="float:right; ">APLICAR</button> 
+<!-- HAY QUE BREGARLO!  -->
+          <button type='submit' id="mandatory" style="display: none" class='btn btn-default' onclick='edit_env()' name='edit_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
       </footer>   
     </div>
   </div><!-- /.Edit -->
