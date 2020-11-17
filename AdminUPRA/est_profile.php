@@ -479,11 +479,11 @@ body {
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #b8daba'>"; 
                   }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #70b578'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  echo "<tr width='50%' style='background-color: #008f39'>";
                   }
                 
                  if($row['crse_name'] === 'CCOM 3001' OR 
@@ -597,11 +597,11 @@ body {
                 while($row = mysqli_fetch_assoc($result)){
                  
                   if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #b8daba'>"; 
                   }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #70b578'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  echo "<tr width='50%' style='background-color: #008f39'>";
                   }
                     echo "<td>{$row['crse_name']}</td>
                     <td>{$row['crse_description']}</td>
@@ -657,11 +657,11 @@ body {
                 while($row = mysqli_fetch_assoc($result)){
                  
                   if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #b8daba'>"; 
                   }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #70b578'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  echo "<tr width='50%' style='background-color: #008f39'>";
                   }
                     echo "<td>{$row['crse_name']}</td>
                     <td>{$row['crse_description']}</td>
@@ -717,11 +717,11 @@ body {
                 while($row = mysqli_fetch_assoc($result)){
                  
                   if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #b8daba'>"; 
                   }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
+                    echo "<tr width='50%' style='background-color: #70b578'>"; 
                   }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
+                  echo "<tr width='50%' style='background-color: #008f39'>";
                   }
                     echo "<td>{$row['crse_name']}</td>
                     <td>{$row['crse_description']}</td>
@@ -799,14 +799,21 @@ body {
         <div id="Leyendas" class="tabcontent ">
             <section>
             <h1>Leyenda Estatus del Curso</h1>
-            <p>Esta leyenda está relacionada con los colores de las filas dentro de los expedientes.</p>
-            <div class="grid-container">
-            <div><a class="leyenda" style="background:rgb(85,255,0,0.3);"></a> Ya el estudiante pasó el curso      </div> 
-            <div><a class="leyenda" style="background:rgb(51,85,255,0.3);"></a> El estudiante está tomando el curso</div> 
-            <div><a class="leyenda" style="background:rgb(230,0,38,0.3);"></a> El estudiante no ha tomando el curso</div> 
-            </div>
+            <i>Esta leyenda está relacionada con los colores de las filas dentro de los expedientes.</i>
+            <div><a class="leyenda" style="background:#b8daba;"></a> Ya el estudiante pasó el curso      </div> 
+            <div><a class="leyenda" style="background:#70b578;"></a> El estudiante está tomando el curso</div> 
+            <div><a class="leyenda" style="background:#008f39;"></a> El estudiante no ha tomando el curso</div> 
+            
             <h1>Leyenda Botón Recomendación</h1>
-            <p>Esta leyenda está relacionada con los colores de los botones de recomendación.</p>
+            <i>Esta leyenda está relacionada con los colores de los botones de recomendación.</i>
+            <div><a class="leyenda" style="background:#e3d1e3;"></a> El sistema la recomendo automáticamente</div>
+            <div><a class="leyenda" style="background:#7c657c;"></a> El sistema no la ha recomendado</div>
+               <FONT COLOR="red"> <i COLOR="red"><b>Nota Aclaratoria:</b> Si desea cambiar la recomendación presione el botón y el color cambiará automáticamente junto con la recomendación.</i></FONT>
+            <h1>Leyenda Convalidación/Equivalencia</h1>
+            <i>Esta leyenda está relacionada con las convalidaciones y equivalencias.</i>
+            <div><a class="leyenda" style="background:#eeddd2;"></a> No he realizado el proceso </div>
+            <div><a class="leyenda" style="background:#c69b7c;"></a> En proceso: Ya envié los documentos</div>
+            <div><a class="leyenda" style="background:#995d2d;"></a> Completado: Ya recibí respuesta</div>
             </section>
         </div><!-- /.Final de Leyendas -->
 <!-- Modals -->
