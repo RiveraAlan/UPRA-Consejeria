@@ -869,18 +869,18 @@ body {
             <section>
             <h1>Leyenda Estatus del Curso</h1>
             <i>Esta leyenda está relacionada con los colores de las filas dentro de los expedientes.</i>
-            <div><a class="leyenda" style="background:#e1e9f4;"></a> Ya el estudiante pasó el curso      </div> 
+            <div><a class="leyenda" style="background:#e1e9f4;"></a> Ya el estudiante pasó el curso</div> 
             <div><a class="leyenda" style="background:#a5bfde;"></a> El estudiante está tomando el curso</div> 
-            <div><a class="leyenda" style="background:#6496c8;"></a> El estudiante no ha tomando el curso</div> 
+            <div><a class="leyenda" style="background:#6496c8;"></a> El estudiante no ha tomado el curso</div> 
             
             <h1>Leyenda Botón Recomendación</h1>
             <i>Esta leyenda está relacionada con los colores de los botones de recomendación.</i>
-            <div><a class="leyenda" style="background:#e3d1e3;"></a> El sistema la recomendo automáticamente</div>
+            <div><a class="leyenda" style="background:#e3d1e3;"></a> El sistema la recomendó automáticamente</div>
             <div><a class="leyenda" style="background:#7c657c;"></a> El sistema no la ha recomendado</div>
                <FONT COLOR="red"> <i COLOR="red"><b>Nota Aclaratoria:</b> Si desea cambiar la recomendación presione el botón y el color cambiará automáticamente junto con la recomendación.</i></FONT>
             <h1>Leyenda Convalidación/Equivalencia</h1>
             <i>Esta leyenda está relacionada con las convalidaciones y equivalencias.</i>
-            <div><a class="leyenda" style="background:#eeddd2;"></a> No he realizado el proceso </div>
+            <div><a class="leyenda" style="background:#eeddd2;"></a> No he realizado el proceso</div>
             <div><a class="leyenda" style="background:#c69b7c;"></a> En proceso: Ya envié los documentos</div>
             <div><a class="leyenda" style="background:#995d2d;"></a> Completado: Ya recibí respuesta</div>
             </section>
@@ -892,76 +892,51 @@ body {
       <header class="w3-container" style="padding-top:5px">
         <span onclick="document.getElementById('id01').style.display='none'"
         class="w3-button w3-display-topright">&times;</span>
-        <h3>Editar</h3>
+        <div style="text-align: center"><h3>Editar</h3></div>
       </header>
       <div class="w3-container">
           <br>
       <form action='edtiest.php' method='post'>
-                          <div class='input-group mb-3'>
-                          <input type='text' name='item_id' class='form-control' placeholder='CURSO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-chalkboard-teacher'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                                     
-                         <div class='input-group mb-3'>
-                          <input type='text' name='item_id' class='form-control' placeholder='CAMBIAR NOMBRE AL CURSO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-chalkboard-teacher'></span>
-                            </div>
-                          </div>
-                        </div>
+          <div class="grid-container">
+<!-- Dos select Box --> 
+          <div class="select-box">          
+                  <select name="course_mand" id="course-list">
+                  <?php
+                        $sql ="SELECT 	crse_label, crse_name FROM departmental_courses
+                                UNION ALL 
+                                (SELECT crse_label, crse_name FROM mandatory_courses)
+                                UNION ALL 
+                                (SELECT crse_label, crse_name FROM general_courses)
+                                UNION ALL 
+                                (SELECT crse_label, crse_name FROM free_courses)";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
 
-                          <div class='input-group mb-3'>
-                              <textarea rows='4' cols='50' name='description' class='form-control' placeholder='DESCRIPCIÓN'></textarea>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fa fa-font'></span>
-                            </div>
-                          </div>
+                         if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                        }
+                        } ?>
+                  </select>
+              </div>
+          
+                          <div class="select-box"> 
+                              <select name="course_mand" id="course-list">
+                              <option value='A'>A</option>
+                              <option value='B'>B</option>
+                              <option value='C'>C</option>
+                              <option value='D'>D</option>
+                              <option value='F'>F</option>
+                              <option value='IB'>IB</option>
+                              <option value='IC'>IC</option>
+                              <option value='ID'>ID</option>
+                              <option value='IF'>IF</option>
+                              </select>
                         </div>
-
-                          <div class='input-group mb-3'>
-                          <input type='text' name='item_id' class='form-control' placeholder='NOTA'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-clipboard'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                           
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='MATRICULADO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-user'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                       
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='RECOMENDACIÓN'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                                                               
+              </div> 
+<!-- ./ termina dos select Box --> 
                           <div class='input-group mb-3'>
                           <input type='text' name='name' class='form-control' placeholder='AÑO APROBADO'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-          
-                          <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='CONVALIDACIÓN'>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fas fa-comment-dots'></span>

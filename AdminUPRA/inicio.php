@@ -287,42 +287,29 @@ margin-left: auto;
   color: black;
   display: block
 }
-
+    
 #myUL li a:hover:not(.header) {
   background-color: #eee;
 }
 </style>
-            <!-- TERMINAR EL SEARCH -->
+<!-- TERMINAR EL SEARCH -->
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
             </button>
           </div>
-
           <ul id="myUL"></ul>
-      
         </div>
         <div class="card-body p-0">
           <table class="table table-striped projects">
               <thead>
                   <tr>
-                      <th style="width: 12%"> <div align='center'>
-                          # Estudiante</div>
-                      </th>
-                      <th style="width: 20%">  <div align='center'>
-                          Nombre del Estudiante</div>
-                      </th>
-                      <th style="width: 30%"> <div align='center'>
-                          Programa Académico del Estudiante</div>
-                      </th>
-                      <th> <div align='center'>
-                          Realización de Consejería</div>
-                      </th>
-                      <th style="width: 8%" class="text-center">
-                          Estatus
-                      </th>
-                      <th style="width: 8%" class="text-center">
-                          
+                      <th style="width: 12%"> <div align='center'># Estudiante</div></th>
+                      <th style="width: 20%">  <div align='center'>Nombre del Estudiante</div></th>
+                      <th style="width: 30%"> <div align='center'>Programa Académico del Estudiante</div></th>
+                      <th> <div align='center'>Realización de Consejería</div></th>
+                      <th style="width: 8%" class="text-center">Estatus</th>
+                      <th style="width: 8%" class="text-center">   
                       </th>
                   </tr>
               </thead>
