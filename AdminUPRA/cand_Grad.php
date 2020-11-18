@@ -8,6 +8,46 @@ if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
 }
+
+$count = 0;
+$sql = "SELECT stdnt_number 
+                    FROM student";
+                  $result = mysqli_query($conn, $sql);
+                  $resultCheck = mysqli_num_rows($result);
+                  if($resultCheck > 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                  $sum = "SELECT 131 - SUM(C) AS sum
+                  FROM ((SELECT crse_credits AS C
+                  FROM mandatory_courses
+                  INNER JOIN  student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL
+                  (SELECT crse_credits AS C
+                  FROM general_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM departmental_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM free_courses
+                  INNER JOIN student_record USING(crse_label)
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')) t1";
+                  $sum_result = mysqli_query($conn, $sum);
+                  $sum_resultCheck = mysqli_num_rows($sum_result);
+                  $creditos = mysqli_fetch_assoc($sum_result);
+                  if($sum_resultCheck > 0){
+                    if(($creditos['sum'] < 21) && ($creditos['sum'] != NULL)){
+                      $sql = "SELECT stdnt_email
+                    FROM student WHERE stdnt_number = '{$row['stdnt_number']}'";
+                    $resultado = mysqli_query($conn, $sql);
+                    $resultadoCheck = mysqli_num_rows($resultado);
+                    }else{
+                      $resultado = 0;
+                    }
+                  }
+                }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -165,17 +205,16 @@ if(!isset($advisor_id)){
         <div class="card-body p-0">
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
-        $sql ="SELECT stdnt_email FROM student
-        student_record USING(crse_label)
-         WHERE student_record.stdnt_number = '{$row['stdnt_number']}' t1";
-        $result = mysqli_query($conn, $sql);
-        $resultCheck = mysqli_num_rows($result);
-        $count = 1;
-        if($resultCheck > 0){
-        while($row = mysqli_fetch_assoc($result)){
+            if($resultado != 0){
+        while($student = mysqli_fetch_assoc($resultado)){
             echo "
-                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
-        }}?>
+                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$student['stdnt_email']}</th><br>";
+        }
+        }else{
+                echo "
+              <div class='error-message'><h4 style='text-align:center'>¡No hay candidatos a graduación!</h4></div>";
+        }
+        }?>
             <br>
         </div>
       </div>

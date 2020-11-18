@@ -22,10 +22,8 @@ session_start();
                             $row = mysqli_fetch_assoc($result);
                             if($tipo == 'crse_equivalence'){
                                 $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number, crse_label, crse_grade, crse_status, crse_equivalence, crse_credits_ER) VALUES (?, ?, ?, ?, ?, ?)");
-                                echo "hello there";
                             }else if ($tipo == 'crse_recognition'){
                                 $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number, crse_label, crse_grade, crse_status, crse_recognition, crse_credits_ER) VALUES (?, ?, ?, ?, ?, ?)");
-                                echo "over here";
                             }
                             $crse_name = "{$row['crse_name']} {$row['crse_description']}";
                             $crse_status = 1;
