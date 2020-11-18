@@ -311,18 +311,18 @@ body {
   </nav>
 <!-- /.navbar -->
 <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="inicio.php" class="brand-link">
       <img src="img/university.jpg" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">CONSEJERÍA UPRA</span>
     </a>
-    <!-- Sidebar -->
+<!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user (optional) -->
+<!-- Sidebar user -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = '$advisor_id'";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -334,8 +334,9 @@ body {
         </div>
       </div>
 <!-- Sidebar Menu -->
-      <nav class="mt-2">
+         <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="inicio.php" class="nav-link">
                <i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -354,15 +355,26 @@ body {
               <p>Calendario</p>
             </a>
           </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="modal_crear.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
+               <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Crear Expediente</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="modal_act.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
+               <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Actualizar Expediente</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
               <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Cerrar Sesión</p>
-            </a></li>
+            </a>
+          </li>
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
+      </nav><!-- /.sidebar-menu -->
+    </div><!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -1194,7 +1206,5 @@ $(document).ready(function(){
 	ajax.send(formdata);
     }
 </script>
-
-
 </body>
 </html>

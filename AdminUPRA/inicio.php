@@ -119,10 +119,23 @@ $sql = "SELECT stdnt_number
               <p>Calendario</p>
             </a>
           </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="modal_crear.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
+               <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Crear Expediente</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="modal_act.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
+               <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Actualizar Expediente</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
               <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Cerrar Sesión</p>
-            </a></li>
+            </a>
+          </li>
         </ul>
       </nav><!-- /.sidebar-menu -->
     </div><!-- /.sidebar -->
