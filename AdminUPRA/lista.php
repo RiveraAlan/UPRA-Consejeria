@@ -108,13 +108,13 @@ if(!isset($advisor_id)){
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="modal_crear.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
-               <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Crear Expediente</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="modal_act.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
-               <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+               <i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Actualizar Expediente</p>
             </a>
           </li>
