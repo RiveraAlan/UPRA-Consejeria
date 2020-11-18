@@ -451,7 +451,7 @@ body {
             <!-- About Me Box -->
             <div class='card' >
               <div class='card-header' style='background: #e0c200'>
-                <h3 class='card-title' >Notas</h3>
+                <h3 class='card-title' >Comentarios</h3>
               </div>
               <!-- /.card-header -->
               <div>
