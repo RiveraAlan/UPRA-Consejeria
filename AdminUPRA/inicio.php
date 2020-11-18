@@ -165,7 +165,7 @@ $sql = "SELECT stdnt_number
                 ;}
               ?>
                 <?php echo "<h3>{$row['amount_of_students']}</h3>" ?>
-                <p>Estudiantes de CCOM</p>
+                <p>Cantidad de Estudiantes</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -222,7 +222,7 @@ $sql = "SELECT stdnt_number
             <div class="small-box bg-purple">
               <div class="inner" style="color: white"><a href="cand_Grad.php" style="color:white">
                 <h3><?php echo $count;?></h3>
-                <p>Candidatos a Graduación de CCOM</p>
+                <p>Candidatos a Graduación</p>
               </a></div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -231,7 +231,7 @@ $sql = "SELECT stdnt_number
             </div>
           </div><!-- ./col Candidatos a Graduacion -->
         </div>
-      </div><!-- /.container-fluid -->           
+      </div><!-- /.container-fluid -->
 <!-- /. bloques de estadisticas -->
       <!-- Default box -->
       <div class="card">
