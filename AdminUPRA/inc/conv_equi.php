@@ -15,19 +15,19 @@ session_start();
         $clase = mysqli_real_escape_string($conn, $_POST['course_dept']);
     }
         // query para verificar si clase ya ha sido equi/conv anteriormente (si ha sido anterior se le dara update y no insert)
-            $sql ="SELECT crse_label, crse_recognition, crse_equivalence crse_creditsER FROM `student_record` WHERE crse_label = $clase AND stdnt_number = '$student_id'";
+            $sql ="SELECT 	crse_label, crse_recognition, crse_equivalence, semester_pass, 	crse_credits_ER FROM student_record WHERE crse_label = $clase AND stdnt_number = '$student_id'";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
         // query para obtener datos de la clase que esta siendo utilizada como equi/conv 
-            $sql_free ="SELECT * FROM `free_courses` WHERE crse_label = $og_crse";
-                $result_free = mysqli_query($conn, $sql);
+            $sql_free ="SELECT * FROM free_courses WHERE crse_label = $og_crse";
+                $result_free = mysqli_query($conn, $sql_free);
                 $resultCheck_free = mysqli_num_rows($result_free);
                 if($resultCheck_free > 0){
                     $row_free = mysqli_fetch_assoc($result_free); // variables de tabla free_courses para los creditos
                 }
                         if($resultCheck === 0){
                              // query para sacar nota de curso siendo equi/conva 
-                             $sql ="SELECT crse_grade FROM `student_record` WHERE crse_label = $og_crse AND stdnt_number = '$student_id'";
+                             $sql ="SELECT crse_grade, crse_credits_ER FROM student_record WHERE crse_label = $og_crse AND stdnt_number = '$student_id'";
                              $result = mysqli_query($conn, $sql);
                              $resultCheck = mysqli_num_rows($result);
                              $row = mysqli_fetch_assoc($result);  // nota de curso siendo equi/conva 
@@ -40,7 +40,10 @@ session_start();
                                     $nota = "P";
                                 }elseif($tabla == "general_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C' || $row['crse_grade'] === 'D')){
                                     $nota = "P";
+                                }else{
+                                    $nota = "NP";
                                 }
+
                                 if($tipo == 'crse_equivalence'){
                                     $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number, crse_label, crse_grade, crse_status, semeste_pass, crse_equivalence, crse_credits_ER) VALUES (?, ?, ?, ?, ?, ?, ?)");
                                 }else if ($tipo == 'crse_recognition'){
@@ -80,18 +83,23 @@ session_start();
                                 }else{
                                     $nota = "NP";
                                 }
+
                                 if($tipo == 'crse_equivalence'){
                                     $año = "{$row_free['semester_pass']}";
                                     $pre_clase = "{$class_row['crse_equivalence']}";
+                                    $credits = $class_row['crse_credits_ER'] + $row_free['crse_credits'];
+
                                     $sql = "UPDATE student_record 
-                                    SET crs_grade = '$nota', semester_pass = '$año',  crse_equivalence = '$pre_clase | $crse_name', crse_credits_ER = ({$class_row['crse_credits_ER']} + {$row_free['crse_credits']})
+                                    SET crs_grade = '$nota', semester_pass = '$año',  crse_equivalence = '$pre_clase | $crse_name', crse_credits_ER = $credits
                                     WHERE stdnt_number = '$student_id' AND crse_label = $clase";
                                     $stmt = $conn->prepare($sql);
                                 }else if ($tipo == 'crse_recognition'){
-                                    $año = "{$row_free['semester_pass']}";
+                                    $año = "{$class_row['semester_pass']}";
                                     $pre_clase = "{$class_row['crse_recognition']}";
+                                    $credits = $class_row['crse_credits_ER'] + $row_free['crse_credits'];
+                     
                                     $sql = "UPDATE student_record 
-                                    SET crs_grade = '$nota', semester_pass = '$año',  crse_recognnition = '$pre_clase | $crse_name', crse_credits_ER = ({$class_row['crse_credits_ER']} + {$row_free['crse_credits']})
+                                    SET crs_grade = '$nota', semester_pass = '$año',  crse_recognition = '$pre_clase | $crse_name', crse_credits_ER = $credits
                                     WHERE stdnt_number = '$student_id' AND crse_label = $clase";
                                     $stmt = $conn->prepare($sql);
                                 }
