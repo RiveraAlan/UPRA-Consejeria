@@ -456,9 +456,10 @@ body {
               <!-- /.card-header -->
               <div>
 
-              <form id='paper' method='get' action=''>
-           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
-              </div><button type='submit' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
+              <form id='paper' method='POST' action='inc/notespost.php'>
+           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
+           <input type='hidden' name='id' value='$student_id'>   
+           </div><button type='submit' name='notes-submit' onclick='notes-submit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
               <!-- /.card-body -->
             </div>
