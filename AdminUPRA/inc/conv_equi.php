@@ -90,30 +90,29 @@ session_start();
                                     $credits = $class_row['crse_credits_ER'] + $row_free['crse_credits'];
 
                                     $sql = "UPDATE student_record 
-                                    SET crs_grade = '$nota', semester_pass = '$año',  crse_equivalence = '$pre_clase | $crse_name', crse_credits_ER = $credits
+                                    SET crse_grade = '$nota', semester_pass = '$año',  crse_equivalence = '$pre_clase | $crse_name', crse_credits_ER = $credits
                                     WHERE stdnt_number = '$student_id' AND crse_label = $clase";
                                     $stmt = $conn->prepare($sql);
                                 }else if ($tipo == 'crse_recognition'){
                                     $año = "{$class_row['semester_pass']}";
                                     $pre_clase = "{$class_row['crse_recognition']}";
                                     $credits = $class_row['crse_credits_ER'] + $row_free['crse_credits'];
-                     
+                                     
                                     $sql = "UPDATE student_record 
-                                    SET crs_grade = '$nota', semester_pass = '$año',  crse_recognition = '$pre_clase | $crse_name', crse_credits_ER = $credits
+                                    SET crse_grade = '$nota', semester_pass = '$año',  crse_recognition = '$pre_clase | $crse_name', crse_credits_ER = $credits
                                     WHERE stdnt_number = '$student_id' AND crse_label = $clase";
                                     $stmt = $conn->prepare($sql);
                                 }
+
                                 // Prepare statement
                                 if ($stmt->execute()) {
                                     // borrar la clase siendo equi/conv del expediente
-                                    $sql = "DELETE FROM student_record WHERE stdnt_number = '$student_id' AND crse_label = $og_crse";
-                                    $del_stmt = $conn->prepare($sql);
+                                    $del_sql = "DELETE FROM student_record WHERE stdnt_number = '$student_id' AND crse_label = $og_crse";
+                                    $del_stmt = $conn->prepare($del_sql);
                                     if ($del_stmt->execute()) {
                                     header('Location: ../est_profile.php');
                                     $stmt->close();
                                     $del_stmt->close();
-                                }else {
-                                    echo "No se pudo procesar su $tipo.";
                                 }
                                 }else {
                                     echo "No se pudo procesar su $tipo.";
