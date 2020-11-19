@@ -9,9 +9,7 @@ require '../../private/dbconnect.php';
     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
-                    echo "if result";
                 while($row = mysqli_fetch_assoc($result)){
-                    echo "while";
                     $sql = "UPDATE student_record_details SET adv_comments = '$note' WHERE stdnt_number = '$id'";    
                 }
     

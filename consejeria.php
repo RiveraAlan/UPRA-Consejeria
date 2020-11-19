@@ -15,6 +15,7 @@ if(!isset($_SESSION['stdnt_number'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Aqui llamamos a los distintos css de la pagina y el font que tiene -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="fonts/icomoon/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -383,7 +384,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                $sql ="SELECT *
                    FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -407,9 +408,47 @@ if(!isset($_SESSION['stdnt_number'])){
                       }else{
                       echo "<td></td>";}
                       echo "
-                    <td>{$row['semester_pass']}</td>
-                    <td></td>
-                  </tr> ";}}?>
+                    <td>{$row['semester_pass']}</td>";
+                    if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
+                      echo"
+                    <td><button onclick='myFunction({$row['crse_label']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                  }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                    echo"
+                    <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                  }else{
+                    echo"
+                    <td></td>";
+                  }
+                  echo"
+                  </tr>
+                  
+                            <!-- Modal de Equivalencias y Convalidaciones -->
+                            <!-- Convalidacion-Equivalencia -->
+                  <div id='equi-conv' class='w3-modal'>
+                      <div class='w3-modal-content w3-animate-zoom' style='margin-top:10%; margin-bottom'>
+                        <header class='w3-container' style='padding-top:5px'>
+                          <span onclick='equi_conv()'
+                          class='w3-button w3-display-topright'>&times;</span>
+                          <h3>Convalidación/Equivalencias</h3>
+                        </header>
+                        <form method='post' action='private/confirm_equi_conv.php'>
+                        <div class='w3-container'>
+                        <div class='grid-container' style='margin-bottom:20px; margin-top:20px;'>
+                        <div class='item-1'><input type='radio' name='estatus' value='0'> No he iniciado proceso</input></div>
+                        <div class='item-2'><input type='radio' name='estatus' value='2'> En Proceso: Ya envié los documentos</input></div>
+                        <div class='item-3'><input type='radio' name='estatus' value='1'> Completado: Ya recibí respuesta</input></div>
+                        </div>
+                        </div>
+
+                        <input type='hidden' name='stdnt_number' value='$id'>
+                        <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+                        <button id='conv_env_submit' type='submit' class='btn btn-default' name='conv_env-submit' value='' style='float:right; '>Confirmar</button>
+                        </footer>
+                        </form>
+                      </div>
+                    </div><!-- /.Convalidacion-Equivalencia -->
+                <!-- /Modal -->";
+                  }}?>
                     </table>
               </div>
             </div>
@@ -541,6 +580,8 @@ if(!isset($_SESSION['stdnt_number'])){
           ?>
             </div>
       </div> 
+
+      
  <!-- Este SCRIPT es para bregar con las appointment (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los advisors a cargo. -->
   <script src="index.js"></script> 
         <script
@@ -601,6 +642,21 @@ function toggle(source) {
             }
 </script>
 <!-- Culmina scripts de checkbox -->
+
+<!-- script de confirmacion de equivalencias y convalidaciones -->
+          <script>
+            function myFunction(className) {
+                  console.log(className); 
+                  document.getElementById("conv_env_submit").value = className;
+                  document.getElementById('equi-conv').style.display='block';
+            }
+
+            function equi_conv() {
+                  document.getElementById('equi-conv').style.display='none';
+            }
+          </script>
+<!-- /script de equi_conv -->
+
 <!-- Aqui se encuentran varios SCRIPTS que hacen el funcionamiento de la pagina. -->     
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
