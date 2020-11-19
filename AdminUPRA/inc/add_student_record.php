@@ -22,6 +22,7 @@ if(move_uploaded_file($fileTmpLoc, "../academic_record.txt")){
  )
 );
 
+
 //  ======= REARRANGE ELECTIVES =========
 
 
@@ -215,6 +216,9 @@ $contents = file_get_contents('expediente_formatted.txt');
         $contents = str_replace($line, '', $contents);
         file_put_contents('expediente_formatted.txt', $contents);        
 */
+
+
+
 
 // ASSOCIATE COURSE WITH ID_FIJO AND UPLOAD TO DATABASE
 $myfile = fopen("expediente_formatted.txt", "r") or die("Unable to open file!");

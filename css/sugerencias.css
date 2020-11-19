@@ -99,7 +99,6 @@
 }
 
 .active {
-    max-height: 300px;
     opacity: 1;
 }
 .suggestion-toggle {
