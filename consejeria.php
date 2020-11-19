@@ -106,10 +106,10 @@ if(!isset($_SESSION['stdnt_number'])){
                       $sem = 2;
                     }
                  echo "<div class='card-header'>
-                    Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
-                    Número de student: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Número de Estudiante: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendados: <b>{$reco['SUM(C)']}</b></b><br></div>";?>
                 </div>
               </div>
@@ -239,7 +239,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
-                  <tr width="50%" bgcolor="yellow">
+                  <tr width="50%" bgcolor="#e0c200">
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -260,13 +260,9 @@ if(!isset($_SESSION['stdnt_number'])){
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
-                  }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
-                  }
+                  
+                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
+                  
                     echo "<td>{$row['crse_name']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
@@ -284,7 +280,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
                     <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
-                  <tr width="50%" bgcolor="yellow">
+                  <tr width="50%" bgcolor="#e0c200">
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -303,14 +299,9 @@ if(!isset($_SESSION['stdnt_number'])){
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
+            
+                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                  if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
-                  }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
-                  }
                     echo "<td>{$row['crse_name']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
@@ -328,7 +319,7 @@ if(!isset($_SESSION['stdnt_number'])){
                    <div align = "center"><h3>Electivas Libres</h3></div>
                     <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
-                  <tr width="50%" bgcolor="yellow">
+                  <tr width="50%" bgcolor="#e0c200">
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -348,13 +339,9 @@ if(!isset($_SESSION['stdnt_number'])){
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
-                  }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
-                  }
+                  
+                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
+                
                     echo "<td>{$row['crse_name']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
@@ -372,7 +359,7 @@ if(!isset($_SESSION['stdnt_number'])){
                    <div align = "center"><h3>Electivas Departamentales</h3></div>
                     <table id="example2" class="table table-bordered table-hover" style="color:#000">
                      <thead>
-                  <tr width="50%" bgcolor="yellow">
+                  <tr width="50%" bgcolor="#e0c200">
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -392,13 +379,9 @@ if(!isset($_SESSION['stdnt_number'])){
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                  if($row['crse_status'] == 1){
-                    echo "<tr width='50%' style='background-color: rgb(85,255,0,0.3)'>"; 
-                  }else if ($row['crse_status'] == 2){
-                    echo "<tr width='50%' style='background-color: rgb(51,85,255,0.3)'>"; 
-                  }else{
-                  echo "<tr width='50%' style='background-color: rgb(230,0,38,0.3)'>";
-                  }
+                
+                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
+                  
                     echo "<td>{$row['crse_name']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
