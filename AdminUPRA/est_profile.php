@@ -543,7 +543,6 @@ body {
               ?>
       <div class="card-body">
                 <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
-<!-- </div>   -->
                 <br>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -666,6 +665,13 @@ body {
                   </table>
                   <br>
                   <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                  <form action='inc/recommend.php' method='POST'>
+                   <?php
+                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    ?>
+                   <button type='submit' name='rec-adi' value='crse_suggestionCISO' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; margin-left:24%; background-color: rgb(253, 118, 100);">Recomendación Adicional CISO</button>
+                   <button type='submit' name='rec-adi' value='crse_suggestionHUMA' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; background-color: rgb(253, 118, 100);">Recomendación Adicional HUMA</button>
+                   </form>
                   <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -732,6 +738,12 @@ body {
                   </table>
                   <br>
                    <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                  <form action='inc/recommend.php' method='POST'>
+                   <?php
+                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    ?>
+                   <button type='submit' name='rec-adi' value='crse_suggestionFREE' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
+                   </form>
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -792,7 +804,12 @@ body {
                   </table>
                   <br>
                    <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
-                   <button onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
+                   <form action='inc/recommend.php' method='POST'>
+                   <?php
+                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    ?>
+                   <button type='submit' name='rec-adi' value='crse_suggestionDEP' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
+                   </form>
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
