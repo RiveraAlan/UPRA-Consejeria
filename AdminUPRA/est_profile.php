@@ -1257,7 +1257,7 @@ ajax.upload.addEventListener("progress", progressHandler, false);
 ajax.addEventListener("load", completeHandler, false);
 ajax.addEventListener("error", errorHandler, false);
 ajax.addEventListener("abort", abortHandler, false);
-ajax.open("POST", "../private/file_upload_parser.php");
+ajax.open("POST", "inc/file_upload_parser.php");
 ajax.send(formdata);
 
     }
@@ -1321,7 +1321,7 @@ $(document).ready(function(){
 	formdata.append("file1", file);
 	var ajax = new XMLHttpRequest();
 	ajax.upload.addEventListener("progress", progressHandler, false);
-	ajax.open("POST", "inc/add_record_to_project.php");
+	ajax.open("POST", "inc/update_student_record.php");
 	ajax.send(formdata);
     }
 </script>
