@@ -559,7 +559,7 @@ body {
                   </thead>
                   <tbody>
                 <?php
-                   $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                   $sql ="SELECT *
                    FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -654,9 +654,15 @@ body {
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
-                    <td>{$row['semester_pass']}</td>
-                    <td></td>
-                  </tr> ";}}?> 
+                    <td>{$row['semester_pass']}</td>";
+                    if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                      echo"
+                      <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                    }else{
+                      echo"
+                      <td></td>";
+                    }
+                  echo "</tr> ";}}?>
                 </tbody>
                   </table>
                   <br>
@@ -676,7 +682,7 @@ body {
                   </thead>
                   <tbody>
                 <?php
-                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                $sql ="SELECT *
                 FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -714,9 +720,15 @@ body {
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
-                    <td>{$row['semester_pass']}</td>
-                    <td></td>
-                  </tr> ";}}?>
+                    <td>{$row['semester_pass']}</td>";
+                    if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                      echo"
+                      <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                    }else{
+                      echo"
+                      <td></td>";
+                    }
+                  echo "</tr> ";}}?>
                 </tbody>
                   </table>
                   <br>
@@ -796,14 +808,22 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                $sql ="SELECT *
                 FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 
+                 if($row['crse_ER_Status'] = 0){
+                  $color = '#eeddd2';
+                 }elseif($row['crse_ER_Status'] = 1){
+                  $color = '#c69b7c';
+                 }elseif($row['crse_ER_Status'] = 2){
+                  $color = '#995d2d';
+                }elseif($row['crse_ER_Status'] = NULL){
+                  $color = '';
+                }
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -834,9 +854,15 @@ body {
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
-                    <td>{$row['semester_pass']}</td>
-                    <td></td>
-                  </tr> ";}}?>
+                    <td>{$row['semester_pass']}</td>";
+                    if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                      echo"
+                      <td style='background-color:$color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                    }else{
+                      echo"
+                      <td></td>";
+                    }
+                  echo "</tr> ";}}?>
                     </table>   
               </div>
     </section>
