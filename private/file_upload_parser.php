@@ -8,9 +8,9 @@ if (!$student_recordTmpLoc) { // if student_record not chosen
     echo "ERROR: Please browse for a student_record before clicking the upload button.";
     exit();
 }
-if(move_uploaded_student_record($student_recordTmpLoc, "../student_record.txt")){
+if(move_uploaded_student_record($student_recordTmpLoc, "../AdminUPRA/student_record.txt")){
     //echo "$student_recordName upload is complete";
-    header('Location: ../read_exp_acad.php');
+    header('Location: ../AdminUPRA/inc/add_student_record.php');
 } else {
     echo "move_uploaded_student_record function failed";
 }

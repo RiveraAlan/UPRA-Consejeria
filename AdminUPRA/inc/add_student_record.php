@@ -11,21 +11,21 @@ if (!$fileTmpLoc) { // if file not chosen
     echo "ERROR: Please browse for a file before clicking the upload button.";
     exit();
 }
-if(move_uploaded_file($fileTmpLoc, "../academic_record.txt")){
+if(move_uploaded_file($fileTmpLoc, "../student_record.txt")){
     
     // UPLOAD IS COMPLETE";
- file_put_contents('../academic_record_formatted.txt',
+ file_put_contents('../student_record_formatted.txt',
  preg_replace(
      '~[\r\n]+~',
      "\r\n",
-     trim(file_get_contents('../academic_record.txt'))
+     trim(file_get_contents('../student_record.txt'))
  )
 );
 
 //  ======= REARRANGE ELECTIVES =========
 
 
-$myfile = fopen("../academic_record_formatted.txt", "r+") or die("Unable to open file!");
+$myfile = fopen("../student_record_formatted.txt", "r+") or die("Unable to open file!");
 //fwrite($myfile, $txt);
 
 $electives = array();
@@ -62,16 +62,16 @@ while(!feof($myfile)) {
     if($delete){
      
         array_push($electives, $line);
-        $contents = file_get_contents('../academic_record_formatted.txt');
+        $contents = file_get_contents('../student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('../academic_record_formatted.txt', $contents);
+        file_put_contents('../student_record_formatted.txt', $contents);
     }elseif(trim($line) === '- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -'){
         
         $delete = TRUE;
         array_push($electives, $line);
-        $contents = file_get_contents('../academic_record_formatted.txt');
+        $contents = file_get_contents('../student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('../academic_record_formatted.txt', $contents);
+        file_put_contents('../student_record_formatted.txt', $contents);
     }
    
   }
@@ -182,7 +182,7 @@ echo "<h3>End of Free Electives</h3>";
 
 fclose($myfile); 
 
-$myfile = fopen('../academic_record_formatted.txt', 'a');//opens file in append mode  
+$myfile = fopen('../student_record_formatted.txt', 'a');//opens file in append mode  
   
  
 fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");

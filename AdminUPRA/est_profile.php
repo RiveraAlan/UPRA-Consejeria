@@ -288,30 +288,6 @@ body {
   cursor: pointer;
   border-radius: 16px;
 }
-/* Set a style for all buttons */
-.button-exp {
-  background-color: #e0c200;
-  color: black;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-.button-exp:hover {
-  opacity:1;
-}
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
 
   </style>
 
@@ -376,18 +352,6 @@ body {
             <a href="calendar.php" class="nav-link">
                <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Calendario</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a onclick="document.getElementById('id04').style.display='block'" class="nav-link">
-               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Crear Expediente</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="modal_act.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
-               <i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Actualizar Expediente</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
@@ -1146,65 +1110,7 @@ body {
             </div>
           </div>
             <!-- /.Cursos a Examinar -->
-            <!-- crear expediente -->
-            <div id="id04" class="w3-modal" style="padding-left:20%">
-    <div class="w3-modal-content w3-animate-zoom">
-      <header class="w3-container" style="padding-top:5px">
-        <span onclick="document.getElementById('id04').style.display='none'"
-        class="w3-button w3-display-topright">&times;</span>
-        <div style="text-align: center"><h1>Crear Expediente</h1>
-      <p>Complete los siguientes campos para crear el expediente.</p>
-      <hr></div>
-      </header>
-      <div class="w3-container">
-          <br>
-          <form action="/action_page.php">
-      <label for="numest"><b>Número de Estudiante</b></label>
-      <input type='text' class='form-control' placeholder="Entre el número de Estudiante" name="numest" required>
-
-      <div class="select-box"> 
-                <select name="course_mand" id="course-list">
-                <option value='Regular'>Regular</option>
-                <option value='Traslado'>Traslado</option>
-                <option value='Transferencia'>Transferencia</option>
-                <option value='Reclasificación'>Reclasificación</option>
-                </select>
-      </div>     
-      <div class="clearfix">
-              <button type="button" onclick="document.getElementById('id04').style.display='none'" class="button-exp cancelbtn">Cancelar</button>
-              <button type="submit" class="button-exp signupbtn">Crear</button>
-            </div>
-        </form>
-      <script>
-      // Get the modal
-      var modal = document.getElementById('id04');
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-      </script>
-      <!-- /Modal para registro -->  
-          </section>
-        </div>
-        
-
-        <footer class="main-footer">
-          
-          <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
-        </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>              
-    </div>
-  </div><!-- /.Edit -->
-            <!-- /. crear expediente -->
+            
             <!-- /.Modals -->
              
             </div>
@@ -1257,7 +1163,7 @@ ajax.upload.addEventListener("progress", progressHandler, false);
 ajax.addEventListener("load", completeHandler, false);
 ajax.addEventListener("error", errorHandler, false);
 ajax.addEventListener("abort", abortHandler, false);
-ajax.open("POST", "inc/file_upload_parser.php");
+ajax.open("POST", "../private/file_upload_parser.php");
 ajax.send(formdata);
 
     }
