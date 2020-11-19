@@ -2,7 +2,7 @@
 include_once 'dbconnect.php';
 session_start();
 
-
+$stdnt_number = $_SESSION['stdnt_number'];
 $fields = array("date", "hour-chosen");
 $areFieldsEmpty = array();
 $isAFieldEmpty = false;
@@ -62,7 +62,7 @@ if($_POST['hour-chosen'] === '10:00am'){
 echo $_SESSION['stdnt_number'];
 echo $meetingDate;
 
-$stmt->bind_param('is', $_SESSION['stdnt_number'], $meetingDate);
+$stmt->bind_param('ss', $stdnt_number, $meetingDate);
 
 
 

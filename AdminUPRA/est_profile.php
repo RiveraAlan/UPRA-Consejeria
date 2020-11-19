@@ -534,10 +534,10 @@ body {
               if($resultCheck > 0){
                 if($creditos['SUM(C)'] <= 11){
               echo "
-              <div class='error-message'><h4>¡Recomendar más créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
+              <div class='error-message'><h4 style='text-align:center'>¡Recomendar más créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
                 } else if ($creditos['SUM(C)'] > 21){
                   echo "
-              <div class='error-message'><h4>¡Recomendar menos créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
+              <div class='error-message'><h4 style='text-align:center'>¡Recomendar menos créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
                 }
               }
               ?>
@@ -637,18 +637,17 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
                     if($row['crseR_status'] == 1){
-                      echo "<form action='inc/recommend.php' method='post'>
+                      $colorR = '#c558c5';
+                    }elseif($row['crseR_status'] == 0){
+                      $colorR = '#7c657c';
+                    }else{
+                      $colorR = '';
+                    }
+                    if($row['crse_grade'] == NULL){
+                      echo "<form action='inc/recommend.php' method='POST'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id '>
                       <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
-                      <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
-                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
-                      </form>";
-                    }else if($row['crse_status'] == 0){
-                      echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id '>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
-                      <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
-                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:$colorR;  width : 100%'>Recomendación</button></td>
                       </form>";
                     }else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
@@ -657,7 +656,7 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
@@ -723,7 +722,7 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
@@ -793,6 +792,7 @@ body {
                   </table>
                   <br>
                    <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                   <button onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
@@ -818,9 +818,9 @@ body {
                  if($row['crse_ER_Status'] = 0){
                   $color = '#eeddd2';
                  }elseif($row['crse_ER_Status'] = 1){
-                  $color = '#c69b7c';
-                 }elseif($row['crse_ER_Status'] = 2){
                   $color = '#995d2d';
+                 }elseif($row['crse_ER_Status'] = 2){
+                  $color = '#c69b7c';
                 }elseif($row['crse_ER_Status'] = NULL){
                   $color = '';
                 }
@@ -843,13 +843,6 @@ body {
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
-                    }else if($row['crse_status'] == 0){
-                      echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
-                      <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
-                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
-                      </form>";
                     }else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
@@ -857,13 +850,14 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td style='background-color:$color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
                     }
                   echo "</tr> ";}}?>
                     </table>   
+                    
               </div>
     </section>
     </div><!-- /.Final de file del student -->  
@@ -919,7 +913,7 @@ body {
             
             <h1>Leyenda Botón Recomendación</h1>
             <i>Esta leyenda está relacionada con los colores de los botones de recomendación.</i>
-            <div><a class="leyenda" style="background:#e3d1e3;"></a> El sistema la recomendó automáticamente</div>
+            <div><a class="leyenda" style="background:#c558c5;"></a> El sistema la recomendó automáticamente</div>
             <div><a class="leyenda" style="background:#7c657c;"></a> El sistema no la ha recomendado</div>
                <FONT COLOR="red"> <i COLOR="red"><b>Nota Aclaratoria:</b> Si desea cambiar la recomendación presione el botón y el color cambiará automáticamente junto con la recomendación.</i></FONT>
             <h1>Leyenda Convalidación/Equivalencia</h1>

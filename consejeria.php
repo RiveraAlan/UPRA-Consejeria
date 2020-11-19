@@ -251,7 +251,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                $sql ="SELECT *
                    FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'
                    ORDER by crse_label";
                     $result = mysqli_query($conn, $sql);
@@ -272,9 +272,19 @@ if(!isset($_SESSION['stdnt_number'])){
                     }else{
                     echo "<td></td>";}
                     echo "
-                    <td>{$row['semester_pass']}</td>
-                    <td></td>
-                  </tr> ";}}?>  
+                    <td>{$row['semester_pass']}</td>";
+                    if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
+                      echo"
+                    <td><button onclick='myFunction({$row['crse_label']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                  }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                    echo"
+                    <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                  }else{
+                    echo"
+                    <td></td>";
+                  }
+                  echo"
+                  </tr>";}}?>  
                 </tbody> 
                   </table>
                   <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
@@ -292,7 +302,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                $sql ="SELECT *
                    FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -311,9 +321,19 @@ if(!isset($_SESSION['stdnt_number'])){
                       }else{
                       echo "<td></td>";}
                       echo "
-                    <td>{$row['semester_pass']}</td>
-                    <td></td>
-                  </tr> ";}}?>
+                    <td>{$row['semester_pass']}</td>";
+                    if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
+                      echo"
+                    <td><button onclick='myFunction({$row['crse_label']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                  }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                    echo"
+                    <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                  }else{
+                    echo"
+                    <td></td>";
+                  }
+                  echo"
+                  </tr>";}}?>
                 </tbody>
                   </table>
                    <div align = "center"><h3>Electivas Libres</h3></div>
@@ -331,7 +351,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   </thead> 
                 <tbody>
                 <?php 
-                $sql ="SELECT stdnt_number, crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                $sql ="SELECT *
                    FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
@@ -433,6 +453,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <!-- /Modal -->";
                   }}?>
                     </table>
+                    <div class='warning-message'><h4 style='text-align:center'>¡ADVERTENCIA! Debe tomar 6 créditos en avanzada.</h4></div>
               </div>
             </div>
           </div>
@@ -523,7 +544,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                   ?>
                                 </tbody>
                               </table>
-                                
+                              
                             </div>
                             </div>
                           </div>            
