@@ -22,7 +22,6 @@ if(move_uploaded_file($fileTmpLoc, "../academic_record.txt")){
  )
 );
 
-
 //  ======= REARRANGE ELECTIVES =========
 
 

@@ -33,7 +33,7 @@ if($isAFieldEmpty){
 // Here we create a variable that calls the prepare() method of the database object
 // The SQL query you want to run is entered as the parameter, and placeholders are written like this :placeholder_name
 
-$stmt = $conn->prepare("INSERT INTO appointment (stdnt_number, appt_date) VALUES (?, ?)");
+$stmt = $conn->prepare("INSERT INTO appointment (adv_id, stdnt_number, appt_date) VALUES (?, ?, ?)");
 
 // Now we tell the script which variable each placeholder actually refers to using the bindParam() method
 // First parameter is the placeholder in the statement above - the second parameter is a variable that it should refer to
@@ -62,7 +62,8 @@ if($_POST['hour-chosen'] === '10:00am'){
 echo $_SESSION['stdnt_number'];
 echo $meetingDate;
 
-$stmt->bind_param('ss', $stdnt_number, $meetingDate);
+$adv_id = 1;
+$stmt->bind_param('iss', $adv_id, $stdnt_number, $meetingDate);
 
 
 
@@ -74,6 +75,7 @@ if ($stmt->execute()) {
      header('Location: ../consejeria.php');
 } else {
   echo "Unable to create record";
+  printf (" Error:% s. \ N ", $stmt-> error);
 }
 
    
