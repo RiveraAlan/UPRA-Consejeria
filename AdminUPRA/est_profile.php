@@ -1242,7 +1242,6 @@ $(document).ready(function(){
     ajax.open("POST", "inc/update_student_record.php");
   } else {
     ajax.open("POST", "inc/add_student_record.php");
-
   }
 	ajax.send(formdata);
     }
