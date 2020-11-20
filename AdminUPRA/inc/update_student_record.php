@@ -2,7 +2,7 @@
 include_once 'connection.php';
 session_start();
 
-$fileName = $_FILES["file1"]["name"]; // The file name
+ $fileName = $_FILES["file1"]["name"]; // The file name
 $fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
 $fileType = $_FILES["file1"]["type"]; // The type of file it is
 $fileSize = $_FILES["file1"]["size"]; // File size in bytes
@@ -21,7 +21,7 @@ if(move_uploaded_file($fileTmpLoc, "../student_record.txt")){
      trim(file_get_contents('../student_record.txt'))
  )
 );
-
+  
 
 
 $mystudent_record = fopen("../student_record_formatted.txt", "r") or die("Unable to open student_record!");
@@ -111,16 +111,19 @@ if($resultCheck > 0){
     $coursesFromDB = array();
     while($row = mysqli_fetch_assoc($result)) {
         
-       $sql = "UPDATE student_record SET crse_grade = ".$coursesTakenThisSemester[$row['crse_name']]['crse_grade'].", semester_pass = value 2, crse_status = 1
-    WHERE crse_label = $row[crse_label] AND est_id = 1";
+     //  FALTA ANADIR EL SEMESTRE DEL ESTUDIANTE
+
+       $sql = "UPDATE student_record SET crse_grade = '".$coursesTakenThisSemester[$row['crse_name']]['crse_grade']."', semester_pass = '2', crse_status = 1
+    WHERE crse_label = $row[crse_label] AND stdnt_number = '$_SESSION[stdnt_number]'";
     echo "<p>$sql</p>";
-    // USE SESSION INSTEAD OF HARDCODED NUMBER
+    mysqli_query($conn, $sql);
+
     }
 }
 
 
 foreach($coursesForNextSemester as $key => $grade){
-  // FOR WHAT I UNDERSTAND THE COURSES IN THIS ARRAY ARE NOT IN THE DB.
+
    $query = "SELECT * FROM ( SELECT * FROM mandatory_courses
    UNION
    SELECT * FROM departmental_courses 
@@ -138,15 +141,20 @@ foreach($coursesForNextSemester as $key => $grade){
        while($row = mysqli_fetch_assoc($result)) {
         $query = "INSERT INTO student_record(stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass, 
                   crse_recognition, crse_equivalence, crse_credits_ER, crseR_status) 
-                  VALUES (NULL, $row[crse_label], NULL, NULL, 2, NULL, NULL, NULL, $row[crse_credits], NULL);";
+                  VALUES ('$_SESSION[stdnt_number]', $row[crse_label], NULL, NULL, 2, NULL, NULL, NULL, NULL, 0);";
+         echo "<p>$query</p>";
           mysqli_query($conn, $query);
        }
    }
    
 }
-} else {
+ } else {
     echo "Error: ";
-}
+} 
+
+
+
+
 // A LAS DEL PROXIMO SEMESTRE ASIGNA crse_status = 2 Y MAS NA.
 // RECUERDA EL TASK QUE LIZ TE DIO BUSCALO EN TASKS.DOCX
 

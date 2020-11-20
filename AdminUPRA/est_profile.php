@@ -14,6 +14,14 @@ if(!isset($student_id)){
     exit();
 }
 
+$query = "SELECT * FROM student_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
+$result = mysqli_query($conn, $query);
+$resultCheck = mysqli_num_rows($result);
+$isRecordPresentInDB = FALSE;
+
+if($resultCheck > 0)
+  $isRecordPresentInDB = TRUE;
+
     $modal = 'document.getElementById("id03").style.display="block"';
 ?>
  <!-- script to determine equivalencia/convalidacion -->
@@ -440,7 +448,7 @@ body {
                   </li>
                    
                 </ul>";?>
-                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar Expediente</button>
+                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%"><?php print( $isRecordPresentInDB ? "Actualizar " : "Crear ")?> Expediente</button>
               <?php
                 echo "</div>
               <!-- /.card-body -->
@@ -1227,7 +1235,15 @@ $(document).ready(function(){
 	formdata.append("file1", file);
 	var ajax = new XMLHttpRequest();
 	ajax.upload.addEventListener("progress", progressHandler, false);
-	ajax.open("POST", "inc/update_student_record.php");
+
+  let  isRecordPresentInDB = '<?php echo $isRecordPresentInDB; ?>';
+   
+  if(isRecordPresentInDB){
+    ajax.open("POST", "inc/update_student_record.php");
+  } else {
+    ajax.open("POST", "inc/add_student_record.php");
+
+  }
 	ajax.send(formdata);
     }
 </script>
