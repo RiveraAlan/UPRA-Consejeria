@@ -2,7 +2,7 @@
 include_once 'connection.php';
 session_start();
 
-$fileName = $_FILES["file1"]["name"]; // The file name
+/* $fileName = $_FILES["file1"]["name"]; // The file name
 $fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
 $fileType = $_FILES["file1"]["type"]; // The type of file it is
 $fileSize = $_FILES["file1"]["size"]; // File size in bytes
@@ -11,21 +11,23 @@ if (!$fileTmpLoc) { // if file not chosen
     echo "ERROR: Please browse for a file before clicking the upload button.";
     exit();
 }
-if(move_uploaded_file($fileTmpLoc, "../academic_record.txt")){
+
+
+if(move_uploaded_file($fileTmpLoc, "../student_record.txt")){
     
     // UPLOAD IS COMPLETE";
- file_put_contents('../academic_record_formatted.txt',
+ file_put_contents('../student_record_formatted.txt',
  preg_replace(
      '~[\r\n]+~',
      "\r\n",
-     trim(file_get_contents('../academic_record.txt'))
+     trim(file_get_contents('../student_record.txt'))
  )
-);
+); */
 
 //  ======= REARRANGE ELECTIVES =========
 
 
-$myfile = fopen("../academic_record_formatted.txt", "r+") or die("Unable to open file!");
+$myfile = fopen("../student_record_formatted.txt", "r+") or die("Unable to open file!");
 //fwrite($myfile, $txt);
 
 $electives = array();
@@ -62,21 +64,20 @@ while(!feof($myfile)) {
     if($delete){
      
         array_push($electives, $line);
-        $contents = file_get_contents('../academic_record_formatted.txt');
+        $contents = file_get_contents('../student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('../academic_record_formatted.txt', $contents);
+        file_put_contents('../student_record_formatted.txt', $contents);
     }elseif(trim($line) === '- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -'){
         
         $delete = TRUE;
         array_push($electives, $line);
-        $contents = file_get_contents('../academic_record_formatted.txt');
+        $contents = file_get_contents('../student_record_formatted.txt');
         $contents = str_replace($line, '', $contents);
-        file_put_contents('../academic_record_formatted.txt', $contents);
+        file_put_contents('../student_record_formatted.txt', $contents);
     }
    
   }
 
-fclose($myfile);
 
  for($i=0; $i < count($electives); $i++){
      $matches = array();
@@ -182,7 +183,7 @@ echo "<h3>End of Free Electives</h3>";
 
 fclose($myfile); 
 
-$myfile = fopen('../academic_record_formatted.txt', 'a');//opens file in append mode  
+$myfile = fopen('../student_record_formatted.txt', 'a');//opens file in append mode  
   
  
 fwrite($myfile, "\n- - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -\n");
@@ -205,7 +206,6 @@ foreach($electives as $course){
         fwrite($myfile ,"\n***********************************************\n");
     }
         
-    
 }
 
 fclose($myfile); 
@@ -216,8 +216,11 @@ $contents = file_get_contents('expediente_formatted.txt');
         file_put_contents('expediente_formatted.txt', $contents);        
 */
 
+
+
+
 // ASSOCIATE COURSE WITH ID_FIJO AND UPLOAD TO DATABASE
-$myfile = fopen("expediente_formatted.txt", "r") or die("Unable to open file!");
+$myfile = fopen("../student_record_formatted.txt", "r") or die("Unable to open file!");
 $courses = array();
 $expediente_fijo = array();
 $expediente_fijo_generales = array();
@@ -325,7 +328,7 @@ while(!feof($myfile)){
 
             $course = array("stdnt_number" => -1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
                             "crse_description" => $temp, "crse_status" => $estatus_c, "semester_pass" => $semester[0],"crse_recognition" => NULL,
-                            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
+                            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => 0, "crse_name" => $course_code[0],
                             "crse_id" => NULL
                             );
 
@@ -397,7 +400,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
         
             $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
             "crse_description" => $temp,"crse_status" => $estatus_c, "semester_pass" => $semester[0],"crse_recognition" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
+            "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => 0, "crse_name" => $course_code[0],
             "crse_id" => NULL
                         );
                         
@@ -419,7 +422,7 @@ foreach($expediente_fijo as $e_f){
     if($e_f["crse_label"] >= 1 AND $e_f["crse_label"] <= 40){
         $course = array("stdnt_number" => -1, "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
             "crse_status" => 0, "semester_pass" => NULL,"crse_recognition" => NULL,
-            "crse_equivalence" => NULL, "crse_credits" => NULL, "crseR_status" => NULL, "crse_name" => $e_f["crse_name"]
+            "crse_equivalence" => NULL, "crse_credits" => NULL, "crseR_status" => 0, "crse_name" => $e_f["crse_name"]
                         );
         array_push($courses, $course);
     } 
@@ -454,7 +457,7 @@ foreach($courses as &$course){
             
             $query = "INSERT INTO free_courses(crse_label, crse_name, crse_description, crse_credits, crse_id) 
             VALUES(".$course["crse_label"].", '".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].", 7);";
-            echo "<h1>".$query."</h1>";
+            echo "<p>".$query."</p>";
 
             mysqli_query($conn,$query);
             
@@ -537,9 +540,9 @@ $sql ="SELECT id_est FROM expediente";
                 if($resultCheck === 0){
                     foreach($courses as $course){
                         if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                            $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, special_id, crse_grade, estatus_c, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
+                            $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
 
-                $stmt->bind_param('iiisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['estatus_c'], $course['semester_pass']);
+                $stmt->bind_param('sisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
                         
                
                 if ($stmt->execute()) {
@@ -557,7 +560,7 @@ $sql ="SELECT id_est FROM expediente";
                     
 mysqli_close($conn);
    //header('Location: ../est_profile.php');
-} else {
+/* } else {
     echo "move_uploaded_file function failed";
-}
+} */
 

@@ -50,13 +50,31 @@ $sql = "SELECT stdnt_number
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CONSEJERÍA-UPRA | INICIO</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- page css -->
   <link rel="stylesheet" href="dist/css/adminlte.css">
+  <link rel="stylesheet" href="../css/conse.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -120,15 +138,9 @@ $sql = "SELECT stdnt_number
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="modal_crear.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
+            <a href="#" onclick="document.getElementById('id04').style.display='block'" class="nav-link">
                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Crear Expediente</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="modal_act.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
-               <i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Actualizar Expediente</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
@@ -180,9 +192,6 @@ $sql = "SELECT stdnt_number
                 <?php echo "<h3>{$row['amount_of_students']}</h3>" ?>
                 <p>Cantidad de Estudiantes</p>
               </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
               <a class="small-box-footer"></a>
             </div>
           </div><!-- ./col de Estudiantes de CCOM-->
@@ -210,9 +219,7 @@ $sql = "SELECT stdnt_number
                 <?php echo "<h3>".(($students_t_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
                 <p>Realizaron Consejería</p>
                   </a></div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
+              
               <a class="small-box-footer"></a>
             </div>
           </div><!-- ./col de Realizaron Consejeria -->
@@ -224,9 +231,6 @@ $sql = "SELECT stdnt_number
               <?php echo "<h3>".(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
                 <p>No ha realizado Consejería</p>
               </a></div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
               <a class="small-box-footer"></a>
             </div>
           </div><!-- ./col No ha realizado Consejeria-->
@@ -256,6 +260,11 @@ $sql = "SELECT stdnt_number
         <ul id="myUL"></ul>   
             
 <style>
+body {
+    background: #ffffff;
+    color: #414141;
+    font: 400 17px/2em 'Source Sans Pro', sans-serif;
+}
 * {
   box-sizing: border-box;
 }
@@ -403,6 +412,68 @@ margin-left: auto;
       <!-- /.card -->
 
     </section>
+
+    <!-- modales -->
+            <!-- crear expediente -->
+            <div id="id04" class="w3-modal" style="padding-left:20%">
+    <div class="w3-modal-content w3-animate-zoom">
+      <header class="w3-container" style="padding-top:5px">
+        <span onclick="document.getElementById('id04').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <div style="text-align: center"><h1>Crear Expediente</h1>
+      <p>Complete los siguientes campos para crear el expediente.</p>
+      <hr></div>
+      </header>
+      <div class="w3-container">
+          <br>
+          <form action="/action_page.php">
+      <label for="numest"><b>Número de Estudiante</b></label>
+      <input type='text' class='form-control' placeholder="Entre el número de Estudiante" name="numest" required>
+
+      <div class="select-box"> 
+                <select name="course_mand" id="course-list">
+                <option value='Regular'>Regular</option>
+                <option value='Traslado'>Traslado</option>
+                <option value='Transferencia'>Transferencia</option>
+                <option value='Reclasificación'>Reclasificación</option>
+                </select>
+      </div>     
+      <div class="clearfix">
+              <button type="button" onclick="document.getElementById('id04').style.display='none'" class="button-exp cancelbtn">Cancelar</button>
+              <button type="submit" class="button-exp signupbtn">Crear</button>
+            </div>
+        </form>
+      <script>
+      // Get the modal
+      var modal = document.getElementById('id04');
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      </script>
+      <!-- /Modal para registro -->  
+          </section>
+        </div>
+        
+
+        <footer class="main-footer">
+          
+          <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
+        </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>              
+    </div>
+  </div>
+            <!-- /. crear expediente -->
+    <!-- /.modales -->
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

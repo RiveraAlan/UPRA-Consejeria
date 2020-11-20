@@ -14,6 +14,14 @@ if(!isset($student_id)){
     exit();
 }
 
+$query = "SELECT * FROM student_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
+$result = mysqli_query($conn, $query);
+$resultCheck = mysqli_num_rows($result);
+$isRecordPresentInDB = FALSE;
+
+if($resultCheck > 0)
+  $isRecordPresentInDB = TRUE;
+
     $modal = 'document.getElementById("id03").style.display="block"';
 ?>
  <!-- script to determine equivalencia/convalidacion -->
@@ -263,7 +271,6 @@ body {
   background: #ececec;
 
 }
-
 .label {
   position: relative;
   padding: 5px 10px;
@@ -281,7 +288,6 @@ body {
   padding: 5px 15px;
   border-left: 5px solid #fff;
 }
-
 .leyenda{
   border: none;
   padding: 10px 20px;
@@ -290,6 +296,7 @@ body {
   cursor: pointer;
   border-radius: 16px;
 }
+
   </style>
 
 
@@ -353,18 +360,6 @@ body {
             <a href="calendar.php" class="nav-link">
                <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Calendario</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="modal_crear.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
-               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Crear Expediente</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="modal_act.php" onclick="document.getElementById('id01').style.display='block'" class="nav-link">
-               <i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Actualizar Expediente</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
@@ -453,7 +448,7 @@ body {
                   </li>
                    
                 </ul>";?>
-                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%">Actualizar Expediente</button>
+                <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-round-xlarge upra-amarillo" style="color:white; width : 100%"><?php print( $isRecordPresentInDB ? "Actualizar " : "Crear ")?> Expediente</button>
               <?php
                 echo "</div>
               <!-- /.card-body -->
@@ -543,7 +538,6 @@ body {
               ?>
       <div class="card-body">
                 <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
-<!-- </div>   -->
                 <br>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -666,6 +660,13 @@ body {
                   </table>
                   <br>
                   <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                  <form action='inc/recommend.php' method='POST'>
+                   <?php
+                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    ?>
+                   <button type='submit' name='rec-adi' value='crse_suggestionCISO' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; margin-left:24%; background-color: rgb(253, 118, 100);">Recomendación Adicional CISO</button>
+                   <button type='submit' name='rec-adi' value='crse_suggestionHUMA' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; background-color: rgb(253, 118, 100);">Recomendación Adicional HUMA</button>
+                   </form>
                   <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -732,6 +733,12 @@ body {
                   </table>
                   <br>
                    <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                  <form action='inc/recommend.php' method='POST'>
+                   <?php
+                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    ?>
+                   <button type='submit' name='rec-adi' value='crse_suggestionFREE' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
+                   </form>
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -792,7 +799,12 @@ body {
                   </table>
                   <br>
                    <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
-                   <button onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
+                   <form action='inc/recommend.php' method='POST'>
+                   <?php
+                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    ?>
+                   <button type='submit' name='rec-adi' value='crse_suggestionDEP' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
+                   </form>
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
@@ -1106,6 +1118,7 @@ body {
             </div>
           </div>
             <!-- /.Cursos a Examinar -->
+            
             <!-- /.Modals -->
              
             </div>
@@ -1222,7 +1235,15 @@ $(document).ready(function(){
 	formdata.append("file1", file);
 	var ajax = new XMLHttpRequest();
 	ajax.upload.addEventListener("progress", progressHandler, false);
-	ajax.open("POST", "inc/add_record_to_project.php");
+
+  let  isRecordPresentInDB = '<?php echo $isRecordPresentInDB; ?>';
+   
+  if(isRecordPresentInDB){
+    ajax.open("POST", "inc/update_student_record.php");
+  } else {
+    ajax.open("POST", "inc/add_student_record.php");
+
+  }
 	ajax.send(formdata);
     }
 </script>

@@ -36767,3 +36767,102 @@ a.text-muted:hover {
   border-radius: .5rem;
   margin-top: .5rem;
 }
+
+
+/* Set a style for all buttons */
+.button-exp {
+  background-color: #e0c200;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.button-exp:hover {
+  opacity:1;
+}
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+body {
+  background: #ffffff; 
+  color: #414141;
+  font: 400 17px/2em 'Source Sans Pro', sans-serif;
+}
+
+.select-box {
+  cursor: pointer;
+  position : relative;
+  max-width:  20em;
+  margin: 1rem auto;
+  width: 100%;
+}
+
+
+#course-list {
+  background-color: #d3d3d3;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.select,
+.label {
+  color: #414141;
+  display: block;
+  font: 400 17px/2em 'Source Sans Pro', sans-serif;
+}
+
+.select {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 5px 0;
+  height: 40px;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  background: none transparent;
+  border: 0 none;
+}
+.select-box1 {
+  background: #ececec;
+
+}
+.label {
+  position: relative;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.open .label::after {
+   content: "▲";
+}
+.label::after {
+  content: "▼";
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 15px;
+  border-left: 5px solid #fff;
+}
+.leyenda{
+  border: none;
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
