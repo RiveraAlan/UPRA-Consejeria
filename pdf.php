@@ -7,12 +7,13 @@ $sql = "SELECT stdnt_name,stdnt_lastname1,stdnt_lastname2 FROM student WHERE std
                  $result = mysqli_query($conn, $sql);
                  $resultCheck = mysqli_num_rows($result);
                  $nombre_est = mysqli_fetch_assoc($result);
-
+$nombre = "{$nombre_est['stdnt_name']} {$nombre_est['stdnt_lastname1']} {$nombre_est['stdnt_lastname2']}";
 class PDF extends FPDF
 {
 // Page header
 function Header()
 {
+    global $nombre;
     // Logo
     $this->Image('photos/uprarecibo.png',10,6,30);
     // Arial bold 15
@@ -24,7 +25,7 @@ function Header()
     // Line break
     $this->Ln(8);
     $this->Cell(80);
-    $this->Cell(30,10,utf8_decode("$nombre_est['stdnt_name']"),0,0,'C');
+    $this->Cell(30,10,utf8_decode("$nombre"),0,0,'C');
     $this->Ln(10);
     $this->Cell(40, 10, 'Curso', 1, 0, 'C', 0);
     $this->Cell(105, 10, utf8_decode('Descripción'), 1, 0, 'C', 0);
