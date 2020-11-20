@@ -533,7 +533,7 @@ foreach($courses as $course){
    
 }
 
-$sql ="SELECT id_est FROM expediente";
+$sql ="SELECT stdnt_number FROM student_record WHERE stdnt_number = {$_SESSION['stdnt_number']}";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
@@ -542,7 +542,7 @@ $sql ="SELECT id_est FROM expediente";
                         if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
                             $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
 
-                $stmt->bind_param('sisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
+                $stmt->bind_param('siisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
                         
                
                 if ($stmt->execute()) {
