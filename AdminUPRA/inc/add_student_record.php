@@ -89,6 +89,15 @@ while(!feof($myfile)) {
     
     if(preg_match("/^CCOM/", $temp) AND preg_match("/\s[A-F]{1}\s/", $temp)){
 
+         // REMOVE "Meets no requirements"
+         if(preg_match("/Meets no requirements/", $temp)){
+            $temp = preg_replace("/Meets no requirements/", '', $temp);
+        }
+        // REMOVE "May not be repeated"
+        if(preg_match("/May not be repeated/", $temp)){
+            $temp = preg_replace("/May not be repeated/", '', $temp);
+        }
+
         //Course code
         preg_match("/CCOM \d{4}/", $temp, $course_code);
         $temp = preg_replace("/CCOM \d{4}/", '', $temp);
@@ -101,12 +110,17 @@ while(!feof($myfile)) {
         // Grade
         preg_match("/\s[A-F]{1}\s/", $temp, $grade);
         $temp = preg_replace("/\s[A-F]{1}\s/", '', $temp);
+
+         //REMOVE "()"
+         if(preg_match("/\( \)/", $temp)){
+            $temp = preg_replace("/\( \)/", '', $temp);
+        }
     
         $department_elective = array("crse_name" => $course_code[0], "crse_description" => trim($temp),
                                      "semester_pass" => $semester[0], "crse_credits" => $credits[0], "crse_grade" => $grade[0]);
         array_push($department_electives, $department_elective);
         unset($electives[$i]);
-    } elseif(preg_match("/^[A-Z]{4} \d{4}/", $temp)){
+    } elseif(preg_match("/^[A-Z]{4} \d{4}/", $temp) AND preg_match("/\s[A-F]{1}\s/", $temp)){
         
          //Course code
          preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
@@ -118,9 +132,10 @@ while(!feof($myfile)) {
          preg_match("/\d\.\d{1,2}/", $temp, $credits);
          $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
          // Grade
-         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp, $grade);
-         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", '', $temp);
+         preg_match("/\sW\s*$|\sP\s*$|\sNP\s*$|\sID\s*$|\sIF\s*$|\s[A-F]\s*$/", $temp, $grade);
+         $temp = preg_replace("/\sW\s*$|\sP\s*$|\sNP\s*$|\sID\s*$|\sIF\s*$|\s[A-F]\s*$/", '', $temp);
     
+         
          // MAKE SURE TO TAKE "REGISTERED" INTO CONSIDERATION
         $free_elective = array("crse_name" => $course_code[0], "crse_description" => trim($temp),
                                      "semester_pass" => $semester[0], "crse_credits" => $credits[0], "crse_grade" => $grade[0]);
@@ -301,11 +316,7 @@ while(!feof($myfile)){
         if(preg_match("/May not be repeated/", $temp)){
             $temp = preg_replace("/May not be repeated/", '', $temp);
         }
-        //REMOVE "()"
-        if(preg_match("/\( \)/", $temp)){
-            $temp = preg_replace("/\( \)/", '', $temp);
-        }
-        
+       
         //Course code
         preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
         $temp = preg_replace("/[A-Z]{4} \d{4}/", '', $temp);
@@ -313,12 +324,17 @@ while(!feof($myfile)){
         preg_match("/[A-Z]\d{2}/", $temp, $semester);
         $temp = preg_replace("/[A-Z]\d{2}/", '', $temp);
         //Amount of Credits
-        preg_match("/\d{1}\.\d{2}/", $temp, $credits);
-        $temp = preg_replace("/\d{1}\.\d{2}/", '', $temp);
+        preg_match("/\d{1}\.\d{1,2}/", $temp, $credits);
+        $temp = preg_replace("/\d{1}\.\d{1,2}/", '', $temp);
         
         // Grade
-        preg_match("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", $temp, $grade);
-        $temp = preg_replace("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", '', $temp);
+        preg_match("/\sW\s*$|\sP\s*$|\sNP\s*$|\sID\s*$|\sIF\s*$|\s[A-F]\s*$/", $temp, $grade);
+        $temp = preg_replace("/\sW\s*$|\sP\s*$|\sNP\s*$|\sID\s*$|\sIF\s*$|\s[A-F]\s*$/", '', $temp);
+        
+         //REMOVE "()"
+         if(preg_match("/\( \)/", $temp)){
+            $temp = preg_replace("/\( \)/", '', $temp);
+        }
         
         
          // ASSIGN ESTATUS_C
@@ -377,10 +393,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
         if(preg_match("/May not be repeated/", $temp)){
             $temp = preg_replace("/May not be repeated/", '', $temp);
         }
-        //REMOVE "()"
-        if(preg_match("/\( \)/", $temp)){
-            $temp = preg_replace("/\( \)/", '', $temp);
-        }
+      
         
         //Course code
         preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
@@ -389,12 +402,16 @@ for($i=0; $i < count($courses_below_section3); $i++){
         preg_match("/[A-Z]\d{2}/", $temp, $semester);
         $temp = preg_replace("/[A-Z]\d{2}/", '', $temp);
         //Amount of Credits
-        preg_match("/\d\.\d{1,2}/", $temp, $credits);
-        $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
+        preg_match("/\d{1}\.\d{1,2}/", $temp, $credits);
+        $temp = preg_replace("/\d{1}\.\d{1,2}/", '', $temp);
         // Grade
-         preg_match("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", $temp, $grade);
-         $temp = preg_replace("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", '', $temp);
+         preg_match("/\sW\s*$|\sP\s*$|\sNP\s*$|\sID\s*$|\sIF\s*$|\s[A-F]\s*$/", $temp, $grade);
+         $temp = preg_replace("/\sW\s*$|\sP\s*$|\sNP\s*$|\sID\s*$|\sIF\s*$|\s[A-F]\s*$/", '', $temp);
 
+           //REMOVE "()"
+        if(preg_match("/\( \)/", $temp)){
+            $temp = preg_replace("/\( \)/", '', $temp);
+        }
          
 
          // ASSIGN ESTATUS_C
@@ -438,7 +455,10 @@ foreach($expediente_fijo as $e_f){
 }
 
 
-$course_names = array();
+
+ 
+ // COURSE NAME WITH MULTIPLE OCURRENCES
+ $course_names = array();
 foreach($courses as $course){
     array_push($course_names, $course["crse_name"]);
 }
@@ -447,76 +467,63 @@ foreach($courses as $course){
  function filterByOcurrences($var){
      return $var > 1;
  }
- // COURSE NAME WITH MULTIPLE OCURRENCES
+
  $cn_w_mo = array_filter($course_name_ocurrences, "filterByOcurrences");
- $repeatedCourses = array();
+ 
+
  $gradeOP = array(NULL => 1, "A"=> 2, "B" => 3, "C" => 4, "ID" => 5, 
                   "IF" => 6, "D" => 7, "F" => 8, "W" => 9);
 
 
-
- $lowest_crse_label = 1000;
- foreach($cn_w_mo as $course_name => $ocurrences){ 
-        
-        foreach($courses as $course){
-            if($course["crse_name"] === $course_name){
-               if(($course["crse_label"] < $lowest_crse_label) AND (!is_null($course["crse_label"]))){
-                
-                   $lowest_crse_label = $course["crse_label"];
-               }
-               if(($course["crse_name"] != "MATE 4055") AND ($course["crse_name"] != "CCOM 3985")
-            AND ($course["crse_name"] != "FISI 4985") AND ($course["crse_name"] != "BIOL 3108")
-            AND ($course["crse_name"] != "QUIM 4999") AND ($course["crse_name"] != "CCOM 3135")
-            AND ($course["crse_name"] != "INTD 4995") AND ($course["crse_name"] != "CCOM 4991")){
-                
-                array_push($repeatedCourses, $course);
-            }
-
-            }
-          
-       
-    
-
-    
-//DELETE FROM `student_record` WHERE stdnt_number = '840-16-4235';
-
-
-
-     foreach($repeatedCourses as &$repeatedCourse){
-        $repeatedCourse["crse_label"] = $lowest_crse_label;
-     }
-     
-     
-
-     $grade = $repeatedCourses[0]["crse_grade"];
-     $highestValue = $gradeOP[trim($grade)];
-
-
-      foreach($repeatedCourses as $repeatedCourse){
-          if(($gradeOP[trim($repeatedCourses["crse_grade"])] < $highestValue)){
-            $highestValue = $gradeOP[$repeatedCourses["crse_grade"]];
-          }
-      }
-
-       $hvGrade = array_search($highestValue, $gradeOP);
-
-
-    
-    }
-    
-    foreach($repeatedCourses as $repeatedCourse){
-        for($i=0; $i < count($courses); $i++){
-        
-            if($courses[$i]["crse_name"] === $repeatedCourse["crse_name"]){
-                if(trim($courses[$i]["crse_grade"]) !== $hvGrade){
-                    unset($courses[$i]);
-                } 
-            }
-       }
-    }
-   
- }
+ $cn_w_mo_keys = array_keys($cn_w_mo);
+for($i=0; $i < count($cn_w_mo_keys); $i++){
+    $lowest_crse_label = 1000;
+    //echo "<h1>$cn_w_mo_keys[$i] ".$cn_w_mo[$cn_w_mo_keys[$i]]."</h1>";
+    $repeatedCourses = array();
  
+    foreach($courses as $course){
+        if($course["crse_name"] === $cn_w_mo_keys[$i]){
+            
+            if(($course["crse_label"] < $lowest_crse_label) AND (!is_null($course["crse_label"]))){
+             
+                $lowest_crse_label = $course["crse_label"];
+            } else {
+                $course["crse_label"] = $lowest_crse_label;
+            }
+            if(($course["crse_name"] !== "MATE 4055") AND ($course["crse_name"] !== "CCOM 3985")
+         AND ($course["crse_name"] !== "FISI 4985") AND ($course["crse_name"] !== "BIOL 3108")
+         AND ($course["crse_name"] !== "QUIM 4999") AND ($course["crse_name"] !== "CCOM 3135")
+         AND ($course["crse_name"] !== "INTD 4995") AND ($course["crse_name"] !== "CCOM 4991")){
+            array_push($repeatedCourses, $course);
+            
+         }
+      }
+    }
+    
+    
+
+    $grade = $repeatedCourses[0]["crse_grade"];
+    $highestValue = $gradeOP[trim($grade)];
+
+    foreach($repeatedCourses as $repeatedCourse){
+        if(($gradeOP[trim($repeatedCourse["crse_grade"])] < $highestValue)){
+          $highestValue = $gradeOP[$repeatedCourse["crse_grade"]];
+          
+        }
+    }
+    
+    $hvGrade = array_search($highestValue, $gradeOP);
+
+    for($j=0; $j < count($courses); $j++){
+        if($courses[$j]["crse_name"] === $cn_w_mo_keys[$i]){
+            echo "<h1>Course to be deleted:</h1>";
+            print_r($course);
+            if(trim($courses[$j]["crse_grade"]) !== $hvGrade){
+                unset($courses[$j]);
+            } 
+        }
+   }
+}
 
 
 
