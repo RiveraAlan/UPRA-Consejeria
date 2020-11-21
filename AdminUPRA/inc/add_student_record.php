@@ -454,8 +454,8 @@ foreach($expediente_fijo as $e_f){
     } 
 }
 
-
-
+echo "<h1>Courses: </h1>";
+print_r($courses);
  
  // COURSE NAME WITH MULTIPLE OCURRENCES
  $course_names = array();
@@ -490,18 +490,19 @@ for($i=0; $i < count($cn_w_mo_keys); $i++){
             } else {
                 $course["crse_label"] = $lowest_crse_label;
             }
+            
             if(($course["crse_name"] !== "MATE 4055") AND ($course["crse_name"] !== "CCOM 3985")
          AND ($course["crse_name"] !== "FISI 4985") AND ($course["crse_name"] !== "BIOL 3108")
          AND ($course["crse_name"] !== "QUIM 4999") AND ($course["crse_name"] !== "CCOM 3135")
          AND ($course["crse_name"] !== "INTD 4995") AND ($course["crse_name"] !== "CCOM 4991")){
             array_push($repeatedCourses, $course);
             
+            
          }
       }
     }
     
     
-
     $grade = $repeatedCourses[0]["crse_grade"];
     $highestValue = $gradeOP[trim($grade)];
 
@@ -516,21 +517,23 @@ for($i=0; $i < count($cn_w_mo_keys); $i++){
 
     for($j=0; $j < count($courses); $j++){
         if($courses[$j]["crse_name"] === $cn_w_mo_keys[$i]){
-            echo "<h1>Course to be deleted:</h1>";
-            print_r($course);
             if(trim($courses[$j]["crse_grade"]) !== $hvGrade){
-                unset($courses[$j]);
+                if(($courses[$j]["crse_name"] !== "MATE 4055") AND ($courses[$j]["crse_name"] !== "CCOM 3985")
+                AND ($courses[$j]["crse_name"] !== "FISI 4985") AND ($courses[$j]["crse_name"] !== "BIOL 3108")
+                AND ($courses[$j]["crse_name"] !== "QUIM 4999") AND ($courses[$j]["crse_name"] !== "CCOM 3135")
+                AND ($courses[$j]["crse_name"] !== "INTD 4995") AND ($courses[$j]["crse_name"] !== "CCOM 4991")){
+                    unset($courses[$j]);
+                }
+              
             } 
         }
    }
 }
 
 
-
-
-// ESCOGE LA NOTA MAS ALTA. ESTE ES EL ORDEN DE PRECEDENCIA NULL, A, B, C, ID, IF, D, F Y W    SI ES DEPARTAMENTO
-// 
-
+echo "<h1>(After)Courses: </h1>";
+print_r($courses);
+ 
 
 $id_fijo_start_point = 100;
 
@@ -646,9 +649,8 @@ $sql ="SELECT stdnt_number FROM student_record WHERE stdnt_number = '$_SESSION[s
                 if($resultCheck === 0){
                     foreach($courses as $course){
                         if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                               //$stmt = $conn->prepare("INSERT INTO `student_record`(`stdnt_number`, `crse_label`, `crse_grade`, `crse_status`, `semester_pass`, `special_id`, `crseR_status`, `crse_equivalence`, `crse_recognition`, `crse_credits_ER`, `crse_ER_Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                              
                 
-                               //$stmt->bind_param('sisisiissii', $_SESSION['stdnt_number'], $course['crse_label'], $course['crse_grade'], $course['crse_status'], $course['semester_pass'], $course['special_id'], NULL, NULL, NULL, NULL, NULL);
                                $special_id = is_null($course['special_id']) ? -1 : $course['special_id'];
                               $sql = "INSERT INTO student_record(stdnt_number, crse_label, crse_grade, crse_status, semester_pass, special_id, crseR_status, crse_equivalence, crse_recognition, crse_credits_ER, crse_ER_Status) 
                                      VALUES ('$_SESSION[stdnt_number]', $course[crse_label], '$course[crse_grade]', $course[crse_status], '$course[semester_pass]',".(is_null($course['special_id']) ? "NULL" : $course['special_id']).", NULL, NULL, NULL, NULL, NULL)";
