@@ -154,6 +154,8 @@ foreach($department_electives as $department_elective_idx => $department_electiv
 }
 
 
+print_r($free_electives);
+
 usort($free_electives, function ($item1, $item2) {
     return $item1["crse_name"] <=> $item2["crse_name"];
 });
@@ -291,18 +293,6 @@ while(!feof($myfile)){
        
      if(preg_match("/[A-Z]{4} \d{4}/", $temp)){
 
-        //Course code
-        preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
-        $temp = preg_replace("/[A-Z]{4} \d{4}/", '', $temp);
-        //Semester
-        preg_match("/[A-Z]\d{2}/", $temp, $semester);
-        $temp = preg_replace("/[A-Z]\d{2}/", '', $temp);
-        //Amount of Credits
-        preg_match("/\d{1}\.\d{2}/", $temp, $credits);
-        $temp = preg_replace("/\d{1}\.\d{2}/", '', $temp);
-        // Grade
-        preg_match("/\s[A-F]{1}\s/", $temp, $grade);
-        $temp = preg_replace("/\s[A-F]{1}\s/", '', $temp);
         // REMOVE "Meets no requirements"
         if(preg_match("/Meets no requirements/", $temp)){
             $temp = preg_replace("/Meets no requirements/", '', $temp);
@@ -315,7 +305,21 @@ while(!feof($myfile)){
         if(preg_match("/\( \)/", $temp)){
             $temp = preg_replace("/\( \)/", '', $temp);
         }
-
+        
+        //Course code
+        preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
+        $temp = preg_replace("/[A-Z]{4} \d{4}/", '', $temp);
+        //Semester
+        preg_match("/[A-Z]\d{2}/", $temp, $semester);
+        $temp = preg_replace("/[A-Z]\d{2}/", '', $temp);
+        //Amount of Credits
+        preg_match("/\d{1}\.\d{2}/", $temp, $credits);
+        $temp = preg_replace("/\d{1}\.\d{2}/", '', $temp);
+        
+        // Grade
+        preg_match("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", $temp, $grade);
+        $temp = preg_replace("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", '', $temp);
+        
         
          // ASSIGN ESTATUS_C
          
@@ -357,13 +361,26 @@ fclose($myfile);
 
 // ADD COURSES FROM SECTION 3 TO COURSES ARRAY
 for($i=0; $i < count($courses_below_section3); $i++){
-    $temp = trim($courses_below_section3[$i]);
+    $temp = ltrim($courses_below_section3[$i]);
     $course_code;
     $semester;
     $credits;
     $grade;
     
     if(preg_match("/[A-Z]{4} \d{4}/", $temp)){
+
+        // REMOVE "Meets no requirements"
+        if(preg_match("/Meets no requirements/", $temp)){
+            $temp = preg_replace("/Meets no requirements/", '', $temp);
+        }
+        // REMOVE "May not be repeated"
+        if(preg_match("/May not be repeated/", $temp)){
+            $temp = preg_replace("/May not be repeated/", '', $temp);
+        }
+        //REMOVE "()"
+        if(preg_match("/\( \)/", $temp)){
+            $temp = preg_replace("/\( \)/", '', $temp);
+        }
         
         //Course code
         preg_match("/[A-Z]{4} \d{4}/", $temp, $course_code);
@@ -375,21 +392,10 @@ for($i=0; $i < count($courses_below_section3); $i++){
         preg_match("/\d\.\d{1,2}/", $temp, $credits);
         $temp = preg_replace("/\d\.\d{1,2}/", '', $temp);
         // Grade
-         preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-F]\s/", $temp, $grade);
-         $temp = preg_replace("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-F]\s/", '', $temp);
+         preg_match("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", $temp, $grade);
+         $temp = preg_replace("/\sW\s$|\sP\s$|\sNP\s$|\sID\s$|\sIF\s$|\s[A-F]\s*$/", '', $temp);
 
-         // REMOVE "Meets no requirements"
-         if(preg_match("/Meets no requirements/", $temp)){
-            $temp = preg_replace("/Meets no requirements/", '', $temp);
-        }
-        // REMOVE "May not be repeated"
-        if(preg_match("/May not be repeated/", $temp)){
-            $temp = preg_replace("/May not be repeated/", '', $temp);
-        }
-        //REMOVE "()"
-        if(preg_match("/\( \)/", $temp)){
-            $temp = preg_replace("/\( \)/", '', $temp);
-        }
+         
 
          // ASSIGN ESTATUS_C
          if(preg_match("/Registered/", $courses_below_section3[$i + 1])){
@@ -431,6 +437,7 @@ foreach($expediente_fijo as $e_f){
     } 
 }
 
+
 $course_names = array();
 foreach($courses as $course){
     array_push($course_names, $course["crse_name"]);
@@ -445,20 +452,29 @@ foreach($courses as $course){
  $repeatedCourses = array();
  $gradeOP = array(NULL => 1, "A"=> 2, "B" => 3, "C" => 4, "ID" => 5, 
                   "IF" => 6, "D" => 7, "F" => 8, "W" => 9);
-$indexesOfCourseToDel = array();
+
+
 
  $lowest_crse_label = 1000;
- foreach($cn_w_mo as $course_name => $ocurrences){
-    
+ foreach($cn_w_mo as $course_name => $ocurrences){ 
+        
         foreach($courses as $course){
             if($course["crse_name"] === $course_name){
                if(($course["crse_label"] < $lowest_crse_label) AND (!is_null($course["crse_label"]))){
+                
                    $lowest_crse_label = $course["crse_label"];
                }
-               
-               array_push($repeatedCourses, $course);
+               if(($course["crse_name"] != "MATE 4055") AND ($course["crse_name"] != "CCOM 3985")
+            AND ($course["crse_name"] != "FISI 4985") AND ($course["crse_name"] != "BIOL 3108")
+            AND ($course["crse_name"] != "QUIM 4999") AND ($course["crse_name"] != "CCOM 3135")
+            AND ($course["crse_name"] != "INTD 4995") AND ($course["crse_name"] != "CCOM 4991")){
+                
+                array_push($repeatedCourses, $course);
             }
-        }
+
+            }
+          
+       
     
 
     
@@ -467,10 +483,6 @@ $indexesOfCourseToDel = array();
 
 
      foreach($repeatedCourses as &$repeatedCourse){
-        if(($course["crse_name"] !== "MATE 4055") OR ($course["crse_name"] !== "CCOM 3985")
-    OR ($course["crse_name"] !== "FISI 4985") OR ($course["crse_name"] !== "BIOL 3108")
-    OR ($course["crse_name"] !== "QUIM 4999") OR ($course["crse_name"] !== "CCOM 3135")
-    OR ($course["crse_name"] !== "INTD 4995") OR ($course["crse_name"] !== "CCOM 4991"))
         $repeatedCourse["crse_label"] = $lowest_crse_label;
      }
      
@@ -488,34 +500,26 @@ $indexesOfCourseToDel = array();
 
        $hvGrade = array_search($highestValue, $gradeOP);
 
-       foreach($courses as $idx => $course){
-           
-           
-       }
 
-       for($i=0; $i < count($courses); $i++){
-        if(($course["crse_name"] !== "MATE 4055") OR ($course["crse_name"] !== "CCOM 3985")
-        OR ($course["crse_name"] !== "FISI 4985") OR ($course["crse_name"] !== "BIOL 3108")
-        OR ($course["crse_name"] !== "QUIM 4999") OR ($course["crse_name"] !== "CCOM 3135")
-        OR ($course["crse_name"] !== "INTD 4995") OR ($course["crse_name"] !== "CCOM 4991")){
-            if($courses[$i]["crse_name"] === $course_name){
+    
+    }
+    
+    foreach($repeatedCourses as $repeatedCourse){
+        for($i=0; $i < count($courses); $i++){
+        
+            if($courses[$i]["crse_name"] === $repeatedCourse["crse_name"]){
                 if(trim($courses[$i]["crse_grade"]) !== $hvGrade){
                     unset($courses[$i]);
-                } else {
-                    $courses[$i]["crse_label"] = $lowest_crse_label;
-                }
-                
+                } 
             }
-        }
        }
+    }
+   
  }
  
 
 
 
-
-
- 
 
 // ESCOGE LA NOTA MAS ALTA. ESTE ES EL ORDEN DE PRECEDENCIA NULL, A, B, C, ID, IF, D, F Y W    SI ES DEPARTAMENTO
 // 
@@ -527,7 +531,7 @@ echo "<h1>Electivas Libres</h1>";
 foreach($courses as &$course){
    
     if($course["crse_label"] === NULL){
-
+        echo "<h1>".$course['crse_name']."</h1>";
         $course["crse_id"] = 7;
         //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
         $query1 = "SELECT crse_label FROM free_courses WHERE crse_name = '".$course["crse_name"]."';";
@@ -643,17 +647,9 @@ $sql ="SELECT stdnt_number FROM student_record WHERE stdnt_number = '$_SESSION[s
                                      VALUES ('$_SESSION[stdnt_number]', $course[crse_label], '$course[crse_grade]', $course[crse_status], '$course[semester_pass]',".(is_null($course['special_id']) ? "NULL" : $course['special_id']).", NULL, NULL, NULL, NULL, NULL)";
                               echo "<p>$sql</p>";
                
-                             mysqli_query($conn, $sql);
+                            mysqli_query($conn, $sql);
              
-               /*  if ($stmt->execute()) {
-                    //  header('Location: ../est_profile.php');
-                    echo "Uploaded to Database successfully";
-                } else {
-                echo "Unable to create record";
-                } */ 
-
-                   // $stmt->close();
-                        
+               
                         }
                     }
                 }
