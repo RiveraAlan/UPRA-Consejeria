@@ -110,8 +110,6 @@
         </div>
       </div>
     </div>
-
-    
     <div class="site-section courses-title" id="courses-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -133,7 +131,7 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <h3><b>Misión</b></h3>
-                <p>Los students de CCOM nos encargamos en utilizar las tecnologías disponibles a nuestro alcance para desarrollar y optimizar plataformas que asistan a los demás en el proceso de matrícula.</p>
+                <p>Los Estudiantes de CCOM nos encargamos en utilizar las tecnologías disponibles a nuestro alcance para desarrollar y optimizar plataformas que asistan a los demás en el proceso de matrícula.</p>
               </div>
             </div>
 
@@ -143,7 +141,7 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <h3><b>Visión</b></h3>
-                <p>Deseamos un día proveer esta plataforma a otros departamentos académicos y de esta manera todos los students de UPRA puedan beneficiarse de una consejería más eficiente y placentera.</p>
+                <p>Deseamos un día proveer esta plataforma a otros departamentos académicos y de esta manera todos los estudiantes de UPRA puedan beneficiarse de una consejería más eficiente y placentera.</p>
               </div>
             </div>
 

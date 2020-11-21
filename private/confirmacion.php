@@ -7,18 +7,12 @@ require 'dbconnect.php';
   
     if (count($ids) > 0) { 
       foreach ($ids as $crse_label) {          
-        $sql = "UPDATE student_record SET crseR_status = 0 WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
-                  // Prepare statement
-                  $stmt = $conn->prepare($sql);
-                  // execute the query
-                  $stmt->execute();
-        $sql = "UPDATE student_record SET crse_status = 4 WHERE stdnt_number = $stdnt_number AND crse_label = $crse_label";
+        $sql = "UPDATE student_record SET crse_status = 4 WHERE stdnt_number = '$stdnt_number' AND crse_label = $crse_label";
                   // Prepare statement
                   $stmt = $conn->prepare($sql);
                   // execute the query
                   $stmt->execute();
                   //exit
-                  
       }
       header("Location: ../consejeria.php");
                   exit();
