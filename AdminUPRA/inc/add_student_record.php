@@ -1,8 +1,8 @@
 <?php
 include_once 'connection.php';
 session_start();
-
-/* $fileName = $_FILES["file1"]["name"]; // The file name
+/*
+$fileName = $_FILES["file1"]["name"]; // The file name
 $fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
 $fileType = $_FILES["file1"]["type"]; // The type of file it is
 $fileSize = $_FILES["file1"]["size"]; // File size in bytes
@@ -13,7 +13,7 @@ if (!$fileTmpLoc) { // if file not chosen
 }
 
 
-if(move_uploaded_file($fileTmpLoc, "../student_record.txt")){
+if(move_uploaded_file($fileTmpLoc, "../student_record.txt")){ 
     
     // UPLOAD IS COMPLETE";
  file_put_contents('../student_record_formatted.txt',
@@ -22,7 +22,7 @@ if(move_uploaded_file($fileTmpLoc, "../student_record.txt")){
      "\r\n",
      trim(file_get_contents('../student_record.txt'))
  )
-); */
+); 
 
 //  ======= REARRANGE ELECTIVES =========
 
@@ -219,7 +219,9 @@ $contents = file_get_contents('expediente_formatted.txt');
 
 
 
-// ASSOCIATE COURSE WITH ID_FIJO AND UPLOAD TO DATABASE
+// ============== ASSOCIATE COURSE WITH CRSE_LABEL AND UPLOAD TO DATABASE ==============
+
+
 $myfile = fopen("../student_record_formatted.txt", "r") or die("Unable to open file!");
 $courses = array();
 $expediente_fijo = array();
@@ -227,7 +229,7 @@ $expediente_fijo_generales = array();
 $posicion_cursos = array();
 $courses_below_section3 = array();
 
-//EXPEDIENTE FIJO
+//CURSOS OBLIGATORIOS
 $query = "SELECT  * FROM mandatory_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
@@ -326,7 +328,7 @@ while(!feof($myfile)){
         }
                
 
-            $course = array("stdnt_number" => -1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
+            $course = array("stdnt_number" => $_SESSION['stdnt_number'], "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
                             "crse_description" => $temp, "crse_status" => $estatus_c, "semester_pass" => $semester[0],"crse_recognition" => NULL,
                             "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => 0, "crse_name" => $course_code[0],
                             "crse_id" => NULL
@@ -336,6 +338,7 @@ while(!feof($myfile)){
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
                     $course["crse_label"] = $e_f["crse_label"];
+
                     $course["crse_id"] = $e_f["crse_id"];
                     unset($expediente_fijo[$idx]);
                 }
@@ -398,7 +401,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
             continue;
         } 
         
-            $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
+            $course = array("stdnt_number" => $_SESSION['stdnt_number'], "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
             "crse_description" => $temp,"crse_status" => $estatus_c, "semester_pass" => $semester[0],"crse_recognition" => NULL,
             "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => 0, "crse_name" => $course_code[0],
             "crse_id" => NULL
@@ -406,7 +409,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
                         
             foreach($expediente_fijo as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
-                    $course["crse_label"] = $e_f["crse_label "];
+                    $course["crse_label"] = $e_f["crse_label"];
                     $course["crse_id"] = $e_f["crse_id"];
                     unset($expediente_fijo[$idx]);
                 }
@@ -420,7 +423,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
 
 foreach($expediente_fijo as $e_f){
     if($e_f["crse_label"] >= 1 AND $e_f["crse_label"] <= 40){
-        $course = array("stdnt_number" => -1, "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
+        $course = array("stdnt_number" => $_SESSION['stdnt_number'], "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
             "crse_status" => 0, "semester_pass" => NULL,"crse_recognition" => NULL,
             "crse_equivalence" => NULL, "crse_credits" => NULL, "crseR_status" => 0, "crse_name" => $e_f["crse_name"]
                         );
@@ -428,12 +431,92 @@ foreach($expediente_fijo as $e_f){
     } 
 }
 
+$course_names = array();
+foreach($courses as $course){
+    array_push($course_names, $course["crse_name"]);
+}
+ $course_name_ocurrences = array_count_values($course_names);
+
+ function filterByOcurrences($var){
+     return $var > 1;
+ }
+ // COURSE NAME WITH MULTIPLE OCURRENCES
+ $cn_w_mo = array_filter($course_name_ocurrences, "filterByOcurrences");
+ $repeatedCourses = array();
+ $gradeOP = array(NULL => 1, "A"=> 2, "B" => 3, "C" => 4, "ID" => 5, 
+                  "IF" => 6, "D" => 7, "F" => 8, "W" => 9);
+$indexesOfCourseToDel = array();
+
+ $lowest_crse_label = 1000;
+ foreach($cn_w_mo as $course_name => $ocurrences){
+     foreach($courses as $course){
+         if($course["crse_name"] === $course_name){
+            if(($course["crse_label"] < $lowest_crse_label) AND (!is_null($course["crse_label"]))){
+                $lowest_crse_label = $course["crse_label"];
+            }
+            array_push($repeatedCourses, $course);
+         }
+     }
+
+     foreach($repeatedCourses as &$repeatedCourse){
+         $repeatedCourse["crse_label"] = $lowest_crse_label;
+     }
+     print_r($repeatedCourses);
+     
+
+     $grade = $repeatedCourses[0]["crse_grade"];
+     $highestValue = $gradeOP[trim($grade)];
+
+
+      foreach($repeatedCourses as $repeatedCourse){
+          if(($gradeOP[trim($repeatedCourses["crse_grade"])] < $highestValue)){
+            $highestValue = $gradeOP[$repeatedCourses["crse_grade"]];
+          }
+      }
+
+       $hvGrade = array_search($highestValue, $gradeOP);
+
+       foreach($courses as $idx => $course){
+           
+           
+       }
+
+       for($i =0; $i < count($courses); $i++){
+            if($courses[$i]["crse_name"] === $course_name){
+                if(trim($courses[$i]["crse_grade"]) !== $hvGrade){
+                    unset($courses[$i]);
+                } else {
+                    $courses[$i]["crse_label"] = $lowest_crse_label;
+                }
+                
+            }
+       }
+ }
+ 
+
+
+
+
+
+ 
+
+// ESCOGE LA NOTA MAS ALTA. ESTE ES EL ORDEN DE PRECEDENCIA NULL, A, B, C, ID, IF, D, F Y W    SI ES DEPARTAMENTO
+// 
+/*
+CCOM 3985
+MATE 4055
+FISI 4985
+BIOL 3108
+QUIM 4999
+*/
+
 $id_fijo_start_point = 100;
 
 echo "<h1>Electivas Libres</h1>";
 foreach($courses as &$course){
    
     if($course["crse_label"] === NULL){
+
         $course["crse_id"] = 7;
         //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
         $query1 = "SELECT crse_label FROM free_courses WHERE crse_name = '".$course["crse_name"]."';";
@@ -443,7 +526,7 @@ foreach($courses as &$course){
         $result1 = mysqli_query($conn,$query1);
         $resultCheck1 = mysqli_num_rows($result1);
         $id_fijo_from_query1 = mysqli_fetch_assoc($result1);
-        $query2 = "SELECT MAX(crse_label)AS max_crse_label FROM free_courses;";
+        $query2 = "SELECT MAX(crse_label) AS max_crse_label FROM free_courses;";
         $result2 = mysqli_query($conn,$query2);
         $resultCheck2 = mysqli_num_rows($result2);
         
@@ -453,7 +536,7 @@ foreach($courses as &$course){
             $course["crse_label"] = $id_fijo_from_query1["crse_label"];
             
         } elseif($resultCheck2 === 1 AND $id_fijo_from_query2["max_crse_label"] !== NULL) {
-            $course["crse_label"] = $id_fijo_from_query2["max_id_fijo"] + 1;
+            $course["crse_label"] = $id_fijo_from_query2["max_crse_label"] + 1;
             
             $query = "INSERT INTO free_courses(crse_label, crse_name, crse_description, crse_credits, crse_id) 
             VALUES(".$course["crse_label"].", '".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].", 7);";
@@ -468,6 +551,7 @@ foreach($courses as &$course){
             $query = "INSERT INTO free_courses(crse_name, crse_description, crse_credits, crse_id) 
             VALUES('".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].
              ", 7);";
+             echo "<p>".$query."</p>";
         
             mysqli_query($conn,$query);
         }
@@ -533,26 +617,31 @@ foreach($courses as $course){
    
 }
 
-$sql ="SELECT id_est FROM expediente";
+$sql ="SELECT stdnt_number FROM student_record WHERE stdnt_number = $_SESSION[stdnt_number]";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
                 if($resultCheck === 0){
                     foreach($courses as $course){
                         if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                            $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number,	crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
-
-                $stmt->bind_param('sisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
-                        
+                            //$stmt = $conn->prepare("INSERT INTO `student_record`(`stdnt_number`, `crse_label`, `crse_grade`, `crse_status`, `semester_pass`, `special_id`, `crseR_status`, `crse_equivalence`, `crse_recognition`, `crse_credits_ER`, `crse_ER_Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                
+                
+               // $stmt->bind_param('sisisiissii', $_SESSION['stdnt_number'], $course['crse_label'], $course['crse_grade'], $course['crse_status'], $course['semester_pass'], $course['special_id'], NULL, NULL, NULL, NULL, NULL);
+                     
+                $sql = "INSERT INTO `student_record`(`stdnt_number`, `crse_label`, `crse_grade`, `crse_status`, `semester_pass`, `special_id`, `crseR_status`, `crse_equivalence`, `crse_recognition`, `crse_credits_ER`, `crse_ER_Status`) VALUES ( $_SESSION[stdnt_number], $course[crse_name], $course[crse_label], $course[crse_grade], $course[crse_status], $course[semester_pass], $course[special_id], NULL, NULL, NULL, NULL, NULL)";
+               echo "<p>$sql</p>";
                
+            
+             /*   
                 if ($stmt->execute()) {
                     //  header('Location: ../est_profile.php');
                     echo "Uploaded to Database successfully";
                 } else {
                 echo "Unable to create record";
-                }
+                } */
 
-                    $stmt->close();
+                   // $stmt->close();
                         
                         }
                     }
@@ -560,7 +649,7 @@ $sql ="SELECT id_est FROM expediente";
                     
 mysqli_close($conn);
    //header('Location: ../est_profile.php');
-/* } else {
+ /*} else {
     echo "move_uploaded_file function failed";
-} */
+}  */
 
