@@ -1236,7 +1236,7 @@ $(document).ready(function(){
 	var ajax = new XMLHttpRequest();
 	ajax.upload.addEventListener("progress", progressHandler, false);
 
-  let  isRecordPresentInDB = '<?php echo $isRecordPresentInDB; ?>';
+  let  isRecordPresentInDB = <?php echo json_encode($isRecordPresentInDB);?>;
    
   if(isRecordPresentInDB){
     ajax.open("POST", "inc/update_student_record.php");
