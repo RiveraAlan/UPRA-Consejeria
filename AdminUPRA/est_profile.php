@@ -26,7 +26,10 @@ if($resultCheck > 0)
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
-
+          function edit(tabla){
+                    console.log(tabla);
+                    document.getElementById('id01').style.display='block';
+          }
           function myFunction(className) {
                     console.log(className); 
                     document.getElementById("og_crse").value = className;
@@ -535,9 +538,9 @@ body {
               <div class='error-message'><h4 style='text-align:center'>¡Recomendar menos créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
                 }
               }
-              ?>
+              ?> 
       <div class="card-body">
-                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="edit('mandatory_courses')"></i></a></h3></div>
                 <br>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -659,7 +662,7 @@ body {
                 </tbody>
                   </table>
                   <br>
-                  <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                  <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="edit('general_courses')"></i></a></h3></div>
                   <form action='inc/recommend.php' method='POST'>
                    <?php
                     echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
@@ -732,7 +735,7 @@ body {
                 </tbody>
                   </table>
                   <br>
-                   <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                   <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="edit('free_courses')"></i></a></h3></div>
                   <form action='inc/recommend.php' method='POST'>
                    <?php
                     echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
@@ -798,7 +801,7 @@ body {
                 </tbody>
                   </table>
                   <br>
-                   <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="document.getElementById('id01').style.display='block'"></i></a></h3></div>
+                   <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
                    <form action='inc/recommend.php' method='POST'>
                    <?php
                     echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
@@ -896,6 +899,7 @@ body {
                   
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
+                  $crse = "{$row['crse_label']}";
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
                   }else if ($row['crse_status'] == 2){
@@ -907,7 +911,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
                     <td>{$row['semester_pass']}</td>
-                    <td><button onClick='$modal' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
+                    <td><button onclick='myFunction($crse)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
                   </tr>";}}?>
                 </tbody>
                   </table>
@@ -943,14 +947,15 @@ body {
         <span onclick="document.getElementById('id01').style.display='none'"
         class="w3-button w3-display-topright">&times;</span>
         <div style="text-align: center"><h3>Editar</h3></div>
+        <hr>
       </header>
       <div class="w3-container">
           <br>
-      <form action='edtiest.php' method='POST'>
+      <form action='inc/edit_crse.php' method='POST'>
           <div class="grid-container">
 <!-- Dos select Box --> 
           <div class="select-box">          
-                  <select name="course_mand" id="course-list">
+                  <select name="course" id="course-list">
                   <?php
                         $sql ="SELECT 	crse_label, crse_name FROM departmental_courses
                                 UNION ALL 
@@ -971,7 +976,7 @@ body {
               </div>
           
                           <div class="select-box"> 
-                              <select name="course_mand" id="course-list">
+                              <select name="grade" id="course-list">
                               <option value='A'>A</option>
                               <option value='B'>B</option>
                               <option value='C'>C</option>
@@ -986,19 +991,22 @@ body {
               </div> 
 <!-- ./ termina dos select Box --> 
                           <div class='input-group mb-3'>
-                          <input type='text' name='name' class='form-control' placeholder='AÑO APROBADO'>
+                          <input type='text' name='semester' class='form-control' placeholder='SEMESTRE'>
+                          
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fas fa-comment-dots'></span>
                             </div>
                           </div>
                         </div>
-          </form>           
+                        <p><FONT COLOR="red"> <i COLOR="red">Nota Aclaratoria: </i></FONT>Poner semestre por codigo "TERM" según la plataforma PuTTY.</p>
+                    
       </div>                                                     
       <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
 <!-- HAY QUE BREGARLO!  -->
-          <button type='submit' class='btn btn-default' onclick='edit_env()' name='edit_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
+          <button type='submit' class='btn btn-default' onclick='edit_crse()' name='edit_crse-submit' style='float:right;'>APLICAR</button>
       </footer>   
+      </form> 
     </div>
   </div><!-- /.Edit -->
 <!-- Expediente -->
