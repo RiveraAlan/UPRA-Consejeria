@@ -681,8 +681,6 @@ body {
                    <?php
                     echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
-                   <button type='submit' name='rec-adi' value='crse_suggestionCISO' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; margin-left:24%; background-color: rgb(253, 118, 100);">Adicional CISO</button>
-                   <button type='submit' name='rec-adi' value='crse_suggestionHUMA' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; background-color: rgb(253, 118, 100);">Adicional HUMA</button>
                    </form>
                   <br>
                     <table id="example2" class="table table-bordered table-hover">
@@ -924,7 +922,7 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status
+                $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status, crse_label
                    FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
