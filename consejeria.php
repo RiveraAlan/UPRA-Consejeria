@@ -203,15 +203,58 @@ if(!isset($_SESSION['stdnt_number'])){
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
+                                        $sql_adi ="SELECT * from counseling_special_details WHERE stdnt_number = '$id' AND crse_confirmation = 0";
+                                            $result_adi = mysqli_query($conn, $sql_adi);
+                                            $resultCheck_adi = mysqli_num_rows($result_adi);
+    
+
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
                                         <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                        <input type='hidden' name='clase' value='general'>
                                         <td>{$row['crse_name']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                      </tr> ";}}
-
+                                      </tr> ";
+                                    
+                                    }}
+                                    if($resultCheck_adi > 0){
+                                      while($row = mysqli_fetch_assoc($result_adi)){
+                                        if($row['crse_suggestionHUMA'] == 5){
+                                          echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                                          <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                          <input type='hidden'  name='clase' value='HUMA'>
+                                          <td>HUMA</td>
+                                          <td>-</td>
+                                          <td>-</td>
+                                        </tr> ";
+                                          }elseif($row['crse_suggestionCISO'] == 5){
+                                            echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                                            <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                            <input type='hidden'  name='clase' value='CISO'>
+                                            <td>HUMA</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                          </tr> ";
+                                            }elseif($row['crse_suggestionFREE'] == 5){
+                                              echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                                              <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                              <input type='hidden'  name='clase' value='FREE'>
+                                              <td>HUMA</td>
+                                              <td>-</td>
+                                              <td>-</td>
+                                            </tr> ";
+                                              }elseif($row['crse_suggestionDEP'] == 5){
+                                                echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
+                                                <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                                <input type='hidden'  name='clase' value='DEP'>
+                                                <td>HUMA</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                              </tr> ";
+                                                }
+                                      }}
                                     echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
                                         <td><input type='checkbox' class='case' name='otros' id='otros' value='otros' /> </td>
                                         <td>Otros</td>

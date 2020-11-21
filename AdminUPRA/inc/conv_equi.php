@@ -13,6 +13,8 @@ session_start();
         $clase = mysqli_real_escape_string($conn, $_POST['course_gen']);
     }else if($tabla == "departamental_courses"){
         $clase = mysqli_real_escape_string($conn, $_POST['course_dept']);
+    }else if($tabla == "free_courses"){
+        $clase = mysqli_real_escape_string($conn, $_POST['course_dept']);
     }
         // query para verificar si clase ya ha sido equi/conv anteriormente (si ha sido anterior se le dara update y no insert)
             $sql ="SELECT 	crse_label, crse_recognition, crse_equivalence, semester_pass, 	crse_credits_ER FROM student_record WHERE crse_label = $clase AND stdnt_number = '$student_id'";
@@ -39,6 +41,8 @@ session_start();
                                 }elseif($tabla == "departamenta_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C')){
                                     $nota = "P";
                                 }elseif($tabla == "general_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C' || $row['crse_grade'] === 'D')){
+                                    $nota = "P";
+                                }elseif($tabla == "free_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C' || $row['crse_grade'] === 'D')){
                                     $nota = "P";
                                 }else{
                                     $nota = "NP";
@@ -79,6 +83,8 @@ session_start();
                                 }elseif($tabla == "departamenta_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C')){
                                     $nota = "P";
                                 }elseif($tabla == "general_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C' || $row['crse_grade'] === 'D')){
+                                    $nota = "P";
+                                }elseif($tabla == "free_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C' || $row['crse_grade'] === 'D')){
                                     $nota = "P";
                                 }else{
                                     $nota = "NP";
