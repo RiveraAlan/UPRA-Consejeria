@@ -167,7 +167,7 @@ if(!isset($advisor_id)){
             <?php
         $sql ="SELECT stdnt_email FROM student_record_details
         INNER JOIN student USING (stdnt_number)
-        WHERE conducted_counseling = 1";
+        WHERE conducted_counseling = 1 AND record_status != 0";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 1;
@@ -175,7 +175,11 @@ if(!isset($advisor_id)){
         while($row = mysqli_fetch_assoc($result)){
             echo "
                 &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
-        }}?>
+        }}else{
+          echo "
+        <div class='error-message'><h4 style='text-align:center'>¡Ningun estudiante ha realizado consejería!</h4></div>";
+  }
+  ?>
             <br>
         </div>
       </div>

@@ -187,13 +187,18 @@ if(!isset($advisor_id)){
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
+                                      $sqlSUM ="SELECT COUNT(stdnt_number) as sum
+                                      FROM student_record WHERE crse_status = 4 AND crse_label = $row[crse_label]";
+                                        $resultSUM = mysqli_query($conn, $sqlSUM);
+                                        $resultCheckSUM = mysqli_num_rows($resultSUM);
+                                        $SUM = mysqli_fetch_assoc($resultSUM);
                                       echo "
                                     
                                       <tr class='row100'>
                                         <td class='' data-column='column1'>".$row['crse_name']."</td>
                                         <td class='' data-column='column2'>".$row['crse_description']."</td>
                                         <td class='' data-column='column3'>".$row['crse_credits']."</td>
-                                        <td class='' data-column='column4'>--</td>
+                                        <td class='' data-column='column4'>".$SUM['sum']."</td>
                                         <td class='' data-column='column5'>
                                          <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
                                         </td>
@@ -232,17 +237,22 @@ if(!isset($advisor_id)){
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
-                                    echo "
+                                      $sqlSUM ="SELECT COUNT(stdnt_number) as sum
+                                      FROM student_record WHERE crse_status = 4 AND crse_label = $row[crse_label]";
+                                        $resultSUM = mysqli_query($conn, $sqlSUM);
+                                        $resultCheckSUM = mysqli_num_rows($resultSUM);
+                                        $SUM = mysqli_fetch_assoc($resultSUM);
+                                      echo "
                                     
-                                  <tr class='row100'>
-                                    <td class='' data-column='column1'>".$row['crse_name']."</td>
-                                    <td class='' data-column='column2'>".$row['crse_description']."</td>
-                                    <td class='' data-column='column3'>".$row['crse_credits']."</td>
-                                    <td class='' data-column='column4'>--</td>
-                                    <td class='' data-column='column5'>
-                                     <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
-                                    </td>
-                                  </tr>
+                                      <tr class='row100'>
+                                        <td class='' data-column='column1'>".$row['crse_name']."</td>
+                                        <td class='' data-column='column2'>".$row['crse_description']."</td>
+                                        <td class='' data-column='column3'>".$row['crse_credits']."</td>
+                                        <td class='' data-column='column4'>".$SUM['sum']."</td>
+                                        <td class='' data-column='column5'>
+                                         <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
+                                        </td>
+                                      </tr>
                                      ";}}?>
                                 </tbody>
                               </table>
@@ -277,13 +287,18 @@ if(!isset($advisor_id)){
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
+                                      $sqlSUM ="SELECT COUNT(stdnt_number) as sum
+                                      FROM student_record WHERE crse_status = 4 AND crse_label = $row[crse_label]";
+                                        $resultSUM = mysqli_query($conn, $sqlSUM);
+                                        $resultCheckSUM = mysqli_num_rows($resultSUM);
+                                        $SUM = mysqli_fetch_assoc($resultSUM);
                                       echo "
                                     
                                       <tr class='row100'>
                                         <td class='' data-column='column1'>".$row['crse_name']."</td>
                                         <td class='' data-column='column2'>".$row['crse_description']."</td>
                                         <td class='' data-column='column3'>".$row['crse_credits']."</td>
-                                        <td class='' data-column='column4'>--</td>
+                                        <td class='' data-column='column4'>".$SUM['sum']."</td>
                                         <td class='' data-column='column5'>
                                          <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
                                         </td>

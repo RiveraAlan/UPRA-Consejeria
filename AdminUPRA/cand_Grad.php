@@ -11,7 +11,7 @@ if(!isset($advisor_id)){
 
 $count = 0;
 $sql = "SELECT stdnt_number 
-                    FROM student";
+FROM student";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
                   if($resultCheck > 0){
@@ -40,14 +40,15 @@ $sql = "SELECT stdnt_number
                   if($sum_resultCheck > 0){
                     if(($creditos['sum'] < 21) && ($creditos['sum'] != NULL)){
                       $sql = "SELECT stdnt_email
-                    FROM student WHERE stdnt_number = '{$row['stdnt_number']}'";
+                    FROM student INNER JOIN student_record_details USING (stdnt_number) WHERE stdnt_number = '{$row['stdnt_number']}' AND record_status != 0";
                     $resultado = mysqli_query($conn, $sql);
                     $resultadoCheck = mysqli_num_rows($resultado);
-                    }else{
+                    }
+                  }else{
                       $resultado = 0;
                     }
-                  }
                 }
+              }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -205,7 +206,8 @@ $sql = "SELECT stdnt_number
         <div class="card-body p-0">
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
-            if($resultado != 0){
+            $count = 1;
+            if($resultadoCheck != 0){
         while($student = mysqli_fetch_assoc($resultado)){
             echo "
                 &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$student['stdnt_email']}</th><br>";
@@ -214,7 +216,7 @@ $sql = "SELECT stdnt_number
                 echo "
               <div class='error-message'><h4 style='text-align:center'>¡No hay candidatos a graduación!</h4></div>";
         }
-        }?>
+      ?>
             <br>
         </div>
       </div>

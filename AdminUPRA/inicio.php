@@ -10,7 +10,8 @@ if(!isset($_SESSION['adv_id'])){
 }
 $count = 0;
 $sql = "SELECT stdnt_number 
-                    FROM student";
+FROM student INNER JOIN student_record_details USING (stdnt_number)
+WHERE record_status != 0";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
                   if($resultCheck > 0){
@@ -199,24 +200,30 @@ $sql = "SELECT stdnt_number
           <div class="col-lg-3 col-6">
             <?php
                 $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM student_record_details S_R_D1 
-                        WHERE S_R_D1.conducted_counseling = 1;";
+                WHERE S_R_D1.conducted_counseling = 1 AND record_status != 0;";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $students_t_c_c = mysqli_fetch_array($result, MYSQLI_NUM);
 
-                $sql = "SELECT COUNT(*) AS total_students FROM student_record_details;";
+                $sql = "SELECT COUNT(*) AS total_students FROM student_record_details WHERE record_status != 0;";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $total_students =  mysqli_fetch_array($result, MYSQLI_NUM);
 
-                $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_dn_c_c FROM student_record_details S_R_D1 
-                WHERE S_R_D1.conducted_counseling = 0;";
+                $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM student_record_details S_R_D1 
+                WHERE S_R_D1.conducted_counseling = 0 AND record_status != 0;";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $students_t_dn_c_c = mysqli_fetch_array($result, MYSQLI_NUM); ?>
             <div class="small-box bg-success">
               <div class="inner"><a href="cons_R.php" style="color:white">
-                <?php echo "<h3>".(($students_t_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
+                <?php 
+                if($total_students[0] > 0){
+                echo "<h3>".round(($students_t_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>";
+                }else{
+                  echo "<h3>0<sup style='font-size: 20px'>%</sup></h3>";
+                }
+                ?>
                 <p>Realizaron Consejería</p>
                   </a></div>
               
@@ -228,7 +235,13 @@ $sql = "SELECT stdnt_number
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner"><a href="cons_NOR.php" style="color:white">
-              <?php echo "<h3>".(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>"?>
+              <?php 
+              if($total_students[0] > 0){
+              echo "<h3>".round(($students_t_dn_c_c[0] / $total_students[0]) * 100)."<sup style='font-size: 20px'>%</sup></h3>";
+            }else{
+              echo "<h3>0<sup style='font-size: 20px'>%</sup></h3>";
+            }
+              ?>
                 <p>No ha realizado Consejería</p>
               </a></div>
               <a class="small-box-footer"></a>
@@ -241,9 +254,6 @@ $sql = "SELECT stdnt_number
                 <h3><?php echo $count;?></h3>
                 <p>Candidatos a Graduación</p>
               </a></div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
               <a class="small-box-footer"></a>
             </div>
           </div><!-- ./col Candidatos a Graduacion -->

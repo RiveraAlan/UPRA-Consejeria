@@ -519,7 +519,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                     <th class="column100 column2" data-column="column2">Código</th>
                                     <th class="column100 column3" data-column="column3">Descripción</th>
                                     <th class="column100 column4" data-column="column4">Créditos</th>
-                                    <th style="background: transparent; border: none" class="column100 column5" data-column="column5"><button onclick="sugerir()" name="suge-submit" type="submit" class="btn btn-yellow btn-pill">CONFIRMAR</button></th>
+                                    <th style="background: transparent; border: none" class="column100 column5" data-column="column5"><button onclick="sugerir()" name="suge-submit" type="submit" class="btn btn-yellow btn-pill">SUGERIR</button></th>
                                   </tr>
                                 </thead>
                                 

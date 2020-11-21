@@ -563,6 +563,20 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
+                  if($row['crse_ER_Status'] == 0){
+                    $color = '#eeddd2';
+                    $text_color = 'black';
+                   }elseif($row['crse_ER_Status'] == 1){
+                    $color = '#995d2d';
+                    $text_color = 'white';
+                   }elseif($row['crse_ER_Status'] == 2){
+                    $color = '#c69b7c';
+                    $text_color = 'black';
+                  }elseif($row['crse_ER_Status'] == NULL){
+                    $color = '';
+                    $text_color = 'black';
+                  }
+                  
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -653,7 +667,7 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: $text_color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
@@ -667,8 +681,8 @@ body {
                    <?php
                     echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
-                   <button type='submit' name='rec-adi' value='crse_suggestionCISO' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; margin-left:24%; background-color: rgb(253, 118, 100);">Recomendación Adicional CISO</button>
-                   <button type='submit' name='rec-adi' value='crse_suggestionHUMA' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; background-color: rgb(253, 118, 100);">Recomendación Adicional HUMA</button>
+                   <button type='submit' name='rec-adi' value='crse_suggestionCISO' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; margin-left:24%; background-color: rgb(253, 118, 100);">Adicional CISO</button>
+                   <button type='submit' name='rec-adi' value='crse_suggestionHUMA' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; background-color: rgb(253, 118, 100);">Adicional HUMA</button>
                    </form>
                   <br>
                     <table id="example2" class="table table-bordered table-hover">
@@ -692,7 +706,20 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 
+                  if($row['crse_ER_Status'] == 0){
+                    $color = '#eeddd2';
+                    $text_color = 'black';
+                   }elseif($row['crse_ER_Status'] == 1){
+                    $color = '#995d2d';
+                    $text_color = 'white';
+                   }elseif($row['crse_ER_Status'] == 2){
+                    $color = '#c69b7c';
+                    $text_color = 'black';
+                  }elseif($row['crse_ER_Status'] == NULL){
+                    $color = '';
+                    $text_color = 'black';
+                  }
+
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -726,7 +753,7 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: $text_color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
@@ -830,15 +857,20 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 if($row['crse_ER_Status'] = 0){
-                  $color = '#eeddd2';
-                 }elseif($row['crse_ER_Status'] = 1){
-                  $color = '#995d2d';
-                 }elseif($row['crse_ER_Status'] = 2){
-                  $color = '#c69b7c';
-                }elseif($row['crse_ER_Status'] = NULL){
-                  $color = '';
-                }
+                  if($row['crse_ER_Status'] == 0){
+                    $color = '#eeddd2';
+                    $text_color = 'black';
+                   }elseif($row['crse_ER_Status'] == 1){
+                    $color = '#995d2d';
+                    $text_color = 'white';
+                   }elseif($row['crse_ER_Status'] == 2){
+                    $color = '#c69b7c';
+                    $text_color = 'black';
+                  }elseif($row['crse_ER_Status'] == NULL){
+                    $color = '';
+                    $text_color = 'black';
+                  }
+
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -865,7 +897,7 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: $text_color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";

@@ -180,7 +180,11 @@ $crse_name =  $_GET['crse_name'];
         while($row = mysqli_fetch_assoc($result)){
             echo "
                 &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
-        }}?>
+        }}else{
+          echo "
+          <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";
+        }
+          ?>
             <br>
         </div>
       </div>
