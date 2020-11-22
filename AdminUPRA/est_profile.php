@@ -469,7 +469,7 @@ body {
               <div>
 
               <form id='paper' method='POST' action='inc/notespost.php'>
-           <textarea placeholder='Escribe una nota aquí.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
+           <textarea placeholder='Escribe una nota aquí.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 280px;'></textarea>
            <input type='hidden' name='id' value='$student_id'>   
            </div><button type='submit' name='notes-submit' onclick='notes-submit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
@@ -1064,7 +1064,7 @@ body {
                     <h4>Tipo de estudiante : </h4>
                     <form action='inc/tipo_est.php' method='POST'>
                     <div class='grid-container'>
-                        <div class='grid-item'><input type='radio' name='tipo' value='General'> General</input></div>
+                        <div class='grid-item'><input type='radio' name='tipo' value='Regular'> Regular</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Traslado'> Traslado</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Transferencia'> Trasferencia</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Reclasificación'> Reclasificación</input></div>
