@@ -592,3 +592,7 @@ $query = "SELECT crse_label FROM student_record
    $stmt->close();} 
 
 mysqli_close($conn);
+
+//exit
+header("Location: ../est_profile.php");
+exit();

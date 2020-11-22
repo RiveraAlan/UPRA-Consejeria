@@ -404,7 +404,7 @@ body {
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_cohort
+                    $sql = "SELECT *
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -436,9 +436,11 @@ body {
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
               $año = date('Y')-(substr($row['stdnt_number'], 4,2) + 1999);
+              $stdnt_type = "$row[stdnt_type]";
                echo "<h3 class='profile-username text-center'>{$row['stdnt_name']} {$row['stdnt_lastname1']} {$row['stdnt_lastname2']}</h3>
                 <p class='text-muted text-center'>{$row['stdnt_email']}</p>
                 <p class='text-muted text-center'>{$row['stdnt_number']}</p>
+                <p class='text-muted text-center'>{$row['stdnt_type']}</p>
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
                     <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(C)']}</a>
@@ -1045,10 +1047,25 @@ body {
               <header class='w3-container' style='padding-top:5px'>
                 <span onclick='document.getElementById("id02").style.display="none"'
                 class='w3-button w3-display-topright'>&times;</span>
-                <h3>Subir Expediente</h3>
+                <div style="text-align: center"><h3>Subir Expediente</h3><hr></div>
               </header>
               <div class='w3-container'>
                   <br>
+                  <?php 
+                  if(!$isRecordPresentInDB){
+                    echo "
+                    <h4>Tipo de estudiante : </h4>
+                    <form action='inc/tipo_est.php' method='POST'>
+                    <div class='grid-container'>
+                        <div class='grid-item'><input type='radio' name='tipo' value='Traslado'> Traslado</input></div>
+                        <div class='grid-item'><input type='radio' name='tipo' value='Transferencia'> Trasferencia</input></div>
+                        <div class='grid-item'><input type='radio' name='tipo' value='Reclasificación'> Reclasificación</input></div>
+                        <div class='grid-item'><input type='radio' name='tipo' value='General'> General</input></div>
+                        </div>
+                    ";
+                  }
+                  ?>
+                  
                 <div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
                 <div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
                   <input type="file" id="myfile" name="myfile">
@@ -1056,7 +1073,18 @@ body {
                 </div>   
               </div>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-              <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              <?php
+              if(!$isRecordPresentInDB){
+              echo "
+              <input type='hidden' name='stdnt_number' value='$student_id'>
+              <button type='submit' class='btn btn-default' onclick='tipo_est()' name='tipo_est-submit' style='float:right;'>APLICAR</button>
+              </form>";
+              }else{
+                echo "
+                <button type='button' class='btn btn-default' href='recomendaciones_C.php' style='float:right; '>APLICAR</button>";
+              }
+              ?>
+              
               </footer>
             </div>
           </div><!-- /.Expediente -->
