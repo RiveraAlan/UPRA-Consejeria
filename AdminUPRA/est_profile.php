@@ -469,7 +469,7 @@ body {
               <div>
 
               <form id='paper' method='POST' action='inc/notespost.php'>
-           <textarea placeholder='Escribe una nota aquí.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
+           <textarea placeholder='Escribe una nota aquí.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 280px;'></textarea>
            <input type='hidden' name='id' value='$student_id'>   
            </div><button type='submit' name='notes-submit' onclick='notes-submit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
