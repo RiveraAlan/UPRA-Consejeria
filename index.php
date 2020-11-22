@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -74,8 +74,31 @@
                 <div class="col-lg-6 mb-4 hero-text">
                   <h1  data-aos="fade-up" data-aos-delay="100">¡Bienvenidos a Consejería Académica de la Universidad de Puerto Rico Recinto de Arecibo!</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">En el botón de abajo muestra cómo hacer la Consejería</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-yellow py-3 px-5 btn-pill">¿Cómo hacer Consejería?</a></p>
+                  <p data-aos="fade-up" data-aos-delay="300"><button onclick="document.getElementById('id01').style.display='block'" class="btn btn-yellow py-3 px-5 btn-pill">¿Cómo hacer Consejería?</button></p>
+                  <!-- modales -->
+<div id="id01" class="w3-modal" style="display='none';">
+    <div class="w3-modal-content" style="background-color: transparent">
+      <div class="w3-container" style="margin-top:20%">
+        <video width="100%" controls>
+  <source src="video/2020-11-22-18-11-59.mp4" type="video/mp4">
+  Your browser does not support HTML video.
+</video>
+      </div>
+    </div>
+  </div>
 
+  <script>
+      // Get the modal
+      var modal = document.getElementById('id01');
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+        }
+  </script>
+<!-- !modales -->
                 </div>
 
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
