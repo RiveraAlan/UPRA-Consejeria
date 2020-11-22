@@ -9,7 +9,6 @@ if(!isset($advisor_id)){
     exit();
 }
 
-$count = 0;
 $sql = "SELECT stdnt_number 
 FROM student";
                   $result = mysqli_query($conn, $sql);
@@ -207,7 +206,7 @@ FROM student";
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
             $count = 0;
-            if($resultadoCheck != 0){
+            if($resultadoCheck > 0){
         while($student = mysqli_fetch_assoc($resultado)){
              $count++;
             echo "
