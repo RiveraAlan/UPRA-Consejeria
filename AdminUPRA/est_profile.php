@@ -1064,7 +1064,7 @@ body {
                     <h4>Tipo de estudiante : </h4>
                     <form action='inc/tipo_est.php' method='POST'>
                     <div class='grid-container'>
-                        <div class='grid-item'><input type='radio' name='tipo' value='General'> General</input></div>
+                        <div class='grid-item'><input type='radio' name='tipo' value='Regular'> Regular</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Traslado'> Traslado</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Transferencia'> Trasferencia</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Reclasificación'> Reclasificación</input></div>

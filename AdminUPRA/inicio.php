@@ -76,6 +76,23 @@ WHERE record_status != 0";
   <link rel="stylesheet" href="dist/css/adminlte.css">
   <link rel="stylesheet" href="../css/conse.css">
   <link rel="stylesheet" href="login.css">
+
+  <style>
+    .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: transparent;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: transparent;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -123,10 +140,16 @@ WHERE record_status != 0";
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+               <li class="nav-item has-treeview menu-open">
             <a href="inicio.php" class="nav-link">
                <i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Inicio</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id01').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Añadir Clase</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -422,55 +445,104 @@ margin-left: auto;
     </section>
 
     <!-- modales -->
-            <!-- crear expediente -->
-            <div id="id04" class="w3-modal" style="padding-left:20%">
-    <div class="w3-modal-content w3-animate-zoom">
-      <header class="w3-container" style="padding-top:5px">
-        <span onclick="document.getElementById('id04').style.display='none'"
-        class="w3-button w3-display-topright">&times;</span>
-        <div style="text-align: center"><h1>Crear Expediente</h1>
-      <p>Complete los siguientes campos para crear el expediente.</p>
-      <hr></div>
-      </header>
-      <div class="w3-container">
-          <br>
-          <form action="/action_page.php">
-      <label for="numest"><b>Número de Estudiante</b></label>
-      <input type='text' class='form-control' placeholder="Entre el número de Estudiante" name="numest" required>
-
-      <div class="select-box"> 
-                <select name="course_mand" id="course-list">
-                <option value='Regular'>Regular</option>
-                <option value='Traslado'>Traslado</option>
-                <option value='Transferencia'>Transferencia</option>
-                <option value='Reclasificación'>Reclasificación</option>
-                </select>
-      </div>     
-      <div class="clearfix">
-              <button type="button" onclick="document.getElementById('id04').style.display='none'" class="button-exp cancelbtn">Cancelar</button>
-              <button type="submit" class="button-exp signupbtn">Crear</button>
-            </div>
-        </form>
-      <script>
+    <script>
       // Get the modal
-      var modal = document.getElementById('id04');
+      var modal = document.getElementById('id01');
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {
           modal.style.display = "none";
         }
+        
       }
+      function add_class(tabla){
+        console.log(tabla); 
+        document.getElementById("tabla").value = tabla;
+      }
+
       </script>
+            <!-- Añadir Clase -->
+            <div id="id01" class="w3-modal" style="padding-left:20%">
+    <div class="w3-modal-content w3-animate-zoom">
+      <header class="w3-container" style="padding-top:5px">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <div style="text-align: center"><h1>Añadir Clase</h1>
+      <p>Complete los siguientes campos para añadir la clase a la base de datos.</p>
+      <hr></div>
+      </header>
+      <div class="w3-container">
+          <br>
+          <form action="inc/add_class.php" method='POST'>
+          <div class="grid-container">
+                <div class='item-1'>
+                          <a onclick="add_class('mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
+                            <i class='fas fa-pencil-alt'></i> Concentración</a>
+                  </div>
+                <div class='item-2'>
+                          <a onclick="add_class('general_courses')" class='btn btn-warning' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i> General Obli.</a>
+                  </div>
+                          <div class='item-3'>
+                          <a onclick="add_class('departamental_courses')" class='btn btn-danger'style="width: 100%; color: white">
+                             <i class='fas fa-pencil-alt'></i> Elect. Dept.</a>
+                        </div>
+                        <div class='item-4'>
+                          <a onclick="add_class('free_courses')" class='btn btn-info' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i> Elect. Libre</a>
+                        </div>
+                  </div>
+              </div>
+              <div style='width: 90%; margin-left: 5%'>
+              <div class="input-group mb-3">
+          <input type="text" name="course" class="form-control" placeholder="CURSO" value=''>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-chalkboard-teacher"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+              <input type="text" name="description" class="form-control" placeholder="DESCRIPCIÓN" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fa fa-font"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+              <input type="number" name="creditos" class="form-control" placeholder="CRÉDITOS" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fa fa-font"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+    
+            </div>
+          </div>
+          <input type='hidden' id='tabla' value='' name='tabla'>
+          <!-- /.col -->
+          <div class="col-4">
+          <button type='submit' class='btn btn-default' name='add-submit' style='float:right;'>APLICAR</button>
+          </div>
+          </div> 
+          <!-- /.col -->
+        </form>
+     
       <!-- /Modal para registro -->  
           </section>
-        </div>
+       
         
-
-        <footer class="main-footer">
+        
+        <footer class="main-footer" style='margin-left: 0%'>
           
-          <strong>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
-        </footer>
+          <strong style='margin-left: 25%'>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
+        </footer> </div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
