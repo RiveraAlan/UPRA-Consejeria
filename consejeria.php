@@ -513,7 +513,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <!-- /Modal -->";
                   }}?>
                     </table>
-                    <div class='warning-message'><h4 style='text-align:center'>¡ADVERTENCIA! Debe tomar 6 créditos en avanzada.</h4></div>
+                    <div class='warning-message'><h4 style='text-align:center'>¡RECORDATORIO! Debe tomar 6 créditos en avanzada.</h4></div>
               </div>
             </div>
           </div>
