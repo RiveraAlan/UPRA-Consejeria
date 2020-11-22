@@ -206,9 +206,10 @@ FROM student";
         <div class="card-body p-0">
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
-            $count = 1;
+            $count = 0;
             if($resultadoCheck != 0){
         while($student = mysqli_fetch_assoc($resultado)){
+             $count++;
             echo "
                 &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$student['stdnt_email']}</th><br>";
         }

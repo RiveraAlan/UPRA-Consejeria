@@ -170,9 +170,10 @@ if(!isset($advisor_id)){
         WHERE conducted_counseling = 1 AND record_status != 0";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
-        $count = 1;
+        $count = 0;
         if($resultCheck > 0){
         while($row = mysqli_fetch_assoc($result)){
+            $count++;
             echo "
                 &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
         }}else{

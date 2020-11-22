@@ -109,7 +109,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
-                    Número de Estudiante: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Número de Estudiante: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Créditos Recomendados: <b>{$reco['SUM(C)']}</b></b><br></div>";?>
                 </div>
               </div>
@@ -516,7 +516,7 @@ if(!isset($_SESSION['stdnt_number'])){
         $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){  
-                echo '<div class="success-message">La cita con el/la advisor(a) fue separada para el '.$appt_date.'.</div>';
+                echo '<div class="success-message">La cita con el/la consejero(a) fue separada para el '.$appt_date.'.</div>';
                 } else {
                     if((isset($_GET['is-date-empty']) AND boolval($_GET['is-date-empty'])) OR (isset($_GET['is-hour-chosen-empty']) AND boolval($_GET['is-hour-chosen-empty']))){
                     echo '<div class="error-message">*Escoga el día y la hora de la cita.</div>';

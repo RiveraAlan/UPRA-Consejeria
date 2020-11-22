@@ -1,7 +1,7 @@
-683  ACADEMIC REQUIREMENT AUDIT REQUEST        RIVERA MUNIZ, ALAN L
+683  ACADEMIC REQUIREMENT AUDIT REQUEST        OCTAVIANI SOTO, NELSON J
    INST: 84
  SCREEN:
- ACADEMIC PROGRAM AS OF C01                  FINAL AUDIT:
+ ACADEMIC PROGRAM AS OF C02                  FINAL AUDIT:
              PRIMARY        SECONDARY        ENTER A SPECIFIC ACADEMIC
     COLLEGE: CC                              REQUIREMENT NAME:
      DEGREE: BCN
@@ -11,117 +11,129 @@
     CATALOG: B71                             B71
  PLAN FILED: N                               Y
                        T E R M S   R E G I S T E R E D
-      UNDERGRAD B63 B71 B72 B73 B81 B82 B83 B91 B92 C01
-                         Analysis of Academic Progress
+      UNDERGRAD B53 B61 B62 B63 B71 B72 B73 B81 B82 B83 B91 B92 C01 C02
+                          
+			Analysis of Academic Progress
                                CIENCIAS COMPUTOS
                            BACH CIENCIAS DE COMPUTOS
                        Catalog B71, Academic Year 2017-18
    This evaluation is provided for advisement; it is not an official record.
    Please report any additions or corrections to your advisor.
-   - - - - - - - - -  Summary of Credit towards Graduation - - - - - - - - - -
-   REF   INSTITUTION                    PASSED IN/PROG     N/A    GPA VARIANCE
-   ----------------------------------------------------------------------------
-    1  COLEGIO UNIVERSITARIO DE AR        85.00    14.00     3.00   3.280 +105
-ANALYSIS OF DEGREE PROGRESS                    RIVERA MUNIZ, ALAN L
-   - - - - - - - - -  Summary of Credit towards Graduation - - - - - - - - - -
+- - - - - - - - -  Summary of Credit towards Graduation - - - - - - - - - -
                          (Continued from previous page)
          GPA DESCRIPTION              REQUIRED APPLIED     N/A    GPA VARIANCES
    ----------------------------------------------------------------------------
-   REQUISITOS GRADUACION rev. 2017       130.00    82.00            3.280  +105
-   REQUISITOS GENERALES                   53.00    34.00            3.206   +41
-   REQUISITOS CONCENTRACION               53.00    37.00            3.216   +45
-   ELECTIVAS DIRIGIDAS CCOM               12.00    11.00            3.727   +19
+   REQUISITOS GRADUACION rev. 2017       130.00   108.00            2.955  +107
+   REQUISITOS GENERALES                   53.00    47.00            2.627   +32
+   REQUISITOS CONCENTRACION               53.00    37.00            2.730   +27
+   ELECTIVAS DIRIGIDAS CCOM               12.00    12.00            4.000   +24
                   SECTION 1 - Academic Requirements Remaining
                   *******************************************
    This analysis assumes successful completion of all course work currently in
    progress.
+   - - - - - - - - -  Summary of Credit towards Graduation - - - - - - - - - -
+   REF   INSTITUTION                    PASSED IN/PROG     N/A    GPA VARIANCE
+   ----------------------------------------------------------------------------
+    1  COLEGIO UNIVERSITARIO DE AR       119.00    25.00    11.00   2.949 +111
    - - - - - - - - - -  REQUISITOS GRADUACION rev. 2017  - - - - - - - - - - -
-   EL EST.  DEBERA APROBAR DE 34 A 35 hours CRDS.  CON UN PROMEDIO MINIMO DE
+   EL EST.  DEBERA APROBAR DE 15 A 16 hours CRDS.  CON UN PROMEDIO MINIMO DE
    2.000
-    A. - - - - - - - - - - - -  REQUISITOS GENERALES - - - - - - - - - - - - -
-       EL ESTUDIANTE APROBARA UN TOTAL DE 12 A 13 hours CRDS.
-        1. - - - - - - - - - - -  REQUISITOS GENERALES - - - - - - - - - - - -
-           EL EST.  APROBARA LOS SIGUIENTES CURSOS: CIBI3002;  FISI3012, 3014
-        2. - - - - - - - REQUISITOS GENERALES REDACCION ESPANOL  - - - - - - -
-           EL ESTUDIANTE DEBERA APROBAR UNO DE LOS SIGUIENTES CURSOS ESPA3208,
-           2005 .
-        3. - - - - - - - - - ELECTIVAS DIRIGIDAS CISO-HUMA - - - - - - - - - -
-            A. - - - - - - - - -  ELECTIVAS DIRIGIDAS HUMA - - - - - - - - - -
-               EL EST.  APROBARA 3 hours CRDS.  EN CUALQUIER CURSO DE
-               HUMANIDADES
-               ARTE3116, 3118;  HIST3205, 3241, 3242, 3177, 3111, 3112, 3179;
-               HUMA3101, 3102, 3201, 3202;  MUSI3225;  TEAT3025;  FILO3001,
-               3002, 3005, 4006;  LITE3011, 3012;  FILO4006;  LITE3055;
-               INTD3046;  LITE3035
-    B. - - - - - - - - - - -  REQUISITOS CONCENTRACION - - - - - - - - - - - -
+    A. - - - - - - - - - - -  REQUISITOS CONCENTRACION - - - - - - - - - - - -
        EL EST.  DEBERA APROBAR LOS SIGUIENTES CURSOS: CCOM4075, 4095, 3010,
        4007, 4065 PARA UN TOTAL DE 16 hours CRDS.
-    C. - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - -
-       EL EST.  DEBERA APROBAR UN MAXIMO DE 1 hour CRDS.  DE ENTRE LOS SIG.
-       CURSOS:
-         CCOM3115, 4125, 4135, 3042, 3027, 3036, 4305, 4306, 4018, 4019, 4307,
-         4420, 4501, 3985
-         CCOM3135
            SECTION 2 - Academic Requirements Completed or in Progress
            **********************************************************
    - - - - - - - - - - - - -  REQUISITOS GENERALES - - - - - - - - - - - - - -
-   CIBI 3001 CIENCIAS BIOLOGICAS I C01   3.00      Registered
-   FISI 3011 FISICA UNIVERSITARIA  C01   3.00      Registered
-   FISI 3013 LAB FISICA UNIVERSIT  C01   1.00      Registered
-   INGL 3015 INGL PARA LA CIENC Y  B81   3.00  A
-   MATE 3031 CALCULO I             B92   4.00  D
-             QPTS   16.00    Total      14.00      GPA  2.286 , Variance    +2
-   - - - - - - - - - - - - - - - Espanol Basico  - - - - - - - - - - - - - - -
-   ESPA 3101 ESPANOL BASICO I      B91   3.00  B
-   ESPA 3102 ESPANOL BASICO II     B92   3.00  A
-             QPTS   21.00    Total       6.00      GPA  3.500 , Variance    +9
-   - - - - - - - - - - - - - - Ingles Intermedio - - - - - - - - - - - - - - -
-   INGL 3103 INGLES INTERMEDIO I   B71   3.00  A
-   INGL 3104 INGLES INTERMEDIO II  B72   3.00  A
-             QPTS   24.00    Total       6.00      GPA  4.000 , Variance   +12
-   - - - - - - - - - - - - -  MATE3171 Y MATE3172  - - - - - - - - - - - - - -
-   MATE 3171 PRE-CALCULO I         B72   3.00  C
-   MATE 3172 PRE-CALCULO II        B82   3.00  C
+   CIBI 3001 CIENCIAS BIOLOGICAS I B61   3.00  B
+   CIBI 3002 CIENCIAS BIOLOGICAS I B72   3.00  C
+   FISI 3011 FISICA UNIVERSITARIA  B91   3.00  C
+   FISI 3012 FISICA UNIVERSITARIA  B92   3.00  A
+   FISI 3013 LAB FISICA UNIVERSIT  B91   1.00  C
+   FISI 3014 LAB FISICA UNIVERSIT  B92   1.00  B
+   INGL 3015 INGL PARA LA CIENC Y  B82   3.00  A
+   MATE 3031 CALCULO I             B82 ( 4.0)  F
+   MATE 3031 CALCULO I             C01   4.00      Registered
+             QPTS   50.00    Total      21.00      GPA  2.381 , Variance    +8
+- - - - - - - - - - - - - - - Espanol Basico  - - - - - - - - - - - - - - -
+   ESPA 3101 ESPANOL BASICO I      B81   3.00  C
+   ESPA 3102 ESPANOL BASICO II     B82   3.00  A
+             QPTS   18.00    Total       6.00      GPA  3.000 , Variance    +6
+   - - - - - - - - - REQUISITOS GENERALES REDACCION ESPANOL  - - - - - - - - -
+   ESPA 3208 REDACCION Y ESTILO    B91   3.00  A
+             QPTS   12.00    Total       3.00      GPA  4.000 , Variance    +6
+   - - - - - - - - - - - - - - - Ingles Basico - - - - - - - - - - - - - - - -
+   INGL 3101 INGLES BASICO I       B62   3.00  B
+   INGL 3102 INGLES BASICO  II     B71   3.00  B
+   INGL 3113 PRACT ORAL INGL BAS.  B62   0.00      Registered
+   INGL 3114 PRACT ORAL INGL BAS.  B71   0.00      Registered
+             QPTS   18.00    Total       6.00      GPA  3.000 , Variance    +6
+- - - - - - - - - - - - -  MATE3171 Y MATE3172  - - - - - - - - - - - - - -
+   MATE 3171 PRE-CALCULO I         B62   3.00  C
+   MATE 3172 PRE-CALCULO II        B72   3.00  C
              QPTS   12.00    Total       6.00      GPA  2.000 , Variance    +0
    - - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CISO - - - - - - - - - - - - -
-   CISO 3121 INT CIENCIAS SOCIALES B81   3.00  A
-   CISO 3122 INT CIENCIAS SOCIALES B82   3.00  A
-             QPTS   24.00    Total       6.00      GPA  4.000 , Variance   +12
+   CISO 3121 INT CIENCIAS SOCIALES B71   3.00  A
+   CISO 3122 INT CIENCIAS SOCIALES B72   3.00  C
+             QPTS   18.00    Total       6.00      GPA  3.000 , Variance    +6
    - - - - - - - - - - - -  ELECTIVAS DIRIGIDAS HUMA - - - - - - - - - - - - -
-   HIST 3242 HISTORIA DE PUERTO RI B92   3.00  A
-             QPTS   12.00    Total       3.00      GPA  4.000 , Variance    +6
-   - - - - - - - - - - - -  REQUISITOS CONCENTRACION - - - - - - - - - - - - -
-   CCOM 3001 PROGRAMAC COMPUTADORA B71   5.00  B
-   CCOM 3002 PROGRAMACION COMPUTAD B72   5.00  A
-   CCOM 3015 COMPUTADORAS EN LA SO B72   3.00  A
-   CCOM 3020 MATEMATICAS DISCRETAS B81   3.00  B
+   HIST 3242 HISTORIA DE PUERTO RI C01   3.00      Registered
+   HUMA 3201 CULTURA OCCIDENTAL 3  B91   3.00  C
+             QPTS    6.00    Total       6.00      GPA  2.000 , Variance    +0
+- - - - - - - - - - - -  REQUISITOS CONCENTRACION - - - - - - - - - - - - -
+   CCOM 3001 PROGRAMAC COMPUTADORA B61   5.00  C
+   CCOM 3002 PROGRAMACION COMPUTAD B62   5.00  C
+   CCOM 3015 COMPUTADORAS EN LA SO B61   3.00  A
+   CCOM 3020 MATEMATICAS DISCRETAS B71   3.00  C
    CCOM 3025 INTROD SISTEMA COMPUT B71   3.00  A
-   CCOM 3035 ORGANIZACION DE COMPU B72   3.00  C
-   CCOM 3041 SISTEMA OPERAT ARQUIT B91   3.00  B
-   CCOM 4005 ESTRUCT DATOS ANAL AL B81   3.00  B
-   CCOM 4006 DIS Y ANA DE ALGORITM B82   3.00  A
-   CCOM 4025 ORG LENGUAJES PROGRAM B91   3.00  C
+   CCOM 3035 ORGANIZACION DE COMPU B72   3.00  A
+   CCOM 3041 SISTEMA OPERAT ARQUIT B81   3.00  C
+   CCOM 4005 ESTRUCT DATOS ANAL AL B81   3.00  C
+   CCOM 4006 DIS Y ANA DE ALGORITM B82   3.00  B
+   CCOM 4025 ORG LENGUAJES PROGRAM B91   3.00  B
    CCOM 4115 DISENO DE BASE DE DAT B92   3.00  B
-             QPTS  119.00    Total      37.00      GPA  3.216 , Variance   +45
+             QPTS  101.00    Total      37.00      GPA  2.730 , Variance   +27
 
 - - - - - - - - - - - -  ELECTIVAS DIRIGIDAS CCOM - - - - - - - - - - - - -
 
-CCOM 3027 PROG OBJ ORIENT OB B81 3.00  B
+CCOM 3027 PROG OBJ ORIENT OB B91 3.00  A 
 
-CCOM 3135 TEMAS CIENCIAS COMPUT B71 3.00  A
+CCOM 3135 TEMAS CIENCIAS COMPUT B62 3.00  A
 
-CCOM 3985 INV SUBGRADUADA CCOM B82 2.00  A
+CCOM 4019 PROGRAMACION PARA WEB B82 3.00  A
 
-CCOM 4401 DESARROLLO DE APS MOV B82 3.00  A
+CCOM 4305 INTRO DISENO PAGINAS B81 4.00  A
+
+CCOM 4306 GRAFICOS PARA LA INTE B72 3.00  A
+
+CCOM 4307 MANT. DE PCS Y REDES B92 4.00  A
 
 - - - - - - - - - - - - - -  ELECTIVAS LIBRES - - - - - - - - - - - - - - -
+
+EDFI 3025 VOLEIBOL ELEMENTAL B81 2.00  A
+
+
+EDFI 3451 TENIS B71 2.00  A
+
+
+EDFI 3475 SOFTBOL-VOLIBOL-BEISB B71 2.00  A
+
 
 SECTION 3 - Work Not Applicable to this Program
 
 ***********************************************
-   CCOM 3036 PROGRAMACION VISUAL   B82 ( 3.0)  W   Meets no requirements
-                                                   Withdrawn
-   EDFU 3005 SEMIN ORIENT DESAR PE B63 ( 0.0)  P   Meets no requirements
-   MATE 0008 DES. DEST. BAS. MAT.  B71   3.00  P   Meets no requirements
-   MATE 3031 CALCULO I             B91 ( 4.0)  F   May not be repeated
-   MATE 3172 PRE-CALCULO II        B81 ( 3.0)  F   May not be repeated
+   CCOM 4065 ALGEBRA LINEAL NUMERI C02   3.00      Meets no requirements
+                                                   Registered
+   CCOM 4075 INGENIERIA DE PROGRAM C01   3.00      Meets no requirements
+                                                   Registered
+   CCOM 4095 PROYECTO INGENIER PRO C02   3.00      Meets no requirements
+                                                   Registered
+   EDFI 3106 JUEG ORG SENC Y DEPOR C02   3.00      Meets no requirements
+                                                   Registered
+   EDFU 3005 SEMIN ORIENT DESAR PE B61 ( 0.0)  P   Meets no requirements
+   INGL 0060 INGLES PREBASICO      B61   3.00  P   Meets no requirements
+   MATE 0008 DES. DEST. BAS. MAT.  B61   3.00  P   Meets no requirements
+   MATE 3026 INTROD ESTADIS COMPUT B92   3.00  C   Meets no requirements
+   SICI 3028 PROGRAMACION APLICADA C02   3.00      Meets no requirements
+                                                   Registered
+   TEAT 3011 ACTUACION ESCENICA I  C01   3.00      Meets no requirements
+                                                   Registered
