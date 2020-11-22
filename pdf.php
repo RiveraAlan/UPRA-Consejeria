@@ -3,7 +3,7 @@ require('fpdf.php');
 require('private/dbconnect.php');
 session_start();
 $id= $_SESSION['stdnt_number'];
-$sql = "SELECT stdnt_name,stdnt_lastname1,stdnt_lastname2 FROM student WHERE stdnt_number = '840-16-4235'";
+$sql = "SELECT stdnt_name,stdnt_lastname1,stdnt_lastname2 FROM student WHERE stdnt_number = '$id'";
                  $result = mysqli_query($conn, $sql);
                  $resultCheck = mysqli_num_rows($result);
                  $nombre_est = mysqli_fetch_assoc($result);
@@ -49,37 +49,37 @@ function Footer()
 $consulta = "SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN mandatory_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235'
+                                    WHERE student_record.stdnt_number = '$id'
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN general_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235')
+                                    WHERE student_record.stdnt_number = '$id')
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN departmental_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235')
+                                    WHERE student_record.stdnt_number = '$id')
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN free_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235')
+                                    WHERE student_record.stdnt_number = '$id')
                                     ORDER BY crse_label";
 
 $confirmar = "SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN mandatory_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235' AND (student_record.crse_status = 4)
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crse_status = 4)
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN general_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235' AND (student_record.crse_status = 4))
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crse_status = 4))
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN departmental_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235' AND (student_record.crse_status = 4))
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crse_status = 4))
                                     UNION(SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade
                                     FROM student_record
                                     INNER JOIN free_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '840-16-4235' AND (student_record.crse_status = 4))
+                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crse_status = 4))
                                     ORDER BY crse_label";
 
 

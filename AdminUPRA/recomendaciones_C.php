@@ -10,7 +10,7 @@ include '../private/dbconnect.php';
 // Query para recomendar CCOM 3001 
     $query = "SELECT crse_label FROM student_record 
                 WHERE (crse_label = 1 AND crse_status = 0 AND
-                (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W'))"; 
+                (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     $año = date('Y')-(substr($stdnt_number, 4,2) + 1999);
@@ -27,8 +27,8 @@ include '../private/dbconnect.php';
     $query = "SELECT crse_label FROM student_record 
                 WHERE (crse_label = 2 AND crse_status =0 AND 
                 (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W'))
-                OR (crse_label= 1 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C')) 
-                OR (crse_label = 33 AND  (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' ))"; 
+                AND (crse_label= 1 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C')) 
+                AND (crse_label = 33 AND  (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' )) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
@@ -42,7 +42,7 @@ include '../private/dbconnect.php';
 // Query para recomendar CCOM 3010    
     $query = " SELECT crse_label FROM student_record 
         WHERE (crse_label = 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
-        AND ( crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
+        AND ( crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
@@ -57,7 +57,7 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE (crse_label = 5 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' ))) "; 
+                AND (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' ))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -71,7 +71,7 @@ include '../private/dbconnect.php';
 // Query para recomendar CCOM 3025 
     $query = "  SELECT crse_label FROM student_record 
                 WHERE (crse_label = 6 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) >= 04)  
-                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
+                AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
@@ -86,7 +86,7 @@ include '../private/dbconnect.php';
     $query = "  SELECT crse_label FROM student_record 
                 WHERE (crse_label = 7 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 6 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 6 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -102,8 +102,8 @@ include '../private/dbconnect.php';
     $query = "  SELECT crse_label FROM student_record 
                 WHERE (crse_label = 8 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)  
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 4 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
-                OR (crse_label = 7 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 4 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                AND (crse_label = 7 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
@@ -118,7 +118,7 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE (crse_label = 9 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )  
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 2 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 2 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -133,14 +133,12 @@ include '../private/dbconnect.php';
     $query = "  SELECT crse_label FROM student_record 
                 WHERE (crse_label = 10 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)  
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 9 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C')))"; 
+                AND (crse_label = 9 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
-       echo "funciona mano";
-       echo '$stdnt_number';
          $row = mysqli_fetch_assoc($result);
-         $sql = "UPDATE student_record SET crseR_status = 1 WHERE stdnt_number = ''$stdnt_number'' AND crse_label = 10";
+         $sql = "UPDATE student_record SET crseR_status = 1 WHERE stdnt_number = '$stdnt_number' AND crse_label = 10";
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
@@ -150,9 +148,9 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE (crse_label = 11 AND crse_status = 0 
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 5  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
-                OR (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))
-                OR (crse_label = 10 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 5  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                AND (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))
+                AND (crse_label = 10 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 3 && $resultCheck < 5){
@@ -167,7 +165,7 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE (crse_label = 12 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 9 AND (crse_status <> 0  OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 9 AND (crse_status <> 0  OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -182,8 +180,8 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE (crse_label = 13 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 9  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
-                OR (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) "; 
+                AND (crse_label = 9  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                AND (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
@@ -198,7 +196,7 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE (crse_label = 14 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 12 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 12 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -213,10 +211,10 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE (crse_label = 15 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 8  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
-                OR (crse_label = 10 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
-                OR (crse_label = 11 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
-                OR (crse_label = 14 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 8  AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                AND (crse_label = 10 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                AND (crse_label = 11 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                AND (crse_label = 14 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 4 && $resultCheck < 6){
@@ -231,8 +229,8 @@ include '../private/dbconnect.php';
     $query = " SELECT crse_label FROM student_record 
                 WHERE(crse_label = 16 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
                 AND (crse_grade IS NULL OR crse_grade = 'D' OR crse_grade = 'F' OR crse_grade = 'ID' OR crse_grade = 'IF' OR crse_grade = 'W')
-                OR (crse_label = 15 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
-                OR (crse_label = 14 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) "; 
+                AND (crse_label = 15 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))
+                AND (crse_label = 14 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
@@ -247,9 +245,9 @@ include '../private/dbconnect.php';
 
 //Query para recomendar Español I
 //FALTA DETECTAR EL A~O DEL student 
- $query = " SELECT crse_label FROM student_record 
-            WHERE (crse_label = 19 OR crse_label = 21 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )
-            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
+ $query = "SELECT crse_label FROM student_record 
+ WHERE ((crse_label = 19 OR crse_label = 21) AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04 )
+ AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
@@ -262,9 +260,9 @@ include '../private/dbconnect.php';
             $stmt->close();}
 //Query para recomendar Español II
  $query = " SELECT crse_label FROM student_record 
-            WHERE (crse_label = 20 OR crse_label = 22 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            WHERE ((crse_label = 20 OR crse_label = 22) AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 19 OR crse_label = 21 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) "; 
+            AND (crse_label = 19 OR crse_label = 21 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -279,7 +277,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 23 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 20 OR crse_label = 22 AND crse_status <> 0 AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D')))"; 
+            AND (crse_label = 20 OR crse_label = 22 AND crse_status <> 0 AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -293,7 +291,7 @@ include '../private/dbconnect.php';
 //Query para recomendar Ingles I 
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 24 OR crse_label = 26 OR crse_label = 28 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)
-            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) "; 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 2 && $resultCheck < 4){
@@ -306,9 +304,9 @@ include '../private/dbconnect.php';
             $stmt->close();}
 //Query para recomendar Ingles II 
  $query = " SELECT crse_label FROM student_record 
-            WHERE (crse_label = 25 OR crse_label = 27 OR crse_label = 29 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
+            WHERE ((crse_label = 25 OR crse_label = 27 OR crse_label = 29) AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 24 OR crse_label = 26 OR crse_label = 29 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) "; 
+            AND (crse_label = 24 OR crse_label = 26 OR crse_label = 29 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'"; 
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -323,7 +321,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 30 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11)
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 25 OR crse_label = 27 OR crse_label = 29 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
+            AND (crse_label = 25 OR crse_label = 27 OR crse_label = 29 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -337,7 +335,7 @@ include '../private/dbconnect.php';
 //Query para recomendar MATE 3171 
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 32 AND crse_status = 0
-            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) ";
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
@@ -352,7 +350,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 33 AND crse_status = 0 
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 32 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
+            AND (crse_label = 32 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -367,7 +365,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 34 AND crse_status = 0 
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 33 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
+            AND (crse_label = 33 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -380,8 +378,8 @@ include '../private/dbconnect.php';
             $stmt->close();}
 //Query para recomendar CISO 
  $query = " SELECT crse_label FROM student_record 
-            WHERE (crse_label = 17 OR crse_label = 18 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 
-            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) ";
+            WHERE ((crse_label = 17 OR crse_label = 18) AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 AND $resultCheck < 3){
@@ -395,7 +393,7 @@ include '../private/dbconnect.php';
 //Query para recomendar CIBI 3001 
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 35 AND crse_status = 0 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
-            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) ";
+            AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 0 && $resultCheck < 2){
@@ -410,7 +408,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 36 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 1 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
+            AND (crse_label = 35 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -425,7 +423,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 37 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 34 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
+            AND (crse_label = 34 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -440,7 +438,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 38 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04) 
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 34 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D')))";
+            AND (crse_label = 34 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -455,7 +453,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 39 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 37 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
+            AND (crse_label = 37 AND (crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -470,7 +468,7 @@ include '../private/dbconnect.php';
  $query = " SELECT crse_label FROM student_record 
             WHERE (crse_label = 40 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 2 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 08) AND (MONTH(CURRENT_DATE) <= 11) 
             AND (crse_grade IS NULL OR crse_grade = 'F' OR crse_grade = 'IF' OR crse_grade = 'W')
-            OR (crse_label = 38 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) ";
+            AND (crse_label = 38 AND ( crse_status <> 0 OR crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C' OR crse_grade = 'D'))) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
     $result = mysqli_query($conn,$query);
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck > 1 && $resultCheck < 3){
@@ -485,7 +483,7 @@ include '../private/dbconnect.php';
    $crseR_status = 1;
 //Query para recomendar ELECTIVA LIBRE
 $query = " SELECT crse_label FROM student_record 
-   WHERE crse_label > 100";
+   WHERE crse_label > 100 AND stdnt_number = '{$_SESSION['stdnt_number']}'";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
       
@@ -521,7 +519,7 @@ $query = " SELECT crse_label FROM student_record
 
 //Query para recomendar ELECTIVA DEPARTAMENTAL
 $query = " SELECT crse_label FROM student_record 
-   WHERE crse_label > 100";
+   WHERE crse_label > 100 AND stdnt_number = '{$_SESSION['stdnt_number']}'";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
       
@@ -557,7 +555,7 @@ $query = " SELECT crse_label FROM student_record
 
 //Query para recomendar ELECTIVA HUMA
 $query = " SELECT crse_label FROM student_record 
-   WHERE crse_label > 69 AND crse_label < 99";
+   WHERE crse_label > 69 AND crse_label < 99 AND stdnt_number = '{$_SESSION['stdnt_number']}'";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
       
@@ -579,7 +577,7 @@ $query = " SELECT crse_label FROM student_record
 
 //Query para recomendar ELECTIVA CISO
 $query = "SELECT crse_label FROM student_record 
-   WHERE (crse_label > 55 AND crse_label < 70 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04))";
+   WHERE (crse_label > 55 AND crse_label < 70 AND (YEAR(CURRENT_DATE)-(SUBSTRING(stdnt_number, 5,2) + 1999)) > 3 AND crse_status = 0 AND (MONTH(CURRENT_DATE) >= 01) AND (MONTH(CURRENT_DATE) <= 04)) AND stdnt_number = '{$_SESSION['stdnt_number']}'";
    $result = mysqli_query($conn,$query);
    $resultCheck = mysqli_num_rows($result);
    if($resultCheck == 1 && $año > 3 && date("m") >= 1 && date("m") <= 4){
@@ -594,5 +592,5 @@ $query = "SELECT crse_label FROM student_record
 mysqli_close($conn);
 
 //exit
-header("Location: ../est_profile.php");
+header("Location: est_profile.php");
 exit();

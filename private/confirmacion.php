@@ -42,6 +42,12 @@ require 'dbconnect.php';
         
                   //exit
       }
+
+      $sql = "UPDATE student_record_details SET conducted_counseling = 1 WHERE stdnt_number = '$stdnt_number'";
+                  // Prepare statement
+                  $stmt = $conn->prepare($sql);
+                  // execute the query
+                  $stmt->execute();
       header("Location: ../consejeria.php");
                   exit();
     }

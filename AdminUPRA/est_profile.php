@@ -413,20 +413,20 @@ body {
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
                 INNER JOIN  student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')
+                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')
+                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                 UNION ALL (SELECT crse_credits AS C
                 FROM departmental_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')
+                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                 UNION ALL (SELECT crse_credits AS C
                 FROM free_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')) t1";
+                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                 if ($creditos['SUM(C)'] === NULL){
@@ -469,7 +469,7 @@ body {
               <div>
 
               <form id='paper' method='POST' action='inc/notespost.php'>
-           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
+           <textarea placeholder='Escribe una nota aquí.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
            <input type='hidden' name='id' value='$student_id'>   
            </div><button type='submit' name='notes-submit' onclick='notes-submit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
@@ -559,7 +559,7 @@ body {
                   <tbody>
                 <?php
                    $sql ="SELECT *
-                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -700,7 +700,7 @@ body {
                   <tbody>
                 <?php
                 $sql ="SELECT *
-                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -784,8 +784,8 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
-                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                $sql ="SELECT *
+                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -851,7 +851,7 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT *
-                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -883,17 +883,24 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
                     ";
-                    if($row['crseR_status'] == 1){
-                      echo "<form action='inc/recommend.php' method='post'>
-                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
-                      <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
-                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
-                      </form>";
-                    }else{
-                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
-                    }
-                    echo"
+                      if($row['crseR_status'] == 1){
+                        echo "<form action='inc/recommend.php' method='post'>
+                        <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
+                        <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                        <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
+                        <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                        </form>";
+                      }else if($row['crse_status'] == 0){
+                        echo "<form action='inc/recommend.php' method='post'>
+                        <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
+                        <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                        <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
+                        <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
+                        </form>";
+                      }else{
+                        echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                      }
+                      echo"
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
@@ -924,8 +931,8 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status, crse_label
-                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id'";
+                $sql ="SELECT *
+                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id' ORDER BY crse_label";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                   
@@ -1057,10 +1064,10 @@ body {
                     <h4>Tipo de estudiante : </h4>
                     <form action='inc/tipo_est.php' method='POST'>
                     <div class='grid-container'>
+                        <div class='grid-item'><input type='radio' name='tipo' value='General'> General</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Traslado'> Traslado</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Transferencia'> Trasferencia</input></div>
                         <div class='grid-item'><input type='radio' name='tipo' value='Reclasificación'> Reclasificación</input></div>
-                        <div class='grid-item'><input type='radio' name='tipo' value='General'> General</input></div>
                         </div>
                     ";
                   }

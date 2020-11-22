@@ -490,13 +490,17 @@ for($i=0; $i < count($cn_w_mo_keys); $i++){
             } else {
                 $course["crse_label"] = $lowest_crse_label;
             }
-            
+            // if(!is_null($course["crse_label"])){
+            //     $temp_crse_label = $course["crse_label"];
+            // }else{
+            //     $course["crse_label"] = $temp_crse_label;
+            // }
             if(($course["crse_name"] !== "MATE 4055") AND ($course["crse_name"] !== "CCOM 3985")
          AND ($course["crse_name"] !== "FISI 4985") AND ($course["crse_name"] !== "BIOL 3108")
          AND ($course["crse_name"] !== "QUIM 4999") AND ($course["crse_name"] !== "CCOM 3135")
          AND ($course["crse_name"] !== "INTD 4995") AND ($course["crse_name"] !== "CCOM 4991")){
             array_push($repeatedCourses, $course);
-            
+            // echo "class :: $course[crse_name], $course[crse_label], $course[crse_grade]";
             
          }
       }
@@ -509,8 +513,9 @@ for($i=0; $i < count($cn_w_mo_keys); $i++){
     foreach($repeatedCourses as $repeatedCourse){
         if(($gradeOP[trim($repeatedCourse["crse_grade"])] < $highestValue)){
           $highestValue = $gradeOP[$repeatedCourse["crse_grade"]];
-          
+          echo "class :: $course[crse_name], $course[crse_label], $course[crse_grade]";
         }
+        
     }
     
     $hvGrade = array_search($highestValue, $gradeOP);
@@ -648,22 +653,25 @@ $sql ="SELECT stdnt_number FROM student_record WHERE stdnt_number = '$_SESSION[s
 
                 if($resultCheck === 0){
                     foreach($courses as $course){
-                        if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                              
-                
+                        if (($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114")){
+                            
                                $special_id = is_null($course['special_id']) ? -1 : $course['special_id'];
                               $sql = "INSERT INTO student_record(stdnt_number, crse_label, crse_grade, crse_status, semester_pass, special_id, crseR_status, crse_equivalence, crse_recognition, crse_credits_ER, crse_ER_Status) 
                                      VALUES ('$_SESSION[stdnt_number]', $course[crse_label], '$course[crse_grade]', $course[crse_status], '$course[semester_pass]',".(is_null($course['special_id']) ? "NULL" : $course['special_id']).", NULL, NULL, NULL, NULL, NULL)";
                               echo "<p>$sql</p>";
                
                             mysqli_query($conn, $sql);
-             
-               
+
                         }
                     }
                 }
-                    
+              
+                        $sql_delete ="DELETE FROM student_record WHERE crse_label > 18 AND crse_label < 31 AND crse_grade = '' AND stdnt_number = '{$_SESSION[stdnt_number]}'";
+                        $result = mysqli_query($conn, $sql_delete);
+                        
+
 mysqli_close($conn);
+
    //header('Location: ../est_profile.php');
  } else {
     echo "move_uploaded_file function failed";

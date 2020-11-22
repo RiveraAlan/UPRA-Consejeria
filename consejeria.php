@@ -36,6 +36,9 @@ if(!isset($_SESSION['stdnt_number'])){
     <link rel="stylesheet" href="jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 <!-- Culmina la parte los css y fonts. -->
       <!-- Font Awesome. -->
   <link rel="stylesheet" href="AdminUPRA/plugins/fontawesome-free/css/all.min.css">
@@ -80,20 +83,20 @@ if(!isset($_SESSION['stdnt_number'])){
                  FROM ((SELECT crse_credits AS C
                  FROM mandatory_courses
                  INNER JOIN  student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id')
+                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                  UNION ALL
                  (SELECT crse_credits AS C
                  FROM general_courses
                  INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id')
+                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                  UNION ALL (SELECT crse_credits AS C
                  FROM departmental_courses
                  INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id')
+                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                  UNION ALL (SELECT crse_credits AS C
                  FROM free_courses
                  INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id')) t1";
+                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
                 
@@ -110,7 +113,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
                     Número de Estudiante: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Recomendados: <b>{$reco['SUM(C)']}</b></b><br></div>";?>
+                    Créditos Aprobados: <b>{$reco['SUM(C)']}</b></b><br></div>";?>
                 </div>
               </div>
             </div>
@@ -155,13 +158,27 @@ if(!isset($_SESSION['stdnt_number'])){
                        if ($reco['SUM(C)'] === NULL){
                            $reco['SUM(C)'] = 0;
                        }
+
+                       $sql= "SELECT conducted_counseling FROM student_record_details WHERE stdnt_number = '$id'";
+                             $result_couns = mysqli_query($conn, $sql);
+                             $resultCheck_couns = mysqli_num_rows($result_couns);
+                             $counseling = mysqli_fetch_assoc($result_couns);
                              echo "
                                 <div class='btn-group'>
 
                                 <div class='container'>
+                                <br>";
+                                if($counseling["conducted_counseling"] == 0){
+                                  echo"
                                   <!-- Trigger the modal with a button -->
-                                  <div class='login-btn-container'><button style='float: right;' type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
-
+                                  <div class='login-btn-container' align='center'><button type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>";
+                                }else{
+                                  echo"
+                                <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
+                                        <i class='fa fa-file' aria-hidden='true'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
+                                </a></div>";
+                                }
+                                echo "
                                   <!-- Modal -->
                                   <div class='modal fade' id='myModal' role='dialog'>
                                     <div class='modal-dialog'>
@@ -674,7 +691,7 @@ if(!isset($_SESSION['stdnt_number'])){
         input.name = "hour-chosen";
         input.setAttribute('value', editHour);
         input.readOnly = true;
-        document.querySelector('.hour-chosen-container').innerHTML = 'Hour: ';
+        document.querySelector('.hour-chosen-container').innerHTML = 'Hora: ';
         document.querySelector('.hour-chosen-container').appendChild(input);
        }
         </script>

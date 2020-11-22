@@ -8,8 +8,8 @@ if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
 }
-
-$sql = "SELECT stdnt_number 
+$i = 0;
+$sql = "SELECT stdnt_number, stdnt_email 
 FROM student";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -19,35 +19,34 @@ FROM student";
                   FROM ((SELECT crse_credits AS C
                   FROM mandatory_courses
                   INNER JOIN  student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                   UNION ALL
                   (SELECT crse_credits AS C
                   FROM general_courses
                   INNER JOIN student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                   UNION ALL (SELECT crse_credits AS C
                   FROM departmental_courses
                   INNER JOIN student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                   UNION ALL (SELECT crse_credits AS C
                   FROM free_courses
                   INNER JOIN student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')) t1";
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
                   $sum_result = mysqli_query($conn, $sum);
                   $sum_resultCheck = mysqli_num_rows($sum_result);
                   $creditos = mysqli_fetch_assoc($sum_result);
                   if($sum_resultCheck > 0){
                     if(($creditos['sum'] < 21) && ($creditos['sum'] != NULL)){
-                      $sql = "SELECT stdnt_email
-                    FROM student INNER JOIN student_record_details USING (stdnt_number) WHERE stdnt_number = '{$row['stdnt_number']}' AND record_status != 0";
-                    $resultado = mysqli_query($conn, $sql);
-                    $resultadoCheck = mysqli_num_rows($resultado);
+                      $grad_stdnts[$i] = $row['stdnt_email'];
+                      $i++;
                     }
                   }else{
                       $resultado = 0;
                     }
                 }
               }
+              
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -206,13 +205,13 @@ FROM student";
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
             $count = 0;
-            if($resultadoCheck > 0){
-        while($student = mysqli_fetch_assoc($resultado)){
-             $count++;
+            foreach($grad_stdnts AS $grad_stdnt){
+            $count++;
             echo "
-                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$student['stdnt_email']}</th><br>";
+                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. $grad_stdnt</th><br>";
+                
         }
-        }else{
+        if($count == 0){
                 echo "
               <div class='error-message'><h4 style='text-align:center'>¡No hay candidatos a graduación!</h4></div>";
         }

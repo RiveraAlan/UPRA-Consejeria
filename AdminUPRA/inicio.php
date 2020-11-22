@@ -20,20 +20,20 @@ WHERE record_status != 0";
                   FROM ((SELECT crse_credits AS C
                   FROM mandatory_courses
                   INNER JOIN  student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                   UNION ALL
                   (SELECT crse_credits AS C
                   FROM general_courses
                   INNER JOIN student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                   UNION ALL (SELECT crse_credits AS C
                   FROM departmental_courses
                   INNER JOIN student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                   UNION ALL (SELECT crse_credits AS C
                   FROM free_courses
                   INNER JOIN student_record USING(crse_label)
-                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}')) t1";
+                  WHERE student_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
                   $sum_result = mysqli_query($conn, $sum);
                   $sum_resultCheck = mysqli_num_rows($sum_result);
                   $creditos = mysqli_fetch_assoc($sum_result);

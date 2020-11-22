@@ -13,13 +13,14 @@ session_start();
         $clase = mysqli_real_escape_string($conn, $_POST['course_gen']);
     }else if($tabla == "departamental_courses"){
         $clase = mysqli_real_escape_string($conn, $_POST['course_dept']);
-    }else if($tabla == "free_courses"){
-        $clase = mysqli_real_escape_string($conn, $_POST['course_dept']);
     }
+    echo $tabla, $og_crse, $student_id;
         // query para verificar si clase ya ha sido equi/conv anteriormente (si ha sido anterior se le dara update y no insert)
+        if($tabla !== "free_courses"){
             $sql ="SELECT 	crse_label, crse_recognition, crse_equivalence, semester_pass, 	crse_credits_ER FROM student_record WHERE crse_label = $clase AND stdnt_number = '$student_id'";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
+        
         // query para obtener datos de la clase que esta siendo utilizada como equi/conv 
             $sql_free ="SELECT * FROM free_courses WHERE crse_label = $og_crse";
                 $result_free = mysqli_query($conn, $sql_free);
@@ -96,7 +97,7 @@ session_start();
                                     $credits = $class_row['crse_credits_ER'] + $row_free['crse_credits'];
 
                                     $sql = "UPDATE student_record 
-                                    SET crse_grade = '$nota', semester_pass = '$año',  crse_equivalence = '$pre_clase | $crse_name', crse_credits_ER = $credits
+                                    SET crse_grade = '$nota', semester_pass = '$año',  crse_equivalence = '$pre_clase | $crse_name', crse_credits_ER = $credits, special_id = NULL
                                     WHERE stdnt_number = '$student_id' AND crse_label = $clase";
                                     $stmt = $conn->prepare($sql);
                                 }else if ($tipo == 'crse_recognition'){
@@ -105,7 +106,7 @@ session_start();
                                     $credits = $class_row['crse_credits_ER'] + $row_free['crse_credits'];
                                      
                                     $sql = "UPDATE student_record 
-                                    SET crse_grade = '$nota', semester_pass = '$año',  crse_recognition = '$pre_clase | $crse_name', crse_credits_ER = $credits
+                                    SET crse_grade = '$nota', semester_pass = '$año',  crse_recognition = '$pre_clase | $crse_name', crse_credits_ER = $credits, special_id = NULL
                                     WHERE stdnt_number = '$student_id' AND crse_label = $clase";
                                     $stmt = $conn->prepare($sql);
                                 }
@@ -127,5 +128,28 @@ session_start();
                             }
                         }
                 
+                    }else{
+                        $sql_free ="SELECT crse_label, crse_recognition, crse_equivalence, semester_pass, crse_credits_ER FROM student_record WHERE stdnt_number = '$student_id' AND crse_label = $og_crse";
+                                                $result_free = mysqli_query($conn, $sql_free);
+                                                $resultCheck_free = mysqli_num_rows($result_free);
+                                if($resultCheck_free > 0){
+                                    $sql = "UPDATE student_record SET special_id = NULL WHERE stdnt_number = '$student_id' AND crse_label = $og_crse";
+                                    $stmt = $conn->prepare($sql);
+                                }
+
+                                 // Prepare statement
+                                 if ($stmt->execute()) {
+                                    // borrar la clase siendo equi/conv del expediente
+                                    $del_sql = "DELETE FROM student_record WHERE stdnt_number = '$student_id' AND crse_label = $og_crse";
+                                    $del_stmt = $conn->prepare($del_sql);
+                                    if ($del_stmt->execute()) {
+                                    header('Location: ../est_profile.php');
+                                    $stmt->close();
+                                    $del_stmt->close();
+                                }
+                                }else {
+                                    echo "No se pudo procesar su $tipo.";
+                                }
                     }
+                }
 ?>
