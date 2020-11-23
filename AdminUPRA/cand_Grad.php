@@ -10,7 +10,8 @@ if(!isset($advisor_id)){
 }
 $i = 0;
 $sql = "SELECT stdnt_number, stdnt_email 
-FROM student";
+FROM student INNER JOIN student_record_details USING (stdnt_number)
+WHERE record_status != 0";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
                   if($resultCheck > 0){
