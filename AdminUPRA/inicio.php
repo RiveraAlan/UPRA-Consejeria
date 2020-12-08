@@ -129,9 +129,9 @@ WHERE record_status != 0";
               
                 if($resultCheck > 0){
                 $row = mysqli_fetch_assoc($result);
-                ;}
-            ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>" ?>
+                echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>";
+              }
+             ?>
         </div>
       </div>
 

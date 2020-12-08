@@ -21,15 +21,15 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,utf8_decode('Expediente Académico de: '),0,0,'C');
+    $this->Cell(30,10,'Expediente Académico de: ',0,0,'C');
     // Line break
     $this->Ln(8);
     $this->Cell(80);
-    $this->Cell(30,10,utf8_decode("$nombre"),0,0,'C');
+    $this->Cell(30,10,"$nombre",0,0,'C');
     $this->Ln(10);
     $this->Cell(40, 10, 'Curso', 1, 0, 'C', 0);
-    $this->Cell(105, 10, utf8_decode('Descripción'), 1, 0, 'C', 0);
-    $this->Cell(27, 10, utf8_decode('Créditos'), 1, 0, 'C', 0);
+    $this->Cell(105, 10, 'Descripción', 1, 0, 'C', 0);
+    $this->Cell(27, 10, 'Créditos', 1, 0, 'C', 0);
     $this->Cell(15, 10, 'Nota', 1, 1, 'C', 0);
 }
 
@@ -94,14 +94,14 @@ $pdf->SetFont('Arial','',16);
 
 while($row = $resultado1->fetch_assoc()){
     $pdf->Cell(40, 10, $row['crse_name'], 3, 0, 'C', 0);
-    $pdf->Cell(105, 10, utf8_decode($row['crse_description']), 3, 0, 'C', 0);
+    $pdf->Cell(105, 10, $row['crse_description'], 3, 0, 'C', 0);
     $pdf->Cell(27, 10, $row['crse_credits'], 3, 0, 'C', 0);
     $pdf->Cell(15, 10, $row['crse_grade'], 3, 1, 'C', 0);
 }
 
 while($row = $resultado2->fetch_assoc()){
     $pdf->Cell(40, 10, $row['crse_name'], 1, 0, 'C', 0);
-    $pdf->Cell(105, 10, utf8_decode($row['crse_description']), 1, 0, 'C', 0);
+    $pdf->Cell(105, 10, $row['crse_description'], 1, 0, 'C', 0);
     $pdf->Cell(27, 10, $row['crse_credits'], 1, 0, 'C', 0);
     $pdf->Cell(15, 10, $row['crse_grade'], 1, 1, 'C', 0);
 }

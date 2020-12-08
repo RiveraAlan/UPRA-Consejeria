@@ -404,7 +404,7 @@ body {
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT *
+                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_cohort
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -413,20 +413,20 @@ body {
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
                 INNER JOIN  student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                WHERE student_record.stdnt_number = '$student_id')
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                WHERE student_record.stdnt_number = '$student_id')
                 UNION ALL (SELECT crse_credits AS C
                 FROM departmental_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                WHERE student_record.stdnt_number = '$student_id')
                 UNION ALL (SELECT crse_credits AS C
                 FROM free_courses
                 INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
+                WHERE student_record.stdnt_number = '$student_id')) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                 if ($creditos['SUM(C)'] === NULL){
@@ -436,11 +436,9 @@ body {
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
               $año = date('Y')-(substr($row['stdnt_number'], 4,2) + 1999);
-              $stdnt_type = "$row[stdnt_type]";
                echo "<h3 class='profile-username text-center'>{$row['stdnt_name']} {$row['stdnt_lastname1']} {$row['stdnt_lastname2']}</h3>
                 <p class='text-muted text-center'>{$row['stdnt_email']}</p>
                 <p class='text-muted text-center'>{$row['stdnt_number']}</p>
-                <p class='text-muted text-center'>{$row['stdnt_type']}</p>
                 <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
                     <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(C)']}</a>
@@ -467,9 +465,8 @@ body {
               </div>
               <!-- /.card-header -->
               <div>
-
               <form id='paper' method='POST' action='inc/notespost.php'>
-           <textarea placeholder='Escribe una nota aquí.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 280px;'></textarea>
+           <textarea placeholder='Escribe una nota aqui.' id='text' name='text' value='' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 320px;'></textarea>
            <input type='hidden' name='id' value='$student_id'>   
            </div><button type='submit' name='notes-submit' onclick='notes-submit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Crear</button>
               </form>
@@ -559,26 +556,12 @@ body {
                   <tbody>
                 <?php
                    $sql ="SELECT *
-                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
+                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  if($row['crse_ER_Status'] == 0){
-                    $color = '#eeddd2';
-                    $text_color = 'black';
-                   }elseif($row['crse_ER_Status'] == 1){
-                    $color = '#995d2d';
-                    $text_color = 'white';
-                   }elseif($row['crse_ER_Status'] == 2){
-                    $color = '#c69b7c';
-                    $text_color = 'black';
-                  }elseif($row['crse_ER_Status'] == NULL){
-                    $color = '';
-                    $text_color = 'black';
-                  }
-                  
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -669,7 +652,7 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td style='background-color:$color; color: $text_color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
@@ -683,6 +666,8 @@ body {
                    <?php
                     echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
+                   <button type='submit' name='rec-adi' value='crse_suggestionCISO' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; margin-left:24%; background-color: rgb(253, 118, 100);">Recomendación Adicional CISO</button>
+                   <button type='submit' name='rec-adi' value='crse_suggestionHUMA' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; background-color: rgb(253, 118, 100);">Recomendación Adicional HUMA</button>
                    </form>
                   <br>
                     <table id="example2" class="table table-bordered table-hover">
@@ -700,26 +685,13 @@ body {
                   <tbody>
                 <?php
                 $sql ="SELECT *
-                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
+                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  if($row['crse_ER_Status'] == 0){
-                    $color = '#eeddd2';
-                    $text_color = 'black';
-                   }elseif($row['crse_ER_Status'] == 1){
-                    $color = '#995d2d';
-                    $text_color = 'white';
-                   }elseif($row['crse_ER_Status'] == 2){
-                    $color = '#c69b7c';
-                    $text_color = 'black';
-                  }elseif($row['crse_ER_Status'] == NULL){
-                    $color = '';
-                    $text_color = 'black';
-                  }
-
+                 
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -753,7 +725,7 @@ body {
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td style='background-color:$color; color: $text_color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
@@ -784,8 +756,8 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT *
-                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
+                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -851,26 +823,21 @@ body {
                 <tbody>
                 <?php
                 $sql ="SELECT *
-                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id' ORDER BY crse_label";
+                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  if($row['crse_ER_Status'] == 0){
-                    $color = '#eeddd2';
-                    $text_color = 'black';
-                   }elseif($row['crse_ER_Status'] == 1){
-                    $color = '#995d2d';
-                    $text_color = 'white';
-                   }elseif($row['crse_ER_Status'] == 2){
-                    $color = '#c69b7c';
-                    $text_color = 'black';
-                  }elseif($row['crse_ER_Status'] == NULL){
-                    $color = '';
-                    $text_color = 'black';
-                  }
-
+                 if($row['crse_ER_Status'] = 0){
+                  $color = '#eeddd2';
+                 }elseif($row['crse_ER_Status'] = 1){
+                  $color = '#995d2d';
+                 }elseif($row['crse_ER_Status'] = 2){
+                  $color = '#c69b7c';
+                }elseif($row['crse_ER_Status'] = NULL){
+                  $color = '';
+                }
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -883,28 +850,21 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
                     ";
-                      if($row['crseR_status'] == 1){
-                        echo "<form action='inc/recommend.php' method='post'>
-                        <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                        <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
-                        <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
-                        <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
-                        </form>";
-                      }else if($row['crse_status'] == 0){
-                        echo "<form action='inc/recommend.php' method='post'>
-                        <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                        <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
-                        <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
-                        <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
-                        </form>";
-                      }else{
-                        echo "<td><p style= 'margin-left : 50%'>—</p></td>";
-                      }
-                      echo"
+                    if($row['crseR_status'] == 1){
+                      echo "<form action='inc/recommend.php' method='post'>
+                      <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
+                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                      <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
+                      <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
+                      </form>";
+                    }else{
+                      echo "<td><p style= 'margin-left : 50%'>—</p></td>";
+                    }
+                    echo"
                     <td>{$row['semester_pass']}</td>";
                     if($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                       echo"
-                      <td style='background-color:$color; color: $text_color'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                      <td style='background-color:$color; color: white'>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
                     }else{
                       echo"
                       <td></td>";
@@ -931,8 +891,8 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT *
-                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id' ORDER BY crse_label";
+                $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status
+                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                   
@@ -1054,25 +1014,10 @@ body {
               <header class='w3-container' style='padding-top:5px'>
                 <span onclick='document.getElementById("id02").style.display="none"'
                 class='w3-button w3-display-topright'>&times;</span>
-                <div style="text-align: center"><h3>Subir Expediente</h3><hr></div>
+                <h3>Subir Expediente</h3>
               </header>
               <div class='w3-container'>
                   <br>
-                  <?php 
-                  if(!$isRecordPresentInDB){
-                    echo "
-                    <h4>Tipo de estudiante : </h4>
-                    <form action='inc/tipo_est.php' method='POST'>
-                    <div class='grid-container'>
-                        <div class='grid-item'><input type='radio' name='tipo' value='Regular'> Regular</input></div>
-                        <div class='grid-item'><input type='radio' name='tipo' value='Traslado'> Traslado</input></div>
-                        <div class='grid-item'><input type='radio' name='tipo' value='Transferencia'> Trasferencia</input></div>
-                        <div class='grid-item'><input type='radio' name='tipo' value='Reclasificación'> Reclasificación</input></div>
-                        </div>
-                    ";
-                  }
-                  ?>
-                  
                 <div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
                 <div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
                   <input type="file" id="myfile" name="myfile">
@@ -1080,18 +1025,7 @@ body {
                 </div>   
               </div>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-              <?php
-              if(!$isRecordPresentInDB){
-              echo "
-              <input type='hidden' name='stdnt_number' value='$student_id'>
-              <button type='submit' class='btn btn-default' onclick='tipo_est()' name='tipo_est-submit' style='float:right;'>APLICAR</button>
-              </form>";
-              }else{
-                echo "
-                <button type='button' class='btn btn-default' href='recomendaciones_C.php' style='float:right; '>APLICAR</button>";
-              }
-              ?>
-              
+              <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button>
               </footer>
             </div>
           </div><!-- /.Expediente -->
@@ -1309,7 +1243,7 @@ $(document).ready(function(){
 	var ajax = new XMLHttpRequest();
 	ajax.upload.addEventListener("progress", progressHandler, false);
 
-  let  isRecordPresentInDB = <?php echo json_encode($isRecordPresentInDB);?>;
+  let  isRecordPresentInDB = '<?php echo $isRecordPresentInDB; ?>';
    
   if(isRecordPresentInDB){
     ajax.open("POST", "inc/update_student_record.php");

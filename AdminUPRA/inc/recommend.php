@@ -4,12 +4,12 @@ require '../../private/dbconnect.php';
     $stdnt_number = mysqli_real_escape_string($conn, $_POST['stdnt_number']);
     $crse_label = mysqli_real_escape_string($conn, $_POST['crse_label']);
 
-    $sql = "SELECT crse_label, crseR_status FROM student_record WHERE crse_label = $crse_label";
+    $sql = "SELECT crse_label, crseR_status FROM student_record WHERE crse_label = $crse_label AND stdnt_number = '$stdnt_number'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     $row = mysqli_fetch_assoc($result);
 
-    if($row['crseR_status'] === 0){
+    if($row['crseR_status'] == 0){
         $crseR_status = 1; 
     }else{
         $crseR_status = 0; 
@@ -24,6 +24,7 @@ require '../../private/dbconnect.php';
     //exit
     header("Location: ../est_profile.php");
     exit();
+    
     }
 }elseif(isset($_POST['rec-adi'])){
     require '../../private/dbconnect.php';
