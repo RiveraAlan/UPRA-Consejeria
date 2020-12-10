@@ -37,13 +37,13 @@ session_start();
                          
                             if($resultCheck_free > 0){ 
 
-                                if($tabla == 'mandatory_courses' && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C')){
+                                if($tabla == 'mandatory_courses' && ($row['crse_grade'] == 'A' || $row['crse_grade'] == 'B' || $row['crse_grade'] == 'C')){
                                     $nota = "P";
-                                }elseif($tabla == "departamenta_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C')){
+                                }elseif($tabla == "departamenta_courses" && ($row['crse_grade'] == 'A' || $row['crse_grade'] == 'B' || $row['crse_grade'] == 'C')){
                                     $nota = "P";
-                                }elseif($tabla == "general_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C' || $row['crse_grade'] === 'D')){
+                                }elseif($tabla == "general_courses" && ($row['crse_grade'] == 'A' || $row['crse_grade'] == 'B' || $row['crse_grade'] == 'C' || $row['crse_grade'] == 'D')){
                                     $nota = "P";
-                                }elseif($tabla == "free_courses" && ($row['crse_grade'] === 'A' || $row['crse_grade'] === 'B' || $row['crse_grade'] === 'C' || $row['crse_grade'] === 'D')){
+                                }elseif($tabla == "free_courses" && ($row['crse_grade'] == 'A' || $row['crse_grade'] == 'B' || $row['crse_grade'] == 'C' || $row['crse_grade'] == 'D')){
                                     $nota = "P";
                                 }else{
                                     $nota = "NP";

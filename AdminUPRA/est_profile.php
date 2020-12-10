@@ -569,13 +569,13 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: #6496c8'>";
                   }
-                  if($row['crse_ER_Status'] = 0){
+                  if($row['crse_ER_Status'] == 0){
                     $color = '#eeddd2';
-                   }elseif($row['crse_ER_Status'] = 1){
+                   }elseif($row['crse_ER_Status'] == 1){
                     $color = '#995d2d';
-                   }elseif($row['crse_ER_Status'] = 2){
+                   }elseif($row['crse_ER_Status'] == 2){
                     $color = '#c69b7c';
-                  }elseif($row['crse_ER_Status'] = NULL){
+                  }elseif($row['crse_ER_Status'] == NULL){
                     $color = '';
                   }
                  if($row['crse_name'] === 'CCOM 3001' OR 
@@ -699,13 +699,13 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  if($row['crse_ER_Status'] = 0){
+                  if($row['crse_ER_Status'] == 0){
                     $color = '#eeddd2';
-                   }elseif($row['crse_ER_Status'] = 1){
+                   }elseif($row['crse_ER_Status'] == 1){
                     $color = '#995d2d';
-                   }elseif($row['crse_ER_Status'] = 2){
+                   }elseif($row['crse_ER_Status'] == 2){
                     $color = '#c69b7c';
-                  }elseif($row['crse_ER_Status'] = NULL){
+                  }elseif($row['crse_ER_Status'] == NULL){
                     $color = '';
                   }
                   if($row['crse_status'] == 1){
@@ -845,13 +845,13 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 if($row['crse_ER_Status'] = 0){
+                 if($row['crse_ER_Status'] == 0){
                   $color = '#eeddd2';
-                 }elseif($row['crse_ER_Status'] = 1){
+                 }elseif($row['crse_ER_Status'] == 1){
                   $color = '#995d2d';
-                 }elseif($row['crse_ER_Status'] = 2){
+                 }elseif($row['crse_ER_Status'] == 2){
                   $color = '#c69b7c';
-                }elseif($row['crse_ER_Status'] = NULL){
+                }elseif($row['crse_ER_Status'] == NULL){
                   $color = '';
                 }
                   if($row['crse_status'] == 1){
