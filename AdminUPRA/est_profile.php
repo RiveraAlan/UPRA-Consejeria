@@ -569,7 +569,15 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: #6496c8'>";
                   }
-                
+                  if($row['crse_ER_Status'] = 0){
+                    $color = '#eeddd2';
+                   }elseif($row['crse_ER_Status'] = 1){
+                    $color = '#995d2d';
+                   }elseif($row['crse_ER_Status'] = 2){
+                    $color = '#c69b7c';
+                  }elseif($row['crse_ER_Status'] = NULL){
+                    $color = '';
+                  }
                  if($row['crse_name'] === 'CCOM 3001' OR 
                     $row['crse_name'] === 'INGL 3101' OR 
                     $row['crse_name'] === 'INGL 3113' OR 
@@ -691,7 +699,15 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 
+                  if($row['crse_ER_Status'] = 0){
+                    $color = '#eeddd2';
+                   }elseif($row['crse_ER_Status'] = 1){
+                    $color = '#995d2d';
+                   }elseif($row['crse_ER_Status'] = 2){
+                    $color = '#c69b7c';
+                  }elseif($row['crse_ER_Status'] = NULL){
+                    $color = '';
+                  }
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){
@@ -891,7 +907,7 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT stdnt_number, crse_name, crse_description, crse_credits, crse_grade, semester_pass, crse_status
+                $sql ="SELECT *
                    FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
