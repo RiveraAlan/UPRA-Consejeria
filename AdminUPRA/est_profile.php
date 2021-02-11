@@ -491,7 +491,6 @@ body {
             <div class="container tables">
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'file')">Expediente del Estudiante</button>
-                    <button class="tablinks" onclick="openCity(event, 'Examinar')">Cursos a Examinar</button>
                     <button class="tablinks" onclick="openCity(event, 'Leyendas')">Leyendas</button>
                   </div>
                 
@@ -1045,102 +1044,7 @@ body {
               </footer>
             </div>
           </div><!-- /.Expediente -->
-<!-- Cursos a Examinar -->
-          <div id='id03' class='w3-modal' style='padding-left:20%'>
-            <div class='w3-modal-content w3-animate-zoom'>
-              <header class='w3-container' style='padding-top:5px'>
-                <span onclick='document.getElementById("id03").style.display="none"'
-                class='w3-button w3-display-topright'>&times;</span>
-                <h3>Acomodar</h3>
-              </header>
-              <div class='w3-container'>
-                  <br>
-                <form action="inc/conv_equi.php" method="POST">
-                <div class="grid-container">
-                <div class='item-1'>
-                          <a onclick="equi_conv(this, 'mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
-                            <i class='fas fa-pencil-alt'></i> Concentración</a>
-                  </div>
-                <div class='item-2'>
-                          <a onclick="equi_conv(this, 'general_courses')" class='btn btn-warning' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i> General Obli.</a>
-                  </div>
-                          <div class='item-3'>
-                          <a onclick="equi_conv(this, 'departamental_courses')" class='btn btn-danger'style="width: 100%; color: white">
-                             <i class='fas fa-pencil-alt'></i> Elect. Dept.</a>
-                        </div>
-                        <div class='item-4'>
-                          <a onclick="equi_conv(this, 'libre')" class='btn btn-info' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i> Elect. Libre</a>
-                        </div>
-                  </div>
-              </div>
-              <div class="grid-container" style="margin-left:18%">
-              <div class='item-1'><input type="radio" name="tipo" value="crse_recognition"> Convalidación</input></div>
-              <div class='item-2'><input type="radio" name="tipo" value="crse_equivalence"> Equivalencia</input></div>
-              </div>
-              
-              <div id='mand' style="display: none" class="select-box">          
-                  <select name="course_mand" id="course-list">
-                  <?php
-                        $sql ="SELECT crse_name, crse_label
-                        FROM mandatory_courses";
-                            $result = mysqli_query($conn, $sql);
-                            $resultCheck = mysqli_num_rows($result);
 
-                         if($resultCheck > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
-                        }
-                        } ?>
-                  </select>
-
-              </div>
-
-              <div id='gen' style="display: none" class="select-box">          
-                  <select name="course_gen" id="course-list">
-                  <?php
-                        $sql ="SELECT crse_name, crse_label
-                        FROM general_courses";
-                            $result = mysqli_query($conn, $sql);
-                            $resultCheck = mysqli_num_rows($result);
-
-                         if($resultCheck > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
-                        }
-                        } ?>
-                  </select>
-
-              </div>
-
-              <div id='dept' style="display: none" class="select-box">          
-                  <select name="course_dept" id="course-list">
-                  <?php
-                        $sql ="SELECT crse_name, crse_label
-                        FROM 	departmental_courses";
-                            $result = mysqli_query($conn, $sql);
-                            $resultCheck = mysqli_num_rows($result);
-
-                         if($resultCheck > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
-                        }
-                        } ?>
-                  </select>
-
-              </div>
-              <input type='hidden' id='og_crse' value='' name='og_crse'>
-              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-              <button type='submit' id="mandatory" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
-              <button type='submit' id="general" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="general_courses" ; ?>APLICAR</button>
-              <button type='submit' id="depart" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="departamental_courses" ; ?>APLICAR</button>
-              <button type='submit' id="free" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="free_courses" ; ?>APLICAR</button>
-              </footer>
-              </form>
-            </div>
-          </div>
-            <!-- /.Cursos a Examinar -->
             
             <!-- /.Modals -->
              
