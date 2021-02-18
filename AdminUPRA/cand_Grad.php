@@ -4,10 +4,10 @@ include("inc/connection.php");
 $advisor_id= $_SESSION['adv_id'];
 $advisor_name = $_SESSION['adv_name'];
 
-if(!isset($advisor_id)){
-  header("Location: index.php");
-    exit();
-}
+// if(!isset($advisor_id)){
+//   header("Location: index.php");
+//     exit();
+// }
 $i = 0;
 $sql = "SELECT stdnt_number, stdnt_email 
 FROM student INNER JOIN student_record_details USING (stdnt_number)

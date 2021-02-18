@@ -4,10 +4,10 @@ session_start();
 $advisor_id= $_SESSION['adv_id'];
 $advisor_name = $_SESSION['adv_name'];
 
-if(!isset($_SESSION['adv_id'])){
-  header("Location: index.php");
-    exit();
-}
+// if(!isset($_SESSION['adv_id'])){
+//   header("Location: index.php");
+//     exit();
+// }
 $sql = "DELETE FROM `appointment` WHERE appt_date < NOW();";
 $result = mysqli_query($conn, $sql);
 
