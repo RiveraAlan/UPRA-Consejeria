@@ -85,7 +85,9 @@ $advisor_name = $_SESSION['adv_name'];
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+            
+            <!-- Cambie adv_id por adv_email-->
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 
@@ -165,7 +167,8 @@ $advisor_name = $_SESSION['adv_name'];
         <div class="card-body p-0">
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
-        $sql ="SELECT stdnt_email FROM student_record_details
+    // Cambie student_record_details por record_details
+        $sql ="SELECT stdnt_email FROM record_details
         INNER JOIN student USING (stdnt_number)
         WHERE conducted_counseling = 1 AND record_status != 0";
         $result = mysqli_query($conn, $sql);

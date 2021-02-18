@@ -82,21 +82,21 @@ if(!isset($_SESSION['stdnt_number'])){
                  $sentenciaSQL= "SELECT SUM(C)
                  FROM ((SELECT crse_credits AS C
                  FROM mandatory_courses
-                 INNER JOIN  student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                 INNER JOIN  stdnt_record USING(crse_code)
+                 WHERE stdnt_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                  UNION ALL
                  (SELECT crse_credits AS C
                  FROM general_courses
-                 INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                 INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                  UNION ALL (SELECT crse_credits AS C
                  FROM departmental_courses
-                 INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                 INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                  UNION ALL (SELECT crse_credits AS C
                  FROM free_courses
-                 INNER JOIN student_record USING(crse_label)
-                 WHERE student_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
+                 INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
                 
@@ -108,6 +108,8 @@ if(!isset($_SESSION['stdnt_number'])){
                       if($mes >= 6){
                       $sem = 2;
                     }
+              
+              //VERIFICAR 'crse_nameompleto'???
                  echo "<div class='card-header'>
                     Nombre: <b> {$_SESSION['crse_nameompleto']} </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -134,24 +136,38 @@ if(!isset($_SESSION['stdnt_number'])){
                       <div class="col-12">
                         <div class="card">
                             <?php 
+                            
+                            //Cambie crse_code por code agregue ciso y huma
                              $sentenciaSQL= "SELECT SUM(C)
                              FROM ((SELECT crse_credits AS C
                              FROM mandatory_courses
-                             INNER JOIN  student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
+                             INNER JOIN  stdnt_record USING(crse_code)
+                             WHERE stdnt_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
                              UNION ALL
                              (SELECT crse_credits AS C
                              FROM general_courses
-                             INNER JOIN student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
-                             UNION ALL (SELECT crse_credits AS C
+                             INNER JOIN stdnt_record USING(crse_code)
+                             WHERE stdnt_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
+                             UNION ALL
+                             (SELECT crse_credits AS C
                              FROM departmental_courses
-                             INNER JOIN student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
-                             UNION ALL (SELECT crse_credits AS C
+                             INNER JOIN stdnt_record USING(crse_code)
+                             WHERE stdnt_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
+                             UNION ALL 
+                                 (SELECT crse_credits AS C
+                             FROM general_education_ciso
+                             INNER JOIN stdnt_record USING(crse_code)
+                             WHERE stdnt_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
+                             UNION ALL
+                                 (SELECT crse_credits AS C
+                             FROM general_education_huma
+                             INNER JOIN stdnt_record USING(crse_code)
+                             WHERE stdnt_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))
+                             UNION ALL
+                             (SELECT crse_credits AS C
                              FROM free_courses
-                             INNER JOIN student_record USING(crse_label)
-                             WHERE student_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))) t1";
+                             INNER JOIN stdnt_record USING(crse_code)
+                             WHERE stdnt_record.stdnt_number = '$id' AND (crseR_status = 1 OR crse_status = 3))) t1";
                              $resultRecom = mysqli_query($conn, $sentenciaSQL);
                              $reco=mysqli_fetch_assoc($resultRecom);
                          
@@ -159,7 +175,7 @@ if(!isset($_SESSION['stdnt_number'])){
                            $reco['SUM(C)'] = 0;
                        }
 
-                       $sql= "SELECT conducted_counseling FROM student_record_details WHERE stdnt_number = '$id'";
+                       $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
                              $result_couns = mysqli_query($conn, $sql);
                              $resultCheck_couns = mysqli_num_rows($result_couns);
                              $counseling = mysqli_fetch_assoc($result_couns);
@@ -201,25 +217,38 @@ if(!isset($_SESSION['stdnt_number'])){
                                       </tr>
                                       </thead> 
                                     <tbody>";
-                                    $sql ="SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM student_record
-                                    INNER JOIN mandatory_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3)
-                                    UNION(SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM student_record
-                                    INNER JOIN general_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))
-                                    UNION(SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM student_record
-                                    INNER JOIN departmental_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))
-                                    UNION(SELECT crse_label, crse_name, crse_description, crse_credits
-                                    FROM student_record
-                                    INNER JOIN free_courses USING (crse_label)
-                                    WHERE student_record.stdnt_number = '$id' AND (student_record.crseR_status = 1 OR student_record.crse_status = 3))";
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                    FROM stdnt_record
+                                    INNER JOIN mandatory_courses USING (crse_code)
+                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3)
+                                    UNION
+                                    (SELECT crse_code, crse_description, crse_credits
+                                    FROM stdnt_record
+                                    INNER JOIN general_courses USING (crse_code)
+                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
+                                    UNION
+                                    (SELECT crse_code, crse_description, crse_credits
+                                    FROM stdnt_record
+                                    INNER JOIN departmental_courses USING (crse_code)
+                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
+                                    UNION
+                                    (SELECT crse_code, crse_description, crse_credits
+                                    FROM stdnt_record
+                                    INNER JOIN general_education_ciso USING (crse_code)
+                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
+                                    UNION
+                                    (SELECT crse_code, crse_description, crse_credits
+                                    FROM stdnt_record
+                                    INNER JOIN general_education_huma USING (crse_code)
+                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
+                                    UNION
+                                    (SELECT crse_code, crse_description, crse_credits
+                                    FROM stdnt_record
+                                    INNER JOIN free_courses USING (crse_code)
+                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
-
+                                //Verificar Con Alan 
                                         $sql_adi ="SELECT * from counseling_special_details WHERE stdnt_number = '$id' AND crse_confirmation = 0";
                                             $result_adi = mysqli_query($conn, $sql_adi);
                                             $resultCheck_adi = mysqli_num_rows($result_adi);
@@ -228,9 +257,9 @@ if(!isset($_SESSION['stdnt_number'])){
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                        <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
                                         <input type='hidden' name='clase' value='general'>
-                                        <td>{$row['crse_name']}</td>
+                                        <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
                                       </tr> ";
@@ -240,7 +269,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                       while($row = mysqli_fetch_assoc($result_adi)){
                                         if($row['crse_suggestionHUMA'] == 5){
                                           echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                          <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                          <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
                                           <input type='hidden'  name='clase' value='HUMA'>
                                           <td>HUMA</td>
                                           <td>-</td>
@@ -248,7 +277,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         </tr> ";
                                           }elseif($row['crse_suggestionCISO'] == 5){
                                             echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                            <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                            <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
                                             <input type='hidden'  name='clase' value='CISO'>
                                             <td>HUMA</td>
                                             <td>-</td>
@@ -256,7 +285,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                           </tr> ";
                                             }elseif($row['crse_suggestionFREE'] == 5){
                                               echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                              <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                              <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
                                               <input type='hidden'  name='clase' value='FREE'>
                                               <td>HUMA</td>
                                               <td>-</td>
@@ -264,7 +293,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                             </tr> ";
                                               }elseif($row['crse_suggestionDEP'] == 5){
                                                 echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                                <td><input type='checkbox' class='case' name='crse_label[]' id='crse_label[]' value='{$row['crse_label']}' /> </td>
+                                                <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
                                                 <input type='hidden'  name='clase' value='DEP'>
                                                 <td>HUMA</td>
                                                 <td>-</td>
@@ -294,7 +323,7 @@ if(!isset($_SESSION['stdnt_number'])){
                           </div>";
                             ?>
 <!-- Termina el MODAL del boton confirmar. -->
- <!-- Comienza el student_record academico del student. -->
+ <!-- Comienza el stdnt_record academico del student. -->
               <div class="card-body"> 
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
@@ -312,8 +341,8 @@ if(!isset($_SESSION['stdnt_number'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT *
-                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'
-                   ORDER by crse_label";
+                   FROM mandatory_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$id'
+                   ORDER by crse_code";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -323,7 +352,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo "<td>{$row['crse_name']}</td>
+                    echo "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
@@ -335,7 +364,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row['crse_label']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                    <td><button onclick='myFunction({$row['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
                   }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                     echo"
                     <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
@@ -363,7 +392,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   <tbody>
                 <?php 
                 $sql ="SELECT *
-                   FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
+                   FROM general_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -372,7 +401,7 @@ if(!isset($_SESSION['stdnt_number'])){
             
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo "<td>{$row['crse_name']}</td>
+                    echo "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
@@ -384,7 +413,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row['crse_label']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                    <td><button onclick='myFunction({$row['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
                   }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                     echo"
                     <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
@@ -412,7 +441,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT *
-                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
+                   FROM free_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -422,7 +451,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                 
-                    echo "<td>{$row['crse_name']}</td>
+                    echo "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
@@ -452,7 +481,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <tbody>
                 <?php 
                 $sql ="SELECT *
-                   FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$id'";
+                   FROM departmental_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -462,7 +491,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo "<td>{$row['crse_name']}</td>
+                    echo "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
@@ -474,7 +503,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row['crse_label']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                    <td><button onclick='myFunction({$row['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
                   }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
                     echo"
                     <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
@@ -521,7 +550,7 @@ if(!isset($_SESSION['stdnt_number'])){
       </div>
     </section>
     </div>
-<!-- Culmina la parte del student_record academico. -->          
+<!-- Culmina la parte del stdnt_record academico. -->          
 <!-- TAB para appointment. El student puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
     <div id="appointment" class="tabcontent active">
     <section class="appointment">
@@ -585,8 +614,10 @@ if(!isset($_SESSION['stdnt_number'])){
                                 
                                 <tbody>
                                   <?php
-                                    $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
-                                    FROM departmental_courses WHERE crse_id = 9";
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                    FROM departmental_courses WHERE crse_major = 'CC COMS BCN'";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
@@ -594,8 +625,8 @@ if(!isset($_SESSION['stdnt_number'])){
                               while($row = mysqli_fetch_assoc($result)){
                                   echo "<tr class='row100'>
                                     <td align='center'>
-                                    <input type='checkbox' class='case' name='sugerencia[]' id='sugerencia' value='{$row['crse_label']}' /> </td>
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_name']}</td>
+                                    <input type='checkbox' class='case' name='sugerencia[]' id='sugerencia' value='{$row['crse_code']}' /> </td>
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
                                     <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
                                     <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
                                   </tr>";
@@ -619,7 +650,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <!-- Notes -->
              <?php
                 $sql ="SELECT adv_comments
-                      FROM student_record_details WHERE stdnt_number = '$id'";
+                      FROM record_details WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -699,7 +730,7 @@ if(!isset($_SESSION['stdnt_number'])){
 <!-- Script para seleccionar todos los checkbox -->
 <script>
 function toggle(source) {
-              checkboxes = document.getElementsByName('crse_label[]');
+              checkboxes = document.getElementsByName('crse_code[]');
               for(var i=0, n=checkboxes.length;i<n;i++) {
                   checkboxes[i].checked = source.checked;
               }
@@ -738,7 +769,7 @@ function toggle(source) {
   <script src="js/main.js"></script>
   <script src="js/consejeria.js"></script>  
   <script>function toggle(source) {
-              checkboxes = document.getElementsByName('crse_label[]');
+              checkboxes = document.getElementsByName('crse_code[]');
               for(var i=0, n=checkboxes.length;i<n;i++) {
                   checkboxes[i].checked = source.checked;
               }}

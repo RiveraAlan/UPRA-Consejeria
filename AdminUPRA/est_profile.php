@@ -14,7 +14,7 @@ if(!isset($student_id)){
     exit();
 }
 
-$query = "SELECT * FROM student_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
+$query = "SELECT * FROM stdnt_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
 $result = mysqli_query($conn, $query);
 $resultCheck = mysqli_num_rows($result);
 $isRecordPresentInDB = FALSE;
@@ -167,7 +167,7 @@ if($resultCheck > 0)
           }
           }
           </script>
-
+<!--*************Agregar general_courses_major, general_education_ciso,general_education_huma****************-->
 
 
 <!DOCTYPE html>
@@ -332,7 +332,9 @@ body {
 <!-- Sidebar user -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+
+<!--Hice Cambio de adv_id a adv_email-->
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = $advisor_id";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -404,29 +406,40 @@ body {
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_cohort
+//Hice un cambio de stdnt_cohort a stdnt_major
+                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-            
+//Cambie crse_label por crse_code y Agregue general_education_ciso y general_education_huma            
                 $sentenciaSQL= "SELECT SUM(C)
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
-                INNER JOIN  student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')
+                INNER JOIN  stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id')
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_courses
-                INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id')
                 UNION ALL (SELECT crse_credits AS C
                 FROM departmental_courses
-                INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id')
+                UNION ALL
+                (SELECT crse_credits AS C
+                FROM general_education_ciso
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id')
+                UNION ALL
+                (SELECT crse_credits AS C
+                FROM general_education_huma
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id')
                 UNION ALL (SELECT crse_credits AS C
                 FROM free_courses
-                INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id')) t1";
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id')) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                 if ($creditos['SUM(C)'] === NULL){
@@ -447,7 +460,7 @@ body {
                     <b>Año</b> <a class='float-right'>$año</a>
                   </li>
                   <li class='list-group-item'>
-                    <b>Secuencia:</b> <a class='float-right'>{$row['stdnt_cohort']}</a>
+                    <b>Secuencia:</b> <a class='float-right'>{$row['stdnt_major']}</a>
                   </li>
                    
                 </ul>";?>
@@ -498,29 +511,41 @@ body {
     <div id="file" class="tabcontent active">
     <section class="content">
     <?php
-    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_cohort
+    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-            
+//Cambie crse_label por crse_code y agregue general_education_ciso, general_education_huma       
                 $sentenciaSQL= "SELECT SUM(C)
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
-                INNER JOIN  student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND student_record.crseR_status = 1)
+                INNER JOIN  stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_courses
-                INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND student_record.crseR_status = 1)
-                UNION ALL (SELECT crse_credits AS C
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                UNION ALL 
+                (SELECT crse_credits AS C
                 FROM departmental_courses
-                INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND student_record.crseR_status = 1)
-                UNION ALL (SELECT crse_credits AS C
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                UNION ALL 
+                (SELECT crse_credits AS C
+                FROM general_education_ciso
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                UNION ALL
+                (SELECT crse_credits AS C
+                FROM general_education_huma
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                UNION ALL
+                (SELECT crse_credits AS C
                 FROM free_courses
-                INNER JOIN student_record USING(crse_label)
-                WHERE student_record.stdnt_number = '$student_id' AND student_record.crseR_status = 1)) t1";
+                INNER JOIN stdnt_record USING(crse_code)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                if($creditos['SUM(C)'] < 1){
@@ -554,8 +579,9 @@ body {
                   </thead>
                   <tbody>
                 <?php
+//Cambie crse_label por crse_code
                    $sql ="SELECT *
-                   FROM mandatory_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                   FROM mandatory_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -568,73 +594,75 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: #6496c8'>";
                   }
-                  if($row['crse_ER_Status'] == 0){
+                    //Cambie ER por R
+                  if($row['crseR_status'] == 0){
                     $color = '#eeddd2';
-                   }elseif($row['crse_ER_Status'] == 1){
+                   }elseif($row['crseR_status'] == 1){
                     $color = '#995d2d';
-                   }elseif($row['crse_ER_Status'] == 2){
+                   }elseif($row['crseR_status'] == 2){
                     $color = '#c69b7c';
-                  }elseif($row['crse_ER_Status'] == NULL){
+                  }elseif($row['crseR_status'] == NULL){
                     $color = '';
                   }
-                 if($row['crse_name'] === 'CCOM 3001' OR 
-                    $row['crse_name'] === 'INGL 3101' OR 
-                    $row['crse_name'] === 'INGL 3113' OR 
-                    $row['crse_name'] === 'CCOM 3010' OR 
-                    $row['crse_name'] === 'CCOM 3025' OR 
-                    $row['crse_name'] === 'MATE 3171')
-                   echo "<td href='#' title='Primer Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    //Cambie crse_name por crse_code
+                 if($row['crse_code'] === 'CCOM 3001' OR 
+                    $row['crse_code'] === 'INGL 3101' OR 
+                    $row['crse_code'] === 'INGL 3113' OR 
+                    $row['crse_code'] === 'CCOM 3010' OR 
+                    $row['crse_code'] === 'CCOM 3025' OR 
+                    $row['crse_code'] === 'MATE 3171')
+                   echo "<td href='#' title='Primer Año - Primer Semestre'>{$row['crse_code']}</td>";
                     
-                   elseif($row['crse_name'] === 'CCOM 3002' OR 
-                    $row['crse_name'] === 'INGL 3102' OR 
-                    $row['crse_name'] === 'INGL 3114' OR 
-                    $row['crse_name'] === 'CCOM 3015' OR 
-                    $row['crse_name'] === 'CCOM 3035' OR 
-                    $row['crse_name'] === 'MATE 3172'){
-                    echo "<td href='#' title='Primer Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                   elseif($row['crse_code'] === 'CCOM 3002' OR 
+                    $row['crse_code'] === 'INGL 3102' OR 
+                    $row['crse_code'] === 'INGL 3114' OR 
+                    $row['crse_code'] === 'CCOM 3015' OR 
+                    $row['crse_code'] === 'CCOM 3035' OR 
+                    $row['crse_code'] === 'MATE 3172'){
+                    echo "<td href='#' title='Primer Año - Segundo Semestre'>{$row['crse_code']}</td>";
                     }
                     
-                    elseif($row['crse_name'] === 'CCOM 4005' OR 
-                    $row['crse_name'] === 'MATE 3031' OR 
-                    $row['crse_name'] === 'CCOM 3020' OR 
-                    $row['crse_name'] === 'ESPA 3101' OR 
-                    $row['crse_name'] === 'CIBI 3001'){
-                    echo "<td href='#' title='Segundo Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    elseif($row['crse_code'] === 'CCOM 4005' OR 
+                    $row['crse_code'] === 'MATE 3031' OR 
+                    $row['crse_code'] === 'CCOM 3020' OR 
+                    $row['crse_code'] === 'ESPA 3101' OR 
+                    $row['crse_code'] === 'CIBI 3001'){
+                    echo "<td href='#' title='Segundo Año - Primer Semestre'>{$row['crse_code']}</td>";
                     }
                     
-                    elseif($row['crse_name'] === 'CCOM 4006' OR 
-                    $row['crse_name'] === 'CCOM 4007' OR 
-                    $row['crse_name'] === 'CCOM 4065' OR 
-                    $row['crse_name'] === 'ESPA 3102' OR 
-                    $row['crse_name'] === 'CIBI 3002'){
-                    echo "<td href='#' title='Segundo Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                    elseif($row['crse_code'] === 'CCOM 4006' OR 
+                    $row['crse_code'] === 'CCOM 4007' OR 
+                    $row['crse_code'] === 'CCOM 4065' OR 
+                    $row['crse_code'] === 'ESPA 3102' OR 
+                    $row['crse_code'] === 'CIBI 3002'){
+                    echo "<td href='#' title='Segundo Año - Segundo Semestre'>{$row['crse_code']}</td>";
                     }
                     
-                    elseif($row['crse_name'] === 'FISI 3011' OR 
-                    $row['crse_name'] === 'FISI 3013' OR 
-                    $row['crse_name'] === 'ESPA 3208' OR 
-                    $row['crse_name'] === 'CCOM 3041' OR 
-                    $row['crse_name'] === 'CCOM 4025'){
-                    echo "<td href='#' title='Tercer Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    elseif($row['crse_code'] === 'FISI 3011' OR 
+                    $row['crse_code'] === 'FISI 3013' OR 
+                    $row['crse_code'] === 'ESPA 3208' OR 
+                    $row['crse_code'] === 'CCOM 3041' OR 
+                    $row['crse_code'] === 'CCOM 4025'){
+                    echo "<td href='#' title='Tercer Año - Primer Semestre'>{$row['crse_code']}</td>";
                     }
                     
-                    elseif($row['crse_name'] === 'FISI 3012' OR 
-                    $row['crse_name'] === 'FISI 3014' OR 
-                    $row['crse_name'] === 'INGL 3015' OR 
-                    $row['crse_name'] === 'CCOM 4115'){
-                    echo "<td href='#' title='Tercer Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                    elseif($row['crse_code'] === 'FISI 3012' OR 
+                    $row['crse_code'] === 'FISI 3014' OR 
+                    $row['crse_code'] === 'INGL 3015' OR 
+                    $row['crse_code'] === 'CCOM 4115'){
+                    echo "<td href='#' title='Tercer Año - Segundo Semestre'>{$row['crse_code']}</td>";
                     }
                            
-                    elseif($row['crse_name'] === 'CCOM 4075'){
-                    echo "<td href='#' title='Cuarto Año - Primer Semestre'>{$row['crse_name']}</td>";
+                    elseif($row['crse_code'] === 'CCOM 4075'){
+                    echo "<td href='#' title='Cuarto Año - Primer Semestre'>{$row['crse_code']}</td>";
                     }
                     
-                    elseif($row['crse_name'] === 'CCOM 4095'){
-                    echo "<td href='#' title='Cuarto Año - Segundo Semestre'>{$row['crse_name']}</td>";
+                    elseif($row['crse_code'] === 'CCOM 4095'){
+                    echo "<td href='#' title='Cuarto Año - Segundo Semestre'>{$row['crse_code']}</td>";
                     }
                     
                     else
-                    echo "<td>{$row['crse_name']}</td>";
+                    echo "<td>{$row['crse_code']}</td>";
                     
             echo    " <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
@@ -649,7 +677,7 @@ body {
                     if($row['crse_grade'] == NULL){
                       echo "<form action='inc/recommend.php' method='POST'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id '>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                      <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:$colorR;  width : 100%'>Recomendación</button></td>
                       </form>";
                     }else{
@@ -691,20 +719,21 @@ body {
                   </thead>
                   <tbody>
                 <?php
+                      //cambie crse_label por crse_code
                 $sql ="SELECT *
-                FROM general_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                FROM general_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-             
+             //Cambie ER por R
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  if($row['crse_ER_Status'] == 0){
+                  if($row['crseR_status'] == 0){
                     $color = '#eeddd2';
-                   }elseif($row['crse_ER_Status'] == 1){
+                   }elseif($row['crseR_status'] == 1){
                     $color = '#995d2d';
-                   }elseif($row['crse_ER_Status'] == 2){
+                   }elseif($row['crseR_status'] == 2){
                     $color = '#c69b7c';
-                  }elseif($row['crse_ER_Status'] == NULL){
+                  }elseif($row['crseR_status'] == NULL){
                     $color = '';
                   }
                   if($row['crse_status'] == 1){
@@ -714,7 +743,8 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: #6496c8'>";
                   }
-                    echo "<td>{$row['crse_name']}</td>
+                    //cambie name/label por code
+                    echo "<td>{$row['crse_code']}</td> 
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
@@ -722,14 +752,14 @@ body {
                     if($row['crseR_status'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                      <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                      <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -771,8 +801,9 @@ body {
                   </thead>
                 <tbody>
                 <?php
-                $sql ="SELECT crse_label, crse_name, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
-                FROM free_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                //elimine label-name solo deje code y cambie student por stdnt
+                    $sql ="SELECT crse_code, crse_description, crse_credits, crse_grade, crse_status, semester_pass, crseR_status
+                FROM free_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -786,22 +817,23 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: #6496c8'>";
                   }
-                    echo "<td>{$row['crse_name']}</td>
+                    echo "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
                     ";
+                    //code por label/name
                     if($row['crseR_status'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                      <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
                     }else if($row['crse_status'] == 0){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                      <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
@@ -837,20 +869,21 @@ body {
                   </thead>
                 <tbody>
                 <?php
+                    //code por label
                 $sql ="SELECT *
-                FROM departmental_courses INNER JOIN student_record USING (crse_label) WHERE stdnt_number = '$student_id'";
+                FROM departmental_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                 if($row['crse_ER_Status'] == 0){
+                 if($row['crseR_status'] == 0){
                   $color = '#eeddd2';
-                 }elseif($row['crse_ER_Status'] == 1){
+                 }elseif($row['crseR_status'] == 1){
                   $color = '#995d2d';
-                 }elseif($row['crse_ER_Status'] == 2){
+                 }elseif($row['crseR_status'] == 2){
                   $color = '#c69b7c';
-                }elseif($row['crse_ER_Status'] == NULL){
+                }elseif($row['crseR_status'] == NULL){
                   $color = '';
                 }
                   if($row['crse_status'] == 1){
@@ -860,15 +893,16 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: #6496c8'>";
                   }
-                    echo "<td>{$row['crse_name']}</td>
+                    echo "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
                     ";
+                    //code por label/name
                     if($row['crseR_status'] == 1){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
-                      <input type='hidden' id='crse_label' name='crse_label' value='{$row['crse_label']}'>
+                      <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#c72837;  width : 100%'>recomendada</button></td>
                       </form>";
@@ -906,21 +940,22 @@ body {
                   </thead>
                 <tbody>
                 <?php
+                    //code por label/name
                 $sql ="SELECT *
-                   FROM free_courses INNER JOIN student_record USING (crse_label) WHERE special_id = 2 AND stdnt_number = '$student_id'";
+                   FROM free_courses INNER JOIN stdnt_record USING (crse_code) WHERE special_id = 2 AND stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                   
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  $crse = "{$row['crse_label']}";
+                  $crse = "{$row['crse_code']}";
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: rgb(100,149,237,0.3)'>";
                   }else if ($row['crse_status'] == 2){
                     echo "<tr width='50%' style='background-color: rgb(237,99,124,0.3)'>";
                   }else{
                   echo "<tr width='50%'>";}
-                    echo "<td>{$row['crse_name']}</td>
+                    echo "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
@@ -971,19 +1006,25 @@ body {
           <div class="select-box">          
                   <select name="course" id="course-list">
                   <?php
-                        $sql ="SELECT 	crse_label, crse_name FROM departmental_courses
+                      //solo deje code y quite name/label y agregue ciso y huma
+                        $sql ="SELECT 	crse_code FROM departmental_courses
                                 UNION ALL 
-                                (SELECT crse_label, crse_name FROM mandatory_courses)
+                                (SELECT crse_code FROM mandatory_courses)
                                 UNION ALL 
-                                (SELECT crse_label, crse_name FROM general_courses)
+                                (SELECT crse_code FROM general_courses)
                                 UNION ALL 
-                                (SELECT crse_label, crse_name FROM free_courses)";
+                                (SELECT crse_code FROM general_education_ciso)
+                                UNION ALL 
+                                (SELECT crse_code FROM general_education_huma)
+                                UNION ALL 
+                                (SELECT crse_code FROM free_courses)";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
 
                          if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result)){
-                            echo "<option value='{$row['crse_label']}'>{$row['crse_name']}</option>";
+                            //tenia label y name los cambia ambos por code
+                            echo "<option value='{$row['crse_code']}'>{$row['crse_code']}</option>";
                         }
                         } ?>
                   </select>
@@ -1166,9 +1207,9 @@ $(document).ready(function(){
   let  isRecordPresentInDB = '<?php echo $isRecordPresentInDB; ?>';
    
   if(isRecordPresentInDB){
-    ajax.open("POST", "inc/update_student_record.php");
+    ajax.open("POST", "inc/update_stdnt_record.php");
   } else {
-    ajax.open("POST", "inc/add_student_record.php");
+    ajax.open("POST", "inc/add_stdnt_record.php");
   }
 	ajax.send(formdata);
     }
