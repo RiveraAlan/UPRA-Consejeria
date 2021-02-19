@@ -1,16 +1,16 @@
 <?php
 include("inc/connection.php");
 session_start();
-//$advisor_id= $_SESSION['adv_id'];
-//$advisor_name = $_SESSION['adv_name'];
+$advisor_id= $_SESSION['adv_id'];
+$advisor_name = $_SESSION['adv_name'];
 
-// if(!isset($_SESSION['adv_id'])){
-//   header("Location: index.php");
-//     exit();
-// }
+//if(!isset($_SESSION['adv_id'])){
+//  header("Location: index.php");
+//    exit();
+//}
 $count = 0;
 $sql = "SELECT stdnt_number 
-FROM student INNER JOIN record_details USING (stdnt_major)
+FROM student INNER JOIN record_details USING (stdnt_number)
 WHERE record_status != 0";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -20,7 +20,7 @@ WHERE record_status != 0";
                   FROM ((SELECT crse_credits AS C
                   FROM mandatory_courses
                   INNER JOIN  stdnt_record USING(crse_code)
-                  WHERE record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                  WHERE stdnt_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
                   UNION ALL
                   (SELECT crse_credits AS C
                   FROM general_courses
@@ -33,7 +33,16 @@ WHERE record_status != 0";
                   UNION ALL (SELECT crse_credits AS C
                   FROM free_courses
                   INNER JOIN stdnt_record USING(crse_code)
-                  WHERE stdnt_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
+                  WHERE stdnt_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF') 
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM general_education_ciso
+                  INNER JOIN stdnt_record USING(crse_code)
+                  WHERE stdnt_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')
+                  UNION ALL (SELECT crse_credits AS C
+                  FROM general_education_huma
+                  INNER JOIN stdnt_record USING(crse_code)
+                  WHERE stdnt_record.stdnt_number = '{$row['stdnt_number']}' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF'))
+                  t1";
                   $sum_result = mysqli_query($conn, $sum);
                   $sum_resultCheck = mysqli_num_rows($sum_result);
                   $creditos = mysqli_fetch_assoc($sum_result);
@@ -129,9 +138,9 @@ WHERE record_status != 0";
               
                 if($resultCheck > 0){
                 $row = mysqli_fetch_assoc($result);
-                echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>";
-              }
-             ?>
+                ;}
+            ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>" ?>
         </div>
       </div>
 
@@ -221,18 +230,18 @@ WHERE record_status != 0";
           <div class="col-lg-3 col-6">
             <?php
                 $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM record_details S_R_D1 
-                WHERE record_status != 0;";
+                WHERE S_R_D1.conducted_counseling = 1 AND record_status != 0;";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $students_t_c_c = mysqli_fetch_array($result, MYSQLI_NUM);
 
-                $sql = "SELECT COUNT(*) AS total_students FROM record_details WHERE record_status != 0";
+                $sql = "SELECT COUNT(*) AS total_students FROM record_details WHERE record_status != 0;";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $total_students =  mysqli_fetch_array($result, MYSQLI_NUM);
 
                 $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM record_details S_R_D1 
-                WHERE record_status != 0;";
+                WHERE S_R_D1.conducted_counseling = 0 AND record_status != 0;";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $students_t_dn_c_c = mysqli_fetch_array($result, MYSQLI_NUM); ?>
@@ -368,7 +377,7 @@ margin-left: auto;
               </thead>
               <tbody> 
               <?php
-              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major, record_status
+              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, conducted_counseling, record_status, stdnt_major
               FROM student NATURAL JOIN record_details;";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
@@ -377,7 +386,7 @@ margin-left: auto;
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   array_push($students, array("stdnt_name" =>$row["stdnt_name"].' '.$row["stdnt_lastname1"].' '.$row["stdnt_lastname2"], "stdnt_number" => $row["stdnt_number"]));
-                  if(boolval($row["record_status"]))
+                  if(boolval($row["conducted_counseling"]))
                     $conducted_counseling = "<span class='badge badge-success'>SI</span>";
                   else 
                     $conducted_counseling = "<span class='badge badge-danger'>NO</span>";
