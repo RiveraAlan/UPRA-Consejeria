@@ -214,7 +214,7 @@ WHERE record_status != 0";
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
             $count = 0;
-            foreach($grad_stdnts AS $grad_stdnt){
+            foreach($grad_stdnts as $grad_stdnt){
             $count++;
             echo "
                 &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. $grad_stdnt</th><br>";
