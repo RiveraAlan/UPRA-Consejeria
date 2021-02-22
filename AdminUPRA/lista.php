@@ -1,7 +1,7 @@
 <?php
 include("inc/connection.php");
 session_start();
-$advisor_id= $_SESSION['adv_id'];
+$advisor_id= 'CC COMS BCN';
 $advisor_name = $_SESSION['adv_name'];
 
 // if(!isset($advisor_id)){
@@ -71,7 +71,7 @@ $advisor_name = $_SESSION['adv_name'];
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+        <?php $sql = "SELECT adv_lastname, adv_name FROM `advisor` WHERE adv_major = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -168,7 +168,7 @@ $advisor_name = $_SESSION['adv_name'];
                                 <tbody>
                                   <form action="firmas.php" method="POST">
                                   <?php
-                                       $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                       $sql ="SELECT *
                                         FROM departmental_courses";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
@@ -176,22 +176,20 @@ $advisor_name = $_SESSION['adv_name'];
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       $sqlSUM ="SELECT COUNT(stdnt_number) as sum
-                                      FROM student_record WHERE crse_status = 4 AND crse_label = $row[crse_label]";
+                                      FROM stdnt_record WHERE crse_code = '$row[crse_code]'";
                                         $resultSUM = mysqli_query($conn, $sqlSUM);
                                         $resultCheckSUM = mysqli_num_rows($resultSUM);
                                         $SUM = mysqli_fetch_assoc($resultSUM);
                                       echo "
-                                    
                                       <tr class='row100'>
-                                        <td class='' data-column='column1'>".$row['crse_name']."</td>
+                                        <td class='' data-column='column1'>".$row['crse_code']."</td>
                                         <td class='' data-column='column2'>".$row['crse_description']."</td>
                                         <td class='' data-column='column3'>".$row['crse_credits']."</td>
                                         <td class='' data-column='column4'>".$SUM['sum']."</td>
                                         <td class='' data-column='column5'>
-                                         <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
+                                        <input type='submit' name='crse_code' value='".$row['crse_code']."'></input>
                                         </td>
-                                      </tr>
-                                         ";}}?>
+                                      </tr>";}}?>
                                   </form>
                                 </tbody>
                               </table>
@@ -218,7 +216,7 @@ $advisor_name = $_SESSION['adv_name'];
                                 </thead>
                                 <tbody>
                                 <?php
-                                       $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                       $sql ="SELECT *
                                         FROM mandatory_courses";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
@@ -226,19 +224,19 @@ $advisor_name = $_SESSION['adv_name'];
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       $sqlSUM ="SELECT COUNT(stdnt_number) as sum
-                                      FROM student_record WHERE crse_status = 4 AND crse_label = $row[crse_label]";
+                                      FROM stdnt_record WHERE crse_code = '$row[crse_code]'";
                                         $resultSUM = mysqli_query($conn, $sqlSUM);
                                         $resultCheckSUM = mysqli_num_rows($resultSUM);
                                         $SUM = mysqli_fetch_assoc($resultSUM);
                                       echo "
                                     
                                       <tr class='row100'>
-                                        <td class='' data-column='column1'>".$row['crse_name']."</td>
+                                        <td class='' data-column='column1'>".$row['crse_code']."</td>
                                         <td class='' data-column='column2'>".$row['crse_description']."</td>
                                         <td class='' data-column='column3'>".$row['crse_credits']."</td>
                                         <td class='' data-column='column4'>".$SUM['sum']."</td>
                                         <td class='' data-column='column5'>
-                                         <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
+                                        <input type='submit' name='crse_code' value='".$row['crse_code']."'></input>
                                         </td>
                                       </tr>
                                      ";}}?>
@@ -268,7 +266,7 @@ $advisor_name = $_SESSION['adv_name'];
                                 <tbody>
                                 <form action="firmas.php" method="POST">
                                 <?php
-                                       $sql ="SELECT crse_name, crse_description, crse_credits, crse_label
+                                       $sql ="SELECT *
                                         FROM general_courses";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
@@ -276,19 +274,21 @@ $advisor_name = $_SESSION['adv_name'];
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       $sqlSUM ="SELECT COUNT(stdnt_number) as sum
-                                      FROM student_record WHERE crse_status = 4 AND crse_label = $row[crse_label]";
+                                      FROM stdnt_record WHERE crse_code = '$row[crse_code]'";
                                         $resultSUM = mysqli_query($conn, $sqlSUM);
                                         $resultCheckSUM = mysqli_num_rows($resultSUM);
                                         $SUM = mysqli_fetch_assoc($resultSUM);
                                       echo "
                                     
                                       <tr class='row100'>
-                                        <td class='' data-column='column1'>".$row['crse_name']."</td>
+                                        <td class='' data-column='column1'>".$row['crse_code']."</td>
                                         <td class='' data-column='column2'>".$row['crse_description']."</td>
                                         <td class='' data-column='column3'>".$row['crse_credits']."</td>
                                         <td class='' data-column='column4'>".$SUM['sum']."</td>
                                         <td class='' data-column='column5'>
-                                         <a href='firmas.php?crse_label=$row[crse_label]&crse_name=$row[crse_name]'>Ver Lista</a>
+                                        <form method='post' action='firmas.php'>
+                                         <input type='submit' name='crse_code' value='".$row['crse_code']."'></input>
+                                        </form>
                                         </td>
                                       </tr>
                                          ";}}?>
