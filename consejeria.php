@@ -3,10 +3,10 @@ session_start();
 $id = $_SESSION['stdnt_number'];
 // Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
 include_once 'private/dbconnect.php';
-if(!isset($_SESSION['stdnt_number'])){
-  header("Location: index.php");
-    exit();
-}
+//if(!isset($_SESSION['stdnt_number'])){
+//  header("Location: index.php");
+//    exit();
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
