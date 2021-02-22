@@ -49,7 +49,7 @@ if($stmt = $conn->prepare("SELECT stdnt_number, stdnt_email, stdnt_password, std
             $_SESSION['stdnt_initial'] = $stdnt_initial;
             $_SESSION['stdnt_lastname1'] = $stdnt_lastname1;
             $_SESSION['stdnt_lastname2'] = $stdnt_lastname2; 
-            $_SESSION['crse_nameompleto'] = $stdnt_name.'  '.$stdnt_initial.'  '.$stdnt_lastname1.' '.$stdnt_lastname2;
+            $_SESSION['crse_completename'] = $stdnt_name.'  '.$stdnt_initial.'  '.$stdnt_lastname1.' '.$stdnt_lastname2;
             $_SESSION['stdnt_email'] = $stdnt_email;
             header('Location: ../consejeria.php');
            
