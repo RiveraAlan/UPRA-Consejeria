@@ -590,7 +590,36 @@ include_once 'private/dbconnect.php';
                         </form>
                 </section>
                   </div>
-<!-- Culmina la parte de los TABS para las appointment. -->          
+<!-- Culmina la parte de los TABS para las appointment. -->   
+<!-- Este es el TAB de Comentarios que le hace el advisor/a al student. Donde podra ver que le escribe el/la consejera sobre algun comentario adiconal que tenga que decirle al student. -->           
+            <div id="Comentario" class="tabcontent">
+                <!-- Notes -->
+             <?php
+                $sql ="SELECT adv_comments
+                      FROM record_details WHERE stdnt_number = '$id'";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                 
+                    echo "
+            <div class='card'>
+              <div class='card-header' style='background: #e0c200'>
+                <h3 class='card-title' >Notas</h3>
+              </div>
+                
+              <div>
+
+              <form id='paper' method='get' action=''>
+		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['adv_comments']}</p>
+              </form>
+                
+            </div>
+            <!-- /.card -->
+          </div>";}}
+          ?>
+            </div>
 <!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
            <div id="Cohorte"> </div>
              <div class="tab">
@@ -602,14 +631,13 @@ include_once 'private/dbconnect.php';
             </div>
                                     <!-- Comienza el TAB del First Year -->
 <div id="Primer" class="tabcontent">
-  <h3>Primer Año</h3>
   <section>
                           <div class="wrap-table100">
                             <div class="table100 ver2 m-b-110">
                               <table data-vertable="ver1">
                                 <thead>
                                   <tr class="row100 head">
-                                    
+                                    Primer Año: Primer Semestre
                                     <th class="column100 column2" data-column="column2">Código</th>
                                     <th class="column100 column3" data-column="column3">Descripción</th>
                                     <th class="column100 column4" data-column="column4">Créditos</th>
@@ -621,7 +649,55 @@ include_once 'private/dbconnect.php';
                                     
                                     //CAMBIAR PARA TODOS 
                                     $sql ="SELECT crse_code, crse_description, crse_credits
-                                    FROM departmental_courses WHERE crse_major = 'CC COMS BCN'";
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            </div>
+      
+      <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                              <table data-vertable="ver1">
+                                <thead>
+                                  <tr class="row100 head">
+                                    Primer Año: Segundo Semestre
+                                    <th class="column100 column2" data-column="column2">Código</th>
+                                    <th class="column100 column3" data-column="column3">Descripción</th>
+                                    <th class="column100 column4" data-column="column4">Créditos</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
@@ -646,17 +722,272 @@ include_once 'private/dbconnect.php';
 <!-- Termina el TAB del First Year -->
                                     <!-- Comienza el TAB del Second Year -->
 <div id="Segundo" class="tabcontent">
-  <h3>Segundo Año</h3>
-  <p>Paris is the capital of France.</p> 
+    <section>
+                          <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                              <table data-vertable="ver1">
+                                <thead>
+                                  <tr class="row100 head">
+                                    Segundo Año: Primer Semestre
+                                    <th class="column100 column2" data-column="column2">Código</th>
+                                    <th class="column100 column3" data-column="column3">Descripción</th>
+                                    <th class="column100 column4" data-column="column4">Créditos</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            </div>
+      
+      <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                              <table data-vertable="ver1">
+                                <thead>
+                                  <tr class="row100 head">
+                                    Segundo Año: Segundo Semestre
+                                    <th class="column100 column2" data-column="column2">Código</th>
+                                    <th class="column100 column3" data-column="column3">Descripción</th>
+                                    <th class="column100 column4" data-column="column4">Créditos</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            </div>
+        </section>
 </div>
 <!-- Termina el TAB del Second Year -->
-<div id="Tercer" class="tabcontent">
-  <h3>Tercer Año</h3>
-  <p>Tokyo is the capital of Japan.</p>
+<div id="Tercero" class="tabcontent">
+      <section>
+                          <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                              <table data-vertable="ver1">
+                                <thead>
+                                  <tr class="row100 head">
+                                    Tercer Año: Primer Semestre
+                                    <th class="column100 column2" data-column="column2">Código</th>
+                                    <th class="column100 column3" data-column="column3">Descripción</th>
+                                    <th class="column100 column4" data-column="column4">Créditos</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            </div>
+      
+      <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                              <table data-vertable="ver1">
+                                <thead>
+                                  <tr class="row100 head">
+                                    Tercer Año: Segundo Semestre
+                                    <th class="column100 column2" data-column="column2">Código</th>
+                                    <th class="column100 column3" data-column="column3">Descripción</th>
+                                    <th class="column100 column4" data-column="column4">Créditos</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            </div>
+        </section>
 </div>
 <div id="Cuarto" class="tabcontent">
-  <h3>Cuarto Año</h3>
-  <p>Tokyo is the capital of Japan.</p>
+    <section>
+                          <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                              <table data-vertable="ver1">
+                                <thead>
+                                  <tr class="row100 head">
+                                    Cuarto Año: Primer Semestre
+                                    <th class="column100 column2" data-column="column2">Código</th>
+                                    <th class="column100 column3" data-column="column3">Descripción</th>
+                                    <th class="column100 column4" data-column="column4">Créditos</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            </div>
+      
+      <div class="wrap-table100">
+                            <div class="table100 ver2 m-b-110">
+                              <table data-vertable="ver1">
+                                <thead>
+                                  <tr class="row100 head">
+                                    Cuarto Año: Segundo Semestre
+                                    <th class="column100 column2" data-column="column2">Código</th>
+                                    <th class="column100 column3" data-column="column3">Descripción</th>
+                                    <th class="column100 column4" data-column="column4">Créditos</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                  echo "<tr class='row100'>
+
+                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
+                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
+                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
+                                  </tr>";
+                              }
+                            }
+                                  ?>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            </div>
+        </section>
 </div>
 <div id="ElectDept" class="tabcontent">
   <h3>Electivas Departamentales</h3>
@@ -715,40 +1046,8 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-</script>
-             
-             
-           
-<!-- Culmina la parte de los TABS para las Sugerencias. -->           
-<!-- Este es el TAB de Comentarios que le hace el advisor/a al student. Donde podra ver que le escribe el/la consejera sobre algun comentario adiconal que tenga que decirle al student. -->           
-            <div id="Comentario" class="tabcontent">
-                <!-- Notes -->
-             <?php
-                $sql ="SELECT adv_comments
-                      FROM record_details WHERE stdnt_number = '$id'";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
-              
-                if($resultCheck > 0){
-                while($row = mysqli_fetch_assoc($result)){
-                 
-                    echo "
-            <div class='card'>
-              <div class='card-header' style='background: #e0c200'>
-                <h3 class='card-title' >Notas</h3>
-              </div>
-                
-              <div>
-
-              <form id='paper' method='get' action=''>
-		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['adv_comments']}</p>
-              </form>
-                
-            </div>
-            <!-- /.card -->
-          </div>";}}
-          ?>
-            </div>
+</script>         
+<!-- Culmina la parte de los TABS para los Cohortes. -->           
       </div> 
 
       
