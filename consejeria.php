@@ -632,22 +632,16 @@ include_once 'private/dbconnect.php';
                                     <!-- Comienza el TAB del First Year -->
 <div id="Primer" class="tabcontent">
   <section>
-                          <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Primer Año: Primer Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+<table>
+  <tr class="bordeC size"><h3>Primer Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
                                     $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1
@@ -660,38 +654,27 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Primer Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
       
-      <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Primer Año: Segundo Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2
                                             UNION
@@ -703,42 +686,32 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
-        </section>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section> 
 </div>
 <!-- Termina el TAB del First Year -->
                                     <!-- Comienza el TAB del Second Year -->
 <div id="Segundo" class="tabcontent">
     <section>
-                          <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Segundo Año: Primer Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+<table>
+  <tr class="bordeC size"><h3>Segundo Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
                                     $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1
@@ -751,38 +724,27 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Segundo Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
       
-      <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Segundo Año: Segundo Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2
                                             UNION
@@ -794,41 +756,31 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
-        </section>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section>  
 </div>
 <!-- Termina el TAB del Second Year -->
 <div id="Tercero" class="tabcontent">
-      <section>
-                          <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Tercer Año: Primer Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+    <section>
+<table>
+  <tr class="bordeC size"><h3>Tercer Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
                                     $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1
@@ -841,38 +793,27 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Tercer Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
       
-      <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Tercer Año: Segundo Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2
                                             UNION
@@ -884,40 +825,30 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
-        </section>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section>  
 </div>
 <div id="Cuarto" class="tabcontent">
-    <section>
-                          <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Cuarto Año: Primer Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+<section>
+<table>
+  <tr class="bordeC size"><h3>Cuarto Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
                                     $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1
@@ -930,38 +861,27 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Cuarto Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
       
-      <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    Cuarto Año: Segundo Semestre
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+ <tbody>
                                   <?php
                                     
-                                    //CAMBIAR PARA TODOS 
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
                                             FROM mandatory_courses
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2
                                             UNION
@@ -973,38 +893,42 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
         </section>
 </div>
+<style>
+    .tablaC {
+        border: 5px solid #bda400;
+        color: black;
+    }
+    .bordeC{
+        border: 5px double #bda400;
+      }
+    .size {
+       font-size: 21px;
+        color: black;
+    }
+</style>
 <div id="ElectDept" class="tabcontent">
   <h3>Electivas Departamentales</h3>
     <section>
-                          <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
+<table>
+  <tr class="bordeC size">
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
                                   <?php
                                     
                                     //CAMBIAR PARA TODOS 
@@ -1015,20 +939,16 @@ include_once 'private/dbconnect.php';
                             
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
         </section>
 </div>
 
