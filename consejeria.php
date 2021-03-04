@@ -123,7 +123,7 @@ include_once 'private/dbconnect.php';
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'appointment')">Sacar Cita con su Consejero/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
-<!--                     <button class="tablinks" onclick="openCity(event, 'Sugerencias')">Hacer Sugerencias de Clases</button>-->
+                    <button class="tablinks" onclick="openCity(event, 'Cohorte')">Verficar Cohorte</button>
                     <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del Consejero/a</button>
                   </div>
  <!-- Culmina la parte de los TABS. -->                
@@ -590,60 +590,7 @@ include_once 'private/dbconnect.php';
                         </form>
                 </section>
                   </div>
-<!-- Culmina la parte de los TABS para las appointment. -->          
-<!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
-         <div id="Sugerencias" class="tabcontent">
-            <form action="private/sugerencias.php" method="POST">
-            <section>
-                <div class="table">
-                <div class="container-table100">
-                    <h2>Electivas Departamentales</h2>
-                          <div class="wrap-table100">
-                            <div class="table100 ver2 m-b-110">
-                              <table data-vertable="ver1">
-                                <thead>
-                                  <tr class="row100 head">
-                                    <th class="column100 column1" data-column="column1">Sugerencias</th>
-                                    <th class="column100 column2" data-column="column2">Código</th>
-                                    <th class="column100 column3" data-column="column3">Descripción</th>
-                                    <th class="column100 column4" data-column="column4">Créditos</th>
-                                    <th style="background: transparent; border: none" class="column100 column5" data-column="column5"><button onclick="sugerir()" name="suge-submit" type="submit" class="btn btn-yellow btn-pill">SUGERIR</button></th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
-                                  <?php
-                                    
-                                    //CAMBIAR PARA TODOS 
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                    FROM departmental_courses WHERE crse_major = 'CC COMS BCN'";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                            
-                              if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                                  echo "<tr class='row100'>
-                                    <td align='center'>
-                                    <input type='checkbox' class='case' name='sugerencia[]' id='sugerencia' value='{$row['crse_code']}' /> </td>
-                                    <td class='column100 column1' data-column='column1'>{$row['crse_code']}</td>
-                                    <td class='column100 column2' data-column='column2'>{$row['crse_description']}</td>
-                                    <td class='column100 column3' data-column='column3'>{$row['crse_credits']}</td>
-                                  </tr>";
-                              }
-                            }
-                                  ?>
-                                </tbody>
-                              </table>
-                              
-                            </div>
-                            </div>
-                          </div>            
-                </div>
-                
-                </section>    
-             </form>
-           </div>
-<!-- Culmina la parte de los TABS para las Sugerencias. -->           
+<!-- Culmina la parte de los TABS para las appointment. -->   
 <!-- Este es el TAB de Comentarios que le hace el advisor/a al student. Donde podra ver que le escribe el/la consejera sobre algun comentario adiconal que tenga que decirle al student. -->           
             <div id="Comentario" class="tabcontent">
                 <!-- Notes -->
@@ -673,6 +620,354 @@ include_once 'private/dbconnect.php';
           </div>";}}
           ?>
             </div>
+<!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
+           <div id="Cohorte"> </div>
+             <div class="tab">
+              <button class="tablinks" onclick="openCity(event, 'Primer')">Primer Año</button>
+              <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
+              <button class="tablinks" onclick="openCity(event, 'Tercero')">Tercer Año</button>
+              <button class="tablinks" onclick="openCity(event, 'Cuarto')">Cuarto Año</button>
+              <button class="tablinks" onclick="openCity(event, 'ElectDept')">Electivas Departamentales</button>
+            </div>
+                                    <!-- Comienza el TAB del First Year -->
+<div id="Primer" class="tabcontent">
+  <section>
+<table>
+  <tr class="bordeC size"><h3>Primer Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Primer Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section> 
+</div>
+<!-- Termina el TAB del First Year -->
+                                    <!-- Comienza el TAB del Second Year -->
+<div id="Segundo" class="tabcontent">
+    <section>
+<table>
+  <tr class="bordeC size"><h3>Segundo Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Segundo Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section>  
+</div>
+<!-- Termina el TAB del Second Year -->
+<div id="Tercero" class="tabcontent">
+    <section>
+<table>
+  <tr class="bordeC size"><h3>Tercer Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Tercer Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section>  
+</div>
+<div id="Cuarto" class="tabcontent">
+<section>
+<table>
+  <tr class="bordeC size"><h3>Cuarto Año - Primer Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+<table>
+ <tr class="bordeC size"><h3>Cuarto Año - Segundo Semestre</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                   $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM mandatory_courses
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2
+                                            UNION
+                                            SELECT crse_code, crse_description, crse_credits
+                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section>
+</div>
+<style>
+    .tablaC {
+        border: 5px solid #bda400;
+        color: black;
+    }
+    .bordeC{
+        border: 5px double #bda400;
+      }
+    .size {
+       font-size: 21px;
+        color: black;
+    }
+</style>
+<div id="ElectDept" class="tabcontent">
+  <h3>Electivas Departamentales</h3>
+    <section>
+<table>
+  <tr class="bordeC size">
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                    //CAMBIAR PARA TODOS 
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                    FROM departmental_courses WHERE crse_major = 'CC COMS BCN'";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                              if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                                 echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";
+                                   }
+    }
+?>
+</tbody>
+</table>
+        </section>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>         
+<!-- Culmina la parte de los TABS para los Cohortes. -->           
       </div> 
 
       
