@@ -621,8 +621,8 @@ include_once 'private/dbconnect.php';
           ?>
             </div>
 <!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
-           <div id="Cohorte"> </div>
-             <div class="tab">
+           <div id="Cohorte"> 
+             <div class="tab" id="tabla-cohorte">
               <button class="tablinks" onclick="openCity(event, 'Primer')">Primer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
               <button class="tablinks" onclick="openCity(event, 'Tercero')">Tercer Año</button>
@@ -949,30 +949,18 @@ include_once 'private/dbconnect.php';
 ?>
 </tbody>
 </table>
+</div>
         </section>
 </div>
-
-<script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>         
+</div>
+</div>
+        
 <!-- Culmina la parte de los TABS para los Cohortes. -->           
       </div> 
 
       
  <!-- Este SCRIPT es para bregar con las appointment (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los advisors a cargo. -->
-  <script src="index.js"></script> 
+  <script src="index.js"></script>
         <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
