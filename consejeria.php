@@ -608,8 +608,8 @@ include_once 'private/dbconnect.php';
               <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
               <button class="tablinks" onclick="openCity(event, 'Tercero')">Tercer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Cuarto')">Cuarto Año</button>
-                 <button class="tablinks" onclick="openCity(event, 'HUMA')">Humanidades </button>
-                 <button class="tablinks" onclick="openCity(event, 'CISO')">Ciencias Sociales</button>
+              <button class="tablinks" onclick="openCity(event, 'HUMA')">Humanidades </button>
+              <button class="tablinks" onclick="openCity(event, 'CISO')">Ciencias Sociales</button>
               <button class="tablinks" onclick="openCity(event, 'ElectDept')">Electivas Departamentales</button>
             </div>
                                     <!-- Comienza el TAB del First Year -->
@@ -1096,6 +1096,9 @@ include_once 'private/dbconnect.php';
 </table>
         </section>  
 </div>
+
+               
+               
 <div id="HUMA" class="tabcontent">
 <section>
 <table>
@@ -1154,7 +1157,7 @@ include_once 'private/dbconnect.php';
 </div>
 
                
-      <div id="CISO" class="tabcontent">
+<div id="CISO" class="tabcontent">
 <section>
 <table>
   <tr class="bordeC size"><h3>Educación General Ciencias Sociales</h3>
@@ -1208,11 +1211,9 @@ include_once 'private/dbconnect.php';
 ?>
 </tbody>
 </table>
-        </section>
+</section>
 </div>         
                
-               
-
 <style>
     .tablaC {
         border: 5px solid #bda400;
@@ -1289,20 +1290,15 @@ include_once 'private/dbconnect.php';
 ?>
 </tbody>
     
-    
-    
-    
-    
-
 </table>
 </div>
-        </section>
 </div>
 </div>
 </div>
+
         
 <!-- Culmina la parte de los TABS para los Cohortes. -->           
-      </div> 
+      </div>
 
       
  <!-- Este SCRIPT es para bregar con las appointment (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los advisors a cargo. -->
