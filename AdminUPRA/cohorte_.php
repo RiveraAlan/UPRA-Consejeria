@@ -353,7 +353,8 @@ h2 {
           <select class="form-control" id="sel1"> 
             <option>Ciencias de Cómputos</option>
           </select>
-          <br>
+          <label style="margin-left: 5px">Año</label><br>
+        <input type="number" id="crse_year" name="crse_year" placeholder="2021" style="margin-left: 2px">
         </div>
     </div>
     
@@ -363,12 +364,12 @@ h2 {
         <input type="text" id="crse_code" name="crse_code" placeholder="EJEM 1234">
     <label> Descripción </label>
         <input type="text" id="crse_description" name="crse_description" placeholder="Clase">
-    <label> Créditos</label>
+        <label> Créditos</label>
         <input type="text" id="crse_credits" name="crse_credits" placeholder="3">
 
         <p>Curso se clasifica como:</p>
         <input type="radio" id="concentracion" name="clasificacion" value="concentracion">
-        <label for="concentracion" class="radio">Requisito de Concentración</label><br>
+        <label for="concentracion" class="radio" style="margin-right:20px">Requisito de Concentración</label> 
         <input type="radio" id="general" name="clasificacion" value="general">
         <label for="general" class="radio">Requisito General</label><br>
 
@@ -378,7 +379,8 @@ h2 {
 
 
   </div>
-  <div class="column" style="background-color:#e0c200;">
+  <div class="column" style="background-color:#e0c200; overflow-y:auto">
+  <form method="post" action="">
     <h2>Cohorte Completo</h2>
     <p>Instrucciones: Presione el botón de confirmar para crear su nuevo cohorte.</p>
 <h2>Concentración</h2>
@@ -389,14 +391,9 @@ h2 {
           <th>Código</th>
           <th>Descripción</th>
           <th>Créditos</th>
-          <th>Año</th>
-          <th>Semestre</th>
       </tr>
       </thead>
-      <tbody>
-      <tr id="concentracion-table">
-      
-      </tr>
+      <tbody id="concentracion-table">
       <tbody>
   </table>
 </div>
@@ -408,14 +405,9 @@ h2 {
           <th>Código</th>
           <th>Descripción</th>
           <th>Créditos</th>
-          <th>Año</th>
-          <th>Semestre</th>
       </tr>
       </thead>
-      <tbody>
-      <tr id="general-table">
-      
-      </tr>
+      <tbody id="general-table">
       <tbody>
   </table>
 </div>
@@ -446,7 +438,8 @@ h2 {
   </table>
 </div>
 
-        
+<button onclick="submitForm()" style="background:white; color:#e0c200">Submit</button>
+</form>
   </div>
 </div>
        </section> 
@@ -487,6 +480,8 @@ h2 {
   crse_code = document.getElementById("crse_code").value;
   crse_description = document.getElementById("crse_description").value;
   crse_credits = document.getElementById("crse_credits").value;
+  table1 = document.getElementById("concentracion-table").innerHTML;
+  table2 = document.getElementById("general-table").innerHTML;
   
                 if (document.getElementById("general").checked) {
                     clasificacion = "general";
@@ -496,21 +491,29 @@ h2 {
                 
   if (clasificacion === "concentracion"){
   document.getElementById("concentracion-table").innerHTML = `
-            <td>${crse_code}</td>
-            <td>${crse_description}</td>
-            <td>${crse_credits}</td>
-            <td>Año 1</td>
-            <td>Semestre 1</td>
-         `;
+            ${table1}
+            <tr>
+            <td id='con_code'>${crse_code}</td>
+            <td id='con_des'>${crse_description}</td>
+            <td id='con_cred'>${crse_credits}</td>
+            </tr>`;
   }else {
     document.getElementById("general-table").innerHTML = `
-            <td>${crse_code}</td>
-            <td>${crse_description}</td>
-            <td>${crse_credits}</td>
-            <td>Año 1</td>
-            <td>Semestre 1</td>`;
+            ${table2}
+            <tr>
+            <td id='gen_code'>${crse_code}</td>
+            <td id='gen_des'>${crse_description}</td>
+            <td id='gen_cred'>${crse_credits}</td>
+            </tr>`;
   }
 }
+
+ function submitForm() {
+  var elms = document.querySelectorAll("[id='con_code']");
+
+      for(var i = 0; i < elms.length; i++) 
+        elms[i].style.display='none'; 
+ }
 
 </script>
 
