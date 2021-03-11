@@ -104,9 +104,9 @@ include_once 'private/dbconnect.php';
                   $reco['SUM(C)']=0;
               }
                   $mes = date('m');
-                  $sem = 1;
+                  $sem = 'Enero-Mayo';
                       if($mes >= 6){
-                      $sem = 2;
+                      $sem = 'Agosto-Diciembre';
                     }
               
                  echo "<div class='card-header'>
