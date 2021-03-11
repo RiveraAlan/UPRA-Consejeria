@@ -104,9 +104,9 @@ include_once 'private/dbconnect.php';
                   $reco['SUM(C)']=0;
               }
                   $mes = date('m');
-                  $sem = 1;
+                  $sem = 'Enero-Mayo';
                       if($mes >= 6){
-                      $sem = 2;
+                      $sem = 'Agosto-Diciembre';
                     }
               
                  echo "<div class='card-header'>
@@ -608,6 +608,8 @@ include_once 'private/dbconnect.php';
               <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
               <button class="tablinks" onclick="openCity(event, 'Tercero')">Tercer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Cuarto')">Cuarto Año</button>
+              <button class="tablinks" onclick="openCity(event, 'HUMA')">Humanidades </button>
+              <button class="tablinks" onclick="openCity(event, 'CISO')">Ciencias Sociales</button>
               <button class="tablinks" onclick="openCity(event, 'ElectDept')">Electivas Departamentales</button>
             </div>
                                     <!-- Comienza el TAB del First Year -->
@@ -631,17 +633,45 @@ include_once 'private/dbconnect.php';
                                             FROM general_courses INNER JOIN general_courses_major USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1";
                                   $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                            
+                                  $resultCheck = mysqli_num_rows($result);                                
+
                               if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
+                                  
+                                                        
+                                
 ?>
 </tbody>
 </table>
@@ -665,15 +695,44 @@ include_once 'private/dbconnect.php';
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
-                              if($resultCheck > 0){
+                           if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
+                              
+                              
+                              
+                            
 ?>
 </tbody>
 </table>
@@ -702,16 +761,41 @@ include_once 'private/dbconnect.php';
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
-                            
-                              if($resultCheck > 0){
+                                  
+           if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
 ?>
 </tbody>
 </table>
@@ -735,15 +819,40 @@ include_once 'private/dbconnect.php';
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
-                              if($resultCheck > 0){
+                                   if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
 ?>
 </tbody>
 </table>
@@ -772,15 +881,40 @@ include_once 'private/dbconnect.php';
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
-                              if($resultCheck > 0){
+                                    if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
 ?>
 </tbody>
 </table>
@@ -804,15 +938,40 @@ include_once 'private/dbconnect.php';
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
-                              if($resultCheck > 0){
+                                  if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
 ?>
 </tbody>
 </table>
@@ -840,15 +999,40 @@ include_once 'private/dbconnect.php';
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
-                              if($resultCheck > 0){
+                                    if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
 ?>
 </tbody>
 </table>
@@ -871,21 +1055,165 @@ include_once 'private/dbconnect.php';
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
-                            
-                              if($resultCheck > 0){
+                                      if($resultCheck > 0){
                               while($row = mysqli_fetch_assoc($result)){
-                                 echo " <tr class='tablaC'>
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>{$row['crse_code']}</td>
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
-                                        </tr>";
-                                   }
-    }
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
+     
+        
+?>
+</tbody>
+</table>
+        </section>  
+</div>
+
+               
+               
+<div id="HUMA" class="tabcontent">
+<section>
+<table>
+  <tr class="bordeC size"><h3>Educación General Humanidades</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM general_education_huma";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                                    if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
 ?>
 </tbody>
 </table>
         </section>
 </div>
+
+               
+<div id="CISO" class="tabcontent">
+<section>
+<table>
+  <tr class="bordeC size"><h3>Educación General Ciencias Sociales</h3>
+    <th>Código</th>
+    <th>Descripción</th>
+    <th>Créditos</th>
+  </tr>
+      
+ <tbody>
+                                  <?php
+                                    
+                                    $sql ="SELECT crse_code, crse_description, crse_credits
+                                            FROM general_education_ciso";
+                                  $result = mysqli_query($conn, $sql);
+                                  $resultCheck = mysqli_num_rows($result);
+                            
+                                    if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}
+?>
+</tbody>
+</table>
+</section>
+</div>         
+               
 <style>
     .tablaC {
         border: 5px solid #bda400;
@@ -925,19 +1253,52 @@ include_once 'private/dbconnect.php';
                                         <td>{$row['crse_description']}</td>
                                         <td>{$row['crse_credits']}</td>
                                         </tr>";
-                                   }
-    }
+                                        if($resultCheck > 0){
+                              while($row = mysqli_fetch_assoc($result)){
+                              $sql_grade =" SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            UNION
+                                            SELECT crse_code, crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  
+                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
+                                           $row_grade['crse_grade'] == 'C'){
+                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}
+                                         else{
+                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}} 
+                                  else {
+                                        echo " <tr class='tablaC'>
+                                        <td>{$row['crse_code']}</td>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                        </tr>";}}}}}
 ?>
 </tbody>
+    
 </table>
 </div>
-        </section>
 </div>
 </div>
 </div>
+
         
 <!-- Culmina la parte de los TABS para los Cohortes. -->           
-      </div> 
+      </div>
 
       
  <!-- Este SCRIPT es para bregar con las appointment (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los advisors a cargo. -->
