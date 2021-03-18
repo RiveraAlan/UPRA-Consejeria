@@ -239,6 +239,54 @@ h2 {
       }
       }
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+}
+.grid-item {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -380,8 +428,7 @@ h2 {
 
   </div>
   <div class="column" style="background-color:#e0c200; overflow-y:auto">
-  <form method="post" action="">
-    <h2>Cohorte Completo</h2>
+    <h2 style="margin-top:1px">Cohorte Completo</h2>
     <p>Instrucciones: Presione el botón de confirmar para crear su nuevo cohorte.</p>
 <h2>Concentración</h2>
 <div class="table-wrapper">
@@ -419,27 +466,79 @@ h2 {
   <table class="fl-table">
       <thead>
       <tr>
-          <th>Departamental </th>
-          <th>Electiva Libre</th>
-          <th>Ciencias Sociales</th>
-          <th>Humanidades</th>
+          <th>Dept.</th>
+          <th>Libre</th>
+          <th>CISO</th>
+          <th>HUMA</th>
       </tr>
       </thead>
       <tbody id="requisito">
       <td>
-        <input type="number" id="departamental" name="departamental"></td>
+        <input type="number" id="departamental" name="departamental" style="width:100%"></td>
         <td>
-        <input type="number" id="free" name="free"></td>
+        <input type="number" id="free" name="free" style="width:100%"></td>
         <td>
-        <input type="number" id="ciso" name="ciso"></td>
+        <input type="number" id="ciso" name="ciso" style="width:100%"></td>
         <td>
-        <input type="number" id="huma" name="huma"></td>
+        <input type="number" id="huma" name="huma" style="width:100%"></td>
       <tbody>
   </table>
 </div>
 
-<button onclick="submitForm()" style="background:white; color:#e0c200">Submit</button>
-</form>
+<button id="myBtn" style="background:white; color:#e0c200">Submit</button>
+<!-- The Modal -->
+<div id="myModal" class="modal" style="padding-bottom: 20px">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Flujograma del Cohorte</h2>
+    <label for="sel2">Seleccione el Curso:</label>
+          <select class="form-control" id="sel2"> 
+            <option></option>
+          </select>
+          <label for="sel3">Seleccione el Año:</label>
+          <select class="form-control" id="sel3"> 
+            <option>Primer Año</option>
+            <option>Segundo Año</option>
+            <option>Tercer Año</option>
+            <option>Cuarto Año</option>
+          </select>
+      
+          <label for="sel3">Seleccione el Semestre:</label>
+          <select class="form-control" id="sel3"> 
+            <option>Enero-Mayo</option>
+            <option>Agosto-Diciembre</option>
+          </select>
+
+          <div class="grid-container">
+  <div class="grid-item">
+  <label for="sel4">Pre-Requisito:</label>
+          <select class="form-control" id="sel4"> 
+          <option></option>
+          </select>
+          <div>
+            <button onclick="submitPre()" style="background:#e0c200; width: 30%; height: 35%; margin-top: 5px; margin-bottom: 5px">Add</button>
+          </div>
+  <div id="pre" style="overflow-y: auto;">
+  </div>
+  </div>
+  <div class="grid-item">
+  <label for="sel5">Co-Requisito:</label>
+          <select class="form-control" id="sel5"> 
+          <option></option>
+          </select>
+          <div>
+            <button onclick="submitCo()" style="background:#e0c200; width: 30%; height: 35%; margin-top: 5px; margin-bottom: 5px">Add</button>
+          </div>
+  <div id="co" style="overflow-y: auto;">
+  </div>
+  </div>  
+</div>
+
+  </div>
+
+</div>
   </div>
 </div>
        </section> 
@@ -508,12 +607,93 @@ h2 {
   }
 }
 
- function submitForm() {
-  var elms = document.querySelectorAll("[id='con_code']");
-
-      for(var i = 0; i < elms.length; i++) 
-        elms[i].style.display='none'; 
+function submitPre() {
+    var pre = document.getElementById("sel4").value;
+    var list = document.getElementById("pre").innerHTML;
+    document.getElementById("pre").innerHTML = `
+      ${list}
+      <p>Pre-Requisito : ${pre}</p>
+    `;
  }
+
+ function submitCo() {
+    var co = document.getElementById("sel5").value;
+    var list = document.getElementById("co").innerHTML;
+    document.getElementById("co").innerHTML = `
+      ${list}
+      <p>Co-Requisito : ${co}</p>
+    `;
+ }
+
+ // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+  var con_code = document.querySelectorAll("[id='con_code']");
+  var gen_code = document.querySelectorAll("[id='gen_code']");
+  
+  for(var i = 0; i < con_code.length; i++){ 
+    loop = document.getElementById("sel2").innerHTML;
+    document.getElementById("sel2").innerHTML = `
+            ${loop}
+            <option>${con_code[i].innerHTML}</option>
+            `; 
+        document.getElementById("sel4").innerHTML = `
+            ${loop}
+            <option>${con_code[i].innerHTML}</option>
+            `; 
+            document.getElementById("sel5").innerHTML = `
+            ${loop}
+            <option>${con_code[i].innerHTML}</option>
+            `; 
+      }
+
+      for(var i = 0; i < gen_code.length; i++){ 
+        loop = document.getElementById("sel2").innerHTML;
+        document.getElementById("sel2").innerHTML = `
+            ${loop}
+            <option>${gen_code[i].innerHTML}</option>
+            `; 
+        document.getElementById("sel4").innerHTML = `
+            ${loop}
+            <option>${gen_code[i].innerHTML}</option>
+            `; 
+            document.getElementById("sel5").innerHTML = `
+            ${loop}
+            <option>${gen_code[i].innerHTML}</option>
+            `; 
+          }
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+  document.getElementById("sel2").innerHTML = `<option></option>`;
+  document.getElementById("sel4").innerHTML = `<option></option>`;
+  document.getElementById("sel5").innerHTML = `<option></option>`;
+  document.getElementById("pre").innerHTML = ``;
+  document.getElementById("co").innerHTML = ``;
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+    document.getElementById("sel2").innerHTML = `<option></option>`;
+    document.getElementById("sel4").innerHTML = `<option></option>`;
+    document.getElementById("sel5").innerHTML = `<option></option>`;
+    document.getElementById("pre").innerHTML = ``;
+    document.getElementById("co").innerHTML = ``;
+  }
+}
 
 </script>
 
