@@ -4,7 +4,7 @@
 
 <script>
 function myFunction() {
-  document.getElementById("demo").innerHTML = "<div id="Cohorte"> 
+  document.getElementById("demo").innerHTML = `<div id="Cohorte"> 
              <div class="tab" id="tabla-cohorte" style="display:none">
               <button class="tablinks" onclick="openCity(event, 'Primer')">Primer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
@@ -694,7 +694,7 @@ function myFunction() {
     
 </table>
 </div>
-</div>;
+</div>`;
 }
 </script>
 </body>

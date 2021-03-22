@@ -493,11 +493,13 @@ h2 {
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Flujograma del Cohorte</h2>
-    <label for="sel2">Seleccione el Curso:</label>
+    <div class="grid-container">
+      <div class="grid-item">
+    <h3 for="sel2"><b>Seleccione el Curso:</b></h3>
           <select class="form-control" id="sel2"> 
             <option></option>
           </select>
-          <label for="sel3">Seleccione el Año:</label>
+          <h3 for="sel3"><b>Seleccione el Año:</b></h3>
           <select class="form-control" id="sel3"> 
             <option>Primer Año</option>
             <option>Segundo Año</option>
@@ -505,7 +507,7 @@ h2 {
             <option>Cuarto Año</option>
           </select>
       
-          <label for="sel3">Seleccione el Semestre:</label>
+          <h3 for="sel3"><b>Seleccione el Semestre:</b></h3>
           <select class="form-control" id="sel3"> 
             <option>Enero-Mayo</option>
             <option>Agosto-Diciembre</option>
@@ -513,7 +515,7 @@ h2 {
 
           <div class="grid-container">
   <div class="grid-item">
-  <label for="sel4">Pre-Requisito:</label>
+  <h3 for="sel4"><b>Pre-Requisito:</b></h3>
           <select class="form-control" id="sel4"> 
           <option></option>
           </select>
@@ -524,7 +526,7 @@ h2 {
   </div>
   </div>
   <div class="grid-item">
-  <label for="sel5">Co-Requisito:</label>
+  <h3 for="sel5"><b>Co-Requisito:</b></h3>
           <select class="form-control" id="sel5"> 
           <option></option>
           </select>
@@ -534,10 +536,19 @@ h2 {
   <div id="co" style="overflow-y: auto;">
   </div>
   </div>  
-</div>
-
   </div>
+  <div>
+            <button onclick="submitReq()" style="background: #e0c200; width: 30%; height: 35%; margin-top: 5px; margin-bottom: 5px; margin-left: 10%">Submit</button>
+            </div>
+          </div>
+            <div class="card card-primary grid-item" style="border-top: 3px solid #e0c200;">
+              <div class="card-body box-profile" id="clases">
 
+              </div>
+</div>
+                </div>
+</div>
+  
 </div>
   </div>
 </div>
@@ -612,7 +623,7 @@ function submitPre() {
     var list = document.getElementById("pre").innerHTML;
     document.getElementById("pre").innerHTML = `
       ${list}
-      <p>Pre-Requisito : ${pre}</p>
+      <h3 id="co-requisito">Pre-Requisito : ${pre}</h3>
     `;
  }
 
@@ -621,10 +632,18 @@ function submitPre() {
     var list = document.getElementById("co").innerHTML;
     document.getElementById("co").innerHTML = `
       ${list}
-      <p>Co-Requisito : ${co}</p>
+      <h3 id="co-requisito">Co-Requisito : ${co}</h3>
     `;
  }
 
+ function submitReq(){
+   var clase = document.getElementById("sel2").value;
+   var list = document.getElementById("clases").innerHTML;
+   document.getElementById("clases").innerHTML = `
+      ${list}
+      <h3>${clase}</h3>
+    `;
+ }
  // Get the modal
 var modal = document.getElementById("myModal");
 
