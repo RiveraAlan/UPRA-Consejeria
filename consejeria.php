@@ -608,8 +608,19 @@ include_once 'private/dbconnect.php';
           ?>
             </div>
 <!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
-           <div id="Cohorte"> 
-             <div class="tab" id="tabla-cohorte" style="display:none">
+           <div id="tabla-cohorte" style="display:none"> 
+             <label>Departamento :</label>
+             <select >
+                <option></option>
+                <option>CCOM</option>
+             </select>
+             <label>Cohorte :</label>
+             <select>
+                <option></option>
+                <option>2017</option>
+             </select>
+             <button type='button' class='btn btn-yellow btn-pill'>CONFIRMAR</button>
+             <div class="tab">
               <button class="tablinks" onclick="openCity(event, 'Primer')">Primer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
               <button class="tablinks" onclick="openCity(event, 'Tercero')">Tercer Año</button>
