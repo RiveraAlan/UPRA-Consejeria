@@ -192,8 +192,8 @@ include_once 'private/dbconnect.php';
                                 <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
                                         <i class='fa fa-file' aria-hidden='true'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
                                 </a></div>";
-                                }
-                                echo "
+                                }    
+                                 echo "
                                   <!-- Modal -->
                                   <div class='modal fade' id='myModal' role='dialog'>
                                     <div class='modal-dialog'>
@@ -251,8 +251,6 @@ include_once 'private/dbconnect.php';
                                         $sql_adi ="SELECT * from counseling_special_details WHERE stdnt_number = '$id' AND crse_confirmation = 0";
                                             $result_adi = mysqli_query($conn, $sql_adi);
                                             $resultCheck_adi = mysqli_num_rows($result_adi);
-    
-
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
@@ -324,6 +322,21 @@ include_once 'private/dbconnect.php';
 <!-- Termina el MODAL del boton confirmar. -->
  <!-- Comienza el stdnt_record academico del student. -->
               <div class="card-body"> 
+                
+                
+                  <h4 style="text-align: left;">Instrucciones:Para realizar la consejería académica siga los siguientes pasos.</h4> 
+                  <br>
+                  <h5 style="text-align: left;"> <b style="color:red">Paso 1 ➔</b> Consulte su expediente.</h5>
+                  <h5 style="text-align: left;"> <b style="color:red">Paso 2 ➔</b> Verifique el cohorte de su preferencia.</h5>
+                  <h5 style="text-align: left;"> <b style="color:red">Paso 3 ➔</b> Escoja los cursos que aspira tomar el próximo semestre. </h5>
+                  <h5 style="text-align: left;"> <b style="color:red">Paso 4 ➔</b> Revise su lista de cursos seleccionados y confirme su consejería. </h5>
+                  <br>
+                  <h4> <b style="color:red">NOTA</b> </h4>
+                  <h5> <i> Para seleccionar un curso presione caja de verificación</i> “❑”</h5>
+                  <h5> <i> Los cursos en color <b style="background:violet;"> Violeta</b> son recomendados por su consejero. </i></h5>
+                  <br>
+                  
+                  
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
@@ -332,7 +345,6 @@ include_once 'private/dbconnect.php';
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación/Equivalencias</th>
                   </tr>
@@ -351,14 +363,11 @@ include_once 'private/dbconnect.php';
                   
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo "<td>{$row['crse_code']}</td>
+                    echo 
+                    "<td>{$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
-                    if($row['crseR_status'] == 1){
-                    echo "<td>Prox. Semestre</td>";
-                    }else{
-                    echo "<td></td>";}
                     echo "
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
@@ -372,6 +381,8 @@ include_once 'private/dbconnect.php';
                     <td></td>";
                   }
                   echo"
+                
+                  
                   </tr>";}}?>  
                 </tbody> 
                   </table>
@@ -383,7 +394,6 @@ include_once 'private/dbconnect.php';
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación/Equivalencias</th>
                   </tr>
@@ -404,10 +414,6 @@ include_once 'private/dbconnect.php';
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
-                    if($row['crseR_status'] == 1){
-                      echo "<td>Prox. Semestre</td>";
-                      }else{
-                      echo "<td></td>";}
                       echo "
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
@@ -432,7 +438,6 @@ include_once 'private/dbconnect.php';
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación/Equivalencias</th>
                   </tr>
@@ -454,10 +459,6 @@ include_once 'private/dbconnect.php';
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
-                    if($row['crseR_status'] == 1){
-                      echo "<td>Prox. Semestre</td>";
-                      }else{
-                      echo "<td></td>";}
                       echo "
                     <td>{$row['semester_pass']}</td>
                     <td></td>
@@ -472,7 +473,6 @@ include_once 'private/dbconnect.php';
                     <th>Descripción</th>
                     <th>Créditos</th>
                     <th>Nota</th>
-                    <th>Recomendación</th>
                     <th>Año Aprobó</th>
                     <th>Convalidación/Equivalencias</th>
                   </tr>
@@ -494,11 +494,7 @@ include_once 'private/dbconnect.php';
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>";
-                    if($row['crseR_status'] == 1){
-                      echo "<td>Prox. Semestre</td>";
-                      }else{
-                      echo "<td></td>";}
-                      echo "
+                     echo "
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
                       echo"
