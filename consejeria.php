@@ -321,7 +321,9 @@ include_once 'private/dbconnect.php';
                             ?>
 <!-- Termina el MODAL del boton confirmar. -->
  <!-- Comienza el stdnt_record academico del student. -->
-              <div class="card-body"> 
+              
+
+                            <div class="card-body"> 
                 
                 
                   <h4 style="text-align: left;">Instrucciones:Para realizar la consejería académica siga los siguientes pasos.</h4> 
@@ -341,6 +343,7 @@ include_once 'private/dbconnect.php';
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
                   <tr width="50%" bgcolor="#e0c200">
+                    <th>&nbsp;</th>
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -363,11 +366,11 @@ include_once 'private/dbconnect.php';
                   
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo 
-                    "<td>{$row['crse_code']}</td>
-                    <td>{$row['crse_description']}</td>
-                    <td>{$row['crse_credits']}</td>
-                    <td>{$row['crse_grade']}</td>";
+                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td>{$row['crse_code']}</td>";
+                    echo "<td>{$row['crse_description']}</td>";
+                    echo "<td>{$row['crse_credits']}</td>";
+                    echo "<td>{$row['crse_grade']}</td>";
                     echo "
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
@@ -390,6 +393,7 @@ include_once 'private/dbconnect.php';
                     <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
                   <tr width="50%" bgcolor="#e0c200">
+                    <th>&nbsp;</th>
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -410,10 +414,11 @@ include_once 'private/dbconnect.php';
             
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo "<td>{$row['crse_code']}</td>
-                    <td>{$row['crse_description']}</td>
-                    <td>{$row['crse_credits']}</td>
-                    <td>{$row['crse_grade']}</td>";
+                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td>{$row['crse_code']}</td>";
+                    echo "<td>{$row['crse_description']}</td>";
+                    echo "<td>{$row['crse_credits']}</td>";
+                    echo "<td>{$row['crse_grade']}</td>";
                       echo "
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
@@ -434,6 +439,7 @@ include_once 'private/dbconnect.php';
                     <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
                   <tr width="50%" bgcolor="#e0c200">
+                     <th>&nbsp;</th>
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -455,10 +461,11 @@ include_once 'private/dbconnect.php';
                   
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                 
-                    echo "<td>{$row['crse_code']}</td>
-                    <td>{$row['crse_description']}</td>
-                    <td>{$row['crse_credits']}</td>
-                    <td>{$row['crse_grade']}</td>";
+                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td>{$row['crse_code']}</td>";
+                    echo "<td>{$row['crse_description']}</td>";
+                    echo "<td>{$row['crse_credits']}</td>";
+                    echo "<td>{$row['crse_grade']}</td>";
                       echo "
                     <td>{$row['semester_pass']}</td>
                     <td></td>
@@ -469,6 +476,7 @@ include_once 'private/dbconnect.php';
                     <table id="example2" class="table table-bordered table-hover" style="color:#000">
                      <thead>
                   <tr width="50%" bgcolor="#e0c200">
+                    <th>&nbsp;</th>
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -489,11 +497,12 @@ include_once 'private/dbconnect.php';
                   
                 
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
-                  
-                    echo "<td>{$row['crse_code']}</td>
-                    <td>{$row['crse_description']}</td>
-                    <td>{$row['crse_credits']}</td>
-                    <td>{$row['crse_grade']}</td>";
+                   
+                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td>{$row['crse_code']}</td>";
+                    echo "<td>{$row['crse_description']}</td>";
+                    echo "<td>{$row['crse_credits']}</td>";
+                    echo "<td>{$row['crse_grade']}</td>";
                      echo "
                     <td>{$row['semester_pass']}</td>";
                     if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
@@ -507,8 +516,7 @@ include_once 'private/dbconnect.php';
                     <td></td>";
                   }
                   echo"
-                  </tr>
-                  
+                  </tr>              
                             <!-- Modal de Equivalencias y Convalidaciones -->
                             <!-- Convalidacion-Equivalencia -->
                   <div id='equi-conv' class='w3-modal'>
@@ -544,7 +552,9 @@ include_once 'private/dbconnect.php';
         </div>
       </div>
     </section>
-    </div>
+  </div>
+           
+        
 <!-- Culmina la parte del stdnt_record academico. -->          
 <!-- TAB para appointment. El student puede realizar una cita con la profesora. Escoge el dia y la hora, para sacar la cita. -->
     <div id="appointment" class="tabcontent active">
