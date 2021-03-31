@@ -69,6 +69,30 @@ include_once 'private/dbconnect.php';
         </div>
       </div>
     </header>
+      
+      <style> 
+      .grid-container-1 {
+      display: grid;
+      grid-template-columns: auto auto;
+      padding: 10px;}
+      
+      .grid-item-1 {
+      padding: 0px;
+        }
+          
+          div.sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: #f4f9f9;
+        width: 150px;
+        border-style: inset;
+        border-color: #e0c200;
+        
+       
+}
+      </style>
+      
  <!-- Culmina la parte cerrar sesion del student. -->
     <div style="padding-top: 200px; padding-bottom: 20px; margin-left: 15%">
         <div class="container">
@@ -134,7 +158,7 @@ include_once 'private/dbconnect.php';
                     <div class="row">
                       <div class="col-12">
                         <div class="card">
-                            <?php 
+                        <?php 
                             
                             //Cambie crse_code por code agregue ciso y huma
                              $sentenciaSQL= "SELECT SUM(C)
@@ -321,12 +345,7 @@ include_once 'private/dbconnect.php';
                             ?>
 <!-- Termina el MODAL del boton confirmar. -->
  <!-- Comienza el stdnt_record academico del student. -->
-              
-
-                            <div class="card-body"> 
-                
-                
-                  <h4 style="text-align: left;">Instrucciones:Para realizar la consejería académica siga los siguientes pasos.</h4> 
+                <h4 style="text-align: left;">Instrucciones:Para realizar la consejería académica siga los siguientes pasos.</h4> 
                   <br>
                   <h5 style="text-align: left;"> <b style="color:red">Paso 1 ➔</b> Consulte su expediente.</h5>
                   <h5 style="text-align: left;"> <b style="color:red">Paso 2 ➔</b> Verifique el cohorte de su preferencia.</h5>
@@ -337,7 +356,9 @@ include_once 'private/dbconnect.php';
                   <h5> <i> Para seleccionar un curso presione caja de verificación</i> “❑”</h5>
                   <h5> <i> Los cursos en color <b style="background:violet;"> Violeta</b> son recomendados por su consejero. </i></h5>
                   <br>
-                  
+<div class="grid-container-1">
+  <div class="grid-item-1">                             
+      <div class="card-body">           
                   
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
@@ -364,7 +385,7 @@ include_once 'private/dbconnect.php';
                 while($row = mysqli_fetch_assoc($result)){
                   
                   
-                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
+                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
                     echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
@@ -412,7 +433,7 @@ include_once 'private/dbconnect.php';
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
             
-                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
+                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
                     echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
@@ -459,7 +480,7 @@ include_once 'private/dbconnect.php';
                 while($row = mysqli_fetch_assoc($result)){
                   
                   
-                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
+                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
                 
                     echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
@@ -496,7 +517,7 @@ include_once 'private/dbconnect.php';
                 while($row = mysqli_fetch_assoc($result)){
                   
                 
-                  echo "<tr width='50%' style='background-color: #e3e4e5'>";
+                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
                    
                     echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
@@ -546,7 +567,21 @@ include_once 'private/dbconnect.php';
                   }}?>
                     </table>
                     <div class='warning-message'><h4 style='text-align:center'>¡RECORDATORIO! Debe tomar 6 créditos en avanzada.</h4></div>
-              </div>
+              </div> </div>
+  <div class="grid-item"> 
+      <br>
+      <div class="sticky">  
+        <h6> Lista Cursos Confirmación </h6> 
+          <br>
+          <br>
+          <br>
+      </div> 
+    </div> 
+</div>
+                            
+                            
+                            
+
             </div>
           </div>
         </div>
