@@ -1,5 +1,5 @@
 <?php
-$file = fopen("Expediente_Alan.txt", "r") or die("Unable to open file!");
+/*$file = fopen("Expediente_Alan.txt", "r") or die("Unable to open file!");
 
 $i = 0;
 $data ; 
@@ -16,5 +16,14 @@ while(! feof($file))
     
     echo  "esto $codigo[$i]" ; 
   }
-fclose($file);
+fclose($file);*/
+
+
+$array = file("Expediente_Alan.txt");
+print_r($array);
+
+
+$result = preg_grep("/[A-Z]{4}[A-Z0-9]{4}/", $array);
+print_r($result);
+
 ?>
