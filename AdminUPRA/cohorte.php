@@ -491,16 +491,16 @@ h2 {
 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close" id="close">&times;</span>
     <h2>Flujograma del Cohorte</h2>
     <div class="grid-container">
       <div class="grid-item">
     <h3 for="sel2"><b>Seleccione el Curso:</b></h3>
           <select class="form-control" id="sel2"> 
-            <option></option>
+            <option>CCOM 3045</option>
           </select>
           <h3 for="sel3"><b>Seleccione el Año:</b></h3>
-          <select class="form-control" id="sel3"> 
+          <select class="form-control" id="year"> 
             <option>Primer Año</option>
             <option>Segundo Año</option>
             <option>Tercer Año</option>
@@ -508,14 +508,14 @@ h2 {
           </select>
       
           <h3 for="sel3"><b>Seleccione el Semestre:</b></h3>
-          <select class="form-control" id="sel3"> 
+          <select class="form-control" id="semester"> 
             <option>Enero-Mayo</option>
             <option>Agosto-Diciembre</option>
           </select>
 
           <div class="grid-container">
   <div class="grid-item">
-  <h3 for="sel4"><b>Pre-Requisito:</b></h3>
+  <h3 for="sel4"><span class="close" id="clearPre">&times;</span><b>Pre-Requisito:</b></h3>
           <select class="form-control" id="sel4"> 
           <option></option>
           </select>
@@ -526,7 +526,7 @@ h2 {
   </div>
   </div>
   <div class="grid-item">
-  <h3 for="sel5"><b>Co-Requisito:</b></h3>
+  <h3 for="sel5"><span class="close" id="clearCo">&times;</span><b>Co-Requisito:</b></h3>
           <select class="form-control" id="sel5"> 
           <option></option>
           </select>
@@ -538,14 +538,17 @@ h2 {
   </div>  
   </div>
   <div>
-            <button onclick="submitReq()" style="background: #e0c200; width: 30%; height: 35%; margin-top: 5px; margin-bottom: 5px; margin-left: 10%">Submit</button>
+            <button onclick="submitReq()" style="background: #e0c200; width: 30%; height: 35%; margin-top: 5px; margin-bottom: 5px; margin-left: 10%">Save</button>
             </div>
           </div>
             <div class="card card-primary grid-item" style="border-top: 3px solid #e0c200;">
-              <div class="card-body box-profile" id="clases">
+              <ol class="card-body box-profile" id="clases" style="overflow-y:auto; max-height: 400px">
 
-              </div>
+              </ol>
+            <button onclick="submitAll()" style="background:#e0c200; margin-top: 5px; margin-bottom: 5px">Submit</button>
+
 </div>
+
                 </div>
 </div>
   
@@ -618,13 +621,17 @@ h2 {
   }
 }
 
+let pre_requisitos = [];
+let co_requisitos = [];
+
 function submitPre() {
     var pre = document.getElementById("sel4").value;
     var list = document.getElementById("pre").innerHTML;
     document.getElementById("pre").innerHTML = `
       ${list}
-      <h3 id="co-requisito">Pre-Requisito : ${pre}</h3>
+      <h3 name="pre-requisito">${pre}</h3>
     `;
+    pre_requisitos.push(pre);
  }
 
  function submitCo() {
@@ -632,26 +639,111 @@ function submitPre() {
     var list = document.getElementById("co").innerHTML;
     document.getElementById("co").innerHTML = `
       ${list}
-      <h3 id="co-requisito">Co-Requisito : ${co}</h3>
+      <h3 id="co-requisito">${co}</h3>
     `;
+    co_requisitos.push(co);
  }
-
+var list_counter = 0;
+var arr = [];
+var class_arr = [];
  function submitReq(){
    var clase = document.getElementById("sel2").value;
    var list = document.getElementById("clases").innerHTML;
-   document.getElementById("clases").innerHTML = `
-      ${list}
-      <h3>${clase}</h3>
-    `;
+   var year = document.getElementById("year").value;
+   var semester = document.getElementById("semester").value;
+   
+  class_arr.push([clase, year, semester]);
+  console.table(class_arr);
+   list_counter++;
+
+  if (pre_requisitos.length >= co_requisitos.length){
+    var temp = pre_requisitos.length;
+    if (temp === 0){
+      temp = 1;
+    }
+  }else if (co_requisitos.length > pre_requisitos.length){
+    var temp = co_requisitos.length;
+  }
+  console.log(temp);
+  for (i = 0; i < temp; i++){
+    if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
+        arr.push([clase, pre_requisitos[i], co_requisitos[i]])
+        document.getElementById("clases").innerHTML = `
+          ${list}
+          <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
+        `;
+        } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
+            arr.push([clase, pre_requisitos[i], "-"]);
+            document.getElementById("clases").innerHTML = `
+              ${list}
+              <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
+            `;
+            } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
+                arr.push([clase, "-", co_requisitos[i]]);
+                document.getElementById("clases").innerHTML = `
+                  ${list}
+                  <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
+                `;
+                } else if(co_requisitos[i] === "" && pre_requisitos[i] === ""){
+                    document.getElementById("clases").innerHTML = `
+                      ${list}
+                      <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
+                    `;
+                    }
+  }
+
+ pre_requisitos = [];
+ co_requisitos = [];
+
+ document.getElementById("co").innerHTML = ``;
+ document.getElementById("pre").innerHTML = ``;
+ console.table(arr);
  }
- // Get the modal
+ 
+ function viewClase(clase){
+  var list;
+  document.getElementById("co").innerHTML = ``;
+  document.getElementById("pre").innerHTML = ``;
+   for (var i = 0; i < arr.length; i++){
+    if (arr[i][0] === `${clase}`){
+      if (arr[i][1] != null){
+        list = document.getElementById("pre").innerHTML;
+        document.getElementById("pre").innerHTML = `
+      ${list}
+      <h3 name="pre-requisito">${arr[i][1]}</h3>
+    `;
+      }
+      if (arr[i][2] != null){
+        list = document.getElementById("co").innerHTML;
+        document.getElementById("co").innerHTML = `
+      ${list}
+      <h3 name="co-requisito">${arr[i][2]}</h3>
+    `;
+      }
+    }
+   }
+   for (var i = 0; i < class_arr.length; i++){
+     if(class_arr[i][1] = `${clase}`){
+    document.getElementById("year").value = class_arr[i][2];
+    document.getElementById("semester").value = class_arr[i][3]; 
+     }
+   }
+ }
+
+// Get the modal
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementById("close");
+
+// Get the <span> element that clears the co-requisitos
+var clearCo = document.getElementById("clearCo");
+
+// Get the <span> element that clears the pre-requisitos
+var clearPre = document.getElementById("clearPre");
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
@@ -659,21 +751,21 @@ btn.onclick = function() {
   var con_code = document.querySelectorAll("[id='con_code']");
   var gen_code = document.querySelectorAll("[id='gen_code']");
   
-  for(var i = 0; i < con_code.length; i++){ 
-    loop = document.getElementById("sel2").innerHTML;
-    document.getElementById("sel2").innerHTML = `
-            ${loop}
-            <option>${con_code[i].innerHTML}</option>
-            `; 
-        document.getElementById("sel4").innerHTML = `
-            ${loop}
-            <option>${con_code[i].innerHTML}</option>
-            `; 
-            document.getElementById("sel5").innerHTML = `
-            ${loop}
-            <option>${con_code[i].innerHTML}</option>
-            `; 
-      }
+    for(var i = 0; i < con_code.length; i++){ 
+      loop = document.getElementById("sel2").innerHTML;
+      document.getElementById("sel2").innerHTML = `
+              ${loop}
+              <option>${con_code[i].innerHTML}</option>
+              `; 
+      document.getElementById("sel4").innerHTML = `
+              ${loop}
+              <option>${con_code[i].innerHTML}</option>
+              `; 
+      document.getElementById("sel5").innerHTML = `
+              ${loop}
+              <option>${con_code[i].innerHTML}</option>
+              `; 
+    }
 
       for(var i = 0; i < gen_code.length; i++){ 
         loop = document.getElementById("sel2").innerHTML;
@@ -685,7 +777,7 @@ btn.onclick = function() {
             ${loop}
             <option>${gen_code[i].innerHTML}</option>
             `; 
-            document.getElementById("sel5").innerHTML = `
+        document.getElementById("sel5").innerHTML = `
             ${loop}
             <option>${gen_code[i].innerHTML}</option>
             `; 
@@ -702,6 +794,23 @@ span.onclick = function() {
   document.getElementById("co").innerHTML = ``;
 }
 
+// When the user clicks on <span> (x), clear co-requisitos
+clearCo.onclick = function() {
+  document.getElementById("co").innerHTML = '';
+  for (var i = 0; i < arr.length; i++){
+    if (arr[i][0] === `${clase}`){
+      console.log(arr[i][2]);
+    }
+  }
+  co_requisitos = [];
+}
+
+// When the user clicks on <span> (x), clear pre-requisitos
+clearPre.onclick = function() {
+  document.getElementById("pre").innerHTML = '';
+  pre_requisitos = [];
+}
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
@@ -712,6 +821,25 @@ window.onclick = function(event) {
     document.getElementById("pre").innerHTML = ``;
     document.getElementById("co").innerHTML = ``;
   }
+}
+
+function submitAll() {
+  document.innerHTML = `
+  <form method="POST" action="inc/add_class.php">
+  <input type="hidden" name="dept" value=""></input>
+  <input type="hidden" name="cohort_year" value=""></input>
+  <input type="hidden" name="code" value=""></input>
+  <input type="hidden" name="desc" value=""></input>
+  <input type="hidden" name="cred" value=""></input>
+  <input type="hidden" name="req" value=""></input>
+  <input type="hidden" name="cred_dept" value=""></input>
+  <input type="hidden" name="cred_free" value=""></input>
+  <input type="hidden" name="cred_ciso" value=""></input>
+  <input type="hidden" name="pre_co" value=""></input>
+  <input type="hidden" name="class_year" value=""></input>
+  <input type="hidden" name="class_semester" value=""></input>
+  </form>
+  `;
 }
 
 </script>

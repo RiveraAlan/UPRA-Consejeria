@@ -366,7 +366,7 @@ include_once 'private/dbconnect.php';
                   
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -414,7 +414,7 @@ include_once 'private/dbconnect.php';
             
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                   
-                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -461,7 +461,7 @@ include_once 'private/dbconnect.php';
                   
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                 
-                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -498,7 +498,7 @@ include_once 'private/dbconnect.php';
                 
                   echo "<tr width='50%' style='background-color: #e3e4e5'>";
                    
-                    echo "<td><center><input type= checkbox name= {$row['crse_code']} value= {$row['crse_code']} />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
