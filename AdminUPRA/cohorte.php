@@ -398,11 +398,11 @@ h2 {
     <div class="container form">
         <div class="form-group">
           <label for="sel1">Seleccione el departamento (Concentración):</label>
-          <select class="form-control" id="sel1"> 
-            <option>Ciencias de Cómputos</option>
+          <select class="form-control" id="dept"> 
+          <option>CCOM</option>
           </select>
           <label style="margin-left: 5px">Año</label><br>
-        <input type="number" id="crse_year" name="crse_year" placeholder="2021" style="margin-left: 2px">
+        <input type="number" id="cohort_year" name="cohort_year" placeholder="2021" style="margin-left: 2px">
         </div>
     </div>
     
@@ -555,6 +555,7 @@ h2 {
 </div>
   </div>
 </div>
+<div id="subForm"></div>
        </section> 
      </div>
 
@@ -588,7 +589,11 @@ h2 {
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
 <script>
+let concentracion = [];
+let general = [];
+
   function myFunction() {
   crse_code = document.getElementById("crse_code").value;
   crse_description = document.getElementById("crse_description").value;
@@ -610,6 +615,7 @@ h2 {
             <td id='con_des'>${crse_description}</td>
             <td id='con_cred'>${crse_credits}</td>
             </tr>`;
+            concentracion.push([crse_code, crse_description, crse_credits]);
   }else {
     document.getElementById("general-table").innerHTML = `
             ${table2}
@@ -618,6 +624,7 @@ h2 {
             <td id='gen_des'>${crse_description}</td>
             <td id='gen_cred'>${crse_credits}</td>
             </tr>`;
+            general.push([crse_code, crse_description, crse_credits]);
   }
 }
 
@@ -824,22 +831,27 @@ window.onclick = function(event) {
 }
 
 function submitAll() {
-  document.innerHTML = `
-  <form method="POST" action="inc/add_class.php">
-  <input type="hidden" name="dept" value=""></input>
-  <input type="hidden" name="cohort_year" value=""></input>
-  <input type="hidden" name="code" value=""></input>
-  <input type="hidden" name="desc" value=""></input>
-  <input type="hidden" name="cred" value=""></input>
-  <input type="hidden" name="req" value=""></input>
-  <input type="hidden" name="cred_dept" value=""></input>
-  <input type="hidden" name="cred_free" value=""></input>
-  <input type="hidden" name="cred_ciso" value=""></input>
-  <input type="hidden" name="pre_co" value=""></input>
-  <input type="hidden" name="class_year" value=""></input>
-  <input type="hidden" name="class_semester" value=""></input>
+  dept = document.getElementById("dept");
+  cohort_year = document.getElementById("cohort_year");
+  cred_dept = document.getElementById("cred_dept");
+  cred_free = document.getElementById("cred_free");
+  cred_ciso = document.getElementById("cred_ciso");
+
+  document.getElementById("subForm").innerHTML = `
+  <form method="POST" action="inc/add_class.php" id="form">
+  <input type="hidden" name="dept" value="${dept}"></input>
+  <input type="hidden" name="cohort_year" value="${cohort_year}"></input>
+  <input type="hidden" name="concentracion" value="${concentracion}[]"></input>
+  <input type="hidden" name="general" value="${general}[]"></input>
+  <input type="hidden" name="cred_dept" value="${cred_dept}"></input>
+  <input type="hidden" name="cred_free" value="${cred_free}"></input>
+  <input type="hidden" name="cred_ciso" value="${cred_ciso}"></input>
+  <input type="hidden" name="pre_co" value="${arr}[]"></input>
+  <input type="hidden" name="class_year" value="${class_arr}[]"></input>
   </form>
   `;
+
+  document.getElementById("form").submit();
 }
 
 </script>

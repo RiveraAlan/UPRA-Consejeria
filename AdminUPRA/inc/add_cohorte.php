@@ -1,26 +1,17 @@
 <?php
-if (isset($_POST['add-submit'])) {
+// if (isset($_POST['submitAll'])) {
 require '../../private/dbconnect.php';
-    $course = mysqli_real_escape_string($conn, $_POST['course']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $credits = mysqli_real_escape_string($conn, $_POST['creditos']);
-    $tabla = mysqli_real_escape_string($conn, $_POST['tabla']);
-    echo $tabla, $course, $description, $credits;
-    if($tabla == 'free_courses'){
-    $sql = "SELECT crse_label FROM free_courses WHERE crse_name = '$course'";
-    $result = mysqli_query($conn, $sql);
-    $resultCheck = mysqli_num_rows($result);
-
-    if($resultCheck != 1){
-    $sql = "INSERT INTO free_courses (crse_name, crse_description, crse_credits, crse_id) VALUES ('$course', '$description', $credits, 7)";
-    // Prepare statement
-    $stmt = $conn->prepare($sql);
-    // execute the query
-    $stmt->execute();
-    //exit
-    header("Location: ../inicio.php");
-    exit();
-    }
-}
-}
+    $dept = mysqli_real_escape_string($conn, $_POST['dept']);
+    $cohort_year = mysqli_real_escape_string($conn, $_POST['cohort_year']);
+    $concentracion = mysqli_real_escape_string($conn, $_POST['concentracion']);
+    $general = mysqli_real_escape_string($conn, $_POST['general']);
+    $cred_dept = mysqli_real_escape_string($conn, $_POST['cred_dept']);
+    $cred_free = mysqli_real_escape_string($conn, $_POST['cred_free']);
+    $cred_ciso = mysqli_real_escape_string($conn, $_POST['cred_ciso']);
+    $pre_co = mysqli_real_escape_string($conn, $_POST['pre_co']);
+    $class_arr = mysqli_real_escape_string($conn, $_POST['class_arr']);
+    
+    echo $dept, " ", $cohort_year, " ", $concentracion, " ", $general, " ", $cred_dept;
+    
+// }
 ?>
