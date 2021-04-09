@@ -2015,7 +2015,7 @@
         meridiemParse: defaultLocaleMeridiemParse,
     };
 
-    // internal storage for locale config student_records
+    // internal storage for locale config stdnt_records
     var locales = {},
         localeFamilies = {},
         globalLocale;
@@ -2086,7 +2086,7 @@
                 aliasedRequire('./locale/' + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {
-                // mark as not found to avoid repeating expensive student_record require call causing high CPU
+                // mark as not found to avoid repeating expensive stdnt_record require call causing high CPU
                 // when trying to find en-US, en_US, en-us for every format call
                 locales[name] = null; // null means not found
             }

@@ -1,5 +1,5 @@
 /**************************************
-    student_record Name: custom.js
+    stdnt_record Name: custom.js
 **************************************/
 
 (function ($) {

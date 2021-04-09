@@ -60,7 +60,7 @@
   line-height: calc(1.8125rem + 2px);
 }
 
-label:not(.form-check-label):not(.custom-student_record-label) {
+label:not(.form-check-label):not(.custom-stdnt_record-label) {
   font-weight: 700;
 }
 
@@ -120,8 +120,8 @@ textarea.form-control.is-warning {
   display: block;
 }
 
-.form-control-student_record.is-warning ~ .warning-feedback,
-.form-control-student_record.is-warning ~ .warning-tooltip {
+.form-control-stdnt_record.is-warning ~ .warning-feedback,
+.form-control-stdnt_record.is-warning ~ .warning-tooltip {
   display: block;
 }
 
@@ -160,16 +160,16 @@ textarea.form-control.is-warning {
   border-color: #ffc107;
 }
 
-.custom-student_record-input.is-warning ~ .custom-student_record-label {
+.custom-stdnt_record-input.is-warning ~ .custom-stdnt_record-label {
   border-color: #ffc107;
 }
 
-.custom-student_record-input.is-warning ~ .warning-feedback,
-.custom-student_record-input.is-warning ~ .warning-tooltip {
+.custom-stdnt_record-input.is-warning ~ .warning-feedback,
+.custom-stdnt_record-input.is-warning ~ .warning-tooltip {
   display: block;
 }
 
-.custom-student_record-input.is-warning:focus ~ .custom-student_record-label {
+.custom-stdnt_record-input.is-warning:focus ~ .custom-stdnt_record-label {
   border-color: #ffc107;
   box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.25);
 }
@@ -4836,12 +4836,12 @@ html.maximized-card {
   box-shadow: none;
 }
 
-.btn.btn-student_record {
+.btn.btn-stdnt_record {
   overflow: hidden;
   position: relative;
 }
 
-.btn.btn-student_record > input[type='student_record'] {
+.btn.btn-stdnt_record > input[type='stdnt_record'] {
   background: #ffffff;
   cursor: inherit;
   display: block;

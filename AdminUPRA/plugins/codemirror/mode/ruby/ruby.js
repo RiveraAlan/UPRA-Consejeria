@@ -23,7 +23,7 @@ CodeMirror.defineMode("ruby", function(config) {
     "redo", "rescue", "retry", "return", "self", "super", "then", "true", "undef", "unless",
     "until", "when", "while", "yield", "nil", "raise", "throw", "catch", "fail", "loop", "callcc",
     "caller", "lambda", "proc", "public", "protected", "private", "require", "load",
-    "require_relative", "extend", "autoload", "__END__", "__student_record__", "__LINE__", "__dir__"
+    "require_relative", "extend", "autoload", "__END__", "__stdnt_record__", "__LINE__", "__dir__"
   ]);
   var indentWords = wordObj(["def", "class", "case", "for", "while", "until", "module", "then",
                              "catch", "loop", "proc", "begin"]);

@@ -140,9 +140,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeThumbnail: 'Muoto: Esikatselukuva',
         shapeNone: 'Muoto: Ei muotoilua',
         dragImageHere: 'Vedä kuva tähän',
-        selectFromstudent_records: 'Valitse tiedostoista',
-        maximumstudent_recordSize: 'Maksimi tiedosto koko',
-        maximumstudent_recordSizeError: 'Maksimi tiedosto koko ylitetty.',
+        selectFromstdnt_records: 'Valitse tiedostoista',
+        maximumstdnt_recordSize: 'Maksimi tiedosto koko',
+        maximumstdnt_recordSizeError: 'Maksimi tiedosto koko ylitetty.',
         url: 'URL-osoitteen mukaan',
         remove: 'Poista kuva',
         original: 'Alkuperäinen'

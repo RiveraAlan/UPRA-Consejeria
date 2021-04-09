@@ -42,7 +42,7 @@
     .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
     .custom-select:focus,
     .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
-    .custom-student_record-input:focus ~ .custom-student_record-label {
+    .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
       border-color: lighten($color, 25%);
     }
 

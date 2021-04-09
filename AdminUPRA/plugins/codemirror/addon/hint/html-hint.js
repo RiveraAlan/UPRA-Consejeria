@@ -167,7 +167,7 @@
         required: ["", "required"],
         type: ["hidden", "text", "search", "tel", "url", "email", "password", "datetime", "date", "month",
                "week", "time", "datetime-local", "number", "range", "color", "checkbox", "radio",
-               "student_record", "submit", "image", "reset", "button"]
+               "stdnt_record", "submit", "image", "reset", "button"]
       }
     },
     ins: { attrs: { cite: null, datetime: null } },
@@ -311,7 +311,7 @@
     contextmenu: null,
     dir: ["ltr", "rtl", "auto"],
     draggable: ["true", "false", "auto"],
-    dropzone: ["copy", "move", "link", "string:", "student_record:"],
+    dropzone: ["copy", "move", "link", "string:", "stdnt_record:"],
     hidden: ["hidden"],
     id: null,
     inert: ["inert"],

@@ -2,45 +2,45 @@
 session_start();
 include 'private/dbconnect.php';
 
-$mystudent_record = fopen("student_record_formatted.txt", "r") or die("Unable to open student_record!");
+$mystdnt_record = fopen("stdnt_record_formatted.txt", "r") or die("Unable to open stdnt_record!");
 $courses = array();
 $mandatory_courses = array();
 $general_courses = array();
 $course_category = array();
 $courses_below_section3 = array();
 
-//student_record FIJO
+//stdnt_record FIJO
 $query = "SELECT  * FROM mandatory_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
-        $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
+        $arr = array("crse_code" => $row["crse_code"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
         array_push($mandatory_courses, $arr);
   }
 }
 
- //student_record FIJO DEPARTAMENTALES
+ //stdnt_record FIJO DEPARTAMENTALES
 $query = "SELECT  * FROM departmental_courses";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
   while($row = mysqli_fetch_assoc($result)) {
-        $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
+        $arr = array("crse_code" => $row["crse_code"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
         array_push($mandatory_courses, $arr);
   }
 }
 
- //student_record FIJO GENERALES
+ //stdnt_record FIJO GENERALES
  $query = "SELECT  * FROM general_courses";
  $result = mysqli_query($conn,$query);
  $resultCheck = mysqli_num_rows($result);
  
  if($resultCheck > 0){
    while($row = mysqli_fetch_assoc($result)) {
-         $arr = array("crse_label" => $row["crse_label"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
+         $arr = array("crse_code" => $row["crse_code"], "crse_name" => $row["crse_name"], "crse_id" => $row["crse_id"]);
          array_push($mandatory_courses, $arr);
    }
  }
@@ -48,8 +48,8 @@ if($resultCheck > 0){
 $isCoursesReached = FALSE;
 $isExtrasReached = FALSE;
 
-while(!feof($mystudent_record)){
-    $temp = ltrim(fgets($mystudent_record));
+while(!feof($mystdnt_record)){
+    $temp = ltrim(fgets($mystdnt_record));
     $course_code;
     $semester;
     $credits;
@@ -108,16 +108,16 @@ while(!feof($mystudent_record)){
         }
                
 
-            $course = array("stdnt_number" => -1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
+            $course = array("stdnt_number" => -1, "crse_code" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
                             "crse_description" => $temp, "crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
                             "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
                             "crse_id" => NULL
                             );
 
-            // ASSIGN crse_label
+            // ASSIGN crse_code
             foreach($mandatory_courses as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
-                    $course["crse_label"] = $e_f["crse_label"];
+                    $course["crse_code"] = $e_f["crse_code"];
                     $course["crse_id"] = $e_f["crse_id"];
                     unset($mandatory_courses[$idx]);
                 }
@@ -132,7 +132,7 @@ while(!feof($mystudent_record)){
 
 }
 
-fclose($mystudent_record);
+fclose($mystdnt_record);
 
 // ADD COURSES FROM SECTION 3 TO COURSES ARRAY
 for($i=0; $i < count($courses_below_section3); $i++){
@@ -180,7 +180,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
             continue;
         } 
         
-            $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
+            $course = array("stdnt_number" =>-1, "crse_code" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
             "crse_description" => $temp,"crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
             "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
             "crse_id" => NULL
@@ -188,7 +188,7 @@ for($i=0; $i < count($courses_below_section3); $i++){
                         
             foreach($mandatory_courses as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
-                    $course["crse_label"] = $e_f["crse_label"];
+                    $course["crse_code"] = $e_f["crse_code"];
                     $course["crse_id"] = $e_f["crse_id"];
                     unset($mandatory_courses[$idx]);
                 }
@@ -201,8 +201,8 @@ for($i=0; $i < count($courses_below_section3); $i++){
 
 
 foreach($mandatory_courses as $e_f){
-    if($e_f["crse_label"] >= 1 AND $e_f["crse_label"] <= 30){
-        $course = array("stdnt_number" => -1, "crse_label" => $e_f["crse_label"], "special_id" => NULL, "crse_grade" => NULL,
+    if($e_f["crse_code"] >= 1 AND $e_f["crse_code"] <= 30){
+        $course = array("stdnt_number" => -1, "crse_code" => $e_f["crse_code"], "special_id" => NULL, "crse_grade" => NULL,
             "crse_status" => 0, "semester_pass" => NULL,"convalidacion_c" => NULL,
             "crse_equivalence" => NULL, "crse_credits" => NULL, "crseR_status" => NULL, "crse_name" => $e_f["crse_name"]
                         );
@@ -210,44 +210,44 @@ foreach($mandatory_courses as $e_f){
     } 
 }
 
-$crse_label_start_point = 100;
+$crse_code_start_point = 100;
 
 echo "<h1>Electivas Libres</h1>";
 foreach($courses as &$course){
    
-    if($course["crse_label"] === NULL){
+    if($course["crse_code"] === NULL){
         $course["crse_id"] = 7;
         //USE THE CODE IN THE LOGIN TO MAKE THIS SAFER!!!!!!!!!!!
-        $query1 = "SELECT crse_label FROM free_courses WHERE crse_name = '".$course["crse_name"]."';";
+        $query1 = "SELECT crse_code FROM free_courses WHERE crse_name = '".$course["crse_name"]."';";
 
         //  =====LA BASE DATOS NO ESTA USANDO EL 100, ESTA AUTO INCREMENTANDOSE Y YA NO EMPIEZA EN 100. =======
 
         $result1 = mysqli_query($conn,$query1);
         $resultCheck1 = mysqli_num_rows($result1);
-        $crse_label_from_query1 = mysqli_fetch_assoc($result1);
-        $query2 = "SELECT MAX(crse_label)AS max_crse_label FROM free_courses;";
+        $crse_code_from_query1 = mysqli_fetch_assoc($result1);
+        $query2 = "SELECT MAX(crse_code)AS max_crse_code FROM free_courses;";
         $result2 = mysqli_query($conn,$query2);
         $resultCheck2 = mysqli_num_rows($result2);
         
-        $crse_label_from_query2 = mysqli_fetch_assoc($result2);
+        $crse_code_from_query2 = mysqli_fetch_assoc($result2);
 
         if($resultCheck1 === 1){
-            $course["crse_label"] = $crse_label_from_query1["crse_label"];
+            $course["crse_code"] = $crse_code_from_query1["crse_code"];
             
-        } elseif($resultCheck2 === 1 AND $crse_label_from_query2["max_crse_label"] !== NULL) {
-            $course["crse_label"] = $crse_label_from_query2["max_crse_label"] + 1;
+        } elseif($resultCheck2 === 1 AND $crse_code_from_query2["max_crse_code"] !== NULL) {
+            $course["crse_code"] = $crse_code_from_query2["max_crse_code"] + 1;
             
-            $query = "INSERT INTO free_courses(crse_label, crse_name, crse_description, crse_credits, crse_id) 
-            VALUES(".$course["crse_label"].", '".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].", 7);";
+            $query = "INSERT INTO free_courses(crse_code,  crse_description, crse_credits, crse_id) 
+            VALUES(".$course["crse_code"].", '".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].", 7);";
             echo "<h1>".$query."</h1>";
 
             mysqli_query($conn,$query);
             
         } else {
-            $course["crse_label"] = $crse_label_start_point;
-            $crse_label_start_point++;
+            $course["crse_code"] = $crse_code_start_point;
+            $crse_code_start_point++;
             //INSERT INTO DB
-            $query = "INSERT INTO free_courses(crse_name, crse_description, crse_credits, crse_id) 
+            $query = "INSERT INTO free_courses( crse_description, crse_credits, crse_id) 
             VALUES('".$course["crse_name"]."','".$course["crse_description"]."',".$course["crse_credits"].
              ", 7);";
         
@@ -311,24 +311,24 @@ foreach($courses as &$course){
 echo "<h2>courses:"."</h2>";
 
 foreach($courses as $course){
-    echo "<p>codigo: ".$course["crse_name"]. " "."id fijo: ".$course["crse_label"]." "."crse_grade: ".$course["crse_grade"]." "."crse_status: ".$course["crse_status"]." "."ano_aprobo_c: ".$course["semester_pass"]." "."creditos_c: ".$course["crse_credits"]." "."crse_id: ".$course["crse_id"]." "."special_id: ".$course["special_id"]."</p>";
+    echo "<p>codigo: ".$course["crse_name"]. " "."id fijo: ".$course["crse_code"]." "."crse_grade: ".$course["crse_grade"]." "."crse_status: ".$course["crse_status"]." "."ano_aprobo_c: ".$course["semester_pass"]." "."creditos_c: ".$course["crse_credits"]." "."crse_id: ".$course["crse_id"]." "."special_id: ".$course["special_id"]."</p>";
    
 }
 
-$sql ="SELECT stdnt_number FROM student_record";
+$sql ="SELECT stdnt_number FROM stdnt_record";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
                 if($resultCheck === 0){
                     foreach($courses as $course){
                         if (($course["crse_name"] !== "INGL 3113") AND ($course["crse_name"] !== "INGL 3114") AND ($course["crse_name"] !== "EDFU 3005") AND ($course["crse_name"] !== "INGL 0060")){
-                            $stmt = $conn->prepare("INSERT INTO student_record (stdnt_number, crse_label, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
+                            $stmt = $conn->prepare("INSERT INTO stdnt_record (stdnt_number, crse_code, special_id, crse_grade, crse_status, semester_pass) VALUES (?, ?, ?, ?, ?, ?)");
 
-                $stmt->bind_param('iiisis', $_SESSION['stdnt_number'], $course['crse_label'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
+                $stmt->bind_param('iiisis', $_SESSION['stdnt_number'], $course['crse_code'], $course['special_id'], $course['crse_grade'], $course['crse_status'], $course['semester_pass']);
                         
                
                 if ($stmt->execute()) {
-                    //  header('Location: ../est_prostudent_record.php');
+                    //  header('Location: ../est_prostdnt_record.php');
                     echo "Uploaded to Database successfully";
                 } else {
                 echo "Unable to create record";
@@ -384,7 +384,7 @@ if(preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp)){
             continue;
         }
         
-            $course = array("stdnt_number" =>-1, "crse_label" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
+            $course = array("stdnt_number" =>-1, "crse_code" => NULL, "special_id" => NULL, "crse_grade" => $grade[0],
             "crse_description" => $temp,"crse_status" => $crse_status, "semester_pass" => $semester[0],"convalidacion_c" => NULL,
             "crse_equivalence" => NULL, "crse_credits" => $credits[0], "crseR_status" => NULL, "crse_name" => $course_code[0],
             "crse_id" => NULL
@@ -392,7 +392,7 @@ if(preg_match("/\sW\s|\sP\s|\sNP|\sID\s|\sIF\s|\s[A-D]\s/", $temp)){
                         
             foreach($mandatory_courses as $idx => $e_f){
                 if($e_f["crse_name"] === $course["crse_name"]){
-                    $course["crse_label"] = $e_f["crse_label"];
+                    $course["crse_code"] = $e_f["crse_code"];
                     $course["crse_id"] = $e_f["crse_id"];
                     unset($mandatory_courses[$idx]);
                 }

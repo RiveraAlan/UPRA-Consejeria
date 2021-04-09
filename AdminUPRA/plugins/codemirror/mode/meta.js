@@ -15,7 +15,7 @@
     {name: "APL", mime: "text/apl", mode: "apl", ext: ["dyalog", "apl"]},
     {name: "PGP", mimes: ["application/pgp", "application/pgp-encrypted", "application/pgp-keys", "application/pgp-signature"], mode: "asciiarmor", ext: ["asc", "pgp", "sig"]},
     {name: "ASN.1", mime: "text/x-ttcn-asn", mode: "asn.1", ext: ["asn", "asn1"]},
-    {name: "Asterisk", mime: "text/x-asterisk", mode: "asterisk", student_record: /^extensions\.conf$/i},
+    {name: "Asterisk", mime: "text/x-asterisk", mode: "asterisk", stdnt_record: /^extensions\.conf$/i},
     {name: "Brainfuck", mime: "text/x-brainfuck", mode: "brainfuck", ext: ["b", "bf"]},
     {name: "C", mime: "text/x-csrc", mode: "clike", ext: ["c", "h", "ino"]},
     {name: "C++", mime: "text/x-c++src", mode: "clike", ext: ["cpp", "c++", "cc", "cxx", "hpp", "h++", "hh", "hxx"], alias: ["cpp"]},
@@ -24,7 +24,7 @@
     {name: "Clojure", mime: "text/x-clojure", mode: "clojure", ext: ["clj", "cljc", "cljx"]},
     {name: "ClojureScript", mime: "text/x-clojurescript", mode: "clojure", ext: ["cljs"]},
     {name: "Closure Stylesheets (GSS)", mime: "text/x-gss", mode: "css", ext: ["gss"]},
-    {name: "CMake", mime: "text/x-cmake", mode: "cmake", ext: ["cmake", "cmake.in"], student_record: /^CMakeLists.txt$/},
+    {name: "CMake", mime: "text/x-cmake", mode: "cmake", ext: ["cmake", "cmake.in"], stdnt_record: /^CMakeLists.txt$/},
     {name: "CoffeeScript", mimes: ["application/vnd.coffeescript", "text/coffeescript", "text/x-coffeescript"], mode: "coffeescript", ext: ["coffee"], alias: ["coffee", "coffee-script"]},
     {name: "Common Lisp", mime: "text/x-common-lisp", mode: "commonlisp", ext: ["cl", "lisp", "el"], alias: ["lisp"]},
     {name: "Cypher", mime: "application/x-cypher-query", mode: "cypher", ext: ["cyp", "cypher"]},
@@ -36,7 +36,7 @@
     {name: "Dart", mimes: ["application/dart", "text/x-dart"], mode: "dart", ext: ["dart"]},
     {name: "diff", mime: "text/x-diff", mode: "diff", ext: ["diff", "patch"]},
     {name: "Django", mime: "text/x-django", mode: "django"},
-    {name: "Dockerstudent_record", mime: "text/x-dockerstudent_record", mode: "dockerstudent_record", student_record: /^Dockerstudent_record$/},
+    {name: "Dockerstdnt_record", mime: "text/x-dockerstdnt_record", mode: "dockerstdnt_record", stdnt_record: /^Dockerstdnt_record$/},
     {name: "DTD", mime: "application/xml-dtd", mode: "dtd", ext: ["dtd"]},
     {name: "Dylan", mime: "text/x-dylan", mode: "dylan", ext: ["dylan", "dyl", "intr"]},
     {name: "EBNF", mime: "text/x-ebnf", mode: "ebnf"},
@@ -55,9 +55,9 @@
     {name: "F#", mime: "text/x-fsharp", mode: "mllike", ext: ["fs"], alias: ["fsharp"]},
     {name: "Gas", mime: "text/x-gas", mode: "gas", ext: ["s"]},
     {name: "Gherkin", mime: "text/x-feature", mode: "gherkin", ext: ["feature"]},
-    {name: "GitHub Flavored Markdown", mime: "text/x-gfm", mode: "gfm", student_record: /^(readme|contributing|history).md$/i},
+    {name: "GitHub Flavored Markdown", mime: "text/x-gfm", mode: "gfm", stdnt_record: /^(readme|contributing|history).md$/i},
     {name: "Go", mime: "text/x-go", mode: "go", ext: ["go"]},
-    {name: "Groovy", mime: "text/x-groovy", mode: "groovy", ext: ["groovy", "gradle"], student_record: /^Jenkinsstudent_record$/},
+    {name: "Groovy", mime: "text/x-groovy", mode: "groovy", ext: ["groovy", "gradle"], stdnt_record: /^Jenkinsstdnt_record$/},
     {name: "HAML", mime: "text/x-haml", mode: "haml", ext: ["haml"]},
     {name: "Haskell", mime: "text/x-haskell", mode: "haskell", ext: ["hs"]},
     {name: "Haskell (Literate)", mime: "text/x-literate-haskell", mode: "haskell-literate", ext: ["lhs"]},
@@ -90,7 +90,7 @@
     {name: "MS SQL", mime: "text/x-mssql", mode: "sql"},
     {name: "mbox", mime: "application/mbox", mode: "mbox", ext: ["mbox"]},
     {name: "MySQL", mime: "text/x-mysql", mode: "sql"},
-    {name: "Nginx", mime: "text/x-nginx-conf", mode: "nginx", student_record: /nginx.*\.conf$/i},
+    {name: "Nginx", mime: "text/x-nginx-conf", mode: "nginx", stdnt_record: /nginx.*\.conf$/i},
     {name: "NSIS", mime: "text/x-nsis", mode: "nsis", ext: ["nsh", "nsi"]},
     {name: "NTriples", mimes: ["application/n-triples", "application/n-quads", "text/n-triples"],
      mode: "ntriples", ext: ["nt", "nq"]},
@@ -108,9 +108,9 @@
     {name: "PLSQL", mime: "text/x-plsql", mode: "sql", ext: ["pls"]},
     {name: "PostgreSQL", mime: "text/x-pgsql", mode: "sql"},
     {name: "PowerShell", mime: "application/x-powershell", mode: "powershell", ext: ["ps1", "psd1", "psm1"]},
-    {name: "Properties student_records", mime: "text/x-properties", mode: "properties", ext: ["properties", "ini", "in"], alias: ["ini", "properties"]},
+    {name: "Properties stdnt_records", mime: "text/x-properties", mode: "properties", ext: ["properties", "ini", "in"], alias: ["ini", "properties"]},
     {name: "ProtoBuf", mime: "text/x-protobuf", mode: "protobuf", ext: ["proto"]},
-    {name: "Python", mime: "text/x-python", mode: "python", ext: ["BUILD", "bzl", "py", "pyw"], student_record: /^(BUCK|BUILD)$/},
+    {name: "Python", mime: "text/x-python", mode: "python", ext: ["BUILD", "bzl", "py", "pyw"], stdnt_record: /^(BUCK|BUILD)$/},
     {name: "Puppet", mime: "text/x-puppet", mode: "puppet", ext: ["pp"]},
     {name: "Q", mime: "text/x-q", mode: "q", ext: ["q"]},
     {name: "R", mime: "text/x-rsrc", mode: "r", ext: ["r", "R"], alias: ["rscript"]},
@@ -124,7 +124,7 @@
     {name: "Scala", mime: "text/x-scala", mode: "clike", ext: ["scala"]},
     {name: "Scheme", mime: "text/x-scheme", mode: "scheme", ext: ["scm", "ss"]},
     {name: "SCSS", mime: "text/x-scss", mode: "css", ext: ["scss"]},
-    {name: "Shell", mimes: ["text/x-sh", "application/x-sh"], mode: "shell", ext: ["sh", "ksh", "bash"], alias: ["bash", "sh", "zsh"], student_record: /^PKGBUILD$/},
+    {name: "Shell", mimes: ["text/x-sh", "application/x-sh"], mode: "shell", ext: ["sh", "ksh", "bash"], alias: ["bash", "sh", "zsh"], stdnt_record: /^PKGBUILD$/},
     {name: "Sieve", mime: "application/sieve", mode: "sieve", ext: ["siv", "sieve"]},
     {name: "Slim", mimes: ["text/x-slim", "application/x-slim"], mode: "slim", ext: ["slim"]},
     {name: "Smalltalk", mime: "text/x-stsrc", mode: "smalltalk", ext: ["st"]},
@@ -198,13 +198,13 @@
     }
   };
 
-  CodeMirror.findModeBystudent_recordName = function(student_recordname) {
+  CodeMirror.findModeBystdnt_recordName = function(stdnt_recordname) {
     for (var i = 0; i < CodeMirror.modeInfo.length; i++) {
       var info = CodeMirror.modeInfo[i];
-      if (info.student_record && info.student_record.test(student_recordname)) return info;
+      if (info.stdnt_record && info.stdnt_record.test(stdnt_recordname)) return info;
     }
-    var dot = student_recordname.lastIndexOf(".");
-    var ext = dot > -1 && student_recordname.substring(dot + 1, student_recordname.length);
+    var dot = stdnt_recordname.lastIndexOf(".");
+    var ext = dot > -1 && stdnt_recordname.substring(dot + 1, stdnt_recordname.length);
     if (ext) return CodeMirror.findModeByExtension(ext);
   };
 

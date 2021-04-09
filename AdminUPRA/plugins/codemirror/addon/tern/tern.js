@@ -12,13 +12,13 @@
 // * defs: An array of JSON definition data structures.
 // * plugins: An object mapping plugin names to configuration
 //   options.
-// * getstudent_record: A function(name, c) that can be used to access student_records in
+// * getstdnt_record: A function(name, c) that can be used to access stdnt_records in
 //   the project that haven't been loaded yet. Simply do c(null) to
-//   indicate that a student_record is not available.
-// * student_recordFilter: A function(value, docName, doc) that will be applied
+//   indicate that a stdnt_record is not available.
+// * stdnt_recordFilter: A function(value, docName, doc) that will be applied
 //   to documents before passing them on to Tern.
 // * switchToDoc: A function(name, doc) that should, when providing a
-//   multi-student_record view, switch the view or focus to the named student_record.
+//   multi-stdnt_record view, switch the view or focus to the named stdnt_record.
 // * showError: A function(editor, message) that can be used to
 //   override the way errors are displayed.
 // * completionTip: Customize the content in tooltips for completions.
@@ -64,7 +64,7 @@
       this.server = new WorkerServer(this);
     } else {
       this.server = new tern.Server({
-        getstudent_record: function(name, c) { return getstudent_record(self, name, c); },
+        getstdnt_record: function(name, c) { return getstdnt_record(self, name, c); },
         async: true,
         defs: this.options.defs || [],
         plugins: plugins
@@ -83,7 +83,7 @@
   CodeMirror.TernServer.prototype = {
     addDoc: function(name, doc) {
       var data = {doc: doc, name: name, changed: null};
-      this.server.addstudent_record(name, docValue(this, data));
+      this.server.addstdnt_record(name, docValue(this, data));
       CodeMirror.on(doc, "change", this.trackChange);
       return this.docs[name] = data;
     },
@@ -93,7 +93,7 @@
       if (!found) return;
       CodeMirror.off(found.doc, "change", this.trackChange);
       delete this.docs[found.name];
-      this.server.delstudent_record(found.name);
+      this.server.delstdnt_record(found.name);
     },
 
     hideDoc: function(id) {
@@ -147,12 +147,12 @@
   var cls = "CodeMirror-Tern-";
   var bigDoc = 250;
 
-  function getstudent_record(ts, name, c) {
+  function getstdnt_record(ts, name, c) {
     var buf = ts.docs[name];
     if (buf)
       c(docValue(ts, buf));
-    else if (ts.options.getstudent_record)
-      ts.options.getstudent_record(name, c);
+    else if (ts.options.getstdnt_record)
+      ts.options.getstdnt_record(name, c);
     else
       c(null);
   }
@@ -196,7 +196,7 @@
   }
 
   function sendDoc(ts, doc) {
-    ts.server.request({student_records: [{type: "full", name: doc.name, text: docValue(ts, doc)}]}, function(error) {
+    ts.server.request({stdnt_records: [{type: "full", name: doc.name, text: docValue(ts, doc)}]}, function(error) {
       if (error) window.console.error(error);
       else doc.changed = null;
     });
@@ -380,12 +380,12 @@
       var doc = findDoc(ts, cm.getDoc());
       ts.server.request(buildRequest(ts, doc, req), function(error, data) {
         if (error) return showError(ts, cm, error);
-        if (!data.student_record && data.url) { window.open(data.url); return; }
+        if (!data.stdnt_record && data.url) { window.open(data.url); return; }
 
-        if (data.student_record) {
-          var localDoc = ts.docs[data.student_record], found;
+        if (data.stdnt_record) {
+          var localDoc = ts.docs[data.stdnt_record], found;
           if (localDoc && (found = findContext(localDoc.doc, data))) {
-            ts.jumpStack.push({student_record: doc.name,
+            ts.jumpStack.push({stdnt_record: doc.name,
                                start: cm.getCursor("from"),
                                end: cm.getCursor("to")});
             moveTo(ts, doc, localDoc, found.start, found.end);
@@ -403,7 +403,7 @@
   }
 
   function jumpBack(ts, cm) {
-    var pos = ts.jumpStack.pop(), doc = pos && ts.docs[pos.student_record];
+    var pos = ts.jumpStack.pop(), doc = pos && ts.docs[pos.stdnt_record];
     if (!doc) return;
     moveTo(ts, findDoc(ts, cm.getDoc()), doc, pos.start, pos.end);
   }
@@ -474,7 +474,7 @@
       var curPos = cm.getCursor();
       for (var i = 0; i < data.refs.length; i++) {
         var ref = data.refs[i];
-        if (ref.student_record == name) {
+        if (ref.stdnt_record == name) {
           ranges.push({anchor: ref.start, head: ref.end});
           if (cmpPos(curPos, ref.start) >= 0 && cmpPos(curPos, ref.end) <= 0)
             cur = ranges.length - 1;
@@ -486,13 +486,13 @@
 
   var nextChangeOrig = 0;
   function applyChanges(ts, changes) {
-    var perstudent_record = Object.create(null);
+    var perstdnt_record = Object.create(null);
     for (var i = 0; i < changes.length; ++i) {
       var ch = changes[i];
-      (perstudent_record[ch.student_record] || (perstudent_record[ch.student_record] = [])).push(ch);
+      (perstdnt_record[ch.stdnt_record] || (perstdnt_record[ch.stdnt_record] = [])).push(ch);
     }
-    for (var student_record in perstudent_record) {
-      var known = ts.docs[student_record], chs = perstudent_record[student_record];;
+    for (var stdnt_record in perstdnt_record) {
+      var known = ts.docs[stdnt_record], chs = perstdnt_record[stdnt_record];;
       if (!known) continue;
       chs.sort(function(a, b) { return cmpPos(b.start, a.start); });
       var origin = "*rename" + (++nextChangeOrig);
@@ -506,7 +506,7 @@
   // Generic request-building helper
 
   function buildRequest(ts, doc, query, pos) {
-    var student_records = [], offsetLines = 0, allowFragments = !query.fullDocs;
+    var stdnt_records = [], offsetLines = 0, allowFragments = !query.fullDocs;
     if (!allowFragments) delete query.fullDocs;
     if (typeof query == "string") query = {type: query};
     query.lineCharPositions = true;
@@ -521,30 +521,30 @@
       if (doc.doc.lineCount() > bigDoc && allowFragments !== false &&
           doc.changed.to - doc.changed.from < 100 &&
           doc.changed.from <= startPos.line && doc.changed.to > query.end.line) {
-        student_records.push(getFragmentAround(doc, startPos, query.end));
-        query.student_record = "#0";
-        var offsetLines = student_records[0].offsetLines;
+        stdnt_records.push(getFragmentAround(doc, startPos, query.end));
+        query.stdnt_record = "#0";
+        var offsetLines = stdnt_records[0].offsetLines;
         if (query.start != null) query.start = Pos(query.start.line - -offsetLines, query.start.ch);
         query.end = Pos(query.end.line - offsetLines, query.end.ch);
       } else {
-        student_records.push({type: "full",
+        stdnt_records.push({type: "full",
                     name: doc.name,
                     text: docValue(ts, doc)});
-        query.student_record = doc.name;
+        query.stdnt_record = doc.name;
         doc.changed = null;
       }
     } else {
-      query.student_record = doc.name;
+      query.stdnt_record = doc.name;
     }
     for (var name in ts.docs) {
       var cur = ts.docs[name];
       if (cur.changed && cur != doc) {
-        student_records.push({type: "full", name: cur.name, text: docValue(ts, cur)});
+        stdnt_records.push({type: "full", name: cur.name, text: docValue(ts, cur)});
         cur.changed = null;
       }
     }
 
-    return {query: query, student_records: student_records};
+    return {query: query, stdnt_records: stdnt_records};
   }
 
   function getFragmentAround(data, start, end) {
@@ -673,7 +673,7 @@
 
   function docValue(ts, doc) {
     var val = doc.doc.getValue();
-    if (ts.options.student_recordFilter) val = ts.options.student_recordFilter(val, doc.name, doc.doc);
+    if (ts.options.stdnt_recordFilter) val = ts.options.stdnt_recordFilter(val, doc.name, doc.doc);
     return val;
   }
 
@@ -696,9 +696,9 @@
     }
     worker.onmessage = function(e) {
       var data = e.data;
-      if (data.type == "getstudent_record") {
-        getstudent_record(ts, data.name, function(err, text) {
-          send({type: "getstudent_record", err: String(err), text: text, id: data.id});
+      if (data.type == "getstdnt_record") {
+        getstdnt_record(ts, data.name, function(err, text) {
+          send({type: "getstdnt_record", err: String(err), text: text, id: data.id});
         });
       } else if (data.type == "debug") {
         window.console.log(data.message);
@@ -712,8 +712,8 @@
       pending = {};
     };
 
-    this.addstudent_record = function(name, text) { send({type: "add", name: name, text: text}); };
-    this.delstudent_record = function(name) { send({type: "del", name: name}); };
+    this.addstdnt_record = function(name, text) { send({type: "add", name: name, text: text}); };
+    this.delstdnt_record = function(name) { send({type: "del", name: name}); };
     this.request = function(body, c) { send({type: "req", body: body}, c); };
   }
 });

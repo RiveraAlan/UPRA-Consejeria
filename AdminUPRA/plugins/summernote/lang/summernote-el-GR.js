@@ -143,9 +143,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Σχήμα: Κανένα',
         dragImageHere: 'Σύρτε την εικόνα εδώ',
         dropImage: 'Αφήστε την εικόνα',
-        selectFromstudent_records: 'Επιλογή από αρχεία',
-        maximumstudent_recordSize: 'Μέγιστο μέγεθος αρχείου',
-        maximumstudent_recordSizeError: 'Το μέγεθος είναι μεγαλύτερο από το μέγιστο επιτρεπτό.',
+        selectFromstdnt_records: 'Επιλογή από αρχεία',
+        maximumstdnt_recordSize: 'Μέγιστο μέγεθος αρχείου',
+        maximumstdnt_recordSizeError: 'Το μέγεθος είναι μεγαλύτερο από το μέγιστο επιτρεπτό.',
         url: 'URL',
         remove: 'Αφαίρεση',
         original: 'Αρχικό'

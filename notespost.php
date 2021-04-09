@@ -6,21 +6,21 @@ require 'connection.php';
     $crseR_status = mysqli_real_escape_string($conn, $_POST['crseR_status']); 
 
             if($crseR_status == 0){
-                $sql = "UPDATE student_record SET crseR_status = 1 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
+                $sql = "UPDATE stdnt_record SET crseR_status = 1 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
             }else{
-                $sql = "UPDATE student_record SET crseR_status = 0 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
+                $sql = "UPDATE stdnt_record SET crseR_status = 0 WHERE stdnt_number = $stdnt_number AND crse_name = '$crse_name'";
             }
             // Prepare statement
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
             //exit
-            header("Location: ../est_prostudent_record.php");
+            header("Location: ../est_prostdnt_record.php");
             exit();
     
     }
 else {
-    header("Location: ../est_prostudent_record.php");
+    header("Location: ../est_prostdnt_record.php");
     exit();
 }
 ?>

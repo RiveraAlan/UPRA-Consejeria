@@ -7,12 +7,12 @@ require '../../private/dbconnect.php';
     $tabla = mysqli_real_escape_string($conn, $_POST['tabla']);
     echo $tabla, $course, $description, $credits;
     if($tabla == 'free_courses'){
-    $sql = "SELECT crse_label FROM free_courses WHERE crse_name = '$course'";
+    $sql = "SELECT crse_code FROM free_courses WHERE crse_name = '$course'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
     if($resultCheck != 1){
-    $sql = "INSERT INTO free_courses (crse_name, crse_description, crse_credits, crse_id) VALUES ('$course', '$description', $credits, 7)";
+    $sql = "INSERT INTO free_courses ( crse_description, crse_credits, crse_id) VALUES ('$course', '$description', $credits, 7)";
     // Prepare statement
     $stmt = $conn->prepare($sql);
     // execute the query

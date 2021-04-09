@@ -262,9 +262,9 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.exten
       shapeNone: 'Shape: None',
       dragImageHere: 'Drag image or text here',
       dropImage: 'Drop image or Text',
-      selectFromstudent_records: 'Select from student_records',
-      maximumstudent_recordSize: 'Maximum student_record size',
-      maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+      selectFromstdnt_records: 'Select from stdnt_records',
+      maximumstdnt_recordSize: 'Maximum stdnt_record size',
+      maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
       url: 'Image URL',
       remove: 'Remove Image',
       original: 'Original'
@@ -3594,17 +3594,17 @@ var KEY_MAP = {
 // CONCATENATED MODULE: ./src/js/base/core/async.js
 
 /**
- * @method readstudent_recordAsDataURL
+ * @method readstdnt_recordAsDataURL
  *
- * read contents of student_record as representing URL
+ * read contents of stdnt_record as representing URL
  *
- * @param {student_record} student_record
+ * @param {stdnt_record} stdnt_record
  * @return {Promise} - then: dataUrl
  */
 
-function readstudent_recordAsDataURL(student_record) {
+function readstdnt_recordAsDataURL(stdnt_record) {
   return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.Deferred(function (deferred) {
-    external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.extend(new student_recordReader(), {
+    external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.extend(new stdnt_recordReader(), {
       onload: function onload(e) {
         var dataURL = e.target.result;
         deferred.resolve(dataURL);
@@ -3612,7 +3612,7 @@ function readstudent_recordAsDataURL(student_record) {
       onerror: function onerror(err) {
         deferred.reject(err);
       }
-    }).readAsDataURL(student_record);
+    }).readAsDataURL(stdnt_record);
   }).promise();
 }
 /**
@@ -5948,7 +5948,7 @@ var Editor_Editor = /*#__PURE__*/function () {
           param($image);
         } else {
           if (typeof param === 'string') {
-            $image.attr('data-student_recordname', param);
+            $image.attr('data-stdnt_recordname', param);
           }
 
           $image.css('width', Math.min(_this3.$editable.width(), $image.width()));
@@ -5967,22 +5967,22 @@ var Editor_Editor = /*#__PURE__*/function () {
     }
     /**
      * insertImages
-     * @param {student_record[]} student_records
+     * @param {stdnt_record[]} stdnt_records
      */
 
   }, {
     key: "insertImagesAsDataURL",
-    value: function insertImagesAsDataURL(student_records) {
+    value: function insertImagesAsDataURL(stdnt_records) {
       var _this4 = this;
 
-      external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(student_records, function (idx, student_record) {
-        var student_recordname = student_record.name;
+      external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(stdnt_records, function (idx, stdnt_record) {
+        var stdnt_recordname = stdnt_record.name;
 
-        if (_this4.options.maximumImagestudent_recordSize && _this4.options.maximumImagestudent_recordSize < student_record.size) {
-          _this4.context.triggerEvent('image.upload.error', _this4.lang.image.maximumstudent_recordSizeError);
+        if (_this4.options.maximumImagestdnt_recordSize && _this4.options.maximumImagestdnt_recordSize < stdnt_record.size) {
+          _this4.context.triggerEvent('image.upload.error', _this4.lang.image.maximumstdnt_recordSizeError);
         } else {
-          readstudent_recordAsDataURL(student_record).then(function (dataURL) {
-            return _this4.insertImage(dataURL, student_recordname);
+          readstdnt_recordAsDataURL(stdnt_record).then(function (dataURL) {
+            return _this4.insertImage(dataURL, stdnt_recordname);
           }).fail(function () {
             _this4.context.triggerEvent('image.upload.error');
           });
@@ -5991,18 +5991,18 @@ var Editor_Editor = /*#__PURE__*/function () {
     }
     /**
      * insertImagesOrCallback
-     * @param {student_record[]} student_records
+     * @param {stdnt_record[]} stdnt_records
      */
 
   }, {
     key: "insertImagesOrCallback",
-    value: function insertImagesOrCallback(student_records) {
+    value: function insertImagesOrCallback(stdnt_records) {
       var callbacks = this.options.callbacks; // If onImageUpload set,
 
       if (callbacks.onImageUpload) {
-        this.context.triggerEvent('image.upload', student_records); // else insert Image as dataURL
+        this.context.triggerEvent('image.upload', stdnt_records); // else insert Image as dataURL
       } else {
-        this.insertImagesAsDataURL(student_records);
+        this.insertImagesAsDataURL(stdnt_records);
       }
     }
     /**
@@ -6306,9 +6306,9 @@ var Clipboard_Clipboard = /*#__PURE__*/function () {
       if (clipboardData && clipboardData.items && clipboardData.items.length) {
         var item = clipboardData.items.length > 1 ? clipboardData.items[1] : lists.head(clipboardData.items);
 
-        if (item.kind === 'student_record' && item.type.indexOf('image/') !== -1) {
-          // paste img student_record
-          this.context.invoke('editor.insertImagesOrCallback', [item.getAsstudent_record()]);
+        if (item.kind === 'stdnt_record' && item.type.indexOf('image/') !== -1) {
+          // paste img stdnt_record
+          this.context.invoke('editor.insertImagesOrCallback', [item.getAsstdnt_record()]);
           event.preventDefault();
         } else if (item.kind === 'string') {
           // paste text with maxTextLength check
@@ -6444,10 +6444,10 @@ var Dropzone_Dropzone = /*#__PURE__*/function () {
 
         event.preventDefault();
 
-        if (dataTransfer && dataTransfer.student_records && dataTransfer.student_records.length) {
+        if (dataTransfer && dataTransfer.stdnt_records && dataTransfer.stdnt_records.length) {
           _this.$editable.focus();
 
-          _this.context.invoke('editor.insertImagesOrCallback', dataTransfer.student_records);
+          _this.context.invoke('editor.insertImagesOrCallback', dataTransfer.stdnt_records);
         } else {
           external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(dataTransfer.types, function (idx, type) {
             // skip moz-specific types
@@ -8654,14 +8654,14 @@ var ImageDialog_ImageDialog = /*#__PURE__*/function () {
     value: function initialize() {
       var imageLimitation = '';
 
-      if (this.options.maximumImagestudent_recordSize) {
-        var unit = Math.floor(Math.log(this.options.maximumImagestudent_recordSize) / Math.log(1024));
-        var readableSize = (this.options.maximumImagestudent_recordSize / Math.pow(1024, unit)).toFixed(2) * 1 + ' ' + ' KMGTP'[unit] + 'B';
-        imageLimitation = "<small>".concat(this.lang.image.maximumstudent_recordSize + ' : ' + readableSize, "</small>");
+      if (this.options.maximumImagestdnt_recordSize) {
+        var unit = Math.floor(Math.log(this.options.maximumImagestdnt_recordSize) / Math.log(1024));
+        var readableSize = (this.options.maximumImagestdnt_recordSize / Math.pow(1024, unit)).toFixed(2) * 1 + ' ' + ' KMGTP'[unit] + 'B';
+        imageLimitation = "<small>".concat(this.lang.image.maximumstdnt_recordSize + ' : ' + readableSize, "</small>");
       }
 
       var $container = this.options.dialogsInBody ? this.$body : this.options.container;
-      var body = ['<div class="form-group note-form-group note-group-select-from-student_records">', '<label for="note-dialog-image-student_record-' + this.options.id + '" class="note-form-label">' + this.lang.image.selectFromstudent_records + '</label>', '<input id="note-dialog-image-student_record-' + this.options.id + '" class="note-image-input form-control-student_record note-form-control note-input" ', ' type="student_record" name="student_records" accept="image/*" multiple="multiple"/>', imageLimitation, '</div>', '<div class="form-group note-group-image-url">', '<label for="note-dialog-image-url-' + this.options.id + '" class="note-form-label">' + this.lang.image.url + '</label>', '<input id="note-dialog-image-url-' + this.options.id + '" class="note-image-url form-control note-form-control note-input" type="text"/>', '</div>'].join('');
+      var body = ['<div class="form-group note-form-group note-group-select-from-stdnt_records">', '<label for="note-dialog-image-stdnt_record-' + this.options.id + '" class="note-form-label">' + this.lang.image.selectFromstdnt_records + '</label>', '<input id="note-dialog-image-stdnt_record-' + this.options.id + '" class="note-image-input form-control-stdnt_record note-form-control note-input" ', ' type="stdnt_record" name="stdnt_records" accept="image/*" multiple="multiple"/>', imageLimitation, '</div>', '<div class="form-group note-group-image-url">', '<label for="note-dialog-image-url-' + this.options.id + '" class="note-form-label">' + this.lang.image.url + '</label>', '<input id="note-dialog-image-url-' + this.options.id + '" class="note-image-url form-control note-form-control note-input" type="text"/>', '</div>'].join('');
       var buttonClass = 'btn btn-primary note-btn note-btn-primary note-image-btn';
       var footer = "<input type=\"button\" href=\"#\" class=\"".concat(buttonClass, "\" value=\"").concat(this.lang.image.insert, "\" disabled>");
       this.$dialog = this.ui.dialog({
@@ -8708,7 +8708,7 @@ var ImageDialog_ImageDialog = /*#__PURE__*/function () {
             _this.context.invoke('editor.insertImage', data);
           }
         } else {
-          // array of student_records
+          // array of stdnt_records
           _this.context.invoke('editor.insertImagesOrCallback', data);
         }
       }).fail(function () {
@@ -8739,7 +8739,7 @@ var ImageDialog_ImageDialog = /*#__PURE__*/function () {
 
 
           $imageInput.replaceWith($imageInput.clone().on('change', function (event) {
-            deferred.resolve(event.target.student_records || event.target.value);
+            deferred.resolve(event.target.stdnt_records || event.target.value);
           }).val(''));
           $imageUrl.on('input paste propertychange', function () {
             _this2.ui.toggleBtn($imageBtn, $imageUrl.val());
@@ -9850,7 +9850,7 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summe
     // By default, dialogs are attached in container.
     dialogsInBody: false,
     dialogsFade: false,
-    maximumImagestudent_recordSize: null,
+    maximumImagestdnt_recordSize: null,
     callbacks: {
       onBeforeCommand: null,
       onBlur: null,

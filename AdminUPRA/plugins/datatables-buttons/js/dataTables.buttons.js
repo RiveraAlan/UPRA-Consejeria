@@ -1825,7 +1825,7 @@ DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
 	}
 
 	return {
-		student_recordname: _student_recordname( conf ),
+		stdnt_recordname: _stdnt_recordname( conf ),
 		title: _title( conf ),
 		messageTop: _message(this, conf.message || conf.messageTop, 'top'),
 		messageBottom: _message(this, conf.messageBottom, 'bottom')
@@ -1835,39 +1835,39 @@ DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
 
 
 /**
- * Get the student_record name for an exported student_record.
+ * Get the stdnt_record name for an exported stdnt_record.
  *
  * @param {object}	config Button configuration
- * @param {boolean} incExtension Include the student_record name extension
+ * @param {boolean} incExtension Include the stdnt_record name extension
  */
-var _student_recordname = function ( config )
+var _stdnt_recordname = function ( config )
 {
 	// Backwards compatibility
-	var student_recordname = config.student_recordname === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
+	var stdnt_recordname = config.stdnt_recordname === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
 		config.title :
-		config.student_recordname;
+		config.stdnt_recordname;
 
-	if ( typeof student_recordname === 'function' ) {
-		student_recordname = student_recordname();
+	if ( typeof stdnt_recordname === 'function' ) {
+		stdnt_recordname = stdnt_recordname();
 	}
 
-	if ( student_recordname === undefined || student_recordname === null ) {
+	if ( stdnt_recordname === undefined || stdnt_recordname === null ) {
 		return null;
 	}
 
-	if ( student_recordname.indexOf( '*' ) !== -1 ) {
-		student_recordname = $.trim( student_recordname.replace( '*', $('head > title').text() ) );
+	if ( stdnt_recordname.indexOf( '*' ) !== -1 ) {
+		stdnt_recordname = $.trim( stdnt_recordname.replace( '*', $('head > title').text() ) );
 	}
 
 	// Strip characters which the OS will object to
-	student_recordname = student_recordname.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
+	stdnt_recordname = stdnt_recordname.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
 
 	var extension = _stringOrFunction( config.extension );
 	if ( ! extension ) {
 		extension = '';
 	}
 
-	return student_recordname + extension;
+	return stdnt_recordname + extension;
 };
 
 /**
@@ -1888,7 +1888,7 @@ var _stringOrFunction = function ( option )
 };
 
 /**
- * Get the title for an exported student_record.
+ * Get the title for an exported stdnt_record.
  *
  * @param {object} config	Button configuration
  */

@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Ide húzhat képet vagy szöveget',
         dropImage: 'Engedje el a képet vagy szöveget',
-        selectFromstudent_records: 'Fájlok kiválasztása',
-        maximumstudent_recordSize: 'Maximum student_record size',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'Fájlok kiválasztása',
+        maximumstdnt_recordSize: 'Maximum stdnt_record size',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'Kép URL címe',
         remove: 'Kép törlése',
         original: 'Original'

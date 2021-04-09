@@ -222,7 +222,7 @@ textarea {
   -webkit-appearance: none;
 }
 
-::-webkit-student_record-upload-button {
+::-webkit-stdnt_record-upload-button {
   -webkit-appearance: button;
   font: inherit;
 }
@@ -2310,7 +2310,7 @@ select.form-control:focus::-ms-value {
   background-color: #fff;
 }
 
-.form-control-student_record,
+.form-control-stdnt_record,
 .form-control-range {
   display: block;
 }
@@ -3753,7 +3753,7 @@ tbody.collapse.show {
   font-size: 75%;
 }
 
-.custom-student_record {
+.custom-stdnt_record {
   position: relative;
   display: inline-block;
   max-width: 100%;
@@ -3762,7 +3762,7 @@ tbody.collapse.show {
   cursor: pointer;
 }
 
-.custom-student_record-input {
+.custom-stdnt_record-input {
   min-width: 14rem;
   max-width: 100%;
   height: 2.5rem;
@@ -3771,7 +3771,7 @@ tbody.collapse.show {
   opacity: 0;
 }
 
-.custom-student_record-control {
+.custom-stdnt_record-control {
   position: absolute;
   top: 0;
   right: 0;
@@ -3791,11 +3791,11 @@ tbody.collapse.show {
   border-radius: 0.25rem;
 }
 
-.custom-student_record-control:lang(en)::after {
-  content: "Choose student_record...";
+.custom-stdnt_record-control:lang(en)::after {
+  content: "Choose stdnt_record...";
 }
 
-.custom-student_record-control::before {
+.custom-stdnt_record-control::before {
   position: absolute;
   top: -1px;
   right: -1px;
@@ -3811,7 +3811,7 @@ tbody.collapse.show {
   border-radius: 0 0.25rem 0.25rem 0;
 }
 
-.custom-student_record-control:lang(en)::before {
+.custom-stdnt_record-control:lang(en)::before {
   content: "Browse";
 }
 

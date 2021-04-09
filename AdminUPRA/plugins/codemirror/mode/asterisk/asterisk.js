@@ -4,7 +4,7 @@
 /*
  * =====================================================================================
  *
- *       student_recordname:  mode/asterisk/asterisk.js
+ *       stdnt_recordname:  mode/asterisk/asterisk.js
  *
  *    Description:  CodeMirror mode for Asterisk dialplan
  *
@@ -49,7 +49,7 @@ CodeMirror.defineMode("asterisk", function() {
                   "originate","ospauth","ospfinish","osplookup","ospnext","page","park","parkandannounce",
                   "parkedcall","pausemonitor","pausequeuemember","pickup","pickupchan","playback","playtones",
                   "privacymanager","proceeding","progress","queue","queuelog","raiseexception","read","readexten",
-                  "readstudent_record","receivefax","receivefax","receivefax","record","removequeuemember",
+                  "readstdnt_record","receivefax","receivefax","receivefax","record","removequeuemember",
                   "resetcdr","retrydial","return","ringing","sayalpha","saycountedadj","saycountednoun",
                   "saycountpl","saydigits","saynumber","sayphonetic","sayunixtime","senddtmf","sendfax",
                   "sendfax","sendfax","sendimage","sendtext","sendurl","set","setamaflags",

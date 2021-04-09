@@ -6,17 +6,17 @@
  * @summary     RowReorder
  * @description Row reordering extension for DataTables
  * @version     1.2.7
- * @student_record        dataTables.rowReorder.js
+ * @stdnt_record        dataTables.rowReorder.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2015-2020 SpryMedia Ltd.
  *
- * This source student_record is free software, available under the following license:
+ * This source stdnt_record is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
  *
- * This source student_record is distributed in the hope that it will be useful, but
+ * This source stdnt_record is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license student_records for details.
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the license stdnt_records for details.
  *
  * For details please refer to: http://www.datatables.net
  */

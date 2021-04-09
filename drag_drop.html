@@ -17,27 +17,27 @@
         </style>
 </head>
 <body>
-    <h2>HTML5 student_record Upload Feature</h2>
+    <h2>HTML5 stdnt_record Upload Feature</h2>
 
-<div id="drop_zone" ondrop="uploadstudent_record(event)" ondragover="return false"></div>
+<div id="drop_zone" ondrop="uploadstdnt_record(event)" ondragover="return false"></div>
 
 <script>
     function $(el){
         return document.getElementById(el);
     }
 
-    function uploadstudent_record(event){
+    function uploadstdnt_record(event){
     event.preventDefault();
-    var student_record = event.dataTransfer.student_records[0];
-	// alert(student_record.name+" | "+student_record.size+" | "+student_record.type);
+    var stdnt_record = event.dataTransfer.stdnt_records[0];
+	// alert(stdnt_record.name+" | "+stdnt_record.size+" | "+stdnt_record.type);
 	var formdata = new FormData();
-	formdata.append("student_record1", student_record);
+	formdata.append("stdnt_record1", stdnt_record);
 	var ajax = new XMLHttpRequest();
 	ajax.upload.addEventListener("progress", progressHandler, false);
 	ajax.addEventListener("load", completeHandler, false);
 	ajax.addEventListener("error", errorHandler, false);
 	ajax.addEventListener("abort", abortHandler, false);
-	ajax.open("POST", "private/student_record_upload_parser.php");
+	ajax.open("POST", "private/stdnt_record_upload_parser.php");
 	ajax.send(formdata);
 
     }

@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Irudi bat ezarri hemen',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Zure fitxategi bat aukeratu',
-        maximumstudent_recordSize: 'Maximum student_record size',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'Zure fitxategi bat aukeratu',
+        maximumstdnt_recordSize: 'Maximum stdnt_record size',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'Irudiaren URL helbidea',
         remove: 'Remove Image',
         original: 'Original'

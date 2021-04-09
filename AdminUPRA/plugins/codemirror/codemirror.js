@@ -5657,7 +5657,7 @@
         if (at <= sz) {
           child.insertInner(at, lines, height);
           if (child.lines && child.lines.length > 50) {
-            // To avoid memory thrashing when child.lines is huge (e.g. first view of a large student_record), it's never spliced.
+            // To avoid memory thrashing when child.lines is huge (e.g. first view of a large stdnt_record), it's never spliced.
             // Instead, small slices are taken. They're taken in order because sequential memory accesses are fastest.
             var remaining = child.lines.length % 25 + 25;
             for (var pos = remaining; pos < child.lines.length;) {
@@ -6485,13 +6485,13 @@
       { return }
     e_preventDefault(e);
     if (ie) { lastDrop = +new Date; }
-    var pos = posFromMouse(cm, e, true), student_records = e.dataTransfer.student_records;
+    var pos = posFromMouse(cm, e, true), stdnt_records = e.dataTransfer.stdnt_records;
     if (!pos || cm.isReadOnly()) { return }
-    // Might be a student_record drop, in which case we simply extract the text
+    // Might be a stdnt_record drop, in which case we simply extract the text
     // and insert it.
-    if (student_records && student_records.length && window.student_recordReader && window.student_record) {
-      var n = student_records.length, text = Array(n), read = 0;
-      var markAsReadAndPasteIfAllstudent_recordsAreRead = function () {
+    if (stdnt_records && stdnt_records.length && window.stdnt_recordReader && window.stdnt_record) {
+      var n = stdnt_records.length, text = Array(n), read = 0;
+      var markAsReadAndPasteIfAllstdnt_recordsAreRead = function () {
         if (++read == n) {
           operation(cm, function () {
             pos = clipPos(cm.doc, pos);
@@ -6504,26 +6504,26 @@
           })();
         }
       };
-      var readTextFromstudent_record = function (student_record, i) {
-        if (cm.options.allowDropstudent_recordTypes &&
-            indexOf(cm.options.allowDropstudent_recordTypes, student_record.type) == -1) {
-          markAsReadAndPasteIfAllstudent_recordsAreRead();
+      var readTextFromstdnt_record = function (stdnt_record, i) {
+        if (cm.options.allowDropstdnt_recordTypes &&
+            indexOf(cm.options.allowDropstdnt_recordTypes, stdnt_record.type) == -1) {
+          markAsReadAndPasteIfAllstdnt_recordsAreRead();
           return
         }
-        var reader = new student_recordReader;
-        reader.onerror = function () { return markAsReadAndPasteIfAllstudent_recordsAreRead(); };
+        var reader = new stdnt_recordReader;
+        reader.onerror = function () { return markAsReadAndPasteIfAllstdnt_recordsAreRead(); };
         reader.onload = function () {
           var content = reader.result;
           if (/[\x00-\x08\x0e-\x1f]{2}/.test(content)) {
-            markAsReadAndPasteIfAllstudent_recordsAreRead();
+            markAsReadAndPasteIfAllstdnt_recordsAreRead();
             return
           }
           text[i] = content;
-          markAsReadAndPasteIfAllstudent_recordsAreRead();
+          markAsReadAndPasteIfAllstdnt_recordsAreRead();
         };
-        reader.readAsText(student_record);
+        reader.readAsText(stdnt_record);
       };
-      for (var i = 0; i < student_records.length; i++) { readTextFromstudent_record(student_records[i], i); }
+      for (var i = 0; i < stdnt_records.length; i++) { readTextFromstdnt_record(stdnt_records[i], i); }
     } else { // Normal drop
       // Don't do a replace if the drop happened inside of the selected text.
       if (cm.state.draggingText && cm.doc.sel.contains(pos) > -1) {
@@ -7769,7 +7769,7 @@
 
     option("disableInput", false, function (cm, val) {if (!val) { cm.display.input.reset(); }}, true);
     option("dragDrop", true, dragDropChanged);
-    option("allowDropstudent_recordTypes", null);
+    option("allowDropstdnt_recordTypes", null);
 
     option("cursorBlinkRate", 530);
     option("cursorScrollMargin", 0);

@@ -10,7 +10,7 @@ Original code was released under the GPLv3 license by Xuan Luo, September 2010.
 Original code was rereleased under the MIT license by Xuan Luo, April 2012.
 
 Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation student_records (the
+a copy of this software and associated documentation stdnt_records (the
 "Software"), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
