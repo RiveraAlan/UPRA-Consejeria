@@ -160,7 +160,7 @@ include_once 'private/dbconnect.php';
                         <div class="card">
                         <?php 
                             
-                            //Cambie crse_code por code agregue ciso y huma
+                            
                              $sentenciaSQL= "SELECT SUM(C)
                              FROM ((SELECT crse_credits AS C
                              FROM mandatory_courses
@@ -356,10 +356,51 @@ include_once 'private/dbconnect.php';
                   <h5> <i> Para seleccionar un curso presione caja de verificación</i> “❑”</h5>
                   <h5> <i> Los cursos en color <b style="background:violet;"> Violeta</b> son recomendados por su consejero. </i></h5>
                   <br>
+</div>
+                          
+         <style>
+              div.sticky {
+              position: -webkit-sticky;
+              position: sticky;
+                    left: 0;
+              width: 100%;
+              background-color: yellow;
+              padding: 50px;
+              font-size: 20px;}
+          </style>
+                 
+          
+          <div class="sticky"> </div>
+              
+        
+          <table border="1" id="table">  
+          <tr>  <td colspan="2">Select Technolgy:</td> </tr>  
+          <tr>  <td>c</td>  
+          <td><input type="checkbox" name="techno[]" value="c" class='chk'></td>  
+          </tr>  
+          <tr>  <td>hadoop</td>  
+          <td><input type="checkbox" name="techno[]" value="hadoop" class = 'chk'></td>  
+          </tr>  
+          <tr>   <td>core java</td>  
+          <td><input type="checkbox" name="techno[]" value="Core JAVA"  class='chk'></td>  
+          </tr>  
+
+          <input type="button" value="Click" id="btntest" />
+          <input type="checkbox" class = 'chk' /> and
+          <input type="text" class = 'txt' />
+          <input type="button" value="Delete checked boxes" onclick = "delBoxes();" />    
+              
+              
+              
+          
+           
+                            
 <div class="grid-container-1">
   <div class="grid-item-1">                             
-      <div class="card-body">           
-                  
+      <div class="card-body">   
+         
+         
+                
                 <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
@@ -375,31 +416,38 @@ include_once 'private/dbconnect.php';
                   </thead> 
                   <tbody>
                 <?php 
-                $sql ="SELECT *
-                   FROM mandatory_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$id'
-                   ORDER by crse_code";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
-              
-                if($resultCheck > 0){
-                while($row = mysqli_fetch_assoc($result)){
+                
+                      $sql = "SELECT *
+                      FROM mandatory_courses INNER JOIN cohort USING (crse_code)
+                      WHERE crse_major = 'CC COMS BCN'";
+                      $result = mysqli_query($conn, $sql);
+                      $resultCheck = mysqli_num_rows($result);
+                      
+                      if($resultCheck > 0){
+                      while($row = mysqli_fetch_assoc($result)){
+                        
+                      $sql_S ="SELECT *
+                      FROM mandatory_courses INNER JOIN stdnt_record USING (crse_code) 
+                      WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
+                      $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
+                      $row_S = mysqli_fetch_assoc($result_S);
+                        
                   
-                  
-                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                    echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
                     echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
-                    echo "<td>{$row['crse_grade']}</td>";
-                    echo "
-                    <td>{$row['semester_pass']}</td>";
-                    if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
+                    echo "<td>{$row_S['crse_grade']}</td>";
+                    echo "<td>{$row_S['semester_pass']}</td>";
+                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crse_ER_Status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
-                  }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                    <td><button onclick='myFunction({$row_S['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                  }elseif($row_S['crse_equivalence'] != NULL || $row_S['crse_recognition'] != NULL){
                     echo"
-                    <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                    <td>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                   }else{
                     echo"
                     <td></td>";
@@ -424,14 +472,23 @@ include_once 'private/dbconnect.php';
                   </tr>
                   </thead> 
                   <tbody>
-                <?php 
-                $sql ="SELECT *
-                   FROM general_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$id'";
+                
+                      
+                   <?php 
+                   $sql =" SELECT *
+                        FROM GENERAL_courses INNER JOIN cohort USING (crse_code)
+                        WHERE crse_major = 'CC COMS BCN'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
+                    $sql_S ="SELECT *
+                      FROM GENERAL_courses INNER JOIN stdnt_record USING (crse_code) 
+                      WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
+                      $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
+                      $row_S = mysqli_fetch_assoc($result_S);
             
                   echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
@@ -439,15 +496,14 @@ include_once 'private/dbconnect.php';
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
-                    echo "<td>{$row['crse_grade']}</td>";
-                      echo "
-                    <td>{$row['semester_pass']}</td>";
-                    if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
+                    echo "<td>{$row_S['crse_grade']}</td>";
+                    echo "<td>{$row_S['semester_pass']}</td>";
+                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crse_ER_Status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
-                  }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                    <td><button onclick='myFunction({$row_S['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                  }elseif($row_S['crse_equivalence'] != NULL || $row_S['crse_recognition'] != NULL){
                     echo"
-                    <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                    <td>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                   }else{
                     echo"
                     <td></td>";
@@ -456,6 +512,96 @@ include_once 'private/dbconnect.php';
                   </tr>";}}?>
                 </tbody>
                   </table>
+          
+          
+                 <div align = "center"><h3>Humanidades</h3></div>
+                    <table id="example2" class="table table-bordered table-hover" style="color:#000">
+                  <thead>
+                  <tr width="50%" bgcolor="#e0c200">
+                     <th>&nbsp;</th>
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación/Equivalencias</th>
+                  </tr>
+                  </thead> 
+                <tbody>
+                <?php 
+                $sql =" SELECT * 
+                    FROM general_education_huma";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                      $sql_S ="SELECT * 
+                        FROM general_education_huma INNER JOIN stdnt_record USING (crse_code)
+                        WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
+                      $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
+                      $row_S = mysqli_fetch_assoc($result_S);
+                  
+                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                
+                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td>{$row['crse_code']}</td>";
+                    echo "<td>{$row['crse_description']}</td>";
+                    echo "<td>{$row['crse_credits']}</td>";
+                    echo "<td>{$row_S['crse_grade']}</td>";
+                      echo "
+                    <td>{$row_S['semester_pass']}</td>
+                    <td></td>
+                  </tr> ";}}?>
+                </tbody> 
+                  </table>
+          
+          
+          
+          <div align = "center"><h3>Ciencias Sociales</h3></div>
+                    <table id="example2" class="table table-bordered table-hover" style="color:#000">
+                  <thead>
+                  <tr width="50%" bgcolor="#e0c200">
+                     <th>&nbsp;</th>
+                    <th>Cursos</th>
+                    <th>Descripción</th>
+                    <th>Créditos</th>
+                    <th>Nota</th>
+                    <th>Año Aprobó</th>
+                    <th>Convalidación/Equivalencias</th>
+                  </tr>
+                  </thead> 
+                <tbody>
+                <?php 
+                $sql =" SELECT * 
+                    FROM general_education_CISO ";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                  
+                      $sql_S ="SELECT * 
+                        FROM general_education_CISO INNER JOIN stdnt_record USING (crse_code)
+                        WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
+                      $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
+                      $row_S = mysqli_fetch_assoc($result_S);
+                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                
+                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td>{$row['crse_code']}</td>";
+                    echo "<td>{$row['crse_description']}</td>";
+                    echo "<td>{$row['crse_credits']}</td>";
+                    echo "<td>{$row_S['crse_grade']}</td>";
+                      echo "
+                    <td>{$row_S['semester_pass']}</td>
+                    <td></td>
+                  </tr> ";}}?>
+                </tbody> 
+                  </table>
+          
                    <div align = "center"><h3>Electivas Libres</h3></div>
                     <table id="example2" class="table table-bordered table-hover" style="color:#000">
                   <thead>
@@ -568,16 +714,7 @@ include_once 'private/dbconnect.php';
                     </table>
                     <div class='warning-message'><h4 style='text-align:center'>¡RECORDATORIO! Debe tomar 6 créditos en avanzada.</h4></div>
               </div> </div>
-  <div class="grid-item"> 
-      <br>
-      <div class="sticky">  
-        <h6> Lista Cursos Confirmación </h6> 
-          <br>
-          <br>
-          <br>
-      </div> 
-    </div> 
-</div>
+
                             
                             
                             
@@ -678,11 +815,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                     $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);                                
@@ -691,11 +828,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -738,11 +875,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
@@ -751,11 +888,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -805,11 +942,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                     $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
@@ -818,11 +955,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -862,11 +999,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
@@ -875,11 +1012,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -924,11 +1061,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                     $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
@@ -937,11 +1074,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -981,11 +1118,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
@@ -994,11 +1131,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -1042,11 +1179,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                     $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
@@ -1055,11 +1192,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -1099,11 +1236,11 @@ include_once 'private/dbconnect.php';
                                   <?php
                                     
                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses
+                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2
                                             UNION
                                             SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN general_courses_major USING (crse_code)
+                                            FROM general_courses INNER JOIN cohort USING (crse_code)
                                             WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
@@ -1111,11 +1248,11 @@ include_once 'private/dbconnect.php';
                               while($row = mysqli_fetch_assoc($result)){
                               $sql_grade =" SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
                                             UNION
                                             SELECT crse_code, crse_grade
                                             FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '840-16-4235'";
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
                                   $result_grade = mysqli_query($conn, $sql_grade);
                                   $resultCheck_grade = mysqli_num_rows($result_grade);                                   
                                   
@@ -1354,7 +1491,21 @@ include_once 'private/dbconnect.php';
 
       
  <!-- Este SCRIPT es para bregar con las appointment (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los advisors a cargo. -->
-  <script src="index.js"></script>
+  <script>
+            function delBoxes(){
+        var boxes = document.getElementsByClassName('chk');
+        var texts = document.getElementsByClassName('txt');
+        for(var i = 0; i<boxes.length; i++){
+        box = boxes[i];
+        txt = texts[i];
+        if(box.checked){
+            box.parentNode.removeChild(box);
+            txt.parentNode.removeChild(txt);
+        }}}
+</script> 
+      
+      
+      <script src="index.js"></script>
         <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
