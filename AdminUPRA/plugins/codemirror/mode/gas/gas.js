@@ -65,7 +65,7 @@ CodeMirror.defineMode("gas", function(_config, parserConfig) {
     ".exitm" : "builtin",
     ".extern" : "builtin",
     ".fail" : "builtin",
-    ".student_record" : "builtin",
+    ".stdnt_record" : "builtin",
     ".fill" : "builtin",
     ".float" : "builtin",
     ".func" : "builtin",

@@ -88,9 +88,9 @@ CodeMirror.defineMode('powershell', function() {
     /Limit-EventLog/,
     /Measure-(Command|Object)/,
     /Move-Item(Property)?/,
-    new RegExp('New-(Alias|Event|EventLog|Item(Property)?|Module|ModuleManifest|Object|PSDrive|PSSession|PSSessionConfigurationstudent_record'
+    new RegExp('New-(Alias|Event|EventLog|Item(Property)?|Module|ModuleManifest|Object|PSDrive|PSSession|PSSessionConfigurationstdnt_record'
       + '|PSSessionOption|PSTransportOption|Service|TimeSpan|Variable|WebServiceProxy|WinEvent)'),
-    /Out-(Default|student_record|GridView|Host|Null|Printer|String)/,
+    /Out-(Default|stdnt_record|GridView|Host|Null|Printer|String)/,
     /Pause/,
     /(Pop|Push)-Location/,
     /Read-Host/,
@@ -116,9 +116,9 @@ CodeMirror.defineMode('powershell', function() {
     /Suspend-(Job|Service)/,
     /TabExpansion2/,
     /Tee-Object/,
-    /Test-(ComputerSecureChannel|Connection|ModuleManifest|Path|PSSessionConfigurationstudent_record)/,
+    /Test-(ComputerSecureChannel|Connection|ModuleManifest|Path|PSSessionConfigurationstdnt_record)/,
     /Trace-Command/,
-    /Unblock-student_record/,
+    /Unblock-stdnt_record/,
     /Undo-Transaction/,
     /Unregister-(Event|PSSessionConfiguration)/,
     /Update-(FormatData|Help|List|TypeData)/,
@@ -135,9 +135,9 @@ CodeMirror.defineMode('powershell', function() {
     /sort|sp|spjb|spps|spsv|start|sujb|sv|swmi|tee|trcm|type|where|wjb|write/
   ], { prefix: '', suffix: '' });
   var variableBuiltins = buildRegexp([
-    /[$?^_]|Args|ConfirmPreference|Consolestudent_recordName|DebugPreference|Error|ErrorActionPreference|ErrorView|ExecutionContext/,
+    /[$?^_]|Args|ConfirmPreference|Consolestdnt_recordName|DebugPreference|Error|ErrorActionPreference|ErrorView|ExecutionContext/,
     /FormatEnumerationLimit|Home|Host|Input|MaximumAliasCount|MaximumDriveCount|MaximumErrorCount|MaximumFunctionCount/,
-    /MaximumHistoryCount|MaximumVariableCount|MyInvocation|NestedPromptLevel|OutputEncoding|Pid|Prostudent_record|ProgressPreference/,
+    /MaximumHistoryCount|MaximumVariableCount|MyInvocation|NestedPromptLevel|OutputEncoding|Pid|Prostdnt_record|ProgressPreference/,
     /PSBoundParameters|PSCommandPath|PSCulture|PSDefaultParameterValues|PSEmailServer|PSHome|PSScriptRoot|PSSessionApplicationName/,
     /PSSessionConfigurationName|PSSessionOption|PSUICulture|PSVersionTable|Pwd|ShellId|StackTrace|VerbosePreference/,
     /WarningPreference|WhatIfPreference/,

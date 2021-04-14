@@ -33,11 +33,11 @@
   }
 } (function (jQuery) {
   // This is needed so we can catch the AMD loader configuration and use it
-  // The inner student_record should be wrapped (by `banner.start.js`) in a function that
+  // The inner stdnt_record should be wrapped (by `banner.start.js`) in a function that
   // returns the AMD loader references.
   var S2 =(function () {
   // Restore the Select2 AMD loader so it can be used
-  // Needed mostly in the language student_records, where the loader is not inserted
+  // Needed mostly in the language stdnt_records, where the loader is not inserted
   if (jQuery && jQuery.fn && jQuery.fn.select2 && jQuery.fn.select2.amd) {
     var S2 = jQuery.fn.select2.amd;
   }
@@ -89,7 +89,7 @@ var requirejs, require, define;
             // If wanting node ID compatibility, strip .js from end
             // of IDs. Have to do this here, and not in nameToUrl
             // because node allows either .js or non .js to map
-            // to same student_record.
+            // to same stdnt_record.
             if (config.nodeIdCompat && jsSuffixRegExp.test(name[lastIndex])) {
                 name[lastIndex] = name[lastIndex].replace(jsSuffixRegExp, '');
             }
@@ -5176,10 +5176,10 @@ S2.define('select2/defaults',[
           } catch (ex) {
             // The translation could not be loaded at all. Sometimes this is
             // because of a configuration problem, other times this can be
-            // because of how Select2 helps load all possible translation student_records
+            // because of how Select2 helps load all possible translation stdnt_records
             if (debug && window.console && console.warn) {
               console.warn(
-                'Select2: The language student_record for "' + language + '" could ' +
+                'Select2: The language stdnt_record for "' + language + '" could ' +
                 'not be automatically loaded. A fallback will be used instead.'
               );
             }
@@ -6799,7 +6799,7 @@ S2.define('jquery.select2',[
   return Select2;
 });
 
-  // Return the AMD loader configuration so it can be used outside of this student_record
+  // Return the AMD loader configuration so it can be used outside of this stdnt_record
   return {
     define: S2.define,
     require: S2.require
@@ -6811,8 +6811,8 @@ S2.define('jquery.select2',[
   var select2 = S2.require('jquery.select2');
 
   // Hold the AMD module references on the jQuery function that was just loaded
-  // This allows Select2 to use the internal loader outside of this student_record, such
-  // as in the language student_records.
+  // This allows Select2 to use the internal loader outside of this stdnt_record, such
+  // as in the language stdnt_records.
   jQuery.fn.select2.amd = S2;
 
   // Return the Select2 instance for anyone who is importing it.

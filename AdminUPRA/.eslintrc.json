@@ -45,7 +45,7 @@
       "error",
       "never"
     ],
-    "unicorn/student_recordname-case": "off",
+    "unicorn/stdnt_recordname-case": "off",
     "unicorn/import-index": "off",
     "unicorn/no-fn-reference-in-iterator": "off",
     "unicorn/no-for-loop": "off",

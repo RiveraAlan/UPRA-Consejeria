@@ -22,11 +22,11 @@ CodeMirror.defineMode('yacas', function(_config, _parserConfig) {
     return obj;
   }
 
-  var bodiedOps = words("Assert BackQuote D Defun Deriv For ForEach Fromstudent_record " +
+  var bodiedOps = words("Assert BackQuote D Defun Deriv For ForEach Fromstdnt_record " +
                         "FromString Function Integrate InverseTaylor Limit " +
                         "LocalSymbols Macro MacroRule MacroRulePattern " +
                         "NIntegrate Rule RulePattern Subst TD TExplicitSum " +
-                        "TSum Taylor Taylor1 Taylor2 Taylor3 Tostudent_record " +
+                        "TSum Taylor Taylor1 Taylor2 Taylor3 Tostdnt_record " +
                         "ToStdout ToString TraceRule Until While");
 
   // patterns

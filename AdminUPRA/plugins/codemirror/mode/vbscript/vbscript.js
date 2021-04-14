@@ -65,7 +65,7 @@ CodeMirror.defineMode("vbscript", function(conf, parserConf) {
                          'vbEmpty', 'vbNull', 'vbInteger', 'vbLong', 'vbSingle', 'vbDouble', 'vbCurrency', 'vbDate', 'vbString', 'vbObject', 'vbError', 'vbBoolean', 'vbVariant', 'vbDataObject', 'vbDecimal', 'vbByte', 'vbArray'];
     //This list was from: http://msdn.microsoft.com/en-us/library/hkc375ea(v=vs.84).aspx
     var builtinObjsWords = ['WScript', 'err', 'debug', 'RegExp'];
-    var knownProperties = ['description', 'firstindex', 'global', 'helpcontext', 'helpstudent_record', 'ignorecase', 'length', 'number', 'pattern', 'source', 'value', 'count'];
+    var knownProperties = ['description', 'firstindex', 'global', 'helpcontext', 'helpstdnt_record', 'ignorecase', 'length', 'number', 'pattern', 'source', 'value', 'count'];
     var knownMethods = ['clear', 'execute', 'raise', 'replace', 'test', 'write', 'writeline', 'close', 'open', 'state', 'eof', 'update', 'addnew', 'end', 'createobject', 'quit'];
 
     var aspBuiltinObjsWords = ['server', 'response', 'request', 'session', 'application'];

@@ -395,10 +395,10 @@ const Plugins = [
     from: 'node_modules/jquery-validation/dist/',
     to: 'plugins/jquery-validation'
   },
-  // bs-custom-student_record-input
+  // bs-custom-stdnt_record-input
   {
-    from: 'node_modules/bs-custom-student_record-input/dist/',
-    to: 'plugins/bs-custom-student_record-input'
+    from: 'node_modules/bs-custom-stdnt_record-input/dist/',
+    to: 'plugins/bs-custom-stdnt_record-input'
   },
   // bs-stepper
   {

@@ -45,15 +45,15 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashstudent_records('package.json') }}-${{ hashstudent_records('package-lock.json') }}}
+          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashstdnt_records('package.json') }}-${{ hashstdnt_records('package-lock.json') }}}
           restore-keys: |
-            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashstudent_records('package.json') }}-${{ hashstudent_records('package-lock.json') }}
+            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashstdnt_records('package.json') }}-${{ hashstdnt_records('package-lock.json') }}
             ${{ runner.OS }}-node-v${{ env.node }}-
 
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Build student_records
+      - name: Build stdnt_records
         run: npm run compile
 
       - name: Run bundlewatch

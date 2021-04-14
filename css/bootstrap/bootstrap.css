@@ -284,7 +284,7 @@ progress {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
-::-webkit-student_record-upload-button {
+::-webkit-stdnt_record-upload-button {
   font: inherit;
   -webkit-appearance: button; }
 
@@ -1601,7 +1601,7 @@ select.form-control:focus::-ms-value {
   color: #495057;
   background-color: #fff; }
 
-.form-control-student_record,
+.form-control-stdnt_record,
 .form-control-range {
   display: block;
   width: 100%; }
@@ -1751,9 +1751,9 @@ textarea.form-control {
   .custom-select.is-valid ~ .valid-tooltip {
     display: block; }
 
-.was-validated .form-control-student_record:valid ~ .valid-feedback,
-.was-validated .form-control-student_record:valid ~ .valid-tooltip, .form-control-student_record.is-valid ~ .valid-feedback,
-.form-control-student_record.is-valid ~ .valid-tooltip {
+.was-validated .form-control-stdnt_record:valid ~ .valid-feedback,
+.was-validated .form-control-stdnt_record:valid ~ .valid-tooltip, .form-control-stdnt_record.is-valid ~ .valid-feedback,
+.form-control-stdnt_record.is-valid ~ .valid-tooltip {
   display: block; }
 
 .was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label {
@@ -1781,17 +1781,17 @@ textarea.form-control {
   -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(139, 195, 74, 0.25);
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(139, 195, 74, 0.25); }
 
-.was-validated .custom-student_record-input:valid ~ .custom-student_record-label, .custom-student_record-input.is-valid ~ .custom-student_record-label {
+.was-validated .custom-stdnt_record-input:valid ~ .custom-stdnt_record-label, .custom-stdnt_record-input.is-valid ~ .custom-stdnt_record-label {
   border-color: #8bc34a; }
-  .was-validated .custom-student_record-input:valid ~ .custom-student_record-label::after, .custom-student_record-input.is-valid ~ .custom-student_record-label::after {
+  .was-validated .custom-stdnt_record-input:valid ~ .custom-stdnt_record-label::after, .custom-stdnt_record-input.is-valid ~ .custom-stdnt_record-label::after {
     border-color: inherit; }
 
-.was-validated .custom-student_record-input:valid ~ .valid-feedback,
-.was-validated .custom-student_record-input:valid ~ .valid-tooltip, .custom-student_record-input.is-valid ~ .valid-feedback,
-.custom-student_record-input.is-valid ~ .valid-tooltip {
+.was-validated .custom-stdnt_record-input:valid ~ .valid-feedback,
+.was-validated .custom-stdnt_record-input:valid ~ .valid-tooltip, .custom-stdnt_record-input.is-valid ~ .valid-feedback,
+.custom-stdnt_record-input.is-valid ~ .valid-tooltip {
   display: block; }
 
-.was-validated .custom-student_record-input:valid:focus ~ .custom-student_record-label, .custom-student_record-input.is-valid:focus ~ .custom-student_record-label {
+.was-validated .custom-stdnt_record-input:valid:focus ~ .custom-stdnt_record-label, .custom-stdnt_record-input.is-valid:focus ~ .custom-stdnt_record-label {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(139, 195, 74, 0.25);
   box-shadow: 0 0 0 0.2rem rgba(139, 195, 74, 0.25); }
 
@@ -1836,9 +1836,9 @@ textarea.form-control {
   .custom-select.is-invalid ~ .invalid-tooltip {
     display: block; }
 
-.was-validated .form-control-student_record:invalid ~ .invalid-feedback,
-.was-validated .form-control-student_record:invalid ~ .invalid-tooltip, .form-control-student_record.is-invalid ~ .invalid-feedback,
-.form-control-student_record.is-invalid ~ .invalid-tooltip {
+.was-validated .form-control-stdnt_record:invalid ~ .invalid-feedback,
+.was-validated .form-control-stdnt_record:invalid ~ .invalid-tooltip, .form-control-stdnt_record.is-invalid ~ .invalid-feedback,
+.form-control-stdnt_record.is-invalid ~ .invalid-tooltip {
   display: block; }
 
 .was-validated .form-check-input:invalid ~ .form-check-label, .form-check-input.is-invalid ~ .form-check-label {
@@ -1866,17 +1866,17 @@ textarea.form-control {
   -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(242, 58, 46, 0.25);
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(242, 58, 46, 0.25); }
 
-.was-validated .custom-student_record-input:invalid ~ .custom-student_record-label, .custom-student_record-input.is-invalid ~ .custom-student_record-label {
+.was-validated .custom-stdnt_record-input:invalid ~ .custom-stdnt_record-label, .custom-stdnt_record-input.is-invalid ~ .custom-stdnt_record-label {
   border-color: #f23a2e; }
-  .was-validated .custom-student_record-input:invalid ~ .custom-student_record-label::after, .custom-student_record-input.is-invalid ~ .custom-student_record-label::after {
+  .was-validated .custom-stdnt_record-input:invalid ~ .custom-stdnt_record-label::after, .custom-stdnt_record-input.is-invalid ~ .custom-stdnt_record-label::after {
     border-color: inherit; }
 
-.was-validated .custom-student_record-input:invalid ~ .invalid-feedback,
-.was-validated .custom-student_record-input:invalid ~ .invalid-tooltip, .custom-student_record-input.is-invalid ~ .invalid-feedback,
-.custom-student_record-input.is-invalid ~ .invalid-tooltip {
+.was-validated .custom-stdnt_record-input:invalid ~ .invalid-feedback,
+.was-validated .custom-stdnt_record-input:invalid ~ .invalid-tooltip, .custom-stdnt_record-input.is-invalid ~ .invalid-feedback,
+.custom-stdnt_record-input.is-invalid ~ .invalid-tooltip {
   display: block; }
 
-.was-validated .custom-student_record-input:invalid:focus ~ .custom-student_record-label, .custom-student_record-input.is-invalid:focus ~ .custom-student_record-label {
+.was-validated .custom-stdnt_record-input:invalid:focus ~ .custom-stdnt_record-label, .custom-stdnt_record-input.is-invalid:focus ~ .custom-stdnt_record-label {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(242, 58, 46, 0.25);
   box-shadow: 0 0 0 0.2rem rgba(242, 58, 46, 0.25); }
 
@@ -2766,7 +2766,7 @@ input[type="button"].btn-block {
   width: 100%; }
   .input-group > .form-control,
   .input-group > .custom-select,
-  .input-group > .custom-student_record {
+  .input-group > .custom-stdnt_record {
     position: relative;
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
@@ -2775,19 +2775,19 @@ input[type="button"].btn-block {
     margin-bottom: 0; }
     .input-group > .form-control + .form-control,
     .input-group > .form-control + .custom-select,
-    .input-group > .form-control + .custom-student_record,
+    .input-group > .form-control + .custom-stdnt_record,
     .input-group > .custom-select + .form-control,
     .input-group > .custom-select + .custom-select,
-    .input-group > .custom-select + .custom-student_record,
-    .input-group > .custom-student_record + .form-control,
-    .input-group > .custom-student_record + .custom-select,
-    .input-group > .custom-student_record + .custom-student_record {
+    .input-group > .custom-select + .custom-stdnt_record,
+    .input-group > .custom-stdnt_record + .form-control,
+    .input-group > .custom-stdnt_record + .custom-select,
+    .input-group > .custom-stdnt_record + .custom-stdnt_record {
       margin-left: -1px; }
   .input-group > .form-control:focus,
   .input-group > .custom-select:focus,
-  .input-group > .custom-student_record .custom-student_record-input:focus ~ .custom-student_record-label {
+  .input-group > .custom-stdnt_record .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
     z-index: 3; }
-  .input-group > .custom-student_record .custom-student_record-input:focus {
+  .input-group > .custom-stdnt_record .custom-stdnt_record-input:focus {
     z-index: 4; }
   .input-group > .form-control:not(:last-child),
   .input-group > .custom-select:not(:last-child) {
@@ -2797,18 +2797,18 @@ input[type="button"].btn-block {
   .input-group > .custom-select:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
-  .input-group > .custom-student_record {
+  .input-group > .custom-stdnt_record {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center; }
-    .input-group > .custom-student_record:not(:last-child) .custom-student_record-label,
-    .input-group > .custom-student_record:not(:last-child) .custom-student_record-label::after {
+    .input-group > .custom-stdnt_record:not(:last-child) .custom-stdnt_record-label,
+    .input-group > .custom-stdnt_record:not(:last-child) .custom-stdnt_record-label::after {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0; }
-    .input-group > .custom-student_record:not(:first-child) .custom-student_record-label {
+    .input-group > .custom-stdnt_record:not(:first-child) .custom-stdnt_record-label {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0; }
 
@@ -3036,32 +3036,32 @@ input[type="button"].btn-block {
   padding-bottom: 0.375rem;
   font-size: 125%; }
 
-.custom-student_record {
+.custom-stdnt_record {
   position: relative;
   display: inline-block;
   width: 100%;
   height: calc(2.25rem + 2px);
   margin-bottom: 0; }
 
-.custom-student_record-input {
+.custom-stdnt_record-input {
   position: relative;
   z-index: 2;
   width: 100%;
   height: calc(2.25rem + 2px);
   margin: 0;
   opacity: 0; }
-  .custom-student_record-input:focus ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
     border-color: #b2f1de;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(70, 221, 176, 0.25);
     box-shadow: 0 0 0 0.2rem rgba(70, 221, 176, 0.25); }
-    .custom-student_record-input:focus ~ .custom-student_record-label::after {
+    .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label::after {
       border-color: #b2f1de; }
-  .custom-student_record-input:disabled ~ .custom-student_record-label {
+  .custom-stdnt_record-input:disabled ~ .custom-stdnt_record-label {
     background-color: #e9ecef; }
-  .custom-student_record-input:lang(en) ~ .custom-student_record-label::after {
+  .custom-stdnt_record-input:lang(en) ~ .custom-stdnt_record-label::after {
     content: "Browse"; }
 
-.custom-student_record-label {
+.custom-stdnt_record-label {
   position: absolute;
   top: 0;
   right: 0;
@@ -3074,7 +3074,7 @@ input[type="button"].btn-block {
   background-color: #fff;
   border: 1px solid #ced4da;
   border-radius: 0.25rem; }
-  .custom-student_record-label::after {
+  .custom-stdnt_record-label::after {
     position: absolute;
     top: 0;
     right: 0;
@@ -3204,7 +3204,7 @@ input[type="button"].btn-block {
     border-radius: 1rem; }
 
 .custom-control-label::before,
-.custom-student_record-label,
+.custom-stdnt_record-label,
 .custom-select {
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -3213,7 +3213,7 @@ input[type="button"].btn-block {
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
   @media screen and (prefers-reduced-motion: reduce) {
     .custom-control-label::before,
-    .custom-student_record-label,
+    .custom-stdnt_record-label,
     .custom-select {
       -webkit-transition: none;
       -o-transition: none;

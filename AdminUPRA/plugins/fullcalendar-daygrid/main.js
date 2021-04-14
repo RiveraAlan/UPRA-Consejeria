@@ -50,13 +50,13 @@ Docs & License: https://fullcalendar.io/
         return __assign.apply(this, arguments);
     };
 
-    var DayGridDateProstudent_recordGenerator = /** @class */ (function (_super) {
-        __extends(DayGridDateProstudent_recordGenerator, _super);
-        function DayGridDateProstudent_recordGenerator() {
+    var DayGridDateProstdnt_recordGenerator = /** @class */ (function (_super) {
+        __extends(DayGridDateProstdnt_recordGenerator, _super);
+        function DayGridDateProstdnt_recordGenerator() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         // Computes the date range that will be rendered.
-        DayGridDateProstudent_recordGenerator.prototype.buildRenderRange = function (currentRange, currentRangeUnit, isRangeAllDay) {
+        DayGridDateProstdnt_recordGenerator.prototype.buildRenderRange = function (currentRange, currentRangeUnit, isRangeAllDay) {
             var dateEnv = this.dateEnv;
             var renderRange = _super.prototype.buildRenderRange.call(this, currentRange, currentRangeUnit, isRangeAllDay);
             var start = renderRange.start;
@@ -80,8 +80,8 @@ Docs & License: https://fullcalendar.io/
             }
             return { start: start, end: end };
         };
-        return DayGridDateProstudent_recordGenerator;
-    }(core.DateProstudent_recordGenerator));
+        return DayGridDateProstdnt_recordGenerator;
+    }(core.DateProstdnt_recordGenerator));
 
     /* A rectangular panel that is absolutely positioned over other content
     ------------------------------------------------------------------------------------------------------------------------
@@ -691,7 +691,7 @@ Docs & License: https://fullcalendar.io/
             }
             for (var _i = 0, _a = props.cells; _i < _a.length; _i++) {
                 var cell = _a[_i];
-                parts.push(renderCellHtml(cell.date, props.dateProstudent_record, this.context, cell.htmlAttrs));
+                parts.push(renderCellHtml(cell.date, props.dateProstdnt_record, this.context, cell.htmlAttrs));
             }
             if (!props.cells.length) {
                 parts.push('<td class="fc-day ' + this.context.theme.getClass('widgetContent') + '"></td>');
@@ -703,10 +703,10 @@ Docs & License: https://fullcalendar.io/
         };
         return DayBgRow;
     }());
-    function renderCellHtml(date, dateProstudent_record, context, otherAttrs) {
+    function renderCellHtml(date, dateProstdnt_record, context, otherAttrs) {
         var dateEnv = context.dateEnv, theme = context.theme;
-        var isDateValid = core.rangeContainsMarker(dateProstudent_record.activeRange, date); // TODO: called too frequently. cache somehow.
-        var classes = core.getDayClasses(date, dateProstudent_record, context);
+        var isDateValid = core.rangeContainsMarker(dateProstdnt_record.activeRange, date); // TODO: called too frequently. cache somehow.
+        var classes = core.getDayClasses(date, dateProstdnt_record, context);
         classes.unshift('fc-day', theme.getClass('widgetContent'));
         return '<td class="' + classes.join(' ') + '"' +
             (isDateValid ?
@@ -829,7 +829,7 @@ Docs & License: https://fullcalendar.io/
                 '<table class="' + theme.getClass('tableGrid') + '">' +
                 bgRow.renderHtml({
                     cells: this.props.cells[row],
-                    dateProstudent_record: this.props.dateProstudent_record,
+                    dateProstdnt_record: this.props.dateProstdnt_record,
                     renderIntroHtml: this.renderProps.renderBgIntroHtml
                 }) +
                 '</table>' +
@@ -883,7 +883,7 @@ Docs & License: https://fullcalendar.io/
         DayGrid.prototype.renderNumberCellHtml = function (date) {
             var _a = this.context, dateEnv = _a.dateEnv, options = _a.options;
             var html = '';
-            var isDateValid = core.rangeContainsMarker(this.props.dateProstudent_record.activeRange, date); // TODO: called too frequently. cache somehow.
+            var isDateValid = core.rangeContainsMarker(this.props.dateProstdnt_record.activeRange, date); // TODO: called too frequently. cache somehow.
             var isDayNumberVisible = this.getIsDayNumbersVisible() && isDateValid;
             var classes;
             var weekCalcFirstDow;
@@ -891,7 +891,7 @@ Docs & License: https://fullcalendar.io/
                 // no numbers in day cell (week number must be along the side)
                 return '<td></td>'; //  will create an empty space above events :(
             }
-            classes = core.getDayClasses(date, this.props.dateProstudent_record, this.context);
+            classes = core.getDayClasses(date, this.props.dateProstdnt_record, this.context);
             classes.unshift('fc-day-top');
             if (this.renderProps.cellWeekNumbersVisible) {
                 weekCalcFirstDow = dateEnv.weekDow;
@@ -1523,7 +1523,7 @@ Docs & License: https://fullcalendar.io/
         };
         return AbstractDayGridView;
     }(core.View));
-    AbstractDayGridView.prototype.dateProstudent_recordGeneratorClass = DayGridDateProstudent_recordGenerator;
+    AbstractDayGridView.prototype.dateProstdnt_recordGeneratorClass = DayGridDateProstdnt_recordGenerator;
 
     var SimpleDayGrid = /** @class */ (function (_super) {
         __extends(SimpleDayGrid, _super);
@@ -1542,9 +1542,9 @@ Docs & License: https://fullcalendar.io/
         };
         SimpleDayGrid.prototype.render = function (props, context) {
             var dayGrid = this.dayGrid;
-            var dateProstudent_record = props.dateProstudent_record, dayTable = props.dayTable;
+            var dateProstdnt_record = props.dateProstdnt_record, dayTable = props.dayTable;
             dayGrid.receiveContext(context); // hack because context is used in sliceProps
-            dayGrid.receiveProps(__assign({}, this.slicer.sliceProps(props, dateProstudent_record, props.nextDayThreshold, context.calendar, dayGrid, dayTable), { dateProstudent_record: dateProstudent_record, cells: dayTable.cells, isRigid: props.isRigid }), context);
+            dayGrid.receiveProps(__assign({}, this.slicer.sliceProps(props, dateProstdnt_record, props.nextDayThreshold, context.calendar, dayGrid, dayTable), { dateProstdnt_record: dateProstdnt_record, cells: dayTable.cells, isRigid: props.isRigid }), context);
         };
         SimpleDayGrid.prototype.buildPositionCaches = function () {
             this.dayGrid.buildPositionCaches();
@@ -1588,19 +1588,19 @@ Docs & License: https://fullcalendar.io/
         }
         DayGridView.prototype.render = function (props, context) {
             _super.prototype.render.call(this, props, context); // will call _renderSkeleton/_unrenderSkeleton
-            var dateProstudent_record = this.props.dateProstudent_record;
+            var dateProstdnt_record = this.props.dateProstdnt_record;
             var dayTable = this.dayTable =
-                this.buildDayTable(dateProstudent_record, props.dateProstudent_recordGenerator);
+                this.buildDayTable(dateProstdnt_record, props.dateProstdnt_recordGenerator);
             if (this.header) {
                 this.header.receiveProps({
-                    dateProstudent_record: dateProstudent_record,
+                    dateProstdnt_record: dateProstdnt_record,
                     dates: dayTable.headerDates,
                     datesRepDistinctDays: dayTable.rowCnt === 1,
                     renderIntroHtml: this.renderHeadIntroHtml
                 }, context);
             }
             this.simpleDayGrid.receiveProps({
-                dateProstudent_record: dateProstudent_record,
+                dateProstdnt_record: dateProstdnt_record,
                 dayTable: dayTable,
                 businessHours: props.businessHours,
                 dateSelection: props.dateSelection,
@@ -1629,9 +1629,9 @@ Docs & License: https://fullcalendar.io/
         };
         return DayGridView;
     }(AbstractDayGridView));
-    function buildDayTable(dateProstudent_record, dateProstudent_recordGenerator) {
-        var daySeries = new core.DaySeries(dateProstudent_record.renderRange, dateProstudent_recordGenerator);
-        return new core.DayTable(daySeries, /year|month|week/.test(dateProstudent_record.currentRangeUnit));
+    function buildDayTable(dateProstdnt_record, dateProstdnt_recordGenerator) {
+        var daySeries = new core.DaySeries(dateProstdnt_record.renderRange, dateProstdnt_recordGenerator);
+        return new core.DayTable(daySeries, /year|month|week/.test(dateProstdnt_record.currentRangeUnit));
     }
 
     var main = core.createPlugin({

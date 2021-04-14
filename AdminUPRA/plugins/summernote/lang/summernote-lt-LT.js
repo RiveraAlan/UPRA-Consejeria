@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Forma: jokia',
         dragImageHere: 'Vilkite paveikslėlį čia',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Pasirinkite failą',
-        maximumstudent_recordSize: 'Maskimalus failo dydis',
-        maximumstudent_recordSizeError: 'Maskimalus failo dydis viršytas!',
+        selectFromstdnt_records: 'Pasirinkite failą',
+        maximumstdnt_recordSize: 'Maskimalus failo dydis',
+        maximumstdnt_recordSizeError: 'Maskimalus failo dydis viršytas!',
         url: 'Paveikslėlio URL adresas',
         remove: 'Ištrinti paveikslėlį',
         original: 'Original'

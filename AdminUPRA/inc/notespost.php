@@ -4,13 +4,13 @@ require '../../private/dbconnect.php';
     $note = mysqli_real_escape_string($conn, $_POST['text']);
     $id = mysqli_real_escape_string($conn, $_POST['id']);
 
-    $sql = "SELECT adv_comments FROM student_record_details WHERE stdnt_number = '$id'";
+    $sql = "SELECT adv_comments FROM stdnt_record_details WHERE stdnt_number = '$id'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                    $sql = "UPDATE student_record_details SET adv_comments = '$note' WHERE stdnt_number = '$id'";    
+                    $sql = "UPDATE stdnt_record_details SET adv_comments = '$note' WHERE stdnt_number = '$id'";    
                 }
     
             

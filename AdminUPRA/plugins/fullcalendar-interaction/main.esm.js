@@ -1083,8 +1083,8 @@ var HitDragging = /** @class */ (function () {
                     if (hit &&
                         (
                         // make sure the hit is within activeRange, meaning it's not a deal cell
-                        !component.props.dateProstudent_record || // hack for DayTile
-                            rangeContainsRange(component.props.dateProstudent_record.activeRange, hit.dateSpan.range)) &&
+                        !component.props.dateProstdnt_record || // hack for DayTile
+                            rangeContainsRange(component.props.dateProstdnt_record.activeRange, hit.dateSpan.range)) &&
                         (!bestHit || hit.layer > bestHit.layer)) {
                         // TODO: better way to re-orient rectangle
                         hit.rect.left += originLeft;

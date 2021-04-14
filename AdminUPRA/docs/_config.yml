@@ -86,4 +86,4 @@ navigation:
     icon: fas fa-question-circle
   - title: License
     url: license.html
-    icon: fas fa-student_record-contract
+    icon: fas fa-stdnt_record-contract

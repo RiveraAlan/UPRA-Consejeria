@@ -537,8 +537,8 @@ Docs & License: https://fullcalendar.io/
             var cells = props.cells;
             this.colCnt = cells.length;
             this.renderSkeleton(context.theme);
-            this.renderSlats(props.dateProstudent_record);
-            this.renderColumns(props.cells, props.dateProstudent_record);
+            this.renderSlats(props.dateProstdnt_record);
+            this.renderColumns(props.cells, props.dateProstdnt_record);
             this.renderBusinessHours(context, props.businessHourSegs);
             this.renderDateSelection(props.dateSelectionSegs);
             this.renderFgEvents(context, props.fgEventSegs);
@@ -581,11 +581,11 @@ Docs & License: https://fullcalendar.io/
             this.slatContainerEl = el.querySelector('.fc-slats');
             this.bottomRuleEl = el.querySelector('.fc-divider');
         };
-        TimeGrid.prototype._renderSlats = function (dateProstudent_record) {
+        TimeGrid.prototype._renderSlats = function (dateProstdnt_record) {
             var theme = this.context.theme;
             this.slatContainerEl.innerHTML =
                 '<table class="' + theme.getClass('tableGrid') + '">' +
-                    this.renderSlatRowHtml(dateProstudent_record) +
+                    this.renderSlatRowHtml(dateProstdnt_record) +
                     '</table>';
             this.slatEls = core.findElements(this.slatContainerEl, 'tr');
             this.slatPositions = new core.PositionCache(this.el, this.slatEls, false, true // vertical
@@ -593,17 +593,17 @@ Docs & License: https://fullcalendar.io/
             this.isSlatSizesDirty = true;
         };
         // Generates the HTML for the horizontal "slats" that run width-wise. Has a time axis on a side. Depends on RTL.
-        TimeGrid.prototype.renderSlatRowHtml = function (dateProstudent_record) {
+        TimeGrid.prototype.renderSlatRowHtml = function (dateProstdnt_record) {
             var _a = this.context, dateEnv = _a.dateEnv, theme = _a.theme, isRtl = _a.isRtl;
             var html = '';
-            var dayStart = core.startOfDay(dateProstudent_record.renderRange.start);
-            var slotTime = dateProstudent_record.minTime;
+            var dayStart = core.startOfDay(dateProstdnt_record.renderRange.start);
+            var slotTime = dateProstdnt_record.minTime;
             var slotIterator = core.createDuration(0);
             var slotDate; // will be on the view's first day, but we only care about its time
             var isLabeled;
             var axisHtml;
             // Calculate the time for each slot
-            while (core.asRoughMs(slotTime) < core.asRoughMs(dateProstudent_record.maxTime)) {
+            while (core.asRoughMs(slotTime) < core.asRoughMs(dateProstdnt_record.maxTime)) {
                 slotDate = dateEnv.add(dayStart, slotTime);
                 isLabeled = core.wholeDivideDurations(slotIterator, this.labelInterval) !== null;
                 axisHtml =
@@ -627,14 +627,14 @@ Docs & License: https://fullcalendar.io/
             }
             return html;
         };
-        TimeGrid.prototype._renderColumns = function (cells, dateProstudent_record) {
+        TimeGrid.prototype._renderColumns = function (cells, dateProstdnt_record) {
             var _a = this.context, calendar = _a.calendar, view = _a.view, isRtl = _a.isRtl, theme = _a.theme, dateEnv = _a.dateEnv;
             var bgRow = new daygrid.DayBgRow(this.context);
             this.rootBgContainerEl.innerHTML =
                 '<table class="' + theme.getClass('tableGrid') + '">' +
                     bgRow.renderHtml({
                         cells: cells,
-                        dateProstudent_record: dateProstudent_record,
+                        dateProstdnt_record: dateProstdnt_record,
                         renderIntroHtml: this.renderProps.renderBgIntroHtml
                     }) +
                     '</table>';
@@ -781,8 +781,8 @@ Docs & License: https://fullcalendar.io/
         // Computes the top coordinate, relative to the bounds of the grid, of the given time (a Duration).
         TimeGrid.prototype.computeTimeTop = function (duration) {
             var len = this.slatEls.length;
-            var dateProstudent_record = this.props.dateProstudent_record;
-            var slatCoverage = (duration.milliseconds - core.asRoughMs(dateProstudent_record.minTime)) / core.asRoughMs(this.slotDuration); // floating-point value of # of slots covered
+            var dateProstdnt_record = this.props.dateProstdnt_record;
+            var slatCoverage = (duration.milliseconds - core.asRoughMs(dateProstdnt_record.minTime)) / core.asRoughMs(this.slotDuration); // floating-point value of # of slots covered
             var slatIndex;
             var slatRemainder;
             // compute a floating-point number for how many slats should be progressed through.
@@ -857,7 +857,7 @@ Docs & License: https://fullcalendar.io/
                 var localSnapIndex = Math.floor(partial * snapsPerSlot); // the snap # relative to start of slat
                 var snapIndex = slatIndex * snapsPerSlot + localSnapIndex;
                 var dayDate = this.props.cells[colIndex].date;
-                var time = core.addDurations(this.props.dateProstudent_record.minTime, core.multiplyDuration(this.snapDuration, snapIndex));
+                var time = core.addDurations(this.props.dateProstdnt_record.minTime, core.multiplyDuration(this.snapDuration, snapIndex));
                 var start = dateEnv.add(dayDate, time);
                 var end = dateEnv.add(start, this.snapDuration);
                 return {
@@ -990,7 +990,7 @@ Docs & License: https://fullcalendar.io/
             // Generates the HTML that will go before the day-of week header cells
             _this.renderHeadIntroHtml = function () {
                 var _a = _this.context, theme = _a.theme, dateEnv = _a.dateEnv, options = _a.options;
-                var range = _this.props.dateProstudent_record.renderRange;
+                var range = _this.props.dateProstdnt_record.renderRange;
                 var dayCnt = core.diffDays(range.start, range.end);
                 var weekText;
                 if (options.weekNumbers) {
@@ -1244,11 +1244,11 @@ Docs & License: https://fullcalendar.io/
         };
         SimpleTimeGrid.prototype.render = function (props, context) {
             var dateEnv = this.context.dateEnv;
-            var dateProstudent_record = props.dateProstudent_record, dayTable = props.dayTable;
-            var dayRanges = this.dayRanges = this.buildDayRanges(dayTable, dateProstudent_record, dateEnv);
+            var dateProstdnt_record = props.dateProstdnt_record, dayTable = props.dayTable;
+            var dayRanges = this.dayRanges = this.buildDayRanges(dayTable, dateProstdnt_record, dateEnv);
             var timeGrid = this.timeGrid;
             timeGrid.receiveContext(context); // hack because context is used in sliceProps
-            timeGrid.receiveProps(__assign({}, this.slicer.sliceProps(props, dateProstudent_record, null, context.calendar, timeGrid, dayRanges), { dateProstudent_record: dateProstudent_record, cells: dayTable.cells[0] }), context);
+            timeGrid.receiveProps(__assign({}, this.slicer.sliceProps(props, dateProstdnt_record, null, context.calendar, timeGrid, dayRanges), { dateProstdnt_record: dateProstdnt_record, cells: dayTable.cells[0] }), context);
         };
         SimpleTimeGrid.prototype.renderNowIndicator = function (date) {
             this.timeGrid.renderNowIndicator(this.slicer.sliceNowDate(date, this.timeGrid, this.dayRanges), date);
@@ -1275,13 +1275,13 @@ Docs & License: https://fullcalendar.io/
         };
         return SimpleTimeGrid;
     }(core.DateComponent));
-    function buildDayRanges(dayTable, dateProstudent_record, dateEnv) {
+    function buildDayRanges(dayTable, dateProstdnt_record, dateEnv) {
         var ranges = [];
         for (var _i = 0, _a = dayTable.headerDates; _i < _a.length; _i++) {
             var date = _a[_i];
             ranges.push({
-                start: dateEnv.add(date, dateProstudent_record.minTime),
-                end: dateEnv.add(date, dateProstudent_record.maxTime)
+                start: dateEnv.add(date, dateProstdnt_record.minTime),
+                end: dateEnv.add(date, dateProstdnt_record.maxTime)
             });
         }
         return ranges;
@@ -1319,26 +1319,26 @@ Docs & License: https://fullcalendar.io/
         }
         TimeGridView.prototype.render = function (props, context) {
             _super.prototype.render.call(this, props, context); // for flags for updateSize. also _renderSkeleton/_unrenderSkeleton
-            var _a = this.props, dateProstudent_record = _a.dateProstudent_record, dateProstudent_recordGenerator = _a.dateProstudent_recordGenerator;
+            var _a = this.props, dateProstdnt_record = _a.dateProstdnt_record, dateProstdnt_recordGenerator = _a.dateProstdnt_recordGenerator;
             var nextDayThreshold = context.nextDayThreshold;
-            var dayTable = this.buildDayTable(dateProstudent_record, dateProstudent_recordGenerator);
+            var dayTable = this.buildDayTable(dateProstdnt_record, dateProstdnt_recordGenerator);
             var splitProps = this.splitter.splitProps(props);
             if (this.header) {
                 this.header.receiveProps({
-                    dateProstudent_record: dateProstudent_record,
+                    dateProstdnt_record: dateProstdnt_record,
                     dates: dayTable.headerDates,
                     datesRepDistinctDays: true,
                     renderIntroHtml: this.renderHeadIntroHtml
                 }, context);
             }
-            this.simpleTimeGrid.receiveProps(__assign({}, splitProps['timed'], { dateProstudent_record: dateProstudent_record,
+            this.simpleTimeGrid.receiveProps(__assign({}, splitProps['timed'], { dateProstdnt_record: dateProstdnt_record,
                 dayTable: dayTable }), context);
             if (this.simpleDayGrid) {
-                this.simpleDayGrid.receiveProps(__assign({}, splitProps['allDay'], { dateProstudent_record: dateProstudent_record,
+                this.simpleDayGrid.receiveProps(__assign({}, splitProps['allDay'], { dateProstdnt_record: dateProstdnt_record,
                     dayTable: dayTable,
                     nextDayThreshold: nextDayThreshold, isRigid: false }), context);
             }
-            this.startNowIndicator(dateProstudent_record, dateProstudent_recordGenerator);
+            this.startNowIndicator(dateProstdnt_record, dateProstdnt_recordGenerator);
         };
         TimeGridView.prototype._renderSkeleton = function (context) {
             _super.prototype._renderSkeleton.call(this, context);
@@ -1365,8 +1365,8 @@ Docs & License: https://fullcalendar.io/
         };
         return TimeGridView;
     }(AbstractTimeGridView));
-    function buildDayTable(dateProstudent_record, dateProstudent_recordGenerator) {
-        var daySeries = new core.DaySeries(dateProstudent_record.renderRange, dateProstudent_recordGenerator);
+    function buildDayTable(dateProstdnt_record, dateProstdnt_recordGenerator) {
+        var daySeries = new core.DaySeries(dateProstdnt_record.renderRange, dateProstdnt_recordGenerator);
         return new core.DayTable(daySeries, false);
     }
 

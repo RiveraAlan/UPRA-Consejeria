@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: '形狀: 無',
         dragImageHere: '將圖片拖曳至此處',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: '從本機上傳',
-        maximumstudent_recordSize: '文件大小最大值',
-        maximumstudent_recordSizeError: '文件大小超出最大值。',
+        selectFromstdnt_records: '從本機上傳',
+        maximumstdnt_recordSize: '文件大小最大值',
+        maximumstdnt_recordSizeError: '文件大小超出最大值。',
         url: '圖片網址',
         remove: '移除圖片',
         original: 'Original'

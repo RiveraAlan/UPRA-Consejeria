@@ -117,7 +117,7 @@ CodeMirror.defineMode("tiddlywiki", function () {
     if (ch == '{' && stream.match(/\{\{/))
       return chain(stream, state, twTokenCode);
 
-    // rudimentary html:// student_record:// link matching. TW knows much more ...
+    // rudimentary html:// stdnt_record:// link matching. TW knows much more ...
     if (/[hf]/i.test(ch) &&
         /[ti]/i.test(stream.peek()) &&
         stream.match(/\b(ttps?|tp|ile):\/\/[\-A-Z0-9+&@#\/%?=~_|$!:,.;]*[A-Z0-9+&@#\/%=~_|$]/i))

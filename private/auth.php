@@ -34,7 +34,7 @@ if($stmt = $conn->prepare("SELECT stdnt_number, stdnt_email, stdnt_password, std
         $stmt->bind_result($stdnt_number, $stdnt_email, $stdnt_password,  $stdnt_lastname1, $stdnt_lastname2, $stdnt_name, $stdnt_initial);
         $stmt->fetch();
         // Account exists, now we verify the password.
-        // Note: remember to use password_hash in your registration student_record to store the hashed passwords.
+        // Note: remember to use password_hash in your registration stdnt_record to store the hashed passwords.
         
         
    

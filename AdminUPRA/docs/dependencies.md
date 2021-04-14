@@ -20,7 +20,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
 {: .lead}
 
 > Note!
-> You need to load the js/css student_records of the plugin that you want to use.
+> You need to load the js/css stdnt_records of the plugin that you want to use.
 > AdminLTE doesn't load automatically all plugins, this would cause huge load times on every page load.
 {:.quote-warning}
 
@@ -52,7 +52,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://select2.org/" rel="noopener" target="_blank">Select2</a></li>
       <li><a href="https://tempusdominus.github.io/bootstrap-4/" rel="noopener" target="_blank">Tempus Dominus</a></li>
       <li><a href="https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox#readme" rel="noopener" target="_blank">Bootstrap4 Duallistbox</a></li>
-      <li><a href="https://github.com/Johann-S/bs-custom-student_record-input#readme" rel="noopener" target="_blank">bs-custom-student_record-input</a></li>
+      <li><a href="https://github.com/Johann-S/bs-custom-stdnt_record-input#readme" rel="noopener" target="_blank">bs-custom-stdnt_record-input</a></li>
       <li><a href="https://github.com/Johann-S/bs-stepper#readme" rel="noopener" target="_blank">bs-stepper</a></li>
     </ul>
   </div>

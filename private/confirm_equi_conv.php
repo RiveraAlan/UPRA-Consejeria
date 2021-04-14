@@ -3,14 +3,14 @@ if (isset($_POST['conv_env-submit'])) {
 require 'dbconnect.php';
     $estatus = mysqli_real_escape_string($conn, $_POST['estatus']);
     $stdnt_number = mysqli_real_escape_string($conn, $_POST['stdnt_number']);
-    $crse_label = mysqli_real_escape_string($conn, $_POST['conv_env-submit']);
+    $crse_code = mysqli_real_escape_string($conn, $_POST['conv_env-submit']);
   
-    $sql = "SELECT crse_ER_Status FROM student_record WHERE stdnt_number = '$stdnt_number' AND crse_label = $crse_label";
+    $sql = "SELECT crse_ER_Status FROM stdnt_record WHERE stdnt_number = '$stdnt_number' AND crse_code = $crse_code";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
-                    $sql = "UPDATE student_record SET crse_ER_Status = $estatus WHERE stdnt_number = '$stdnt_number' AND crse_label = $crse_label";    
+                    $sql = "UPDATE stdnt_record SET crse_ER_Status = $estatus WHERE stdnt_number = '$stdnt_number' AND crse_code = $crse_code";    
             
             // Prepare statement
             $stmt = $conn->prepare($sql);

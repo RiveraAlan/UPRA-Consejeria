@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'یک تصویر را اینجا بکشید',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'فایل ها را انتخاب کنید',
-        maximumstudent_recordSize: 'حداکثر اندازه پرونده',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'فایل ها را انتخاب کنید',
+        maximumstdnt_recordSize: 'حداکثر اندازه پرونده',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'آدرس تصویر',
         remove: 'حذف تصویر',
         original: 'Original'

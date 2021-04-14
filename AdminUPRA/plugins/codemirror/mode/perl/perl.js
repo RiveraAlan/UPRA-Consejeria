@@ -259,26 +259,26 @@ CodeMirror.defineMode("perl",function(){
                 alarm                           :1,     // - schedule a SIGALRM
                 'atan2'                         :1,     // - arctangent of Y/X in the range -PI to PI
                 bind                            :1,     // - binds an address to a socket
-                binmode                         :1,     // - prepare binary student_records for I/O
+                binmode                         :1,     // - prepare binary stdnt_records for I/O
                 bless                           :1,     // - create an object
                 bootstrap                       :1,     //
                 'break'                         :1,     // - break out of a "given" block
                 caller                          :1,     // - get context of the current subroutine call
                 chdir                           :1,     // - change your current working directory
-                chmod                           :1,     // - changes the permissions on a list of student_records
+                chmod                           :1,     // - changes the permissions on a list of stdnt_records
                 chomp                           :1,     // - remove a trailing record separator from a string
                 chop                            :1,     // - remove the last character from a string
-                chown                           :1,     // - change the ownership on a list of student_records
+                chown                           :1,     // - change the ownership on a list of stdnt_records
                 chr                             :1,     // - get character this number represents
                 chroot                          :1,     // - make directory new root for path lookups
-                close                           :1,     // - close student_record (or pipe or socket) handle
+                close                           :1,     // - close stdnt_record (or pipe or socket) handle
                 closedir                        :1,     // - close directory handle
                 connect                         :1,     // - connect to a remote socket
                 'continue'                      :[1,1], // - optional trailing block in a while or foreach
                 'cos'                           :1,     // - cosine function
                 crypt                           :1,     // - one-way passwd-style encryption
-                dbmclose                        :1,     // - breaks binding on a tied dbm student_record
-                dbmopen                         :1,     // - create binding on a tied dbm student_record
+                dbmclose                        :1,     // - breaks binding on a tied dbm stdnt_record
+                dbmopen                         :1,     // - create binding on a tied dbm stdnt_record
                 'default'                       :1,     //
                 defined                         :1,     // - test whether a value, variable, or function is defined
                 'delete'                        :1,     // - deletes a value from a hash
@@ -286,25 +286,25 @@ CodeMirror.defineMode("perl",function(){
                 'do'                            :1,     // - turn a BLOCK into a TERM
                 dump                            :1,     // - create an immediate core dump
                 each                            :1,     // - retrieve the next key/value pair from a hash
-                endgrent                        :1,     // - be done using group student_record
-                endhostent                      :1,     // - be done using hosts student_record
-                endnetent                       :1,     // - be done using networks student_record
-                endprotoent                     :1,     // - be done using protocols student_record
-                endpwent                        :1,     // - be done using passwd student_record
-                endservent                      :1,     // - be done using services student_record
-                eof                             :1,     // - test a student_recordhandle for its end
+                endgrent                        :1,     // - be done using group stdnt_record
+                endhostent                      :1,     // - be done using hosts stdnt_record
+                endnetent                       :1,     // - be done using networks stdnt_record
+                endprotoent                     :1,     // - be done using protocols stdnt_record
+                endpwent                        :1,     // - be done using passwd stdnt_record
+                endservent                      :1,     // - be done using services stdnt_record
+                eof                             :1,     // - test a stdnt_recordhandle for its end
                 'eval'                          :1,     // - catch exceptions or compile and run code
                 'exec'                          :1,     // - abandon this program to run another
                 exists                          :1,     // - test whether a hash key is present
                 exit                            :1,     // - terminate this program
                 'exp'                           :1,     // - raise I to a power
-                fcntl                           :1,     // - student_record control system call
-                student_recordno                          :1,     // - return student_record descriptor from student_recordhandle
-                flock                           :1,     // - lock an entire student_record with an advisory lock
+                fcntl                           :1,     // - stdnt_record control system call
+                stdnt_recordno                          :1,     // - return stdnt_record descriptor from stdnt_recordhandle
+                flock                           :1,     // - lock an entire stdnt_record with an advisory lock
                 fork                            :1,     // - create a new process just like this one
                 format                          :1,     // - declare a picture format with use by the write() function
                 formline                        :1,     // - internal function used for formats
-                getc                            :1,     // - get the next character from the student_recordhandle
+                getc                            :1,     // - get the next character from the stdnt_recordhandle
                 getgrent                        :1,     // - get next group record
                 getgrgid                        :1,     // - get group record given group user ID
                 getgrnam                        :1,     // - get group record given group name
@@ -331,7 +331,7 @@ CodeMirror.defineMode("perl",function(){
                 getsockname                     :1,     // - retrieve the sockaddr for a given socket
                 getsockopt                      :1,     // - get socket options on a given socket
                 given                           :1,     //
-                glob                            :1,     // - expand student_recordnames using wildcards
+                glob                            :1,     // - expand stdnt_recordnames using wildcards
                 gmtime                          :1,     // - convert UNIX time into record or string using Greenwich time
                 'goto'                          :1,     // - create spaghetti code
                 grep                            :1,     // - locate elements in a list test true against a given criterion
@@ -347,7 +347,7 @@ CodeMirror.defineMode("perl",function(){
                 lc                              :1,     // - return lower-case version of a string
                 lcfirst                         :1,     // - return a string with just the next letter in lower case
                 length                          :1,     // - return the number of bytes in a string
-                'link'                          :1,     // - create a hard link in the student_recordsytem
+                'link'                          :1,     // - create a hard link in the stdnt_recordsytem
                 listen                          :1,     // - register your socket as a server
                 local                           : 2,    // - create a temporary value for a global variable (dynamic scoping)
                 localtime                       :1,     // - convert UNIX time into record or string using local time
@@ -366,17 +366,17 @@ CodeMirror.defineMode("perl",function(){
                 next                            :1,     // - iterate a block prematurely
                 no                              :1,     // - unimport some module symbols or semantics at compile time
                 oct                             :1,     // - convert a string to an octal number
-                open                            :1,     // - open a student_record, pipe, or descriptor
+                open                            :1,     // - open a stdnt_record, pipe, or descriptor
                 opendir                         :1,     // - open a directory
                 ord                             :1,     // - find a character's numeric representation
                 our                             : 2,    // - declare and assign a package variable (lexical scoping)
                 pack                            :1,     // - convert a list into a binary representation
                 'package'                       :1,     // - declare a separate global namespace
-                pipe                            :1,     // - open a pair of connected student_recordhandles
+                pipe                            :1,     // - open a pair of connected stdnt_recordhandles
                 pop                             :1,     // - remove the last element from an array and return it
                 pos                             :1,     // - find or set the offset for the last/next m//g search
-                print                           :1,     // - output a list to a student_recordhandle
-                printf                          :1,     // - output a formatted list to a student_recordhandle
+                print                           :1,     // - output a list to a stdnt_recordhandle
+                printf                          :1,     // - output a formatted list to a stdnt_recordhandle
                 prototype                       :1,     // - get the prototype (if any) of a subroutine
                 push                            :1,     // - append one or more elements to an array
                 q                               :null,  // - singly quote a string
@@ -386,15 +386,15 @@ CodeMirror.defineMode("perl",function(){
                 qw                              :null,  // - quote a list of words
                 qx                              :null,  // - backquote quote a string
                 rand                            :1,     // - retrieve the next pseudorandom number
-                read                            :1,     // - fixed-length buffered input from a student_recordhandle
+                read                            :1,     // - fixed-length buffered input from a stdnt_recordhandle
                 readdir                         :1,     // - get a directory from a directory handle
-                readline                        :1,     // - fetch a record from a student_record
+                readline                        :1,     // - fetch a record from a stdnt_record
                 readlink                        :1,     // - determine where a symbolic link is pointing
                 readpipe                        :1,     // - execute a system command and collect standard output
                 recv                            :1,     // - receive a message over a Socket
                 redo                            :1,     // - start this loop iteration over again
                 ref                             :1,     // - find out the type of thing being referenced
-                rename                          :1,     // - change a student_recordname
+                rename                          :1,     // - change a stdnt_recordname
                 require                         :1,     // - load in external functions from a library at runtime
                 reset                           :1,     // - clear all variables of a given name
                 'return'                        :1,     // - get out of a function early
@@ -405,21 +405,21 @@ CodeMirror.defineMode("perl",function(){
                 s                               :null,  // - replace a pattern with a string
                 say                             :1,     // - print with newline
                 scalar                          :1,     // - force a scalar context
-                seek                            :1,     // - reposition student_record pointer for random-access I/O
+                seek                            :1,     // - reposition stdnt_record pointer for random-access I/O
                 seekdir                         :1,     // - reposition directory pointer
                 select                          :1,     // - reset default output or do I/O multiplexing
                 semctl                          :1,     // - SysV semaphore control operations
                 semget                          :1,     // - get set of SysV semaphores
                 semop                           :1,     // - SysV semaphore operations
                 send                            :1,     // - send a message over a socket
-                setgrent                        :1,     // - prepare group student_record for use
-                sethostent                      :1,     // - prepare hosts student_record for use
-                setnetent                       :1,     // - prepare networks student_record for use
+                setgrent                        :1,     // - prepare group stdnt_record for use
+                sethostent                      :1,     // - prepare hosts stdnt_record for use
+                setnetent                       :1,     // - prepare networks stdnt_record for use
                 setpgrp                         :1,     // - set the process group of a process
                 setpriority                     :1,     // - set a process's nice value
-                setprotoent                     :1,     // - prepare protocols student_record for use
-                setpwent                        :1,     // - prepare passwd student_record for use
-                setservent                      :1,     // - prepare services student_record for use
+                setprotoent                     :1,     // - prepare protocols stdnt_record for use
+                setpwent                        :1,     // - prepare passwd stdnt_record for use
+                setservent                      :1,     // - prepare services stdnt_record for use
                 setsockopt                      :1,     // - set some socket options
                 shift                           :1,     // - remove the first element of an array, and return it
                 shmctl                          :1,     // - SysV shared memory operations
@@ -437,36 +437,36 @@ CodeMirror.defineMode("perl",function(){
                 sprintf                         :1,     // - formatted print into a string
                 'sqrt'                          :1,     // - square root function
                 srand                           :1,     // - seed the random number generator
-                stat                            :1,     // - get a student_record's status information
+                stat                            :1,     // - get a stdnt_record's status information
                 state                           :1,     // - declare and assign a state variable (persistent lexical scoping)
                 study                           :1,     // - optimize input data for repeated searches
                 'sub'                           :1,     // - declare a subroutine, possibly anonymously
                 'substr'                        :1,     // - get or alter a portion of a stirng
-                symlink                         :1,     // - create a symbolic link to a student_record
+                symlink                         :1,     // - create a symbolic link to a stdnt_record
                 syscall                         :1,     // - execute an arbitrary system call
-                sysopen                         :1,     // - open a student_record, pipe, or descriptor
-                sysread                         :1,     // - fixed-length unbuffered input from a student_recordhandle
+                sysopen                         :1,     // - open a stdnt_record, pipe, or descriptor
+                sysread                         :1,     // - fixed-length unbuffered input from a stdnt_recordhandle
                 sysseek                         :1,     // - position I/O pointer on handle used with sysread and syswrite
                 system                          :1,     // - run a separate program
-                syswrite                        :1,     // - fixed-length unbuffered output to a student_recordhandle
-                tell                            :1,     // - get current seekpointer on a student_recordhandle
+                syswrite                        :1,     // - fixed-length unbuffered output to a stdnt_recordhandle
+                tell                            :1,     // - get current seekpointer on a stdnt_recordhandle
                 telldir                         :1,     // - get current seekpointer on a directory handle
                 tie                             :1,     // - bind a variable to an object class
                 tied                            :1,     // - get a reference to the object underlying a tied variable
                 time                            :1,     // - return number of seconds since 1970
                 times                           :1,     // - return elapsed time for self and child processes
                 tr                              :null,  // - transliterate a string
-                truncate                        :1,     // - shorten a student_record
+                truncate                        :1,     // - shorten a stdnt_record
                 uc                              :1,     // - return upper-case version of a string
                 ucfirst                         :1,     // - return a string with just the next letter in upper case
-                umask                           :1,     // - set student_record creation mode mask
+                umask                           :1,     // - set stdnt_record creation mode mask
                 undef                           :1,     // - remove a variable or function definition
-                unlink                          :1,     // - remove one link to a student_record
+                unlink                          :1,     // - remove one link to a stdnt_record
                 unpack                          :1,     // - convert binary structure into normal perl variables
                 unshift                         :1,     // - prepend more elements to the beginning of a list
                 untie                           :1,     // - break a tie binding to a variable
                 use                             :1,     // - load in a module at compile time
-                utime                           :1,     // - set a student_record's last access and modify times
+                utime                           :1,     // - set a stdnt_record's last access and modify times
                 values                          :1,     // - return a list of the values in a hash
                 vec                             :1,     // - test or set particular bits in a string
                 wait                            :1,     // - wait for any child process to die

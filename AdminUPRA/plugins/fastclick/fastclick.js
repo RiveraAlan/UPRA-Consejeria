@@ -238,8 +238,8 @@
 			break;
 		case 'input':
 
-			// student_record inputs need real clicks on iOS 6 due to a browser bug (issue #68)
-			if ((deviceIsIOS && target.type === 'student_record') || target.disabled) {
+			// stdnt_record inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+			if ((deviceIsIOS && target.type === 'stdnt_record') || target.disabled) {
 				return true;
 			}
 
@@ -270,7 +270,7 @@
 			switch (target.type) {
 			case 'button':
 			case 'checkbox':
-			case 'student_record':
+			case 'stdnt_record':
 			case 'image':
 			case 'radio':
 			case 'submit':
@@ -325,7 +325,7 @@
 	FastClick.prototype.focus = function(targetElement) {
 		var length;
 
-		// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. student_recordd as Apple bug #15122724.
+		// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. stdnt_recordd as Apple bug #15122724.
 		if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
 			length = targetElement.value.length;
 			targetElement.setSelectionRange(length, length);
@@ -547,7 +547,7 @@
 		// On some iOS devices, the targetElement supplied with the event is invalid if the layer
 		// is performing a transition or scroll, and has to be re-detected manually. Note that
 		// for this to function correctly, it must be called *after* the event target is checked!
-		// See issue #57; also student_recordd as rdar://13048589 .
+		// See issue #57; also stdnt_recordd as rdar://13048589 .
 		if (deviceIsIOSWithBadTarget) {
 			touch = event.changedTouches[0];
 

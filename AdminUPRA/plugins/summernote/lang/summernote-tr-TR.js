@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Şekil: Yok',
         dragImageHere: 'Buraya sürükleyin',
         dropImage: 'Resim veya metni bırakın',
-        selectFromstudent_records: 'Dosya seçin',
-        maximumstudent_recordSize: 'Maksimum dosya boyutu',
-        maximumstudent_recordSizeError: 'Maksimum dosya boyutu aşıldı.',
+        selectFromstdnt_records: 'Dosya seçin',
+        maximumstdnt_recordSize: 'Maksimum dosya boyutu',
+        maximumstdnt_recordSizeError: 'Maksimum dosya boyutu aşıldı.',
         url: 'Resim bağlantısı',
         remove: 'Resimi Kaldır',
         original: 'Original'

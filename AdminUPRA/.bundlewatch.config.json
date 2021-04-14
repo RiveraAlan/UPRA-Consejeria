@@ -1,5 +1,5 @@
 {
-  "student_records": [
+  "stdnt_records": [
     {
       "path": "./dist/css/adminlte.css",
       "maxSize": "80 kB"

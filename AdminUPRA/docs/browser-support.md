@@ -10,7 +10,7 @@ AdminLTE comes with the same browser support as Bootstrap 4.
 >
 > For more details [look here](https://getbootstrap.com/docs/4.4/getting-started/browsers-devices/#supported-browsers).
 
-You can find our supported range of browsers and their versions in [our .browserslistrc student_record](https://github.com/ColorlibHQ/AdminLTE/blob/master/.browserslistrc):
+You can find our supported range of browsers and their versions in [our .browserslistrc stdnt_record](https://github.com/ColorlibHQ/AdminLTE/blob/master/.browserslistrc):
 
 ```
 # https://github.com/browserslist/browserslist#readme

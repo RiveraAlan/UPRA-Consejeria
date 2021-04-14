@@ -31,25 +31,25 @@ CodeMirror.defineMode("mirc", function() {
                             "$dbuh $dbuw $dccignore $dccport $dde $ddename $debug $decode $decompress " +
                             "$deltok $devent $dialog $did $didreg $didtok $didwm $disk $dlevel $dll " +
                             "$dllcall $dname $dns $duration $ebeeps $editbox $emailaddr $encode $error " +
-                            "$eval $event $exist $feof $ferr $fgetc $student_record $student_recordname $filtered $finddir " +
-                            "$finddirn $findstudent_record $findstudent_recordn $findtok $fline $floor $fopen $fread $fserve " +
+                            "$eval $event $exist $feof $ferr $fgetc $stdnt_record $stdnt_recordname $filtered $finddir " +
+                            "$finddirn $findstdnt_record $findstdnt_recordn $findtok $fline $floor $fopen $fread $fserve " +
                             "$fulladdress $fulldate $fullname $fullscreen $get $getdir $getdot $gettok $gmt " +
                             "$group $halted $hash $height $hfind $hget $highlight $hnick $hotline " +
                             "$hotlinepos $ial $ialchan $ibl $idle $iel $ifmatch $ignore $iif $iil " +
                             "$inelipse $ini $inmidi $inpaste $inpoly $input $inrect $inroundrect " +
-                            "$insong $instok $int $inwave $ip $isalias $isbit $isdde $isdir $isstudent_record " +
+                            "$insong $instok $int $inwave $ip $isalias $isbit $isdde $isdir $isstdnt_record " +
                             "$isid $islower $istok $isupper $keychar $keyrpt $keyval $knick $lactive " +
                             "$lactivecid $lactivewid $left $len $level $lf $line $lines $link $lock " +
                             "$lock $locked $log $logstamp $logstampfmt $longfn $longip $lower $ltimer " +
                             "$maddress $mask $matchkey $matchtok $md5 $me $menu $menubar $menucontext " +
                             "$menutype $mid $middir $mircdir $mircexe $mircini $mklogfn $mnick $mode " +
-                            "$modefirst $modelast $modespl $mouse $msstudent_record $network $newnick $nick $nostudent_record " +
+                            "$modefirst $modelast $modespl $mouse $msstdnt_record $network $newnick $nick $nostdnt_record " +
                             "$nopath $noqt $not $notags $notify $null $numeric $numok $oline $onpoly " +
                             "$opnick $or $ord $os $passivedcc $pic $play $pnick $port $portable $portfree " +
                             "$pos $prefix $prop $protect $puttok $qt $query $rand $r $rawmsg $read $readomo " +
                             "$readn $regex $regml $regsub $regsubex $remove $remtok $replace $replacex " +
                             "$reptok $result $rgb $right $round $scid $scon $script $scriptdir $scriptline " +
-                            "$sdir $send $server $serverip $sstudent_record $sha1 $shortfn $show $signal $sin " +
+                            "$sdir $send $server $serverip $sstdnt_record $sha1 $shortfn $show $signal $sin " +
                             "$site $sline $snick $snicks $snotify $sock $sockbr $sockerr $sockname " +
                             "$sorttok $sound $sqrt $ssl $sreq $sslready $status $strip $str $stripped " +
                             "$syle $submenu $switchbar $tan $target $ticks $time $timer $timestamp " +

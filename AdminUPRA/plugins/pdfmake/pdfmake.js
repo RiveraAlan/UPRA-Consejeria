@@ -5099,7 +5099,7 @@ process.umask = function() { return 0; };
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -5521,7 +5521,7 @@ var activeXDocument;
 var NullProtoObject = function () {
   try {
     /* global ActiveXObject */
-    activeXDocument = document.domain && new ActiveXObject('htmlstudent_record');
+    activeXDocument = document.domain && new ActiveXObject('htmlstdnt_record');
   } catch (error) { /* ignore */ }
   NullProtoObject = activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame();
   var length = enumBugKeys.length;
@@ -6779,15 +6779,15 @@ __webpack_require__(178)(String, 'String', function (iterated) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer, __dirname) {
 
-function Virtualstudent_recordSystem() {
-	this.student_recordSystem = {};
+function Virtualstdnt_recordSystem() {
+	this.stdnt_recordSystem = {};
 	this.dataSystem = {};
 }
 
-Virtualstudent_recordSystem.prototype.readstudent_recordSync = function (student_recordname, options) {
-	student_recordname = fixstudent_recordname(student_recordname);
+Virtualstdnt_recordSystem.prototype.readstdnt_recordSync = function (stdnt_recordname, options) {
+	stdnt_recordname = fixstdnt_recordname(stdnt_recordname);
 
-	var dataContent = this.dataSystem[student_recordname];
+	var dataContent = this.dataSystem[stdnt_recordname];
 	if (typeof dataContent === 'string' && options === 'utf8') {
 		return dataContent;
 	}
@@ -6796,36 +6796,36 @@ Virtualstudent_recordSystem.prototype.readstudent_recordSync = function (student
 		return new Buffer(dataContent, typeof dataContent === 'string' ? 'base64' : undefined);
 	}
 
-	var content = this.student_recordSystem[student_recordname];
+	var content = this.stdnt_recordSystem[stdnt_recordname];
 	if (content) {
 		return content;
 	}
 
-	throw 'student_record \'' + student_recordname + '\' not found in virtual student_record system';
+	throw 'stdnt_record \'' + stdnt_recordname + '\' not found in virtual stdnt_record system';
 };
 
-Virtualstudent_recordSystem.prototype.writestudent_recordSync = function (student_recordname, content) {
-	this.student_recordSystem[fixstudent_recordname(student_recordname)] = content;
+Virtualstdnt_recordSystem.prototype.writestdnt_recordSync = function (stdnt_recordname, content) {
+	this.stdnt_recordSystem[fixstdnt_recordname(stdnt_recordname)] = content;
 };
 
-Virtualstudent_recordSystem.prototype.bindFS = function (data) {
+Virtualstdnt_recordSystem.prototype.bindFS = function (data) {
 	this.dataSystem = data || {};
 };
 
 
-function fixstudent_recordname(student_recordname) {
-	if (student_recordname.indexOf(__dirname) === 0) {
-		student_recordname = student_recordname.substring(__dirname.length);
+function fixstdnt_recordname(stdnt_recordname) {
+	if (stdnt_recordname.indexOf(__dirname) === 0) {
+		stdnt_recordname = stdnt_recordname.substring(__dirname.length);
 	}
 
-	if (student_recordname.indexOf('/') === 0) {
-		student_recordname = student_recordname.substring(1);
+	if (stdnt_recordname.indexOf('/') === 0) {
+		stdnt_recordname = stdnt_recordname.substring(1);
 	}
 
-	return student_recordname;
+	return stdnt_recordname;
 }
 
-module.exports = new Virtualstudent_recordSystem();
+module.exports = new Virtualstdnt_recordSystem();
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10).Buffer, "/"))
 
@@ -6961,7 +6961,7 @@ module.exports = {};
 /* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -7114,7 +7114,7 @@ var Iterators = __webpack_require__(103);
 var TO_STRING_TAG = __webpack_require__(21)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
-  'DOMTokenList,DataTransferItemList,student_recordList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
+  'DOMTokenList,DataTransferItemList,stdnt_recordList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
   'MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' +
   'SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,' +
   'TextTrackList,TouchList').split(',');
@@ -7447,7 +7447,7 @@ var stickyHelpers = __webpack_require__(329);
 var nativeExec = RegExp.prototype.exec;
 // This always refers to the native implementation, because the
 // String#replace polyfill uses ./fix-regexp-well-known-symbol-logic.js,
-// which loads this student_record before patching the method.
+// which loads this stdnt_record before patching the method.
 var nativeReplace = String.prototype.replace;
 
 var patchedExec = nativeExec;
@@ -7576,7 +7576,7 @@ for (var COLLECTION_NAME in DOMIterables) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -10069,7 +10069,7 @@ module.exports = function (R, S) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -10216,7 +10216,7 @@ exports.PassThrough = __webpack_require__(345);
 /* WEBPACK VAR INJECTION */(function(process, global) {// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -10370,7 +10370,7 @@ function WritableState(options, stream) {
 
   // not an actual buffer we keep track of, but a measurement
   // of how much we're waiting to get pushed to some underlying
-  // socket or student_record.
+  // socket or stdnt_record.
   this.length = 0;
 
   // a flag to see when we're in the middle of a write.
@@ -10910,7 +10910,7 @@ Writable.prototype._destroy = function (err, cb) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -11211,7 +11211,7 @@ function simpleEnd(buf) {
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -11778,7 +11778,7 @@ exports.log = function() {
  * Inherit the prototype methods from one constructor into another.
  *
  * The Function.prototype.inherits from lang.js rewritten as a standalone
- * function (not on Function.prototype). NOTE: If this student_record is to be loaded
+ * function (not on Function.prototype). NOTE: If this stdnt_record is to be loaded
  * during bootstrapping this function needs to be rewritten using some native
  * functions as prototype setup using normal JavaScript does not work as
  * expected during bootstrapping (see mirror.js in r114903).
@@ -15252,7 +15252,7 @@ module.exports = {
   DOMStringList: 0,
   DOMTokenList: 1,
   DataTransferItemList: 0,
-  student_recordList: 0,
+  stdnt_recordList: 0,
   HTMLAllCollection: 0,
   HTMLCollection: 0,
   HTMLFormElement: 0,
@@ -15286,7 +15286,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -16399,7 +16399,7 @@ module.exports = {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -17288,7 +17288,7 @@ function isBuffer(b) {
 // Copyright (c) 2009 Thomas Robinson <280north.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation student_records (the 'Software'), to
+// of this software and associated documentation stdnt_records (the 'Software'), to
 // deal in the Software without restriction, including without limitation the
 // rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
 // sell copies of the Software, and to permit persons to whom the Software is
@@ -19490,7 +19490,7 @@ module.exports = function (C, x) {
 /* Copyright 2013 Google Inc. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this student_record except in compliance with the License.
+   you may not use this stdnt_record except in compliance with the License.
    You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
@@ -20474,7 +20474,7 @@ exports.BrotliOutput = BrotliOutput;
 /* Copyright 2013 Google Inc. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this student_record except in compliance with the License.
+   you may not use this stdnt_record except in compliance with the License.
    You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
@@ -21617,7 +21617,7 @@ if (!set || !clear) {
     typeof postMessage == 'function' &&
     !global.importScripts &&
     !fails(post) &&
-    location.protocol !== 'student_record:'
+    location.protocol !== 'stdnt_record:'
   ) {
     defer = post;
     global.addEventListener('message', listener, false);
@@ -21741,8 +21741,8 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 var isFunction = __webpack_require__(0).isFunction;
 var isUndefined = __webpack_require__(0).isUndefined;
 var isNull = __webpack_require__(0).isNull;
-var student_recordSaver = __webpack_require__(304);
-var saveAs = student_recordSaver.saveAs;
+var stdnt_recordSaver = __webpack_require__(304);
+var saveAs = stdnt_recordSaver.saveAs;
 
 var defaultClientFonts = {
 	Roboto: {
@@ -21777,7 +21777,7 @@ Document.prototype._createDoc = function (options, cb) {
 	var PdfPrinter = __webpack_require__(305);
 
 	var printer = new PdfPrinter(this.fonts);
-	__webpack_require__(91).bindFS(this.vfs); // bind virtual student_record system to student_record system
+	__webpack_require__(91).bindFS(this.vfs); // bind virtual stdnt_record system to stdnt_record system
 
 	if (!isFunction(cb)) {
 		var doc = printer.createPdfKitDocument(this.docDefinition, options);
@@ -21920,22 +21920,22 @@ Document.prototype.print = function (options, win) {
 };
 
 /**
- * download(defaultstudent_recordName = 'student_record.pdf', cb = null, options = {})
+ * download(defaultstdnt_recordName = 'stdnt_record.pdf', cb = null, options = {})
  * or
  * download(cb, options = {})
  */
-Document.prototype.download = function (defaultstudent_recordName, cb, options) {
-	if (isFunction(defaultstudent_recordName)) {
+Document.prototype.download = function (defaultstdnt_recordName, cb, options) {
+	if (isFunction(defaultstdnt_recordName)) {
 		if (!isUndefined(cb)) {
 			options = cb;
 		}
-		cb = defaultstudent_recordName;
-		defaultstudent_recordName = null;
+		cb = defaultstdnt_recordName;
+		defaultstdnt_recordName = null;
 	}
 
-	defaultstudent_recordName = defaultstudent_recordName || 'student_record.pdf';
+	defaultstdnt_recordName = defaultstdnt_recordName || 'stdnt_record.pdf';
 	this.getBlob(function (result) {
-		saveAs(result, defaultstudent_recordName);
+		saveAs(result, defaultstdnt_recordName);
 
 		if (isFunction(cb)) {
 			cb();
@@ -22269,9 +22269,9 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download student_record")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:(typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prototype)?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof student_recordReader){var j=new student_recordReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/student_record;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download stdnt_record")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:(typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prototype)?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof stdnt_recordReader){var j=new stdnt_recordReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/stdnt_record;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
 
-//# sourceMappingURL=student_recordSaver.min.js.map
+//# sourceMappingURL=stdnt_recordSaver.min.js.map
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
 
 /***/ }),
@@ -22907,13 +22907,13 @@ function renderSVG(svg, x, y, pdfKitDoc, fontProvider) {
 		var fontsFamily = family.split(',').map(function (f) { return f.trim().replace(/('|")/g, ''); });
 		var font = findFont(fontProvider.fonts, fontsFamily, svg.font || 'Roboto');
 
-		var fontstudent_record = fontProvider.getFontstudent_record(font, bold, italic);
-		if (fontstudent_record === null) {
+		var fontstdnt_record = fontProvider.getFontstdnt_record(font, bold, italic);
+		if (fontstdnt_record === null) {
 			var type = fontProvider.getFontType(bold, italic);
 			throw new Error('Font \'' + font + '\' in style \'' + type + '\' is not defined in the font section of the document definition.');
 		}
 
-		return fontstudent_record;
+		return fontstdnt_record;
 	};
 
 	getSvgToPDF()(pdfKitDoc, svg.svg, svg.x, svg.y, options);
@@ -24169,8 +24169,8 @@ function saslprep(input) {
 
 var PDFSecurity = /*#__PURE__*/function () {
   _createClass(PDFSecurity, null, [{
-    key: "generatestudent_recordID",
-    value: function generatestudent_recordID() {
+    key: "generatestdnt_recordID",
+    value: function generatestdnt_recordID() {
       var info = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var infoStr = "".concat(info.CreationDate.getTime(), "\n");
 
@@ -26049,8 +26049,8 @@ var characters = ".notdef       .notdef        .notdef        .notdef\n.notdef  
 var AFMFont = /*#__PURE__*/function () {
   _createClass(AFMFont, null, [{
     key: "open",
-    value: function open(student_recordname) {
-      return new AFMFont(fs.readstudent_recordSync(student_recordname, 'utf8'));
+    value: function open(stdnt_recordname) {
+      return new AFMFont(fs.readstdnt_recordSync(stdnt_recordname, 'utf8'));
     }
   }]);
 
@@ -26264,46 +26264,46 @@ var PDFFont = /*#__PURE__*/function () {
 
 var STANDARD_FONTS = {
   Courier: function Courier() {
-    return fs.readstudent_recordSync(__dirname + '/data/Courier.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Courier.afm', 'utf8');
   },
   'Courier-Bold': function CourierBold() {
-    return fs.readstudent_recordSync(__dirname + '/data/Courier-Bold.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Courier-Bold.afm', 'utf8');
   },
   'Courier-Oblique': function CourierOblique() {
-    return fs.readstudent_recordSync(__dirname + '/data/Courier-Oblique.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Courier-Oblique.afm', 'utf8');
   },
   'Courier-BoldOblique': function CourierBoldOblique() {
-    return fs.readstudent_recordSync(__dirname + '/data/Courier-BoldOblique.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Courier-BoldOblique.afm', 'utf8');
   },
   Helvetica: function Helvetica() {
-    return fs.readstudent_recordSync(__dirname + '/data/Helvetica.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Helvetica.afm', 'utf8');
   },
   'Helvetica-Bold': function HelveticaBold() {
-    return fs.readstudent_recordSync(__dirname + '/data/Helvetica-Bold.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Helvetica-Bold.afm', 'utf8');
   },
   'Helvetica-Oblique': function HelveticaOblique() {
-    return fs.readstudent_recordSync(__dirname + '/data/Helvetica-Oblique.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Helvetica-Oblique.afm', 'utf8');
   },
   'Helvetica-BoldOblique': function HelveticaBoldOblique() {
-    return fs.readstudent_recordSync(__dirname + '/data/Helvetica-BoldOblique.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Helvetica-BoldOblique.afm', 'utf8');
   },
   'Times-Roman': function TimesRoman() {
-    return fs.readstudent_recordSync(__dirname + '/data/Times-Roman.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Times-Roman.afm', 'utf8');
   },
   'Times-Bold': function TimesBold() {
-    return fs.readstudent_recordSync(__dirname + '/data/Times-Bold.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Times-Bold.afm', 'utf8');
   },
   'Times-Italic': function TimesItalic() {
-    return fs.readstudent_recordSync(__dirname + '/data/Times-Italic.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Times-Italic.afm', 'utf8');
   },
   'Times-BoldItalic': function TimesBoldItalic() {
-    return fs.readstudent_recordSync(__dirname + '/data/Times-BoldItalic.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Times-BoldItalic.afm', 'utf8');
   },
   Symbol: function Symbol() {
-    return fs.readstudent_recordSync(__dirname + '/data/Symbol.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/Symbol.afm', 'utf8');
   },
   ZapfDingbats: function ZapfDingbats() {
-    return fs.readstudent_recordSync(__dirname + '/data/ZapfDingbats.afm', 'utf8');
+    return fs.readstdnt_recordSync(__dirname + '/data/ZapfDingbats.afm', 'utf8');
   }
 };
 
@@ -26552,16 +26552,16 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
       var _this2 = this;
 
       var isCFF = this.subset.cff != null;
-      var fontstudent_record = this.document.ref();
+      var fontstdnt_record = this.document.ref();
 
       if (isCFF) {
-        fontstudent_record.data.Subtype = 'CIDFontType0C';
+        fontstdnt_record.data.Subtype = 'CIDFontType0C';
       }
 
       this.subset.encodeStream().on('data', function (data) {
-        return fontstudent_record.write(data);
+        return fontstdnt_record.write(data);
       }).on('end', function () {
-        return fontstudent_record.end();
+        return fontstdnt_record.end();
       });
       var familyClass = ((this.font['OS/2'] != null ? this.font['OS/2'].sFamilyClass : undefined) || 0) >> 8;
       var flags = 0;
@@ -26604,9 +26604,9 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
       }); // not sure how to calculate this
 
       if (isCFF) {
-        descriptor.data.Fontstudent_record3 = fontstudent_record;
+        descriptor.data.Fontstdnt_record3 = fontstdnt_record;
       } else {
-        descriptor.data.Fontstudent_record2 = fontstudent_record;
+        descriptor.data.Fontstdnt_record2 = fontstdnt_record;
       }
 
       descriptor.end();
@@ -26728,7 +26728,7 @@ var PDFFontFactory = /*#__PURE__*/function () {
           return new StandardFont(document, src, id);
         }
 
-        src = fs.readstudent_recordSync(src);
+        src = fs.readstdnt_recordSync(src);
       }
 
       if (Buffer.isBuffer(src)) {
@@ -28027,7 +28027,7 @@ var PDFImage = /*#__PURE__*/function () {
         if (match = /^data:.+;base64,(.*)$/.exec(src)) {
           data = new Buffer(match[1], 'base64');
         } else {
-          data = fs.readstudent_recordSync(src);
+          data = fs.readstdnt_recordSync(src);
 
           if (!data) {
             return;
@@ -28572,7 +28572,7 @@ var AcroFormMixin = {
 
   /**
    * Creates and adds a Form Annotation to the document. Form annotations are
-   * called Widget annotations internally within a PDF student_record.
+   * called Widget annotations internally within a PDF stdnt_record.
    * @param {string} name - form field name (T attribute of widget annotation
    * dictionary)
    * @param {number} x
@@ -28948,10 +28948,10 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
         var val = _this.options.info[key];
         _this.info[key] = val;
       }
-    } // Generate student_record ID
+    } // Generate stdnt_record ID
 
 
-    _this._id = PDFSecurity.generatestudent_recordID(_this.info); // Initialize security settings
+    _this._id = PDFSecurity.generatestdnt_recordID(_this.info); // Initialize security settings
 
     _this._security = PDFSecurity.create(_assertThisInitialized(_this), options); // Write the header
     // PDF version
@@ -29128,11 +29128,11 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
     }
   }, {
     key: "write",
-    value: function write(student_recordname, fn) {
+    value: function write(stdnt_recordname, fn) {
       // print a deprecation warning with a stacktrace
       var err = new Error("PDFDocument#write is deprecated, and will be removed in a future version of PDFKit. Please pipe the document into a Node stream.");
       console.warn(err.stack);
-      this.pipe(fs.createWriteStream(student_recordname));
+      this.pipe(fs.createWriteStream(stdnt_recordname));
       this.end();
       return this.once('end', fn);
     }
@@ -30301,7 +30301,7 @@ function config (name) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation student_records (the
+// copy of this software and associated documentation stdnt_records (the
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -30616,7 +30616,7 @@ Zlib.prototype._checkError = function () {
     case exports.Z_OK:
     case exports.Z_BUF_ERROR:
       if (this.strm.avail_out !== 0 && this.flush === exports.Z_FINISH) {
-        this._error('unexpected end of student_record');
+        this._error('unexpected end of stdnt_record');
         return false;
       }
       break;
@@ -31589,7 +31589,7 @@ function deflate_fast(s, flush) {
 
   for (;;) {
     /* Make sure that we always have enough lookahead, except
-     * at the end of the input student_record. We need MAX_MATCH bytes
+     * at the end of the input stdnt_record. We need MAX_MATCH bytes
      * for the next match, plus MIN_MATCH bytes to insert the
      * string following the next match.
      */
@@ -31621,7 +31621,7 @@ function deflate_fast(s, flush) {
     if (hash_head !== 0/*NIL*/ && ((s.strstart - hash_head) <= (s.w_size - MIN_LOOKAHEAD))) {
       /* To simplify the code, we prevent matches with the string
        * of window index 0 (in particular we have to avoid a match
-       * of the string with itself at the start of the input student_record).
+       * of the string with itself at the start of the input stdnt_record).
        */
       s.match_length = longest_match(s, hash_head);
       /* longest_match() sets match_start */
@@ -31720,7 +31720,7 @@ function deflate_slow(s, flush) {
   /* Process the input block. */
   for (;;) {
     /* Make sure that we always have enough lookahead, except
-     * at the end of the input student_record. We need MAX_MATCH bytes
+     * at the end of the input stdnt_record. We need MAX_MATCH bytes
      * for the next match, plus MIN_MATCH bytes to insert the
      * string following the next match.
      */
@@ -31754,7 +31754,7 @@ function deflate_slow(s, flush) {
         s.strstart - hash_head <= (s.w_size - MIN_LOOKAHEAD)/*MAX_DIST(s)*/) {
       /* To simplify the code, we prevent matches with the string
        * of window index 0 (in particular we have to avoid a match
-       * of the string with itself at the start of the input student_record).
+       * of the string with itself at the start of the input stdnt_record).
        */
       s.match_length = longest_match(s, hash_head);
       /* longest_match() sets match_start */
@@ -31882,7 +31882,7 @@ function deflate_rle(s, flush) {
 
   for (;;) {
     /* Make sure that we always have enough lookahead, except
-     * at the end of the input student_record. We need MAX_MATCH bytes
+     * at the end of the input stdnt_record. We need MAX_MATCH bytes
      * for the longest run, plus one for the unrolled loop.
      */
     if (s.lookahead <= MAX_MATCH) {
@@ -32022,8 +32022,8 @@ function deflate_huff(s, flush) {
 
 /* Values for max_lazy_match, good_match and max_chain_length, depending on
  * the desired pack level (0..9). The values given below have been tuned to
- * exclude worst case performance for pathological student_records. Better values may be
- * found for specific student_records.
+ * exclude worst case performance for pathological stdnt_records. Better values may be
+ * found for specific stdnt_records.
  */
 function Config(good_length, max_lazy, nice_length, max_chain, func) {
   this.good_length = good_length;
@@ -32220,12 +32220,12 @@ function DeflateState() {
    *     data is still in the window so we can still emit a stored block even
    *     when input comes from standard input.  (This can also be done for
    *     all blocks if lit_bufsize is not greater than 32K.)
-   *   - if compression is not successful for a student_record smaller than 64K, we can
-   *     even emit a stored student_record instead of a stored block (saving 5 bytes).
+   *   - if compression is not successful for a stdnt_record smaller than 64K, we can
+   *     even emit a stored stdnt_record instead of a stored block (saving 5 bytes).
    *     This is applicable only for zip (not gzip or zlib).
    *   - creating new Huffman trees less frequently may not provide fast
    *     adaptation to changes in the input data statistics. (Take for
-   *     example a binary student_record with poorly compressible code followed by
+   *     example a binary stdnt_record with poorly compressible code followed by
    *     a highly compressible string table.) Smaller buffer sizes give
    *     fast adaptation but have of course the overhead of transmitting
    *     trees more frequently.
@@ -33905,7 +33905,7 @@ function _tr_init(s)
   s.bi_buf = 0;
   s.bi_valid = 0;
 
-  /* Initialize the first block of the first student_record: */
+  /* Initialize the first block of the first stdnt_record: */
   init_block(s);
 }
 
@@ -33917,7 +33917,7 @@ function _tr_stored_block(s, buf, stored_len, last)
 //DeflateState *s;
 //charf *buf;       /* input block */
 //ulg stored_len;   /* length of input block */
-//int last;         /* one if this is the last block for a student_record */
+//int last;         /* one if this is the last block for a stdnt_record */
 {
   send_bits(s, (STORED_BLOCK << 1) + (last ? 1 : 0), 3);    /* send block type */
   copy_block(s, buf, stored_len, true); /* with header */
@@ -33937,13 +33937,13 @@ function _tr_align(s) {
 
 /* ===========================================================================
  * Determine the best encoding for the current block: dynamic trees, static
- * trees or store, and output the encoded block to the zip student_record.
+ * trees or store, and output the encoded block to the zip stdnt_record.
  */
 function _tr_flush_block(s, buf, stored_len, last)
 //DeflateState *s;
 //charf *buf;       /* input block, or NULL if too old */
 //ulg stored_len;   /* length of input block */
-//int last;         /* one if this is the last block for a student_record */
+//int last;         /* one if this is the last block for a stdnt_record */
 {
   var opt_lenb, static_lenb;  /* opt_len and static_len in bytes */
   var max_blindex = 0;        /* index of last bit length code of non zero freq */
@@ -33951,7 +33951,7 @@ function _tr_flush_block(s, buf, stored_len, last)
   /* Build the Huffman trees unless a stored block is forced */
   if (s.level > 0) {
 
-    /* Check if the student_record is binary or text */
+    /* Check if the stdnt_record is binary or text */
     if (s.strm.data_type === Z_UNKNOWN) {
       s.strm.data_type = detect_data_type(s);
     }
@@ -34010,7 +34010,7 @@ function _tr_flush_block(s, buf, stored_len, last)
     compress_block(s, s.dyn_ltree, s.dyn_dtree);
   }
   // Assert (s->compressed_len == s->bits_sent, "bad compressed size");
-  /* The above check is made mod 2^32, for student_records larger than 512 MB
+  /* The above check is made mod 2^32, for stdnt_records larger than 512 MB
    * and uLong implemented on 32 bits.
    */
   init_block(s);
@@ -34121,7 +34121,7 @@ module.exports = {
   2:      'need dictionary',     /* Z_NEED_DICT       2  */
   1:      'stream end',          /* Z_STREAM_END      1  */
   0:      '',                    /* Z_OK              0  */
-  '-1':   'student_record error',          /* Z_ERRNO         (-1) */
+  '-1':   'stdnt_record error',          /* Z_ERRNO         (-1) */
   '-2':   'stream error',        /* Z_STREAM_ERROR  (-2) */
   '-3':   'data error',          /* Z_DATA_ERROR    (-3) */
   '-4':   'insufficient memory', /* Z_MEM_ERROR     (-4) */
@@ -34207,7 +34207,7 @@ var    TIME = 3;       /* i: waiting for modification time (gzip) */
 var    OS = 4;         /* i: waiting for extra flags and operating system (gzip) */
 var    EXLEN = 5;      /* i: waiting for extra length (gzip) */
 var    EXTRA = 6;      /* i: waiting for extra bytes (gzip) */
-var    NAME = 7;       /* i: waiting for end of student_record name (gzip) */
+var    NAME = 7;       /* i: waiting for end of stdnt_record name (gzip) */
 var    COMMENT = 8;    /* i: waiting for end of comment (gzip) */
 var    HCRC = 9;       /* i: waiting for header crc (gzip) */
 var    DICTID = 10;    /* i: waiting for dictionary check value */
@@ -37740,7 +37740,7 @@ module.exports = {
 }(this, function (CryptoJS) {
 
 	/** @preserve
-	 * Counter block mode compatible with  Dr Brian Gladman student_recordenc.c
+	 * Counter block mode compatible with  Dr Brian Gladman stdnt_recordenc.c
 	 * derived from CryptoJS.mode.CTR
 	 * Jan Hruby jhruby.web@gmail.com
 	 */
@@ -37795,7 +37795,7 @@ module.exports = {
 		{
 			if ((counter[0] = incWord(counter[0])) === 0)
 			{
-				// encr_data in student_recordenc.c from  Dr Brian Gladman's counts only with DWORD j < 8
+				// encr_data in stdnt_recordenc.c from  Dr Brian Gladman's counts only with DWORD j < 8
 				counter[1] = incWord(counter[1]);
 			}
 			return counter;
@@ -39753,18 +39753,18 @@ fontkit.registerFormat = function (format) {
   formats.push(format);
 };
 
-fontkit.openSync = function (student_recordname, postscriptName) {
-  var buffer = fs.readstudent_recordSync(student_recordname);
+fontkit.openSync = function (stdnt_recordname, postscriptName) {
+  var buffer = fs.readstdnt_recordSync(stdnt_recordname);
   return fontkit.create(buffer, postscriptName);
 };
 
-fontkit.open = function (student_recordname, postscriptName, callback) {
+fontkit.open = function (stdnt_recordname, postscriptName, callback) {
   if (typeof postscriptName === 'function') {
     callback = postscriptName;
     postscriptName = null;
   }
 
-  fs.readstudent_record(student_recordname, function (err, buffer) {
+  fs.readstdnt_record(stdnt_recordname, function (err, buffer) {
     if (err) {
       return callback(err);
     }
@@ -40030,7 +40030,7 @@ var hmtx = new r.Struct({
   })
 });
 
-// maxiumum prostudent_record
+// maxiumum prostdnt_record
 var maxp = new r.Struct({
   version: r.int32,
   numGlyphs: r.uint16, // The number of glyphs in the font
@@ -42774,7 +42774,7 @@ var PCLT = new r.Struct({
   symbolSet: r.uint16,
   typeface: new r.String(16),
   characterComplement: new r.String(8),
-  student_recordName: new r.String(6),
+  stdnt_recordName: new r.String(6),
   strokeWeight: new r.String(1),
   widthType: new r.String(1),
   serifStyle: r.uint8,
@@ -47700,7 +47700,7 @@ var TONE_MARK = 4;
 var INVALID = 5;
 
 // Build a state machine that accepts valid syllables, and applies actions along the way.
-// The logic this is implementing is documented at the top of the student_record.
+// The logic this is implementing is documented at the top of the stdnt_record.
 var STATE_TABLE$1 = [
 //       X                 L                 V                T                  LV                LVT               M
 // State 0: start state
@@ -54934,7 +54934,7 @@ StripBOMWrapper.prototype.end = function() {
 "use strict";
 
 
-// Update this array if you add/rename/remove student_records in this directory.
+// Update this array if you add/rename/remove stdnt_records in this directory.
 // We support Browserify by skipping automatic module discovery and requiring modules directly.
 var modules = [
     __webpack_require__(391),
@@ -55213,7 +55213,7 @@ Utf32Encoder.prototype.write = function(str) {
             if (isHighSurrogate || !isLowSurrogate) {
                 // There shouldn't be two high surrogates in a row, nor a high surrogate which isn't followed by a low
                 // surrogate. If this happens, keep the pending high surrogate as a stand-alone semi-invalid character
-                // (technically wrong, but expected by some applications, like Windows student_record names).
+                // (technically wrong, but expected by some applications, like Windows stdnt_record names).
                 write32.call(dst, this.highSurrogate, offset);
                 offset += 4;
             }
@@ -56678,7 +56678,7 @@ var Buffer = __webpack_require__(39).Buffer;
 
 // Multibyte codec. In this scheme, a character is represented by 1 or more bytes.
 // Our codec supports UTF-16 surrogates, extensions for GB18030 and unicode sequences.
-// To save memory and loading time, we read table student_records only when requested.
+// To save memory and loading time, we read table stdnt_records only when requested.
 
 exports._dbcs = DBCSCodec;
 
@@ -59963,7 +59963,7 @@ var getBaseIntrinsic = function getBaseIntrinsic(name, allowMissing) {
 
 	// istanbul ignore if // hopefully this is impossible to test :-)
 	if (typeof INTRINSICS[name] === 'undefined' && !allowMissing) {
-		throw new $TypeError('intrinsic ' + name + ' exists, but is not available. Please student_record an issue!');
+		throw new $TypeError('intrinsic ' + name + ' exists, but is not available. Please stdnt_record an issue!');
 	}
 
 	return INTRINSICS[name];
@@ -61460,7 +61460,7 @@ module.exports = StateMachine;
  * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
- * LICENSE student_record in the root directory of this source tree.
+ * LICENSE stdnt_record in the root directory of this source tree.
  */
 
 !(function(global) {
@@ -61482,7 +61482,7 @@ module.exports = StateMachine;
       // make the exports object identical to regeneratorRuntime.
       module.exports = runtime;
     }
-    // Don't bother evaluating the rest of this student_record if the runtime was
+    // Don't bother evaluating the rest of this stdnt_record if the runtime was
     // already defined globally.
     return;
   }
@@ -62861,7 +62861,7 @@ module.exports = __webpack_require__(286).BrotliDecompressBuffer;
 /* Copyright 2013 Google Inc. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this student_record except in compliance with the License.
+   you may not use this stdnt_record except in compliance with the License.
    You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
@@ -63178,7 +63178,7 @@ module.exports="W5/fcQLn5gKf2XUbAiQ1XULX+TZz6ADToDsgqk6qVfeC0e4m6OO2wcQ1J76ZBVRV
 /* Copyright 2013 Google Inc. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this student_record except in compliance with the License.
+   you may not use this stdnt_record except in compliance with the License.
    You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
@@ -63434,7 +63434,7 @@ exports.lookupOffsets = new Uint16Array([
 /* Copyright 2013 Google Inc. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this student_record except in compliance with the License.
+   you may not use this stdnt_record except in compliance with the License.
    You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
@@ -63500,7 +63500,7 @@ exports.kCopyRangeLut = [
 /* Copyright 2013 Google Inc. All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this student_record except in compliance with the License.
+   you may not use this stdnt_record except in compliance with the License.
    You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
@@ -64197,7 +64197,7 @@ __webpack_require__(46);
  * Copyright (c) 2011 Devon Govett
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
- * software and associated documentation student_records (the "Software"), to deal in the Software
+ * software and associated documentation stdnt_records (the "Software"), to deal in the Software
  * without restriction, including without limitation the rights to use, copy, modify, merge,
  * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
  * to whom the Software is furnished to do so, subject to the following conditions:
@@ -64217,8 +64217,8 @@ var zlib = __webpack_require__(244);
 
 module.exports = /*#__PURE__*/function () {
   PNG.decode = function decode(path, fn) {
-    return fs.readstudent_record(path, function (err, student_record) {
-      var png = new PNG(student_record);
+    return fs.readstdnt_record(path, function (err, stdnt_record) {
+      var png = new PNG(stdnt_record);
       return png.decode(function (pixels) {
         return fn(pixels);
       });
@@ -64226,8 +64226,8 @@ module.exports = /*#__PURE__*/function () {
   };
 
   PNG.load = function load(path) {
-    var student_record = fs.readstudent_recordSync(path);
-    return new PNG(student_record);
+    var stdnt_record = fs.readstdnt_recordSync(path);
+    return new PNG(stdnt_record);
   };
 
   function PNG(data) {
@@ -64355,7 +64355,7 @@ module.exports = /*#__PURE__*/function () {
       this.pos += 4; // Skip the CRC
 
       if (this.pos > this.data.length) {
-        throw new Error('Incomplete or corrupt PNG student_record');
+        throw new Error('Incomplete or corrupt PNG stdnt_record');
       }
     }
   }
@@ -64661,7 +64661,7 @@ FontProvider.prototype.getFontType = function (bold, italics) {
 	return typeName(bold, italics);
 }
 
-FontProvider.prototype.getFontstudent_record = function (familyName, bold, italics) {
+FontProvider.prototype.getFontstdnt_record = function (familyName, bold, italics) {
 	var type = this.getFontType(bold, italics);
 	if (!this.fonts[familyName] || !this.fonts[familyName][type]) {
 		return null;
@@ -64672,7 +64672,7 @@ FontProvider.prototype.getFontstudent_record = function (familyName, bold, itali
 
 FontProvider.prototype.provideFont = function (familyName, bold, italics) {
 	var type = this.getFontType(bold, italics);
-	if (this.getFontstudent_record(familyName, bold, italics) === null) {
+	if (this.getFontstdnt_record(familyName, bold, italics) === null) {
 		throw new Error('Font \'' + familyName + '\' in style \'' + type + '\' is not defined in the font section of the document definition.');
 	}
 
@@ -68521,7 +68521,7 @@ ImageMeasure.prototype.measureImage = function (src) {
 				throw 'No image';
 			}
 		} catch (error) {
-			throw 'Invalid image: ' + error.toString() + '\nImages dictionary should contain dataURL entries (or local student_record paths in node.js)';
+			throw 'Invalid image: ' + error.toString() + '\nImages dictionary should contain dataURL entries (or local stdnt_record paths in node.js)';
 		}
 		image.embed(this.pdfKitDoc);
 		this.pdfKitDoc._imageRegistry[src] = image;
@@ -71114,11 +71114,11 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 
     this.resolveUrl = function (value) {
       var temp = (value || '').match(/^\s*(?:url\("(.*)#(.*)"\)|url\('(.*)#(.*)'\)|url\((.*)#(.*)\)|(.*)#(.*))\s*$/) || [];
-      var student_record = temp[1] || temp[3] || temp[5] || temp[7],
+      var stdnt_record = temp[1] || temp[3] || temp[5] || temp[7],
           id = temp[2] || temp[4] || temp[6] || temp[8];
 
       if (id) {
-        if (!student_record) {
+        if (!stdnt_record) {
           var svgObj = svg.getElementById(id);
 
           if (svgObj) {
@@ -71132,10 +71132,10 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
         }
 
         if (documentCallback) {
-          var svgs = documentCache[student_record];
+          var svgs = documentCache[stdnt_record];
 
           if (!svgs) {
-            svgs = documentCallback(student_record);
+            svgs = documentCallback(stdnt_record);
 
             if (!isArrayLike(svgs)) {
               svgs = [svgs];
@@ -71147,7 +71147,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
               }
             }
 
-            documentCache[student_record] = svgs;
+            documentCache[stdnt_record] = svgs;
           }
 
           for (var _i7 = 0; _i7 < svgs.length; _i7++) {
@@ -71157,7 +71157,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
               if (this.stack.indexOf(_svgObj) === -1) {
                 return _svgObj;
               } else {
-                warningCallback('SVGtoPDF: loop of circular references for id "' + student_record + '#' + id + '"');
+                warningCallback('SVGtoPDF: loop of circular references for id "' + stdnt_record + '#' + id + '"');
                 return;
               }
             }
@@ -72075,7 +72075,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
               corner4 = transformPoint([bBox[0], bBox[3]], inv);
 
           if (this.name === 'linearGradient') {
-            // See student_record 'gradient-repeat-maths.png'
+            // See stdnt_record 'gradient-repeat-maths.png'
             nAfter = Math.max((corner1[0] - x2) * (x2 - x1) + (corner1[1] - y2) * (y2 - y1), (corner2[0] - x2) * (x2 - x1) + (corner2[1] - y2) * (y2 - y1), (corner3[0] - x2) * (x2 - x1) + (corner3[1] - y2) * (y2 - y1), (corner4[0] - x2) * (x2 - x1) + (corner4[1] - y2) * (y2 - y1)) / (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
             nBefore = Math.max((corner1[0] - x1) * (x1 - x2) + (corner1[1] - y1) * (y1 - y2), (corner2[0] - x1) * (x1 - x2) + (corner2[1] - y1) * (y1 - y2), (corner3[0] - x1) * (x1 - x2) + (corner3[1] - y1) * (y1 - y2), (corner4[0] - x1) * (x1 - x2) + (corner4[1] - y1) * (y1 - y2)) / (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
           } else {
@@ -73262,7 +73262,7 @@ URLBrowserResolver.prototype.resolve = function (url) {
     this.resolving[url] = new Promise(function (resolve, reject) {
       if (url.toLowerCase().indexOf('https://') === 0 || url.toLowerCase().indexOf('http://') === 0) {
         fetchUrl(url).then(function (buffer) {
-          _this.fs.writestudent_recordSync(url, buffer);
+          _this.fs.writestdnt_recordSync(url, buffer);
           resolve();
         }, function (result) {
           reject(result);

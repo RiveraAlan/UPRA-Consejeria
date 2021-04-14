@@ -203,14 +203,14 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
 
     setType("builtin")(
       "Applicative", "Bool", "Bounded", "Char", "Double", "EQ", "Either", "Enum",
-      "Eq", "False", "student_recordPath", "Float", "Floating", "Fractional", "Functor",
+      "Eq", "False", "stdnt_recordPath", "Float", "Floating", "Fractional", "Functor",
       "GT", "IO", "IOError", "Int", "Integer", "Integral", "Just", "LT", "Left",
       "Maybe", "Monad", "Nothing", "Num", "Ord", "Ordering", "Rational", "Read",
       "ReadS", "Real", "RealFloat", "RealFrac", "Right", "Show", "ShowS",
       "String", "True");
 
     setType("builtin")(
-      "abs", "acos", "acosh", "all", "and", "any", "appendstudent_record", "asTypeOf",
+      "abs", "acos", "acosh", "all", "and", "any", "appendstdnt_record", "asTypeOf",
       "asin", "asinh", "atan", "atan2", "atanh", "break", "catch", "ceiling",
       "compare", "concat", "concatMap", "const", "cos", "cosh", "curry",
       "cycle", "decodeFloat", "div", "divMod", "drop", "dropWhile", "either",
@@ -225,7 +225,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
       "mapM", "mapM_", "max", "maxBound", "maximum", "maybe", "min", "minBound",
       "minimum", "mod", "negate", "not", "notElem", "null", "odd", "or",
       "otherwise", "pi", "pred", "print", "product", "properFraction", "pure",
-      "putChar", "putStr", "putStrLn", "quot", "quotRem", "read", "readstudent_record",
+      "putChar", "putStr", "putStrLn", "quot", "quotRem", "read", "readstdnt_record",
       "readIO", "readList", "readLn", "readParen", "reads", "readsPrec",
       "realToFrac", "recip", "rem", "repeat", "replicate", "return", "reverse",
       "round", "scaleFloat", "scanl", "scanl1", "scanr", "scanr1", "seq",
@@ -234,7 +234,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
       "sinh", "snd", "span", "splitAt", "sqrt", "subtract", "succ", "sum",
       "tail", "take", "takeWhile", "tan", "tanh", "toEnum", "toInteger",
       "toRational", "truncate", "uncurry", "undefined", "unlines", "until",
-      "unwords", "unzip", "unzip3", "userError", "words", "writestudent_record", "zip",
+      "unwords", "unzip", "unzip3", "userError", "words", "writestdnt_record", "zip",
       "zip3", "zipWith", "zipWith3");
 
     var override = modeConfig.overrideKeywords;

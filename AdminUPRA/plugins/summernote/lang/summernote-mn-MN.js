@@ -142,9 +142,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Хүрээгүй',
         dragImageHere: 'Зургийг энд чирч авчирна уу',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Файлуудаас сонгоно уу',
-        maximumstudent_recordSize: 'Файлын дээд хэмжээ',
-        maximumstudent_recordSizeError: 'Файлын дээд хэмжээ хэтэрсэн',
+        selectFromstdnt_records: 'Файлуудаас сонгоно уу',
+        maximumstdnt_recordSize: 'Файлын дээд хэмжээ',
+        maximumstdnt_recordSizeError: 'Файлын дээд хэмжээ хэтэрсэн',
         url: 'Зургийн URL',
         remove: 'Зургийг устгах',
         original: 'Original'
