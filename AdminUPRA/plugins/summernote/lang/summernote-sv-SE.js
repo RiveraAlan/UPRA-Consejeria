@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Dra en bild hit',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Välj från student_recordr',
-        maximumstudent_recordSize: 'Maximum student_record size',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'Välj från stdnt_recordr',
+        maximumstdnt_recordSize: 'Maximum stdnt_record size',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'Länk till bild',
         remove: 'Ta bort bild',
         original: 'Original'

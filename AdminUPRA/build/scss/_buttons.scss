@@ -15,12 +15,12 @@
     box-shadow: none;
   }
 
-  // input student_record btn
-  &.btn-student_record {
+  // input stdnt_record btn
+  &.btn-stdnt_record {
     overflow: hidden;
     position: relative;
 
-    > input[type="student_record"] {
+    > input[type="stdnt_record"] {
       background-color: $white;
       cursor: inherit;
       display: block;

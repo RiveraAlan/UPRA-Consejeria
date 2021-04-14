@@ -233,60 +233,60 @@
 }
 
 
-// student_record
+// stdnt_record
 //
-// Custom student_record input.
+// Custom stdnt_record input.
 
-.custom-student_record {
+.custom-stdnt_record {
   position: relative;
   display: inline-block;
   width: 100%;
-  height: $custom-student_record-height;
+  height: $custom-stdnt_record-height;
   margin-bottom: 0;
 }
 
-.custom-student_record-input {
+.custom-stdnt_record-input {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: $custom-student_record-height;
+  height: $custom-stdnt_record-height;
   margin: 0;
   opacity: 0;
 
-  &:focus ~ .custom-student_record-label {
-    border-color: $custom-student_record-focus-border-color;
-    box-shadow: $custom-student_record-focus-box-shadow;
+  &:focus ~ .custom-stdnt_record-label {
+    border-color: $custom-stdnt_record-focus-border-color;
+    box-shadow: $custom-stdnt_record-focus-box-shadow;
 
     &::after {
-      border-color: $custom-student_record-focus-border-color;
+      border-color: $custom-stdnt_record-focus-border-color;
     }
   }
 
-  &:disabled ~ .custom-student_record-label {
-    background-color: $custom-student_record-disabled-bg;
+  &:disabled ~ .custom-stdnt_record-label {
+    background-color: $custom-stdnt_record-disabled-bg;
   }
 
-  @each $lang, $value in $custom-student_record-text {
-    &:lang(#{$lang}) ~ .custom-student_record-label::after {
+  @each $lang, $value in $custom-stdnt_record-text {
+    &:lang(#{$lang}) ~ .custom-stdnt_record-label::after {
       content: $value;
     }
   }
 }
 
-.custom-student_record-label {
+.custom-stdnt_record-label {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1;
-  height: $custom-student_record-height;
-  padding: $custom-student_record-padding-y $custom-student_record-padding-x;
-  line-height: $custom-student_record-line-height;
-  color: $custom-student_record-color;
-  background-color: $custom-student_record-bg;
-  border: $custom-student_record-border-width solid $custom-student_record-border-color;
-  @include border-radius($custom-student_record-border-radius);
-  @include box-shadow($custom-student_record-box-shadow);
+  height: $custom-stdnt_record-height;
+  padding: $custom-stdnt_record-padding-y $custom-stdnt_record-padding-x;
+  line-height: $custom-stdnt_record-line-height;
+  color: $custom-stdnt_record-color;
+  background-color: $custom-stdnt_record-bg;
+  border: $custom-stdnt_record-border-width solid $custom-stdnt_record-border-color;
+  @include border-radius($custom-stdnt_record-border-radius);
+  @include box-shadow($custom-stdnt_record-box-shadow);
 
   &::after {
     position: absolute;
@@ -295,14 +295,14 @@
     bottom: 0;
     z-index: 3;
     display: block;
-    height: $custom-student_record-height-inner;
-    padding: $custom-student_record-padding-y $custom-student_record-padding-x;
-    line-height: $custom-student_record-line-height;
-    color: $custom-student_record-button-color;
+    height: $custom-stdnt_record-height-inner;
+    padding: $custom-stdnt_record-padding-y $custom-stdnt_record-padding-x;
+    line-height: $custom-stdnt_record-line-height;
+    color: $custom-stdnt_record-button-color;
     content: "Browse";
-    @include gradient-bg($custom-student_record-button-bg);
-    border-left: $custom-student_record-border-width solid $custom-student_record-border-color;
-    @include border-radius(0 $custom-student_record-border-radius $custom-student_record-border-radius 0);
+    @include gradient-bg($custom-stdnt_record-button-bg);
+    border-left: $custom-stdnt_record-border-width solid $custom-stdnt_record-border-color;
+    @include border-radius(0 $custom-stdnt_record-border-radius $custom-stdnt_record-border-radius 0);
   }
 }
 
@@ -427,7 +427,7 @@
 }
 
 .custom-control-label::before,
-.custom-student_record-label,
+.custom-stdnt_record-label,
 .custom-select {
   @include transition($custom-forms-transition);
 }

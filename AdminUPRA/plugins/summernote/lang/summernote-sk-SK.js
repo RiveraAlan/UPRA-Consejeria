@@ -140,9 +140,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Pretiahnuť sem obrázok',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Vybrať súbor',
-        maximumstudent_recordSize: 'Maximum student_record size',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'Vybrať súbor',
+        maximumstdnt_recordSize: 'Maximum stdnt_record size',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'URL obrázku',
         remove: 'Remove Image',
         original: 'Original'

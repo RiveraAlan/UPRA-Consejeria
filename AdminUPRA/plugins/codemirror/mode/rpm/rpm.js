@@ -31,13 +31,13 @@ CodeMirror.defineMode("rpm-changes", function() {
 
 CodeMirror.defineMIME("text/x-rpm-changes", "rpm-changes");
 
-// Quick and dirty spec student_record highlighting
+// Quick and dirty spec stdnt_record highlighting
 
 CodeMirror.defineMode("rpm-spec", function() {
   var arch = /^(i386|i586|i686|x86_64|ppc64le|ppc64|ppc|ia64|s390x|s390|sparc64|sparcv9|sparc|noarch|alphaev6|alpha|hppa|mipsel)/;
 
   var preamble = /^[a-zA-Z0-9()]+:/;
-  var section = /^%(debug_package|package|description|prep|build|install|student_records|clean|changelog|preinstall|preun|postinstall|postun|pretrans|posttrans|pre|post|triggerin|triggerun|verifyscript|check|triggerpostun|triggerprein|trigger)/;
+  var section = /^%(debug_package|package|description|prep|build|install|stdnt_records|clean|changelog|preinstall|preun|postinstall|postun|pretrans|posttrans|pre|post|triggerin|triggerun|verifyscript|check|triggerpostun|triggerprein|trigger)/;
   var control_flow_complex = /^%(ifnarch|ifarch|if)/; // rpm control flow macros
   var control_flow_simple = /^%(else|endif)/; // rpm control flow macros
   var operators = /^(\!|\?|\<\=|\<|\>\=|\>|\=\=|\&\&|\|\|)/; // operators in control flow macros

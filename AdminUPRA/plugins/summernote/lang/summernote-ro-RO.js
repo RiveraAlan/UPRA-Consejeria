@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Formă: Nici una',
         dragImageHere: 'Trage o imagine sau un text aici',
         dropImage: 'Eliberează imaginea sau textul',
-        selectFromstudent_records: 'Alege din fişiere',
-        maximumstudent_recordSize: 'Dimensiune maximă fișier',
-        maximumstudent_recordSizeError: 'Dimensiune maximă fișier depășită.',
+        selectFromstdnt_records: 'Alege din fişiere',
+        maximumstdnt_recordSize: 'Dimensiune maximă fișier',
+        maximumstdnt_recordSizeError: 'Dimensiune maximă fișier depășită.',
         url: 'URL imagine',
         remove: 'Șterge imagine',
         original: 'Original'

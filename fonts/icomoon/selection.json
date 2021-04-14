@@ -689,14 +689,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-o"
+          "stdnt_record-o"
         ],
         "defaultCode": 61462,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-o",
+        "name": "stdnt_record-o",
         "id": 25,
         "order": 881,
         "prevSize": 28,
@@ -4727,14 +4727,14 @@
         "isMulticolor2": false,
         "tags": [
           "copy",
-          "student_records-o"
+          "stdnt_records-o"
         ],
         "defaultCode": 61637,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "copy, student_records-o",
+        "name": "copy, stdnt_records-o",
         "id": 174,
         "order": 1030,
         "prevSize": 28,
@@ -5980,14 +5980,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-text-o"
+          "stdnt_record-text-o"
         ],
         "defaultCode": 61686,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-text-o",
+        "name": "stdnt_record-text-o",
         "id": 220,
         "order": 1076,
         "prevSize": 28,
@@ -8483,14 +8483,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record"
+          "stdnt_record"
         ],
         "defaultCode": 61787,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record",
+        "name": "stdnt_record",
         "id": 312,
         "order": 1168,
         "prevSize": 28,
@@ -8510,14 +8510,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-text"
+          "stdnt_record-text"
         ],
         "defaultCode": 61788,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-text",
+        "name": "stdnt_record-text",
         "id": 313,
         "order": 1169,
         "prevSize": 28,
@@ -11056,14 +11056,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-pdf-o"
+          "stdnt_record-pdf-o"
         ],
         "defaultCode": 61889,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-pdf-o",
+        "name": "stdnt_record-pdf-o",
         "id": 407,
         "order": 1263,
         "prevSize": 28,
@@ -11083,14 +11083,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-word-o"
+          "stdnt_record-word-o"
         ],
         "defaultCode": 61890,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-word-o",
+        "name": "stdnt_record-word-o",
         "id": 408,
         "order": 1264,
         "prevSize": 28,
@@ -11110,14 +11110,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-excel-o"
+          "stdnt_record-excel-o"
         ],
         "defaultCode": 61891,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-excel-o",
+        "name": "stdnt_record-excel-o",
         "id": 409,
         "order": 1265,
         "prevSize": 28,
@@ -11137,14 +11137,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-powerpoint-o"
+          "stdnt_record-powerpoint-o"
         ],
         "defaultCode": 61892,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-powerpoint-o",
+        "name": "stdnt_record-powerpoint-o",
         "id": 410,
         "order": 1266,
         "prevSize": 28,
@@ -11164,16 +11164,16 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-image-o",
-          "student_record-photo-o",
-          "student_record-picture-o"
+          "stdnt_record-image-o",
+          "stdnt_record-photo-o",
+          "stdnt_record-picture-o"
         ],
         "defaultCode": 61893,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-image-o, student_record-photo-o, student_record-picture-o",
+        "name": "stdnt_record-image-o, stdnt_record-photo-o, stdnt_record-picture-o",
         "id": 411,
         "order": 1267,
         "prevSize": 28,
@@ -11193,15 +11193,15 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-archive-o",
-          "student_record-zip-o"
+          "stdnt_record-archive-o",
+          "stdnt_record-zip-o"
         ],
         "defaultCode": 61894,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-archive-o, student_record-zip-o",
+        "name": "stdnt_record-archive-o, stdnt_record-zip-o",
         "id": 412,
         "order": 1268,
         "prevSize": 28,
@@ -11221,15 +11221,15 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-audio-o",
-          "student_record-sound-o"
+          "stdnt_record-audio-o",
+          "stdnt_record-sound-o"
         ],
         "defaultCode": 61895,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-audio-o, student_record-sound-o",
+        "name": "stdnt_record-audio-o, stdnt_record-sound-o",
         "id": 413,
         "order": 1269,
         "prevSize": 28,
@@ -11249,15 +11249,15 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-movie-o",
-          "student_record-video-o"
+          "stdnt_record-movie-o",
+          "stdnt_record-video-o"
         ],
         "defaultCode": 61896,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-movie-o, student_record-video-o",
+        "name": "stdnt_record-movie-o, stdnt_record-video-o",
         "id": 414,
         "order": 1270,
         "prevSize": 28,
@@ -11277,14 +11277,14 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record-code-o"
+          "stdnt_record-code-o"
         ],
         "defaultCode": 61897,
         "grid": 14
       },
       "attrs": [],
       "properties": {
-        "name": "student_record-code-o",
+        "name": "stdnt_record-code-o",
         "id": 415,
         "order": 1271,
         "prevSize": 28,
@@ -20047,19 +20047,19 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "attach_student_record"
+          "attach_stdnt_record"
         ],
         "defaultCode": 57894,
         "grid": 24
       },
       "attrs": [],
       "properties": {
-        "ligatures": "attach_student_record",
+        "ligatures": "attach_stdnt_record",
         "id": 63,
         "order": 74,
         "prevSize": 24,
         "code": 57894,
-        "name": "attach_student_record"
+        "name": "attach_stdnt_record"
       },
       "setIdx": 2,
       "setId": 2,
@@ -25886,7 +25886,7 @@
       },
       "attrs": [],
       "properties": {
-        "ligatures": "student_record_download, get_app",
+        "ligatures": "stdnt_record_download, get_app",
         "id": 279,
         "order": 290,
         "prevSize": 24,
@@ -25906,19 +25906,19 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "student_record_upload"
+          "stdnt_record_upload"
         ],
         "defaultCode": 58054,
         "grid": 24
       },
       "attrs": [],
       "properties": {
-        "ligatures": "student_record_upload",
+        "ligatures": "stdnt_record_upload",
         "id": 280,
         "order": 291,
         "prevSize": 24,
         "code": 58054,
-        "name": "student_record_upload"
+        "name": "stdnt_record_upload"
       },
       "setIdx": 2,
       "setId": 2,
@@ -29253,19 +29253,19 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "tags": [
-          "insert_drive_student_record"
+          "insert_drive_stdnt_record"
         ],
         "defaultCode": 57933,
         "grid": 24
       },
       "attrs": [],
       "properties": {
-        "ligatures": "insert_drive_student_record",
+        "ligatures": "insert_drive_stdnt_record",
         "id": 404,
         "order": 415,
         "prevSize": 24,
         "code": 57933,
-        "name": "insert_drive_student_record"
+        "name": "insert_drive_stdnt_record"
       },
       "setIdx": 2,
       "setId": 2,

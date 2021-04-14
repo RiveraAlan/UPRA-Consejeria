@@ -47,7 +47,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * Copyright (c) 2012, Matias Meno
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation student_records (the "Software"), to deal
+ * of this software and associated documentation stdnt_records (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -173,19 +173,19 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         dropzone.on("dragEnter", function() { });
         */
 
-      this.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedstudent_record", "addedstudent_records", "removedstudent_record", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxstudent_recordsexceeded", "maxstudent_recordsreached", "queuecomplete"];
+      this.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedstdnt_record", "addedstdnt_records", "removedstdnt_record", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxstdnt_recordsexceeded", "maxstdnt_recordsreached", "queuecomplete"];
       this.prototype.defaultOptions = {
         /**
          * Has to be specified on elements other than form (or when the form
          * doesn't have an `action` attribute). You can also
-         * provide a function that will be called with `student_records` and
+         * provide a function that will be called with `stdnt_records` and
          * must return the url (since `v3.12.0`)
          */
         url: null,
 
         /**
          * Can be changed to `"put"` if necessary. You can also provide a function
-         * that will be called with `student_records` and must return the method (since `v3.12.0`).
+         * that will be called with `stdnt_records` and must return the method (since `v3.12.0`).
          */
         method: "post",
 
@@ -200,14 +200,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         timeout: 30000,
 
         /**
-         * How many student_record uploads to process in parallel (See the
-         * Enqueuing student_record uploads documentation section for more info)
+         * How many stdnt_record uploads to process in parallel (See the
+         * Enqueuing stdnt_record uploads documentation section for more info)
          */
         parallelUploads: 2,
 
         /**
-         * Whether to send multiple student_records in one request. If
-         * this it set to true, then the fallback student_record input element will
+         * Whether to send multiple stdnt_records in one request. If
+         * this it set to true, then the fallback stdnt_record input element will
          * have the `multiple` attribute as well. This option will
          * also trigger additional events (like `processingmultiple`). See the events
          * documentation section for more information.
@@ -215,7 +215,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         uploadMultiple: false,
 
         /**
-         * Whether you want student_records to be uploaded in chunks to your server. This can't be
+         * Whether you want stdnt_records to be uploaded in chunks to your server. This can't be
          * used in combination with `uploadMultiple`.
          *
          * See [chunksUploaded](#config-chunksUploaded) for the callback to finalise an upload.
@@ -223,8 +223,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         chunking: false,
 
         /**
-         * If `chunking` is enabled, this defines whether **every** student_record should be chunked,
-         * even if the student_record size is below chunkSize. This means, that the additional chunk
+         * If `chunking` is enabled, this defines whether **every** stdnt_record should be chunked,
+         * even if the stdnt_record size is below chunkSize. This means, that the additional chunk
          * form data will be submitted and the `chunksUploaded` callback will be invoked.
          */
         forceChunking: false,
@@ -235,7 +235,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         chunkSize: 2000000,
 
         /**
-         * If `true`, the individual chunks of a student_record are being uploaded simultaneously.
+         * If `true`, the individual chunks of a stdnt_record are being uploaded simultaneously.
          */
         parallelChunkUploads: false,
 
@@ -250,18 +250,18 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         retryChunksLimit: 3,
 
         /**
-         * If not `null` defines how many student_records this Dropzone handles. If it exceeds,
-         * the event `maxstudent_recordsexceeded` will be called. The dropzone element gets the
-         * class `dz-max-student_records-reached` accordingly so you can provide visual feedback.
+         * If not `null` defines how many stdnt_records this Dropzone handles. If it exceeds,
+         * the event `maxstdnt_recordsexceeded` will be called. The dropzone element gets the
+         * class `dz-max-stdnt_records-reached` accordingly so you can provide visual feedback.
          */
-        maxstudent_recordsize: 256,
+        maxstdnt_recordsize: 256,
 
         /**
-         * The name of the student_record param that gets transferred.
+         * The name of the stdnt_record param that gets transferred.
          * **NOTE**: If you have the option  `uploadMultiple` set to `true`, then
          * Dropzone will append `[]` to the name.
          */
-        paramName: "student_record",
+        paramName: "stdnt_record",
 
         /**
          * Whether thumbnails for images should be generated
@@ -269,9 +269,9 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         createImageThumbnails: true,
 
         /**
-         * In MB. When the student_recordname exceeds this limit, the thumbnail will not be generated.
+         * In MB. When the stdnt_recordname exceeds this limit, the thumbnail will not be generated.
          */
-        maxThumbnailstudent_recordsize: 10,
+        maxThumbnailstdnt_recordsize: 10,
 
         /**
          * If `null`, the ratio of the image will be used to calculate it.
@@ -292,9 +292,9 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         /**
          * If set, images will be resized to these dimensions before being **uploaded**.
          * If only one, `resizeWidth` **or** `resizeHeight` is provided, the original aspect
-         * ratio of the student_record will be preserved.
+         * ratio of the stdnt_record will be preserved.
          *
-         * The `options.transformstudent_record` function uses these options, so if the `transformstudent_record` function
+         * The `options.transformstdnt_record` function uses these options, so if the `transformstdnt_record` function
          * is overridden, these options don't do anything.
          */
         resizeWidth: null,
@@ -323,17 +323,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         resizeMethod: 'contain',
 
         /**
-         * The base that is used to calculate the student_recordsize. You can change this to
+         * The base that is used to calculate the stdnt_recordsize. You can change this to
          * 1024 if you would rather display kibibytes, mebibytes, etc...
          * 1024 is technically incorrect, because `1024 bytes` are `1 kibibyte` not `1 kilobyte`.
          * You can change this to `1024` if you don't care about validity.
          */
-        student_recordsizeBase: 1000,
+        stdnt_recordsizeBase: 1000,
 
         /**
-         * Can be used to limit the maximum number of student_records that will be handled by this Dropzone
+         * Can be used to limit the maximum number of stdnt_records that will be handled by this Dropzone
          */
-        maxstudent_records: null,
+        maxstdnt_records: null,
 
         /**
          * An optional object to send additional headers to the server. Eg:
@@ -352,56 +352,56 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         clickable: true,
 
         /**
-         * Whether hidden student_records in directories should be ignored.
+         * Whether hidden stdnt_records in directories should be ignored.
          */
-        ignoreHiddenstudent_records: true,
+        ignoreHiddenstdnt_records: true,
 
         /**
-         * The default implementation of `accept` checks the student_record's mime type or
+         * The default implementation of `accept` checks the stdnt_record's mime type or
          * extension against this list. This is a comma separated list of mime
-         * types or student_record extensions.
+         * types or stdnt_record extensions.
          *
          * Eg.: `image/*,application/pdf,.psd`
          *
          * If the Dropzone is `clickable` this option will also be used as
          * [`accept`](https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept)
-         * parameter on the hidden student_record input as well.
+         * parameter on the hidden stdnt_record input as well.
          */
-        acceptedstudent_records: null,
+        acceptedstdnt_records: null,
 
         /**
          * **Deprecated!**
-         * Use acceptedstudent_records instead.
+         * Use acceptedstdnt_records instead.
          */
         acceptedMimeTypes: null,
 
         /**
-         * If false, student_records will be added to the queue but the queue will not be
+         * If false, stdnt_records will be added to the queue but the queue will not be
          * processed automatically.
          * This can be useful if you need some additional user input before sending
-         * student_records (or if you want want all student_records sent at once).
-         * If you're ready to send the student_record simply call `myDropzone.processQueue()`.
+         * stdnt_records (or if you want want all stdnt_records sent at once).
+         * If you're ready to send the stdnt_record simply call `myDropzone.processQueue()`.
          *
-         * See the [enqueuing student_record uploads](#enqueuing-student_record-uploads) documentation
+         * See the [enqueuing stdnt_record uploads](#enqueuing-stdnt_record-uploads) documentation
          * section for more information.
          */
         autoProcessQueue: true,
 
         /**
-         * If false, student_records added to the dropzone will not be queued by default.
-         * You'll have to call `enqueuestudent_record(student_record)` manually.
+         * If false, stdnt_records added to the dropzone will not be queued by default.
+         * You'll have to call `enqueuestdnt_record(stdnt_record)` manually.
          */
         autoQueue: true,
 
         /**
-         * If `true`, this will add a link to every student_record preview to remove or cancel (if
-         * already uploading) the student_record. The `dictCancelUpload`, `dictCancelUploadConfirmation`
-         * and `dictRemovestudent_record` options are used for the wording.
+         * If `true`, this will add a link to every stdnt_record preview to remove or cancel (if
+         * already uploading) the stdnt_record. The `dictCancelUpload`, `dictCancelUploadConfirmation`
+         * and `dictRemovestdnt_record` options are used for the wording.
          */
         addRemoveLinks: false,
 
         /**
-         * Defines where to display the student_record previews – if `null` the
+         * Defines where to display the stdnt_record previews – if `null` the
          * Dropzone element itself is used. Can be a plain `HTMLElement` or a CSS
          * selector. The element should have the `dropzone-previews` class so
          * the previews are displayed properly.
@@ -410,7 +410,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         /**
          * This is the element the hidden input field (which is used when clicking on the
-         * dropzone to trigger student_record selection) will be appended to. This might
+         * dropzone to trigger stdnt_record selection) will be appended to. This might
          * be important in case you use frameworks to switch the content of your page.
          *
          * Can be a selector string, or an element directly.
@@ -419,25 +419,25 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         /**
          * If null, no capture type will be specified
-         * If camera, mobile devices will skip the student_record selection and choose camera
-         * If microphone, mobile devices will skip the student_record selection and choose the microphone
-         * If camcorder, mobile devices will skip the student_record selection and choose the camera in video mode
-         * On apple devices multiple must be set to false.  Acceptedstudent_records may need to
+         * If camera, mobile devices will skip the stdnt_record selection and choose camera
+         * If microphone, mobile devices will skip the stdnt_record selection and choose the microphone
+         * If camcorder, mobile devices will skip the stdnt_record selection and choose the camera in video mode
+         * On apple devices multiple must be set to false.  Acceptedstdnt_records may need to
          * be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
          */
         capture: null,
 
         /**
-         * **Deprecated**. Use `renamestudent_record` instead.
+         * **Deprecated**. Use `renamestdnt_record` instead.
          */
-        renamestudent_recordname: null,
+        renamestdnt_recordname: null,
 
         /**
-         * A function that is invoked before the student_record is uploaded to the server and renames the student_record.
-         * This function gets the `student_record` as argument and can use the `student_record.name`. The actual name of the
-         * student_record that gets used during the upload can be accessed through `student_record.upload.student_recordname`.
+         * A function that is invoked before the stdnt_record is uploaded to the server and renames the stdnt_record.
+         * This function gets the `stdnt_record` as argument and can use the `stdnt_record.name`. The actual name of the
+         * stdnt_record that gets used during the upload can be accessed through `stdnt_record.upload.stdnt_recordname`.
          */
-        renamestudent_record: null,
+        renamestdnt_record: null,
 
         /**
          * If `true` the fallback will be forced. This is very useful to test your server
@@ -448,32 +448,32 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         forceFallback: false,
 
         /**
-         * The text used before any student_records are dropped.
+         * The text used before any stdnt_records are dropped.
          */
-        dictDefaultMessage: "Drop student_records here to upload",
+        dictDefaultMessage: "Drop stdnt_records here to upload",
 
         /**
          * The text that replaces the default message text it the browser is not supported.
          */
-        dictFallbackMessage: "Your browser does not support drag'n'drop student_record uploads.",
+        dictFallbackMessage: "Your browser does not support drag'n'drop stdnt_record uploads.",
 
         /**
          * The text that will be added before the fallback form.
          * If you provide a  fallback element yourself, or if this option is `null` this will
          * be ignored.
          */
-        dictFallbackText: "Please use the fallback form below to upload your student_records like in the olden days.",
+        dictFallbackText: "Please use the fallback form below to upload your stdnt_records like in the olden days.",
 
         /**
-         * If the student_recordsize is too big.
-         * `{{student_recordsize}}` and `{{maxstudent_recordsize}}` will be replaced with the respective configuration values.
+         * If the stdnt_recordsize is too big.
+         * `{{stdnt_recordsize}}` and `{{maxstdnt_recordsize}}` will be replaced with the respective configuration values.
          */
-        dictstudent_recordTooBig: "student_record is too big ({{student_recordsize}}MiB). Max student_recordsize: {{maxstudent_recordsize}}MiB.",
+        dictstdnt_recordTooBig: "stdnt_record is too big ({{stdnt_recordsize}}MiB). Max stdnt_recordsize: {{maxstdnt_recordsize}}MiB.",
 
         /**
-         * If the student_record doesn't match the student_record type.
+         * If the stdnt_record doesn't match the stdnt_record type.
          */
-        dictInvalidstudent_recordType: "You can't upload student_records of this type.",
+        dictInvalidstdnt_recordType: "You can't upload stdnt_records of this type.",
 
         /**
          * If the server response was invalid.
@@ -497,26 +497,26 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
 
         /**
-         * If `addRemoveLinks` is true, the text to be used to remove a student_record.
+         * If `addRemoveLinks` is true, the text to be used to remove a stdnt_record.
          */
-        dictRemovestudent_record: "Remove student_record",
+        dictRemovestdnt_record: "Remove stdnt_record",
 
         /**
-         * If this is not null, then the user will be prompted before removing a student_record.
+         * If this is not null, then the user will be prompted before removing a stdnt_record.
          */
-        dictRemovestudent_recordConfirmation: null,
+        dictRemovestdnt_recordConfirmation: null,
 
         /**
-         * Displayed if `maxstudent_records` is st and exceeded.
-         * The string `{{maxstudent_records}}` will be replaced by the configuration value.
+         * Displayed if `maxstdnt_records` is st and exceeded.
+         * The string `{{maxstdnt_records}}` will be replaced by the configuration value.
          */
-        dictMaxstudent_recordsExceeded: "You can not upload any more student_records.",
+        dictMaxstdnt_recordsExceeded: "You can not upload any more stdnt_records.",
 
         /**
          * Allows you to translate the different units. Starting with `tb` for terabytes and going down to
          * `b` for bytes.
          */
-        dictstudent_recordSizeUnits: {
+        dictstdnt_recordSizeUnits: {
           tb: "TB",
           gb: "GB",
           mb: "MB",
@@ -532,7 +532,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         /**
          * Can be an **object** of additional parameters to transfer to the server, **or** a `Function`
-         * that gets invoked with the `student_records`, `xhr` and, if it's a chunked upload, `chunk` arguments. In case
+         * that gets invoked with the `stdnt_records`, `xhr` and, if it's a chunked upload, `chunk` arguments. In case
          * of a function, this needs to return a map.
          *
          * The default implementation does nothing for normal uploads, but adds relevant information for
@@ -540,39 +540,39 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          *
          * This is the same as adding hidden input fields in the form element.
          */
-        params: function params(student_records, xhr, chunk) {
+        params: function params(stdnt_records, xhr, chunk) {
           if (chunk) {
             return {
-              dzuuid: chunk.student_record.upload.uuid,
+              dzuuid: chunk.stdnt_record.upload.uuid,
               dzchunkindex: chunk.index,
-              dztotalstudent_recordsize: chunk.student_record.size,
+              dztotalstdnt_recordsize: chunk.stdnt_record.size,
               dzchunksize: this.options.chunkSize,
-              dztotalchunkcount: chunk.student_record.upload.totalChunkCount,
+              dztotalchunkcount: chunk.stdnt_record.upload.totalChunkCount,
               dzchunkbyteoffset: chunk.index * this.options.chunkSize
             };
           }
         },
 
         /**
-         * A function that gets a [student_record](https://developer.mozilla.org/en-US/docs/DOM/student_record)
+         * A function that gets a [stdnt_record](https://developer.mozilla.org/en-US/docs/DOM/stdnt_record)
          * and a `done` function as parameters.
          *
-         * If the done function is invoked without arguments, the student_record is "accepted" and will
-         * be processed. If you pass an error message, the student_record is rejected, and the error
+         * If the done function is invoked without arguments, the stdnt_record is "accepted" and will
+         * be processed. If you pass an error message, the stdnt_record is rejected, and the error
          * message will be displayed.
-         * This function will not be called if the student_record is too big or doesn't match the mime types.
+         * This function will not be called if the stdnt_record is too big or doesn't match the mime types.
          */
-        accept: function accept(student_record, done) {
+        accept: function accept(stdnt_record, done) {
           return done();
         },
 
         /**
-         * The callback that will be invoked when all chunks have been uploaded for a student_record.
-         * It gets the student_record for which the chunks have been uploaded as the first parameter,
+         * The callback that will be invoked when all chunks have been uploaded for a stdnt_record.
+         * It gets the stdnt_record for which the chunks have been uploaded as the first parameter,
          * and the `done` function as second. `done()` needs to be invoked when everything
          * needed to finish the upload process is done.
          */
-        chunksUploaded: function chunksUploaded(student_record, done) {
+        chunksUploaded: function chunksUploaded(stdnt_record, done) {
           done();
         },
 
@@ -627,7 +627,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         /**
          * Gets called to calculate the thumbnail dimensions.
          *
-         * It gets `student_record`, `width` and `height` (both may be `null`) as parameters and must return an object containing:
+         * It gets `stdnt_record`, `width` and `height` (both may be `null`) as parameters and must return an object containing:
          *
          *  - `srcWidth` & `srcHeight` (required)
          *  - `trgWidth` & `trgHeight` (required)
@@ -636,14 +636,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          *
          * Those values are going to be used by `ctx.drawImage()`.
          */
-        resize: function resize(student_record, width, height, resizeMethod) {
+        resize: function resize(stdnt_record, width, height, resizeMethod) {
           var info = {
             srcX: 0,
             srcY: 0,
-            srcWidth: student_record.width,
-            srcHeight: student_record.height
+            srcWidth: stdnt_record.width,
+            srcHeight: stdnt_record.height
           };
-          var srcRatio = student_record.width / student_record.height; // Automatically calculate dimensions if not specified
+          var srcRatio = stdnt_record.width / stdnt_record.height; // Automatically calculate dimensions if not specified
 
           if (width == null && height == null) {
             width = info.srcWidth;
@@ -663,10 +663,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             // Image is bigger and needs rescaling
             if (resizeMethod === 'crop') {
               if (srcRatio > trgRatio) {
-                info.srcHeight = student_record.height;
+                info.srcHeight = stdnt_record.height;
                 info.srcWidth = info.srcHeight * trgRatio;
               } else {
-                info.srcWidth = student_record.width;
+                info.srcWidth = stdnt_record.width;
                 info.srcHeight = info.srcWidth / trgRatio;
               }
             } else if (resizeMethod === 'contain') {
@@ -681,33 +681,33 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
           }
 
-          info.srcX = (student_record.width - info.srcWidth) / 2;
-          info.srcY = (student_record.height - info.srcHeight) / 2;
+          info.srcX = (stdnt_record.width - info.srcWidth) / 2;
+          info.srcY = (stdnt_record.height - info.srcHeight) / 2;
           info.trgWidth = width;
           info.trgHeight = height;
           return info;
         },
 
         /**
-         * Can be used to transform the student_record (for example, resize an image if necessary).
+         * Can be used to transform the stdnt_record (for example, resize an image if necessary).
          *
          * The default implementation uses `resizeWidth` and `resizeHeight` (if provided) and resizes
          * images according to those dimensions.
          *
-         * Gets the `student_record` as the first parameter, and a `done()` function as the second, that needs
-         * to be invoked with the student_record when the transformation is done.
+         * Gets the `stdnt_record` as the first parameter, and a `done()` function as the second, that needs
+         * to be invoked with the stdnt_record when the transformation is done.
          */
-        transformstudent_record: function transformstudent_record(student_record, done) {
-          if ((this.options.resizeWidth || this.options.resizeHeight) && student_record.type.match(/image.*/)) {
-            return this.resizeImage(student_record, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
+        transformstdnt_record: function transformstdnt_record(stdnt_record, done) {
+          if ((this.options.resizeWidth || this.options.resizeHeight) && stdnt_record.type.match(/image.*/)) {
+            return this.resizeImage(stdnt_record, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
           } else {
-            return done(student_record);
+            return done(stdnt_record);
           }
         },
 
         /**
          * A string that contains the template used for each dropped
-         * student_record. Change it to fulfill your needs but make sure to properly
+         * stdnt_record. Change it to fulfill your needs but make sure to properly
          * provide all elements.
          *
          * If you want to use an actual HTML element instead of providing a String
@@ -719,7 +719,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          *       .innerHTML
          *
          */
-        previewTemplate: "<div class=\"dz-preview dz-student_record-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-student_recordname\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Check</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\"></path>\n      </g>\n    </svg>\n  </div>\n  <div class=\"dz-error-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Error</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\">\n          <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>",
+        previewTemplate: "<div class=\"dz-preview dz-stdnt_record-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-stdnt_recordname\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Check</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\"></path>\n      </g>\n    </svg>\n  </div>\n  <div class=\"dz-error-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n      <title>Error</title>\n      <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\">\n          <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>",
         // END OPTIONS
         // (Required by the dropzone documentation parser)
 
@@ -749,14 +749,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           return this.element.classList.remove("dz-drag-hover");
         },
         paste: function paste(e) {},
-        // Called whenever there are no student_records left in the dropzone anymore, and the
+        // Called whenever there are no stdnt_records left in the dropzone anymore, and the
         // dropzone should be displayed as if in the initial state.
         reset: function reset() {
           return this.element.classList.remove("dz-started");
         },
-        // Called when a student_record is added to the queue
-        // Receives `student_record`
-        addedstudent_record: function addedstudent_record(student_record) {
+        // Called when a stdnt_record is added to the queue
+        // Receives `stdnt_record`
+        addedstdnt_record: function addedstdnt_record(stdnt_record) {
           var _this2 = this;
 
           if (this.element === this.previewsContainer) {
@@ -764,18 +764,18 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }
 
           if (this.previewsContainer) {
-            student_record.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
-            student_record.previewTemplate = student_record.previewElement; // Backwards compatibility
+            stdnt_record.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
+            stdnt_record.previewTemplate = stdnt_record.previewElement; // Backwards compatibility
 
-            this.previewsContainer.appendChild(student_record.previewElement);
+            this.previewsContainer.appendChild(stdnt_record.previewElement);
 
-            var _iterator3 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-name]")),
+            var _iterator3 = _createForOfIteratorHelper(stdnt_record.previewElement.querySelectorAll("[data-dz-name]")),
                 _step3;
 
             try {
               for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
                 var node = _step3.value;
-                node.textContent = student_record.name;
+                node.textContent = stdnt_record.name;
               }
             } catch (err) {
               _iterator3.e(err);
@@ -783,13 +783,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
               _iterator3.f();
             }
 
-            var _iterator4 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-size]")),
+            var _iterator4 = _createForOfIteratorHelper(stdnt_record.previewElement.querySelectorAll("[data-dz-size]")),
                 _step4;
 
             try {
               for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
                 node = _step4.value;
-                node.innerHTML = this.student_recordsize(student_record.size);
+                node.innerHTML = this.stdnt_recordsize(stdnt_record.size);
               }
             } catch (err) {
               _iterator4.e(err);
@@ -798,36 +798,36 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
 
             if (this.options.addRemoveLinks) {
-              student_record._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>".concat(this.options.dictRemovestudent_record, "</a>"));
-              student_record.previewElement.appendChild(student_record._removeLink);
+              stdnt_record._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>".concat(this.options.dictRemovestdnt_record, "</a>"));
+              stdnt_record.previewElement.appendChild(stdnt_record._removeLink);
             }
 
-            var removestudent_recordEvent = function removestudent_recordEvent(e) {
+            var removestdnt_recordEvent = function removestdnt_recordEvent(e) {
               e.preventDefault();
               e.stopPropagation();
 
-              if (student_record.status === Dropzone.UPLOADING) {
+              if (stdnt_record.status === Dropzone.UPLOADING) {
                 return Dropzone.confirm(_this2.options.dictCancelUploadConfirmation, function () {
-                  return _this2.removestudent_record(student_record);
+                  return _this2.removestdnt_record(stdnt_record);
                 });
               } else {
-                if (_this2.options.dictRemovestudent_recordConfirmation) {
-                  return Dropzone.confirm(_this2.options.dictRemovestudent_recordConfirmation, function () {
-                    return _this2.removestudent_record(student_record);
+                if (_this2.options.dictRemovestdnt_recordConfirmation) {
+                  return Dropzone.confirm(_this2.options.dictRemovestdnt_recordConfirmation, function () {
+                    return _this2.removestdnt_record(stdnt_record);
                   });
                 } else {
-                  return _this2.removestudent_record(student_record);
+                  return _this2.removestdnt_record(stdnt_record);
                 }
               }
             };
 
-            var _iterator5 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-remove]")),
+            var _iterator5 = _createForOfIteratorHelper(stdnt_record.previewElement.querySelectorAll("[data-dz-remove]")),
                 _step5;
 
             try {
               for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
                 var removeLink = _step5.value;
-                removeLink.addEventListener("click", removestudent_recordEvent);
+                removeLink.addEventListener("click", removestdnt_recordEvent);
               }
             } catch (err) {
               _iterator5.e(err);
@@ -836,27 +836,27 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
           }
         },
-        // Called whenever a student_record is removed.
-        removedstudent_record: function removedstudent_record(student_record) {
-          if (student_record.previewElement != null && student_record.previewElement.parentNode != null) {
-            student_record.previewElement.parentNode.removeChild(student_record.previewElement);
+        // Called whenever a stdnt_record is removed.
+        removedstdnt_record: function removedstdnt_record(stdnt_record) {
+          if (stdnt_record.previewElement != null && stdnt_record.previewElement.parentNode != null) {
+            stdnt_record.previewElement.parentNode.removeChild(stdnt_record.previewElement);
           }
 
-          return this._updateMaxstudent_recordsReachedClass();
+          return this._updateMaxstdnt_recordsReachedClass();
         },
         // Called when a thumbnail has been generated
-        // Receives `student_record` and `dataUrl`
-        thumbnail: function thumbnail(student_record, dataUrl) {
-          if (student_record.previewElement) {
-            student_record.previewElement.classList.remove("dz-student_record-preview");
+        // Receives `stdnt_record` and `dataUrl`
+        thumbnail: function thumbnail(stdnt_record, dataUrl) {
+          if (stdnt_record.previewElement) {
+            stdnt_record.previewElement.classList.remove("dz-stdnt_record-preview");
 
-            var _iterator6 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-thumbnail]")),
+            var _iterator6 = _createForOfIteratorHelper(stdnt_record.previewElement.querySelectorAll("[data-dz-thumbnail]")),
                 _step6;
 
             try {
               for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
                 var thumbnailElement = _step6.value;
-                thumbnailElement.alt = student_record.name;
+                thumbnailElement.alt = stdnt_record.name;
                 thumbnailElement.src = dataUrl;
               }
             } catch (err) {
@@ -866,21 +866,21 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
 
             return setTimeout(function () {
-              return student_record.previewElement.classList.add("dz-image-preview");
+              return stdnt_record.previewElement.classList.add("dz-image-preview");
             }, 1);
           }
         },
         // Called whenever an error occurs
-        // Receives `student_record` and `message`
-        error: function error(student_record, message) {
-          if (student_record.previewElement) {
-            student_record.previewElement.classList.add("dz-error");
+        // Receives `stdnt_record` and `message`
+        error: function error(stdnt_record, message) {
+          if (stdnt_record.previewElement) {
+            stdnt_record.previewElement.classList.add("dz-error");
 
             if (typeof message !== "string" && message.error) {
               message = message.error;
             }
 
-            var _iterator7 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-errormessage]")),
+            var _iterator7 = _createForOfIteratorHelper(stdnt_record.previewElement.querySelectorAll("[data-dz-errormessage]")),
                 _step7;
 
             try {
@@ -896,25 +896,25 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }
         },
         errormultiple: function errormultiple() {},
-        // Called when a student_record gets processed. Since there is a cue, not all added
-        // student_records are processed immediately.
-        // Receives `student_record`
-        processing: function processing(student_record) {
-          if (student_record.previewElement) {
-            student_record.previewElement.classList.add("dz-processing");
+        // Called when a stdnt_record gets processed. Since there is a cue, not all added
+        // stdnt_records are processed immediately.
+        // Receives `stdnt_record`
+        processing: function processing(stdnt_record) {
+          if (stdnt_record.previewElement) {
+            stdnt_record.previewElement.classList.add("dz-processing");
 
-            if (student_record._removeLink) {
-              return student_record._removeLink.innerHTML = this.options.dictCancelUpload;
+            if (stdnt_record._removeLink) {
+              return stdnt_record._removeLink.innerHTML = this.options.dictCancelUpload;
             }
           }
         },
         processingmultiple: function processingmultiple() {},
         // Called whenever the upload progress gets updated.
-        // Receives `student_record`, `progress` (percentage 0-100) and `bytesSent`.
-        // To get the total number of bytes of the student_record, use `student_record.size`
-        uploadprogress: function uploadprogress(student_record, progress, bytesSent) {
-          if (student_record.previewElement) {
-            var _iterator8 = _createForOfIteratorHelper(student_record.previewElement.querySelectorAll("[data-dz-uploadprogress]")),
+        // Receives `stdnt_record`, `progress` (percentage 0-100) and `bytesSent`.
+        // To get the total number of bytes of the stdnt_record, use `stdnt_record.size`
+        uploadprogress: function uploadprogress(stdnt_record, progress, bytesSent) {
+          if (stdnt_record.previewElement) {
+            var _iterator8 = _createForOfIteratorHelper(stdnt_record.previewElement.querySelectorAll("[data-dz-uploadprogress]")),
                 _step8;
 
             try {
@@ -932,40 +932,40 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         // Called whenever the total upload progress gets updated.
         // Called with totalUploadProgress (0-100), totalBytes and totalBytesSent
         totaluploadprogress: function totaluploadprogress() {},
-        // Called just before the student_record is sent. Gets the `xhr` object as second
+        // Called just before the stdnt_record is sent. Gets the `xhr` object as second
         // parameter, so you can modify it (for example to add a CSRF token) and a
         // `formData` object to add additional information.
         sending: function sending() {},
         sendingmultiple: function sendingmultiple() {},
         // When the complete upload is finished and successful
-        // Receives `student_record`
-        success: function success(student_record) {
-          if (student_record.previewElement) {
-            return student_record.previewElement.classList.add("dz-success");
+        // Receives `stdnt_record`
+        success: function success(stdnt_record) {
+          if (stdnt_record.previewElement) {
+            return stdnt_record.previewElement.classList.add("dz-success");
           }
         },
         successmultiple: function successmultiple() {},
         // When the upload is canceled.
-        canceled: function canceled(student_record) {
-          return this.emit("error", student_record, this.options.dictUploadCanceled);
+        canceled: function canceled(stdnt_record) {
+          return this.emit("error", stdnt_record, this.options.dictUploadCanceled);
         },
         canceledmultiple: function canceledmultiple() {},
         // When the upload is finished, either with success or an error.
-        // Receives `student_record`
-        complete: function complete(student_record) {
-          if (student_record._removeLink) {
-            student_record._removeLink.innerHTML = this.options.dictRemovestudent_record;
+        // Receives `stdnt_record`
+        complete: function complete(stdnt_record) {
+          if (stdnt_record._removeLink) {
+            stdnt_record._removeLink.innerHTML = this.options.dictRemovestdnt_record;
           }
 
-          if (student_record.previewElement) {
-            return student_record.previewElement.classList.add("dz-complete");
+          if (stdnt_record.previewElement) {
+            return stdnt_record.previewElement.classList.add("dz-complete");
           }
         },
         completemultiple: function completemultiple() {},
-        maxstudent_recordsexceeded: function maxstudent_recordsexceeded() {},
-        maxstudent_recordsreached: function maxstudent_recordsreached() {},
+        maxstdnt_recordsexceeded: function maxstdnt_recordsexceeded() {},
+        maxstdnt_recordsreached: function maxstdnt_recordsreached() {},
         queuecomplete: function queuecomplete() {},
-        addedstudent_records: function addedstudent_records() {}
+        addedstdnt_records: function addedstdnt_records() {}
       };
       this.prototype._thumbnailQueue = [];
       this.prototype._processingThumbnail = false;
@@ -1004,7 +1004,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     _this.defaultOptions.previewTemplate = _this.defaultOptions.previewTemplate.replace(/\n*/g, "");
     _this.clickableElements = [];
     _this.listeners = [];
-    _this.student_records = []; // All student_records
+    _this.stdnt_records = []; // All stdnt_records
 
     if (typeof _this.element === "string") {
       _this.element = document.querySelector(_this.element);
@@ -1039,8 +1039,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       throw new Error("No URL provided.");
     }
 
-    if (_this.options.acceptedstudent_records && _this.options.acceptedMimeTypes) {
-      throw new Error("You can't provide both 'acceptedstudent_records' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
+    if (_this.options.acceptedstdnt_records && _this.options.acceptedMimeTypes) {
+      throw new Error("You can't provide both 'acceptedstdnt_records' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
     }
 
     if (_this.options.uploadMultiple && _this.options.chunking) {
@@ -1049,14 +1049,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
 
     if (_this.options.acceptedMimeTypes) {
-      _this.options.acceptedstudent_records = _this.options.acceptedMimeTypes;
+      _this.options.acceptedstdnt_records = _this.options.acceptedMimeTypes;
       delete _this.options.acceptedMimeTypes;
     } // Backwards compatibility
 
 
-    if (_this.options.renamestudent_recordname != null) {
-      _this.options.renamestudent_record = function (student_record) {
-        return _this.options.renamestudent_recordname.call(_assertThisInitialized(_this), student_record.name, student_record);
+    if (_this.options.renamestdnt_recordname != null) {
+      _this.options.renamestdnt_record = function (stdnt_record) {
+        return _this.options.renamestdnt_recordname.call(_assertThisInitialized(_this), stdnt_record.name, stdnt_record);
       };
     }
 
@@ -1089,62 +1089,62 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     _this.init();
 
     return _this;
-  } // Returns all student_records that have been accepted
+  } // Returns all stdnt_records that have been accepted
 
 
   _createClass(Dropzone, [{
-    key: "getAcceptedstudent_records",
-    value: function getAcceptedstudent_records() {
-      return this.student_records.filter(function (student_record) {
-        return student_record.accepted;
-      }).map(function (student_record) {
-        return student_record;
+    key: "getAcceptedstdnt_records",
+    value: function getAcceptedstdnt_records() {
+      return this.stdnt_records.filter(function (stdnt_record) {
+        return stdnt_record.accepted;
+      }).map(function (stdnt_record) {
+        return stdnt_record;
       });
-    } // Returns all student_records that have been rejected
+    } // Returns all stdnt_records that have been rejected
     // Not sure when that's going to be useful, but added for completeness.
 
   }, {
-    key: "getRejectedstudent_records",
-    value: function getRejectedstudent_records() {
-      return this.student_records.filter(function (student_record) {
-        return !student_record.accepted;
-      }).map(function (student_record) {
-        return student_record;
+    key: "getRejectedstdnt_records",
+    value: function getRejectedstdnt_records() {
+      return this.stdnt_records.filter(function (stdnt_record) {
+        return !stdnt_record.accepted;
+      }).map(function (stdnt_record) {
+        return stdnt_record;
       });
     }
   }, {
-    key: "getstudent_recordsWithStatus",
-    value: function getstudent_recordsWithStatus(status) {
-      return this.student_records.filter(function (student_record) {
-        return student_record.status === status;
-      }).map(function (student_record) {
-        return student_record;
+    key: "getstdnt_recordsWithStatus",
+    value: function getstdnt_recordsWithStatus(status) {
+      return this.stdnt_records.filter(function (stdnt_record) {
+        return stdnt_record.status === status;
+      }).map(function (stdnt_record) {
+        return stdnt_record;
       });
-    } // Returns all student_records that are in the queue
+    } // Returns all stdnt_records that are in the queue
 
   }, {
-    key: "getQueuedstudent_records",
-    value: function getQueuedstudent_records() {
-      return this.getstudent_recordsWithStatus(Dropzone.QUEUED);
+    key: "getQueuedstdnt_records",
+    value: function getQueuedstdnt_records() {
+      return this.getstdnt_recordsWithStatus(Dropzone.QUEUED);
     }
   }, {
-    key: "getUploadingstudent_records",
-    value: function getUploadingstudent_records() {
-      return this.getstudent_recordsWithStatus(Dropzone.UPLOADING);
+    key: "getUploadingstdnt_records",
+    value: function getUploadingstdnt_records() {
+      return this.getstdnt_recordsWithStatus(Dropzone.UPLOADING);
     }
   }, {
-    key: "getAddedstudent_records",
-    value: function getAddedstudent_records() {
-      return this.getstudent_recordsWithStatus(Dropzone.ADDED);
-    } // student_records that are either queued or uploading
+    key: "getAddedstdnt_records",
+    value: function getAddedstdnt_records() {
+      return this.getstdnt_recordsWithStatus(Dropzone.ADDED);
+    } // stdnt_records that are either queued or uploading
 
   }, {
-    key: "getActivestudent_records",
-    value: function getActivestudent_records() {
-      return this.student_records.filter(function (student_record) {
-        return student_record.status === Dropzone.UPLOADING || student_record.status === Dropzone.QUEUED;
-      }).map(function (student_record) {
-        return student_record;
+    key: "getActivestdnt_records",
+    value: function getActivestdnt_records() {
+      return this.stdnt_records.filter(function (stdnt_record) {
+        return stdnt_record.status === Dropzone.UPLOADING || stdnt_record.status === Dropzone.QUEUED;
+      }).map(function (stdnt_record) {
+        return stdnt_record;
       });
     } // The function that gets called when Dropzone is initialized. You
     // can (and should) setup event listeners inside this function.
@@ -1164,50 +1164,50 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.clickableElements.length) {
-        var setupHiddenstudent_recordInput = function setupHiddenstudent_recordInput() {
-          if (_this3.hiddenstudent_recordInput) {
-            _this3.hiddenstudent_recordInput.parentNode.removeChild(_this3.hiddenstudent_recordInput);
+        var setupHiddenstdnt_recordInput = function setupHiddenstdnt_recordInput() {
+          if (_this3.hiddenstdnt_recordInput) {
+            _this3.hiddenstdnt_recordInput.parentNode.removeChild(_this3.hiddenstdnt_recordInput);
           }
 
-          _this3.hiddenstudent_recordInput = document.createElement("input");
+          _this3.hiddenstdnt_recordInput = document.createElement("input");
 
-          _this3.hiddenstudent_recordInput.setAttribute("type", "student_record");
+          _this3.hiddenstdnt_recordInput.setAttribute("type", "stdnt_record");
 
-          if (_this3.options.maxstudent_records === null || _this3.options.maxstudent_records > 1) {
-            _this3.hiddenstudent_recordInput.setAttribute("multiple", "multiple");
+          if (_this3.options.maxstdnt_records === null || _this3.options.maxstdnt_records > 1) {
+            _this3.hiddenstdnt_recordInput.setAttribute("multiple", "multiple");
           }
 
-          _this3.hiddenstudent_recordInput.className = "dz-hidden-input";
+          _this3.hiddenstdnt_recordInput.className = "dz-hidden-input";
 
-          if (_this3.options.acceptedstudent_records !== null) {
-            _this3.hiddenstudent_recordInput.setAttribute("accept", _this3.options.acceptedstudent_records);
+          if (_this3.options.acceptedstdnt_records !== null) {
+            _this3.hiddenstdnt_recordInput.setAttribute("accept", _this3.options.acceptedstdnt_records);
           }
 
           if (_this3.options.capture !== null) {
-            _this3.hiddenstudent_recordInput.setAttribute("capture", _this3.options.capture);
+            _this3.hiddenstdnt_recordInput.setAttribute("capture", _this3.options.capture);
           } // Not setting `display="none"` because some browsers don't accept clicks
           // on elements that aren't displayed.
 
 
-          _this3.hiddenstudent_recordInput.style.visibility = "hidden";
-          _this3.hiddenstudent_recordInput.style.position = "absolute";
-          _this3.hiddenstudent_recordInput.style.top = "0";
-          _this3.hiddenstudent_recordInput.style.left = "0";
-          _this3.hiddenstudent_recordInput.style.height = "0";
-          _this3.hiddenstudent_recordInput.style.width = "0";
-          Dropzone.getElement(_this3.options.hiddenInputContainer, 'hiddenInputContainer').appendChild(_this3.hiddenstudent_recordInput);
-          return _this3.hiddenstudent_recordInput.addEventListener("change", function () {
-            var student_records = _this3.hiddenstudent_recordInput.student_records;
+          _this3.hiddenstdnt_recordInput.style.visibility = "hidden";
+          _this3.hiddenstdnt_recordInput.style.position = "absolute";
+          _this3.hiddenstdnt_recordInput.style.top = "0";
+          _this3.hiddenstdnt_recordInput.style.left = "0";
+          _this3.hiddenstdnt_recordInput.style.height = "0";
+          _this3.hiddenstdnt_recordInput.style.width = "0";
+          Dropzone.getElement(_this3.options.hiddenInputContainer, 'hiddenInputContainer').appendChild(_this3.hiddenstdnt_recordInput);
+          return _this3.hiddenstdnt_recordInput.addEventListener("change", function () {
+            var stdnt_records = _this3.hiddenstdnt_recordInput.stdnt_records;
 
-            if (student_records.length) {
-              var _iterator9 = _createForOfIteratorHelper(student_records),
+            if (stdnt_records.length) {
+              var _iterator9 = _createForOfIteratorHelper(stdnt_records),
                   _step9;
 
               try {
                 for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
-                  var student_record = _step9.value;
+                  var stdnt_record = _step9.value;
 
-                  _this3.addstudent_record(student_record);
+                  _this3.addstdnt_record(stdnt_record);
                 }
               } catch (err) {
                 _iterator9.e(err);
@@ -1216,13 +1216,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
               }
             }
 
-            _this3.emit("addedstudent_records", student_records);
+            _this3.emit("addedstdnt_records", stdnt_records);
 
-            return setupHiddenstudent_recordInput();
+            return setupHiddenstdnt_recordInput();
           });
         };
 
-        setupHiddenstudent_recordInput();
+        setupHiddenstdnt_recordInput();
       }
 
       this.URL = window.URL !== null ? window.URL : window.webkitURL; // Setup all event listeners on the Dropzone object itself.
@@ -1246,15 +1246,15 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       this.on("uploadprogress", function () {
         return _this3.updateTotalUploadProgress();
       });
-      this.on("removedstudent_record", function () {
+      this.on("removedstdnt_record", function () {
         return _this3.updateTotalUploadProgress();
       });
-      this.on("canceled", function (student_record) {
-        return _this3.emit("complete", student_record);
-      }); // Emit a `queuecomplete` event if all student_records finished uploading.
+      this.on("canceled", function (stdnt_record) {
+        return _this3.emit("complete", stdnt_record);
+      }); // Emit a `queuecomplete` event if all stdnt_records finished uploading.
 
-      this.on("complete", function (student_record) {
-        if (_this3.getAddedstudent_records().length === 0 && _this3.getUploadingstudent_records().length === 0 && _this3.getQueuedstudent_records().length === 0) {
+      this.on("complete", function (stdnt_record) {
+        if (_this3.getAddedstdnt_records().length === 0 && _this3.getUploadingstdnt_records().length === 0 && _this3.getQueuedstdnt_records().length === 0) {
           // This needs to be deferred so that `queuecomplete` really triggers after `complete`
           return setTimeout(function () {
             return _this3.emit("queuecomplete");
@@ -1262,13 +1262,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       });
 
-      var containsstudent_records = function containsstudent_records(e) {
+      var containsstdnt_records = function containsstdnt_records(e) {
         if (e.dataTransfer.types) {
           // Because e.dataTransfer.types is an Object in
           // IE, we need to iterate like this instead of
           // using e.dataTransfer.types.some()
           for (var i = 0; i < e.dataTransfer.types.length; i++) {
-            if (e.dataTransfer.types[i] === "student_records") return true;
+            if (e.dataTransfer.types[i] === "stdnt_records") return true;
           }
         }
 
@@ -1276,10 +1276,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       };
 
       var noPropagation = function noPropagation(e) {
-        // If there are no student_records, we don't want to stop
+        // If there are no stdnt_records, we don't want to stop
         // propagation so we don't interfere with other
         // drag and drop behaviour.
-        if (!containsstudent_records(e)) return;
+        if (!containsstdnt_records(e)) return;
         e.stopPropagation();
 
         if (e.preventDefault) {
@@ -1301,8 +1301,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             return _this3.emit("dragenter", e);
           },
           "dragover": function dragover(e) {
-            // Makes it possible to drag student_records from chrome's download bar
-            // http://stackoverflow.com/questions/19526430/drag-and-drop-student_record-uploads-from-chrome-downloads-bar
+            // Makes it possible to drag stdnt_records from chrome's download bar
+            // http://stackoverflow.com/questions/19526430/drag-and-drop-stdnt_record-uploads-from-chrome-downloads-bar
             // Try is required to prevent bug in Internet Explorer 11 (SCRIPT65535 exception)
             var efct;
 
@@ -1335,9 +1335,9 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           element: clickableElement,
           events: {
             "click": function click(evt) {
-              // Only the actual dropzone or the message element should trigger student_record selection
+              // Only the actual dropzone or the message element should trigger stdnt_record selection
               if (clickableElement !== _this3.element || evt.target === _this3.element || Dropzone.elementInside(evt.target, _this3.element.querySelector(".dz-message"))) {
-                _this3.hiddenstudent_recordInput.click(); // Forward the click
+                _this3.hiddenstdnt_recordInput.click(); // Forward the click
 
               }
 
@@ -1354,11 +1354,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     key: "destroy",
     value: function destroy() {
       this.disable();
-      this.removeAllstudent_records(true);
+      this.removeAllstdnt_records(true);
 
-      if (this.hiddenstudent_recordInput != null ? this.hiddenstudent_recordInput.parentNode : undefined) {
-        this.hiddenstudent_recordInput.parentNode.removeChild(this.hiddenstudent_recordInput);
-        this.hiddenstudent_recordInput = null;
+      if (this.hiddenstdnt_recordInput != null ? this.hiddenstdnt_recordInput.parentNode : undefined) {
+        this.hiddenstdnt_recordInput.parentNode.removeChild(this.hiddenstdnt_recordInput);
+        this.hiddenstdnt_recordInput = null;
       }
 
       delete this.element.dropzone;
@@ -1370,17 +1370,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       var totalUploadProgress;
       var totalBytesSent = 0;
       var totalBytes = 0;
-      var activestudent_records = this.getActivestudent_records();
+      var activestdnt_records = this.getActivestdnt_records();
 
-      if (activestudent_records.length) {
-        var _iterator11 = _createForOfIteratorHelper(this.getActivestudent_records()),
+      if (activestdnt_records.length) {
+        var _iterator11 = _createForOfIteratorHelper(this.getActivestdnt_records()),
             _step11;
 
         try {
           for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
-            var student_record = _step11.value;
-            totalBytesSent += student_record.upload.bytesSent;
-            totalBytes += student_record.upload.total;
+            var stdnt_record = _step11.value;
+            totalBytesSent += stdnt_record.upload.bytesSent;
+            totalBytes += stdnt_record.upload.total;
           }
         } catch (err) {
           _iterator11.e(err);
@@ -1395,7 +1395,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       return this.emit("totaluploadprogress", totalUploadProgress, totalBytes, totalBytesSent);
     } // @options.paramName can be a function taking one parameter rather than a string.
-    // A parameter name for a student_record is obtained simply by calling this with an index number.
+    // A parameter name for a stdnt_record is obtained simply by calling this with an index number.
 
   }, {
     key: "_getParamName",
@@ -1405,17 +1405,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       } else {
         return "".concat(this.options.paramName).concat(this.options.uploadMultiple ? "[".concat(n, "]") : "");
       }
-    } // If @options.renamestudent_record is a function,
-    // the function will be used to rename the student_record.name before appending it to the formData
+    } // If @options.renamestdnt_record is a function,
+    // the function will be used to rename the stdnt_record.name before appending it to the formData
 
   }, {
-    key: "_renamestudent_record",
-    value: function _renamestudent_record(student_record) {
-      if (typeof this.options.renamestudent_record !== "function") {
-        return student_record.name;
+    key: "_renamestdnt_record",
+    value: function _renamestdnt_record(stdnt_record) {
+      if (typeof this.options.renamestdnt_record !== "function") {
+        return stdnt_record.name;
       }
 
-      return this.options.renamestudent_record(student_record);
+      return this.options.renamestdnt_record(stdnt_record);
     } // Returns a form that can be used as fallback if the browser does not support DragnDrop
     //
     // If the dropzone is already a form, only the input field and button are returned. Otherwise a complete form element is provided.
@@ -1436,7 +1436,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         fieldsString += "<p>".concat(this.options.dictFallbackText, "</p>");
       }
 
-      fieldsString += "<input type=\"student_record\" name=\"".concat(this._getParamName(0), "\" ").concat(this.options.uploadMultiple ? 'multiple="multiple"' : undefined, " /><input type=\"submit\" value=\"Upload!\"></div>");
+      fieldsString += "<input type=\"stdnt_record\" name=\"".concat(this._getParamName(0), "\" ").concat(this.options.uploadMultiple ? 'multiple="multiple"' : undefined, " /><input type=\"submit\" value=\"Upload!\"></div>");
       var fields = Dropzone.createElement(fieldsString);
 
       if (this.element.tagName !== "FORM") {
@@ -1517,7 +1517,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           return result;
         }();
       });
-    } // Removes all event listeners and cancels all student_records in the queue or being processed.
+    } // Removes all event listeners and cancels all stdnt_records in the queue or being processed.
 
   }, {
     key: "disable",
@@ -1529,8 +1529,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       });
       this.removeEventListeners();
       this.disabled = true;
-      return this.student_records.map(function (student_record) {
-        return _this4.cancelUpload(student_record);
+      return this.stdnt_records.map(function (stdnt_record) {
+        return _this4.cancelUpload(stdnt_record);
       });
     }
   }, {
@@ -1541,11 +1541,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         return element.classList.add("dz-clickable");
       });
       return this.setupEventListeners();
-    } // Returns a nicely formatted student_recordsize
+    } // Returns a nicely formatted stdnt_recordsize
 
   }, {
-    key: "student_recordsize",
-    value: function student_recordsize(size) {
+    key: "stdnt_recordsize",
+    value: function stdnt_recordsize(size) {
       var selectedSize = 0;
       var selectedUnit = "b";
 
@@ -1554,10 +1554,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         for (var i = 0; i < units.length; i++) {
           var unit = units[i];
-          var cutoff = Math.pow(this.options.student_recordsizeBase, 4 - i) / 10;
+          var cutoff = Math.pow(this.options.stdnt_recordsizeBase, 4 - i) / 10;
 
           if (size >= cutoff) {
-            selectedSize = size / Math.pow(this.options.student_recordsizeBase, 4 - i);
+            selectedSize = size / Math.pow(this.options.stdnt_recordsizeBase, 4 - i);
             selectedUnit = unit;
             break;
           }
@@ -1566,20 +1566,20 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         selectedSize = Math.round(10 * selectedSize) / 10; // Cutting of digits
       }
 
-      return "<strong>".concat(selectedSize, "</strong> ").concat(this.options.dictstudent_recordSizeUnits[selectedUnit]);
-    } // Adds or removes the `dz-max-student_records-reached` class from the form.
+      return "<strong>".concat(selectedSize, "</strong> ").concat(this.options.dictstdnt_recordSizeUnits[selectedUnit]);
+    } // Adds or removes the `dz-max-stdnt_records-reached` class from the form.
 
   }, {
-    key: "_updateMaxstudent_recordsReachedClass",
-    value: function _updateMaxstudent_recordsReachedClass() {
-      if (this.options.maxstudent_records != null && this.getAcceptedstudent_records().length >= this.options.maxstudent_records) {
-        if (this.getAcceptedstudent_records().length === this.options.maxstudent_records) {
-          this.emit('maxstudent_recordsreached', this.student_records);
+    key: "_updateMaxstdnt_recordsReachedClass",
+    value: function _updateMaxstdnt_recordsReachedClass() {
+      if (this.options.maxstdnt_records != null && this.getAcceptedstdnt_records().length >= this.options.maxstdnt_records) {
+        if (this.getAcceptedstdnt_records().length === this.options.maxstdnt_records) {
+          this.emit('maxstdnt_recordsreached', this.stdnt_records);
         }
 
-        return this.element.classList.add("dz-max-student_records-reached");
+        return this.element.classList.add("dz-max-stdnt_records-reached");
       } else {
-        return this.element.classList.remove("dz-max-student_records-reached");
+        return this.element.classList.remove("dz-max-stdnt_records-reached");
       }
     }
   }, {
@@ -1589,28 +1589,28 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         return;
       }
 
-      this.emit("drop", e); // Convert the student_recordList to an Array
+      this.emit("drop", e); // Convert the stdnt_recordList to an Array
       // This is necessary for IE11
 
-      var student_records = [];
+      var stdnt_records = [];
 
-      for (var i = 0; i < e.dataTransfer.student_records.length; i++) {
-        student_records[i] = e.dataTransfer.student_records[i];
-      } // Even if it's a folder, student_records.length will contain the folders.
+      for (var i = 0; i < e.dataTransfer.stdnt_records.length; i++) {
+        stdnt_records[i] = e.dataTransfer.stdnt_records[i];
+      } // Even if it's a folder, stdnt_records.length will contain the folders.
 
 
-      if (student_records.length) {
+      if (stdnt_records.length) {
         var items = e.dataTransfer.items;
 
         if (items && items.length && items[0].webkitGetAsEntry != null) {
-          // The browser supports dropping of folders, so handle items instead of student_records
-          this._addstudent_recordsFromItems(items);
+          // The browser supports dropping of folders, so handle items instead of stdnt_records
+          this._addstdnt_recordsFromItems(items);
         } else {
-          this.handlestudent_records(student_records);
+          this.handlestdnt_records(stdnt_records);
         }
       }
 
-      this.emit("addedstudent_records", student_records);
+      this.emit("addedstdnt_records", stdnt_records);
     }
   }, {
     key: "paste",
@@ -1625,31 +1625,31 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       var items = e.clipboardData.items;
 
       if (items.length) {
-        return this._addstudent_recordsFromItems(items);
+        return this._addstdnt_recordsFromItems(items);
       }
     }
   }, {
-    key: "handlestudent_records",
-    value: function handlestudent_records(student_records) {
-      var _iterator13 = _createForOfIteratorHelper(student_records),
+    key: "handlestdnt_records",
+    value: function handlestdnt_records(stdnt_records) {
+      var _iterator13 = _createForOfIteratorHelper(stdnt_records),
           _step13;
 
       try {
         for (_iterator13.s(); !(_step13 = _iterator13.n()).done;) {
-          var student_record = _step13.value;
-          this.addstudent_record(student_record);
+          var stdnt_record = _step13.value;
+          this.addstdnt_record(stdnt_record);
         }
       } catch (err) {
         _iterator13.e(err);
       } finally {
         _iterator13.f();
       }
-    } // When a folder is dropped (or student_records are pasted), items must be handled
-    // instead of student_records.
+    } // When a folder is dropped (or stdnt_records are pasted), items must be handled
+    // instead of stdnt_records.
 
   }, {
-    key: "_addstudent_recordsFromItems",
-    value: function _addstudent_recordsFromItems(items) {
+    key: "_addstdnt_recordsFromItems",
+    value: function _addstdnt_recordsFromItems(items) {
       var _this5 = this;
 
       return function () {
@@ -1664,17 +1664,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             var entry;
 
             if (item.webkitGetAsEntry != null && (entry = item.webkitGetAsEntry())) {
-              if (entry.isstudent_record) {
-                result.push(_this5.addstudent_record(item.getAsstudent_record()));
+              if (entry.isstdnt_record) {
+                result.push(_this5.addstdnt_record(item.getAsstdnt_record()));
               } else if (entry.isDirectory) {
-                // Append all student_records from that directory to student_records
-                result.push(_this5._addstudent_recordsFromDirectory(entry, entry.name));
+                // Append all stdnt_records from that directory to stdnt_records
+                result.push(_this5._addstdnt_recordsFromDirectory(entry, entry.name));
               } else {
                 result.push(undefined);
               }
-            } else if (item.getAsstudent_record != null) {
-              if (item.kind == null || item.kind === "student_record") {
-                result.push(_this5.addstudent_record(item.getAsstudent_record()));
+            } else if (item.getAsstdnt_record != null) {
+              if (item.kind == null || item.kind === "stdnt_record") {
+                result.push(_this5.addstdnt_record(item.getAsstdnt_record()));
               } else {
                 result.push(undefined);
               }
@@ -1690,11 +1690,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         return result;
       }();
-    } // Goes through the directory, and adds each student_record it finds recursively
+    } // Goes through the directory, and adds each stdnt_record it finds recursively
 
   }, {
-    key: "_addstudent_recordsFromDirectory",
-    value: function _addstudent_recordsFromDirectory(directory, path) {
+    key: "_addstdnt_recordsFromDirectory",
+    value: function _addstdnt_recordsFromDirectory(directory, path) {
       var _this6 = this;
 
       var dirReader = directory.createReader();
@@ -1715,17 +1715,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
               for (_iterator15.s(); !(_step15 = _iterator15.n()).done;) {
                 var entry = _step15.value;
 
-                if (entry.isstudent_record) {
-                  entry.student_record(function (student_record) {
-                    if (_this6.options.ignoreHiddenstudent_records && student_record.name.substring(0, 1) === '.') {
+                if (entry.isstdnt_record) {
+                  entry.stdnt_record(function (stdnt_record) {
+                    if (_this6.options.ignoreHiddenstdnt_records && stdnt_record.name.substring(0, 1) === '.') {
                       return;
                     }
 
-                    student_record.fullPath = "".concat(path, "/").concat(student_record.name);
-                    return _this6.addstudent_record(student_record);
+                    stdnt_record.fullPath = "".concat(path, "/").concat(stdnt_record.name);
+                    return _this6.addstdnt_record(stdnt_record);
                   });
                 } else if (entry.isDirectory) {
-                  _this6._addstudent_recordsFromDirectory(entry, "".concat(path, "/").concat(entry.name));
+                  _this6._addstdnt_recordsFromDirectory(entry, "".concat(path, "/").concat(entry.name));
                 }
               } // Recursively call readEntries() again, since browser only handle
               // the first 100 entries.
@@ -1745,79 +1745,79 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       };
 
       return readEntries();
-    } // If `done()` is called without argument the student_record is accepted
-    // If you call it with an error message, the student_record is rejected
+    } // If `done()` is called without argument the stdnt_record is accepted
+    // If you call it with an error message, the stdnt_record is rejected
     // (This allows for asynchronous validation)
     //
-    // This function checks the student_recordsize, and if the student_record.type passes the
-    // `acceptedstudent_records` check.
+    // This function checks the stdnt_recordsize, and if the stdnt_record.type passes the
+    // `acceptedstdnt_records` check.
 
   }, {
     key: "accept",
-    value: function accept(student_record, done) {
-      if (this.options.maxstudent_recordsize && student_record.size > this.options.maxstudent_recordsize * 1024 * 1024) {
-        done(this.options.dictstudent_recordTooBig.replace("{{student_recordsize}}", Math.round(student_record.size / 1024 / 10.24) / 100).replace("{{maxstudent_recordsize}}", this.options.maxstudent_recordsize));
-      } else if (!Dropzone.isValidstudent_record(student_record, this.options.acceptedstudent_records)) {
-        done(this.options.dictInvalidstudent_recordType);
-      } else if (this.options.maxstudent_records != null && this.getAcceptedstudent_records().length >= this.options.maxstudent_records) {
-        done(this.options.dictMaxstudent_recordsExceeded.replace("{{maxstudent_records}}", this.options.maxstudent_records));
-        this.emit("maxstudent_recordsexceeded", student_record);
+    value: function accept(stdnt_record, done) {
+      if (this.options.maxstdnt_recordsize && stdnt_record.size > this.options.maxstdnt_recordsize * 1024 * 1024) {
+        done(this.options.dictstdnt_recordTooBig.replace("{{stdnt_recordsize}}", Math.round(stdnt_record.size / 1024 / 10.24) / 100).replace("{{maxstdnt_recordsize}}", this.options.maxstdnt_recordsize));
+      } else if (!Dropzone.isValidstdnt_record(stdnt_record, this.options.acceptedstdnt_records)) {
+        done(this.options.dictInvalidstdnt_recordType);
+      } else if (this.options.maxstdnt_records != null && this.getAcceptedstdnt_records().length >= this.options.maxstdnt_records) {
+        done(this.options.dictMaxstdnt_recordsExceeded.replace("{{maxstdnt_records}}", this.options.maxstdnt_records));
+        this.emit("maxstdnt_recordsexceeded", stdnt_record);
       } else {
-        this.options.accept.call(this, student_record, done);
+        this.options.accept.call(this, stdnt_record, done);
       }
     }
   }, {
-    key: "addstudent_record",
-    value: function addstudent_record(student_record) {
+    key: "addstdnt_record",
+    value: function addstdnt_record(stdnt_record) {
       var _this7 = this;
 
-      student_record.upload = {
+      stdnt_record.upload = {
         uuid: Dropzone.uuidv4(),
         progress: 0,
-        // Setting the total upload size to student_record.size for the beginning
+        // Setting the total upload size to stdnt_record.size for the beginning
         // It's actual different than the size to be transmitted.
-        total: student_record.size,
+        total: stdnt_record.size,
         bytesSent: 0,
-        student_recordname: this._renamestudent_record(student_record) // Not setting chunking information here, because the acutal data — and
-        // thus the chunks — might change if `options.transformstudent_record` is set
+        stdnt_recordname: this._renamestdnt_record(stdnt_record) // Not setting chunking information here, because the acutal data — and
+        // thus the chunks — might change if `options.transformstdnt_record` is set
         // and does something to the data.
 
       };
-      this.student_records.push(student_record);
-      student_record.status = Dropzone.ADDED;
-      this.emit("addedstudent_record", student_record);
+      this.stdnt_records.push(stdnt_record);
+      stdnt_record.status = Dropzone.ADDED;
+      this.emit("addedstdnt_record", stdnt_record);
 
-      this._enqueueThumbnail(student_record);
+      this._enqueueThumbnail(stdnt_record);
 
-      this.accept(student_record, function (error) {
+      this.accept(stdnt_record, function (error) {
         if (error) {
-          student_record.accepted = false;
+          stdnt_record.accepted = false;
 
-          _this7._errorProcessing([student_record], error); // Will set the student_record.status
+          _this7._errorProcessing([stdnt_record], error); // Will set the stdnt_record.status
 
         } else {
-          student_record.accepted = true;
+          stdnt_record.accepted = true;
 
           if (_this7.options.autoQueue) {
-            _this7.enqueuestudent_record(student_record);
+            _this7.enqueuestdnt_record(stdnt_record);
           } // Will set .accepted = true
 
         }
 
-        _this7._updateMaxstudent_recordsReachedClass();
+        _this7._updateMaxstdnt_recordsReachedClass();
       });
-    } // Wrapper for enqueuestudent_record
+    } // Wrapper for enqueuestdnt_record
 
   }, {
-    key: "enqueuestudent_records",
-    value: function enqueuestudent_records(student_records) {
-      var _iterator16 = _createForOfIteratorHelper(student_records),
+    key: "enqueuestdnt_records",
+    value: function enqueuestdnt_records(stdnt_records) {
+      var _iterator16 = _createForOfIteratorHelper(stdnt_records),
           _step16;
 
       try {
         for (_iterator16.s(); !(_step16 = _iterator16.n()).done;) {
-          var student_record = _step16.value;
-          this.enqueuestudent_record(student_record);
+          var stdnt_record = _step16.value;
+          this.enqueuestdnt_record(stdnt_record);
         }
       } catch (err) {
         _iterator16.e(err);
@@ -1828,12 +1828,12 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return null;
     }
   }, {
-    key: "enqueuestudent_record",
-    value: function enqueuestudent_record(student_record) {
+    key: "enqueuestdnt_record",
+    value: function enqueuestdnt_record(stdnt_record) {
       var _this8 = this;
 
-      if (student_record.status === Dropzone.ADDED && student_record.accepted === true) {
-        student_record.status = Dropzone.QUEUED;
+      if (stdnt_record.status === Dropzone.ADDED && stdnt_record.accepted === true) {
+        stdnt_record.status = Dropzone.QUEUED;
 
         if (this.options.autoProcessQueue) {
           return setTimeout(function () {
@@ -1841,16 +1841,16 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }, 0); // Deferring the call
         }
       } else {
-        throw new Error("This student_record can't be queued because it has already been processed or was rejected.");
+        throw new Error("This stdnt_record can't be queued because it has already been processed or was rejected.");
       }
     }
   }, {
     key: "_enqueueThumbnail",
-    value: function _enqueueThumbnail(student_record) {
+    value: function _enqueueThumbnail(stdnt_record) {
       var _this9 = this;
 
-      if (this.options.createImageThumbnails && student_record.type.match(/image.*/) && student_record.size <= this.options.maxThumbnailstudent_recordsize * 1024 * 1024) {
-        this._thumbnailQueue.push(student_record);
+      if (this.options.createImageThumbnails && stdnt_record.type.match(/image.*/) && stdnt_record.size <= this.options.maxThumbnailstdnt_recordsize * 1024 * 1024) {
+        this._thumbnailQueue.push(stdnt_record);
 
         return setTimeout(function () {
           return _this9._processThumbnailQueue();
@@ -1868,48 +1868,48 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       this._processingThumbnail = true;
 
-      var student_record = this._thumbnailQueue.shift();
+      var stdnt_record = this._thumbnailQueue.shift();
 
-      return this.createThumbnail(student_record, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (dataUrl) {
-        _this10.emit("thumbnail", student_record, dataUrl);
+      return this.createThumbnail(stdnt_record, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (dataUrl) {
+        _this10.emit("thumbnail", stdnt_record, dataUrl);
 
         _this10._processingThumbnail = false;
         return _this10._processThumbnailQueue();
       });
-    } // Can be called by the user to remove a student_record
+    } // Can be called by the user to remove a stdnt_record
 
   }, {
-    key: "removestudent_record",
-    value: function removestudent_record(student_record) {
-      if (student_record.status === Dropzone.UPLOADING) {
-        this.cancelUpload(student_record);
+    key: "removestdnt_record",
+    value: function removestdnt_record(stdnt_record) {
+      if (stdnt_record.status === Dropzone.UPLOADING) {
+        this.cancelUpload(stdnt_record);
       }
 
-      this.student_records = without(this.student_records, student_record);
-      this.emit("removedstudent_record", student_record);
+      this.stdnt_records = without(this.stdnt_records, stdnt_record);
+      this.emit("removedstdnt_record", stdnt_record);
 
-      if (this.student_records.length === 0) {
+      if (this.stdnt_records.length === 0) {
         return this.emit("reset");
       }
-    } // Removes all student_records that aren't currently processed from the list
+    } // Removes all stdnt_records that aren't currently processed from the list
 
   }, {
-    key: "removeAllstudent_records",
-    value: function removeAllstudent_records(cancelIfNecessary) {
-      // Create a copy of student_records since removestudent_record() changes the @student_records array.
+    key: "removeAllstdnt_records",
+    value: function removeAllstdnt_records(cancelIfNecessary) {
+      // Create a copy of stdnt_records since removestdnt_record() changes the @stdnt_records array.
       if (cancelIfNecessary == null) {
         cancelIfNecessary = false;
       }
 
-      var _iterator17 = _createForOfIteratorHelper(this.student_records.slice()),
+      var _iterator17 = _createForOfIteratorHelper(this.stdnt_records.slice()),
           _step17;
 
       try {
         for (_iterator17.s(); !(_step17 = _iterator17.n()).done;) {
-          var student_record = _step17.value;
+          var stdnt_record = _step17.value;
 
-          if (student_record.status !== Dropzone.UPLOADING || cancelIfNecessary) {
-            this.removestudent_record(student_record);
+          if (stdnt_record.status !== Dropzone.UPLOADING || cancelIfNecessary) {
+            this.removestdnt_record(stdnt_record);
           }
         }
       } catch (err) {
@@ -1920,30 +1920,30 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       return null;
     } // Resizes an image before it gets sent to the server. This function is the default behavior of
-    // `options.transformstudent_record` if `resizeWidth` or `resizeHeight` are set. The callback is invoked with
+    // `options.transformstdnt_record` if `resizeWidth` or `resizeHeight` are set. The callback is invoked with
     // the resized blob.
 
   }, {
     key: "resizeImage",
-    value: function resizeImage(student_record, width, height, resizeMethod, callback) {
+    value: function resizeImage(stdnt_record, width, height, resizeMethod, callback) {
       var _this11 = this;
 
-      return this.createThumbnail(student_record, width, height, resizeMethod, true, function (dataUrl, canvas) {
+      return this.createThumbnail(stdnt_record, width, height, resizeMethod, true, function (dataUrl, canvas) {
         if (canvas == null) {
           // The image has not been resized
-          return callback(student_record);
+          return callback(stdnt_record);
         } else {
           var resizeMimeType = _this11.options.resizeMimeType;
 
           if (resizeMimeType == null) {
-            resizeMimeType = student_record.type;
+            resizeMimeType = stdnt_record.type;
           }
 
           var resizedDataURL = canvas.toDataURL(resizeMimeType, _this11.options.resizeQuality);
 
           if (resizeMimeType === 'image/jpeg' || resizeMimeType === 'image/jpg') {
             // Now add the original EXIF information
-            resizedDataURL = ExifRestore.restore(student_record.dataURL, resizedDataURL);
+            resizedDataURL = ExifRestore.restore(stdnt_record.dataURL, resizedDataURL);
           }
 
           return callback(Dropzone.dataURItoBlob(resizedDataURL));
@@ -1952,59 +1952,59 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     }
   }, {
     key: "createThumbnail",
-    value: function createThumbnail(student_record, width, height, resizeMethod, fixOrientation, callback) {
+    value: function createThumbnail(stdnt_record, width, height, resizeMethod, fixOrientation, callback) {
       var _this12 = this;
 
-      var student_recordReader = new student_recordReader();
+      var stdnt_recordReader = new stdnt_recordReader();
 
-      student_recordReader.onload = function () {
-        student_record.dataURL = student_recordReader.result; // Don't bother creating a thumbnail for SVG images since they're vector
+      stdnt_recordReader.onload = function () {
+        stdnt_record.dataURL = stdnt_recordReader.result; // Don't bother creating a thumbnail for SVG images since they're vector
 
-        if (student_record.type === "image/svg+xml") {
+        if (stdnt_record.type === "image/svg+xml") {
           if (callback != null) {
-            callback(student_recordReader.result);
+            callback(stdnt_recordReader.result);
           }
 
           return;
         }
 
-        _this12.createThumbnailFromUrl(student_record, width, height, resizeMethod, fixOrientation, callback);
+        _this12.createThumbnailFromUrl(stdnt_record, width, height, resizeMethod, fixOrientation, callback);
       };
 
-      student_recordReader.readAsDataURL(student_record);
-    } // `mockstudent_record` needs to have these attributes:
+      stdnt_recordReader.readAsDataURL(stdnt_record);
+    } // `mockstdnt_record` needs to have these attributes:
     // 
     //     { name: 'name', size: 12345, imageUrl: '' }
     //
     // `callback` will be invoked when the image has been downloaded and displayed.
-    // `crossOrigin` will be added to the `img` tag when accessing the student_record.
+    // `crossOrigin` will be added to the `img` tag when accessing the stdnt_record.
 
   }, {
-    key: "displayExistingstudent_record",
-    value: function displayExistingstudent_record(mockstudent_record, imageUrl, callback, crossOrigin) {
+    key: "displayExistingstdnt_record",
+    value: function displayExistingstdnt_record(mockstdnt_record, imageUrl, callback, crossOrigin) {
       var _this13 = this;
 
       var resizeThumbnail = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
-      this.emit("addedstudent_record", mockstudent_record);
-      this.emit("complete", mockstudent_record);
+      this.emit("addedstdnt_record", mockstdnt_record);
+      this.emit("complete", mockstdnt_record);
 
       if (!resizeThumbnail) {
-        this.emit("thumbnail", mockstudent_record, imageUrl);
+        this.emit("thumbnail", mockstdnt_record, imageUrl);
         if (callback) callback();
       } else {
         var onDone = function onDone(thumbnail) {
-          _this13.emit('thumbnail', mockstudent_record, thumbnail);
+          _this13.emit('thumbnail', mockstdnt_record, thumbnail);
 
           if (callback) callback();
         };
 
-        mockstudent_record.dataURL = imageUrl;
-        this.createThumbnailFromUrl(mockstudent_record, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.resizeMethod, this.options.fixOrientation, onDone, crossOrigin);
+        mockstdnt_record.dataURL = imageUrl;
+        this.createThumbnailFromUrl(mockstdnt_record, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.resizeMethod, this.options.fixOrientation, onDone, crossOrigin);
       }
     }
   }, {
     key: "createThumbnailFromUrl",
-    value: function createThumbnailFromUrl(student_record, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
+    value: function createThumbnailFromUrl(stdnt_record, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
       var _this14 = this;
 
       // Not using `new Image` here because of a bug in latest Chrome versions.
@@ -2032,10 +2032,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
 
         return loadExif(function (orientation) {
-          student_record.width = img.width;
-          student_record.height = img.height;
+          stdnt_record.width = img.width;
+          stdnt_record.height = img.height;
 
-          var resizeInfo = _this14.options.resize.call(_this14, student_record, width, height, resizeMethod);
+          var resizeInfo = _this14.options.resize.call(_this14, stdnt_record, width, height, resizeMethod);
 
           var canvas = document.createElement("canvas");
           var ctx = canvas.getContext("2d");
@@ -2106,61 +2106,61 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         img.onerror = callback;
       }
 
-      return img.src = student_record.dataURL;
-    } // Goes through the queue and processes student_records if there aren't too many already.
+      return img.src = stdnt_record.dataURL;
+    } // Goes through the queue and processes stdnt_records if there aren't too many already.
 
   }, {
     key: "processQueue",
     value: function processQueue() {
       var parallelUploads = this.options.parallelUploads;
-      var processingLength = this.getUploadingstudent_records().length;
-      var i = processingLength; // There are already at least as many student_records uploading than should be
+      var processingLength = this.getUploadingstdnt_records().length;
+      var i = processingLength; // There are already at least as many stdnt_records uploading than should be
 
       if (processingLength >= parallelUploads) {
         return;
       }
 
-      var queuedstudent_records = this.getQueuedstudent_records();
+      var queuedstdnt_records = this.getQueuedstdnt_records();
 
-      if (!(queuedstudent_records.length > 0)) {
+      if (!(queuedstdnt_records.length > 0)) {
         return;
       }
 
       if (this.options.uploadMultiple) {
-        // The student_records should be uploaded in one request
-        return this.processstudent_records(queuedstudent_records.slice(0, parallelUploads - processingLength));
+        // The stdnt_records should be uploaded in one request
+        return this.processstdnt_records(queuedstdnt_records.slice(0, parallelUploads - processingLength));
       } else {
         while (i < parallelUploads) {
-          if (!queuedstudent_records.length) {
+          if (!queuedstdnt_records.length) {
             return;
           } // Nothing left to process
 
 
-          this.processstudent_record(queuedstudent_records.shift());
+          this.processstdnt_record(queuedstdnt_records.shift());
           i++;
         }
       }
-    } // Wrapper for `processstudent_records`
+    } // Wrapper for `processstdnt_records`
 
   }, {
-    key: "processstudent_record",
-    value: function processstudent_record(student_record) {
-      return this.processstudent_records([student_record]);
-    } // Loads the student_record, then calls finishedLoading()
+    key: "processstdnt_record",
+    value: function processstdnt_record(stdnt_record) {
+      return this.processstdnt_records([stdnt_record]);
+    } // Loads the stdnt_record, then calls finishedLoading()
 
   }, {
-    key: "processstudent_records",
-    value: function processstudent_records(student_records) {
-      var _iterator18 = _createForOfIteratorHelper(student_records),
+    key: "processstdnt_records",
+    value: function processstdnt_records(stdnt_records) {
+      var _iterator18 = _createForOfIteratorHelper(stdnt_records),
           _step18;
 
       try {
         for (_iterator18.s(); !(_step18 = _iterator18.n()).done;) {
-          var student_record = _step18.value;
-          student_record.processing = true; // Backwards compatibility
+          var stdnt_record = _step18.value;
+          stdnt_record.processing = true; // Backwards compatibility
 
-          student_record.status = Dropzone.UPLOADING;
-          this.emit("processing", student_record);
+          stdnt_record.status = Dropzone.UPLOADING;
+          this.emit("processing", stdnt_record);
         }
       } catch (err) {
         _iterator18.e(err);
@@ -2169,38 +2169,38 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("processingmultiple", student_records);
+        this.emit("processingmultiple", stdnt_records);
       }
 
-      return this.uploadstudent_records(student_records);
+      return this.uploadstdnt_records(stdnt_records);
     }
   }, {
-    key: "_getstudent_recordsWithXhr",
-    value: function _getstudent_recordsWithXhr(xhr) {
-      var student_records;
-      return student_records = this.student_records.filter(function (student_record) {
-        return student_record.xhr === xhr;
-      }).map(function (student_record) {
-        return student_record;
+    key: "_getstdnt_recordsWithXhr",
+    value: function _getstdnt_recordsWithXhr(xhr) {
+      var stdnt_records;
+      return stdnt_records = this.stdnt_records.filter(function (stdnt_record) {
+        return stdnt_record.xhr === xhr;
+      }).map(function (stdnt_record) {
+        return stdnt_record;
       });
-    } // Cancels the student_record upload and sets the status to CANCELED
-    // **if** the student_record is actually being uploaded.
-    // If it's still in the queue, the student_record is being removed from it and the status
+    } // Cancels the stdnt_record upload and sets the status to CANCELED
+    // **if** the stdnt_record is actually being uploaded.
+    // If it's still in the queue, the stdnt_record is being removed from it and the status
     // set to CANCELED.
 
   }, {
     key: "cancelUpload",
-    value: function cancelUpload(student_record) {
-      if (student_record.status === Dropzone.UPLOADING) {
-        var groupedstudent_records = this._getstudent_recordsWithXhr(student_record.xhr);
+    value: function cancelUpload(stdnt_record) {
+      if (stdnt_record.status === Dropzone.UPLOADING) {
+        var groupedstdnt_records = this._getstdnt_recordsWithXhr(stdnt_record.xhr);
 
-        var _iterator19 = _createForOfIteratorHelper(groupedstudent_records),
+        var _iterator19 = _createForOfIteratorHelper(groupedstdnt_records),
             _step19;
 
         try {
           for (_iterator19.s(); !(_step19 = _iterator19.n()).done;) {
-            var groupedstudent_record = _step19.value;
-            groupedstudent_record.status = Dropzone.CANCELED;
+            var groupedstdnt_record = _step19.value;
+            groupedstdnt_record.status = Dropzone.CANCELED;
           }
         } catch (err) {
           _iterator19.e(err);
@@ -2208,17 +2208,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator19.f();
         }
 
-        if (typeof student_record.xhr !== 'undefined') {
-          student_record.xhr.abort();
+        if (typeof stdnt_record.xhr !== 'undefined') {
+          stdnt_record.xhr.abort();
         }
 
-        var _iterator20 = _createForOfIteratorHelper(groupedstudent_records),
+        var _iterator20 = _createForOfIteratorHelper(groupedstdnt_records),
             _step20;
 
         try {
           for (_iterator20.s(); !(_step20 = _iterator20.n()).done;) {
-            var _groupedstudent_record = _step20.value;
-            this.emit("canceled", _groupedstudent_record);
+            var _groupedstdnt_record = _step20.value;
+            this.emit("canceled", _groupedstdnt_record);
           }
         } catch (err) {
           _iterator20.e(err);
@@ -2227,14 +2227,14 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
 
         if (this.options.uploadMultiple) {
-          this.emit("canceledmultiple", groupedstudent_records);
+          this.emit("canceledmultiple", groupedstdnt_records);
         }
-      } else if (student_record.status === Dropzone.ADDED || student_record.status === Dropzone.QUEUED) {
-        student_record.status = Dropzone.CANCELED;
-        this.emit("canceled", student_record);
+      } else if (stdnt_record.status === Dropzone.ADDED || stdnt_record.status === Dropzone.QUEUED) {
+        stdnt_record.status = Dropzone.CANCELED;
+        this.emit("canceled", stdnt_record);
 
         if (this.options.uploadMultiple) {
-          this.emit("canceledmultiple", [student_record]);
+          this.emit("canceledmultiple", [stdnt_record]);
         }
       }
 
@@ -2256,53 +2256,53 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return option;
     }
   }, {
-    key: "uploadstudent_record",
-    value: function uploadstudent_record(student_record) {
-      return this.uploadstudent_records([student_record]);
+    key: "uploadstdnt_record",
+    value: function uploadstdnt_record(stdnt_record) {
+      return this.uploadstdnt_records([stdnt_record]);
     }
   }, {
-    key: "uploadstudent_records",
-    value: function uploadstudent_records(student_records) {
+    key: "uploadstdnt_records",
+    value: function uploadstdnt_records(stdnt_records) {
       var _this15 = this;
 
-      this._transformstudent_records(student_records, function (transformedstudent_records) {
+      this._transformstdnt_records(stdnt_records, function (transformedstdnt_records) {
         if (_this15.options.chunking) {
           // Chunking is not allowed to be used with `uploadMultiple` so we know
-          // that there is only __one__student_record.
-          var transformedstudent_record = transformedstudent_records[0];
-          student_records[0].upload.chunked = _this15.options.chunking && (_this15.options.forceChunking || transformedstudent_record.size > _this15.options.chunkSize);
-          student_records[0].upload.totalChunkCount = Math.ceil(transformedstudent_record.size / _this15.options.chunkSize);
+          // that there is only __one__stdnt_record.
+          var transformedstdnt_record = transformedstdnt_records[0];
+          stdnt_records[0].upload.chunked = _this15.options.chunking && (_this15.options.forceChunking || transformedstdnt_record.size > _this15.options.chunkSize);
+          stdnt_records[0].upload.totalChunkCount = Math.ceil(transformedstdnt_record.size / _this15.options.chunkSize);
         }
 
-        if (student_records[0].upload.chunked) {
-          // This student_record should be sent in chunks!
-          // If the chunking option is set, we **know** that there can only be **one** student_record, since
+        if (stdnt_records[0].upload.chunked) {
+          // This stdnt_record should be sent in chunks!
+          // If the chunking option is set, we **know** that there can only be **one** stdnt_record, since
           // uploadMultiple is not allowed with this option.
-          var student_record = student_records[0];
-          var _transformedstudent_record = transformedstudent_records[0];
+          var stdnt_record = stdnt_records[0];
+          var _transformedstdnt_record = transformedstdnt_records[0];
           var startedChunkCount = 0;
-          student_record.upload.chunks = [];
+          stdnt_record.upload.chunks = [];
 
           var handleNextChunk = function handleNextChunk() {
-            var chunkIndex = 0; // Find the next item in student_record.upload.chunks that is not defined yet.
+            var chunkIndex = 0; // Find the next item in stdnt_record.upload.chunks that is not defined yet.
 
-            while (student_record.upload.chunks[chunkIndex] !== undefined) {
+            while (stdnt_record.upload.chunks[chunkIndex] !== undefined) {
               chunkIndex++;
             } // This means, that all chunks have already been started.
 
 
-            if (chunkIndex >= student_record.upload.totalChunkCount) return;
+            if (chunkIndex >= stdnt_record.upload.totalChunkCount) return;
             startedChunkCount++;
             var start = chunkIndex * _this15.options.chunkSize;
-            var end = Math.min(start + _this15.options.chunkSize, _transformedstudent_record.size);
+            var end = Math.min(start + _this15.options.chunkSize, _transformedstdnt_record.size);
             var dataBlock = {
               name: _this15._getParamName(0),
-              data: _transformedstudent_record.webkitSlice ? _transformedstudent_record.webkitSlice(start, end) : _transformedstudent_record.slice(start, end),
-              student_recordname: student_record.upload.student_recordname,
+              data: _transformedstdnt_record.webkitSlice ? _transformedstdnt_record.webkitSlice(start, end) : _transformedstdnt_record.slice(start, end),
+              stdnt_recordname: stdnt_record.upload.stdnt_recordname,
               chunkIndex: chunkIndex
             };
-            student_record.upload.chunks[chunkIndex] = {
-              student_record: student_record,
+            stdnt_record.upload.chunks[chunkIndex] = {
+              stdnt_record: stdnt_record,
               index: chunkIndex,
               dataBlock: dataBlock,
               // In case we want to retry.
@@ -2312,10 +2312,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
             };
 
-            _this15._uploadData(student_records, [dataBlock]);
+            _this15._uploadData(stdnt_records, [dataBlock]);
           };
 
-          student_record.upload.finishedChunkUpload = function (chunk) {
+          stdnt_record.upload.finishedChunkUpload = function (chunk) {
             var allFinished = true;
             chunk.status = Dropzone.SUCCESS; // Clear the data from the chunk
 
@@ -2323,25 +2323,25 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
             chunk.xhr = null;
 
-            for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
-              if (student_record.upload.chunks[i] === undefined) {
+            for (var i = 0; i < stdnt_record.upload.totalChunkCount; i++) {
+              if (stdnt_record.upload.chunks[i] === undefined) {
                 return handleNextChunk();
               }
 
-              if (student_record.upload.chunks[i].status !== Dropzone.SUCCESS) {
+              if (stdnt_record.upload.chunks[i].status !== Dropzone.SUCCESS) {
                 allFinished = false;
               }
             }
 
             if (allFinished) {
-              _this15.options.chunksUploaded(student_record, function () {
-                _this15._finished(student_records, '', null);
+              _this15.options.chunksUploaded(stdnt_record, function () {
+                _this15._finished(stdnt_records, '', null);
               });
             }
           };
 
           if (_this15.options.parallelChunkUploads) {
-            for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
+            for (var i = 0; i < stdnt_record.upload.totalChunkCount; i++) {
               handleNextChunk();
             }
           } else {
@@ -2350,45 +2350,45 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         } else {
           var dataBlocks = [];
 
-          for (var _i3 = 0; _i3 < student_records.length; _i3++) {
+          for (var _i3 = 0; _i3 < stdnt_records.length; _i3++) {
             dataBlocks[_i3] = {
               name: _this15._getParamName(_i3),
-              data: transformedstudent_records[_i3],
-              student_recordname: student_records[_i3].upload.student_recordname
+              data: transformedstdnt_records[_i3],
+              stdnt_recordname: stdnt_records[_i3].upload.stdnt_recordname
             };
           }
 
-          _this15._uploadData(student_records, dataBlocks);
+          _this15._uploadData(stdnt_records, dataBlocks);
         }
       });
-    } /// Returns the right chunk for given student_record and xhr
+    } /// Returns the right chunk for given stdnt_record and xhr
 
   }, {
     key: "_getChunk",
-    value: function _getChunk(student_record, xhr) {
-      for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
-        if (student_record.upload.chunks[i] !== undefined && student_record.upload.chunks[i].xhr === xhr) {
-          return student_record.upload.chunks[i];
+    value: function _getChunk(stdnt_record, xhr) {
+      for (var i = 0; i < stdnt_record.upload.totalChunkCount; i++) {
+        if (stdnt_record.upload.chunks[i] !== undefined && stdnt_record.upload.chunks[i].xhr === xhr) {
+          return stdnt_record.upload.chunks[i];
         }
       }
-    } // This function actually uploads the student_record(s) to the server.
+    } // This function actually uploads the stdnt_record(s) to the server.
     // If dataBlocks contains the actual data to upload (meaning, that this could either be transformed
-    // student_records, or individual chunks for chunked upload).
+    // stdnt_records, or individual chunks for chunked upload).
 
   }, {
     key: "_uploadData",
-    value: function _uploadData(student_records, dataBlocks) {
+    value: function _uploadData(stdnt_records, dataBlocks) {
       var _this16 = this;
 
-      var xhr = new XMLHttpRequest(); // Put the xhr object in the student_record objects to be able to reference it later.
+      var xhr = new XMLHttpRequest(); // Put the xhr object in the stdnt_record objects to be able to reference it later.
 
-      var _iterator21 = _createForOfIteratorHelper(student_records),
+      var _iterator21 = _createForOfIteratorHelper(stdnt_records),
           _step21;
 
       try {
         for (_iterator21.s(); !(_step21 = _iterator21.n()).done;) {
-          var student_record = _step21.value;
-          student_record.xhr = xhr;
+          var stdnt_record = _step21.value;
+          stdnt_record.xhr = xhr;
         }
       } catch (err) {
         _iterator21.e(err);
@@ -2396,36 +2396,36 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         _iterator21.f();
       }
 
-      if (student_records[0].upload.chunked) {
+      if (stdnt_records[0].upload.chunked) {
         // Put the xhr object in the right chunk object, so it can be associated later, and found with _getChunk
-        student_records[0].upload.chunks[dataBlocks[0].chunkIndex].xhr = xhr;
+        stdnt_records[0].upload.chunks[dataBlocks[0].chunkIndex].xhr = xhr;
       }
 
-      var method = this.resolveOption(this.options.method, student_records);
-      var url = this.resolveOption(this.options.url, student_records);
+      var method = this.resolveOption(this.options.method, stdnt_records);
+      var url = this.resolveOption(this.options.url, stdnt_records);
       xhr.open(method, url, true); // Setting the timeout after open because of IE11 issue: https://gitlab.com/meno/dropzone/issues/8
 
-      xhr.timeout = this.resolveOption(this.options.timeout, student_records); // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
+      xhr.timeout = this.resolveOption(this.options.timeout, stdnt_records); // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
 
       xhr.withCredentials = !!this.options.withCredentials;
 
       xhr.onload = function (e) {
-        _this16._finishedUploading(student_records, xhr, e);
+        _this16._finishedUploading(stdnt_records, xhr, e);
       };
 
       xhr.ontimeout = function () {
-        _this16._handleUploadError(student_records, xhr, "Request timedout after ".concat(_this16.options.timeout / 1000, " seconds"));
+        _this16._handleUploadError(stdnt_records, xhr, "Request timedout after ".concat(_this16.options.timeout / 1000, " seconds"));
       };
 
       xhr.onerror = function () {
-        _this16._handleUploadError(student_records, xhr);
+        _this16._handleUploadError(stdnt_records, xhr);
       }; // Some browsers do not have the .upload property
 
 
       var progressObj = xhr.upload != null ? xhr.upload : xhr;
 
       progressObj.onprogress = function (e) {
-        return _this16._updatestudent_recordsUploadProgress(student_records, xhr, e);
+        return _this16._updatestdnt_recordsUploadProgress(stdnt_records, xhr, e);
       };
 
       var headers = {
@@ -2452,7 +2452,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         var additionalParams = this.options.params;
 
         if (typeof additionalParams === 'function') {
-          additionalParams = additionalParams.call(this, student_records, xhr, student_records[0].upload.chunked ? this._getChunk(student_records[0], xhr) : null);
+          additionalParams = additionalParams.call(this, stdnt_records, xhr, stdnt_records[0].upload.chunked ? this._getChunk(stdnt_records[0], xhr) : null);
         }
 
         for (var key in additionalParams) {
@@ -2472,13 +2472,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       } // Let the user add additional data if necessary
 
 
-      var _iterator22 = _createForOfIteratorHelper(student_records),
+      var _iterator22 = _createForOfIteratorHelper(stdnt_records),
           _step22;
 
       try {
         for (_iterator22.s(); !(_step22 = _iterator22.n()).done;) {
-          var _student_record = _step22.value;
-          this.emit("sending", _student_record, xhr, formData);
+          var _stdnt_record = _step22.value;
+          this.emit("sending", _stdnt_record, xhr, formData);
         }
       } catch (err) {
         _iterator22.e(err);
@@ -2487,41 +2487,41 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("sendingmultiple", student_records, xhr, formData);
+        this.emit("sendingmultiple", stdnt_records, xhr, formData);
       }
 
-      this._addFormElementData(formData); // Finally add the student_records
-      // Has to be last because some servers (eg: S3) expect the student_record to be the last parameter
+      this._addFormElementData(formData); // Finally add the stdnt_records
+      // Has to be last because some servers (eg: S3) expect the stdnt_record to be the last parameter
 
 
       for (var _i4 = 0; _i4 < dataBlocks.length; _i4++) {
         var dataBlock = dataBlocks[_i4];
-        formData.append(dataBlock.name, dataBlock.data, dataBlock.student_recordname);
+        formData.append(dataBlock.name, dataBlock.data, dataBlock.stdnt_recordname);
       }
 
-      this.submitRequest(xhr, formData, student_records);
-    } // Transforms all student_records with this.options.transformstudent_record and invokes done with the transformed student_records when done.
+      this.submitRequest(xhr, formData, stdnt_records);
+    } // Transforms all stdnt_records with this.options.transformstdnt_record and invokes done with the transformed stdnt_records when done.
 
   }, {
-    key: "_transformstudent_records",
-    value: function _transformstudent_records(student_records, done) {
+    key: "_transformstdnt_records",
+    value: function _transformstdnt_records(stdnt_records, done) {
       var _this17 = this;
 
-      var transformedstudent_records = []; // Clumsy way of handling asynchronous calls, until I get to add a proper Future library.
+      var transformedstdnt_records = []; // Clumsy way of handling asynchronous calls, until I get to add a proper Future library.
 
       var doneCounter = 0;
 
       var _loop = function _loop(i) {
-        _this17.options.transformstudent_record.call(_this17, student_records[i], function (transformedstudent_record) {
-          transformedstudent_records[i] = transformedstudent_record;
+        _this17.options.transformstdnt_record.call(_this17, stdnt_records[i], function (transformedstdnt_record) {
+          transformedstdnt_records[i] = transformedstdnt_record;
 
-          if (++doneCounter === student_records.length) {
-            done(transformedstudent_records);
+          if (++doneCounter === stdnt_records.length) {
+            done(transformedstdnt_records);
           }
         });
       };
 
-      for (var i = 0; i < student_records.length; i++) {
+      for (var i = 0; i < stdnt_records.length; i++) {
         _loop(i);
       }
     } // Takes care of adding other input elements of the form to the AJAX request
@@ -2571,51 +2571,51 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator23.f();
         }
       }
-    } // Invoked when there is new progress information about given student_records.
+    } // Invoked when there is new progress information about given stdnt_records.
     // If e is not provided, it is assumed that the upload is finished.
 
   }, {
-    key: "_updatestudent_recordsUploadProgress",
-    value: function _updatestudent_recordsUploadProgress(student_records, xhr, e) {
+    key: "_updatestdnt_recordsUploadProgress",
+    value: function _updatestdnt_recordsUploadProgress(stdnt_records, xhr, e) {
       var progress;
 
       if (typeof e !== 'undefined') {
         progress = 100 * e.loaded / e.total;
 
-        if (student_records[0].upload.chunked) {
-          var student_record = student_records[0]; // Since this is a chunked upload, we need to update the appropriate chunk progress.
+        if (stdnt_records[0].upload.chunked) {
+          var stdnt_record = stdnt_records[0]; // Since this is a chunked upload, we need to update the appropriate chunk progress.
 
-          var chunk = this._getChunk(student_record, xhr);
+          var chunk = this._getChunk(stdnt_record, xhr);
 
           chunk.progress = progress;
           chunk.total = e.total;
           chunk.bytesSent = e.loaded;
-          var student_recordProgress = 0,
-              student_recordTotal,
-              student_recordBytesSent;
-          student_record.upload.progress = 0;
-          student_record.upload.total = 0;
-          student_record.upload.bytesSent = 0;
+          var stdnt_recordProgress = 0,
+              stdnt_recordTotal,
+              stdnt_recordBytesSent;
+          stdnt_record.upload.progress = 0;
+          stdnt_record.upload.total = 0;
+          stdnt_record.upload.bytesSent = 0;
 
-          for (var i = 0; i < student_record.upload.totalChunkCount; i++) {
-            if (student_record.upload.chunks[i] !== undefined && student_record.upload.chunks[i].progress !== undefined) {
-              student_record.upload.progress += student_record.upload.chunks[i].progress;
-              student_record.upload.total += student_record.upload.chunks[i].total;
-              student_record.upload.bytesSent += student_record.upload.chunks[i].bytesSent;
+          for (var i = 0; i < stdnt_record.upload.totalChunkCount; i++) {
+            if (stdnt_record.upload.chunks[i] !== undefined && stdnt_record.upload.chunks[i].progress !== undefined) {
+              stdnt_record.upload.progress += stdnt_record.upload.chunks[i].progress;
+              stdnt_record.upload.total += stdnt_record.upload.chunks[i].total;
+              stdnt_record.upload.bytesSent += stdnt_record.upload.chunks[i].bytesSent;
             }
           }
 
-          student_record.upload.progress = student_record.upload.progress / student_record.upload.totalChunkCount;
+          stdnt_record.upload.progress = stdnt_record.upload.progress / stdnt_record.upload.totalChunkCount;
         } else {
-          var _iterator25 = _createForOfIteratorHelper(student_records),
+          var _iterator25 = _createForOfIteratorHelper(stdnt_records),
               _step25;
 
           try {
             for (_iterator25.s(); !(_step25 = _iterator25.n()).done;) {
-              var _student_record2 = _step25.value;
-              _student_record2.upload.progress = progress;
-              _student_record2.upload.total = e.total;
-              _student_record2.upload.bytesSent = e.loaded;
+              var _stdnt_record2 = _step25.value;
+              _stdnt_record2.upload.progress = progress;
+              _stdnt_record2.upload.total = e.total;
+              _stdnt_record2.upload.bytesSent = e.loaded;
             }
           } catch (err) {
             _iterator25.e(err);
@@ -2624,13 +2624,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }
         }
 
-        var _iterator26 = _createForOfIteratorHelper(student_records),
+        var _iterator26 = _createForOfIteratorHelper(stdnt_records),
             _step26;
 
         try {
           for (_iterator26.s(); !(_step26 = _iterator26.n()).done;) {
-            var _student_record3 = _step26.value;
-            this.emit("uploadprogress", _student_record3, _student_record3.upload.progress, _student_record3.upload.bytesSent);
+            var _stdnt_record3 = _step26.value;
+            this.emit("uploadprogress", _stdnt_record3, _stdnt_record3.upload.progress, _stdnt_record3.upload.bytesSent);
           }
         } catch (err) {
           _iterator26.e(err);
@@ -2638,24 +2638,24 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator26.f();
         }
       } else {
-        // Called when the student_record finished uploading
-        var allstudent_recordsFinished = true;
+        // Called when the stdnt_record finished uploading
+        var allstdnt_recordsFinished = true;
         progress = 100;
 
-        var _iterator27 = _createForOfIteratorHelper(student_records),
+        var _iterator27 = _createForOfIteratorHelper(stdnt_records),
             _step27;
 
         try {
           for (_iterator27.s(); !(_step27 = _iterator27.n()).done;) {
-            var _student_record4 = _step27.value;
+            var _stdnt_record4 = _step27.value;
 
-            if (_student_record4.upload.progress !== 100 || _student_record4.upload.bytesSent !== _student_record4.upload.total) {
-              allstudent_recordsFinished = false;
+            if (_stdnt_record4.upload.progress !== 100 || _stdnt_record4.upload.bytesSent !== _stdnt_record4.upload.total) {
+              allstdnt_recordsFinished = false;
             }
 
-            _student_record4.upload.progress = progress;
-            _student_record4.upload.bytesSent = _student_record4.upload.total;
-          } // Nothing to do, all student_records already at 100%
+            _stdnt_record4.upload.progress = progress;
+            _stdnt_record4.upload.bytesSent = _stdnt_record4.upload.total;
+          } // Nothing to do, all stdnt_records already at 100%
 
         } catch (err) {
           _iterator27.e(err);
@@ -2663,17 +2663,17 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           _iterator27.f();
         }
 
-        if (allstudent_recordsFinished) {
+        if (allstdnt_recordsFinished) {
           return;
         }
 
-        var _iterator28 = _createForOfIteratorHelper(student_records),
+        var _iterator28 = _createForOfIteratorHelper(stdnt_records),
             _step28;
 
         try {
           for (_iterator28.s(); !(_step28 = _iterator28.n()).done;) {
-            var _student_record5 = _step28.value;
-            this.emit("uploadprogress", _student_record5, progress, _student_record5.upload.bytesSent);
+            var _stdnt_record5 = _step28.value;
+            this.emit("uploadprogress", _stdnt_record5, progress, _stdnt_record5.upload.bytesSent);
           }
         } catch (err) {
           _iterator28.e(err);
@@ -2684,10 +2684,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     }
   }, {
     key: "_finishedUploading",
-    value: function _finishedUploading(student_records, xhr, e) {
+    value: function _finishedUploading(stdnt_records, xhr, e) {
       var response;
 
-      if (student_records[0].status === Dropzone.CANCELED) {
+      if (stdnt_records[0].status === Dropzone.CANCELED) {
         return;
       }
 
@@ -2708,30 +2708,30 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       }
 
-      this._updatestudent_recordsUploadProgress(student_records);
+      this._updatestdnt_recordsUploadProgress(stdnt_records);
 
       if (!(200 <= xhr.status && xhr.status < 300)) {
-        this._handleUploadError(student_records, xhr, response);
+        this._handleUploadError(stdnt_records, xhr, response);
       } else {
-        if (student_records[0].upload.chunked) {
-          student_records[0].upload.finishedChunkUpload(this._getChunk(student_records[0], xhr));
+        if (stdnt_records[0].upload.chunked) {
+          stdnt_records[0].upload.finishedChunkUpload(this._getChunk(stdnt_records[0], xhr));
         } else {
-          this._finished(student_records, response, e);
+          this._finished(stdnt_records, response, e);
         }
       }
     }
   }, {
     key: "_handleUploadError",
-    value: function _handleUploadError(student_records, xhr, response) {
-      if (student_records[0].status === Dropzone.CANCELED) {
+    value: function _handleUploadError(stdnt_records, xhr, response) {
+      if (stdnt_records[0].status === Dropzone.CANCELED) {
         return;
       }
 
-      if (student_records[0].upload.chunked && this.options.retryChunks) {
-        var chunk = this._getChunk(student_records[0], xhr);
+      if (stdnt_records[0].upload.chunked && this.options.retryChunks) {
+        var chunk = this._getChunk(stdnt_records[0], xhr);
 
         if (chunk.retries++ < this.options.retryChunksLimit) {
-          this._uploadData(student_records, [chunk.dataBlock]);
+          this._uploadData(stdnt_records, [chunk.dataBlock]);
 
           return;
         } else {
@@ -2739,27 +2739,27 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       }
 
-      this._errorProcessing(student_records, response || this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr);
+      this._errorProcessing(stdnt_records, response || this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr);
     }
   }, {
     key: "submitRequest",
-    value: function submitRequest(xhr, formData, student_records) {
+    value: function submitRequest(xhr, formData, stdnt_records) {
       xhr.send(formData);
     } // Called internally when processing is finished.
     // Individual callbacks have to be called in the appropriate sections.
 
   }, {
     key: "_finished",
-    value: function _finished(student_records, responseText, e) {
-      var _iterator29 = _createForOfIteratorHelper(student_records),
+    value: function _finished(stdnt_records, responseText, e) {
+      var _iterator29 = _createForOfIteratorHelper(stdnt_records),
           _step29;
 
       try {
         for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
-          var student_record = _step29.value;
-          student_record.status = Dropzone.SUCCESS;
-          this.emit("success", student_record, responseText, e);
-          this.emit("complete", student_record);
+          var stdnt_record = _step29.value;
+          stdnt_record.status = Dropzone.SUCCESS;
+          this.emit("success", stdnt_record, responseText, e);
+          this.emit("complete", stdnt_record);
         }
       } catch (err) {
         _iterator29.e(err);
@@ -2768,8 +2768,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("successmultiple", student_records, responseText, e);
-        this.emit("completemultiple", student_records);
+        this.emit("successmultiple", stdnt_records, responseText, e);
+        this.emit("completemultiple", stdnt_records);
       }
 
       if (this.options.autoProcessQueue) {
@@ -2780,16 +2780,16 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
   }, {
     key: "_errorProcessing",
-    value: function _errorProcessing(student_records, message, xhr) {
-      var _iterator30 = _createForOfIteratorHelper(student_records),
+    value: function _errorProcessing(stdnt_records, message, xhr) {
+      var _iterator30 = _createForOfIteratorHelper(stdnt_records),
           _step30;
 
       try {
         for (_iterator30.s(); !(_step30 = _iterator30.n()).done;) {
-          var student_record = _step30.value;
-          student_record.status = Dropzone.ERROR;
-          this.emit("error", student_record, message, xhr);
-          this.emit("complete", student_record);
+          var stdnt_record = _step30.value;
+          stdnt_record.status = Dropzone.ERROR;
+          this.emit("error", stdnt_record, message, xhr);
+          this.emit("complete", stdnt_record);
         }
       } catch (err) {
         _iterator30.e(err);
@@ -2798,8 +2798,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.options.uploadMultiple) {
-        this.emit("errormultiple", student_records, message, xhr);
-        this.emit("completemultiple", student_records);
+        this.emit("errormultiple", stdnt_records, message, xhr);
+        this.emit("completemultiple", stdnt_records);
       }
 
       if (this.options.autoProcessQueue) {
@@ -2826,7 +2826,7 @@ Dropzone.version = "5.7.2"; // This is a map of options for your different dropz
 //
 // Example:
 //
-//     Dropzone.options.myDropzoneElementId = { maxstudent_recordsize: 1 };
+//     Dropzone.options.myDropzoneElementId = { maxstdnt_recordsize: 1 };
 //
 // To disable autoDiscover for a specific element, you can set `false` as an option:
 //
@@ -2942,13 +2942,13 @@ Dropzone.discover = function () {
 //
 
 
-Dropzone.blacklistedBrowsers = [// The mac os and windows phone version of opera 12 seems to have a problem with the student_record drag'n'drop API.
+Dropzone.blacklistedBrowsers = [// The mac os and windows phone version of opera 12 seems to have a problem with the stdnt_record drag'n'drop API.
 /opera.*(Macintosh|Windows Phone).*version\/12/i]; // Checks if the browser is supported
 
 Dropzone.isBrowserSupported = function () {
   var capableBrowser = true;
 
-  if (window.student_record && window.student_recordReader && window.student_recordList && window.Blob && window.FormData && document.querySelector) {
+  if (window.stdnt_record && window.stdnt_recordReader && window.stdnt_recordList && window.Blob && window.FormData && document.querySelector) {
     if (!("classList" in document.createElement("a"))) {
       capableBrowser = false;
     } else {
@@ -3118,17 +3118,17 @@ Dropzone.confirm = function (question, accepted, rejected) {
 // https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
 
 
-Dropzone.isValidstudent_record = function (student_record, acceptedstudent_records) {
-  if (!acceptedstudent_records) {
+Dropzone.isValidstdnt_record = function (stdnt_record, acceptedstdnt_records) {
+  if (!acceptedstdnt_records) {
     return true;
   } // If there are no accepted mime types, it's OK
 
 
-  acceptedstudent_records = acceptedstudent_records.split(",");
-  var mimeType = student_record.type;
+  acceptedstdnt_records = acceptedstdnt_records.split(",");
+  var mimeType = stdnt_record.type;
   var baseMimeType = mimeType.replace(/\/.*$/, "");
 
-  var _iterator36 = _createForOfIteratorHelper(acceptedstudent_records),
+  var _iterator36 = _createForOfIteratorHelper(acceptedstdnt_records),
       _step36;
 
   try {
@@ -3137,7 +3137,7 @@ Dropzone.isValidstudent_record = function (student_record, acceptedstudent_recor
       validType = validType.trim();
 
       if (validType.charAt(0) === ".") {
-        if (student_record.name.toLowerCase().indexOf(validType.toLowerCase(), student_record.name.length - validType.length) !== -1) {
+        if (stdnt_record.name.toLowerCase().indexOf(validType.toLowerCase(), stdnt_record.name.length - validType.length) !== -1) {
           return true;
         }
       } else if (/\/\*$/.test(validType)) {
@@ -3173,11 +3173,11 @@ if (typeof module !== 'undefined' && module !== null) {
   module.exports = Dropzone;
 } else {
   window.Dropzone = Dropzone;
-} // Dropzone student_record status codes
+} // Dropzone stdnt_record status codes
 
 
 Dropzone.ADDED = "added";
-Dropzone.QUEUED = "queued"; // For backwards compatibility. Now, if a student_record is accepted, it's either queued
+Dropzone.QUEUED = "queued"; // For backwards compatibility. Now, if a stdnt_record is accepted, it's either queued
 // or uploading.
 
 Dropzone.ACCEPTED = Dropzone.QUEUED;
@@ -3191,12 +3191,12 @@ Dropzone.SUCCESS = "success";
 
  Bugfix for iOS 6 and 7
  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
- based on the work of https://github.com/stomita/ios-imagestudent_record-megapixel
+ based on the work of https://github.com/stomita/ios-imagestdnt_record-megapixel
 
  */
 // Detecting vertical squash in loaded image.
 // Fixes a bug which squash image vertically while drawing into canvas for some images.
-// This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagestudent_record-megapixel
+// This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagestdnt_record-megapixel
 
 var detectVerticalSquash = function detectVerticalSquash(img) {
   var iw = img.naturalWidth;
@@ -3242,7 +3242,7 @@ var drawImageIOSFix = function drawImageIOSFix(ctx, img, sx, sy, sw, sh, dx, dy,
   var vertSquashRatio = detectVerticalSquash(img);
   return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
 }; // Based on MinifyJpeg
-// Source: http://www.perry.cz/student_records/ExifRestorer.js
+// Source: http://www.perry.cz/stdnt_records/ExifRestorer.js
 // http://elicon.blog57.fc2.com/blog-entry-206.html
 
 
@@ -3297,21 +3297,21 @@ var ExifRestore = /*#__PURE__*/function () {
     }
   }, {
     key: "restore",
-    value: function restore(origstudent_recordBase64, resizedstudent_recordBase64) {
-      if (!origstudent_recordBase64.match('data:image/jpeg;base64,')) {
-        return resizedstudent_recordBase64;
+    value: function restore(origstdnt_recordBase64, resizedstdnt_recordBase64) {
+      if (!origstdnt_recordBase64.match('data:image/jpeg;base64,')) {
+        return resizedstdnt_recordBase64;
       }
 
-      var rawImage = this.decode64(origstudent_recordBase64.replace('data:image/jpeg;base64,', ''));
+      var rawImage = this.decode64(origstdnt_recordBase64.replace('data:image/jpeg;base64,', ''));
       var segments = this.slice2Segments(rawImage);
-      var image = this.exifManipulation(resizedstudent_recordBase64, segments);
+      var image = this.exifManipulation(resizedstdnt_recordBase64, segments);
       return "data:image/jpeg;base64,".concat(this.encode64(image));
     }
   }, {
     key: "exifManipulation",
-    value: function exifManipulation(resizedstudent_recordBase64, segments) {
+    value: function exifManipulation(resizedstdnt_recordBase64, segments) {
       var exifArray = this.getExifArray(segments);
-      var newImageArray = this.insertExif(resizedstudent_recordBase64, exifArray);
+      var newImageArray = this.insertExif(resizedstdnt_recordBase64, exifArray);
       var aBuffer = new Uint8Array(newImageArray);
       return aBuffer;
     }
@@ -3335,8 +3335,8 @@ var ExifRestore = /*#__PURE__*/function () {
     }
   }, {
     key: "insertExif",
-    value: function insertExif(resizedstudent_recordBase64, exifArray) {
-      var imageData = resizedstudent_recordBase64.replace('data:image/jpeg;base64,', '');
+    value: function insertExif(resizedstdnt_recordBase64, exifArray) {
+      var imageData = resizedstdnt_recordBase64.replace('data:image/jpeg;base64,', '');
       var buf = this.decode64(imageData);
       var separatePoint = buf.indexOf(255, 3);
       var mae = buf.slice(0, separatePoint);

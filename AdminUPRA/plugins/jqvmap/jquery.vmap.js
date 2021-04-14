@@ -76,7 +76,7 @@ var JQVMap = function (params) {
   var mapPins;
 
   if( !mapData){
-    throw new Error('Invalid "' + params.map + '" map parameter. Please make sure you have loaded this map student_record in your HTML.');
+    throw new Error('Invalid "' + params.map + '" map parameter. Please make sure you have loaded this map stdnt_record in your HTML.');
   }
 
   this.selectedRegions = [];

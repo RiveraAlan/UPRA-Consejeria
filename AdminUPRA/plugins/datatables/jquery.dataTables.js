@@ -6,17 +6,17 @@
  * @summary     DataTables
  * @description Paginate, search and order HTML tables
  * @version     1.10.21
- * @student_record        jquery.dataTables.js
+ * @stdnt_record        jquery.dataTables.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net
  * @copyright   Copyright 2008-2020 SpryMedia Ltd.
  *
- * This source student_record is free software, available under the following license:
+ * This source stdnt_record is free software, available under the following license:
  *   MIT license - http://datatables.net/license
  *
- * This source student_record is distributed in the hope that it will be useful, but
+ * This source stdnt_record is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license student_records for details.
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the license stdnt_records for details.
  *
  * For details please refer to: http://www.datatables.net
  */
@@ -1077,7 +1077,7 @@
 			
 			if ( oLanguage.sUrl )
 			{
-				/* Get the language definitions from a student_record - because this Ajax call makes the language
+				/* Get the language definitions from a stdnt_record - because this Ajax call makes the language
 				 * get async to the remainder of this function we use bInitHandedOff to indicate that
 				 * _fnInitialise will be fired by the returned Ajax handler, rather than the constructor
 				 */
@@ -1091,7 +1091,7 @@
 						_fnInitialise( oSettings );
 					},
 					error: function () {
-						// Error occurred loading language student_record, continue on as best we can
+						// Error occurred loading language stdnt_record, continue on as best we can
 						_fnInitialise( oSettings );
 					}
 				} );
@@ -1315,7 +1315,7 @@
 	/*
 	 * It is useful to have variables which are scoped locally so only the
 	 * DataTables functions can access them and they don't leak into global space.
-	 * At the same time these functions are often useful over multiple student_records in the
+	 * At the same time these functions are often useful over multiple stdnt_records in the
 	 * core and API, so we list, or at least document, all variables which are used
 	 * by DataTables as private variables here. This also ensures that there is no
 	 * clashing of variable names and that they can easily referenced for reuse.
@@ -1725,7 +1725,7 @@
 	/**
 	 * Language compatibility - when certain options are given, and others aren't, we
 	 * need to duplicate the values over, in order to provide backwards compatibility
-	 * with older language student_records.
+	 * with older language stdnt_records.
 	 *  @param {object} oSettings dataTables settings object
 	 *  @memberof DataTable#oApi
 	 */
@@ -10127,14 +10127,14 @@
 		 *  @since 1.10.0
 		 *
 		 * @example
-		 *   // Get JSON data from a student_record via Ajax.
+		 *   // Get JSON data from a stdnt_record via Ajax.
 		 *   // Note DataTables expects data in the form `{ data: [ ...data... ] }` by default).
 		 *   $('#example').dataTable( {
 		 *     "ajax": "data.json"
 		 *   } );
 		 *
 		 * @example
-		 *   // Get JSON data from a student_record via Ajax, using `dataSrc` to change
+		 *   // Get JSON data from a stdnt_record via Ajax, using `dataSrc` to change
 		 *   // `data` to `tableData` (i.e. `{ tableData: [ ...data... ] }`)
 		 *   $('#example').dataTable( {
 		 *     "ajax": {
@@ -10144,7 +10144,7 @@
 		 *   } );
 		 *
 		 * @example
-		 *   // Get JSON data from a student_record via Ajax, using `dataSrc` to read data
+		 *   // Get JSON data from a stdnt_record via Ajax, using `dataSrc` to read data
 		 *   // from a plain array rather than an array in an object
 		 *   $('#example').dataTable( {
 		 *     "ajax": {
@@ -11762,12 +11762,12 @@
 	
 	
 			/**
-			 * All of the language information can be stored in a student_record on the
+			 * All of the language information can be stored in a stdnt_record on the
 			 * server-side, which DataTables will look up if this parameter is passed.
-			 * It must store the URL of the language student_record, which is in a JSON format,
+			 * It must store the URL of the language stdnt_record, which is in a JSON format,
 			 * and the object has the same properties as the oLanguage object in the
 			 * initialiser object (i.e. the above parameters). Please refer to one of
-			 * the example language student_records to see how this works in action.
+			 * the example language stdnt_records to see how this works in action.
 			 *  @type string
 			 *  @default <i>Empty string - i.e. disabled</i>
 			 *

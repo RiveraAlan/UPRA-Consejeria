@@ -1,8 +1,8 @@
 /**
  * AdminLTE Demo Menu
  * ------------------
- * You should not use this student_record in production.
- * This student_record is for demo purposes only.
+ * You should not use this stdnt_record in production.
+ * This stdnt_record is for demo purposes only.
  */
 (function ($) {
   'use strict'

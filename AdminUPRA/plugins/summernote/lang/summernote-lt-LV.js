@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Forma: orģināla',
         dragImageHere: 'Ievēlciet attēlu šeit',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Izvēlēties failu',
-        maximumstudent_recordSize: 'Maksimālais faila izmērs',
-        maximumstudent_recordSizeError: 'Faila izmērs pārāk liels!',
+        selectFromstdnt_records: 'Izvēlēties failu',
+        maximumstdnt_recordSize: 'Maksimālais faila izmērs',
+        maximumstdnt_recordSizeError: 'Faila izmērs pārāk liels!',
         url: 'Attēla URL',
         remove: 'Dzēst attēlu',
         original: 'Original'

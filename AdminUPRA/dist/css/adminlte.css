@@ -359,7 +359,7 @@ progress {
   -webkit-appearance: none;
 }
 
-::-webkit-student_record-upload-button {
+::-webkit-stdnt_record-upload-button {
   font: inherit;
   -webkit-appearance: button;
 }
@@ -2233,7 +2233,7 @@ select.form-control:focus::-ms-value {
   background-color: #ffffff;
 }
 
-.form-control-student_record,
+.form-control-stdnt_record,
 .form-control-range {
   display: block;
   width: 100%;
@@ -2482,16 +2482,16 @@ textarea.form-control.is-valid {
 }
 
 .was-validated
-  .custom-student_record-input:valid
-  ~ .custom-student_record-label,
-.custom-student_record-input.is-valid ~ .custom-student_record-label {
+  .custom-stdnt_record-input:valid
+  ~ .custom-stdnt_record-label,
+.custom-stdnt_record-input.is-valid ~ .custom-stdnt_record-label {
   border-color: #28a745;
 }
 
 .was-validated
-  .custom-student_record-input:valid:focus
-  ~ .custom-student_record-label,
-.custom-student_record-input.is-valid:focus ~ .custom-student_record-label {
+  .custom-stdnt_record-input:valid:focus
+  ~ .custom-stdnt_record-label,
+.custom-stdnt_record-input.is-valid:focus ~ .custom-stdnt_record-label {
   border-color: #28a745;
   box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.25);
 }
@@ -2612,16 +2612,16 @@ textarea.form-control.is-invalid {
 }
 
 .was-validated
-  .custom-student_record-input:invalid
-  ~ .custom-student_record-label,
-.custom-student_record-input.is-invalid ~ .custom-student_record-label {
+  .custom-stdnt_record-input:invalid
+  ~ .custom-stdnt_record-label,
+.custom-stdnt_record-input.is-invalid ~ .custom-stdnt_record-label {
   border-color: #dc3545;
 }
 
 .was-validated
-  .custom-student_record-input:invalid:focus
-  ~ .custom-student_record-label,
-.custom-student_record-input.is-invalid:focus ~ .custom-student_record-label {
+  .custom-stdnt_record-input:invalid:focus
+  ~ .custom-stdnt_record-label,
+.custom-stdnt_record-input.is-invalid:focus ~ .custom-stdnt_record-label {
   border-color: #dc3545;
   box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.25);
 }
@@ -3872,7 +3872,7 @@ input[type="button"].btn-block {
 .input-group > .form-control,
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
-.input-group > .custom-student_record {
+.input-group > .custom-stdnt_record {
   position: relative;
   -ms-flex: 1 1 0%;
   flex: 1 1 0%;
@@ -3882,29 +3882,29 @@ input[type="button"].btn-block {
 
 .input-group > .form-control + .form-control,
 .input-group > .form-control + .custom-select,
-.input-group > .form-control + .custom-student_record,
+.input-group > .form-control + .custom-stdnt_record,
 .input-group > .form-control-plaintext + .form-control,
 .input-group > .form-control-plaintext + .custom-select,
-.input-group > .form-control-plaintext + .custom-student_record,
+.input-group > .form-control-plaintext + .custom-stdnt_record,
 .input-group > .custom-select + .form-control,
 .input-group > .custom-select + .custom-select,
-.input-group > .custom-select + .custom-student_record,
-.input-group > .custom-student_record + .form-control,
-.input-group > .custom-student_record + .custom-select,
-.input-group > .custom-student_record + .custom-student_record {
+.input-group > .custom-select + .custom-stdnt_record,
+.input-group > .custom-stdnt_record + .form-control,
+.input-group > .custom-stdnt_record + .custom-select,
+.input-group > .custom-stdnt_record + .custom-stdnt_record {
   margin-left: -1px;
 }
 
 .input-group > .form-control:focus,
 .input-group > .custom-select:focus,
 .input-group
-  > .custom-student_record
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  > .custom-stdnt_record
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   z-index: 3;
 }
 
-.input-group > .custom-student_record .custom-student_record-input:focus {
+.input-group > .custom-stdnt_record .custom-stdnt_record-input:focus {
   z-index: 4;
 }
 
@@ -3920,7 +3920,7 @@ input[type="button"].btn-block {
   border-bottom-left-radius: 0;
 }
 
-.input-group > .custom-student_record {
+.input-group > .custom-stdnt_record {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -3928,18 +3928,18 @@ input[type="button"].btn-block {
 }
 
 .input-group
-  > .custom-student_record:not(:last-child)
-  .custom-student_record-label,
+  > .custom-stdnt_record:not(:last-child)
+  .custom-stdnt_record-label,
 .input-group
-  > .custom-student_record:not(:last-child)
-  .custom-student_record-label::after {
+  > .custom-stdnt_record:not(:last-child)
+  .custom-stdnt_record-label::after {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .input-group
-  > .custom-student_record:not(:first-child)
-  .custom-student_record-label {
+  > .custom-stdnt_record:not(:first-child)
+  .custom-stdnt_record-label {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -4315,7 +4315,7 @@ input[type="button"].btn-block {
   font-size: 125%;
 }
 
-.custom-student_record {
+.custom-stdnt_record {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -4323,7 +4323,7 @@ input[type="button"].btn-block {
   margin-bottom: 0;
 }
 
-.custom-student_record-input {
+.custom-stdnt_record-input {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -4332,26 +4332,26 @@ input[type="button"].btn-block {
   opacity: 0;
 }
 
-.custom-student_record-input:focus ~ .custom-student_record-label {
+.custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #80bdff;
   box-shadow: none;
 }
 
-.custom-student_record-input[disabled] ~ .custom-student_record-label,
-.custom-student_record-input:disabled ~ .custom-student_record-label {
+.custom-stdnt_record-input[disabled] ~ .custom-stdnt_record-label,
+.custom-stdnt_record-input:disabled ~ .custom-stdnt_record-label {
   background-color: #e9ecef;
 }
 
-.custom-student_record-input:lang(en) ~ .custom-student_record-label::after {
+.custom-stdnt_record-input:lang(en) ~ .custom-stdnt_record-label::after {
   content: "Browse";
 }
 
-.custom-student_record-input
-  ~ .custom-student_record-label[data-browse]::after {
+.custom-stdnt_record-input
+  ~ .custom-stdnt_record-label[data-browse]::after {
   content: attr(data-browse);
 }
 
-.custom-student_record-label {
+.custom-stdnt_record-label {
   position: absolute;
   top: 0;
   right: 0;
@@ -4368,7 +4368,7 @@ input[type="button"].btn-block {
   box-shadow: none;
 }
 
-.custom-student_record-label::after {
+.custom-stdnt_record-label::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -4561,7 +4561,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-label::before,
-.custom-student_record-label,
+.custom-stdnt_record-label,
 .custom-select {
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
@@ -4569,7 +4569,7 @@ input[type="button"].btn-block {
 
 @media (prefers-reduced-motion: reduce) {
   .custom-control-label::before,
-  .custom-student_record-label,
+  .custom-stdnt_record-label,
   .custom-select {
     transition: none;
   }
@@ -15293,7 +15293,7 @@ body.text-sm .control-sidebar {
   line-height: calc(1.8125rem + 2px);
 }
 
-label:not(.form-check-label):not(.custom-student_record-label) {
+label:not(.form-check-label):not(.custom-stdnt_record-label) {
   font-weight: 700;
 }
 
@@ -15354,8 +15354,8 @@ textarea.form-control.is-warning {
   display: block;
 }
 
-.form-control-student_record.is-warning ~ .warning-feedback,
-.form-control-student_record.is-warning ~ .warning-tooltip {
+.form-control-stdnt_record.is-warning ~ .warning-feedback,
+.form-control-stdnt_record.is-warning ~ .warning-tooltip {
   display: block;
 }
 
@@ -15395,16 +15395,16 @@ textarea.form-control.is-warning {
   border-color: #ffc107;
 }
 
-.custom-student_record-input.is-warning ~ .custom-student_record-label {
+.custom-stdnt_record-input.is-warning ~ .custom-stdnt_record-label {
   border-color: #ffc107;
 }
 
-.custom-student_record-input.is-warning ~ .warning-feedback,
-.custom-student_record-input.is-warning ~ .warning-tooltip {
+.custom-stdnt_record-input.is-warning ~ .warning-feedback,
+.custom-stdnt_record-input.is-warning ~ .warning-tooltip {
   display: block;
 }
 
-.custom-student_record-input.is-warning:focus ~ .custom-student_record-label {
+.custom-stdnt_record-input.is-warning:focus ~ .custom-stdnt_record-label {
   border-color: #ffc107;
   box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.25);
 }
@@ -20871,12 +20871,12 @@ html.maximized-card {
   box-shadow: none;
 }
 
-.btn.btn-student_record {
+.btn.btn-stdnt_record {
   overflow: hidden;
   position: relative;
 }
 
-.btn.btn-student_record > input[type="student_record"] {
+.btn.btn-stdnt_record > input[type="stdnt_record"] {
   background: #ffffff;
   cursor: inherit;
   display: block;
@@ -22705,14 +22705,14 @@ html.maximized-card {
   margin-top: 0;
 }
 
-.prostudent_record-user-img {
+.prostdnt_record-user-img {
   border: 3px solid #adb5bd;
   margin: 0 auto;
   padding: 3px;
   width: 100px;
 }
 
-.prostudent_record-username {
+.prostdnt_record-username {
   font-size: 21px;
   margin-top: 5px;
 }
@@ -34352,8 +34352,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-primary
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #80bdff;
 }
 
@@ -34439,8 +34439,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-secondary
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #afb5ba;
 }
 
@@ -34524,8 +34524,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-success
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #71dd8a;
 }
 
@@ -34608,7 +34608,7 @@ a.text-muted:hover {
 .accent-info
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-info .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-info .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #63d9ec;
 }
 
@@ -34692,8 +34692,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-warning
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #ffe187;
 }
 
@@ -34777,8 +34777,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-danger
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #efa2a9;
 }
 
@@ -34862,8 +34862,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-light
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: white;
 }
 
@@ -34946,7 +34946,7 @@ a.text-muted:hover {
 .accent-dark
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-dark .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-dark .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #6d7a86;
 }
 
@@ -35032,8 +35032,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-lightblue
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #99c5de;
 }
 
@@ -35116,7 +35116,7 @@ a.text-muted:hover {
 .accent-navy
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-navy .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-navy .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #005ebf;
 }
 
@@ -35200,8 +35200,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-olive
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #87cfaf;
 }
 
@@ -35284,7 +35284,7 @@ a.text-muted:hover {
 .accent-lime
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-lime .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-lime .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #81ffb8;
 }
 
@@ -35368,8 +35368,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-fuchsia
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #f88adf;
 }
 
@@ -35453,8 +35453,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-maroon
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #f083ab;
 }
 
@@ -35537,7 +35537,7 @@ a.text-muted:hover {
 .accent-blue
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-blue .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-blue .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #80bdff;
 }
 
@@ -35621,8 +35621,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-indigo
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #b389f9;
 }
 
@@ -35706,8 +35706,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-purple
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #b8a2e0;
 }
 
@@ -35790,7 +35790,7 @@ a.text-muted:hover {
 .accent-pink
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-pink .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-pink .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #f6b0d0;
 }
 
@@ -35873,7 +35873,7 @@ a.text-muted:hover {
 .accent-red
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-red .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-red .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #efa2a9;
 }
 
@@ -35957,8 +35957,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-orange
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #fec392;
 }
 
@@ -36042,8 +36042,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-yellow
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #ffe187;
 }
 
@@ -36127,8 +36127,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-green
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #71dd8a;
 }
 
@@ -36211,7 +36211,7 @@ a.text-muted:hover {
 .accent-teal
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-teal .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-teal .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #7eeaca;
 }
 
@@ -36294,7 +36294,7 @@ a.text-muted:hover {
 .accent-cyan
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-cyan .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-cyan .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #63d9ec;
 }
 
@@ -36378,8 +36378,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-white
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: white;
 }
 
@@ -36462,7 +36462,7 @@ a.text-muted:hover {
 .accent-gray
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
-.accent-gray .custom-student_record-input:focus ~ .custom-student_record-label {
+.accent-gray .custom-stdnt_record-input:focus ~ .custom-stdnt_record-label {
   border-color: #afb5ba;
 }
 
@@ -36548,8 +36548,8 @@ a.text-muted:hover {
   .custom-control-input:focus:not(:checked)
   ~ .custom-control-label::before,
 .accent-gray-dark
-  .custom-student_record-input:focus
-  ~ .custom-student_record-label {
+  .custom-stdnt_record-input:focus
+  ~ .custom-stdnt_record-label {
   border-color: #6d7a86;
 }
 

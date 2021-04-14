@@ -29,9 +29,9 @@ CodeMirror.defineMode("puppet", function () {
   // Takes commonly known puppet types/words and classifies them to a style
   define('keyword', 'class define site node include import inherits');
   define('keyword', 'case if else in and elsif default or');
-  define('atom', 'false true running present absent student_record directory undef');
+  define('atom', 'false true running present absent stdnt_record directory undef');
   define('builtin', 'action augeas burst chain computer cron destination dport exec ' +
-    'student_record student_recordbucket group host icmp iniface interface jump k5login limit log_level ' +
+    'stdnt_record stdnt_recordbucket group host icmp iniface interface jump k5login limit log_level ' +
     'log_prefix macauthorization mailalias maillist mcx mount nagios_command ' +
     'nagios_contact nagios_contactgroup nagios_host nagios_hostdependency ' +
     'nagios_hostescalation nagios_hostextinfo nagios_hostgroup nagios_service ' +

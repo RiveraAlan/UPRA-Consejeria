@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Превуци слику овде',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Изабери из датотеке',
-        maximumstudent_recordSize: 'Maximum student_record size',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'Изабери из датотеке',
+        maximumstdnt_recordSize: 'Maximum stdnt_record size',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'Адреса слике',
         remove: 'Уклони слику',
         original: 'Original'

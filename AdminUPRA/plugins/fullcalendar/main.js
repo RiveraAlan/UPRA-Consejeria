@@ -2591,21 +2591,21 @@ Docs & License: https://fullcalendar.io/
         return copy;
     }
 
-    function reduceEventStore (eventStore, action, eventSources, dateProstudent_record, calendar) {
+    function reduceEventStore (eventStore, action, eventSources, dateProstdnt_record, calendar) {
         switch (action.type) {
             case 'RECEIVE_EVENTS': // raw
                 return receiveRawEvents(eventStore, eventSources[action.sourceId], action.fetchId, action.fetchRange, action.rawEvents, calendar);
             case 'ADD_EVENTS': // already parsed, but not expanded
                 return addEvent(eventStore, action.eventStore, // new ones
-                dateProstudent_record ? dateProstudent_record.activeRange : null, calendar);
+                dateProstdnt_record ? dateProstdnt_record.activeRange : null, calendar);
             case 'MERGE_EVENTS': // already parsed and expanded
                 return mergeEventStores(eventStore, action.eventStore);
-            case 'PREV': // TODO: how do we track all actions that affect dateProstudent_record :(
+            case 'PREV': // TODO: how do we track all actions that affect dateProstdnt_record :(
             case 'NEXT':
             case 'SET_DATE':
             case 'SET_VIEW_TYPE':
-                if (dateProstudent_record) {
-                    return expandRecurring(eventStore, dateProstudent_record.activeRange, calendar);
+                if (dateProstdnt_record) {
+                    return expandRecurring(eventStore, dateProstdnt_record.activeRange, calendar);
                 }
                 else {
                     return eventStore;
@@ -2871,7 +2871,7 @@ Docs & License: https://fullcalendar.io/
         }
         return []; // if it's false
     }
-    // TODO: move to event-store student_record?
+    // TODO: move to event-store stdnt_record?
     function eventStoreToRanges(eventStore) {
         var instances = eventStore.instances;
         var ranges = [];
@@ -2880,7 +2880,7 @@ Docs & License: https://fullcalendar.io/
         }
         return ranges;
     }
-    // TODO: move to geom student_record?
+    // TODO: move to geom stdnt_record?
     function anyRangesContainRange(outerRanges, innerRange) {
         for (var _i = 0, outerRanges_1 = outerRanges; _i < outerRanges_1.length; _i++) {
             var outerRange = outerRanges_1[_i];
@@ -3444,18 +3444,18 @@ Docs & License: https://fullcalendar.io/
         return allOptions.allDayHtml || htmlEscape(allOptions.allDayText);
     }
     // Computes HTML classNames for a single-day element
-    function getDayClasses(date, dateProstudent_record, context, noThemeHighlight) {
+    function getDayClasses(date, dateProstdnt_record, context, noThemeHighlight) {
         var calendar = context.calendar, options = context.options, theme = context.theme, dateEnv = context.dateEnv;
         var classes = [];
         var todayStart;
         var todayEnd;
-        if (!rangeContainsMarker(dateProstudent_record.activeRange, date)) {
+        if (!rangeContainsMarker(dateProstdnt_record.activeRange, date)) {
             classes.push('fc-disabled-day');
         }
         else {
             classes.push('fc-' + DAY_IDS[date.getUTCDay()]);
             if (options.monthMode &&
-                dateEnv.getMonth(date) !== dateEnv.getMonth(dateProstudent_record.currentRange.start)) {
+                dateEnv.getMonth(date) !== dateEnv.getMonth(dateProstdnt_record.currentRange.start)) {
                 classes.push('fc-other-month');
             }
             todayStart = startOfDay(calendar.getNow());
@@ -4033,11 +4033,11 @@ Docs & License: https://fullcalendar.io/
         // -----------------------------------------------------------------------------------------------------------------
         DateComponent.prototype.isInteractionValid = function (interaction) {
             var calendar = this.context.calendar;
-            var dateProstudent_record = this.props.dateProstudent_record; // HACK
+            var dateProstdnt_record = this.props.dateProstdnt_record; // HACK
             var instances = interaction.mutatedEvents.instances;
-            if (dateProstudent_record) { // HACK for DayTile
+            if (dateProstdnt_record) { // HACK for DayTile
                 for (var instanceId in instances) {
-                    if (!rangeContainsRange(dateProstudent_record.validRange, instances[instanceId].range)) {
+                    if (!rangeContainsRange(dateProstdnt_record.validRange, instances[instanceId].range)) {
                         return false;
                     }
                 }
@@ -4046,9 +4046,9 @@ Docs & License: https://fullcalendar.io/
         };
         DateComponent.prototype.isDateSelectionValid = function (selection) {
             var calendar = this.context.calendar;
-            var dateProstudent_record = this.props.dateProstudent_record; // HACK
-            if (dateProstudent_record && // HACK for DayTile
-                !rangeContainsRange(dateProstudent_record.validRange, selection.range)) {
+            var dateProstdnt_record = this.props.dateProstdnt_record; // HACK
+            if (dateProstdnt_record && // HACK for DayTile
+                !rangeContainsRange(dateProstdnt_record.validRange, selection.range)) {
                 return false;
             }
             return isDateSelectionValid(selection, calendar);
@@ -4548,7 +4548,7 @@ Docs & License: https://fullcalendar.io/
     function mergeOptions(optionObjs) {
         return mergeProps(optionObjs, complexOptions);
     }
-    // TODO: move this stuff to a "plugin"-related student_record...
+    // TODO: move this stuff to a "plugin"-related stdnt_record...
     var INTERNAL_PLUGINS = [
         ArrayEventSourcePlugin,
         FuncEventSourcePlugin,
@@ -4563,7 +4563,7 @@ Docs & License: https://fullcalendar.io/
             if (typeof pluginInput === 'string') {
                 var globalName = 'FullCalendar' + capitaliseFirstLetter(pluginInput);
                 if (!window[globalName]) {
-                    console.warn('Plugin student_record not loaded for ' + pluginInput);
+                    console.warn('Plugin stdnt_record not loaded for ' + pluginInput);
                 }
                 else {
                     plugins.push(window[globalName].default); // is an ES6 module
@@ -5120,18 +5120,18 @@ Docs & License: https://fullcalendar.io/
         return props;
     }
 
-    function reduceEventSources (eventSources, action, dateProstudent_record, calendar) {
+    function reduceEventSources (eventSources, action, dateProstdnt_record, calendar) {
         switch (action.type) {
             case 'ADD_EVENT_SOURCES': // already parsed
-                return addSources(eventSources, action.sources, dateProstudent_record ? dateProstudent_record.activeRange : null, calendar);
+                return addSources(eventSources, action.sources, dateProstdnt_record ? dateProstdnt_record.activeRange : null, calendar);
             case 'REMOVE_EVENT_SOURCE':
                 return removeSource(eventSources, action.sourceId);
-            case 'PREV': // TODO: how do we track all actions that affect dateProstudent_record :(
+            case 'PREV': // TODO: how do we track all actions that affect dateProstdnt_record :(
             case 'NEXT':
             case 'SET_DATE':
             case 'SET_VIEW_TYPE':
-                if (dateProstudent_record) {
-                    return fetchDirtySources(eventSources, dateProstudent_record.activeRange, calendar);
+                if (dateProstdnt_record) {
+                    return fetchDirtySources(eventSources, dateProstdnt_record.activeRange, calendar);
                 }
                 else {
                     return eventSources;
@@ -5140,7 +5140,7 @@ Docs & License: https://fullcalendar.io/
             case 'CHANGE_TIMEZONE':
                 return fetchSourcesByIds(eventSources, action.sourceIds ?
                     arrayToHash(action.sourceIds) :
-                    excludeStaticSources(eventSources, calendar), dateProstudent_record ? dateProstudent_record.activeRange : null, calendar);
+                    excludeStaticSources(eventSources, calendar), dateProstdnt_record ? dateProstdnt_record.activeRange : null, calendar);
             case 'RECEIVE_EVENTS':
             case 'RECEIVE_EVENT_ERROR':
                 return receiveResponse(eventSources, action.sourceId, action.fetchId, action.fetchRange);
@@ -5258,8 +5258,8 @@ Docs & License: https://fullcalendar.io/
         });
     }
 
-    var DateProstudent_recordGenerator = /** @class */ (function () {
-        function DateProstudent_recordGenerator(viewSpec, calendar) {
+    var DateProstdnt_recordGenerator = /** @class */ (function () {
+        function DateProstdnt_recordGenerator(viewSpec, calendar) {
             this.viewSpec = viewSpec;
             this.options = viewSpec.options;
             this.dateEnv = calendar.dateEnv;
@@ -5269,23 +5269,23 @@ Docs & License: https://fullcalendar.io/
         /* Date Range Computation
         ------------------------------------------------------------------------------------------------------------------*/
         // Builds a structure with info about what the dates/ranges will be for the "prev" view.
-        DateProstudent_recordGenerator.prototype.buildPrev = function (currentDateProstudent_record, currentDate) {
+        DateProstdnt_recordGenerator.prototype.buildPrev = function (currentDateProstdnt_record, currentDate) {
             var dateEnv = this.dateEnv;
-            var prevDate = dateEnv.subtract(dateEnv.startOf(currentDate, currentDateProstudent_record.currentRangeUnit), // important for start-of-month
-            currentDateProstudent_record.dateIncrement);
+            var prevDate = dateEnv.subtract(dateEnv.startOf(currentDate, currentDateProstdnt_record.currentRangeUnit), // important for start-of-month
+            currentDateProstdnt_record.dateIncrement);
             return this.build(prevDate, -1);
         };
         // Builds a structure with info about what the dates/ranges will be for the "next" view.
-        DateProstudent_recordGenerator.prototype.buildNext = function (currentDateProstudent_record, currentDate) {
+        DateProstdnt_recordGenerator.prototype.buildNext = function (currentDateProstdnt_record, currentDate) {
             var dateEnv = this.dateEnv;
-            var nextDate = dateEnv.add(dateEnv.startOf(currentDate, currentDateProstudent_record.currentRangeUnit), // important for start-of-month
-            currentDateProstudent_record.dateIncrement);
+            var nextDate = dateEnv.add(dateEnv.startOf(currentDate, currentDateProstdnt_record.currentRangeUnit), // important for start-of-month
+            currentDateProstdnt_record.dateIncrement);
             return this.build(nextDate, 1);
         };
         // Builds a structure holding dates/ranges for rendering around the given date.
         // Optional direction param indicates whether the date is being incremented/decremented
         // from its previous value. decremented = -1, incremented = 1 (default).
-        DateProstudent_recordGenerator.prototype.build = function (currentDate, direction, forceToValid) {
+        DateProstdnt_recordGenerator.prototype.build = function (currentDate, direction, forceToValid) {
             if (forceToValid === void 0) { forceToValid = false; }
             var validRange;
             var minTime = null;
@@ -5344,7 +5344,7 @@ Docs & License: https://fullcalendar.io/
         // Builds an object with optional start/end properties.
         // Indicates the minimum/maximum dates to display.
         // not responsible for trimming hidden days.
-        DateProstudent_recordGenerator.prototype.buildValidRange = function () {
+        DateProstdnt_recordGenerator.prototype.buildValidRange = function () {
             return this.getRangeOption('validRange', this.calendar.getNow()) ||
                 { start: null, end: null }; // completely open-ended
         };
@@ -5352,7 +5352,7 @@ Docs & License: https://fullcalendar.io/
         // highlighted as being the current month for example.
         // See build() for a description of `direction`.
         // Guaranteed to have `range` and `unit` properties. `duration` is optional.
-        DateProstudent_recordGenerator.prototype.buildCurrentRangeInfo = function (date, direction) {
+        DateProstdnt_recordGenerator.prototype.buildCurrentRangeInfo = function (date, direction) {
             var _a = this, viewSpec = _a.viewSpec, dateEnv = _a.dateEnv;
             var duration = null;
             var unit = null;
@@ -5377,12 +5377,12 @@ Docs & License: https://fullcalendar.io/
             }
             return { duration: duration, unit: unit, range: range };
         };
-        DateProstudent_recordGenerator.prototype.getFallbackDuration = function () {
+        DateProstdnt_recordGenerator.prototype.getFallbackDuration = function () {
             return createDuration({ day: 1 });
         };
         // Returns a new activeRange to have time values (un-ambiguate)
         // minTime or maxTime causes the range to expand.
-        DateProstudent_recordGenerator.prototype.adjustActiveRange = function (range, minTime, maxTime) {
+        DateProstdnt_recordGenerator.prototype.adjustActiveRange = function (range, minTime, maxTime) {
             var dateEnv = this.dateEnv;
             var start = range.start;
             var end = range.end;
@@ -5403,7 +5403,7 @@ Docs & License: https://fullcalendar.io/
         };
         // Builds the "current" range when it is specified as an explicit duration.
         // `unit` is the already-computed greatestDurationDenominator unit of duration.
-        DateProstudent_recordGenerator.prototype.buildRangeFromDuration = function (date, direction, duration, unit) {
+        DateProstdnt_recordGenerator.prototype.buildRangeFromDuration = function (date, direction, duration, unit) {
             var dateEnv = this.dateEnv;
             var alignment = this.options.dateAlignment;
             var dateIncrementInput;
@@ -5449,7 +5449,7 @@ Docs & License: https://fullcalendar.io/
             return res;
         };
         // Builds the "current" range when a dayCount is specified.
-        DateProstudent_recordGenerator.prototype.buildRangeFromDayCount = function (date, direction, dayCount) {
+        DateProstdnt_recordGenerator.prototype.buildRangeFromDayCount = function (date, direction, dayCount) {
             var dateEnv = this.dateEnv;
             var customAlignment = this.options.dateAlignment;
             var runningCount = 0;
@@ -5471,7 +5471,7 @@ Docs & License: https://fullcalendar.io/
         };
         // Builds a normalized range object for the "visible" range,
         // which is a way to define the currentRange and activeRange at the same time.
-        DateProstudent_recordGenerator.prototype.buildCustomVisibleRange = function (date) {
+        DateProstdnt_recordGenerator.prototype.buildCustomVisibleRange = function (date) {
             var dateEnv = this.dateEnv;
             var visibleRange = this.getRangeOption('visibleRange', dateEnv.toDate(date));
             if (visibleRange && (visibleRange.start == null || visibleRange.end == null)) {
@@ -5482,12 +5482,12 @@ Docs & License: https://fullcalendar.io/
         // Computes the range that will represent the element/cells for *rendering*,
         // but which may have voided days/times.
         // not responsible for trimming hidden days.
-        DateProstudent_recordGenerator.prototype.buildRenderRange = function (currentRange, currentRangeUnit, isRangeAllDay) {
+        DateProstdnt_recordGenerator.prototype.buildRenderRange = function (currentRange, currentRangeUnit, isRangeAllDay) {
             return currentRange;
         };
         // Compute the duration value that should be added/substracted to the current date
         // when a prev/next operation happens.
-        DateProstudent_recordGenerator.prototype.buildDateIncrement = function (fallback) {
+        DateProstdnt_recordGenerator.prototype.buildDateIncrement = function (fallback) {
             var dateIncrementInput = this.options.dateIncrement;
             var customAlignment;
             if (dateIncrementInput) {
@@ -5506,7 +5506,7 @@ Docs & License: https://fullcalendar.io/
         // Arguments after name will be forwarded to a hypothetical function value
         // WARNING: passed-in arguments will be given to generator functions as-is and can cause side-effects.
         // Always clone your objects if you fear mutation.
-        DateProstudent_recordGenerator.prototype.getRangeOption = function (name) {
+        DateProstdnt_recordGenerator.prototype.getRangeOption = function (name) {
             var otherArgs = [];
             for (var _i = 1; _i < arguments.length; _i++) {
                 otherArgs[_i - 1] = arguments[_i];
@@ -5526,7 +5526,7 @@ Docs & License: https://fullcalendar.io/
         /* Hidden Days
         ------------------------------------------------------------------------------------------------------------------*/
         // Initializes internal variables related to calculating hidden days-of-week
-        DateProstudent_recordGenerator.prototype.initHiddenDays = function () {
+        DateProstdnt_recordGenerator.prototype.initHiddenDays = function () {
             var hiddenDays = this.options.hiddenDays || []; // array of day-of-week indices that are hidden
             var isHiddenDayHash = []; // is the day-of-week hidden? (hash with day-of-week-index -> bool)
             var dayCnt = 0;
@@ -5546,7 +5546,7 @@ Docs & License: https://fullcalendar.io/
         };
         // Remove days from the beginning and end of the range that are computed as hidden.
         // If the whole range is trimmed off, returns null
-        DateProstudent_recordGenerator.prototype.trimHiddenDays = function (range) {
+        DateProstdnt_recordGenerator.prototype.trimHiddenDays = function (range) {
             var start = range.start;
             var end = range.end;
             if (start) {
@@ -5562,7 +5562,7 @@ Docs & License: https://fullcalendar.io/
         };
         // Is the current day hidden?
         // `day` is a day-of-week index (0-6), or a Date (used for UTC)
-        DateProstudent_recordGenerator.prototype.isHiddenDay = function (day) {
+        DateProstdnt_recordGenerator.prototype.isHiddenDay = function (day) {
             if (day instanceof Date) {
                 day = day.getUTCDay();
             }
@@ -5573,7 +5573,7 @@ Docs & License: https://fullcalendar.io/
         // If the initial value of `date` is not a hidden day, don't do anything.
         // Pass `isExclusive` as `true` if you are dealing with an end date.
         // `inc` defaults to `1` (increment one day forward each time)
-        DateProstudent_recordGenerator.prototype.skipHiddenDays = function (date, inc, isExclusive) {
+        DateProstdnt_recordGenerator.prototype.skipHiddenDays = function (date, inc, isExclusive) {
             if (inc === void 0) { inc = 1; }
             if (isExclusive === void 0) { isExclusive = false; }
             while (this.isHiddenDayHash[(date.getUTCDay() + (isExclusive ? inc : 0) + 7) % 7]) {
@@ -5581,10 +5581,10 @@ Docs & License: https://fullcalendar.io/
             }
             return date;
         };
-        return DateProstudent_recordGenerator;
+        return DateProstdnt_recordGenerator;
     }());
-    // TODO: find a way to avoid comparing DateProstudent_records. it's tedious
-    function isDateProstudent_recordsEqual(p0, p1) {
+    // TODO: find a way to avoid comparing DateProstdnt_records. it's tedious
+    function isDateProstdnt_recordsEqual(p0, p1) {
         return rangesEqual(p0.validRange, p1.validRange) &&
             rangesEqual(p0.activeRange, p1.activeRange) &&
             rangesEqual(p0.renderRange, p1.renderRange) &&
@@ -5602,10 +5602,10 @@ Docs & License: https://fullcalendar.io/
 
     function reduce (state, action, calendar) {
         var viewType = reduceViewType(state.viewType, action);
-        var dateProstudent_record = reduceDateProstudent_record(state.dateProstudent_record, action, state.currentDate, viewType, calendar);
-        var eventSources = reduceEventSources(state.eventSources, action, dateProstudent_record, calendar);
+        var dateProstdnt_record = reduceDateProstdnt_record(state.dateProstdnt_record, action, state.currentDate, viewType, calendar);
+        var eventSources = reduceEventSources(state.eventSources, action, dateProstdnt_record, calendar);
         var nextState = __assign({}, state, { viewType: viewType,
-            dateProstudent_record: dateProstudent_record, currentDate: reduceCurrentDate(state.currentDate, action, dateProstudent_record), eventSources: eventSources, eventStore: reduceEventStore(state.eventStore, action, eventSources, dateProstudent_record, calendar), dateSelection: reduceDateSelection(state.dateSelection, action, calendar), eventSelection: reduceSelectedEvent(state.eventSelection, action), eventDrag: reduceEventDrag(state.eventDrag, action, eventSources, calendar), eventResize: reduceEventResize(state.eventResize, action, eventSources, calendar), eventSourceLoadingLevel: computeLoadingLevel(eventSources), loadingLevel: computeLoadingLevel(eventSources) });
+            dateProstdnt_record: dateProstdnt_record, currentDate: reduceCurrentDate(state.currentDate, action, dateProstdnt_record), eventSources: eventSources, eventStore: reduceEventStore(state.eventStore, action, eventSources, dateProstdnt_record, calendar), dateSelection: reduceDateSelection(state.dateSelection, action, calendar), eventSelection: reduceSelectedEvent(state.eventSelection, action), eventDrag: reduceEventDrag(state.eventDrag, action, eventSources, calendar), eventResize: reduceEventResize(state.eventResize, action, eventSources, calendar), eventSourceLoadingLevel: computeLoadingLevel(eventSources), loadingLevel: computeLoadingLevel(eventSources) });
         for (var _i = 0, _a = calendar.pluginSystem.hooks.reducers; _i < _a.length; _i++) {
             var reducerFunc = _a[_i];
             nextState = reducerFunc(nextState, action, calendar);
@@ -5621,48 +5621,48 @@ Docs & License: https://fullcalendar.io/
                 return currentViewType;
         }
     }
-    function reduceDateProstudent_record(currentDateProstudent_record, action, currentDate, viewType, calendar) {
-        var newDateProstudent_record;
+    function reduceDateProstdnt_record(currentDateProstdnt_record, action, currentDate, viewType, calendar) {
+        var newDateProstdnt_record;
         switch (action.type) {
             case 'PREV':
-                newDateProstudent_record = calendar.dateProstudent_recordGenerators[viewType].buildPrev(currentDateProstudent_record, currentDate);
+                newDateProstdnt_record = calendar.dateProstdnt_recordGenerators[viewType].buildPrev(currentDateProstdnt_record, currentDate);
                 break;
             case 'NEXT':
-                newDateProstudent_record = calendar.dateProstudent_recordGenerators[viewType].buildNext(currentDateProstudent_record, currentDate);
+                newDateProstdnt_record = calendar.dateProstdnt_recordGenerators[viewType].buildNext(currentDateProstdnt_record, currentDate);
                 break;
             case 'SET_DATE':
-                if (!currentDateProstudent_record.activeRange ||
-                    !rangeContainsMarker(currentDateProstudent_record.currentRange, action.dateMarker)) {
-                    newDateProstudent_record = calendar.dateProstudent_recordGenerators[viewType].build(action.dateMarker, undefined, true // forceToValid
+                if (!currentDateProstdnt_record.activeRange ||
+                    !rangeContainsMarker(currentDateProstdnt_record.currentRange, action.dateMarker)) {
+                    newDateProstdnt_record = calendar.dateProstdnt_recordGenerators[viewType].build(action.dateMarker, undefined, true // forceToValid
                     );
                 }
                 break;
             case 'SET_VIEW_TYPE':
-                var generator = calendar.dateProstudent_recordGenerators[viewType];
+                var generator = calendar.dateProstdnt_recordGenerators[viewType];
                 if (!generator) {
                     throw new Error(viewType ?
                         'The FullCalendar view "' + viewType + '" does not exist. Make sure your plugins are loaded correctly.' :
                         'No available FullCalendar view plugins.');
                 }
-                newDateProstudent_record = generator.build(action.dateMarker || currentDate, undefined, true // forceToValid
+                newDateProstdnt_record = generator.build(action.dateMarker || currentDate, undefined, true // forceToValid
                 );
                 break;
         }
-        if (newDateProstudent_record &&
-            newDateProstudent_record.isValid &&
-            !(currentDateProstudent_record && isDateProstudent_recordsEqual(currentDateProstudent_record, newDateProstudent_record))) {
-            return newDateProstudent_record;
+        if (newDateProstdnt_record &&
+            newDateProstdnt_record.isValid &&
+            !(currentDateProstdnt_record && isDateProstdnt_recordsEqual(currentDateProstdnt_record, newDateProstdnt_record))) {
+            return newDateProstdnt_record;
         }
         else {
-            return currentDateProstudent_record;
+            return currentDateProstdnt_record;
         }
     }
-    function reduceCurrentDate(currentDate, action, dateProstudent_record) {
+    function reduceCurrentDate(currentDate, action, dateProstdnt_record) {
         switch (action.type) {
             case 'PREV':
             case 'NEXT':
-                if (!rangeContainsMarker(dateProstudent_record.currentRange, currentDate)) {
-                    return dateProstudent_record.currentRange.start;
+                if (!rangeContainsMarker(dateProstdnt_record.currentRange, currentDate)) {
+                    return dateProstdnt_record.currentRange.start;
                 }
                 else {
                     return currentDate;
@@ -5670,8 +5670,8 @@ Docs & License: https://fullcalendar.io/
             case 'SET_DATE':
             case 'SET_VIEW_TYPE':
                 var newDate = action.dateMarker || currentDate;
-                if (dateProstudent_record.activeRange && !rangeContainsMarker(dateProstudent_record.activeRange, newDate)) {
-                    return dateProstudent_record.currentRange.start;
+                if (dateProstdnt_record.activeRange && !rangeContainsMarker(dateProstdnt_record.activeRange, newDate)) {
+                    return dateProstdnt_record.currentRange.start;
                 }
                 else {
                     return newDate;
@@ -6167,9 +6167,9 @@ Docs & License: https://fullcalendar.io/
         }
         CalendarComponent.prototype.render = function (props, context) {
             this.freezeHeight();
-            var title = this.computeTitle(props.dateProstudent_record, props.viewSpec.options);
+            var title = this.computeTitle(props.dateProstdnt_record, props.viewSpec.options);
             this.renderSkeleton(context);
-            this.renderToolbars(props.viewSpec, props.dateProstudent_record, props.currentDate, title);
+            this.renderToolbars(props.viewSpec, props.dateProstdnt_record, props.currentDate, title);
             this.renderView(props, title);
             this.updateSize();
             this.thawHeight();
@@ -6225,20 +6225,20 @@ Docs & License: https://fullcalendar.io/
                 classList.add(className);
             }
         };
-        CalendarComponent.prototype._renderToolbars = function (viewSpec, dateProstudent_record, currentDate, title) {
+        CalendarComponent.prototype._renderToolbars = function (viewSpec, dateProstdnt_record, currentDate, title) {
             var _a = this, context = _a.context, header = _a.header, footer = _a.footer;
             var options = context.options, calendar = context.calendar;
             var headerLayout = options.header;
             var footerLayout = options.footer;
-            var dateProstudent_recordGenerator = this.props.dateProstudent_recordGenerator;
+            var dateProstdnt_recordGenerator = this.props.dateProstdnt_recordGenerator;
             var now = calendar.getNow();
-            var todayInfo = dateProstudent_recordGenerator.build(now);
-            var prevInfo = dateProstudent_recordGenerator.buildPrev(dateProstudent_record, currentDate);
-            var nextInfo = dateProstudent_recordGenerator.buildNext(dateProstudent_record, currentDate);
+            var todayInfo = dateProstdnt_recordGenerator.build(now);
+            var prevInfo = dateProstdnt_recordGenerator.buildPrev(dateProstdnt_record, currentDate);
+            var nextInfo = dateProstdnt_recordGenerator.buildNext(dateProstdnt_record, currentDate);
             var toolbarProps = {
                 title: title,
                 activeButton: viewSpec.type,
-                isTodayEnabled: todayInfo.isValid && !rangeContainsMarker(dateProstudent_record.currentRange, now),
+                isTodayEnabled: todayInfo.isValid && !rangeContainsMarker(dateProstdnt_record.currentRange, now),
                 isPrevEnabled: prevInfo.isValid,
                 isNextEnabled: nextInfo.isValid
             };
@@ -6278,7 +6278,7 @@ Docs & License: https://fullcalendar.io/
         CalendarComponent.prototype.renderView = function (props, title) {
             var view = this.view;
             var _a = this.context, calendar = _a.calendar, options = _a.options;
-            var viewSpec = props.viewSpec, dateProstudent_recordGenerator = props.dateProstudent_recordGenerator;
+            var viewSpec = props.viewSpec, dateProstdnt_recordGenerator = props.dateProstdnt_recordGenerator;
             if (!view || view.viewSpec !== viewSpec) {
                 if (view) {
                     view.destroy();
@@ -6291,8 +6291,8 @@ Docs & License: https://fullcalendar.io/
             }
             view.title = title; // for the API
             var viewProps = {
-                dateProstudent_recordGenerator: dateProstudent_recordGenerator,
-                dateProstudent_record: props.dateProstudent_record,
+                dateProstdnt_recordGenerator: dateProstdnt_recordGenerator,
+                dateProstdnt_record: props.dateProstdnt_record,
                 businessHours: this.parseBusinessHours(viewSpec.options.businessHours),
                 eventStore: props.eventStore,
                 eventUiBases: props.eventUiBases,
@@ -6378,21 +6378,21 @@ Docs & License: https://fullcalendar.io/
     // Title and Date Formatting
     // -----------------------------------------------------------------------------------------------------------------
     // Computes what the title at the top of the calendar should be for this view
-    function computeTitle(dateProstudent_record, viewOptions) {
+    function computeTitle(dateProstdnt_record, viewOptions) {
         var range;
         // for views that span a large unit of time, show the proper interval, ignoring stray days before and after
-        if (/^(year|month)$/.test(dateProstudent_record.currentRangeUnit)) {
-            range = dateProstudent_record.currentRange;
+        if (/^(year|month)$/.test(dateProstdnt_record.currentRangeUnit)) {
+            range = dateProstdnt_record.currentRange;
         }
         else { // for day units or smaller, use the actual day range
-            range = dateProstudent_record.activeRange;
+            range = dateProstdnt_record.activeRange;
         }
-        return this.context.dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || computeTitleFormat(dateProstudent_record), viewOptions.titleRangeSeparator), { isEndExclusive: dateProstudent_record.isRangeAllDay });
+        return this.context.dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || computeTitleFormat(dateProstdnt_record), viewOptions.titleRangeSeparator), { isEndExclusive: dateProstdnt_record.isRangeAllDay });
     }
     // Generates the format string that should be used to generate the title for the current date range.
     // Attempts to compute the most appropriate format if not explicitly specified with `titleFormat`.
-    function computeTitleFormat(dateProstudent_record) {
-        var currentRangeUnit = dateProstudent_record.currentRangeUnit;
+    function computeTitleFormat(dateProstdnt_record) {
+        var currentRangeUnit = dateProstdnt_record.currentRangeUnit;
         if (currentRangeUnit === 'year') {
             return { year: 'numeric' };
         }
@@ -6400,7 +6400,7 @@ Docs & License: https://fullcalendar.io/
             return { year: 'numeric', month: 'long' }; // like "September 2014"
         }
         else {
-            var days = diffWholeDays(dateProstudent_record.currentRange.start, dateProstudent_record.currentRange.end);
+            var days = diffWholeDays(dateProstdnt_record.currentRange.start, dateProstdnt_record.currentRange.end);
             if (days !== null && days > 1) {
                 // multi-day range. shorter, like "Sep 9 - 10 2014"
                 return { year: 'numeric', month: 'short', day: 'numeric' };
@@ -6719,7 +6719,7 @@ Docs & License: https://fullcalendar.io/
                 loadingLevel: 0,
                 eventSourceLoadingLevel: 0,
                 currentDate: this.getInitialDate(),
-                dateProstudent_record: null,
+                dateProstdnt_record: null,
                 eventSources: {},
                 eventStore: createEmptyEventStore(),
                 dateSelection: null,
@@ -6750,8 +6750,8 @@ Docs & License: https://fullcalendar.io/
                         this.isEventsUpdated = true;
                     }
                 }
-                if (oldState.dateProstudent_record !== newState.dateProstudent_record) {
-                    if (oldState.dateProstudent_record && view) { // why would view be null!?
+                if (oldState.dateProstdnt_record !== newState.dateProstdnt_record) {
+                    if (oldState.dateProstdnt_record && view) { // why would view be null!?
                         this.publiclyTrigger('datesDestroy', [
                             {
                                 view: view,
@@ -6833,7 +6833,7 @@ Docs & License: https://fullcalendar.io/
             var eventUiSingleBase = this.buildEventUiSingleBase(viewSpec.options);
             var eventUiBySource = this.buildEventUiBySource(state.eventSources);
             var eventUiBases = this.eventUiBases = this.buildEventUiBases(renderableEventStore.defs, eventUiSingleBase, eventUiBySource);
-            component.receiveProps(__assign({}, state, { viewSpec: viewSpec, dateProstudent_recordGenerator: this.dateProstudent_recordGenerators[viewType], dateProstudent_record: state.dateProstudent_record, eventStore: renderableEventStore, eventUiBases: eventUiBases, dateSelection: state.dateSelection, eventSelection: state.eventSelection, eventDrag: state.eventDrag, eventResize: state.eventResize }), this.buildComponentContext(this.theme, this.dateEnv, this.optionsManager.computed));
+            component.receiveProps(__assign({}, state, { viewSpec: viewSpec, dateProstdnt_recordGenerator: this.dateProstdnt_recordGenerators[viewType], dateProstdnt_record: state.dateProstdnt_record, eventStore: renderableEventStore, eventUiBases: eventUiBases, dateSelection: state.dateSelection, eventSelection: state.eventSelection, eventDrag: state.eventDrag, eventResize: state.eventResize }), this.buildComponentContext(this.theme, this.dateEnv, this.optionsManager.computed));
             if (this.isViewUpdated) {
                 this.isViewUpdated = false;
                 this.publiclyTrigger('viewSkeletonRender', [
@@ -6921,7 +6921,7 @@ Docs & License: https://fullcalendar.io/
                     }
                     /* HACK
                     has the same effect as calling this.requestRerender()
-                    but recomputes the state's dateProstudent_record
+                    but recomputes the state's dateProstdnt_record
                     */
                     _this.dispatch({
                         type: 'SET_VIEW_TYPE',
@@ -6957,8 +6957,8 @@ Docs & License: https://fullcalendar.io/
             // ineffecient to do every time?
             this.viewSpecs = buildViewSpecs(pluginHooks.views, this.optionsManager);
             // ineffecient to do every time?
-            this.dateProstudent_recordGenerators = mapHash(this.viewSpecs, function (viewSpec) {
-                return new viewSpec.class.prototype.dateProstudent_recordGeneratorClass(viewSpec, _this);
+            this.dateProstdnt_recordGenerators = mapHash(this.viewSpecs, function (viewSpec) {
+                return new viewSpec.class.prototype.dateProstdnt_recordGeneratorClass(viewSpec, _this);
             });
         };
         Calendar.prototype.getAvailableLocaleCodes = function () {
@@ -7491,28 +7491,28 @@ Docs & License: https://fullcalendar.io/
             // Date Setting/Unsetting
             // -----------------------------------------------------------------------------------------------------------------
             get: function () {
-                return this.context.dateEnv.toDate(this.props.dateProstudent_record.activeRange.start);
+                return this.context.dateEnv.toDate(this.props.dateProstdnt_record.activeRange.start);
             },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(View.prototype, "activeEnd", {
             get: function () {
-                return this.context.dateEnv.toDate(this.props.dateProstudent_record.activeRange.end);
+                return this.context.dateEnv.toDate(this.props.dateProstdnt_record.activeRange.end);
             },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(View.prototype, "currentStart", {
             get: function () {
-                return this.context.dateEnv.toDate(this.props.dateProstudent_record.currentRange.start);
+                return this.context.dateEnv.toDate(this.props.dateProstdnt_record.currentRange.start);
             },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(View.prototype, "currentEnd", {
             get: function () {
-                return this.context.dateEnv.toDate(this.props.dateProstudent_record.currentRange.end);
+                return this.context.dateEnv.toDate(this.props.dateProstdnt_record.currentRange.end);
             },
             enumerable: true,
             configurable: true
@@ -7520,7 +7520,7 @@ Docs & License: https://fullcalendar.io/
         // General Rendering
         // -----------------------------------------------------------------------------------------------------------------
         View.prototype.render = function (props, context) {
-            this.renderDatesMem(props.dateProstudent_record);
+            this.renderDatesMem(props.dateProstdnt_record);
             this.renderBusinessHoursMem(props.businessHours);
             this.renderDateSelectionMem(props.dateSelection);
             this.renderEventsMem(props.eventStore);
@@ -7556,8 +7556,8 @@ Docs & License: https://fullcalendar.io/
         };
         // Date Rendering
         // -----------------------------------------------------------------------------------------------------------------
-        View.prototype.renderDatesWrap = function (dateProstudent_record) {
-            this.renderDates(dateProstudent_record);
+        View.prototype.renderDatesWrap = function (dateProstdnt_record) {
+            this.renderDates(dateProstdnt_record);
             this.addScroll({
                 duration: createDuration(this.context.options.scrollTime)
             });
@@ -7566,7 +7566,7 @@ Docs & License: https://fullcalendar.io/
             this.stopNowIndicator();
             this.unrenderDates();
         };
-        View.prototype.renderDates = function (dateProstudent_record) { };
+        View.prototype.renderDates = function (dateProstdnt_record) { };
         View.prototype.unrenderDates = function () { };
         // Business Hours
         // -----------------------------------------------------------------------------------------------------------------
@@ -7593,7 +7593,7 @@ Docs & License: https://fullcalendar.io/
         // util for subclasses
         View.prototype.sliceEvents = function (eventStore, allDay) {
             var props = this.props;
-            return sliceEventStore(eventStore, props.eventUiBases, props.dateProstudent_record.activeRange, allDay ? this.context.nextDayThreshold : null).fg;
+            return sliceEventStore(eventStore, props.eventUiBases, props.dateProstdnt_record.activeRange, allDay ? this.context.nextDayThreshold : null).fg;
         };
         // Event Selection
         // -----------------------------------------------------------------------------------------------------------------
@@ -7643,14 +7643,14 @@ Docs & License: https://fullcalendar.io/
         // which is defined by this.getNowIndicatorUnit().
         // TODO: somehow do this for the current whole day's background too
         // USAGE: must be called manually from subclasses' render methods! don't need to call stopNowIndicator tho
-        View.prototype.startNowIndicator = function (dateProstudent_record, dateProstudent_recordGenerator) {
+        View.prototype.startNowIndicator = function (dateProstdnt_record, dateProstdnt_recordGenerator) {
             var _this = this;
             var _a = this.context, calendar = _a.calendar, dateEnv = _a.dateEnv, options = _a.options;
             var unit;
             var update;
             var delay; // ms wait value
             if (options.nowIndicator && !this.initialNowDate) {
-                unit = this.getNowIndicatorUnit(dateProstudent_record, dateProstudent_recordGenerator);
+                unit = this.getNowIndicatorUnit(dateProstdnt_record, dateProstdnt_recordGenerator);
                 if (unit) {
                     update = this.updateNowIndicator.bind(this);
                     this.initialNowDate = calendar.getNow();
@@ -7676,7 +7676,7 @@ Docs & License: https://fullcalendar.io/
         // rerenders the now indicator, computing the new current time from the amount of time that has passed
         // since the initial getNow call.
         View.prototype.updateNowIndicator = function () {
-            if (this.props.dateProstudent_record && // a way to determine if dates were rendered yet
+            if (this.props.dateProstdnt_record && // a way to determine if dates were rendered yet
                 this.initialNowDate // activated before?
             ) {
                 this.unrenderNowIndicator(); // won't unrender if unnecessary
@@ -7700,7 +7700,7 @@ Docs & License: https://fullcalendar.io/
                 this.isNowIndicatorRendered = false;
             }
         };
-        View.prototype.getNowIndicatorUnit = function (dateProstudent_record, dateProstudent_recordGenerator) {
+        View.prototype.getNowIndicatorUnit = function (dateProstdnt_record, dateProstdnt_recordGenerator) {
             // subclasses should implement
         };
         // Renders a current time indicator at the given datetime
@@ -7730,7 +7730,7 @@ Docs & License: https://fullcalendar.io/
         };
         View.prototype.queryScroll = function () {
             var scroll = {};
-            if (this.props.dateProstudent_record) { // dates rendered yet?
+            if (this.props.dateProstdnt_record) { // dates rendered yet?
                 __assign(scroll, this.queryDateScroll());
             }
             return scroll;
@@ -7739,11 +7739,11 @@ Docs & License: https://fullcalendar.io/
             var duration = scroll.duration, isForced = scroll.isForced;
             if (duration != null && !isForced) {
                 delete scroll.duration;
-                if (this.props.dateProstudent_record) { // dates rendered yet?
+                if (this.props.dateProstdnt_record) { // dates rendered yet?
                     __assign(scroll, this.computeDateScroll(duration));
                 }
             }
-            if (this.props.dateProstudent_record) { // dates rendered yet?
+            if (this.props.dateProstdnt_record) { // dates rendered yet?
                 this.applyDateScroll(scroll);
             }
         };
@@ -7764,7 +7764,7 @@ Docs & License: https://fullcalendar.io/
     }(DateComponent));
     EmitterMixin.mixInto(View);
     View.prototype.usesMinMaxTime = false;
-    View.prototype.dateProstudent_recordGeneratorClass = DateProstudent_recordGenerator;
+    View.prototype.dateProstdnt_recordGeneratorClass = DateProstdnt_recordGenerator;
 
     var FgEventRenderer = /** @class */ (function () {
         function FgEventRenderer() {
@@ -8207,9 +8207,9 @@ Docs & License: https://fullcalendar.io/
             return { weekday: 'long' }; // "Saturday"
         }
     }
-    function renderDateCell(dateMarker, dateProstudent_record, datesRepDistinctDays, colCnt, colHeadFormat, context, colspan, otherAttrs) {
+    function renderDateCell(dateMarker, dateProstdnt_record, datesRepDistinctDays, colCnt, colHeadFormat, context, colspan, otherAttrs) {
         var dateEnv = context.dateEnv, theme = context.theme, options = context.options;
-        var isDateValid = rangeContainsMarker(dateProstudent_record.activeRange, dateMarker); // TODO: called too frequently. cache somehow.
+        var isDateValid = rangeContainsMarker(dateProstdnt_record.activeRange, dateMarker); // TODO: called too frequently. cache somehow.
         var classNames = [
             'fc-day-header',
             theme.getClass('widgetHeader')
@@ -8229,7 +8229,7 @@ Docs & License: https://fullcalendar.io/
             classNames = classNames.concat(
             // includes the day-of-week class
             // noThemeHighlight=true (don't highlight the header)
-            getDayClasses(dateMarker, dateProstudent_record, context, true));
+            getDayClasses(dateMarker, dateProstdnt_record, context, true));
         }
         else {
             classNames.push('fc-' + DAY_IDS[dateMarker.getUTCDay()]); // only add the day-of-week class
@@ -8273,7 +8273,7 @@ Docs & License: https://fullcalendar.io/
                 computeFallbackHeaderFormat(datesRepDistinctDays, dates.length));
             for (var _i = 0, dates_1 = dates; _i < dates_1.length; _i++) {
                 var date = dates_1[_i];
-                parts.push(renderDateCell(date, props.dateProstudent_record, datesRepDistinctDays, dates.length, colHeadFormat, context));
+                parts.push(renderDateCell(date, props.dateProstdnt_record, datesRepDistinctDays, dates.length, colHeadFormat, context));
             }
             if (context.isRtl) {
                 parts.reverse();
@@ -8302,14 +8302,14 @@ Docs & License: https://fullcalendar.io/
     }(Component));
 
     var DaySeries = /** @class */ (function () {
-        function DaySeries(range, dateProstudent_recordGenerator) {
+        function DaySeries(range, dateProstdnt_recordGenerator) {
             var date = range.start;
             var end = range.end;
             var indices = [];
             var dates = [];
             var dayIndex = -1;
             while (date < end) { // loop each day from start to end
-                if (dateProstudent_recordGenerator.isHiddenDay(date)) {
+                if (dateProstdnt_recordGenerator.isHiddenDay(date)) {
                     indices.push(dayIndex + 0.5); // mark that it's between indices
                 }
                 else {
@@ -8446,20 +8446,20 @@ Docs & License: https://fullcalendar.io/
             this.sliceEventDrag = memoize(this._sliceInteraction);
             this.sliceEventResize = memoize(this._sliceInteraction);
         }
-        Slicer.prototype.sliceProps = function (props, dateProstudent_record, nextDayThreshold, calendar, component) {
+        Slicer.prototype.sliceProps = function (props, dateProstdnt_record, nextDayThreshold, calendar, component) {
             var extraArgs = [];
             for (var _i = 5; _i < arguments.length; _i++) {
                 extraArgs[_i - 5] = arguments[_i];
             }
             var eventUiBases = props.eventUiBases;
-            var eventSegs = this.sliceEventStore.apply(this, [props.eventStore, eventUiBases, dateProstudent_record, nextDayThreshold, component].concat(extraArgs));
+            var eventSegs = this.sliceEventStore.apply(this, [props.eventStore, eventUiBases, dateProstdnt_record, nextDayThreshold, component].concat(extraArgs));
             return {
                 dateSelectionSegs: this.sliceDateSelection.apply(this, [props.dateSelection, eventUiBases, component].concat(extraArgs)),
-                businessHourSegs: this.sliceBusinessHours.apply(this, [props.businessHours, dateProstudent_record, nextDayThreshold, calendar, component].concat(extraArgs)),
+                businessHourSegs: this.sliceBusinessHours.apply(this, [props.businessHours, dateProstdnt_record, nextDayThreshold, calendar, component].concat(extraArgs)),
                 fgEventSegs: eventSegs.fg,
                 bgEventSegs: eventSegs.bg,
-                eventDrag: this.sliceEventDrag.apply(this, [props.eventDrag, eventUiBases, dateProstudent_record, nextDayThreshold, component].concat(extraArgs)),
-                eventResize: this.sliceEventResize.apply(this, [props.eventResize, eventUiBases, dateProstudent_record, nextDayThreshold, component].concat(extraArgs)),
+                eventDrag: this.sliceEventDrag.apply(this, [props.eventDrag, eventUiBases, dateProstdnt_record, nextDayThreshold, component].concat(extraArgs)),
+                eventResize: this.sliceEventResize.apply(this, [props.eventResize, eventUiBases, dateProstdnt_record, nextDayThreshold, component].concat(extraArgs)),
                 eventSelection: props.eventSelection
             }; // TODO: give interactionSegs?
         };
@@ -8473,7 +8473,7 @@ Docs & License: https://fullcalendar.io/
                 {},
                 component].concat(extraArgs));
         };
-        Slicer.prototype._sliceBusinessHours = function (businessHours, dateProstudent_record, nextDayThreshold, calendar, component) {
+        Slicer.prototype._sliceBusinessHours = function (businessHours, dateProstdnt_record, nextDayThreshold, calendar, component) {
             var extraArgs = [];
             for (var _i = 5; _i < arguments.length; _i++) {
                 extraArgs[_i - 5] = arguments[_i];
@@ -8481,19 +8481,19 @@ Docs & License: https://fullcalendar.io/
             if (!businessHours) {
                 return [];
             }
-            return this._sliceEventStore.apply(this, [expandRecurring(businessHours, computeActiveRange(dateProstudent_record, Boolean(nextDayThreshold)), calendar),
+            return this._sliceEventStore.apply(this, [expandRecurring(businessHours, computeActiveRange(dateProstdnt_record, Boolean(nextDayThreshold)), calendar),
                 {},
-                dateProstudent_record,
+                dateProstdnt_record,
                 nextDayThreshold,
                 component].concat(extraArgs)).bg;
         };
-        Slicer.prototype._sliceEventStore = function (eventStore, eventUiBases, dateProstudent_record, nextDayThreshold, component) {
+        Slicer.prototype._sliceEventStore = function (eventStore, eventUiBases, dateProstdnt_record, nextDayThreshold, component) {
             var extraArgs = [];
             for (var _i = 5; _i < arguments.length; _i++) {
                 extraArgs[_i - 5] = arguments[_i];
             }
             if (eventStore) {
-                var rangeRes = sliceEventStore(eventStore, eventUiBases, computeActiveRange(dateProstudent_record, Boolean(nextDayThreshold)), nextDayThreshold);
+                var rangeRes = sliceEventStore(eventStore, eventUiBases, computeActiveRange(dateProstdnt_record, Boolean(nextDayThreshold)), nextDayThreshold);
                 return {
                     bg: this.sliceEventRanges(rangeRes.bg, component, extraArgs),
                     fg: this.sliceEventRanges(rangeRes.fg, component, extraArgs)
@@ -8503,7 +8503,7 @@ Docs & License: https://fullcalendar.io/
                 return { bg: [], fg: [] };
             }
         };
-        Slicer.prototype._sliceInteraction = function (interaction, eventUiBases, dateProstudent_record, nextDayThreshold, component) {
+        Slicer.prototype._sliceInteraction = function (interaction, eventUiBases, dateProstdnt_record, nextDayThreshold, component) {
             var extraArgs = [];
             for (var _i = 5; _i < arguments.length; _i++) {
                 extraArgs[_i - 5] = arguments[_i];
@@ -8511,7 +8511,7 @@ Docs & License: https://fullcalendar.io/
             if (!interaction) {
                 return null;
             }
-            var rangeRes = sliceEventStore(interaction.mutatedEvents, eventUiBases, computeActiveRange(dateProstudent_record, Boolean(nextDayThreshold)), nextDayThreshold);
+            var rangeRes = sliceEventStore(interaction.mutatedEvents, eventUiBases, computeActiveRange(dateProstdnt_record, Boolean(nextDayThreshold)), nextDayThreshold);
             return {
                 segs: this.sliceEventRanges(rangeRes.fg, component, extraArgs),
                 affectedInstances: interaction.affectedEvents.instances,
@@ -8567,17 +8567,17 @@ Docs & License: https://fullcalendar.io/
     }());
     /*
     for incorporating minTime/maxTime if appropriate
-    TODO: should be part of DateProstudent_record!
-    TimelineDateProstudent_record already does this btw
+    TODO: should be part of DateProstdnt_record!
+    TimelineDateProstdnt_record already does this btw
     */
-    function computeActiveRange(dateProstudent_record, isComponentAllDay) {
-        var range = dateProstudent_record.activeRange;
+    function computeActiveRange(dateProstdnt_record, isComponentAllDay) {
+        var range = dateProstdnt_record.activeRange;
         if (isComponentAllDay) {
             return range;
         }
         return {
-            start: addMs(range.start, dateProstudent_record.minTime.milliseconds),
-            end: addMs(range.end, dateProstudent_record.maxTime.milliseconds - 864e5) // 864e5 = ms in a day
+            start: addMs(range.start, dateProstdnt_record.minTime.milliseconds),
+            end: addMs(range.end, dateProstdnt_record.maxTime.milliseconds - 864e5) // 864e5 = ms in a day
         };
     }
 
@@ -8590,7 +8590,7 @@ Docs & License: https://fullcalendar.io/
     exports.ComponentContext = ComponentContext;
     exports.DateComponent = DateComponent;
     exports.DateEnv = DateEnv;
-    exports.DateProstudent_recordGenerator = DateProstudent_recordGenerator;
+    exports.DateProstdnt_recordGenerator = DateProstdnt_recordGenerator;
     exports.DayHeader = DayHeader;
     exports.DaySeries = DaySeries;
     exports.DayTable = DayTable;

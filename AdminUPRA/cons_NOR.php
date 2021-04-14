@@ -167,7 +167,7 @@ $advisor_name = $_SESSION['adv_name'];
         <div class="card-body p-0">
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
-    //Cambie Student_record_details por recotd_details
+    //Cambie stdnt_record_details por recotd_details
         $sql ="SELECT stdnt_email FROM record_details
         INNER JOIN student USING (stdnt_number)
         WHERE conducted_counseling = 0 AND record_status != 0";

@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Shape: None',
         dragImageHere: 'Sleep hier een afbeelding naar toe',
         dropImage: 'Drop image or Text',
-        selectFromstudent_records: 'Selecteer een bestand',
-        maximumstudent_recordSize: 'Maximum student_record size',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'Selecteer een bestand',
+        maximumstdnt_recordSize: 'Maximum stdnt_record size',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'URL van de afbeelding',
         remove: 'Verwijder afbeelding',
         original: 'Original'

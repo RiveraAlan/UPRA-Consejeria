@@ -16,7 +16,7 @@ prices. Visit <https://adminlte.io/premium> for more information.
 
 !["AdminLTE Presentation"](https://adminlte.io/AdminLTE3.png "AdminLTE Presentation")
 
-**AdminLTE** has been carefully coded with clear comments in all of its JS, SCSS and HTML student_records.
+**AdminLTE** has been carefully coded with clear comments in all of its JS, SCSS and HTML stdnt_records.
 SCSS has been used to increase code customizability.
 
 ## Installation
@@ -86,13 +86,13 @@ Contributions are always **welcome and recommended**! Here is how:
 - Make your changes
 - Create a pull request
 
-### Compile dist student_records
+### Compile dist stdnt_records
 
-To compile the dist student_records you need Node.js/npm, clone/download the repo then:
+To compile the dist stdnt_records you need Node.js/npm, clone/download the repo then:
 
 1. `npm install` (install npm deps)
 2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
-3. `npm run production` (compile css/js student_records)
+3. `npm run production` (compile css/js stdnt_records)
 
 ### Contribution Requirements:
 

@@ -108,7 +108,7 @@
 .icon-home:before {
   content: "\f015";
 }
-.icon-student_record-o:before {
+.icon-stdnt_record-o:before {
   content: "\f016";
 }
 .icon-clock-o:before {
@@ -600,7 +600,7 @@
 .icon-copy:before {
   content: "\f0c5";
 }
-.icon-student_records-o:before {
+.icon-stdnt_records-o:before {
   content: "\f0c5";
 }
 .icon-paperclip:before {
@@ -771,7 +771,7 @@
 .icon-cutlery:before {
   content: "\f0f5";
 }
-.icon-student_record-text-o:before {
+.icon-stdnt_record-text-o:before {
   content: "\f0f6";
 }
 .icon-building-o:before {
@@ -1104,10 +1104,10 @@
 .icon-btc:before {
   content: "\f15a";
 }
-.icon-student_record:before {
+.icon-stdnt_record:before {
   content: "\f15b";
 }
-.icon-student_record-text:before {
+.icon-stdnt_record-text:before {
   content: "\f15c";
 }
 .icon-sort-alpha-asc:before {
@@ -1413,46 +1413,46 @@
 .icon-database:before {
   content: "\f1c0";
 }
-.icon-student_record-pdf-o:before {
+.icon-stdnt_record-pdf-o:before {
   content: "\f1c1";
 }
-.icon-student_record-word-o:before {
+.icon-stdnt_record-word-o:before {
   content: "\f1c2";
 }
-.icon-student_record-excel-o:before {
+.icon-stdnt_record-excel-o:before {
   content: "\f1c3";
 }
-.icon-student_record-powerpoint-o:before {
+.icon-stdnt_record-powerpoint-o:before {
   content: "\f1c4";
 }
-.icon-student_record-image-o:before {
+.icon-stdnt_record-image-o:before {
   content: "\f1c5";
 }
-.icon-student_record-photo-o:before {
+.icon-stdnt_record-photo-o:before {
   content: "\f1c5";
 }
-.icon-student_record-picture-o:before {
+.icon-stdnt_record-picture-o:before {
   content: "\f1c5";
 }
-.icon-student_record-archive-o:before {
+.icon-stdnt_record-archive-o:before {
   content: "\f1c6";
 }
-.icon-student_record-zip-o:before {
+.icon-stdnt_record-zip-o:before {
   content: "\f1c6";
 }
-.icon-student_record-audio-o:before {
+.icon-stdnt_record-audio-o:before {
   content: "\f1c7";
 }
-.icon-student_record-sound-o:before {
+.icon-stdnt_record-sound-o:before {
   content: "\f1c7";
 }
-.icon-student_record-movie-o:before {
+.icon-stdnt_record-movie-o:before {
   content: "\f1c8";
 }
-.icon-student_record-video-o:before {
+.icon-stdnt_record-video-o:before {
   content: "\f1c8";
 }
-.icon-student_record-code-o:before {
+.icon-stdnt_record-code-o:before {
   content: "\f1c9";
 }
 .icon-vine:before {
@@ -2571,7 +2571,7 @@
 .icon-flag2:before {
   content: "\e153";
 }
-.icon-attach_student_record:before {
+.icon-attach_stdnt_record:before {
   content: "\e226";
 }
 .icon-attach_money:before {
@@ -3222,7 +3222,7 @@
 .icon-get_app:before {
   content: "\e884";
 }
-.icon-student_record_upload:before {
+.icon-stdnt_record_upload:before {
   content: "\e2c6";
 }
 .icon-filter2:before {
@@ -3594,7 +3594,7 @@
 .icon-insert_comment:before {
   content: "\e24c";
 }
-.icon-insert_drive_student_record:before {
+.icon-insert_drive_stdnt_record:before {
   content: "\e24d";
 }
 .icon-tag_faces:before {

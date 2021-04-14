@@ -211,11 +211,11 @@
       z-index: 1000; }
       .dropzone .dz-preview:hover .dz-details {
         opacity: 1; }
-    .dropzone .dz-preview.dz-student_record-preview .dz-image {
+    .dropzone .dz-preview.dz-stdnt_record-preview .dz-image {
       border-radius: 20px;
       background: #999;
       background: linear-gradient(to bottom, #eee, #ddd); }
-    .dropzone .dz-preview.dz-student_record-preview .dz-details {
+    .dropzone .dz-preview.dz-stdnt_record-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
       background: white; }
@@ -251,17 +251,17 @@
       .dropzone .dz-preview .dz-details .dz-size {
         margin-bottom: 1em;
         font-size: 16px; }
-      .dropzone .dz-preview .dz-details .dz-student_recordname {
+      .dropzone .dz-preview .dz-details .dz-stdnt_recordname {
         white-space: nowrap; }
-        .dropzone .dz-preview .dz-details .dz-student_recordname:hover span {
+        .dropzone .dz-preview .dz-details .dz-stdnt_recordname:hover span {
           border: 1px solid rgba(200, 200, 200, 0.8);
           background-color: rgba(255, 255, 255, 0.8); }
-        .dropzone .dz-preview .dz-details .dz-student_recordname:not(:hover) {
+        .dropzone .dz-preview .dz-details .dz-stdnt_recordname:not(:hover) {
           overflow: hidden;
           text-overflow: ellipsis; }
-          .dropzone .dz-preview .dz-details .dz-student_recordname:not(:hover) span {
+          .dropzone .dz-preview .dz-details .dz-stdnt_recordname:not(:hover) span {
             border: 1px solid transparent; }
-      .dropzone .dz-preview .dz-details .dz-student_recordname span, .dropzone .dz-preview .dz-details .dz-size span {
+      .dropzone .dz-preview .dz-details .dz-stdnt_recordname span, .dropzone .dz-preview .dz-details .dz-size span {
         background-color: rgba(255, 255, 255, 0.4);
         padding: 0 0.4em;
         border-radius: 3px; }

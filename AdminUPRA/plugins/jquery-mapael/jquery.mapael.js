@@ -105,7 +105,7 @@
         // The legends list
         self.legends = {};
 
-        // The map configuration object (taken from map student_record)
+        // The map configuration object (taken from map stdnt_record)
         self.mapConf = {};
 
         // Holds all custom event handlers

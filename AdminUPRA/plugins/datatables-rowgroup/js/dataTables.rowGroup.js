@@ -6,17 +6,17 @@
  * @summary     RowGroup
  * @description RowGrouping for DataTables
  * @version     1.1.2
- * @student_record        dataTables.rowGroup.js
+ * @stdnt_record        dataTables.rowGroup.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     datatables.net
  * @copyright   Copyright 2017-2020 SpryMedia Ltd.
  *
- * This source student_record is free software, available under the following license:
+ * This source stdnt_record is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
  *
- * This source student_record is distributed in the hope that it will be useful, but
+ * This source stdnt_record is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license student_records for details.
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the license stdnt_records for details.
  *
  * For details please refer to: http://www.datatables.net
  */

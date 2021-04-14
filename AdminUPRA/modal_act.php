@@ -8,8 +8,8 @@ $advisor_name = $_SESSION['adv_name'];
 //   header("Location: index.php");
 //     exit();
 // }
-if (isset($_GET['crse_label']) AND (isset($_GET['crse_name']))) {
-$crse_label = $_GET['crse_label'];
+if (isset($_GET['crse_code']) AND (isset($_GET['crse_name']))) {
+$crse_code = $_GET['crse_code'];
 $crse_name =  $_GET['crse_name'];
 }
 ?>

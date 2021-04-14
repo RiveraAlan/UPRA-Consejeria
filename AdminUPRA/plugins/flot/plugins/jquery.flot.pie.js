@@ -51,7 +51,7 @@ The plugin supports these options:
         }
     }
 
-More detail and specific examples can be found in the included HTML student_record.
+More detail and specific examples can be found in the included HTML stdnt_record.
 
 */
 

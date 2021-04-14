@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Форма: Немає',
         dragImageHere: 'Перетягніть сюди картинку',
         dropImage: 'Перетягніть картинку',
-        selectFromstudent_records: 'Вибрати з файлів',
-        maximumstudent_recordSize: 'Maximum student_record size',
-        maximumstudent_recordSizeError: 'Maximum student_record size exceeded.',
+        selectFromstdnt_records: 'Вибрати з файлів',
+        maximumstdnt_recordSize: 'Maximum stdnt_record size',
+        maximumstdnt_recordSizeError: 'Maximum stdnt_record size exceeded.',
         url: 'URL картинки',
         remove: 'Видалити картинку',
         original: 'Original'

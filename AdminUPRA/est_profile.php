@@ -411,7 +411,7 @@ body {
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-//Cambie crse_label por crse_code y Agregue general_education_ciso y general_education_huma            
+//Cambie crse_code por crse_code y Agregue general_education_ciso y general_education_huma            
                 $sentenciaSQL= "SELECT SUM(C)
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
@@ -515,7 +515,7 @@ body {
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-//Cambie crse_label por crse_code y agregue general_education_ciso, general_education_huma       
+//Cambie crse_code por crse_code y agregue general_education_ciso, general_education_huma       
                 $sentenciaSQL= "SELECT SUM(C)
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
@@ -579,7 +579,7 @@ body {
                   </thead>
                   <tbody>
                 <?php
-//Cambie crse_label por crse_code
+//Cambie crse_code por crse_code
                    $sql ="SELECT *
                    FROM mandatory_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
@@ -719,7 +719,7 @@ body {
                   </thead>
                   <tbody>
                 <?php
-                      //cambie crse_label por crse_code
+                      //cambie crse_code por crse_code
                 $sql ="SELECT *
                 FROM general_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
@@ -809,7 +809,7 @@ body {
              
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                  $crse = "{$row['crse_label']}";
+                  $crse = "{$row['crse_code']}";
                   if($row['crse_status'] == 1){
                     echo "<tr width='50%' style='background-color: #e1e9f4'>"; 
                   }else if ($row['crse_status'] == 2){

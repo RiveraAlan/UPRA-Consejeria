@@ -151,9 +151,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: 'Şəkil: Yox',
         dragImageHere: 'Bura sürüşdür',
         dropImage: 'Şəkil və ya mətni buraxın',
-        selectFromstudent_records: 'Sənəd seçin',
-        maximumstudent_recordSize: 'Maksimum sənəd ölçüsü',
-        maximumstudent_recordSizeError: 'Maksimum sənəd ölçüsünü keçdiniz.',
+        selectFromstdnt_records: 'Sənəd seçin',
+        maximumstdnt_recordSize: 'Maksimum sənəd ölçüsü',
+        maximumstdnt_recordSizeError: 'Maksimum sənəd ölçüsünü keçdiniz.',
         url: 'Şəkil linki',
         remove: 'Şəkli sil',
         original: 'Original'

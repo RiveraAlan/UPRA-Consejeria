@@ -1577,13 +1577,13 @@
   };
 
   /**!
-   * @student_recordOverview Kickass library to create and place poppers near their reference elements.
+   * @stdnt_recordOverview Kickass library to create and place poppers near their reference elements.
    * @version 1.16.0
    * @license
    * Copyright (c) 2016 Federico Zivolo and contributors
    *
    * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation student_records (the "Software"), to deal
+   * of this software and associated documentation stdnt_records (the "Software"), to deal
    * in the Software without restriction, including without limitation the rights
    * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
    * copies of the Software, and to permit persons to whom the Software is
@@ -5371,7 +5371,7 @@
    * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
    */
 
-  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|student_record):|[^&:/?#]*(?:[/?#]|$))/gi;
+  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|stdnt_record):|[^&:/?#]*(?:[/?#]|$))/gi;
   /**
    * A pattern that matches safe data URLs. Only matches image, video and audio types.
    *

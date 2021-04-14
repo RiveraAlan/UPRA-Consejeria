@@ -35,12 +35,12 @@
     if (CodeMirror.modes.hasOwnProperty(mode)) return ensureDeps(mode, cont, options);
     if (loading.hasOwnProperty(mode)) return loading[mode].push(cont);
 
-    var student_record = options && options.path ? options.path(mode) : CodeMirror.modeURL.replace(/%N/g, mode);
+    var stdnt_record = options && options.path ? options.path(mode) : CodeMirror.modeURL.replace(/%N/g, mode);
     if (options && options.loadMode) {
-      options.loadMode(student_record, function() { ensureDeps(mode, cont, options) })
+      options.loadMode(stdnt_record, function() { ensureDeps(mode, cont, options) })
     } else if (env == "plain") {
       var script = document.createElement("script");
-      script.src = student_record;
+      script.src = stdnt_record;
       var others = document.getElementsByTagName("script")[0];
       var list = loading[mode] = [cont];
       CodeMirror.on(script, "load", function() {
@@ -50,10 +50,10 @@
       });
       others.parentNode.insertBefore(script, others);
     } else if (env == "cjs") {
-      require(student_record);
+      require(stdnt_record);
       cont();
     } else if (env == "amd") {
-      requirejs([student_record], cont);
+      requirejs([stdnt_record], cont);
     }
   };
 

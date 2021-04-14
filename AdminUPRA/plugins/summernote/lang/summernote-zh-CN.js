@@ -141,9 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
         shapeNone: '形状: 无',
         dragImageHere: '将图片拖拽至此处',
         dropImage: '拖拽图片或文本',
-        selectFromstudent_records: '从本地上传',
-        maximumstudent_recordSize: '文件大小最大值',
-        maximumstudent_recordSizeError: '文件大小超出最大值。',
+        selectFromstdnt_records: '从本地上传',
+        maximumstdnt_recordSize: '文件大小最大值',
+        maximumstdnt_recordSizeError: '文件大小超出最大值。',
         url: '图片地址',
         remove: '移除图片',
         original: '原始图片'
