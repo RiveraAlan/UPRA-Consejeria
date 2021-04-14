@@ -1,23 +1,5 @@
 <?php
-/*$file = fopen("Expediente_Alan.txt", "r") or die("Unable to open file!");
-
-$i = 0;
-$data ; 
-while(! feof($file))
-  {
-  echo fgets($file). "<br />";
-    
-    $i++; 
-    
-    $data = fgets($file). "<br />";
-    
-    
-    $codigo[$i] = preg_filter("/[A-Z]{4}[A-Z0-9]{4}/", '($0)', $data);
-    
-    echo  "esto $codigo[$i]" ; 
-  }
-fclose($file);*/
-
+require 'private/dbconnect.php';
 
 $array = file("Expediente_Alan.txt");
 // print_r($array);
@@ -85,19 +67,15 @@ if (preg_match_all("/[;][A-Z][;]{1}/", $item, $result_grade)){
   $res_grade = preg_replace($pattern_dos, NULL,$entrada_dos);
 }
 
-// $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass) 
-// VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."')";
+$sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
+VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."', 0)";
 echo $sql, " ||| ";
-// // Prepare statement
-// $stmt = $conn->prepare($sql);
-// // execute the query
-// $stmt->execute();
+// Prepare statement
+$stmt = $conn->prepare($sql);
+// execute the query
+$stmt->execute();
 //exit
-header("Location: ../inicio.php");
-exit();
-array_push($class, $res_major[0]);
+// header("Location: ../inicio.php");
+// exit();
 }
-
-
-// print_r($class[0]);
 ?>

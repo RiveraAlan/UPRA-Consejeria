@@ -399,7 +399,7 @@ h2 {
         <div class="form-group">
           <label for="sel1">Seleccione el departamento (Concentración):</label>
           <select class="form-control" id="dept"> 
-          <option>CCOM</option>
+          <option>CC COMS BCN</option>
           </select>
           <label style="margin-left: 5px">Año</label><br>
         <input type="number" id="cohort_year" name="cohort_year" placeholder="2021" style="margin-left: 2px">
@@ -474,13 +474,13 @@ h2 {
       </thead>
       <tbody id="requisito">
       <td>
-        <input type="number" id="departamental" name="departamental" style="width:100%"></td>
+        <input type="number" id="cred_dept" name="departamental" style="width:100%"></td>
         <td>
-        <input type="number" id="free" name="free" style="width:100%"></td>
+        <input type="number" id="cred_free" name="free" style="width:100%"></td>
         <td>
-        <input type="number" id="ciso" name="ciso" style="width:100%"></td>
+        <input type="number" id="cred_ciso" name="ciso" style="width:100%"></td>
         <td>
-        <input type="number" id="huma" name="huma" style="width:100%"></td>
+        <input type="number" id="cred_huma" name="huma" style="width:100%"></td>
       <tbody>
   </table>
 </div>
@@ -501,16 +501,16 @@ h2 {
           </select>
           <h3 for="sel3"><b>Seleccione el Año:</b></h3>
           <select class="form-control" id="year"> 
-            <option>Primer Año</option>
-            <option>Segundo Año</option>
-            <option>Tercer Año</option>
-            <option>Cuarto Año</option>
+            <option value="1">Primer Año</option>
+            <option value="2">Segundo Año</option>
+            <option value="3">Tercer Año</option>
+            <option value="4">Cuarto Año</option>
           </select>
       
           <h3 for="sel3"><b>Seleccione el Semestre:</b></h3>
           <select class="form-control" id="semester"> 
-            <option>Enero-Mayo</option>
-            <option>Agosto-Diciembre</option>
+            <option value="1">Enero-Mayo</option>
+            <option value="2">Agosto-Diciembre</option>
           </select>
 
           <div class="grid-container">
@@ -831,28 +831,31 @@ window.onclick = function(event) {
 }
 
 function submitAll() {
-  dept = document.getElementById("dept");
-  cohort_year = document.getElementById("cohort_year");
-  cred_dept = document.getElementById("cred_dept");
-  cred_free = document.getElementById("cred_free");
-  cred_ciso = document.getElementById("cred_ciso");
+  dept = document.getElementById("dept").value;
+  cohort_year = document.getElementById("cohort_year").value;
+  cred_dept = document.getElementById("cred_dept").value;
+  cred_free = document.getElementById("cred_free").value;
+  cred_ciso = document.getElementById("cred_ciso").value;
+  cred_huma = document.getElementById("cred_huma").value;
 
+  console.log(dept, cohort_year, cred_dept, cred_free, cred_ciso);
   document.getElementById("subForm").innerHTML = `
-  <form method="POST" action="inc/add_class.php" id="form">
+  <form method="POST" action="inc/add_cohorte.php" id="form">
   <input type="hidden" name="dept" value="${dept}"></input>
   <input type="hidden" name="cohort_year" value="${cohort_year}"></input>
-  <input type="hidden" name="concentracion" value="${concentracion}[]"></input>
-  <input type="hidden" name="general" value="${general}[]"></input>
+  <input type="hidden" name="concentracion" value="${concentracion}"></input>
+  <input type="hidden" name="general" value="${general}"></input>
   <input type="hidden" name="cred_dept" value="${cred_dept}"></input>
   <input type="hidden" name="cred_free" value="${cred_free}"></input>
   <input type="hidden" name="cred_ciso" value="${cred_ciso}"></input>
-  <input type="hidden" name="pre_co" value="${arr}[]"></input>
-  <input type="hidden" name="class_year" value="${class_arr}[]"></input>
+  <input type="hidden" name="cred_huma" value="${cred_huma}"></input>
+  <input type="hidden" name="pre_co" value="${arr}"></input>
+  <input type="hidden" name="class_year" value="${class_arr}"></input>
   </form>
   `;
 
   document.getElementById("form").submit();
-}
+} 
 
 </script>
 
