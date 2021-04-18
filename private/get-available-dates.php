@@ -9,7 +9,7 @@ if( $date < $today->format('Y-m-d')) {
   exit();
 }
 
-$query = "SELECT  HOUR(appt_date) as hora, MINUTE(appt_date) as minutos FROM appointment WHERE DATE(appt_date) = '$date';";
+$query = "SELECT HOUR(appt_date) as hora, MINUTE(appt_date) as minutos FROM appointment WHERE DATE(appt_date) = '$date';";
 $result = mysqli_query($conn,$query);
 $resultCheck = mysqli_num_rows($result);
 

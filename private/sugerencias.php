@@ -7,7 +7,7 @@ require 'dbconnect.php';
     $crse_status = 3;
     if (count($ids) > 0) { 
       foreach ($ids as $crse_code) {  
-        $sql ="SELECT  crse_code
+        $sql ="SELECT crse_code
         FROM stdnt_record WHERE stdnt_number = $stdnt_number AND crse_code = $crse_code";
          $result = mysqli_query($conn, $sql);
          $resultCheck = mysqli_num_rows($result);
