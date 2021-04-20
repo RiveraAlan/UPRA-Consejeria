@@ -942,7 +942,7 @@ body {
                 <?php
                     //code por label/name
                 $sql ="SELECT *
-                   FROM free_courses INNER JOIN stdnt_record USING (crse_code) WHERE special_id = 2 AND stdnt_number = '$student_id'";
+                   FROM free_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$student_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                   
