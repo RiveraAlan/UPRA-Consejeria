@@ -36,14 +36,17 @@ include_once 'private/dbconnect.php';
     <link rel="stylesheet" href="jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="AdminUPRA/dist/css/adminlte.min.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="AdminUPRA/plugins/fontawesome-free/css/all.min.css">
 <!-- Culmina la parte los css y fonts. -->
       <!-- Font Awesome. -->
   <link rel="stylesheet" href="AdminUPRA/plugins/fontawesome-free/css/all.min.css">
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <!-- <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <div class="site-wrap">
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
@@ -54,7 +57,7 @@ include_once 'private/dbconnect.php';
       <div class="site-mobile-menu-body"></div>
     </div>
 <!-- Esta area es para que el student cierre su sesion. -->
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <!-- <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
       <div class="container-fluid">
         <div class="d-flex align-items-center">
           <div class="site-logo mr-auto w-25"><img src="image/upraconse.png" alt=""></div>
@@ -68,37 +71,180 @@ include_once 'private/dbconnect.php';
           </div>
         </div>
       </div>
-    </header>
-      
+    </header> -->       
       <style> 
-      .grid-container-1 {
-      display: grid;
-      grid-template-columns: auto auto;
-      padding: 10px;}
-      
-      .grid-item-1 {
-      padding: 0px;
-        }
-          
-          div.sticky {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        background-color: #f4f9f9;
-        width: 150px;
-        border-style: inset;
-        border-color: #e0c200;
-        
-       
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: transparent;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: transparent;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+/* Table Styles */
+
+.table-wrapper{
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.list-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+    margin-bottom: 2px;
+}
+
+.list-table td, .list-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.list-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.list-table thead th {
+    color: #ffffff;
+    background: #282828;
+}
+
+.sticky {
+  position: fixed;
+  top: 100px;
 }
       </style>
-      
+      <body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+<!-- Navbar -->
+  <nav class="main-header navbar navbar-expand upra-amarillo navbar-light">
+<!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="inicio.php" class="nav-link">Inicio</a>
+      </li>
+    </ul>
+  </nav>
+<!-- /.navbar -->
+<!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="inicio.html" class="brand-link">
+      <img src="image/university.png" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">CONSEJERÍA UPRA</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                $row = mysqli_fetch_assoc($result);
+                ;}
+            ?>
+          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>" ?>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <div class="sticky">
+      <table class="list-table">
+      <thead>
+        <tr class="list">
+          <th>Concentracion</th>
+          <th style="text-align: right">x</th>
+        </tr>
+        </thead>
+        <tbody id="con_table">
+        </tbody>
+      </table>
+      <table class="list-table">
+      <thead>
+        <tr class="list">
+          <th>Generales</th>
+          <th style="text-align: right">x</th>
+        </tr>
+        </thead>
+        <tbody id="gen_table">
+        </tbody>
+      </table>
+      <table class="list-table">
+      <thead>
+        <tr class="list">
+          <th>Humanidades</th>
+          <th style="text-align: right">x</th>
+        </tr>
+        </thead>
+        <tbody id="hum_table">
+        </tbody>
+      </table>
+      <table class="list-table">
+      <thead>
+        <tr class="list">
+          <th>Ciencias Sociales</th>
+          <th style="text-align: right">x</th>
+        </tr>
+        </thead>
+        <tbody id="ciso_table">
+        </tbody>
+      </table>
+      <table class="list-table">
+      <thead>
+        <tr class="list">
+          <th>Libres Departamental</th>
+          <th style="text-align: right">x</th>
+        </tr>
+        </thead>
+        <tbody id="lib_table">
+        </tbody>
+      </table>
+      <table class="list-table">
+      <thead>
+        <tr class="list">
+          <th>Electivas Departamental</th>
+          <th style="text-align: right">x</th>
+        </tr>
+        </thead>
+        <tbody id="dept_table">
+        </tbody>
+      </table>
+      </div>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
  <!-- Culmina la parte cerrar sesion del student. -->
-    <div style="padding-top: 200px; padding-bottom: 20px; margin-left: 15%">
+    <div style="padding-top: 20px; padding-bottom: 20px; margin-left: 15%; margin-top: 0">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">   
-                <div style="margin-right: 30%"><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
+                <div style="margin-right: 30%;"><h6>UNIVERSIDAD DE PUERTO RICO EN ARECIBO</h6>
                                     <h6>DEPARTAMENTO DE CIENCIAS DE CÓMPUTOS</h6>
                                     <h6>EVALUACIÓN BACHILLERATO EN CIENCIAS DE CÓMPUTOS</h6></div>
               </div>
@@ -357,43 +503,6 @@ include_once 'private/dbconnect.php';
                   <h5> <i> Los cursos en color <b style="background:violet;"> Violeta</b> son recomendados por su consejero. </i></h5>
                   <br>
 </div>
-                          
-         <style>
-              div.sticky {
-              position: -webkit-sticky;
-              position: sticky;
-                    left: 0;
-              width: 100%;
-              background-color: yellow;
-              padding: 50px;
-              font-size: 20px;}
-          </style>
-                 
-          
-          <div class="sticky"> </div>
-              
-        
-          <table border="1" id="table">  
-          <tr>  <td colspan="2">Select Technolgy:</td> </tr>  
-          <tr>  <td>c</td>  
-          <td><input type="checkbox" name="techno[]" value="c" class='chk'></td>  
-          </tr>  
-          <tr>  <td>hadoop</td>  
-          <td><input type="checkbox" name="techno[]" value="hadoop" class = 'chk'></td>  
-          </tr>  
-          <tr>   <td>core java</td>  
-          <td><input type="checkbox" name="techno[]" value="Core JAVA"  class='chk'></td>  
-          </tr>  
-
-          <input type="button" value="Click" id="btntest" />
-          <input type="checkbox" class = 'chk' /> and
-          <input type="text" class = 'txt' />
-          <input type="button" value="Delete checked boxes" onclick = "delBoxes();" />    
-              
-              
-              
-          
-           
                             
 <div class="grid-container-1">
   <div class="grid-item-1">                             
@@ -436,7 +545,7 @@ include_once 'private/dbconnect.php';
                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
-                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}'/>&nbsp;</center></td>";
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -455,7 +564,31 @@ include_once 'private/dbconnect.php';
                   echo"
                 
                   
-                  </tr>";}}?>  
+                  </tr>
+                  
+                  <script>
+                  // Bind function to onclick event for checkbox
+                  document.getElementById('{$row['crse_code']}').onclick = function() {
+                    var clase = `'{$row['crse_code']}'`;";
+                    echo '
+                      // access properties using this keyword
+                      if ( this.checked ) {
+                          // Returns true if checked
+                          var list = document.getElementById("con_table").innerHTML;
+                          document.getElementById("con_table").innerHTML = `
+                            ${list}
+                            <tr class="list">
+                            <td class="list">${this.value}</td>
+                            <td><button onClick="con_list(${clase})">x</button></td>
+                            </tr>
+                          `;
+                      } else {
+                          // Returns false if not checked
+                      }
+                  };
+
+                  
+                  </script>';}}?>  
                 </tbody> 
                   </table>
                   <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
@@ -492,7 +625,7 @@ include_once 'private/dbconnect.php';
             
                   echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
-                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -509,7 +642,29 @@ include_once 'private/dbconnect.php';
                     <td></td>";
                   }
                   echo"
-                  </tr>";}}?>
+                  </tr>
+                  
+                  <script>
+                  // Bind function to onclick event for checkbox
+                  document.getElementById('{$row['crse_code']}').onclick = function() {
+                    var clase = `'{$row['crse_code']}'`;";
+                    echo '
+                      // access properties using this keyword
+                      if ( this.checked ) {
+                          // Returns true if checked
+                          var list = document.getElementById("gen_table").innerHTML;
+                          document.getElementById("gen_table").innerHTML = `
+                            ${list}
+                            <tr class="list">
+                            <td class="list">${this.value}</td>
+                            <td><button onClick="gen_list(${clase})">x</button></td>
+                            </tr>
+                          `;
+                      } else {
+                          // Returns false if not checked
+                      }
+                  }; 
+                  </script>';}}?>
                 </tbody>
                   </table>
           
@@ -545,7 +700,7 @@ include_once 'private/dbconnect.php';
                   
                   echo "<tr width='50%' style='background-color: #f4f9f9'>";
                 
-                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -553,7 +708,31 @@ include_once 'private/dbconnect.php';
                       echo "
                     <td>{$row_S['semester_pass']}</td>
                     <td></td>
-                  </tr> ";}}?>
+                  </tr> 
+                  
+                  <script>
+                  // Bind function to onclick event for checkbox
+                  document.getElementById('{$row['crse_code']}').onclick = function() {
+                    var clase = `'{$row['crse_code']}'`;";
+                    echo '
+                      // access properties using this keyword
+                      if ( this.checked ) {
+                          // Returns true if checked
+                          var list = document.getElementById("hum_table").innerHTML;
+                          document.getElementById("hum_table").innerHTML = `
+                            ${list}
+                            <tr class="list">
+                            <td class="list">${this.value}</td>
+                            <td><button onClick="hum_list(${clase})">x</button></td>
+                            </tr>
+                          `;
+                      } else {
+                          // Returns false if not checked
+                      }
+                  };
+
+                  
+                  </script>';}}?>
                 </tbody> 
                   </table>
           
@@ -590,7 +769,7 @@ include_once 'private/dbconnect.php';
                       $row_S = mysqli_fetch_assoc($result_S);
                   echo "<tr width='50%' style='background-color: #f4f9f9'>";
                 
-                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -598,7 +777,31 @@ include_once 'private/dbconnect.php';
                       echo "
                     <td>{$row_S['semester_pass']}</td>
                     <td></td>
-                  </tr> ";}}?>
+                  </tr> 
+                  
+                  <script>
+                  // Bind function to onclick event for checkbox
+                  document.getElementById('{$row['crse_code']}').onclick = function() {
+                    var clase = `'{$row['crse_code']}'`;";
+                    echo '
+                      // access properties using this keyword
+                      if ( this.checked ) {
+                          // Returns true if checked
+                          var list = document.getElementById("ciso_table").innerHTML;
+                          document.getElementById("ciso_table").innerHTML = `
+                            ${list}
+                            <tr class="list">
+                            <td class="list">${this.value}</td>
+                            <td><button onClick="ciso_list(${clase})">x</button></td>
+                            </tr>
+                          `;
+                      } else {
+                          // Returns false if not checked
+                      }
+                  };
+
+                  
+                  </script>';}}?>
                 </tbody> 
                   </table>
           
@@ -628,7 +831,7 @@ include_once 'private/dbconnect.php';
                   
                   echo "<tr width='50%' style='background-color: #f4f9f9'>";
                 
-                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -636,7 +839,31 @@ include_once 'private/dbconnect.php';
                       echo "
                     <td>{$row['semester_pass']}</td>
                     <td></td>
-                  </tr> ";}}?>
+                  </tr> 
+                  
+                  <script>
+                  // Bind function to onclick event for checkbox
+                  document.getElementById('{$row['crse_code']}').onclick = function() {
+                    var clase = `'{$row['crse_code']}'`;";
+                    echo '
+                      // access properties using this keyword
+                      if ( this.checked ) {
+                          // Returns true if checked
+                          var list = document.getElementById("lib_table").innerHTML;
+                          document.getElementById("lib_table").innerHTML = `
+                            ${list}
+                            <tr class="list">
+                            <td class="list">${this.value}</td>
+                            <td><button onClick="lib_list(${clase})">x</button></td>
+                            </tr>
+                          `;
+                      } else {
+                          // Returns false if not checked
+                      }
+                  };
+
+                  
+                  </script>';}}?>
                 </tbody> 
                   </table>
                    <div align = "center"><h3>Electivas Departamentales</h3></div>
@@ -665,7 +892,7 @@ include_once 'private/dbconnect.php';
                 
                   echo "<tr width='50%' style='background-color: #f4f9f9'>";
                    
-                    echo "<td><center><input type='checkbox' name='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
+                    echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
@@ -709,16 +936,35 @@ include_once 'private/dbconnect.php';
                         </form>
                       </div>
                     </div><!-- /.Convalidacion-Equivalencia -->
-                <!-- /Modal -->";
+                <!-- /Modal -->
+                
+                <script>
+                  // Bind function to onclick event for checkbox
+                  document.getElementById('{$row['crse_code']}').onclick = function() {
+                    var clase = `'{$row['crse_code']}'`;";
+                    echo '
+                      // access properties using this keyword
+                      if ( this.checked ) {
+                          // Returns true if checked
+                          var list = document.getElementById("dept_table").innerHTML;
+                          document.getElementById("dept_table").innerHTML = `
+                            ${list}
+                            <tr class="list">
+                            <td class="list">${this.value}</td>
+                            <td><button onClick="dept_list(${clase})">x</button></td>
+                            </tr>
+                          `;
+                      } else {
+                          // Returns false if not checked
+                      }
+                  };
+
+                  
+                  </script>';
                   }}?>
                     </table>
                     <div class='warning-message'><h4 style='text-align:center'>¡RECORDATORIO! Debe tomar 6 créditos en avanzada.</h4></div>
               </div> </div>
-
-                            
-                            
-                            
-
             </div>
           </div>
         </div>
@@ -1492,16 +1738,16 @@ include_once 'private/dbconnect.php';
       
  <!-- Este SCRIPT es para bregar con las appointment (en calendario) indicando de que fecha a que fecha estara disponible ese calendario, con las horas y dias disponibles de los advisors a cargo. -->
   <script>
-            function delBoxes(){
-        var boxes = document.getElementsByClassName('chk');
-        var texts = document.getElementsByClassName('txt');
-        for(var i = 0; i<boxes.length; i++){
-        box = boxes[i];
-        txt = texts[i];
-        if(box.checked){
-            box.parentNode.removeChild(box);
-            txt.parentNode.removeChild(txt);
-        }}}
+        //     function delBoxes(){
+        // var boxes = document.getElementsByClassName('chk');
+        // var texts = document.getElementsByClassName('txt');
+        // for(var i = 0; i<boxes.length; i++){
+        // box = boxes[i];
+        // txt = texts[i];
+        // if(box.checked){
+        //     box.parentNode.removeChild(box);
+        //     txt.parentNode.removeChild(txt);
+        // }}}
 </script> 
       
       
@@ -1594,12 +1840,82 @@ function toggle(source) {
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/consejeria.js"></script>  
-  <script>function toggle(source) {
+  <script src="js/consejeria.js">
+  </script>  
+  <script>
+  function toggle(source) {
               checkboxes = document.getElementsByName('crse_code[]');
               for(var i=0, n=checkboxes.length;i<n;i++) {
                   checkboxes[i].checked = source.checked;
-              }}
+              }
+              }
+
+              function con_list(clase) {
+                    var str = document.getElementById("con_table").innerHTML; 
+                    var list = `${clase}`;
+                    const regex =  new RegExp(list,'g'); // correct way
+                    var crs_var = str.replace(regex, "");
+                    var res = crs_var.replace(/\W*(<tr class="list">)\W\s\W*(<td class="list"><.td>)\W\s\W*(td><button onclick="con_list)\W['']\W*(x<.button><.td>)\s\W*(.tr>)/g, "");
+                    document.getElementById("con_table").innerHTML = res;
+                    let inputs = document.getElementById(clase);
+                    inputs.checked = false;
+                  }
+              
+                  function gen_list(clase) {
+                    var str = document.getElementById("gen_table").innerHTML; 
+                    var list = `${clase}`;
+                    const regex =  new RegExp(list,'g'); // correct way
+                    var crs_var = str.replace(regex, "");
+                    var res = crs_var.replace(/\W*(<tr class="list">)\W\s\W*(<td class="list"><.td>)\W\s\W*(td><button onclick="gen_list)\W['']\W*(x<.button><.td>)\s\W*(.tr>)/g, "");
+                    document.getElementById("gen_table").innerHTML = res;
+                    let inputs = document.getElementById(clase);
+                    inputs.checked = false;
+                  }
+
+                  function hum_list(clase) {
+                    var str = document.getElementById("hum_table").innerHTML; 
+                    var list = `${clase}`;
+                    const regex =  new RegExp(list,'g'); // correct way
+                    var crs_var = str.replace(regex, "");
+                    var res = crs_var.replace(/\W*(<tr class="list">)\W\s\W*(<td class="list"><.td>)\W\s\W*(td><button onclick="hum_list)\W['']\W*(x<.button><.td>)\s\W*(.tr>)/g, "");
+                    document.getElementById("hum_table").innerHTML = res;
+                    let inputs = document.getElementById(clase);
+                    inputs.checked = false;
+                  }
+
+                  function ciso_list(clase) {
+                    var str = document.getElementById("ciso_table").innerHTML; 
+                    var list = `${clase}`;
+                    const regex =  new RegExp(list,'g'); // correct way
+                    var crs_var = str.replace(regex, "");
+                    var res = crs_var.replace(/\W*(<tr class="list">)\W\s\W*(<td class="list"><.td>)\W\s\W*(td><button onclick="ciso_list)\W['']\W*(x<.button><.td>)\s\W*(.tr>)/g, "");
+                    document.getElementById("ciso_table").innerHTML = res;
+                    let inputs = document.getElementById(clase);
+                    inputs.checked = false;
+                  }
+
+                  function lib_list(clase) {
+                    var str = document.getElementById("lib_table").innerHTML; 
+                    var list = `${clase}`;
+                    const regex =  new RegExp(list,'g'); // correct way
+                    var crs_var = str.replace(regex, "");
+                    var res = crs_var.replace(/\W*(<tr class="list">)\W\s\W*(<td class="list"><.td>)\W\s\W*(td><button onclick="lib_list)\W['']\W*(x<.button><.td>)\s\W*(.tr>)/g, "");
+                    document.getElementById("lib_table").innerHTML = res;
+                    let inputs = document.getElementById(clase);
+                    inputs.checked = false;
+                  }
+
+                  function dept_list(clase) {
+                    var str = document.getElementById("dept_table").innerHTML; 
+                    var list = `${clase}`;
+                    const regex =  new RegExp(list,'g'); // correct way
+                    var crs_var = str.replace(regex, "");
+                    var res = crs_var.replace(/\W*(<tr class="list">)\W\s\W*(<td class="list"><.td>)\W\s\W*(td><button onclick="dept_list)\W['']\W*(x<.button><.td>)\s\W*(.tr>)/g, "");
+                    document.getElementById("dept_table").innerHTML = res;
+                    let inputs = document.getElementById(clase);
+                    inputs.checked = false;
+                  }
+
   </script>
 <!-- Culmina la parte de los JS. -->
 </div>
