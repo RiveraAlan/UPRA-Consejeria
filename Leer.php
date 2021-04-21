@@ -67,6 +67,8 @@ if (preg_match_all("/[;][A-Z][;]{1}/", $item, $result_grade)){
   $res_grade = preg_replace($pattern_dos, NULL,$entrada_dos);
 }
 
+    
+    
 $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
 VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."', 0)";
 echo $sql, " ||| ";
@@ -79,3 +81,13 @@ $stmt->execute();
 // exit();
 }
 ?>
+
+
+
+
+
+
+<!--
+SELECT *
+FROM stdnt_record 
+WHERE stdnt_number = '840-16-4235' AND crse_code = 'CCOM 3001'-->
