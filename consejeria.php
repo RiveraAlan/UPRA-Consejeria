@@ -45,33 +45,15 @@ include_once 'private/dbconnect.php';
 <!-- Culmina la parte los css y fonts. -->
       <!-- Font Awesome. -->
   <link rel="stylesheet" href="AdminUPRA/plugins/fontawesome-free/css/all.min.css">
-  </head>
-  <!-- <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  <div class="site-wrap">
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-<!-- Esta area es para que el student cierre su sesion. -->
-    <!-- <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
-      <div class="container-fluid">
-        <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-25"><img src="image/upraconse.png" alt=""></div>
-
-          <div class="mx-auto text-center">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="private/logout.php" class="nav-link">Cerrar Sesión</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header> -->       
+  </head>   
+    <script>
+      var concentracion = [];
+      var general = [];
+      var huma = [];
+      var ciencias_so = [];
+      var libre = [];
+      var departamento = [];
+    </script> 
       <style> 
 
 .grid-container {
@@ -176,7 +158,7 @@ include_once 'private/dbconnect.php';
       <thead>
         <tr class="list">
           <th>Concentracion</th>
-          <th style="text-align: right">x</th>
+          <th style="text-align: right" onClick="clear_list('con_table')">x</th>
         </tr>
         </thead>
         <tbody id="con_table">
@@ -186,7 +168,7 @@ include_once 'private/dbconnect.php';
       <thead>
         <tr class="list">
           <th>Generales</th>
-          <th style="text-align: right">x</th>
+          <th style="text-align: right" onClick="clear_list('gen_table')">x</th>
         </tr>
         </thead>
         <tbody id="gen_table">
@@ -196,7 +178,7 @@ include_once 'private/dbconnect.php';
       <thead>
         <tr class="list">
           <th>Humanidades</th>
-          <th style="text-align: right">x</th>
+          <th style="text-align: right" onClick="clear_list('hum_table')">x</th>
         </tr>
         </thead>
         <tbody id="hum_table">
@@ -206,7 +188,7 @@ include_once 'private/dbconnect.php';
       <thead>
         <tr class="list">
           <th>Ciencias Sociales</th>
-          <th style="text-align: right">x</th>
+          <th style="text-align: right" onClick="clear_list('ciso_table')">x</th>
         </tr>
         </thead>
         <tbody id="ciso_table">
@@ -216,7 +198,7 @@ include_once 'private/dbconnect.php';
       <thead>
         <tr class="list">
           <th>Libres Departamental</th>
-          <th style="text-align: right">x</th>
+          <th style="text-align: right" onClick="clear_list('lib_table')">x</th>
         </tr>
         </thead>
         <tbody id="lib_table">
@@ -226,12 +208,29 @@ include_once 'private/dbconnect.php';
       <thead>
         <tr class="list">
           <th>Electivas Departamental</th>
-          <th style="text-align: right">x</th>
+          <th style="text-align: right" onClick="clear_list('dept_table')">x</th>
         </tr>
         </thead>
         <tbody id="dept_table">
         </tbody>
       </table>
+
+      <?php
+         $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
+         $result_couns = mysqli_query($conn, $sql);
+         $resultCheck_couns = mysqli_num_rows($result_couns);
+         $counseling = mysqli_fetch_assoc($result_couns);
+            if($counseling["conducted_counseling"] == 0){
+              echo"
+              <!-- Trigger the modal with a button -->
+              <div class='login-btn-container' align='center' style='margin-top: 10px;'><button type='button' id='modal-btn' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>";
+            }else{
+              echo"
+            <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
+                    <i class='fa fa-file' aria-hidden='true'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
+            </a></div>";
+            }  
+      ?>
       </div>
       <!-- /.sidebar-menu -->
     </div>
@@ -344,25 +343,11 @@ include_once 'private/dbconnect.php';
                            $reco['SUM(C)'] = 0;
                        }
 
-                       $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
-                             $result_couns = mysqli_query($conn, $sql);
-                             $resultCheck_couns = mysqli_num_rows($result_couns);
-                             $counseling = mysqli_fetch_assoc($result_couns);
                              echo "
                                 <div class='btn-group'>
 
                                 <div class='container'>
-                                <br>";
-                                if($counseling["conducted_counseling"] == 0){
-                                  echo"
-                                  <!-- Trigger the modal with a button -->
-                                  <div class='login-btn-container' align='center'><button type='button' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>";
-                                }else{
-                                  echo"
-                                <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
-                                        <i class='fa fa-file' aria-hidden='true'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
-                                </a></div>";
-                                }    
+                                <br>";   
                                  echo "
                                   <!-- Modal -->
                                   <div class='modal fade' id='myModal' role='dialog'>
@@ -379,103 +364,13 @@ include_once 'private/dbconnect.php';
                                       <thead>
                                       <form action='private/confirmacion.php' method='POST'>
                                       <tr width='50%'' bgcolor='yellow'>
-                                        <th><input type='checkbox' onClick='toggle(this)' class='case' name='case' /></th>
                                         <th>Cursos</th>
                                         <th>Descripción</th>
                                         <th>Créditos</th>
                                       </tr>
                                       </thead> 
-                                    <tbody>";
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                    FROM stdnt_record
-                                    INNER JOIN mandatory_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3)
-                                    UNION
-                                    (SELECT crse_code, crse_description, crse_credits
-                                    FROM stdnt_record
-                                    INNER JOIN general_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
-                                    UNION
-                                    (SELECT crse_code, crse_description, crse_credits
-                                    FROM stdnt_record
-                                    INNER JOIN departmental_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
-                                    UNION
-                                    (SELECT crse_code, crse_description, crse_credits
-                                    FROM stdnt_record
-                                    INNER JOIN general_education_ciso USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
-                                    UNION
-                                    (SELECT crse_code, crse_description, crse_credits
-                                    FROM stdnt_record
-                                    INNER JOIN general_education_huma USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))
-                                    UNION
-                                    (SELECT crse_code, crse_description, crse_credits
-                                    FROM stdnt_record
-                                    INNER JOIN free_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crseR_status = 1 OR stdnt_record.crse_status = 3))";
-                                        $result = mysqli_query($conn, $sql);
-                                        $resultCheck = mysqli_num_rows($result);
-                                //Verificar Con Alan 
-                                        $sql_adi ="SELECT * from counseling_special_details WHERE stdnt_number = '$id' AND crse_confirmation = 0";
-                                            $result_adi = mysqli_query($conn, $sql_adi);
-                                            $resultCheck_adi = mysqli_num_rows($result_adi);
-                                    if($resultCheck > 0){
-                                    while($row = mysqli_fetch_assoc($result)){
-                                      echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
-                                        <input type='hidden' name='clase' value='general'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                      </tr> ";
-                                    
-                                    }}
-                                    if($resultCheck_adi > 0){
-                                      while($row = mysqli_fetch_assoc($result_adi)){
-                                        if($row['crse_suggestionHUMA'] == 5){
-                                          echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                          <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
-                                          <input type='hidden'  name='clase' value='HUMA'>
-                                          <td>HUMA</td>
-                                          <td>-</td>
-                                          <td>-</td>
-                                        </tr> ";
-                                          }elseif($row['crse_suggestionCISO'] == 5){
-                                            echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                            <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
-                                            <input type='hidden'  name='clase' value='CISO'>
-                                            <td>HUMA</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                          </tr> ";
-                                            }elseif($row['crse_suggestionFREE'] == 5){
-                                              echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                              <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
-                                              <input type='hidden'  name='clase' value='FREE'>
-                                              <td>HUMA</td>
-                                              <td>-</td>
-                                              <td>-</td>
-                                            </tr> ";
-                                              }elseif($row['crse_suggestionDEP'] == 5){
-                                                echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                                <td><input type='checkbox' class='case' name='crse_code[]' id='crse_code[]' value='{$row['crse_code']}' /> </td>
-                                                <input type='hidden'  name='clase' value='DEP'>
-                                                <td>HUMA</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                              </tr> ";
-                                                }
-                                      }}
-                                    echo "<tr width='50%' style='background-color: rgb(155,155,155,0.3)'>
-                                        <td><input type='checkbox' class='case' name='otros' id='otros' value='otros' /> </td>
-                                        <td>Otros</td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr> ";
-
-                                    echo "</tbody> 
+                                    <tbody id='confirm_table'>
+                                    </tbody> 
                                       </table>
                                        Créditos Recomendados: {$reco['SUM(C)']}
                                                         </div>
@@ -569,12 +464,19 @@ include_once 'private/dbconnect.php';
                   <script>
                   // Bind function to onclick event for checkbox
                   document.getElementById('{$row['crse_code']}').onclick = function() {
-                    var clase = `'{$row['crse_code']}'`;";
+                    var clase = `'{$row['crse_code']}'`;
+                    var clase_sin = `{$row['crse_code']}`;
+                    var desc = `{$row['crse_description']}`;
+                    var cred = `{$row['crse_credits']}`;
+                    ";
+                    
                     echo '
                       // access properties using this keyword
                       if ( this.checked ) {
                           // Returns true if checked
                           var list = document.getElementById("con_table").innerHTML;
+                          var confirm_list = document.getElementById("confirm_table").innerHTML;
+
                           document.getElementById("con_table").innerHTML = `
                             ${list}
                             <tr class="list">
@@ -582,13 +484,28 @@ include_once 'private/dbconnect.php';
                             <td><button onClick="con_list(${clase})">x</button></td>
                             </tr>
                           `;
+                          document.getElementById("confirm_table").innerHTML = `
+                            ${confirm_list}
+                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                        <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
+                                        <input type="hidden" name="clase" value="general">
+                                        <td>${this.value}</td>';
+                                        echo "
+                                        <input type='hidden' name='description' value='{$row['crse_description']}'>
+                                        <input type='hidden' name='cred' value='{$row['crse_credits']}'>
+                                        <td>{$row['crse_description']}</td>
+                                        <td>{$row['crse_credits']}</td>
+                                      </tr> 
+                          `;
+                      concentracion.push([clase_sin, desc, cred]);
+                      console.table(concentracion);
                       } else {
                           // Returns false if not checked
                       }
                   };
 
                   
-                  </script>';}}?>  
+                  </script>";}}?>  
                 </tbody> 
                   </table>
                   <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
@@ -647,12 +564,18 @@ include_once 'private/dbconnect.php';
                   <script>
                   // Bind function to onclick event for checkbox
                   document.getElementById('{$row['crse_code']}').onclick = function() {
-                    var clase = `'{$row['crse_code']}'`;";
+                    var clase = `'{$row['crse_code']}'`;
+                    var clase_sin = `{$row['crse_code']}`;
+                    var desc = `{$row['crse_description']}`;
+                    var cred = `{$row['crse_credits']}`;";
+                    
                     echo '
                       // access properties using this keyword
                       if ( this.checked ) {
                           // Returns true if checked
                           var list = document.getElementById("gen_table").innerHTML;
+                          var confirm_list = document.getElementById("confirm_table").innerHTML;
+
                           document.getElementById("gen_table").innerHTML = `
                             ${list}
                             <tr class="list">
@@ -660,11 +583,29 @@ include_once 'private/dbconnect.php';
                             <td><button onClick="gen_list(${clase})">x</button></td>
                             </tr>
                           `;
-                      } else {
-                          // Returns false if not checked
-                      }
-                  }; 
-                  </script>';}}?>
+                          document.getElementById("confirm_table").innerHTML = `
+                          ${confirm_list}
+                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
+                                      <input type="hidden" name="clase" value="general">
+                                      <td>${this.value}</td>';
+                                      echo "
+                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
+                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
+                                      <td>{$row['crse_description']}</td>
+                                      <td>{$row['crse_credits']}</td>
+                                    </tr> 
+                        `;";
+                        echo "
+                    general.push([clase_sin, desc, cred]);
+                    console.table(general);
+                    } else {
+                        // Returns false if not checked
+                    }
+                };
+
+                
+                </script>";}}?>
                 </tbody>
                   </table>
           
@@ -713,12 +654,17 @@ include_once 'private/dbconnect.php';
                   <script>
                   // Bind function to onclick event for checkbox
                   document.getElementById('{$row['crse_code']}').onclick = function() {
-                    var clase = `'{$row['crse_code']}'`;";
+                    var clase = `'{$row['crse_code']}'`;
+                    var clase_sin = `{$row['crse_code']}`;
+                    var desc = `{$row['crse_description']}`;
+                    var cred = `{$row['crse_credits']}`;";
                     echo '
                       // access properties using this keyword
                       if ( this.checked ) {
                           // Returns true if checked
                           var list = document.getElementById("hum_table").innerHTML;
+                          var confirm_list = document.getElementById("confirm_table").innerHTML;
+
                           document.getElementById("hum_table").innerHTML = `
                             ${list}
                             <tr class="list">
@@ -726,13 +672,29 @@ include_once 'private/dbconnect.php';
                             <td><button onClick="hum_list(${clase})">x</button></td>
                             </tr>
                           `;
-                      } else {
-                          // Returns false if not checked
-                      }
-                  };
+                          document.getElementById("confirm_table").innerHTML = `
+                          ${confirm_list}
+                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
+                                      <input type="hidden" name="clase" value="general">
+                                      <td>${this.value}</td>';
+                                      echo "
+                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
+                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
+                                      <td>{$row['crse_description']}</td>
+                                      <td>{$row['crse_credits']}</td>
+                                    </tr> 
+                        `;";
+                        echo "
+                    huma.push([clase_sin, desc, cred]);
+                    console.table(huma);
+                    } else {
+                        // Returns false if not checked
+                    }
+                };
 
-                  
-                  </script>';}}?>
+                
+                </script>";}}?>
                 </tbody> 
                   </table>
           
@@ -782,12 +744,17 @@ include_once 'private/dbconnect.php';
                   <script>
                   // Bind function to onclick event for checkbox
                   document.getElementById('{$row['crse_code']}').onclick = function() {
-                    var clase = `'{$row['crse_code']}'`;";
+                    var clase = `'{$row['crse_code']}'`;
+                    var clase_sin = `{$row['crse_code']}`;
+                    var desc = `{$row['crse_description']}`;
+                    var cred = `{$row['crse_credits']}`;";
                     echo '
                       // access properties using this keyword
                       if ( this.checked ) {
                           // Returns true if checked
                           var list = document.getElementById("ciso_table").innerHTML;
+                          var confirm_list = document.getElementById("confirm_table").innerHTML;
+
                           document.getElementById("ciso_table").innerHTML = `
                             ${list}
                             <tr class="list">
@@ -795,13 +762,29 @@ include_once 'private/dbconnect.php';
                             <td><button onClick="ciso_list(${clase})">x</button></td>
                             </tr>
                           `;
-                      } else {
-                          // Returns false if not checked
-                      }
-                  };
+                          document.getElementById("confirm_table").innerHTML = `
+                          ${confirm_list}
+                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
+                                      <input type="hidden" name="clase" value="general">
+                                      <td>${this.value}</td>';
+                                      echo "
+                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
+                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
+                                      <td>{$row['crse_description']}</td>
+                                      <td>{$row['crse_credits']}</td>
+                                    </tr> 
+                        `;";
+                        echo "
+                    ciencias_so.push([clase_sin, desc, cred]);
+                    console.table(ciencias_so);
+                    } else {
+                        // Returns false if not checked
+                    }
+                };
 
-                  
-                  </script>';}}?>
+                
+                </script>";}}?>
                 </tbody> 
                   </table>
           
@@ -844,12 +827,17 @@ include_once 'private/dbconnect.php';
                   <script>
                   // Bind function to onclick event for checkbox
                   document.getElementById('{$row['crse_code']}').onclick = function() {
-                    var clase = `'{$row['crse_code']}'`;";
+                    var clase = `'{$row['crse_code']}'`;
+                    var clase_sin = `{$row['crse_code']}`;
+                    var desc = `{$row['crse_description']}`;
+                    var cred = `{$row['crse_credits']}`;";
                     echo '
                       // access properties using this keyword
                       if ( this.checked ) {
                           // Returns true if checked
                           var list = document.getElementById("lib_table").innerHTML;
+                          var confirm_list = document.getElementById("confirm_table").innerHTML;
+
                           document.getElementById("lib_table").innerHTML = `
                             ${list}
                             <tr class="list">
@@ -857,13 +845,29 @@ include_once 'private/dbconnect.php';
                             <td><button onClick="lib_list(${clase})">x</button></td>
                             </tr>
                           `;
-                      } else {
-                          // Returns false if not checked
-                      }
-                  };
+                          document.getElementById("confirm_table").innerHTML = `
+                          ${confirm_list}
+                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
+                                      <input type="hidden" name="clase" value="general">
+                                      <td>${this.value}</td>';
+                                      echo "
+                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
+                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
+                                      <td>{$row['crse_description']}</td>
+                                      <td>{$row['crse_credits']}</td>
+                                    </tr> 
+                        `;";
+                        echo "
+                    libre.push([clase_sin, desc, cred]);
+                    console.table(libre);
+                    } else {
+                        // Returns false if not checked
+                    }
+                };
 
-                  
-                  </script>';}}?>
+                
+                </script>";}}?>
                 </tbody> 
                   </table>
                    <div align = "center"><h3>Electivas Departamentales</h3></div>
@@ -941,12 +945,17 @@ include_once 'private/dbconnect.php';
                 <script>
                   // Bind function to onclick event for checkbox
                   document.getElementById('{$row['crse_code']}').onclick = function() {
-                    var clase = `'{$row['crse_code']}'`;";
+                    var clase = `'{$row['crse_code']}'`;
+                    var clase_sin = `{$row['crse_code']}`;
+                    var desc = `{$row['crse_description']}`;
+                    var cred = `{$row['crse_credits']}`;";
                     echo '
                       // access properties using this keyword
                       if ( this.checked ) {
                           // Returns true if checked
                           var list = document.getElementById("dept_table").innerHTML;
+                          var confirm_list = document.getElementById("confirm_table").innerHTML;
+
                           document.getElementById("dept_table").innerHTML = `
                             ${list}
                             <tr class="list">
@@ -954,13 +963,15 @@ include_once 'private/dbconnect.php';
                             <td><button onClick="dept_list(${clase})">x</button></td>
                             </tr>
                           `;
-                      } else {
-                          // Returns false if not checked
-                      }
-                  };
+                    departamento.push([clase_sin, desc, cred]);
+                    console.table(departamento);
+                    } else {
+                        // Returns false if not checked
+                    }
+                };
 
-                  
-                  </script>';
+                
+                </script>';
                   }}?>
                     </table>
                     <div class='warning-message'><h4 style='text-align:center'>¡RECORDATORIO! Debe tomar 6 créditos en avanzada.</h4></div>
@@ -1916,6 +1927,135 @@ function toggle(source) {
                     inputs.checked = false;
                   }
 
+                  function clear_list(table) {
+                    document.getElementById(`${table}`).innerHTML = "";
+                    
+                    if (table === "con_table") {
+                      for (var i = 0; i < concentracion.length; i++){
+                        let inputs = document.getElementById(concentracion[i][0]);
+                        inputs.checked = false;
+                      }
+                      concentracion = [];
+                    }else if (table === "gen_table") {
+                      for (var i = 0; i < general.length; i++){
+                        let inputs = document.getElementById(general[i][0]);
+                        inputs.checked = false;
+                      } 
+                      general = [];
+                    }else if (table === "hum_table") {
+                      for (var i = 0; i < huma.length; i++){
+                        let inputs = document.getElementById(huma[i][0]);
+                        inputs.checked = false;
+                      } 
+                      huma = [];
+                    }else if (table === "ciso_table") {
+                      for (var i = 0; i < ciencias_so.length; i++){
+                        let inputs = document.getElementById(ciencias_so[i][0]);
+                        inputs.checked = false;
+                      } 
+                      ciencias_so = [];
+                    }else if (table === "lib_table") {
+                      for (var i = 0; i < libre.length; i++){
+                        let inputs = document.getElementById(libre[i][0]);
+                        inputs.checked = false;
+                      } 
+                      libre = [];
+                    }else if (table === "dept_table") {
+                      for (var i = 0; i < departamento.length; i++){
+                        let inputs = document.getElementById(departamento[i][0]);
+                        inputs.checked = false;
+                      } 
+                      departamento = [];
+                    }
+
+                  }
+
+                  document.getElementById('modal-btn').onclick = function() {
+                    for (var i = 0; i < concentracion.length; i++){
+                    var table = document.getElementById('confirm_table').innerHTML;
+                    document.getElementById('confirm_table').innerHTML = `
+                    ${table}
+                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                        <input><input type="hidden" name="crse_code[]" value="${concentracion[i]}" />
+                                        <input type="hidden" name="clase" value="general">
+                                        <td>${concentracion[i][0]}</td>
+                                        <input type='hidden' name='description' value='${concentracion[i][1]}'>
+                                        <input type='hidden' name='cred' value='${concentracion[i][2]}'>
+                                        <td>${concentracion[i][1]}</td>
+                                        <td>${concentracion[i][2]}</td>
+                                      </tr> `;
+                    }
+                    for (var i = 0; i < general.length; i++){
+                    var table = document.getElementById('confirm_table').innerHTML;
+                    document.getElementById('confirm_table').innerHTML = `
+                    ${table}
+                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                        <input><input type="hidden" name="crse_code[]" value="${general[i]}" />
+                                        <input type="hidden" name="clase" value="general">
+                                        <td>${general[i][0]}</td>
+                                        <input type='hidden' name='description' value='${general[i][1]}'>
+                                        <input type='hidden' name='cred' value='${general[i][2]}'>
+                                        <td>${general[i][1]}</td>
+                                        <td>${general[i][2]}</td>
+                                      </tr> `;
+                    }
+                    for (var i = 0; i < huma.length; i++){
+                    var table = document.getElementById('confirm_table').innerHTML;
+                    document.getElementById('confirm_table').innerHTML = `
+                    ${table}
+                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                        <input><input type="hidden" name="crse_code[]" value="${huma[i]}" />
+                                        <input type="hidden" name="clase" value="general">
+                                        <td>${huma[i][0]}</td>
+                                        <input type='hidden' name='description' value='${huma[i][1]}'>
+                                        <input type='hidden' name='cred' value='${huma[i][2]}'>
+                                        <td>${huma[i][1]}</td>
+                                        <td>${huma[i][2]}</td>
+                                      </tr> `;
+                    }
+                    for (var i = 0; i < ciencias_so.length; i++){
+                    var table = document.getElementById('confirm_table').innerHTML;
+                    document.getElementById('confirm_table').innerHTML = `
+                    ${table}
+                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                        <input><input type="hidden" name="crse_code[]" value="${ciencias_so[i]}" />
+                                        <input type="hidden" name="clase" value="general">
+                                        <td>${ciencias_so[i][0]}</td>
+                                        <input type='hidden' name='description' value='${ciencias_so[i][1]}'>
+                                        <input type='hidden' name='cred' value='${ciencias_so[i][2]}'>
+                                        <td>${ciencias_so[i][1]}</td>
+                                        <td>${ciencias_so[i][2]}</td>
+                                      </tr> `;
+                    }
+                    for (var i = 0; i < libre.length; i++){
+                    var table = document.getElementById('confirm_table').innerHTML;
+                    document.getElementById('confirm_table').innerHTML = `
+                    ${table}
+                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                        <input><input type="hidden" name="crse_code[]" value="${libre[i]}" />
+                                        <input type="hidden" name="clase" value="general">
+                                        <td>${libre[i][0]}</td>
+                                        <input type='hidden' name='description' value='${libre[i][1]}'>
+                                        <input type='hidden' name='cred' value='${libre[i][2]}'>
+                                        <td>${libre[i][1]}</td>
+                                        <td>${libre[i][2]}</td>
+                                      </tr> `;
+                    }
+                    for (var i = 0; i < departamento.length; i++){
+                    var table = document.getElementById('confirm_table').innerHTML;
+                    document.getElementById('confirm_table').innerHTML = `
+                    ${table}
+                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
+                                        <input><input type="hidden" name="crse_code[]" value="${departamento[i]}" />
+                                        <input type="hidden" name="clase" value="general">
+                                        <td>${departamento[i][0]}</td>
+                                        <input type='hidden' name='description' value='${departamento[i][1]}'>
+                                        <input type='hidden' name='cred' value='${departamento[i][2]}'>
+                                        <td>${departamento[i][1]}</td>
+                                        <td>${departamento[i][2]}</td>
+                                      </tr> `;
+                    }
+                  }
   </script>
 <!-- Culmina la parte de los JS. -->
 </div>

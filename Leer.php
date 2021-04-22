@@ -91,3 +91,11 @@ $stmt->execute();
 SELECT *
 FROM stdnt_record 
 WHERE stdnt_number = '840-16-4235' AND crse_code = 'CCOM 3001'-->
+
+<!-- UPDATE stdnt_record 
+SET crse_grade = '  ', semester_pass = '  '
+WHERE stdnt_number = '   ' AND crse_code = '   '; -->
+
+<!-- SELECT crse_grade 
+FROM stdnt_record
+WHERE stdnt_number = ' ' AND crse_code = ' '; -->
