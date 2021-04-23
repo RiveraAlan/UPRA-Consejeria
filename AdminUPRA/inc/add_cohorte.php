@@ -46,7 +46,6 @@ require '../../private/dbconnect.php';
                         array_push($gen_array, [$gen_temp[0], $gen_temp[1], $gen_temp[2]]);
                         $gen_temp = array(); 
                         $gen_count = 0;
-                        
                     }
             }
         }else {
