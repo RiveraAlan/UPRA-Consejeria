@@ -56,23 +56,8 @@ function Footer()
 }
 }
 
-$consulta = "SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN mandatory_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235'
-                                    UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN general_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235')
-                                    UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN departmental_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235')
-                                    UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN free_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235')
-                                    ORDER BY crse_code";
+$consulta = "SELECT * FROM mandatory_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC COMS BCN' UNION
+             SELECT * FROM general_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC COMS BCN'";
 
 $confirmar = "SELECT crse_code,  crse_description, crse_credits, crse_grade
                                     FROM stdnt_record
@@ -99,32 +84,33 @@ $pdf = new PDF();
 $pdf-> AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',16);
-//$i = 1;
-//foreach($resultado2 as $consulta){
-//    if($i % 2 == 0)
-//    {
-//        $pdf->SetFillColor(255,255,255);
-//    }
-//    else
-//    {
-//        $pdf->SetFillColor(235,235,238);
-//    }
 
 while($row = $resultado1->fetch_assoc()){
     $pdf->Cell(40, 10, $row['crse_code'], 3, 0, 'C', 0);
     $pdf->Cell(105, 10,utf8_decode($row['crse_description']), 3, 0, 'C', 0);
     $pdf->Cell(27, 10, $row['crse_credits'], 3, 0, 'C', 0);
-    $pdf->Cell(15, 10, $row['crse_grade'], 3, 1, 'C', 0);
+//    $pdf->Cell(15, 10, $row['crse_grade'], 3, 1, 'C', 0);
 }
 
 while($row = $resultado2->fetch_assoc()){
+    $sql_S ="SELECT * FROM stdnt_record WHERE stdnt_number = '840-16-4235' AND crse_code = '{$row['crse_code']}'";
+                      $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
+                      
+    
     $pdf->SetFillColor(235,235,238);
     $pdf->Cell(40, 10, $row['crse_code'], 1, 0, 'C', 1);
     $pdf->Cell(105, 10,utf8_decode( $row['crse_description']), 1, 0, 'C', 1);
     $pdf->Cell(27, 10, $row['crse_credits'], 1, 0, 'C', 1);
-    $pdf->Cell(15, 10, $row['crse_grade'], 1, 1, 'C', 1);
+     if($resultCheck_S != null){
+         $row_S = mysqli_fetch_assoc($result_S);
+         $pdf->Cell(15, 10, $row_S['crse_grade'], 1, 1, 'C', 1);
+    }
+    else {
+        $pdf->Cell(15, 10, null, 1, 1, 'C', 1);
+    }
+    
 }
-//    $i++;
-//}
+
 $pdf->Output();
 ?>
