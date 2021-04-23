@@ -1076,13 +1076,27 @@ body {
                   <br>
                 <div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
                 <div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
-                  <input type="file" id="myfile" name="myfile">
+<!--                  <input type="file" id="myfile" name="myfile">-->
+                    <!-- Este de abajo es para subir el .txt y funciona -->
+                    <?php
+                        if (isset($_SESSION['message']) && $_SESSION['message'])
+                        {
+                          printf('<b>%s</b>', $_SESSION['message']);
+                          unset($_SESSION['message']);
+                        }
+                      ?>
+                      <form method="POST" action="upload1.php" enctype="multipart/form-data">
+                        <div>
+                          <input type="file" name="uploadedFile" />
+                        </div>
+
                           </div>
                 </div>   
               </div>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-              <button type='button' class='btn btn-default' onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              <button type='submit' class='btn btn-default' name="uploadBtn" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
               </footer>
+                 </form> 
             </div>
           </div><!-- /.Expediente -->
 
