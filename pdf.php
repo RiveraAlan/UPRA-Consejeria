@@ -94,10 +94,11 @@ $pdf->AddPage();
 $pdf->SetFont('Arial','',16);
 
 while($row = $resultado1->fetch_assoc()){
-    $pdf->Cell(40, 10, $row['crse_code'], 3, 0, 'C', 0);
-    $pdf->Cell(105, 10,utf8_decode($row['crse_description']), 3, 0, 'C', 0);
-    $pdf->Cell(27, 10, $row['crse_credits'], 3, 0, 'C', 0);
-   $pdf->Cell(15, 10, '', 3, 1, 'C', 0);
+    $pdf->SetFillColor(15,249,15);
+    $pdf->Cell(40, 10, $row['crse_code'], 3, 0, 'C', 1);
+    $pdf->Cell(105, 10,utf8_decode($row['crse_description']), 3, 0, 'C', 1);
+    $pdf->Cell(27, 10, $row['crse_credits'], 3, 0, 'C', 1);
+    $pdf->Cell(15, 10, '', 3, 1, 'C', 1);
 }
 
 while($row = $resultado2->fetch_assoc()){
