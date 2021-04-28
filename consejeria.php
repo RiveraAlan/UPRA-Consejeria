@@ -216,11 +216,11 @@ include_once 'private/dbconnect.php';
       </table>
 
       <?php
-         $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
+         $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = $id";
          $result_couns = mysqli_query($conn, $sql);
          $resultCheck_couns = mysqli_num_rows($result_couns);
          $counseling = mysqli_fetch_assoc($result_couns);
-            if($counseling["conducted_counseling"] == 0){
+            if($counseling["conducted_counseling"] === 0){
               echo"
               <!-- Trigger the modal with a button -->
               <div class='login-btn-container' align='center' style='margin-top: 10px;'><button type='button' id='modal-btn' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>";
@@ -351,7 +351,7 @@ include_once 'private/dbconnect.php';
                                   <!-- Modal -->
                                   <div class='modal fade' id='myModal' role='dialog'>
                                     <div class='modal-dialog'>
-
+                      <form action='private/confirmacion.php' method='POST'>
                                       <!-- Modal content-->
                                       <div class='modal-content'>
                                         <div class='modal-header'>
@@ -361,7 +361,7 @@ include_once 'private/dbconnect.php';
                                         <div class='modal-body'>
                                         <table id='example2' class='table table-bordered table-hover'>
                                       <thead>
-                                      <form action='private/confirmacion.php' method='POST'>
+                                      
                                       <tr width='50%'' bgcolor='yellow'>
                                         <th>Cursos</th>
                                         <th>Descripción</th>
@@ -376,13 +376,14 @@ include_once 'private/dbconnect.php';
                                                         </div>
                                         <div class='modal-footer'><br>
                                           <div class='login-btn-container'><button onclick='confirmar()' name='confirm-submit' style='float: right;' type='submit' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
-                                        </form>
+                                        
                                           </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                           </div>
+                          </form>
  <!-- Comienza el stdnt_record academico del student. -->
                 <h4 style="text-align: left;">Instrucciones:Para realizar la consejería académica siga los siguientes pasos.</h4> 
                   <br>
