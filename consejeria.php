@@ -227,7 +227,7 @@ include_once 'private/dbconnect.php';
             }else{
               echo"
             <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
-                    <i class='fa fa-file' aria-hidden='true' style='color:white; font-size: 12rem'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
+                    <i class='fa fa-file' aria-hidden='true' style='color:white;'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
             </a></div>";
             }  
       ?>

@@ -60,22 +60,30 @@ $consulta = "SELECT * FROM mandatory_courses INNER JOIN cohort USING (crse_code)
              SELECT * FROM general_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC COMS BCN'";
 
 $confirmar = "SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN mandatory_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4)
-                                    UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN general_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
-                                    UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN departmental_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
-                                    UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
-                                    FROM stdnt_record
-                                    INNER JOIN free_courses USING (crse_code)
-                                    WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
-                                    ORDER BY crse_code";
+                FROM stdnt_record
+                INNER JOIN mandatory_courses USING (crse_code)
+                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4)
+                UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
+                FROM stdnt_record
+                INNER JOIN general_courses USING (crse_code)
+                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
+                FROM stdnt_record
+                INNER JOIN departmental_courses USING (crse_code)
+                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
+                FROM stdnt_record
+                INNER JOIN general_education_huma USING (crse_code)
+                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
+                FROM stdnt_record
+                INNER JOIN general_education_ciso USING (crse_code)
+                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
+                FROM stdnt_record
+                INNER JOIN free_courses USING (crse_code)
+                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                ORDER BY crse_code";
 
 $resultado1 = $conn->query($confirmar);
 $resultado2 = $conn->query($consulta);
@@ -89,7 +97,7 @@ while($row = $resultado1->fetch_assoc()){
     $pdf->Cell(40, 10, $row['crse_code'], 3, 0, 'C', 0);
     $pdf->Cell(105, 10,utf8_decode($row['crse_description']), 3, 0, 'C', 0);
     $pdf->Cell(27, 10, $row['crse_credits'], 3, 0, 'C', 0);
-//    $pdf->Cell(15, 10, $row['crse_grade'], 3, 1, 'C', 0);
+   $pdf->Cell(15, 10, '', 3, 1, 'C', 0);
 }
 
 while($row = $resultado2->fetch_assoc()){
