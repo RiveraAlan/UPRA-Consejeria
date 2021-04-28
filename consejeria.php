@@ -220,14 +220,14 @@ include_once 'private/dbconnect.php';
          $result_couns = mysqli_query($conn, $sql);
          $resultCheck_couns = mysqli_num_rows($result_couns);
          $counseling = mysqli_fetch_assoc($result_couns);
-            if($counseling["conducted_counseling"] === 0){
+            if($counseling["conducted_counseling"] == 0){
               echo"
               <!-- Trigger the modal with a button -->
               <div class='login-btn-container' align='center' style='margin-top: 10px;'><button type='button' id='modal-btn' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>";
             }else{
               echo"
             <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
-                    <i class='fa fa-file' aria-hidden='true'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
+                    <i class='fa fa-file' aria-hidden='true' style='color:white; font-size: 12rem'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
             </a></div>";
             }  
       ?>
