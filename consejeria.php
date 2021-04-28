@@ -884,31 +884,37 @@ include_once 'private/dbconnect.php';
                   </tr>
                   </thead> 
                 <tbody>
-                <?php 
-                $sql ="SELECT *
-                   FROM departmental_courses INNER JOIN stdnt_record USING (crse_code) WHERE stdnt_number = '$id'";
+               
+                        <?php 
+                $sql =" SELECT * 
+                    FROM departmental_courses ";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                   
-                
+                      $sql_S ="SELECT * 
+                        FROM departmental_courses INNER JOIN stdnt_record USING (crse_code)
+                        WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
+                      $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
+                      $row_S = mysqli_fetch_assoc($result_S);
                   echo "<tr width='50%' style='background-color: #f4f9f9'>";
-                   
+                
                     echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
                     echo "<td>{$row['crse_credits']}</td>";
-                    echo "<td>{$row['crse_grade']}</td>";
+                    echo "<td>{$row_S['crse_grade']}</td>";
                      echo "
-                    <td>{$row['semester_pass']}</td>";
-                    if(($row['crse_equivalence'] != NULL) || ($row['crse_recognition'] != NULL) && ($row['crse_ER_Status'] != 1)){
+                    <td>{$row_S['semester_pass']}</td>";
+                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crse_ER_Status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
-                  }elseif($row['crse_equivalence'] != NULL || $row['crse_recognition'] != NULL){
+                    <td><button onclick='myFunction({$row_S['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                  }elseif($row_S['crse_equivalence'] != NULL || $row_S['crse_recognition'] != NULL){
                     echo"
-                    <td>{$row['crse_equivalence']}{$row['crse_recognition']}</td>";
+                    <td>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                   }else{
                     echo"
                     <td></td>";
