@@ -303,7 +303,7 @@ include_once 'private/dbconnect.php';
                     <div class="row">
                       <div class="col-12">
                         <div class="card">
-                        <?php 
+                        <!-- php
                             
                             
                              $sentenciaSQL= "SELECT SUM(C)
@@ -341,14 +341,13 @@ include_once 'private/dbconnect.php';
                          
                        if ($reco['SUM(C)'] === NULL){
                            $reco['SUM(C)'] = 0;
-                       }
+                       } -->
 
-                             echo "
+                        
                                 <div class='btn-group'>
 
                                 <div class='container'>
-                                <br>";   
-                                 echo "
+                                <br>
                                   <!-- Modal -->
                                   <div class='modal fade' id='myModal' role='dialog'>
                                     <div class='modal-dialog'>
@@ -370,9 +369,10 @@ include_once 'private/dbconnect.php';
                                       </tr>
                                       </thead> 
                                     <tbody id='confirm_table'>
+
                                     </tbody> 
                                       </table>
-                                       Créditos Recomendados: {$reco['SUM(C)']}
+                                       <p id="creditos"></p>
                                                         </div>
                                         <div class='modal-footer'><br>
                                           <div class='login-btn-container'><button onclick='confirmar()' name='confirm-submit' style='float: right;' type='submit' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
@@ -382,9 +382,7 @@ include_once 'private/dbconnect.php';
                                     </div>
                                   </div>
                                 </div>
-                          </div>";
-                            ?>
-<!-- Termina el MODAL del boton confirmar. -->
+                          </div>
  <!-- Comienza el stdnt_record academico del student. -->
                 <h4 style="text-align: left;">Instrucciones:Para realizar la consejería académica siga los siguientes pasos.</h4> 
                   <br>
@@ -483,20 +481,8 @@ include_once 'private/dbconnect.php';
                             <td class="list">${this.value}</td>
                             <td><button onClick="con_list(${clase})">x</button></td>
                             </tr>
-                          `;
-                          document.getElementById("confirm_table").innerHTML = `
-                            ${confirm_list}
-                            <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                        <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
-                                        <input type="hidden" name="clase" value="general">
-                                        <td>${this.value}</td>';
+                          `;';
                                         echo "
-                                        <input type='hidden' name='description' value='{$row['crse_description']}'>
-                                        <input type='hidden' name='cred' value='{$row['crse_credits']}'>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                      </tr> 
-                          `;
                       concentracion.push([clase_sin, desc, cred]);
                       console.table(concentracion);
                       } else {
@@ -582,21 +568,8 @@ include_once 'private/dbconnect.php';
                             <td class="list">${this.value}</td>
                             <td><button onClick="gen_list(${clase})">x</button></td>
                             </tr>
-                          `;
-                          document.getElementById("confirm_table").innerHTML = `
-                          ${confirm_list}
-                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
-                                      <input type="hidden" name="clase" value="general">
-                                      <td>${this.value}</td>';
+                          `;';
                                       echo "
-                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
-                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
-                                      <td>{$row['crse_description']}</td>
-                                      <td>{$row['crse_credits']}</td>
-                                    </tr> 
-                        `;";
-                        echo "
                     general.push([clase_sin, desc, cred]);
                     console.table(general);
                     } else {
@@ -671,21 +644,8 @@ include_once 'private/dbconnect.php';
                             <td class="list">${this.value}</td>
                             <td><button onClick="hum_list(${clase})">x</button></td>
                             </tr>
-                          `;
-                          document.getElementById("confirm_table").innerHTML = `
-                          ${confirm_list}
-                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
-                                      <input type="hidden" name="clase" value="general">
-                                      <td>${this.value}</td>';
+                          `;';
                                       echo "
-                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
-                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
-                                      <td>{$row['crse_description']}</td>
-                                      <td>{$row['crse_credits']}</td>
-                                    </tr> 
-                        `;";
-                        echo "
                     huma.push([clase_sin, desc, cred]);
                     console.table(huma);
                     } else {
@@ -761,21 +721,8 @@ include_once 'private/dbconnect.php';
                             <td class="list">${this.value}</td>
                             <td><button onClick="ciso_list(${clase})">x</button></td>
                             </tr>
-                          `;
-                          document.getElementById("confirm_table").innerHTML = `
-                          ${confirm_list}
-                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
-                                      <input type="hidden" name="clase" value="general">
-                                      <td>${this.value}</td>';
+                          `;';
                                       echo "
-                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
-                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
-                                      <td>{$row['crse_description']}</td>
-                                      <td>{$row['crse_credits']}</td>
-                                    </tr> 
-                        `;";
-                        echo "
                     ciencias_so.push([clase_sin, desc, cred]);
                     console.table(ciencias_so);
                     } else {
@@ -844,21 +791,8 @@ include_once 'private/dbconnect.php';
                             <td class="list">${this.value}</td>
                             <td><button onClick="lib_list(${clase})">x</button></td>
                             </tr>
-                          `;
-                          document.getElementById("confirm_table").innerHTML = `
-                          ${confirm_list}
-                          <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                      <input><input type="hidden" name="crse_code[]" value="{${this.value}} />
-                                      <input type="hidden" name="clase" value="general">
-                                      <td>${this.value}</td>';
+                          `;';
                                       echo "
-                                      <input type='hidden' name='description' value='{$row['crse_description']}'>
-                                      <input type='hidden' name='cred' value='{$row['crse_credits']}'>
-                                      <td>{$row['crse_description']}</td>
-                                      <td>{$row['crse_credits']}</td>
-                                    </tr> 
-                        `;";
-                        echo "
                     libre.push([clase_sin, desc, cred]);
                     console.table(libre);
                     } else {
@@ -1876,6 +1810,12 @@ function toggle(source) {
                     document.getElementById("con_table").innerHTML = res;
                     let inputs = document.getElementById(clase);
                     inputs.checked = false;
+                    for (var i = 0; i < concentracion.length; i++){
+                      if (concentracion[i][0] === clase){
+                        concentracion.splice(i);
+                        break;
+                      }
+                    }
                   }
               
                   function gen_list(clase) {
@@ -1887,6 +1827,12 @@ function toggle(source) {
                     document.getElementById("gen_table").innerHTML = res;
                     let inputs = document.getElementById(clase);
                     inputs.checked = false;
+                    for (var i = 0; i < general.length; i++){
+                      if (general[i][0] === clase){
+                        general.splice(i);
+                        break;
+                      }
+                    }
                   }
 
                   function hum_list(clase) {
@@ -1898,6 +1844,12 @@ function toggle(source) {
                     document.getElementById("hum_table").innerHTML = res;
                     let inputs = document.getElementById(clase);
                     inputs.checked = false;
+                    for (var i = 0; i < huma.length; i++){
+                      if (huma[i][0] === clase){
+                        huma.splice(i);
+                        break;
+                      }
+                    }
                   }
 
                   function ciso_list(clase) {
@@ -1909,6 +1861,12 @@ function toggle(source) {
                     document.getElementById("ciso_table").innerHTML = res;
                     let inputs = document.getElementById(clase);
                     inputs.checked = false;
+                    for (var i = 0; i < ciencias_so.length; i++){
+                      if (ciencias_so[i][0] === clase){
+                        ciencias_so.splice(i);
+                        break;
+                      }
+                    }
                   }
 
                   function lib_list(clase) {
@@ -1920,6 +1878,12 @@ function toggle(source) {
                     document.getElementById("lib_table").innerHTML = res;
                     let inputs = document.getElementById(clase);
                     inputs.checked = false;
+                    for (var i = 0; i < libre.length; i++){
+                      if (libre[i][0] === clase){
+                        libre.splice(i);
+                        break;
+                      }
+                    }
                   }
 
                   function dept_list(clase) {
@@ -1931,6 +1895,12 @@ function toggle(source) {
                     document.getElementById("dept_table").innerHTML = res;
                     let inputs = document.getElementById(clase);
                     inputs.checked = false;
+                    for (var i = 0; i < departamento.length; i++){
+                      if (departamento[i][0] === clase){
+                        departamento.splice(i);
+                        break;
+                      }
+                    }
                   }
 
                   function clear_list(table) {
@@ -1942,12 +1912,14 @@ function toggle(source) {
                         inputs.checked = false;
                       }
                       concentracion = [];
+                      console.table(concentracion);
                     }else if (table === "gen_table") {
                       for (var i = 0; i < general.length; i++){
                         let inputs = document.getElementById(general[i][0]);
                         inputs.checked = false;
                       } 
                       general = [];
+                      console.table(general);
                     }else if (table === "hum_table") {
                       for (var i = 0; i < huma.length; i++){
                         let inputs = document.getElementById(huma[i][0]);
@@ -1977,16 +1949,14 @@ function toggle(source) {
                   }
 
                   document.getElementById('modal-btn').onclick = function() {
+                    document.getElementById('confirm_table').innerHTML = '';
                     for (var i = 0; i < concentracion.length; i++){
                     var table = document.getElementById('confirm_table').innerHTML;
                     document.getElementById('confirm_table').innerHTML = `
                     ${table}
                             <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                        <input><input type="hidden" name="crse_code[]" value="${concentracion[i]}" />
-                                        <input type="hidden" name="clase" value="general">
+                                        <input type="hidden" name="crse_code[]" value="${concentracion[i][0]}" />
                                         <td>${concentracion[i][0]}</td>
-                                        <input type='hidden' name='description' value='${concentracion[i][1]}'>
-                                        <input type='hidden' name='cred' value='${concentracion[i][2]}'>
                                         <td>${concentracion[i][1]}</td>
                                         <td>${concentracion[i][2]}</td>
                                       </tr> `;
@@ -1996,11 +1966,8 @@ function toggle(source) {
                     document.getElementById('confirm_table').innerHTML = `
                     ${table}
                             <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                        <input><input type="hidden" name="crse_code[]" value="${general[i]}" />
-                                        <input type="hidden" name="clase" value="general">
+                                        <input type="hidden" name="crse_code[]" value="${general[i][0]}" />
                                         <td>${general[i][0]}</td>
-                                        <input type='hidden' name='description' value='${general[i][1]}'>
-                                        <input type='hidden' name='cred' value='${general[i][2]}'>
                                         <td>${general[i][1]}</td>
                                         <td>${general[i][2]}</td>
                                       </tr> `;
@@ -2010,11 +1977,8 @@ function toggle(source) {
                     document.getElementById('confirm_table').innerHTML = `
                     ${table}
                             <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                        <input><input type="hidden" name="crse_code[]" value="${huma[i]}" />
-                                        <input type="hidden" name="clase" value="general">
+                                        <input type="hidden" name="crse_code[]" value="${huma[i][0]}" />
                                         <td>${huma[i][0]}</td>
-                                        <input type='hidden' name='description' value='${huma[i][1]}'>
-                                        <input type='hidden' name='cred' value='${huma[i][2]}'>
                                         <td>${huma[i][1]}</td>
                                         <td>${huma[i][2]}</td>
                                       </tr> `;
@@ -2024,11 +1988,8 @@ function toggle(source) {
                     document.getElementById('confirm_table').innerHTML = `
                     ${table}
                             <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                        <input><input type="hidden" name="crse_code[]" value="${ciencias_so[i]}" />
-                                        <input type="hidden" name="clase" value="general">
+                                        <input type="hidden" name="crse_code[]" value="${ciencias_so[i][0]}" />
                                         <td>${ciencias_so[i][0]}</td>
-                                        <input type='hidden' name='description' value='${ciencias_so[i][1]}'>
-                                        <input type='hidden' name='cred' value='${ciencias_so[i][2]}'>
                                         <td>${ciencias_so[i][1]}</td>
                                         <td>${ciencias_so[i][2]}</td>
                                       </tr> `;
@@ -2038,11 +1999,8 @@ function toggle(source) {
                     document.getElementById('confirm_table').innerHTML = `
                     ${table}
                             <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                        <input><input type="hidden" name="crse_code[]" value="${libre[i]}" />
-                                        <input type="hidden" name="clase" value="general">
+                                        <input type="hidden" name="crse_code[]" value="${libre[i][0]}" />
                                         <td>${libre[i][0]}</td>
-                                        <input type='hidden' name='description' value='${libre[i][1]}'>
-                                        <input type='hidden' name='cred' value='${libre[i][2]}'>
                                         <td>${libre[i][1]}</td>
                                         <td>${libre[i][2]}</td>
                                       </tr> `;
@@ -2052,11 +2010,8 @@ function toggle(source) {
                     document.getElementById('confirm_table').innerHTML = `
                     ${table}
                             <tr width"50%" style="background-color: rgb(155,155,155,0.3)">
-                                        <input><input type="hidden" name="crse_code[]" value="${departamento[i]}" />
-                                        <input type="hidden" name="clase" value="general">
+                                        <input type="hidden" name="crse_code[]" value="${departamento[i][0]}" />
                                         <td>${departamento[i][0]}</td>
-                                        <input type='hidden' name='description' value='${departamento[i][1]}'>
-                                        <input type='hidden' name='cred' value='${departamento[i][2]}'>
                                         <td>${departamento[i][1]}</td>
                                         <td>${departamento[i][2]}</td>
                                       </tr> `;
