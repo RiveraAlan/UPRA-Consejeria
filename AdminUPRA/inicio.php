@@ -1,13 +1,13 @@
 <?php
 include("inc/connection.php");
 session_start();
-$advisor_id= $_SESSION['adv_id'];
+$advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
-//if(!isset($_SESSION['adv_email'])){
-//  header("Location: index.php");
-//    exit();
-//}
+if(!isset($_SESSION['adv_email'])){
+  header("Location: index.php");
+    exit();
+}
 $count = 0;
 $sql = "SELECT stdnt_number 
 FROM student INNER JOIN record_details USING (stdnt_number)
@@ -132,7 +132,7 @@ WHERE record_status != 0";
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -578,9 +578,6 @@ margin-left: auto;
               </header>
               <div class='w3-container'>
                   <br>
-                <div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
-                <div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
-<!-- <input type="file" id="myfile" name="myfile">-->
                     <!-- Este de abajo es para subir el .txt y funciona -->
                     <?php
                         if (isset($_SESSION['message']) && $_SESSION['message'])
@@ -594,8 +591,7 @@ margin-left: auto;
                           <input type="file" name="uploadedFile" />
                         </div>
 
-                          </div>
-                </div>   
+                   
               </div>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               <button type='submit' class='btn btn-default' name="uploadBtn" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>

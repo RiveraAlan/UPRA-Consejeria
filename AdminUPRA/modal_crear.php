@@ -1,13 +1,13 @@
 <?php
 session_start();
 include("inc/connection.php");
-$advisor_id= $_SESSION['adv_id'];
+$advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
-// if(!isset($advisor_id)){
-//   header("Location: index.php");
-//     exit();
-// }
+ if(!isset($advisor_email)){
+   header("Location: index.php");
+     exit();
+ }
 if (isset($_GET['crse_code']) AND (isset($_GET['crse_name']))) {
 $crse_code = $_GET['crse_code'];
 $crse_name =  $_GET['crse_name'];
@@ -89,7 +89,7 @@ $crse_name =  $_GET['crse_name'];
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               

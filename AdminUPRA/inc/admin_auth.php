@@ -35,6 +35,7 @@ if ($stmt = $conn->prepare('SELECT adv_password, adv_name FROM advisor WHERE adv
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['adv_name'] = $name;
+            $_SESSION['adv_email'] = $_POST['email'];
             
              header('Location: ../inicio.php');
             

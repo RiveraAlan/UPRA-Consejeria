@@ -3,10 +3,10 @@ session_start();
 $id = $_SESSION['stdnt_number'];
 // Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
 include_once 'private/dbconnect.php';
-//if(!isset($_SESSION['stdnt_number'])){
-//  header("Location: index.php");
-//    exit();
-//}
+if(!isset($_SESSION['stdnt_number'])){
+  header("Location: index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,7 +140,7 @@ include_once 'private/dbconnect.php';
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
