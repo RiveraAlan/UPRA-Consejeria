@@ -1,13 +1,13 @@
 <?php
 session_start();
 include("inc/connection.php");
-$advisor_id= $_SESSION['adv_id'];
+$advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
-// if(!isset($advisor_id)){
-//   header("Location: index.php");
-//     exit();
-// }
+ if(!isset($advisor_email)){
+   header("Location: index.php");
+     exit();
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +87,7 @@ $advisor_name = $_SESSION['adv_name'];
         <div class="info">
             
             <!-- Cambie adv_id por adv_email-->
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = $advisor_id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 

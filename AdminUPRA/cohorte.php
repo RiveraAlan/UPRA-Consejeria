@@ -1,13 +1,13 @@
 <?php
 include("inc/connection.php");
-// session_start();
-// $advisor_id= $_SESSION['adv_id'];
-// $advisor_name = $_SESSION['adv_name'];
+ session_start();
+ $advisor_id= $_SESSION['adv_email'];
+ $advisor_name = $_SESSION['adv_name'];
 
-//if(!isset($_SESSION['adv_id'])){
-//  header("Location: index.php");
-//    exit();
-//}
+if(!isset($_SESSION['adv_email'])){
+  header("Location: index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -318,7 +318,7 @@ h2 {
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_id = $advisor_id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               

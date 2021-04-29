@@ -7,7 +7,7 @@ if(isset($_GET["stdnt_number"])){
 } else {
   $student_id = $_SESSION['stdnt_number'];
 }
-$advisor_id = $_SESSION['adv_id'];
+$advisor_id = $_SESSION['adv_email'];
 
 if(!isset($student_id)){
   header("Location: index.php");
@@ -334,7 +334,7 @@ body {
         <div class="info">
 
 <!--Hice Cambio de adv_id a adv_email-->
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = $advisor_id";
+        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
