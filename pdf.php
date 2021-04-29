@@ -2,8 +2,8 @@
 require('fpdf.php');
 require('private/dbconnect.php');
 session_start();
-//$id= $_SESSION['stdnt_number'];
-$sql = "SELECT stdnt_name,stdnt_lastname1,stdnt_lastname2 FROM student WHERE stdnt_number = '840-16-4235'";
+$id= $_SESSION['stdnt_number'];
+$sql = "SELECT stdnt_name,stdnt_lastname1,stdnt_lastname2 FROM student WHERE stdnt_number = '$id'";
                  $result = mysqli_query($conn, $sql);
                  $resultCheck = mysqli_num_rows($result);
                  $nombre_est = mysqli_fetch_assoc($result);
@@ -62,27 +62,27 @@ $consulta = "SELECT * FROM mandatory_courses INNER JOIN cohort USING (crse_code)
 $confirmar = "SELECT crse_code,  crse_description, crse_credits, crse_grade
                 FROM stdnt_record
                 INNER JOIN mandatory_courses USING (crse_code)
-                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4)
+                WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crse_status = 4)
                 UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
                 FROM stdnt_record
                 INNER JOIN general_courses USING (crse_code)
-                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crse_status = 4))
                 UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
                 FROM stdnt_record
                 INNER JOIN departmental_courses USING (crse_code)
-                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crse_status = 4))
                 UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
                 FROM stdnt_record
                 INNER JOIN general_education_huma USING (crse_code)
-                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crse_status = 4))
                 UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
                 FROM stdnt_record
                 INNER JOIN general_education_ciso USING (crse_code)
-                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crse_status = 4))
                 UNION(SELECT crse_code,  crse_description, crse_credits, crse_grade
                 FROM stdnt_record
                 INNER JOIN free_courses USING (crse_code)
-                WHERE stdnt_record.stdnt_number = '840-16-4235' AND (stdnt_record.crse_status = 4))
+                WHERE stdnt_record.stdnt_number = '$id' AND (stdnt_record.crse_status = 4))
                 ORDER BY crse_code";
 
 $resultado1 = $conn->query($confirmar);
@@ -102,7 +102,7 @@ while($row = $resultado1->fetch_assoc()){
 }
 
 while($row = $resultado2->fetch_assoc()){
-    $sql_S ="SELECT * FROM stdnt_record WHERE stdnt_number = '840-16-4235' AND crse_code = '{$row['crse_code']}'";
+    $sql_S ="SELECT * FROM stdnt_record WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
                       $result_S = mysqli_query($conn, $sql_S);
                       $resultCheck_S = mysqli_num_rows($result_S);
                       
