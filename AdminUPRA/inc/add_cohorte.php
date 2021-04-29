@@ -11,7 +11,6 @@ require '../../private/dbconnect.php';
     $pre_co = mysqli_real_escape_string($conn, $_POST['pre_co']);
     $class_year = mysqli_real_escape_string($conn, $_POST['class_year']);
     
-
     // turn variable concentracion into multidimensional array
     $con_count = 0;
     $con_temp = array();
@@ -19,6 +18,7 @@ require '../../private/dbconnect.php';
     $concentracion = explode(",",$concentracion);
     if(count($concentracion) > 3){
         foreach($concentracion as $con_item){
+            if ($con_item != ""){
                 array_push($con_temp, $con_item);
                 $con_count++;
                 
@@ -27,6 +27,7 @@ require '../../private/dbconnect.php';
                     $con_temp = array(); 
                     $con_count = 0;  
                 }
+            }
         }
     }else {
         array_push($con_array, [$concentracion[0], $concentracion[1], $concentracion[2]]);
@@ -78,15 +79,12 @@ require '../../private/dbconnect.php';
     $class_year = explode(",",$class_year);
     if(count($class_year) > 3){
         foreach($class_year as $year_item){
-           
-
                 array_push($year_temp, $year_item);
                 $year_count++;
                 if($year_count === 3){
                     array_push($year_array, [$year_temp[0], $year_temp[1], $year_temp[2]]);
                     $year_temp = array(); 
                     $year_count = 0;
-                    print_r($year_array);
                 }
         }
     }else {
@@ -101,9 +99,9 @@ require '../../private/dbconnect.php';
                         $sql = "INSERT INTO cohort(crse_code, cohort_year, crse_year, crse_semester, crse_major) 
                         VALUES ('$temp', '$cohort_year', ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept')";
                         // Prepare statement
-                        // $stmt = $conn->prepare($sql);
-                        // // execute the query
-                        // $stmt->execute();
+                        $stmt = $conn->prepare($sql);
+                        // execute the query
+                        $stmt->execute();
                     break;
                     }
                 }
