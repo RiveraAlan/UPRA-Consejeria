@@ -78,27 +78,32 @@ require '../../private/dbconnect.php';
     $class_year = explode(",",$class_year);
     if(count($class_year) > 3){
         foreach($class_year as $year_item){
-            
+           
+
                 array_push($year_temp, $year_item);
                 $year_count++;
                 if($year_count === 3){
                     array_push($year_array, [$year_temp[0], $year_temp[1], $year_temp[2]]);
                     $year_temp = array(); 
                     $year_count = 0;
+                    print_r($year_array);
                 }
         }
     }else {
         array_push($year_array, [$class_year[0], $class_year[1], $class_year[2]]);
     }
-    
     // Subir Cohorte
             // Subir Departamentales
             for ($i = 0; $i < count($con_array); $i++){
                 for ($j = 0; $j < count($year_array); $j++){
                     if($year_array[$j][0] === $con_array[$i][0]){
-                        $sql = "INSERT INTO cohort(crse_code,cohort_year,crse_year,crse_semester,crse_major) 
-                        VALUES ( '".$con_array[$i][0]."' , $cohort_year, ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept' )";
-                        echo $sql;
+                        $temp = $con_array[$i][0];
+                        $sql = "INSERT INTO cohort(crse_code, cohort_year, crse_year, crse_semester, crse_major) 
+                        VALUES ('$temp', '$cohort_year', ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept')";
+                        // Prepare statement
+                        // $stmt = $conn->prepare($sql);
+                        // // execute the query
+                        // $stmt->execute();
                     break;
                     }
                 }
@@ -107,49 +112,52 @@ require '../../private/dbconnect.php';
             for ($i = 0; $i < count($gen_array); $i++){
                 for ($j = 0; $j < count($year_array); $j++){
                     if($year_array[$j][0] === $con_array[$i][0]){
+                        $temp = $gen_array[$i][0];
                         $sql = "INSERT INTO cohort(crse_code,cohort_year,crse_year,crse_semester,crse_major) 
-                        VALUES ( '".$gen_array[$i][0]."' , $cohort_year, ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept' )";
-                        echo $sql;
+                        VALUES ( '$temp' , $cohort_year, ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept' )";
+                        // Prepare statement
+                        $stmt = $conn->prepare($sql);
+                        // execute the query
+                        $stmt->execute();
                     break;
                     }
                 }
             }
-
-    echo "<br><br> Mandatory :";
     // Descripcion & Credits of Mandatory
     for ($i = 0; $i < count($con_array); $i++){
         $sql = "INSERT INTO mandatory_courses (crse_code,crse_description,crse_credits) VALUES ('".$con_array[$i][0]."','".$con_array[$i][1]."', ".$con_array[$i][2].")";
-    echo $sql;
+        // Prepare statement
+    $stmt = $conn->prepare($sql);
+    // execute the query
+    $stmt->execute();
     }
-
-    echo "<br><br> General :";
     // Descripcion & Credits of General
     for ($i = 0; $i < count($gen_array); $i++){
         $sql = "INSERT INTO general_courses (crse_code,crse_description,crse_credits) VALUES ('".$gen_array[$i][0]."','".$gen_array[$i][1]."', ".$gen_array[$i][2].")";
-    echo $sql;
+        // Prepare statement
+    $stmt = $conn->prepare($sql);
+    // execute the query
+    $stmt->execute();
     }
 
-    echo "<br><br> Requisitos :";
+ 
     // Pre-requisitos & Co-requisitos
     for ($i = 0; $i < count($req_array); $i++){
         $sql = "INSERT INTO scheme(crse_code,crse_PRE, crse_CO)
         VALUES ('".$req_array[$i][0]."', '".$req_array[$i][1]."', '".$req_array[$i][1]."')";
-    echo $sql;
+        // Prepare statement
+    $stmt = $conn->prepare($sql);
+    // execute the query
+    $stmt->execute();
     }
-
-    echo "<br><br> Creditos :";
     // Add Credits
         $sql = "INSERT INTO crsecredits_extra (crseCredits_huma,crseCredits_ciso,crseCredits_dept,crseCredits_avz,crseCredits_int,crseCredits_free,crse_major)
         VALUES ( ".$cred_huma.", ".$cred_ciso.", ".$cred_dept.",NULL ,NULL, ".$cred_free.", '".$dept."' )";
-    echo $sql;
-
-
-    // }
     // Prepare statement
-    // $stmt = $conn->prepare($sql);
-    // // execute the query
-    // $stmt->execute();
-    // //exit
-    // header("Location: ../inicio.php");
-    // exit();
+    $stmt = $conn->prepare($sql);
+    // execute the query
+    $stmt->execute();
+    //exit
+    header("Location: ../inicio.php");
+    exit();
 ?>

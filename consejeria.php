@@ -154,80 +154,81 @@ include_once 'private/dbconnect.php';
 
       <!-- Sidebar Menu -->
       <div class="sticky">
-      <table class="list-table">
-      <thead>
-        <tr class="list">
-          <th>Concentracion</th>
-          <th style="text-align: right" onClick="clear_list('con_table')">x</th>
-        </tr>
-        </thead>
-        <tbody id="con_table">
-        </tbody>
-      </table>
-      <table class="list-table">
-      <thead>
-        <tr class="list">
-          <th>Generales</th>
-          <th style="text-align: right" onClick="clear_list('gen_table')">x</th>
-        </tr>
-        </thead>
-        <tbody id="gen_table">
-        </tbody>
-      </table>
-      <table class="list-table">
-      <thead>
-        <tr class="list">
-          <th>Humanidades</th>
-          <th style="text-align: right" onClick="clear_list('hum_table')">x</th>
-        </tr>
-        </thead>
-        <tbody id="hum_table">
-        </tbody>
-      </table>
-      <table class="list-table">
-      <thead>
-        <tr class="list">
-          <th>Ciencias Sociales</th>
-          <th style="text-align: right" onClick="clear_list('ciso_table')">x</th>
-        </tr>
-        </thead>
-        <tbody id="ciso_table">
-        </tbody>
-      </table>
-      <table class="list-table">
-      <thead>
-        <tr class="list">
-          <th>Libres Departamental</th>
-          <th style="text-align: right" onClick="clear_list('lib_table')">x</th>
-        </tr>
-        </thead>
-        <tbody id="lib_table">
-        </tbody>
-      </table>
-      <table class="list-table">
-      <thead>
-        <tr class="list">
-          <th>Electivas Departamental</th>
-          <th style="text-align: right" onClick="clear_list('dept_table')">x</th>
-        </tr>
-        </thead>
-        <tbody id="dept_table">
-        </tbody>
-      </table>
+      
 
       <?php
-         $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = $id";
+         $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
          $result_couns = mysqli_query($conn, $sql);
          $resultCheck_couns = mysqli_num_rows($result_couns);
          $counseling = mysqli_fetch_assoc($result_couns);
             if($counseling["conducted_counseling"] == 0){
-              echo"
+              echo `<table class="list-table">
+              <thead>
+                <tr class="list">
+                  <th>Concentracion</th>
+                  <th style="text-align: right" onClick="clear_list('con_table')">x</th>
+                </tr>
+                </thead>
+                <tbody id="con_table">
+                </tbody>
+              </table>
+              <table class="list-table">
+              <thead>
+                <tr class="list">
+                  <th>Generales</th>
+                  <th style="text-align: right" onClick="clear_list('gen_table')">x</th>
+                </tr>
+                </thead>
+                <tbody id="gen_table">
+                </tbody>
+              </table>
+              <table class="list-table">
+              <thead>
+                <tr class="list">
+                  <th>Humanidades</th>
+                  <th style="text-align: right" onClick="clear_list('hum_table')">x</th>
+                </tr>
+                </thead>
+                <tbody id="hum_table">
+                </tbody>
+              </table>
+              <table class="list-table">
+              <thead>
+                <tr class="list">
+                  <th>Ciencias Sociales</th>
+                  <th style="text-align: right" onClick="clear_list('ciso_table')">x</th>
+                </tr>
+                </thead>
+                <tbody id="ciso_table">
+                </tbody>
+              </table>
+              <table class="list-table">
+              <thead>
+                <tr class="list">
+                  <th>Libres Departamental</th>
+                  <th style="text-align: right" onClick="clear_list('lib_table')">x</th>
+                </tr>
+                </thead>
+                <tbody id="lib_table">
+                </tbody>
+              </table>
+              <table class="list-table">
+              <thead>
+                <tr class="list">
+                  <th>Electivas Departamental</th>
+                  <th style="text-align: right" onClick="clear_list('dept_table')">x</th>
+                </tr>
+                </thead>
+                <tbody id="dept_table">
+                </tbody>
+              </table>`;
+              echo "
               <!-- Trigger the modal with a button -->
               <div class='login-btn-container' align='center' style='margin-top: 10px;'><button type='button' id='modal-btn' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>";
             }else{
-              echo"
+              echo "
             <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
-                    <i class='fa fa-file' aria-hidden='true' style='color:white;'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
+                    <i class='fa fa-file' aria-hidden='true' style='color:white; font-size: 0.8em'>&nbsp; DESCARGUE SU EXPEDIENTE</i>
             </a></div>";
             }  
       ?>

@@ -399,7 +399,8 @@ h2 {
         <div class="form-group">
           <label for="sel1">Seleccione el departamento (Concentración):</label>
           <select class="form-control" id="dept"> 
-          <option>CC COMS BCN</option>
+          <option>CC-COMS-BCN</option>
+          <option>BI-MICM-BCN</option>
           </select>
           <label style="margin-left: 5px">Año</label><br>
         <input type="number" id="cohort_year" name="cohort_year" placeholder="2021" style="margin-left: 2px">
