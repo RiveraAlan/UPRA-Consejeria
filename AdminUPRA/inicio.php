@@ -4,7 +4,7 @@ session_start();
 $advisor_id= $_SESSION['adv_id'];
 $advisor_name = $_SESSION['adv_name'];
 
-//if(!isset($_SESSION['adv_id'])){
+//if(!isset($_SESSION['adv_email'])){
 //  header("Location: index.php");
 //    exit();
 //}
@@ -159,6 +159,12 @@ WHERE record_status != 0";
             <a onclick="document.getElementById('id01').style.display='block'" href="#" class="nav-link">
                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Añadir Clase</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Actualizar Expediente</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -560,8 +566,45 @@ margin-left: auto;
   <!-- /.control-sidebar -->
 </div>              
     </div>
+    
+    
+     <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
+        <div id='id02' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id02").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Subir Expediente</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                <div id="drop_zone" ondrop="uploadFile(event)" ondragover="return false">
+                <div style="margin: auto; width: 50%; padding-left: 7rem; padding-top: 13rem;">
+<!-- <input type="file" id="myfile" name="myfile">-->
+                    <!-- Este de abajo es para subir el .txt y funciona -->
+                    <?php
+                        if (isset($_SESSION['message']) && $_SESSION['message'])
+                        {
+                          printf('<b>%s</b>', $_SESSION['message']);
+                          unset($_SESSION['message']);
+                        }
+                      ?>
+                      <form method="POST" action="upload1.php" enctype="multipart/form-data">
+                        <div>
+                          <input type="file" name="uploadedFile" />
+                        </div>
+
+                          </div>
+                </div>   
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='submit' class='btn btn-default' name="uploadBtn" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer>
+                 </form> 
+            </div>
+          </div><!-- /.Expediente -->
+    
   </div>
-            <!-- /. crear expediente -->
     <!-- /.modales -->
     <!-- /.content -->
   <!-- /.content-wrapper -->
