@@ -119,13 +119,14 @@ if(!isset($_SESSION['stdnt_number'])){
 <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="inicio.php" class="nav-link">Inicio</a>
       </li>
     </ul>
   </nav>
+    
 <!-- /.navbar -->
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -137,25 +138,12 @@ if(!isset($_SESSION['stdnt_number'])){
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
-              
-                if($resultCheck > 0){
-                $row = mysqli_fetch_assoc($result);
-                ;}
-            ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>" ?>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
+<!--
+      <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+-->
       <div class="sticky">
-      
-
       <?php
          $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
          $result_couns = mysqli_query($conn, $sql);
@@ -233,6 +221,10 @@ if(!isset($_SESSION['stdnt_number'])){
             }  
       ?>
       </div>
+<!--
+          </ul>
+        </nav>
+-->
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -1795,6 +1787,13 @@ function toggle(source) {
   <script src="js/main.js"></script>
   <script src="js/consejeria.js">
   </script>  
+  <script src="AdminUPRA//plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="AdminUPRA//plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="AdminUPRA/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="AdminUPRA/dist/js/demo.js"></script>
   <script>
   function toggle(source) {
               checkboxes = document.getElementsByName('crse_code[]');
