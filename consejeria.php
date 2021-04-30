@@ -119,7 +119,7 @@ if(!isset($_SESSION['stdnt_number'])){
 <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" role="button" onclick="closeNav()"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="inicio.php" class="nav-link">Inicio</a>
@@ -127,15 +127,6 @@ if(!isset($_SESSION['stdnt_number'])){
     </ul>
   </nav>
     
-    <script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
 <!-- /.navbar -->
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -146,7 +137,7 @@ function closeNav() {
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar" id="mySidenav">
+    <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
@@ -1805,6 +1796,13 @@ function toggle(source) {
   <script src="js/main.js"></script>
   <script src="js/consejeria.js">
   </script>  
+  <script src="AdminUPRA//plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="AdminUPRA//plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="AdminUPRA/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="AdminUPRA/dist/js/demo.js"></script>
   <script>
   function toggle(source) {
               checkboxes = document.getElementsByName('crse_code[]');
