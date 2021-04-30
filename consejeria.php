@@ -138,25 +138,12 @@ if(!isset($_SESSION['stdnt_number'])){
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info">
-        <?php $sql = "SELECT adv_name, adv_lastname FROM `advisor` WHERE adv_email = '$advisor_id'";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
-              
-                if($resultCheck > 0){
-                $row = mysqli_fetch_assoc($result);
-                ;}
-            ?>
-          <?php echo "<a class='d-block'>{$row['adv_name']} {$row['adv_lastname']} </a>" ?>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
+<!--
+      <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+-->
       <div class="sticky">
-      
-
       <?php
          $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
          $result_couns = mysqli_query($conn, $sql);
@@ -234,6 +221,10 @@ if(!isset($_SESSION['stdnt_number'])){
             }  
       ?>
       </div>
+<!--
+          </ul>
+        </nav>
+-->
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
