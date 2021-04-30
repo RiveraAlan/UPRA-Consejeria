@@ -119,7 +119,7 @@ if(!isset($_SESSION['stdnt_number'])){
 <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button" onclick="openNav()"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" role="button" onclick="closeNav()"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="inicio.php" class="nav-link">Inicio</a>
@@ -146,7 +146,7 @@ function closeNav() {
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="mySidenav">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
