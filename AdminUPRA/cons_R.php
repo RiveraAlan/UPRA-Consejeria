@@ -4,7 +4,7 @@ include("inc/connection.php");
 $advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
- if(!isset($advisor_email)){
+ if(!isset($advisor_id)){
    header("Location: index.php");
      exit();
  }
