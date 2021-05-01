@@ -577,8 +577,9 @@ body {
                     <th>Convalidación/<br>Equivalencia</th>
                   </tr>
                   </thead>
-                  <tbody>
-                   
+                  <tbody>             
+                      
+                      
                   <?php
                   $sql = "SELECT *
                       FROM mandatory_courses INNER JOIN cohort USING (crse_code)
@@ -592,6 +593,12 @@ body {
                      $sql_S ="SELECT *
                       FROM mandatory_courses INNER JOIN stdnt_record USING (crse_code) 
                       WHERE stdnt_number = '$student_id' AND crse_code = '{$row['crse_code']}'";
+                      $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
+                      $row_S = mysqli_fetch_assoc($result_S);
+                    
+                     $sql_S ="SSELECT * 
+                     FROM cohort WHERE crse_code = '{$row['crse_code']}'";
                       $result_S = mysqli_query($conn, $sql_S);
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
@@ -612,8 +619,10 @@ body {
                   }else{
                   echo "<tr width='50%' style='background-color: #6496c8'>";
                   }
-                    
-                    echo "<td>{$row['crse_code']}</td> 
+         
+                 
+                    echo "
+                    <td> {$row['crse_code']}</td>
                     <td>{$row['crse_description']}</td>
                     <td>{$row['crse_credits']}</td>
                     <td>{$row_S['crse_grade']}</td>
