@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if(isset($_SESSION['stdnt_number'])){
+  session_destroy();
+}
+?>
 <html lang="en">
   <head>
     <title>CONSEJERÍA-UPRA</title>

@@ -36,6 +36,7 @@ if(!isset($_SESSION['stdnt_number'])){
     <link rel="stylesheet" href="jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
     <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="AdminUPRA/dist/css/adminlte.min.css">
 
@@ -105,10 +106,28 @@ if(!isset($_SESSION['stdnt_number'])){
     color: #ffffff;
     background: #282828;
 }
-
+/* 
 .sticky {
   position: fixed;
   top: 100px;
+} */
+
+#slide {
+  position: fixed;
+  top: 100px;
+  left: -100px;
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 0.5s forwards;
+    animation-delay: 2s;
+}
+
+@-webkit-keyframes slide {
+    100% { left: 10px; }
+}
+
+@keyframes slide {
+    100% { left: 010px; }
 }
       </style>
       <body class="hold-transition sidebar-mini">
@@ -119,17 +138,45 @@ if(!isset($_SESSION['stdnt_number'])){
 <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" role="button" onClick="appear()"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="inicio.php" class="nav-link">Inicio</a>
+        <a class="nav-link">Inicio</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block" style="right: 0; position: fixed"><a href="index.php" class="nav-link">
+              <i class="fa fa-sign-out-alt">
+              Cerrar Sesión</i>
+            </a>
+          </li>
     </ul>
   </nav>
+  <script>
+  var hover = 1; 
+    function appear(){
+      if (document.getElementById("sticky_table").style.visibility == "visible") {
+        document.getElementById("sticky_table").style.visibility = "hidden";
+        hover = 0;
+      }else {
+        document.getElementById("sticky_table").style.visibility = "visible";
+        hover = 1;
+      }
+    }
+
+    function appear_hover(){
+      if(hover == 0){
+      if (document.getElementById("sticky_table").style.visibility == "visible") {
+        document.getElementById("sticky_table").style.visibility = "hidden";
+      }else {
+        document.getElementById("sticky_table").style.visibility = "visible";
+      }
+    }
+    }
+  </script>
+
     
 <!-- /.navbar -->
 <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" onmouseover="appear_hover()" onmouseout="appear_hover()">
     <!-- Brand Logo -->
     <a href="inicio.html" class="brand-link">
       <img src="image/university.png" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -139,22 +186,20 @@ if(!isset($_SESSION['stdnt_number'])){
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->
-<!--
-      <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
--->
-      <div class="sticky">
+<div class="sticky slide" id="sticky_table" style="visibility: visible">
       <?php
          $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
          $result_couns = mysqli_query($conn, $sql);
          $resultCheck_couns = mysqli_num_rows($result_couns);
          $counseling = mysqli_fetch_assoc($result_couns);
             if($counseling["conducted_counseling"] == 0){
-              echo `<table class="list-table">
+              echo '<table class="list-table">
               <thead>
                 <tr class="list">
                   <th>Concentracion</th>
-                  <th style="text-align: right" onClick="clear_list('con_table')">x</th>
+                  <th style="text-align: right" onClick="clear_list(';
+                  echo "'con_table'";
+                  echo ')">x</th>
                 </tr>
                 </thead>
                 <tbody id="con_table">
@@ -164,7 +209,9 @@ if(!isset($_SESSION['stdnt_number'])){
               <thead>
                 <tr class="list">
                   <th>Generales</th>
-                  <th style="text-align: right" onClick="clear_list('gen_table')">x</th>
+                  <th style="text-align: right" onClick="clear_list(';
+                  echo "'gen_table'";
+                  echo ')">x</th>
                 </tr>
                 </thead>
                 <tbody id="gen_table">
@@ -174,7 +221,9 @@ if(!isset($_SESSION['stdnt_number'])){
               <thead>
                 <tr class="list">
                   <th>Humanidades</th>
-                  <th style="text-align: right" onClick="clear_list('hum_table')">x</th>
+                  <th style="text-align: right" onClick="clear_list(';
+                  echo "'hum_table'";
+                  echo ')">x</th>
                 </tr>
                 </thead>
                 <tbody id="hum_table">
@@ -184,7 +233,9 @@ if(!isset($_SESSION['stdnt_number'])){
               <thead>
                 <tr class="list">
                   <th>Ciencias Sociales</th>
-                  <th style="text-align: right" onClick="clear_list('ciso_table')">x</th>
+                  <th style="text-align: right" onClick="clear_list(';
+                  echo "'ciso_table'";
+                  echo ')">x</th>
                 </tr>
                 </thead>
                 <tbody id="ciso_table">
@@ -194,7 +245,9 @@ if(!isset($_SESSION['stdnt_number'])){
               <thead>
                 <tr class="list">
                   <th>Libres Departamental</th>
-                  <th style="text-align: right" onClick="clear_list('lib_table')">x</th>
+                  <th style="text-align: right" onClick="clear_list(';
+                  echo "'lib_table'";
+                  echo ')">x</th>
                 </tr>
                 </thead>
                 <tbody id="lib_table">
@@ -204,15 +257,18 @@ if(!isset($_SESSION['stdnt_number'])){
               <thead>
                 <tr class="list">
                   <th>Electivas Departamental</th>
-                  <th style="text-align: right" onClick="clear_list('dept_table')">x</th>
+                  <th style="text-align: right" onClick="clear_list(';
+                  echo "'dept_table'";
+                  echo ')">x</th>
                 </tr>
                 </thead>
                 <tbody id="dept_table">
                 </tbody>
-              </table>`;
+              </table>';
               echo "
               <!-- Trigger the modal with a button -->
-              <div class='login-btn-container' align='center' style='margin-top: 10px;'><button type='button' id='modal-btn' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>";
+              <div class='login-btn-container' align='center' style='margin-top: 10px;'><button type='button' id='modal-btn' class='btn btn-yellow btn-pill' data-toggle='modal' data-target='#myModal'>CONFIRMAR</button></div>
+              ";
             }else{
               echo "
             <div class='login-btn-container' align='center'><a class='btn btn-yellow btn-pill' href='pdf.php'>
@@ -220,13 +276,11 @@ if(!isset($_SESSION['stdnt_number'])){
             </a></div>";
             }  
       ?>
-      </div>
-<!--
-          </ul>
-        </nav>
--->
       <!-- /.sidebar-menu -->
     </div>
+    <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> -->
+      
+      <!-- </ul> -->
     <!-- /.sidebar -->
   </aside>
   <!-- Content Wrapper. Contains page content -->
