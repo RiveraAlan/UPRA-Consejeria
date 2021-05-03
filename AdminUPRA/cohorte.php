@@ -439,6 +439,7 @@ h2 {
           <th>Código</th>
           <th>Descripción</th>
           <th>Créditos</th>
+          <th>X</th>
       </tr>
       </thead>
       <tbody id="concentracion-table">
@@ -615,6 +616,7 @@ let general = [];
             <td id='con_code'>${crse_code}</td>
             <td id='con_des'>${crse_description}</td>
             <td id='con_cred'>${crse_credits}</td>
+            <td onClick='eli_con(${crse_code})'>X</td>
             </tr>`;
             concentracion.push([crse_code, crse_description, crse_credits]);
   }else {
@@ -626,6 +628,30 @@ let general = [];
             <td id='gen_cred'>${crse_credits}</td>
             </tr>`;
             general.push([crse_code, crse_description, crse_credits]);
+  }
+}
+function eli_con(clase){
+  for (var i = 0; i < concentracion.length; i++){
+    if (concentracion[i][0] == `${clase}`){
+      concentracion.splice(i - 1,1);
+      if (concentracion.length > 0){
+      for (var j = 0; j < concentracion.length; j++){
+        if (j != 0){
+          table = document.getElementById("concentracion-table").innerHTML;
+          
+          document.getElementById("concentracion-table").innerHTML = `
+            ${table}
+            <tr>
+            <td id='con_code'>${crse_code}</td>
+            <td id='con_des'>${crse_description}</td>
+            <td id='con_cred'>${crse_credits}</td>
+            <td onClick='eli_con(${crse_code})'>X</td>
+            </tr>`;
+        }
+        break;
+      }
+    }
+    }
   }
 }
 
