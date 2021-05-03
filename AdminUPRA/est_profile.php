@@ -597,11 +597,6 @@ body {
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                     
-                     $sql_S ="SSELECT * 
-                     FROM cohort WHERE crse_code = '{$row['crse_code']}'";
-                      $result_S = mysqli_query($conn, $sql_S);
-                      $resultCheck_S = mysqli_num_rows($result_S);
-                      $row_S = mysqli_fetch_assoc($result_S);
                     
                 if($row_S['crseR_status'] == 0){
                     $color = '#eeddd2';
