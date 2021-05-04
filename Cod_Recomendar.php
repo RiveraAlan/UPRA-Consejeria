@@ -29,9 +29,9 @@ if($resultCheck > 0)
 
 $mes = date("m");
 if ($mes<7)
-$semestre = 2;
-else 
 $semestre = 1;
+else 
+$semestre = 2;
  
 $sql = "SELECT stdnt_number
         FROM student
@@ -53,46 +53,27 @@ $sql_P =  "SELECT crse_code, crse_PRE
             FROM cohort INNER JOIN scheme USING (crse_code)
             WHERE crse_major = 'CC COMS BCN' AND crse_code = '$row_SA['crse_code']'";
                       $result_P = mysqli_query($conn, $sql_P);
-                      $resultCheck_P = mysqli_num_rows($result_P);
+                      $resultCheck_P = mysqli_num_rows($result_P); 
                       
-$sql_C =  "SELECT crse_code, crse_CO
-            FROM cohort INNER JOIN scheme USING (crse_code)
-            WHERE crse_major = 'CC COMS BCN' AND crse_code = '$row_SA['crse_code']'";
-                      $result_C = mysqli_query($conn, $sql_C);
-                      $resultCheck_C = mysqli_num_rows($result_C);
-                      $row_C = mysqli_fetch_assoc($result_C); 
-      
+     $Pre_disp = 0;
+     $Cant_Nota = 0;
       if ($row_SA['crse_year'] >= $est_year && $row_SA['crse_semester'] == $semestre){            
-            }
-                      
-          else{          
-          $sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '$student_id' AND crse_code = '$row_SA['crse_code']' ";}
-   
-             
-                    
-                    
-  }
-  
-                }
-
- 
-
- $sql_PG =  "SELECT crse_grade
-            FROM stdnt_record
-            WHERE crse_code = 'PRE-RE' AND stdnt_number = '840-16-4235'";
+                    if($resultCheck_P > 0){
+                    while($row_P = mysqli_fetch_assoc($result_P)){
+                    $Pre_disp++;
+                    $sql_PG =  "SELECT crse_code, crse_grade
+                    FROM stdnt_record
+                    WHERE crse_code = '$row_P['crse_code']' AND stdnt_number = '$student_id'";
                       $result_PG = mysqli_query($conn, $sql_PG);
                       $resultCheck_PG = mysqli_num_rows($result_PG);
                       $row_PG = mysqli_fetch_assoc($result_PG);
+                        if($resultCheck_PG > 0){
+                        if ($row_PG['crse_grade']=='A' || $row_PG['crse_grade']=='B' || $row_PG['crse_grade']=='C' || $row_PG['crse_grade']=='P')
+                            $Cant_Nota++;} } }
+              
+$sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '$student_id' AND crse_code = '$row_SA['crse_code']' "; }
+                      
+          else{          
+          $sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '$student_id' AND crse_code = '$row_SA['crse_code']' "; } }  
 
- $sql_CG =  "SELECT crse_grade
-            FROM stdnt_record
-            WHERE crse_code = 'PRE-CO' AND stdnt_number = '840-16-4235'";
-                      $result_CG = mysqli_query($conn, $sql_CG);
-                      $resultCheck_CG = mysqli_num_rows($result_CG);
-                      $row_CG = mysqli_fetch_assoc($result_CG);
-
-
-
-
-
-?>
+ ?>
