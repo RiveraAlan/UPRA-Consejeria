@@ -1049,14 +1049,16 @@ if(!isset($_SESSION['stdnt_number'])){
             <script>
                var cohorte = [];
                 <?php
-                  $sql = "SELECT * FROM `cohort`";
+                  $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code) WHERE crse_major = 'CC COMS BCN' 
+                  UNION
+                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code) WHERE crse_major = 'CC COMS BCN'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);                                
                  
                   if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
                       echo "
-                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", '".$row["crse_major"]."']);
+                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", ".$row["crse_major"].", '".$row["crse_description"]."']);
                       ";
                     }
                   }
@@ -1073,7 +1075,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
@@ -1083,7 +1085,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
