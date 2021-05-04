@@ -406,12 +406,12 @@ body {
             <div class="card card-primary" style="border-top: 3px solid #e0c200;">
               <div class="card-body box-profile">
                     <?php
-//Hice un cambio de stdnt_cohort a stdnt_major
+
                     $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
-//Cambie crse_code por crse_code y Agregue general_education_ciso y general_education_huma            
+         
                 $sentenciaSQL= "SELECT SUM(C)
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
@@ -597,11 +597,6 @@ body {
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                     
-                     $sql_S ="SSELECT * 
-                     FROM cohort WHERE crse_code = '{$row['crse_code']}'";
-                      $result_S = mysqli_query($conn, $sql_S);
-                      $resultCheck_S = mysqli_num_rows($result_S);
-                      $row_S = mysqli_fetch_assoc($result_S);
                     
                 if($row_S['crseR_status'] == 0){
                     $color = '#eeddd2';
