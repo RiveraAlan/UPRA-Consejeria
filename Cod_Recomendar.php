@@ -62,14 +62,7 @@ $sql_C =  "SELECT crse_code, crse_CO
                       $resultCheck_C = mysqli_num_rows($result_C);
                       $row_C = mysqli_fetch_assoc($result_C); 
       
-      if ($row_SA['crse_year'] >= $est_year && $row_SA['crse_semester'] == $semestre){
-          
-          if($resultCheck_P > 0){ 
-               while($row_P = mysqli_fetch_assoc($result_P)){
-                   
-                   if ()
-               }
-              
+      if ($row_SA['crse_year'] >= $est_year && $row_SA['crse_semester'] == $semestre){            
             }
                       
           else{          
