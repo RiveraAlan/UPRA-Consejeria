@@ -69,11 +69,9 @@ $sql_P =  "SELECT crse_code, crse_PRE
                       $row_PG = mysqli_fetch_assoc($result_PG);
                         if($resultCheck_PG > 0){
                         if ($row_PG['crse_grade']=='A' || $row_PG['crse_grade']=='B' || $row_PG['crse_grade']=='C' || $row_PG['crse_grade']=='P')
-                            $Cant_Nota++;} } }
-              
-$sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '$student_id' AND crse_code = '$row_SA['crse_code']' "; }
-                      
-          else{          
-          $sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '$student_id' AND crse_code = '$row_SA['crse_code']' "; } }  
+                            $Cant_Nota++;} } }  }
+                    if ($Pre_disp ==  $Cant_Nota)  
+                    $sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '$student_id' AND crse_code = '$row_SA['crse_code']' "; }       
+          
 
  ?>
