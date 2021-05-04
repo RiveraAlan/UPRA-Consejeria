@@ -196,7 +196,7 @@ if(!isset($_SESSION['stdnt_number'])){
               echo '<table class="list-table">
               <thead>
                 <tr class="list">
-                  <th>Concentracion</th>
+                  <th>Concentración</th>
                   <th style="text-align: right" onClick="clear_list(';
                   echo "'con_table'";
                   echo ')">x</th>
@@ -1027,16 +1027,16 @@ if(!isset($_SESSION['stdnt_number'])){
 <!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
            <div id="tabla-cohorte" style="display:none"> 
              <label>Departamento :</label>
-             <select >
+             <select id="select-dept">
                 <option></option>
                 <option>CCOM</option>
              </select>
              <label>Cohorte :</label>
-             <select>
+             <select id="select-year">
                 <option></option>
                 <option>2017</option>
              </select>
-             <button type='button' class='btn btn-yellow btn-pill'>CONFIRMAR</button>
+             <button type='button' class='btn btn-yellow btn-pill' onclick="show_cohort()">CONFIRMAR</button>
              <div class="tab">
               <button class="tablinks" onclick="openCity(event, 'Primer')">Primer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
@@ -1046,6 +1046,113 @@ if(!isset($_SESSION['stdnt_number'])){
               <button class="tablinks" onclick="openCity(event, 'CISO')">Ciencias Sociales</button>
               <button class="tablinks" onclick="openCity(event, 'ElectDept')">Electivas Departamentales</button>
             </div>
+            <script>
+               var cohorte = [];
+                <?php
+                  $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code) WHERE crse_major = 'CC COMS BCN' 
+                  UNION
+                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code) WHERE crse_major = 'CC COMS BCN'";
+                  $result = mysqli_query($conn, $sql);
+                  $resultCheck = mysqli_num_rows($result);                                
+                 
+                  if($resultCheck > 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                      echo "
+                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", ".$row["crse_major"].", '".$row["crse_description"]."']);
+                      ";
+                    }
+                  }
+              ?>
+              function show_cohort() {
+                var dept = document.getElementById("select-dept").value;
+                var year = document.getElementById("select-year").value;
+                var tabla;
+                for (var i = 0; i < cohorte.length; i++){
+                  if (cohorte[i][4] == `${dept}` && cohorte[i][1] == year){
+                  if (cohorte[i][2] == 1 && cohorte[i][3] == 1){
+                  tabla = document.getElementById("primer_tabla").innerHTML;
+                  document.getElementById("primer_tabla").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  if (cohorte[i][2] == 1 && cohorte[i][3] == 2){
+                  tabla = document.getElementById("primer_segundo").innerHTML;
+                  document.getElementById("primer_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  if (cohorte[i][2] == 2 && cohorte[i][3] == 1){
+                  tabla = document.getElementById("segundo_primero").innerHTML;
+                  document.getElementById("segundo_primero").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>descripcion</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  if (cohorte[i][2] == 2 && cohorte[i][3] == 2){
+                  tabla = document.getElementById("segundo_segundo").innerHTML;
+                  document.getElementById("segundo_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>descripcion</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  if (cohorte[i][2] == 3 && cohorte[i][3] == 1){
+                  tabla = document.getElementById("tercero_primero").innerHTML;
+                  document.getElementById("tercero_primero").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>descripcion</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  if (cohorte[i][2] == 3 && cohorte[i][3] == 2){
+                  tabla = document.getElementById("tercero_segundo").innerHTML;
+                  document.getElementById("tercero_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>descripcion</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  if (cohorte[i][2] == 4 && cohorte[i][3] == 1){
+                  tabla = document.getElementById("cuarto_primero").innerHTML;
+                  document.getElementById("cuarto_primero").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>descripcion</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  if (cohorte[i][2] == 4 && cohorte[i][3] == 2){
+                  tabla = document.getElementById("cuarto_segundo").innerHTML;
+                  document.getElementById("cuarto_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>descripcion</td>
+                                        <td>creditos</td>
+                                </tr>`;
+                  }
+                  }
+                }
+              }
+            </script>
                                     <!-- Comienza el TAB del First Year -->
 <div id="Primer" class="tabcontent">
   <section>
@@ -1056,57 +1163,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 1";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);                                
-
-                              if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+ <tbody id="primer_tabla">
                                   
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-                                  
-                                                        
-                                
-?>
 </tbody>
 </table>
 <table>
@@ -1116,58 +1174,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                   $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 1 AND crse_semester = 2";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                            
-                           if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
-                                  
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-                              
-                              
-                              
-                            
-?>
+ <tbody id="primer_segundo">
+                                 
 </tbody>
 </table>
         </section> 
@@ -1183,54 +1191,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 1";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                                  
-           if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
-                                  
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-?>
+ <tbody id="segundo_primero">
+                                 
 </tbody>
 </table>
 <table>
@@ -1240,54 +1202,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                   $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 2 AND crse_semester = 2";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                            
-                                   if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
-                                  
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-?>
+ <tbody id="segundo_segundo">
+                                 
 </tbody>
 </table>
         </section>  
@@ -1302,54 +1218,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 1";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                            
-                                    if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
-                                  
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-?>
+ <tbody id="tercero_primero">
+                                 
 </tbody>
 </table>
 <table>
@@ -1359,54 +1229,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                   $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 3 AND crse_semester = 2";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                            
-                                  if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
-                                  
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-?>
+ <tbody id="tercero_segundo">
+                                
 </tbody>
 </table>
         </section>  
@@ -1420,54 +1244,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                    $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 1";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                            
-                                    if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+ <tbody id="cuarto_primero">
                                   
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-?>
 </tbody>
 </table>
 <table>
@@ -1477,55 +1255,8 @@ if(!isset($_SESSION['stdnt_number'])){
     <th>Créditos</th>
   </tr>
       
- <tbody>
-                                  <?php
-                                    
-                                   $sql ="SELECT crse_code, crse_description, crse_credits
-                                            FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2
-                                            UNION
-                                            SELECT crse_code, crse_description, crse_credits
-                                            FROM general_courses INNER JOIN cohort USING (crse_code)
-                                            WHERE crse_major = 'CC COMS BCN' AND crse_year = 4 AND crse_semester = 2";
-                                  $result = mysqli_query($conn, $sql);
-                                  $resultCheck = mysqli_num_rows($result);
-                                      if($resultCheck > 0){
-                              while($row = mysqli_fetch_assoc($result)){
-                              $sql_grade =" SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
-                                            UNION
-                                            SELECT crse_code, crse_grade
-                                            FROM stdnt_record 
-                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
-                                  $result_grade = mysqli_query($conn, $sql_grade);
-                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
-                                  
-                                  if($resultCheck_grade > 0){
-                                  $row_grade = mysqli_fetch_assoc($result_grade);
-                                  
-                                  if(      $row_grade['crse_grade'] == 'A' OR $row_grade['crse_grade'] == 'B' OR
-                                           $row_grade['crse_grade'] == 'C'){
-                                       echo " <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}
-                                         else{
-                                      echo " <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}} 
-                                  else {
-                                        echo " <tr class='tablaC'>
-                                        <td>{$row['crse_code']}</td>
-                                        <td>{$row['crse_description']}</td>
-                                        <td>{$row['crse_credits']}</td>
-                                        </tr>";}}}
-     
-        
-?>
+ <tbody id="cuarto_segundo">
+                                
 </tbody>
 </table>
         </section>  
