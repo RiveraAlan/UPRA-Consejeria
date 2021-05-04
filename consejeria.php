@@ -196,7 +196,7 @@ if(!isset($_SESSION['stdnt_number'])){
               echo '<table class="list-table">
               <thead>
                 <tr class="list">
-                  <th>Concentracion</th>
+                  <th>Concentración</th>
                   <th style="text-align: right" onClick="clear_list(';
                   echo "'con_table'";
                   echo ')">x</th>
