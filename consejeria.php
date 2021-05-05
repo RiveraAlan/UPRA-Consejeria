@@ -1056,7 +1056,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
                       echo "
-                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", '".$row["crse_major"]."', '".$row["crse_description"]."']);
+                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", '".$row["crse_major"]."', '".$row["crse_description"]."', '".$row["crse_credits"]."']);
                         ";
                     }
                   }
@@ -1119,7 +1119,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   if (cohorte[i][2] == 1 && cohorte[i][3] == 2){
@@ -1129,7 +1129,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   if (cohorte[i][2] == 2 && cohorte[i][3] == 1){
@@ -1139,7 +1139,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   if (cohorte[i][2] == 2 && cohorte[i][3] == 2){
@@ -1149,7 +1149,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   if (cohorte[i][2] == 3 && cohorte[i][3] == 1){
@@ -1159,7 +1159,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   if (cohorte[i][2] == 3 && cohorte[i][3] == 2){
@@ -1169,7 +1169,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   if (cohorte[i][2] == 4 && cohorte[i][3] == 1){
@@ -1179,7 +1179,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   if (cohorte[i][2] == 4 && cohorte[i][3] == 2){
@@ -1189,7 +1189,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
-                                        <td>creditos</td>
+                                        <td>${cohorte[i][6]}</td>
                                 </tr>`;
                   }
                   }
