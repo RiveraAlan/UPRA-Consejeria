@@ -1033,7 +1033,6 @@ if(!isset($_SESSION['stdnt_number'])){
              <label>Cohorte :</label>
              <select id="select-year">
                 <option></option>
-                <option>2017</option>
              </select>
              <button type='button' class='btn btn-yellow btn-pill' onclick="show_cohort()">CONFIRMAR</button>
              <div class="tab">
@@ -1061,23 +1060,39 @@ if(!isset($_SESSION['stdnt_number'])){
                         ";
                     }
                   }
-
-                  $sql = "SELECT DISTINCT crse_major FROM `cohort`";
+                  
+                  $sql = "SELECT DISTINCT crse_major, cohort_year FROM `cohort`";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);                                
                  
                   if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
                       echo "dept_list = document.getElementById('select-dept').innerHTML;
+                      year_list = document.getElementById('select-year').innerHTML;
                       document.getElementById('select-dept').innerHTML = `";
                       echo '
                       ${dept_list}';
+                      if ($row["crse_major"] == 'CC COMS BCN') {
                       echo "
-                      <option>".$row["crse_major"]."</option>
+                      <option value='".$row["crse_major"]."'>CCOM</option>
                       `;
                       ";
+                      } else if ($row["crse_major"] == 'BI-MICM-BCN') {
+                        echo "
+                        <option value='".$row["crse_major"]."'>BIOL</option>
+                        `;
+                        ";
+                        }
+                      echo "
+                      document.getElementById('select-year').innerHTML = `";
+                      echo '
+                      ${year_list}';
+                      echo "
+                      <option>".$row["cohort_year"]."</option>
+                      `;";
+                        }
                     }
-                  }
+                  
               ?>
               
               function show_cohort() {
@@ -1085,6 +1100,15 @@ if(!isset($_SESSION['stdnt_number'])){
                 var dept = document.getElementById("select-dept").value;
                 var year = document.getElementById("select-year").value;
                 var tabla;
+                tabla = document.getElementById("primer_tabla").innerHTML = '';
+                tabla = document.getElementById("primer_segundo").innerHTML = '';
+                tabla = document.getElementById("segundo_primero").innerHTML = '';
+                tabla = document.getElementById("segundo_segundo").innerHTML = '';
+                tabla = document.getElementById("tercero_primero").innerHTML = '';
+                tabla = document.getElementById("tercero_segundo").innerHTML = '';
+                tabla = document.getElementById("cuarto_primero").innerHTML = '';
+                tabla = document.getElementById("cuarto_segundo").innerHTML = '';
+
                 for (var i = 0; i < cohorte.length; i++){
                   console.log(dept + cohorte[i][4]);
                   if (cohorte[i][4] == `${dept}` && cohorte[i][1] == year){

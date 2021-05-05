@@ -169,7 +169,7 @@ WHERE record_status != 0";
           </li>
           <li class="nav-item has-treeview menu-open">
             <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
-               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+               <i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Actualizar/Crear Expediente</p>
             </a>
           </li>
