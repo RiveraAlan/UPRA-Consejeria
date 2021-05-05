@@ -168,6 +168,12 @@ WHERE record_status != 0";
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Actualizar/Crear Expediente</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
             <a href="lista.php" class="nav-link">
                <i class="fas fa-stopwatch-20"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Lista de Conteo de Clases</p>

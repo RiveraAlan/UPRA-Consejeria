@@ -1,7 +1,7 @@
 <?php
 include("inc/connection.php");
  session_start();
- $advisor_id= $_SESSION['adv_email'];
+ $advisor_id = $_SESSION['adv_email'];
  $advisor_name = $_SESSION['adv_name'];
 
 if(!isset($_SESSION['adv_email'])){
@@ -439,7 +439,7 @@ h2 {
           <th>Código</th>
           <th>Descripción</th>
           <th>Créditos</th>
-          <th>X</th>
+          <th onclick="eli_all('concentracion-table')" style="cursor: pointer">X</th>
       </tr>
       </thead>
       <tbody id="concentracion-table">
@@ -454,6 +454,7 @@ h2 {
           <th>Código</th>
           <th>Descripción</th>
           <th>Créditos</th>
+          <th onclick="eli_all('general-table')" style="cursor: pointer">X</th>
       </tr>
       </thead>
       <tbody id="general-table">
@@ -616,7 +617,7 @@ let general = [];
             <td id='con_code'>${crse_code}</td>
             <td id='con_des'>${crse_description}</td>
             <td id='con_cred'>${crse_credits}</td>
-            <td onClick='eli_con(${crse_code})'>X</td>
+            <td onclick='eli_con("${crse_code}")' style='cursor: pointer'>X</td>
             </tr>`;
             concentracion.push([crse_code, crse_description, crse_credits]);
   }else {
@@ -626,31 +627,91 @@ let general = [];
             <td id='gen_code'>${crse_code}</td>
             <td id='gen_des'>${crse_description}</td>
             <td id='gen_cred'>${crse_credits}</td>
+            <td onclick='eli_gen("${crse_code}")' style='cursor: pointer'>X</td>
             </tr>`;
             general.push([crse_code, crse_description, crse_credits]);
   }
 }
-function eli_con(clase){
+
+function eli_all(tabla) {
+  if (tabla == "concentracion-table"){
+    document.getElementById("concentracion-table").innerHTML = '';
+    concentracion = [];
+  }else if (tabla == "general-table") {
+    document.getElementById("general-table").innerHTML = '';
+    general = [];
+  }
+}
+function eli_con(clase) { 
   for (var i = 0; i < concentracion.length; i++){
     if (concentracion[i][0] == `${clase}`){
-      concentracion.splice(i - 1,1);
+      var temp = i + 1;
+      concentracion.splice(temp - 1,1);
       if (concentracion.length > 0){
       for (var j = 0; j < concentracion.length; j++){
-        if (j != 0){
-          table = document.getElementById("concentracion-table").innerHTML;
-          
+        if (j > 0){
+          var table = document.getElementById("concentracion-table").innerHTML;
           document.getElementById("concentracion-table").innerHTML = `
             ${table}
             <tr>
-            <td id='con_code'>${crse_code}</td>
-            <td id='con_des'>${crse_description}</td>
-            <td id='con_cred'>${crse_credits}</td>
-            <td onClick='eli_con(${crse_code})'>X</td>
+            <td id='con_code'>${concentracion[j][0]}</td>
+            <td id='con_des'>${concentracion[j][1]}</td>
+            <td id='con_cred'>${concentracion[j][2]}</td>
+            <td onClick='eli_con("${concentracion[j][0]}")' style='cursor: pointer'>X</td>
+            </tr>`;
+        }else {
+          document.getElementById("concentracion-table").innerHTML = `
+            <tr>
+            <td id='con_code'>${concentracion[j][0]}</td>
+            <td id='con_des'>${concentracion[j][1]}</td>
+            <td id='con_cred'>${concentracion[j][2]}</td>
+            <td onClick='eli_con("${concentracion[j][0]}")' style='cursor: pointer'>X</td>
             </tr>`;
         }
-        break;
+        
       }
+      break;
+    }else {
+        document.getElementById("concentracion-table").innerHTML = ``;
+        break;
+        }
     }
+  }
+}
+
+function eli_gen(clase) { 
+  for (var i = 0; i < general.length; i++){
+    if (general[i][0] == `${clase}`){
+      var temp = i + 1;
+      general.splice(temp - 1,1);
+      if (general.length > 0){
+      for (var j = 0; j < general.length; j++){
+        if (j > 0){
+          var table = document.getElementById("general-table").innerHTML;
+          document.getElementById("general-table").innerHTML = `
+            ${table}
+            <tr>
+            <td id='con_code'>${general[j][0]}</td>
+            <td id='con_des'>${general[j][1]}</td>
+            <td id='con_cred'>${general[j][2]}</td>
+            <td onClick='eli_con("${general[j][0]}")' style='cursor: pointer'>X</td>
+            </tr>`;
+        }else {
+          document.getElementById("general-table").innerHTML = `
+            <tr>
+            <td id='con_code'>${general[j][0]}</td>
+            <td id='con_des'>${general[j][1]}</td>
+            <td id='con_cred'>${general[j][2]}</td>
+            <td onClick='eli_gen("${general[j][0]}")' style='cursor: pointer'>X</td>
+            </tr>`;
+        }
+        
+      }
+      break;
+    }else {
+        document.getElementById("general-table").innerHTML = ``;
+        break;
+        }
     }
   }
 }
@@ -685,9 +746,43 @@ var class_arr = [];
    var list = document.getElementById("clases").innerHTML;
    var year = document.getElementById("year").value;
    var semester = document.getElementById("semester").value;
+   var rep_class = 0;
    
+for (var i = 0; i < class_arr.length; i++){
+  if (class_arr[i][0] == `${clase}`){
+    rep_class = 1;
+    var temp_var = i + 1;
+    class_arr.slice(i - 1,1);
+    class_arr.push([clase, year, semester]);
+
+for (var j = 1; j <= arr.length; j++){
+  arr.slice(j - 1,1);
+}
+  if (pre_requisitos.length >= co_requisitos.length){
+    var temp = pre_requisitos.length;
+    if (temp === 0){
+      temp = 1;
+    }
+  }else if (co_requisitos.length > pre_requisitos.length){
+    var temp = co_requisitos.length;
+  }
+  for (i = 0; i < temp; i++){
+    if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
+        arr.push([clase, pre_requisitos[i], co_requisitos[i]]);
+        } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
+            arr.push([clase, pre_requisitos[i], "-"]);
+            } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
+                arr.push([clase, "-", co_requisitos[i]]);
+                } 
+  }
+  break;
+  }
+}   
+
+if (rep_class == 0) {
+
+
   class_arr.push([clase, year, semester]);
-  console.table(class_arr);
    list_counter++;
 
   if (pre_requisitos.length >= co_requisitos.length){
@@ -698,13 +793,12 @@ var class_arr = [];
   }else if (co_requisitos.length > pre_requisitos.length){
     var temp = co_requisitos.length;
   }
-  console.log(temp);
   for (i = 0; i < temp; i++){
     if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
         arr.push([clase, pre_requisitos[i], co_requisitos[i]])
         document.getElementById("clases").innerHTML = `
           ${list}
-          <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
+          <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase('${clase}')">${clase}</li>
         `;
         } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
             arr.push([clase, pre_requisitos[i], "-"]);
@@ -725,13 +819,12 @@ var class_arr = [];
                     `;
                     }
   }
-
+}
  pre_requisitos = [];
  co_requisitos = [];
 
  document.getElementById("co").innerHTML = ``;
  document.getElementById("pre").innerHTML = ``;
- console.table(arr);
  }
  
  function viewClase(clase){
@@ -757,9 +850,11 @@ var class_arr = [];
     }
    }
    for (var i = 0; i < class_arr.length; i++){
-     if(class_arr[i][1] = `${clase}`){
-    document.getElementById("year").value = class_arr[i][2];
-    document.getElementById("semester").value = class_arr[i][3]; 
+     if(class_arr[i][0] == `${clase}`){
+       console.log(class_arr[i][1]);
+       console.log(class_arr[i][2]);
+    document.getElementById("year").value = `${class_arr[i][1]}`;
+    document.getElementById("semester").value = `${class_arr[i][2]}`; 
      }
    }
  }

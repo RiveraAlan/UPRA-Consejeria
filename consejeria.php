@@ -1029,7 +1029,6 @@ if(!isset($_SESSION['stdnt_number'])){
              <label>Departamento :</label>
              <select id="select-dept">
                 <option></option>
-                <option>CCOM</option>
              </select>
              <label>Cohorte :</label>
              <select id="select-year">
@@ -1049,25 +1048,45 @@ if(!isset($_SESSION['stdnt_number'])){
             <script>
                var cohorte = [];
                 <?php
-                  $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code) WHERE crse_major = 'CC COMS BCN' 
+                  $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code)
                   UNION
-                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code) WHERE crse_major = 'CC COMS BCN'";
+                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code)";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);                                
                  
                   if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
                       echo "
-                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", ".$row["crse_major"].", '".$row["crse_description"]."']);
+                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", '".$row["crse_major"]."', '".$row["crse_description"]."']);
+                        ";
+                    }
+                  }
+
+                  $sql = "SELECT DISTINCT crse_major FROM `cohort`";
+                  $result = mysqli_query($conn, $sql);
+                  $resultCheck = mysqli_num_rows($result);                                
+                 
+                  if($resultCheck > 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                      echo "dept_list = document.getElementById('select-dept').innerHTML;
+                      document.getElementById('select-dept').innerHTML = `";
+                      echo '
+                      ${dept_list}';
+                      echo "
+                      <option>".$row["crse_major"]."</option>
+                      `;
                       ";
                     }
                   }
               ?>
+              
               function show_cohort() {
+                
                 var dept = document.getElementById("select-dept").value;
                 var year = document.getElementById("select-year").value;
                 var tabla;
                 for (var i = 0; i < cohorte.length; i++){
+                  console.log(dept + cohorte[i][4]);
                   if (cohorte[i][4] == `${dept}` && cohorte[i][1] == year){
                   if (cohorte[i][2] == 1 && cohorte[i][3] == 1){
                   tabla = document.getElementById("primer_tabla").innerHTML;
@@ -1095,7 +1114,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
@@ -1105,7 +1124,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
@@ -1115,7 +1134,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
@@ -1125,7 +1144,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
@@ -1135,7 +1154,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
@@ -1145,7 +1164,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
-                                        <td>descripcion</td>
+                                        <td>${cohorte[i][5]}</td>
                                         <td>creditos</td>
                                 </tr>`;
                   }
