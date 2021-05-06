@@ -1047,6 +1047,38 @@ if(!isset($_SESSION['stdnt_number'])){
             <script>
                var cohorte = [];
                 <?php
+                $sql_cohort = "SELECT DISTINCT crse_major, cohort_year FROM `cohort`";
+                $result_cohort = mysqli_query($conn, $sql_cohort);
+                $resultCheck_cohort = mysqli_num_rows($result_cohort);                                
+               
+                if($resultCheck_cohort > 0){
+                  while($row_cohort = mysqli_fetch_assoc($result_cohort)){
+                    echo "dept_list = document.getElementById('select-dept').innerHTML;
+                    year_list = document.getElementById('select-year').innerHTML;
+                    document.getElementById('select-dept').innerHTML = `";
+                    echo '
+                    ${dept_list}';
+                    if ($row_cohort["crse_major"] == 'CC COMS BCN') {
+                    echo "
+                    <option value='".$row_cohort["crse_major"]."'>CCOM</option>
+                    `;
+                    ";
+                    } else if ($row_cohort["crse_major"] == 'BI-MICM-BCN') {
+                      echo "
+                      <option value='".$row_cohort["crse_major"]."'>BIOL</option>
+                      `;
+                      ";
+                      }
+                    echo "
+                    document.getElementById('select-year').innerHTML = `";
+                    echo '
+                    ${year_list}';
+                    echo "
+                    <option>".$row_cohort["cohort_year"]."</option>
+                    `;";
+                      }
+                  }
+
                   $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code)
                   UNION
                   SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code)";
@@ -1055,43 +1087,28 @@ if(!isset($_SESSION['stdnt_number'])){
                  
                   if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
-                      echo "
-                        cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", '".$row["crse_major"]."', '".$row["crse_description"]."', '".$row["crse_credits"]."']);
-                        ";
-                    }
+                      $sql_grade ="SELECT crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'
+                                            UNION
+                                            SELECT crse_grade
+                                            FROM stdnt_record 
+                                            WHERE crse_code = '{$row['crse_code']}' AND stdnt_number = '$id'";
+                                  $result_grade = mysqli_query($conn, $sql_grade);
+                                  $resultCheck_grade = mysqli_num_rows($result_grade);                                   
+                                  
+                                  if($resultCheck_grade > 0){
+                                  $row_grade = mysqli_fetch_assoc($result_grade);
+                                  echo "
+                                    cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", '".$row["crse_major"]."', '".$row["crse_description"]."', '".$row["crse_credits"]."', '".$row_grade["crse_grade"]."']);
+                                    ";
+                                }else {
+                                echo "
+                                    cohorte.push(['".$row["crse_code"]."', ".$row["cohort_year"].", ".$row["crse_year"].", ".$row["crse_semester"].", '".$row["crse_major"]."', '".$row["crse_description"]."', '".$row["crse_credits"]."', '']);
+                                    ";
+                                }
                   }
-                  
-                  $sql = "SELECT DISTINCT crse_major, cohort_year FROM `cohort`";
-                  $result = mysqli_query($conn, $sql);
-                  $resultCheck = mysqli_num_rows($result);                                
-                 
-                  if($resultCheck > 0){
-                    while($row = mysqli_fetch_assoc($result)){
-                      echo "dept_list = document.getElementById('select-dept').innerHTML;
-                      year_list = document.getElementById('select-year').innerHTML;
-                      document.getElementById('select-dept').innerHTML = `";
-                      echo '
-                      ${dept_list}';
-                      if ($row["crse_major"] == 'CC COMS BCN') {
-                      echo "
-                      <option value='".$row["crse_major"]."'>CCOM</option>
-                      `;
-                      ";
-                      } else if ($row["crse_major"] == 'BI-MICM-BCN') {
-                        echo "
-                        <option value='".$row["crse_major"]."'>BIOL</option>
-                        `;
-                        ";
-                        }
-                      echo "
-                      document.getElementById('select-year').innerHTML = `";
-                      echo '
-                      ${year_list}';
-                      echo "
-                      <option>".$row["cohort_year"]."</option>
-                      `;";
-                        }
-                    }
+                }
                   
               ?>
               
@@ -1114,83 +1131,220 @@ if(!isset($_SESSION['stdnt_number'])){
                   if (cohorte[i][4] == `${dept}` && cohorte[i][1] == year){
                   if (cohorte[i][2] == 1 && cohorte[i][3] == 1){
                   tabla = document.getElementById("primer_tabla").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("primer_tabla").innerHTML = `
                                 ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("primer_tabla").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("primer_tabla").innerHTML = `
+                                ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
-                  }
-                  if (cohorte[i][2] == 1 && cohorte[i][3] == 2){
+                                }
+                  } else if (cohorte[i][2] == 1 && cohorte[i][3] == 2){
                   tabla = document.getElementById("primer_segundo").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("primer_segundo").innerHTML = `
                                 ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("primer_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("primer_segundo").innerHTML = `
+                                ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
-                  }
-                  if (cohorte[i][2] == 2 && cohorte[i][3] == 1){
+                                }
+                  } else if (cohorte[i][2] == 2 && cohorte[i][3] == 1){
                   tabla = document.getElementById("segundo_primero").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("segundo_primero").innerHTML = `
                                 ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("segundo_primero").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("segundo_primero").innerHTML = `
+                                ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
-                  }
-                  if (cohorte[i][2] == 2 && cohorte[i][3] == 2){
+                                }
+                  } else if (cohorte[i][2] == 2 && cohorte[i][3] == 2){
                   tabla = document.getElementById("segundo_segundo").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("segundo_segundo").innerHTML = `
                                 ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("segundo_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("segundo_segundo").innerHTML = `
+                                ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
-                  }
-                  if (cohorte[i][2] == 3 && cohorte[i][3] == 1){
+                                }
+                  } else if (cohorte[i][2] == 3 && cohorte[i][3] == 1){
                   tabla = document.getElementById("tercero_primero").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("tercero_primero").innerHTML = `
                                 ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("tercero_primero").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("tercero_primero").innerHTML = `
+                                ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
-                  }
-                  if (cohorte[i][2] == 3 && cohorte[i][3] == 2){
+                                }
+                  } else if (cohorte[i][2] == 3 && cohorte[i][3] == 2){
                   tabla = document.getElementById("tercero_segundo").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("tercero_segundo").innerHTML = `
                                 ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("tercero_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("tercer_segundo").innerHTML = `
+                                ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
-                  }
-                  if (cohorte[i][2] == 4 && cohorte[i][3] == 1){
+                                }
+                  } else if (cohorte[i][2] == 4 && cohorte[i][3] == 1){
                   tabla = document.getElementById("cuarto_primero").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("cuarto_primero").innerHTML = `
                                 ${tabla}
-                                <tr class='tablaC'>
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
-                  }
-                  if (cohorte[i][2] == 4 && cohorte[i][3] == 2){
-                  tabla = document.getElementById("cuarto_segundo").innerHTML;
-                  document.getElementById("cuarto_segundo").innerHTML = `
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("cuarto_primero").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("cuarto_primero").innerHTML = `
                                 ${tabla}
                                 <tr class='tablaC'>
                                         <td>${cohorte[i][0]}</td>
                                         <td>${cohorte[i][5]}</td>
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
+                                }
+                  } else if (cohorte[i][2] == 4 && cohorte[i][3] == 2){
+                  tabla = document.getElementById("cuarto_segundo").innerHTML;
+                  if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
+                  document.getElementById("cuarto_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(0,204,0,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else if (cohorte[i][7] == 'D' || cohorte[i][7] == 'F' || cohorte[i][7] == 'NP') {
+                  document.getElementById("cuarto_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC' width='50%' style='background-color: rgb(255,153,51,0.3)'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                } else {
+                                  document.getElementById("cuarto_segundo").innerHTML = `
+                                ${tabla}
+                                <tr class='tablaC'>
+                                        <td>${cohorte[i][0]}</td>
+                                        <td>${cohorte[i][5]}</td>
+                                        <td>${cohorte[i][6]}</td>
+                                </tr>`;
+                                }
                   }
                   }
                 }
