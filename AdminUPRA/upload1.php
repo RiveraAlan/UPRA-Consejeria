@@ -15,7 +15,7 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
     $fileExtension = strtolower(end($fileNameCmps));
 
     // sanitize file-name
-    $newFileName = $fileName . '.' . $fileExtension;
+    $newFileName = 'Expediente.' . $fileExtension;
 
     // check if file has one of the following extensions
     $allowedfileExtensions = array('jpg', 'gif', 'png', 'zip', 'txt', 'xls', 'doc');
@@ -47,4 +47,4 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
   }
 }
 $_SESSION['message'] = $message;
-header("Location: est_profile.php");
+header("Location: Leer.php");
