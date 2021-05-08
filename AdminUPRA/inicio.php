@@ -168,9 +168,9 @@ WHERE record_status != 0";
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
+            <a onclick="document.getElementById('id03').style.display='block'" href="#" class="nav-link">
                <i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Actualizar/Crear Expediente</p>
+              <p>Actualizar/Crear Cohorte</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -601,6 +601,46 @@ margin-left: auto;
               </div>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               <button type='submit' class='btn btn-default' name="uploadBtn" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer>
+                 </form> 
+            </div>
+          </div><!-- /.Expediente -->
+
+          <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
+        <div id='id03' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id03").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Actualizar/Crear Cohorte</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                  <form action="cohorte.php" method="POST">
+                  <select name='cohort' style="width: 100%; height: 30px; background-color: #d3d3d3; border-radius: 5px">
+                  <option></option>
+                        <?php
+                            $sql_cohort = "SELECT DISTINCT crse_major, cohort_year FROM `cohort`";
+                            $result_cohort = mysqli_query($conn, $sql_cohort);
+                            $resultCheck_cohort = mysqli_num_rows($result_cohort);                                
+                           
+                            if($resultCheck_cohort > 0){
+                              while($row_cohort = mysqli_fetch_assoc($result_cohort)){
+                                echo "<option value='".$row_cohort["crse_major"].",".$row_cohort["cohort_year"]."'>".$row_cohort["crse_major"]." ".$row_cohort["cohort_year"]."</option>";
+                              }
+                            }
+                        ?>
+                  </select>
+                  <div class="grid-container">
+                <div class='item-1'>
+                          <button name="submit" type="submit" value="submit" class='btn btn-primary' style="width: 100%; color: white">Crear</button>
+                  </div> 
+                <div class='item-2'>
+                          <button type="submit" name="submit" value="submit" class='btn btn-warning' style="width: 100%; color: white">Actualizar</button>
+                  </div>
+                  </div>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               </footer>
                  </form> 
             </div>

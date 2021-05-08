@@ -468,8 +468,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <?php 
                 
                       $sql = "SELECT *
-                      FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                      WHERE crse_major = 'CC COMS BCN'";
+                      FROM mandatory_courses INNER JOIN cohort USING (crse_code)";
                       $result = mysqli_query($conn, $sql);
                       $resultCheck = mysqli_num_rows($result);
                       
