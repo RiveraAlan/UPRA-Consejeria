@@ -981,4 +981,44 @@ function submitAll() {
 
 </script>
 
+<?php
+if (isset($_POST['submit'])) {
+  $array = mysqli_real_escape_string($conn, $_POST['cohort']);
+  $save_method = mysqli_real_escape_string($conn, $_POST['submit']);
+  $cohort = explode(",",$array);
+  $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code)
+  UNION
+  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code)";
+  $result = mysqli_query($conn, $sql);
+  $resultCheck = mysqli_num_rows($result);   
+        if($resultCheck > 0){
+          echo "
+          <script>
+          document.getElementById('dept').value = `{$cohort[0]}`;
+          document.getElementById('cohort_year').value = '{$cohort[1]}'";
+          while($row = mysqli_fetch_assoc($result)){
+            echo "
+            var table = document.getElementById('concentracion-table').innerHTML;
+          document.getElementById('concentracion-table').innerHTML = `";
+          echo '
+            ${table}';
+            echo "
+            <tr>
+            <td id='con_code'>".$row['crse_code']."</td>
+            <td id='con_des'>".$row['crse_description']."</td>
+            <td id='con_cred'>".$row['crse_credits']."</td>";
+            echo '
+            <td onClick=';
+            echo "eli_con(";
+            echo "'".$row['crse_code']."')";
+            echo '" style="cursor: pointer">X</td>
+            </tr>`;
+            ';
+            
+          }
+        }
+        echo "
+        </script>";
+}
+?>
 </html>
