@@ -346,13 +346,26 @@ body {
         </div>
       </div>
 <!-- Sidebar Menu -->
-         <nav class="mt-2">
+<nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               <li class="nav-item has-treeview menu-open">
             <a href="inicio.php" class="nav-link">
                <i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Inicio</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Actualizar Expediente</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id03').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Actualizar/Crear Cohorte</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -370,10 +383,10 @@ body {
           <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
               <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Cerrar Sesión</p>
-            </a>
-          </li>
+            </a></li>
         </ul>
-      </nav><!-- /.sidebar-menu -->
+      </nav>
+      <!-- /.sidebar-menu -->
     </div><!-- /.sidebar -->
   </aside>
 
@@ -753,11 +766,6 @@ body {
                 </tbody>
                   </table>
                   <br>
-                   
-          
-          
-          
-          
           <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="edit('free_courses')"></i></a></h3></div>
                   <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
@@ -916,10 +924,7 @@ body {
                   echo "</tr> ";}}?>
                 </tbody>
                   </table>
-                  <br> 
-          
-          
-                    
+                  <br>        
           <div align = "center"><h3>Cursos Ciencias Sociales <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
                    <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
@@ -1009,8 +1014,6 @@ body {
                 </tbody>
                   </table>
                   <br>  
-                 
-          
           <div align = "center"><h3>Cursos Humanidades <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
                    <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
@@ -1100,9 +1103,6 @@ body {
                 </tbody>
                   </table>
                   <br>  
-          
-          
-          
               </div>
     </section>
     </div><!-- /.Final de file del student -->  
@@ -1211,7 +1211,6 @@ body {
                         } ?>
                   </select>
               </div>
-          
                           <div class="select-box"> 
                               <select name="grade" id="course-list">
                               <option value='A'>A</option>
@@ -1236,8 +1235,7 @@ body {
                             </div>
                           </div>
                         </div>
-                        <p><FONT COLOR="red"> <i COLOR="red">Nota Aclaratoria: </i></FONT>Poner semestre por codigo "TERM" según la plataforma PuTTY.</p>
-                    
+                        <p><FONT COLOR="red"> <i COLOR="red">Nota Aclaratoria: </i></FONT>Poner semestre por codigo "TERM" según la plataforma PuTTY.</p> 
       </div>                                                     
       <footer class="w3-container" style="padding-bottom:10px; padding-top:0px">
 <!-- HAY QUE BREGARLO!  -->
@@ -1336,6 +1334,82 @@ $("status").innerHTML = "Upload Aborted";
   </aside>
   <!-- /.control-sidebar -->
 </div>
+ <!-- modales -->
+    
+     <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
+     <div id='id02' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id02").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Subir Expediente</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                    <!-- Este de abajo es para subir el .txt y funciona -->
+                    <?php
+                        if (isset($_SESSION['message']) && $_SESSION['message'])
+                        {
+                          printf('<b>%s</b>', $_SESSION['message']);
+                          unset($_SESSION['message']);
+                        }
+                      ?>
+                      <form method="POST" action="upload1.php" enctype="multipart/form-data">
+                        <div>
+                          <input type="file" name="uploadedFile" />
+                        </div>
+
+                   
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='submit' class='btn btn-default' name="uploadBtn" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer>
+                 </form> 
+            </div>
+          </div><!-- /.Expediente -->
+
+          <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
+        <div id='id03' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id03").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Actualizar/Crear Cohorte</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                  <form action="cohorte.php" method="POST">
+                  <select name='cohort' style="width: 100%; height: 30px; background-color: #d3d3d3; border-radius: 5px">
+                  <option></option>
+                        <?php
+                            $sql_cohort = "SELECT DISTINCT crse_major, cohort_year FROM `cohort`";
+                            $result_cohort = mysqli_query($conn, $sql_cohort);
+                            $resultCheck_cohort = mysqli_num_rows($result_cohort);                                
+                           
+                            if($resultCheck_cohort > 0){
+                              while($row_cohort = mysqli_fetch_assoc($result_cohort)){
+                                echo "<option value='".$row_cohort["crse_major"].",".$row_cohort["cohort_year"]."'>".$row_cohort["crse_major"]." ".$row_cohort["cohort_year"]."</option>";
+                              }
+                            }
+                        ?>
+                  </select>
+                  <div class="grid-container">
+                <div class='item-1'>
+                          <button name="submit" type="submit" value="submit" class='btn btn-primary' style="width: 100%; color: white">Crear</button>
+                  </div> 
+                <div class='item-2'>
+                          <button type="submit" name="submit" value="submit" class='btn btn-warning' style="width: 100%; color: white">Actualizar</button>
+                  </div>
+                  </div>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              </footer>
+                 </form> 
+            </div>
+          </div><!-- /.Expediente -->
+    
+  </div>
+    <!-- /.modales -->
 
 <!-- jQuery -->
 <script>

@@ -156,12 +156,6 @@ WHERE record_status != 0";
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a onclick="document.getElementById('id01').style.display='block'" href="#" class="nav-link">
-               <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Añadir Clase</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
             <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Actualizar Expediente</p>
@@ -466,113 +460,6 @@ margin-left: auto;
     </section>
 
     <!-- modales -->
-    <script>
-      // Get the modal
-      var modal = document.getElementById('id01');
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-        
-      }
-      function add_class(tabla){
-        console.log(tabla); 
-        document.getElementById("tabla").value = tabla;
-      }
-
-      </script>
-            <!-- Añadir Clase -->
-            <div id="id01" class="w3-modal" style="padding-left:20%">
-    <div class="w3-modal-content w3-animate-zoom">
-      <header class="w3-container" style="padding-top:5px">
-        <span onclick="document.getElementById('id01').style.display='none'"
-        class="w3-button w3-display-topright">&times;</span>
-        <div style="text-align: center"><h1>Añadir Clase</h1>
-      <p>Complete los siguientes campos para añadir la clase a la base de datos.</p>
-      <hr></div>
-      </header>
-      <div class="w3-container">
-          <br>
-          <form action="inc/add_class.php" method='POST'>
-          <div class="grid-container">
-                <div class='item-1'>
-                          <a onclick="add_class('mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
-                            <i class='fas fa-pencil-alt'></i> Concentración</a>
-                  </div>
-                <div class='item-2'>
-                          <a onclick="add_class('general_courses')" class='btn btn-warning' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i> General Obli.</a>
-                  </div>
-                          <div class='item-3'>
-                          <a onclick="add_class('departamental_courses')" class='btn btn-danger'style="width: 100%; color: white">
-                             <i class='fas fa-pencil-alt'></i> Elect. Dept.</a>
-                        </div>
-                        <div class='item-4'>
-                          <a onclick="add_class('free_courses')" class='btn btn-info' style="width: 100%; color: white">
-                              <i class='fas fa-pencil-alt'></i> Elect. Libre</a>
-                        </div>
-                  </div>
-              </div>
-              <div style='width: 90%; margin-left: 5%'>
-              <div class="input-group mb-3">
-          <input type="text" name="course" class="form-control" placeholder="CURSO" value=''>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-chalkboard-teacher"></span>
-            </div>
-          </div>
-        </div>
-          <div class="input-group mb-3">
-              <input type="text" name="description" class="form-control" placeholder="DESCRIPCIÓN" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fa fa-font"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-              <input type="number" name="creditos" class="form-control" placeholder="CRÉDITOS" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fa fa-font"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-    
-            </div>
-          </div>
-          <input type='hidden' id='tabla' value='' name='tabla'>
-          <!-- /.col -->
-          <div class="col-4">
-          <button type='submit' class='btn btn-default' name='add-submit' style='float:right;'>APLICAR</button>
-          </div>
-          </div> 
-          <!-- /.col -->
-        </form>
-     
-      <!-- /Modal para registro -->  
-          </section>
-       
-        
-        
-        <footer class="main-footer" style='margin-left: 0%'>
-          
-          <strong style='margin-left: 25%'>Copyright &copy; 2020 <a>CONSEJERÍA-UPRA</a>.</strong> All rights reserved.
-        </footer> </div>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>              
-    </div>
-    
     
      <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
         <div id='id02' class='w3-modal' style='padding-left:20%'>
