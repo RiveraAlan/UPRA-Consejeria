@@ -37,24 +37,31 @@ $res_sem = preg_replace($pattern_dos, NULL,$entrada_dos);
 // class grade
 if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
   $entrada = $result_grade[0];
-  $pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
-  $entrada_dos = preg_replace($pattern, NULL, $entrada);
-  $pattern_dos = "/[;]/i";
-  $res_grade = preg_replace($pattern_dos, NULL,$entrada_dos);
+  // $pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
+  // $entrada_dos = preg_replace($pattern, NULL, $entrada);
+  // echo $entrada_dos[0];
+  $pattern_dos = "/.[;]/i";
+  $entrada_dos = preg_replace($pattern_dos, NULL,$entrada);
+  $pattern_tres = "/[;]/";
+  $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
 } else if (preg_match_all("/[;][A-Z]{1}[*].[;]/", $item, $result_grade)){
   $entrada = $result_grade[0];
   $pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
   $entrada_dos = preg_replace($pattern, NULL, $entrada);
-  $pattern_dos = "/[;]/i";
+  $pattern_dos = "/.[;]/i";
   $entrada_tres = preg_replace($pattern_dos, NULL,$entrada_dos);
   $pattern_tres = "/[*]/i";
-  $res_grade = preg_replace($pattern_tres, NULL,$entrada_tres);
-} else if (preg_match_all("/[;][A-Z]{2}[;]/", $item, $result_grade)){
+  $entrada_cuatro = preg_replace($pattern_tres, NULL,$entrada_tres);
+  $pattern_cuatro = "/[;]/";
+  $res_grade = preg_replace($pattern_cuatro, NULL,$entrada_cuatro);
+} else if (preg_match_all("/[;][A-Z]{2}.[;]/", $item, $result_grade)){
   $entrada = $result_grade[0];
   $pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
   $entrada_dos = preg_replace($pattern, NULL, $entrada);
-  $pattern_dos = "/[;]/i";
-  $res_grade = preg_replace($pattern_dos, NULL,$entrada_dos);
+  $pattern_dos = "/.[;]/i";
+  $entrada_dos = preg_replace($pattern_dos, NULL,$entrada);
+  $pattern_tres = "/[;]/";
+  $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
 } 
     
 $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
@@ -63,10 +70,19 @@ VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem
 $stmt = $conn->prepare($sql);
 // execute the query
 $stmt->execute();
+echo $sql;
+echo "<br>";
 }
 //exit
-echo '<script type="text/javascript">
-       window.location.href="inicio.php";
-       </script>';
+// echo '<script type="text/javascript">
+//        window.location.href="inicio.php";
+//        </script>';
+echo "
+<form id='myForm' method='POST' action='inc/Cod_Recomendar.php'>
+<input type='hidden' name='stdnt_number' value='".$res_num[0]."'>
+</form>
+<script>
+document.getElementById('myForm').submit();
+</script>";
 exit();
 ?>

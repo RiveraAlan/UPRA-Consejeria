@@ -583,7 +583,7 @@ body {
                   <?php
                   $sql = "SELECT *
                       FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                      WHERE crse_major = 'CC COMS BCN'";
+                      WHERE crse_major = 'CC-COMS-BCN'";
                       $result = mysqli_query($conn, $sql);
                       $resultCheck = mysqli_num_rows($result);
              
@@ -622,7 +622,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row_S['crse_grade']}</td>
                     ";
-                    if($row_S['crseR_status'] == 1){
+                    if($row_S['crse_status'] == 3){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
@@ -660,14 +660,14 @@ body {
           
           
           <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="edit('general_courses')"></i></a></h3></div>
-                  <form action='inc/recommend.php' method='POST'> 
+                  <!-- <form action='inc/recommend.php' method='POST'> 
                       
                     <?php
-                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
                    <button type='submit' name='rec-adi' value='crse_suggestionCISO' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; margin-left:24%; background-color: rgb(253, 118, 100);">Recomendación Adicional CISO</button>
                    <button type='submit' name='rec-adi' value='crse_suggestionHUMA' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 25%; margin:10px; background-color: rgb(253, 118, 100);">Recomendación Adicional HUMA</button>
-                   </form>
+                   </form> -->
                   <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -686,7 +686,7 @@ body {
                     
                     $sql =" SELECT *
                     FROM GENERAL_courses INNER JOIN cohort USING (crse_code)
-                    WHERE crse_major = 'CC COMS BCN'";
+                    WHERE crse_major = 'CC-COMS-BCN'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                       
@@ -723,7 +723,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row_S['crse_grade']}</td>
                     ";
-                    if($row_S['crseR_status'] == 1){
+                    if($row_S['crse_status'] == 3){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
@@ -759,12 +759,12 @@ body {
           
           
           <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="edit('free_courses')"></i></a></h3></div>
-                  <form action='inc/recommend.php' method='POST'>
+                  <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
-                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
                    <button type='submit' name='rec-adi' value='crse_suggestionFREE' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
-                   </form>
+                   </form> -->
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -802,7 +802,7 @@ body {
                     <td>{$row['crse_grade']}</td>
                     ";
                     
-                    if($row['crseR_status'] == 1){
+                    if($row['crse_status'] == 3){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
@@ -829,12 +829,12 @@ body {
                 
           
                     <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
-                   <form action='inc/recommend.php' method='POST'>
+                   <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
-                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
                    <button type='submit' name='rec-adi' value='crse_suggestionDEP' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
-                   </form>
+                   </form> -->
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
@@ -852,7 +852,7 @@ body {
                 <?php
                 
                 $sql ="SELECT * 
-                FROM departmental_courses WHERE crse_major = 'CC COMS BCN'";
+                FROM departmental_courses WHERE crse_major = 'CC-COMS-BCN'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              
@@ -887,7 +887,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row_S['crse_grade']}</td>
                     ";
-                    if($row_S['crseR_status'] == 1){
+                    if($row_S['crse_status'] == 3){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
@@ -921,12 +921,12 @@ body {
           
                     
           <div align = "center"><h3>Cursos Ciencias Sociales <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
-                   <form action='inc/recommend.php' method='POST'>
+                   <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
-                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
                    <button type='submit' name='rec-adi' value='crse_suggestionDEP' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
-                   </form>
+                   </form> -->
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
@@ -979,7 +979,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row_S['crse_grade']}</td>
                     ";
-                    if($row_S['crseR_status'] == 1){
+                    if($row_S['crse_status'] == 3){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>
@@ -1012,12 +1012,12 @@ body {
                  
           
           <div align = "center"><h3>Cursos Humanidades <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
-                   <form action='inc/recommend.php' method='POST'>
+                   <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
-                    echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
+                    // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
                     ?>
                    <button type='submit' name='rec-adi' value='crse_suggestionDEP' onclick="" class="w3-button w3-round-xlarge" style="color:white; width : 45%; margin:10px; margin-left:27%; background-color: rgb(253, 118, 100);">Recomendación Adicional</button>
-                   </form>
+                   </form> -->
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
@@ -1070,7 +1070,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row_S['crse_grade']}</td>
                     ";
-                    if($row_S['crseR_status'] == 1){
+                    if($row_S['crse_status'] == 3){
                       echo "<form action='inc/recommend.php' method='post'>
                       <input type='hidden' id='stdnt_number' name='stdnt_number' value='$student_id'>
                       <input type='hidden' id='crse_code' name='crse_code' value='{$row['crse_code']}'>

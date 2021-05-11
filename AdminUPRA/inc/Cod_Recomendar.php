@@ -1,28 +1,22 @@
 <?php
-session_start();
-include("AdminUPRA/inc/connection.php");
+include("connection.php");
 
-if(isset($_GET["stdnt_number"])){
-  $student_id = $_GET['stdnt_number'];
-} else {
-  $student_id = $_SESSION['stdnt_number'];
-}
-$advisor_id = $_SESSION['adv_email'];
+if(isset($_POST["stdnt_number"])){
+  $student_id = $_POST['stdnt_number'];
+} 
 
 if(!isset($student_id)){
   header("Location: index.php");
     exit();
 }
 
-$query = "SELECT * FROM stdnt_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
+$query = "SELECT * FROM stdnt_record WHERE stdnt_number = '$student_id'";
 $result = mysqli_query($conn, $query);
 $resultCheck = mysqli_num_rows($result);
 $isRecordPresentInDB = FALSE;
 
 if($resultCheck > 0)
   $isRecordPresentInDB = TRUE;
-
-    $modal = 'document.getElementById("id03").style.display="block"';
 ?>
 
 <?php
@@ -43,7 +37,7 @@ $est_year = date('Y')-(substr($row['stdnt_number'], 4,2) + 1999);
 
 $sql_SA =  "SELECT crse_code, crse_year, crse_semester 
             FROM cohort
-            WHERE crse_major = 'CC COMS BCN'";
+            WHERE crse_major = 'CC-COMS-BCN'";
                       $result_SA = mysqli_query($conn, $sql_SA);
                       $resultCheck_SA = mysqli_num_rows($result_SA);
 
@@ -51,27 +45,24 @@ $sql_SA =  "SELECT crse_code, crse_year, crse_semester
   while($row_SA = mysqli_fetch_assoc($result_SA)){
 $sql_P =  "SELECT crse_code, crse_PRE
             FROM cohort INNER JOIN scheme USING (crse_code)
-            WHERE crse_major = 'CC COMS BCN' AND crse_code = '".$row_SA['crse_code']."'";
+            WHERE crse_major = 'CC-COMS-BCN' AND crse_code = '".$row_SA['crse_code']."'";
                       $result_P = mysqli_query($conn, $sql_P);
                       $resultCheck_P = mysqli_num_rows($result_P); 
-                      
-     $Pre_disp = 0;
-     $Cant_Nota = 0;
-     echo "| Year : ";
-     echo $row_SA['crse_year'];
-     echo $est_year;
-     echo "| Semestre : ";
-     echo $row_SA['crse_semester'];
-     echo $semestre;
 
      $sql_GR = "SELECT crse_code, crse_grade
      FROM stdnt_record
-     WHERE crse_code = '".$row_SA['crse_code']."' AND stdnt_number = '".$student_id."'";
+     WHERE crse_code = '".$row_SA['crse_code']."' AND stdnt_number = '$student_id'";
      $result_GR = mysqli_query($conn, $sql_GR);
-     $resultCheck_GR = mysqli_fetch_assoc($result_GR);
-      
-      if ($row_SA['crse_year'] >= $est_year && $row_SA['crse_semester'] == $semestre && $resultCheck_GR != "A" && $resultCheck_GR != "B" && $resultCheck_GR != "C"){            
-                    if($resultCheck_P > 0){
+     $resultCheck_GR = mysqli_num_rows($result_GR);
+     $Pre_disp = 0;
+     $Cant_Nota = 0;
+
+     if ($resultCheck_GR > 0){
+       $row_GR = mysqli_fetch_assoc($result_GR);
+    
+      if (($row_SA['crse_year'] <= $est_year && ($row_SA['crse_semester'] == $semestre || $row_SA['crse_semester'] == 3)) && ($row_GR['crse_grade'] != "A" && $row_GR['crse_grade'] != "B" && $row_GR['crse_grade'] != "C" && $row_GR['crse_grade'] != "P")){            
+         
+        if($resultCheck_P > 0){
                       while($row_P = mysqli_fetch_assoc($result_P)){
                         $Pre_disp++;
                         $sql_PG =  "SELECT crse_code, crse_grade
@@ -81,6 +72,7 @@ $sql_P =  "SELECT crse_code, crse_PRE
                           $resultCheck_PG = mysqli_num_rows($result_PG);
                           $row_PG = mysqli_fetch_assoc($result_PG);
                             if($resultCheck_PG > 0){
+                              echo "3";
                               if ($row_PG['crse_grade']=='A' || $row_PG['crse_grade']=='B' || $row_PG['crse_grade']=='C' || $row_PG['crse_grade']=='P')
                                   $Cant_Nota++;
                             } 
@@ -88,15 +80,26 @@ $sql_P =  "SELECT crse_code, crse_PRE
                         } 
                       if ($Pre_disp ==  $Cant_Nota) {
                         $sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '".$student_id."' AND crse_code = '".$row_SA['crse_code']."' "; 
-                        // // Prepare statement
-                        // $stmt = $conn->prepare($sql_rec);
-                        // // execute the query
-                        // $stmt->execute();
-                        echo $sql_rec;
+                        // Prepare statement
+                        $stmt = $conn->prepare($sql_rec);
+                        // execute the query
+                        $stmt->execute();
                       }
+                    } 
+                  }else {
+                    if ($row_SA['crse_year'] <= $est_year && ($row_SA['crse_semester'] == $semestre || $row_SA['crse_semester'] == 3)){            
+                      $sql_rec = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_status) 
+                        VALUES ('".$student_id."','".$row_SA['crse_code']."', 3)";
+                      // Prepare statement
+                      $stmt = $conn->prepare($sql_rec);
+                      // execute the query
+                      $stmt->execute();
+                    }
+                  }
       }
                     
     }       
-          
-  }
+          //exit
+    header("Location: ../inicio.php");
+    exit();
  ?>

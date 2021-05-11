@@ -986,17 +986,29 @@ if (isset($_POST['submit'])) {
   $array = mysqli_real_escape_string($conn, $_POST['cohort']);
   $save_method = mysqli_real_escape_string($conn, $_POST['submit']);
   $cohort = explode(",",$array);
-  $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code)
-  UNION
-  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code)";
+
+  $sql = "SELECT * 
+  FROM cohort INNER JOIN mandatory_courses USING (crse_code)
+  WHERE crse_major = '".$cohort[0]."' AND cohort_year = '".$cohort[1]."'";
   $result = mysqli_query($conn, $sql);
   $resultCheck = mysqli_num_rows($result);   
         if($resultCheck > 0){
+          $sql_cred = "SELECT * FROM `crsecredits_extra` WHERE crse_major = '{$cohort[0]}' AND cohort_year = {$cohort[1]}";
+          $result_cred = mysqli_query($conn, $sql_cred);
+          $resultCheck_cred = mysqli_num_rows($result_cred);
+          $row_cred = mysqli_fetch_assoc($result_cred);
           echo "
           <script>
           document.getElementById('dept').value = `{$cohort[0]}`;
-          document.getElementById('cohort_year').value = '{$cohort[1]}'";
+          document.getElementById('cohort_year').value = '{$cohort[1]}';
+          document.getElementById('cred_dept').value = '{$row_cred['crseCredits_dept']}';
+          document.getElementById('cred_free').value = '{$row_cred['crseCredits_free']}';
+          document.getElementById('cred_ciso').value = '{$row_cred['crseCredits_ciso']}';
+          document.getElementById('cred_huma').value = '{$row_cred['crseCredits_huma']}';";
           while($row = mysqli_fetch_assoc($result)){
+            echo "
+            concentracion.push(['".$row['crse_code']."', '".$row['crse_description']."', '".$row['crse_credits']."']);
+            ";
             echo "
             var table = document.getElementById('concentracion-table').innerHTML;
           document.getElementById('concentracion-table').innerHTML = `";
@@ -1014,6 +1026,42 @@ if (isset($_POST['submit'])) {
             echo '" style="cursor: pointer">X</td>
             </tr>`;
             ';
+            
+          }
+        }
+        echo "
+        </script>";
+
+        $sql = "SELECT * 
+  FROM cohort INNER JOIN general_courses USING (crse_code)
+  WHERE crse_major = '".$cohort[0]."' AND cohort_year = '".$cohort[1]."'";
+  $result = mysqli_query($conn, $sql);
+  $resultCheck = mysqli_num_rows($result);   
+        if($resultCheck > 0){
+          echo "
+          <script>";
+          while($row = mysqli_fetch_assoc($result)){
+            echo "
+            general.push(['".$row['crse_code']."', '".$row['crse_description']."', '".$row['crse_credits']."']);
+            ";
+            echo "
+            var table = document.getElementById('general-table').innerHTML;
+          document.getElementById('general-table').innerHTML = `";
+          echo '
+            ${table}';
+            echo "
+            <tr>
+            <td id='gen_code'>".$row['crse_code']."</td>
+            <td id='gen_des'>".$row['crse_description']."</td>
+            <td id='gen_cred'>".$row['crse_credits']."</td>";
+            echo '
+            <td onClick=';
+            echo "eli_gen(";
+            echo "'".$row['crse_code']."')";
+            echo '" style="cursor: pointer">X</td>
+            </tr>`;
+            ';
+            
             
           }
         }
