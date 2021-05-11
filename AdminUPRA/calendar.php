@@ -92,7 +92,7 @@ $result = mysqli_query($conn, $sql);
           <li class="nav-item has-treeview menu-open">
             <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Actualizar Expediente</p>
+              <p>Subir Expediente</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
