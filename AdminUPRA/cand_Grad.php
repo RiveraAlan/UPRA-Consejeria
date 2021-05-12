@@ -4,10 +4,10 @@ include("inc/connection.php");
 $advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
-// if(!isset($advisor_id)){
-//   header("Location: index.php");
-//     exit();
-// }
+if(!isset($advisor_id)){
+  header("Location: index.php");
+    exit();
+}
 $i = 0;
 $sql = "SELECT stdnt_number, stdnt_email 
 FROM student INNER JOIN record_details USING (stdnt_number)
@@ -17,39 +17,36 @@ WHERE record_status != 0 AND stdnt_major = 'CC-COMS-BCN'";
                   if($resultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){
             
-                $sum = "SELECT 131 - SUM(SUMA) AS R
-                  FROM ((
-                  SELECT SUM(SUMA) AS sum FROM (
+                $sum = "SELECT SUM(SUMA) AS sum FROM (
                   SELECT SUM(crse_credits) AS SUMA
                   FROM mandatory_courses INNER JOIN  stdnt_record USING(crse_code)
-                  WHERE stdnt_number = ''{$row['stdnt_number']}'' AND (crse_grade = 'A' OR crse_grade = 'B' 
+                  WHERE stdnt_number = '840-17-7530' AND (crse_grade = 'A' OR crse_grade = 'B' 
                                         OR crse_grade = 'C' OR crse_grade = 'P')
     		UNION  ALL
                  SELECT SUM(crse_credits) AS SUMA
                  FROM general_courses INNER JOIN stdnt_record USING(crse_code)
-                 WHERE stdnt_number = ''{$row['stdnt_number']}'' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                 WHERE stdnt_number = '840-17-7530' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
                                           OR crse_grade = 'D' OR crse_grade = 'P')
 			UNION ALL
                  SELECT SUM(crse_credits) AS SUMA
                  FROM departmental_courses INNER JOIN stdnt_record USING(crse_code)
-                 WHERE stdnt_number = ''{$row['stdnt_number']}'' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                 WHERE stdnt_number = '840-17-7530' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
                                         OR crse_grade = 'D' OR crse_grade = 'P')
             UNION ALL
                  SELECT SUM(crse_credits) AS SUMA
                  FROM free_courses INNER JOIN stdnt_record USING(crse_code)
-                 WHERE stdnt_number = ''{$row['stdnt_number']}'' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                 WHERE stdnt_number = '840-17-7530' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
                                         OR crse_grade = 'D' OR crse_grade = 'P')
             UNION ALL
                  SELECT SUM(crse_credits) AS SUMA 
                  FROM general_education_ciso INNER JOIN stdnt_record USING(crse_code)
-                 WHERE stdnt_number = ''{$row['stdnt_number']}'' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                 WHERE stdnt_number = '840-17-7530' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
                                         OR crse_grade = 'D' OR crse_grade = 'P')
             UNION ALL
                  SELECT SUM(crse_credits) AS SUMA
                  FROM general_education_huma INNER JOIN stdnt_record USING(crse_code)
-                 WHERE stdnt_number = ''{$row['stdnt_number']}'' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
-                                        OR crse_grade = 'D' OR crse_grade = 'P')
-                  )) t1";
+                 WHERE stdnt_number = '840-17-7530' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                                        OR crse_grade = 'D' OR crse_grade = 'P')) t1";
                    
                   $sum_result = mysqli_query($conn, $sum);
                   $sum_resultCheck = mysqli_num_rows($sum_result);

@@ -1060,6 +1060,7 @@ if (isset($_POST['submit'])) {
   echo "<script>
   var save_method = '{$save_method}';
   </script>";
+  if($cohort[0] != NULL){
   $sql = "SELECT * 
   FROM cohort INNER JOIN mandatory_courses USING (crse_code)
   WHERE crse_major = '".$cohort[0]."' AND cohort_year = '".$cohort[1]."'";
@@ -1197,7 +1198,7 @@ if (isset($_POST['submit'])) {
         }
 
         echo "
-        </script>";
+        </script>";}
 }
 ?>
 </html>

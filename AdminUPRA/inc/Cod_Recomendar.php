@@ -44,8 +44,8 @@ $sql_SA =  "SELECT crse_code, crse_year, crse_semester
   if($resultCheck_SA > 0){
   while($row_SA = mysqli_fetch_assoc($result_SA)){
 $sql_P =  "SELECT crse_code, crse_PRE
-            FROM cohort INNER JOIN scheme USING (crse_code)
-            WHERE crse_major = 'CC-COMS-BCN' AND crse_code = '".$row_SA['crse_code']."'";
+FROM cohort INNER JOIN scheme USING (crse_code,crse_major,cohort_year)
+WHERE crse_code = '".$row_SA['crse_code']."' AND crse_major = 'CC-COMS-BCN' AND cohort_year = 2017";
                       $result_P = mysqli_query($conn, $sql_P);
                       $resultCheck_P = mysqli_num_rows($result_P); 
 
