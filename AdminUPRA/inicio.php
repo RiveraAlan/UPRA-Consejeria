@@ -383,7 +383,7 @@ margin-left: auto;
               </thead>
               <tbody> 
               <?php
-              $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, conducted_counseling, record_status, stdnt_major
+              $sql = "SELECT *
               FROM student NATURAL JOIN record_details;";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
@@ -556,8 +556,8 @@ margin-left: auto;
 <script src="dist/js/demo.js"></script>
 <script>
 function searchStudent(str){
-  const strCpy = "^" + str;
-  let re = new RegExp(strCpy, "i");
+  const strCpy = str;
+  let re = new RegExp(strCpy, 'i');
   const students = <?php echo json_encode($students); ?>;
   let searchList = '';
 
@@ -566,7 +566,6 @@ function searchStudent(str){
     return;
   }
     
-
     students.map((student, index) => {
         if(re.test(student.stdnt_name) || re.test(student.stdnt_number)){
               searchList += `<li><a href='est_profile.php?stdnt_number=${student.stdnt_number}'>${student.stdnt_name}</a></li>`;
