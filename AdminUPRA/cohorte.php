@@ -330,8 +330,8 @@ h2 {
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
-         <nav class="mt-2">
+       <!-- Sidebar Menu -->
+       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -342,9 +342,15 @@ h2 {
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a onclick="document.getElementById('id01').style.display='block'" href="#" class="nav-link">
+            <a onclick="document.getElementById('id02').style.display='block'" href="#" class="nav-link">
                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Añadir Clase</p>
+              <p>Subir Expediente</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id03').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Editar/Crear Cohorte</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -369,6 +375,7 @@ h2 {
     </div>
     <!-- /.sidebar -->
   </aside>
+  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -500,7 +507,7 @@ h2 {
       <div class="grid-item">
     <h3 for="sel2"><b>Seleccione el Curso:</b></h3>
           <select class="form-control" id="sel2"> 
-            <option>CCOM 3045</option>
+            <option></option>
           </select>
           <h3 for="sel3"><b>Seleccione el Año:</b></h3>
           <select class="form-control" id="year"> 
@@ -514,6 +521,7 @@ h2 {
           <select class="form-control" id="semester"> 
             <option value="1">Enero-Mayo</option>
             <option value="2">Agosto-Diciembre</option>
+            <option value="3">Ambos Semestres</option>
           </select>
 
           <div class="grid-container">
@@ -570,6 +578,82 @@ h2 {
 </div>              
     </div>
   </div>
+  <!-- modales -->
+    
+     <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
+        <div id='id02' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id02").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Subir Expediente</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                    <!-- Este de abajo es para subir el .txt y funciona -->
+                    <?php
+                        if (isset($_SESSION['message']) && $_SESSION['message'])
+                        {
+                          printf('<b>%s</b>', $_SESSION['message']);
+                          unset($_SESSION['message']);
+                        }
+                      ?>
+                      <form method="POST" action="upload1.php" enctype="multipart/form-data">
+                        <div>
+                          <input type="file" name="uploadedFile" />
+                        </div>
+
+                   
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='submit' class='btn btn-default' name="uploadBtn" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer>
+                 </form> 
+            </div>
+          </div><!-- /.Expediente -->
+
+          <!----------------------------------------- Editar/Crear Cohorte -------------------------------------------------->
+        <div id='id03' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id03").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Editar/Crear Cohorte</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                  <form action="cohorte.php" method="POST">
+                  <select name='cohort' style="width: 100%; height: 30px; background-color: #d3d3d3; border-radius: 5px">
+                  <option></option>
+                        <?php
+                            $sql_cohort = "SELECT DISTINCT crse_major, cohort_year FROM `cohort`";
+                            $result_cohort = mysqli_query($conn, $sql_cohort);
+                            $resultCheck_cohort = mysqli_num_rows($result_cohort);                                
+                           
+                            if($resultCheck_cohort > 0){
+                              while($row_cohort = mysqli_fetch_assoc($result_cohort)){
+                                echo "<option value='".$row_cohort["crse_major"].",".$row_cohort["cohort_year"]."'>".$row_cohort["crse_major"]." ".$row_cohort["cohort_year"]."</option>";
+                              }
+                            }
+                        ?>
+                  </select>
+                  <div class="grid-container">
+                <div class='item-1'>
+                          <button name="submit" type="submit" value="Crear" class='btn btn-primary' style="width: 100%; color: white">Crear</button>
+                  </div> 
+                <div class='item-2'>
+                          <button type="submit" name="submit" value="Editar" class='btn btn-warning' style="width: 100%; color: white">Actualizar</button>
+                  </div>
+                  </div>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              </footer>
+                 </form> 
+            </div>
+          </div><!-- /.Expediente -->
+    
+  </div>
+    <!-- /.modales -->
   </body>
             <!-- /. crear expediente -->
     <!-- /.modales -->
@@ -748,78 +832,65 @@ var class_arr = [];
    var semester = document.getElementById("semester").value;
    var rep_class = 0;
    
-for (var i = 0; i < class_arr.length; i++){
-  if (class_arr[i][0] == `${clase}`){
-    rep_class = 1;
-    var temp_var = i + 1;
-    class_arr.slice(i - 1,1);
-    class_arr.push([clase, year, semester]);
+      for (var i = 0; i < class_arr.length; i++){
+        if (class_arr[i][0] == `${clase}`){
+          rep_class = 1;
+          var temp_var = i + 1;
+          class_arr.slice(i - 1,1);
+          class_arr.push([clase, year, semester]);
 
-for (var j = 1; j <= arr.length; j++){
-  arr.slice(j - 1,1);
-}
-  if (pre_requisitos.length >= co_requisitos.length){
-    var temp = pre_requisitos.length;
-    if (temp === 0){
-      temp = 1;
-    }
-  }else if (co_requisitos.length > pre_requisitos.length){
-    var temp = co_requisitos.length;
-  }
-  for (i = 0; i < temp; i++){
-    if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
-        arr.push([clase, pre_requisitos[i], co_requisitos[i]]);
-        } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
-            arr.push([clase, pre_requisitos[i], "-"]);
-            } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
-                arr.push([clase, "-", co_requisitos[i]]);
-                } 
-  }
-  break;
-  }
-}   
+      for (var j = 1; j <= arr.length; j++){
+        arr.slice(j - 1,1);
+      }
+        if (pre_requisitos.length >= co_requisitos.length){
+          var temp = pre_requisitos.length;
+          if (temp === 0){
+            temp = 1;
+          }
+        }else if (co_requisitos.length > pre_requisitos.length){
+          var temp = co_requisitos.length;
+        }
+        for (i = 0; i < temp; i++){
+          if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
+              arr.push([clase, pre_requisitos[i], co_requisitos[i]]);
+              } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
+                  arr.push([clase, pre_requisitos[i], "-"]);
+                  } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
+                      arr.push([clase, "-", co_requisitos[i]]);
+                      } 
+        }
+        break;
+        }
+      }   
 
-if (rep_class == 0) {
+      if (rep_class == 0) {
 
 
-  class_arr.push([clase, year, semester]);
-   list_counter++;
+        class_arr.push([clase, year, semester]);
+        list_counter++;
 
-  if (pre_requisitos.length >= co_requisitos.length){
-    var temp = pre_requisitos.length;
-    if (temp === 0){
-      temp = 1;
-    }
-  }else if (co_requisitos.length > pre_requisitos.length){
-    var temp = co_requisitos.length;
-  }
-  for (i = 0; i < temp; i++){
-    if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
-        arr.push([clase, pre_requisitos[i], co_requisitos[i]])
-        document.getElementById("clases").innerHTML = `
-          ${list}
-          <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase('${clase}')">${clase}</li>
-        `;
-        } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
-            arr.push([clase, pre_requisitos[i], "-"]);
-            document.getElementById("clases").innerHTML = `
-              ${list}
-              <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
-            `;
-            } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
-                arr.push([clase, "-", co_requisitos[i]]);
-                document.getElementById("clases").innerHTML = `
-                  ${list}
-                  <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
-                `;
-                } else if(co_requisitos[i] === "" && pre_requisitos[i] === ""){
-                    document.getElementById("clases").innerHTML = `
-                      ${list}
-                      <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
-                    `;
-                    }
-  }
-}
+        if (pre_requisitos.length >= co_requisitos.length){
+          var temp = pre_requisitos.length;
+          if (temp === 0){
+            temp = 1;
+          }
+        }else if (co_requisitos.length > pre_requisitos.length){
+          var temp = co_requisitos.length;
+        }
+        for (i = 0; i < temp; i++){
+          if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
+              arr.push([clase, pre_requisitos[i], co_requisitos[i]]);
+              } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
+                  arr.push([clase, pre_requisitos[i], "-"]);
+                  } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
+                      arr.push([clase, "-", co_requisitos[i]]);
+                      } 
+                          document.getElementById("clases").innerHTML = `
+                            ${list}
+                            <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase('${clase}')">${clase}</li>
+                          `;
+        }
+      }
  pre_requisitos = [];
  co_requisitos = [];
 
@@ -845,14 +916,13 @@ if (rep_class == 0) {
         document.getElementById("co").innerHTML = `
       ${list}
       <h3 name="co-requisito">${arr[i][2]}</h3>
-    `;
+      `;
       }
     }
    }
    for (var i = 0; i < class_arr.length; i++){
      if(class_arr[i][0] == `${clase}`){
-       console.log(class_arr[i][1]);
-       console.log(class_arr[i][2]);
+    document.getElementById("sel2").value = `${class_arr[i][0]}`;
     document.getElementById("year").value = `${class_arr[i][1]}`;
     document.getElementById("semester").value = `${class_arr[i][2]}`; 
      }
@@ -973,6 +1043,7 @@ function submitAll() {
   <input type="hidden" name="cred_huma" value="${cred_huma}"></input>
   <input type="hidden" name="pre_co" value="${arr}"></input>
   <input type="hidden" name="class_year" value="${class_arr}"></input>
+  <input type="hidden" name="save_method" value="${save_method}"></input>
   </form>
   `;
 
@@ -986,7 +1057,9 @@ if (isset($_POST['submit'])) {
   $array = mysqli_real_escape_string($conn, $_POST['cohort']);
   $save_method = mysqli_real_escape_string($conn, $_POST['submit']);
   $cohort = explode(",",$array);
-
+  echo "<script>
+  var save_method = '{$save_method}';
+  </script>";
   $sql = "SELECT * 
   FROM cohort INNER JOIN mandatory_courses USING (crse_code)
   WHERE crse_major = '".$cohort[0]."' AND cohort_year = '".$cohort[1]."'";
@@ -1000,7 +1073,8 @@ if (isset($_POST['submit'])) {
           echo "
           <script>
           document.getElementById('dept').value = `{$cohort[0]}`;
-          document.getElementById('cohort_year').value = '{$cohort[1]}';
+          if(save_method == 'Editar'){
+          document.getElementById('cohort_year').value = '{$cohort[1]}';}
           document.getElementById('cred_dept').value = '{$row_cred['crseCredits_dept']}';
           document.getElementById('cred_free').value = '{$row_cred['crseCredits_free']}';
           document.getElementById('cred_ciso').value = '{$row_cred['crseCredits_ciso']}';
@@ -1008,6 +1082,7 @@ if (isset($_POST['submit'])) {
           while($row = mysqli_fetch_assoc($result)){
             echo "
             concentracion.push(['".$row['crse_code']."', '".$row['crse_description']."', '".$row['crse_credits']."']);
+            class_arr.push(['".$row['crse_code']."', '".$row['crse_year']."', '".$row['crse_semester']."']);
             ";
             echo "
             var table = document.getElementById('concentracion-table').innerHTML;
@@ -1026,8 +1101,36 @@ if (isset($_POST['submit'])) {
             echo '" style="cursor: pointer">X</td>
             </tr>`;
             ';
-            
+            $sql_PC = "SELECT * FROM `scheme` WHERE crse_major = '{$cohort[0]}' AND cohort_year = '{$cohort[1]}' AND crse_code = '{$row['crse_code']}'";
+            $result_PC = mysqli_query($conn, $sql_PC);
+            $resultCheck_PC = mysqli_num_rows($result_PC);
+
+            if ($resultCheck_PC > 0){
+              $row_PC = mysqli_fetch_assoc($result_PC);
+                if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] != NULL){
+                  echo "
+                  arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '{$row_PC['crse_CO']}']);";
+                  } else if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] === NULL){
+                    echo "
+                      arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '-']);";
+                      } else if($row_PC['crse_CO'] != NULL && $row_PC['crse_PRE'] === NULL){
+                        echo "
+                          arr.push(['{$row['crse_code']}', '-', '{$row_PC['crse_PRE']}']);";
+                          } 
+                  
+            }
+            echo "
+            list = document.getElementById('clases').innerHTML;
+            document.getElementById('clases').innerHTML = `";
+            echo '
+                            ${list}
+                            <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase(';
+                            echo "'{$row['crse_code']}'";
+                            echo ')">';
+                            echo "{$row['crse_code']}</li>
+                          `;";
           }
+          
         }
         echo "
         </script>";
@@ -1043,6 +1146,7 @@ if (isset($_POST['submit'])) {
           while($row = mysqli_fetch_assoc($result)){
             echo "
             general.push(['".$row['crse_code']."', '".$row['crse_description']."', '".$row['crse_credits']."']);
+            class_arr.push(['".$row['crse_code']."', '".$row['crse_year']."', '".$row['crse_semester']."']);
             ";
             echo "
             var table = document.getElementById('general-table').innerHTML;
@@ -1061,10 +1165,37 @@ if (isset($_POST['submit'])) {
             echo '" style="cursor: pointer">X</td>
             </tr>`;
             ';
-            
-            
+            $sql_PC = "SELECT * FROM `scheme` WHERE crse_major = '{$cohort[0]}' AND cohort_year = '{$cohort[1]}' AND crse_code = '{$row['crse_code']}'";
+            $result_PC = mysqli_query($conn, $sql_PC);
+            $resultCheck_PC = mysqli_num_rows($result_PC);
+
+            if ($resultCheck_PC > 0){
+              $row_PC = mysqli_fetch_assoc($result_PC);
+                if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] != NULL){
+                  echo "
+                  arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '{$row_PC['crse_CO']}']);";
+                  } else if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] === NULL){
+                    echo "
+                      arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '-']);";
+                      } else if($row_PC['crse_CO'] != NULL && $row_PC['crse_PRE'] === NULL){
+                        echo "
+                          arr.push(['{$row['crse_code']}', '-', '{$row_PC['crse_PRE']}']);";
+                          } 
+                  
+            }
+            echo "
+            list = document.getElementById('clases').innerHTML;
+            document.getElementById('clases').innerHTML = `";
+            echo '
+                            ${list}
+                            <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase(';
+                            echo "'{$row['crse_code']}'";
+                            echo ')">';
+                            echo "{$row['crse_code']}</li>
+                          `;";
           }
         }
+
         echo "
         </script>";
 }

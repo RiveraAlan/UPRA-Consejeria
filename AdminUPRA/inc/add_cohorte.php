@@ -1,5 +1,5 @@
 <?php
-require '../../private/dbconnect.php';
+require 'connection.php';
     $dept = mysqli_real_escape_string($conn, $_POST['dept']);
     $cohort_year = mysqli_real_escape_string($conn, $_POST['cohort_year']);
     $concentracion = mysqli_real_escape_string($conn, $_POST['concentracion']);
@@ -10,7 +10,9 @@ require '../../private/dbconnect.php';
     $cred_huma = mysqli_real_escape_string($conn, $_POST['cred_huma']);
     $pre_co = mysqli_real_escape_string($conn, $_POST['pre_co']);
     $class_year = mysqli_real_escape_string($conn, $_POST['class_year']);
-    
+    $save_method = mysqli_real_escape_string($conn, $_POST['save_method']);
+    echo $save_method;
+    echo "<br>";
     // turn variable concentracion into multidimensional array
     $con_count = 0;
     $con_temp = array();
@@ -90,14 +92,20 @@ require '../../private/dbconnect.php';
     }else {
         array_push($year_array, [$class_year[0], $class_year[1], $class_year[2]]);
     }
+    
     // Subir Cohorte
             // Subir Departamentales
             for ($i = 0; $i < count($con_array); $i++){
                 for ($j = 0; $j < count($year_array); $j++){
                     if($year_array[$j][0] === $con_array[$i][0]){
                         $temp = $con_array[$i][0];
+                        if($save_method == 'Crear'){
                         $sql = "INSERT INTO cohort(crse_code, cohort_year, crse_year, crse_semester, crse_major) 
                         VALUES ('$temp', '$cohort_year', ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept')";
+                        }elseif ($save_method == 'Editar'){
+                            $sql = "UPDATE cohort SET crse_code = '$temp' AND crse_year = ".$year_array[$j][1]." AND crse_semester = ".$year_array[$j][2]." 
+                                    WHERE crse_major = '$dept' AND cohort_year = '$cohort_year'";
+                        }
                         // Prepare statement
                         $stmt = $conn->prepare($sql);
                         // execute the query
@@ -109,10 +117,15 @@ require '../../private/dbconnect.php';
             // Subir Generales
             for ($i = 0; $i < count($gen_array); $i++){
                 for ($j = 0; $j < count($year_array); $j++){
-                    if($year_array[$j][0] === $con_array[$i][0]){
+                    if($year_array[$j][0] === $gen_array[$i][0]){
                         $temp = $gen_array[$i][0];
+                        if($save_method == 'Crear'){
                         $sql = "INSERT INTO cohort(crse_code,cohort_year,crse_year,crse_semester,crse_major) 
-                        VALUES ( '$temp' , $cohort_year, ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept' )";
+                        VALUES ('$temp' , $cohort_year, ".$year_array[$j][1].", ".$year_array[$j][2].", '$dept')";
+                        }elseif ($save_method == 'Editar'){
+                            $sql = "UPDATE cohort SET crse_code = '$temp' AND crse_year = ".$year_array[$j][1]." AND crse_semester = ".$year_array[$j][2]." 
+                                    WHERE crse_major = '$dept' AND cohort_year = '$cohort_year'";
+                        }
                         // Prepare statement
                         $stmt = $conn->prepare($sql);
                         // execute the query
@@ -123,16 +136,26 @@ require '../../private/dbconnect.php';
             }
     // Descripcion & Credits of Mandatory
     for ($i = 0; $i < count($con_array); $i++){
+        if($save_method == 'Crear'){
         $sql = "INSERT INTO mandatory_courses (crse_code,crse_description,crse_credits) VALUES ('".$con_array[$i][0]."','".$con_array[$i][1]."', ".$con_array[$i][2].")";
-        // Prepare statement
+        }elseif ($save_method == 'Editar'){
+            $sql = "UPDATE mandatory_courses SET crse_description = '".$con_array[$i][1]."' AND crse_credits = ".$con_array[$i][2]." 
+                    WHERE crse_code = '".$con_array[$i][0]."'";
+        }
+    // Prepare statement
     $stmt = $conn->prepare($sql);
     // execute the query
     $stmt->execute();
     }
     // Descripcion & Credits of General
     for ($i = 0; $i < count($gen_array); $i++){
+        if($save_method == 'Crear'){
         $sql = "INSERT INTO general_courses (crse_code,crse_description,crse_credits) VALUES ('".$gen_array[$i][0]."','".$gen_array[$i][1]."', ".$gen_array[$i][2].")";
-        // Prepare statement
+    }elseif ($save_method == 'Editar'){
+        $sql = "UPDATE general_courses SET crse_description = '".$gen_array[$i][1]."' AND crse_credits = ".$gen_array[$i][2]." 
+                WHERE crse_code = '".$gen_array[$i][0]."'";
+    }
+    // Prepare statement
     $stmt = $conn->prepare($sql);
     // execute the query
     $stmt->execute();
@@ -141,16 +164,28 @@ require '../../private/dbconnect.php';
  
     // Pre-requisitos & Co-requisitos
     for ($i = 0; $i < count($req_array); $i++){
-        $sql = "INSERT INTO scheme(crse_code,crse_PRE, crse_CO)
-        VALUES ('".$req_array[$i][0]."', '".$req_array[$i][1]."', '".$req_array[$i][1]."')";
+        if($save_method == 'Crear'){
+        $sql = "INSERT INTO scheme(crse_code,crse_PRE, crse_CO, crse_major, cohort_year)
+        VALUES ('".$req_array[$i][0]."', '".$req_array[$i][1]."', '".$req_array[$i][1]."', '$dept', $cohort_year)";
+        }elseif ($save_method == 'Editar'){
+            $sql_del = "DELETE FROM `scheme` WHERE crse_major = '$dept' AND cohort_year = $cohort_year";
+            $sql = "INSERT INTO scheme(crse_code,crse_PRE, crse_CO, crse_major, cohort_year)
+        VALUES ('".$req_array[$i][0]."', '".$req_array[$i][1]."', '".$req_array[$i][1]."', '$dept', $cohort_year)";
+        }
         // Prepare statement
     $stmt = $conn->prepare($sql);
     // execute the query
     $stmt->execute();
     }
     // Add Credits
-        $sql = "INSERT INTO crsecredits_extra (crseCredits_huma,crseCredits_ciso,crseCredits_dept,crseCredits_avz,crseCredits_int,crseCredits_free,crse_major)
-        VALUES ( ".$cred_huma.", ".$cred_ciso.", ".$cred_dept.",NULL ,NULL, ".$cred_free.", '".$dept."' )";
+    if($save_method == 'Crear'){
+        $sql = "INSERT INTO crsecredits_extra (crseCredits_huma,crseCredits_ciso,crseCredits_dept,crseCredits_avz,crseCredits_int,crseCredits_free,crse_major,cohort_year)
+        VALUES ( ".$cred_huma.", ".$cred_ciso.", ".$cred_dept.",NULL ,NULL, ".$cred_free.", '".$dept."', $cohort_year)";
+        }elseif ($save_method == 'Editar'){
+            $sql_del = "DELETE FROM `crse_credits_extra` WHERE crse_major = '$dept' AND cohort_year = $cohort_year";
+            $sql = "INSERT INTO crsecredits_extra (crseCredits_huma,crseCredits_ciso,crseCredits_dept,crseCredits_avz,crseCredits_int,crseCredits_free,crse_major,cohort_year)
+            VALUES ( ".$cred_huma.", ".$cred_ciso.", ".$cred_dept.",NULL ,NULL, ".$cred_free.", '".$dept."', $cohort_year)";
+        }
     // Prepare statement
     $stmt = $conn->prepare($sql);
     // execute the query

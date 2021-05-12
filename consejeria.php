@@ -868,7 +868,7 @@ if(!isset($_SESSION['stdnt_number'])){
                
                         <?php 
                 $sql =" SELECT * 
-                    FROM departmental_courses ";
+                    FROM departmental_courses WHERE crse_major = 'CC-COMS-BCN'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -1057,7 +1057,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     document.getElementById('select-dept').innerHTML = `";
                     echo '
                     ${dept_list}';
-                    if ($row_cohort["crse_major"] == 'CC COMS BCN') {
+                    if ($row_cohort["crse_major"] == 'CC-COMS-BCN') {
                     echo "
                     <option value='".$row_cohort["crse_major"]."'>CCOM</option>
                     `;
