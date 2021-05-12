@@ -1057,7 +1057,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     document.getElementById('select-dept').innerHTML = `";
                     echo '
                     ${dept_list}';
-                    if ($row_cohort["crse_major"] == 'CC COMS BCN') {
+                    if ($row_cohort["crse_major"] == 'CC-COMS-BCN') {
                     echo "
                     <option value='".$row_cohort["crse_major"]."'>CCOM</option>
                     `;
