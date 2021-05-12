@@ -581,7 +581,7 @@ h2 {
   <!-- modales -->
     
      <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
-     <div id='id02' class='w3-modal' style='padding-left:20%'>
+        <div id='id02' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
                 <span onclick='document.getElementById("id02").style.display="none"'
@@ -1197,10 +1197,6 @@ if (isset($_POST['submit'])) {
         }
 
         echo "
-        console.table(arr);
-        console.table(class_arr);
-        console.table(concentracion);
-        console.table(general);
         </script>";
 }
 ?>
