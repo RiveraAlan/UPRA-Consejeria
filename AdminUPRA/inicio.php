@@ -164,7 +164,7 @@ WHERE record_status != 0";
           <li class="nav-item has-treeview menu-open">
             <a onclick="document.getElementById('id03').style.display='block'" href="#" class="nav-link">
                <i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>Actualizar/Crear Cohorte</p>
+              <p>Editar/Crear Cohorte</p>
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -493,13 +493,13 @@ margin-left: auto;
             </div>
           </div><!-- /.Expediente -->
 
-          <!----------------------------------------- Actualizar Expediente -------------------------------------------------->
+          <!----------------------------------------- Editar/Crear Cohorte -------------------------------------------------->
         <div id='id03' class='w3-modal' style='padding-left:20%'>
             <div class='w3-modal-content w3-animate-zoom'>
               <header class='w3-container' style='padding-top:5px'>
                 <span onclick='document.getElementById("id03").style.display="none"'
                 class='w3-button w3-display-topright'>&times;</span>
-                <h3>Actualizar/Crear Cohorte</h3>
+                <h3>Editar/Crear Cohorte</h3>
               </header>
               <div class='w3-container'>
                   <br>
@@ -520,10 +520,10 @@ margin-left: auto;
                   </select>
                   <div class="grid-container">
                 <div class='item-1'>
-                          <button name="submit" type="submit" value="submit" class='btn btn-primary' style="width: 100%; color: white">Crear</button>
+                          <button name="submit" type="submit" value="Crear" class='btn btn-primary' style="width: 100%; color: white">Crear</button>
                   </div> 
                 <div class='item-2'>
-                          <button type="submit" name="submit" value="submit" class='btn btn-warning' style="width: 100%; color: white">Actualizar</button>
+                          <button type="submit" name="submit" value="Editar" class='btn btn-warning' style="width: 100%; color: white">Actualizar</button>
                   </div>
                   </div>
               </div>

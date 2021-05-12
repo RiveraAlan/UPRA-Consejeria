@@ -960,6 +960,7 @@ function submitAll() {
   <input type="hidden" name="cred_huma" value="${cred_huma}"></input>
   <input type="hidden" name="pre_co" value="${arr}"></input>
   <input type="hidden" name="class_year" value="${class_arr}"></input>
+  <input type="hidden" name="save_method" value="${save_method}"></input>
   </form>
   `;
 
@@ -973,7 +974,9 @@ if (isset($_POST['submit'])) {
   $array = mysqli_real_escape_string($conn, $_POST['cohort']);
   $save_method = mysqli_real_escape_string($conn, $_POST['submit']);
   $cohort = explode(",",$array);
-
+  echo "<script>
+  var save_method = '{$save_method}';
+  </script>";
   $sql = "SELECT * 
   FROM cohort INNER JOIN mandatory_courses USING (crse_code)
   WHERE crse_major = '".$cohort[0]."' AND cohort_year = '".$cohort[1]."'";
