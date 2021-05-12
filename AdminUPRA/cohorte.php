@@ -990,7 +990,8 @@ if (isset($_POST['submit'])) {
           echo "
           <script>
           document.getElementById('dept').value = `{$cohort[0]}`;
-          document.getElementById('cohort_year').value = '{$cohort[1]}';
+          if(save_method == 'Editar'){
+          document.getElementById('cohort_year').value = '{$cohort[1]}';}
           document.getElementById('cred_dept').value = '{$row_cred['crseCredits_dept']}';
           document.getElementById('cred_free').value = '{$row_cred['crseCredits_free']}';
           document.getElementById('cred_ciso').value = '{$row_cred['crseCredits_ciso']}';
