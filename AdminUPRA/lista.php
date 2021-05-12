@@ -186,14 +186,16 @@ $advisor_name = $_SESSION['adv_name'];
                                   <form action="firmas.php" method="POST">
                                   <?php
                                        $sql ="SELECT *
-                                        FROM departmental_courses";
+                                        FROM departmental_courses
+                                        WHERE crse_major = 'CC-COMS-BCN'";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       $sqlSUM ="SELECT COUNT(stdnt_number) as sum
-                                      FROM stdnt_record WHERE crse_code = '$row[crse_code]'";
+                                      FROM stdnt_record 
+                                      WHERE crse_code = '$row[crse_code]' AND crse_status = 4 ";
                                         $resultSUM = mysqli_query($conn, $sqlSUM);
                                         $resultCheckSUM = mysqli_num_rows($resultSUM);
                                         $SUM = mysqli_fetch_assoc($resultSUM);
@@ -234,14 +236,16 @@ $advisor_name = $_SESSION['adv_name'];
                                 <tbody>
                                 <?php
                                        $sql ="SELECT *
-                                        FROM mandatory_courses";
+                                        FROM cohort INNER JOIN mandatory_courses USING (crse_code)
+                                        WHERE crse_major = 'CC-COMS-BCN'";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       $sqlSUM ="SELECT COUNT(stdnt_number) as sum
-                                      FROM stdnt_record WHERE crse_code = '$row[crse_code]'";
+                                      FROM stdnt_record 
+                                      WHERE crse_code = '$row[crse_code]' AND crse_status = 4 ";
                                         $resultSUM = mysqli_query($conn, $sqlSUM);
                                         $resultCheckSUM = mysqli_num_rows($resultSUM);
                                         $SUM = mysqli_fetch_assoc($resultSUM);
@@ -284,14 +288,16 @@ $advisor_name = $_SESSION['adv_name'];
                                 <form action="firmas.php" method="POST">
                                 <?php
                                        $sql ="SELECT *
-                                        FROM general_courses";
+                                        FROM cohort INNER JOIN general_courses USING (crse_code)
+                                        WHERE crse_major = 'CC-COMS-BCN'";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
                                     if($resultCheck > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                       $sqlSUM ="SELECT COUNT(stdnt_number) as sum
-                                      FROM stdnt_record WHERE crse_code = '$row[crse_code]'";
+                                      FROM stdnt_record 
+                                      WHERE crse_code = '$row[crse_code]' AND crse_status = 4";
                                         $resultSUM = mysqli_query($conn, $sqlSUM);
                                         $resultCheckSUM = mysqli_num_rows($resultSUM);
                                         $SUM = mysqli_fetch_assoc($resultSUM);
