@@ -500,7 +500,7 @@ h2 {
       <div class="grid-item">
     <h3 for="sel2"><b>Seleccione el Curso:</b></h3>
           <select class="form-control" id="sel2"> 
-            <option>CCOM 3045</option>
+            <option></option>
           </select>
           <h3 for="sel3"><b>Seleccione el Año:</b></h3>
           <select class="form-control" id="year"> 
@@ -514,6 +514,7 @@ h2 {
           <select class="form-control" id="semester"> 
             <option value="1">Enero-Mayo</option>
             <option value="2">Agosto-Diciembre</option>
+            <option value="3">Ambos Semestres</option>
           </select>
 
           <div class="grid-container">
@@ -748,78 +749,65 @@ var class_arr = [];
    var semester = document.getElementById("semester").value;
    var rep_class = 0;
    
-for (var i = 0; i < class_arr.length; i++){
-  if (class_arr[i][0] == `${clase}`){
-    rep_class = 1;
-    var temp_var = i + 1;
-    class_arr.slice(i - 1,1);
-    class_arr.push([clase, year, semester]);
+      for (var i = 0; i < class_arr.length; i++){
+        if (class_arr[i][0] == `${clase}`){
+          rep_class = 1;
+          var temp_var = i + 1;
+          class_arr.slice(i - 1,1);
+          class_arr.push([clase, year, semester]);
 
-for (var j = 1; j <= arr.length; j++){
-  arr.slice(j - 1,1);
-}
-  if (pre_requisitos.length >= co_requisitos.length){
-    var temp = pre_requisitos.length;
-    if (temp === 0){
-      temp = 1;
-    }
-  }else if (co_requisitos.length > pre_requisitos.length){
-    var temp = co_requisitos.length;
-  }
-  for (i = 0; i < temp; i++){
-    if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
-        arr.push([clase, pre_requisitos[i], co_requisitos[i]]);
-        } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
-            arr.push([clase, pre_requisitos[i], "-"]);
-            } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
-                arr.push([clase, "-", co_requisitos[i]]);
-                } 
-  }
-  break;
-  }
-}   
+      for (var j = 1; j <= arr.length; j++){
+        arr.slice(j - 1,1);
+      }
+        if (pre_requisitos.length >= co_requisitos.length){
+          var temp = pre_requisitos.length;
+          if (temp === 0){
+            temp = 1;
+          }
+        }else if (co_requisitos.length > pre_requisitos.length){
+          var temp = co_requisitos.length;
+        }
+        for (i = 0; i < temp; i++){
+          if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
+              arr.push([clase, pre_requisitos[i], co_requisitos[i]]);
+              } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
+                  arr.push([clase, pre_requisitos[i], "-"]);
+                  } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
+                      arr.push([clase, "-", co_requisitos[i]]);
+                      } 
+        }
+        break;
+        }
+      }   
 
-if (rep_class == 0) {
+      if (rep_class == 0) {
 
 
-  class_arr.push([clase, year, semester]);
-   list_counter++;
+        class_arr.push([clase, year, semester]);
+        list_counter++;
 
-  if (pre_requisitos.length >= co_requisitos.length){
-    var temp = pre_requisitos.length;
-    if (temp === 0){
-      temp = 1;
-    }
-  }else if (co_requisitos.length > pre_requisitos.length){
-    var temp = co_requisitos.length;
-  }
-  for (i = 0; i < temp; i++){
-    if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
-        arr.push([clase, pre_requisitos[i], co_requisitos[i]])
-        document.getElementById("clases").innerHTML = `
-          ${list}
-          <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase('${clase}')">${clase}</li>
-        `;
-        } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
-            arr.push([clase, pre_requisitos[i], "-"]);
-            document.getElementById("clases").innerHTML = `
-              ${list}
-              <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
-            `;
-            } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
-                arr.push([clase, "-", co_requisitos[i]]);
-                document.getElementById("clases").innerHTML = `
-                  ${list}
-                  <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
-                `;
-                } else if(co_requisitos[i] === "" && pre_requisitos[i] === ""){
-                    document.getElementById("clases").innerHTML = `
-                      ${list}
-                      <li style="margin-left:20px; font-size: 0.6em" onclick="viewClase('${clase}')">${clase}</li>
-                    `;
-                    }
-  }
-}
+        if (pre_requisitos.length >= co_requisitos.length){
+          var temp = pre_requisitos.length;
+          if (temp === 0){
+            temp = 1;
+          }
+        }else if (co_requisitos.length > pre_requisitos.length){
+          var temp = co_requisitos.length;
+        }
+        for (i = 0; i < temp; i++){
+          if (pre_requisitos[i] != "" && co_requisitos[i] != ""){
+              arr.push([clase, pre_requisitos[i], co_requisitos[i]]);
+              } else if (pre_requisitos[i] != "" && co_requisitos[i] === ""){
+                  arr.push([clase, pre_requisitos[i], "-"]);
+                  } else if(co_requisitos[i] != "" && pre_requisitos[i] === ""){
+                      arr.push([clase, "-", co_requisitos[i]]);
+                      } 
+                          document.getElementById("clases").innerHTML = `
+                            ${list}
+                            <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase('${clase}')">${clase}</li>
+                          `;
+        }
+      }
  pre_requisitos = [];
  co_requisitos = [];
 
@@ -845,14 +833,13 @@ if (rep_class == 0) {
         document.getElementById("co").innerHTML = `
       ${list}
       <h3 name="co-requisito">${arr[i][2]}</h3>
-    `;
+      `;
       }
     }
    }
    for (var i = 0; i < class_arr.length; i++){
      if(class_arr[i][0] == `${clase}`){
-       console.log(class_arr[i][1]);
-       console.log(class_arr[i][2]);
+    document.getElementById("sel2").value = `${class_arr[i][0]}`;
     document.getElementById("year").value = `${class_arr[i][1]}`;
     document.getElementById("semester").value = `${class_arr[i][2]}`; 
      }
@@ -1008,6 +995,7 @@ if (isset($_POST['submit'])) {
           while($row = mysqli_fetch_assoc($result)){
             echo "
             concentracion.push(['".$row['crse_code']."', '".$row['crse_description']."', '".$row['crse_credits']."']);
+            class_arr.push(['".$row['crse_code']."', '".$row['crse_year']."', '".$row['crse_semester']."']);
             ";
             echo "
             var table = document.getElementById('concentracion-table').innerHTML;
@@ -1026,8 +1014,36 @@ if (isset($_POST['submit'])) {
             echo '" style="cursor: pointer">X</td>
             </tr>`;
             ';
-            
+            $sql_PC = "SELECT * FROM `scheme` WHERE crse_major = '{$cohort[0]}' AND cohort_year = '{$cohort[1]}' AND crse_code = '{$row['crse_code']}'";
+            $result_PC = mysqli_query($conn, $sql_PC);
+            $resultCheck_PC = mysqli_num_rows($result_PC);
+
+            if ($resultCheck_PC > 0){
+              $row_PC = mysqli_fetch_assoc($result_PC);
+                if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] != NULL){
+                  echo "
+                  arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '{$row_PC['crse_CO']}']);";
+                  } else if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] === NULL){
+                    echo "
+                      arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '-']);";
+                      } else if($row_PC['crse_CO'] != NULL && $row_PC['crse_PRE'] === NULL){
+                        echo "
+                          arr.push(['{$row['crse_code']}', '-', '{$row_PC['crse_PRE']}']);";
+                          } 
+                  
+            }
+            echo "
+            list = document.getElementById('clases').innerHTML;
+            document.getElementById('clases').innerHTML = `";
+            echo '
+                            ${list}
+                            <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase(';
+                            echo "'{$row['crse_code']}'";
+                            echo ')">';
+                            echo "{$row['crse_code']}</li>
+                          `;";
           }
+          
         }
         echo "
         </script>";
@@ -1043,6 +1059,7 @@ if (isset($_POST['submit'])) {
           while($row = mysqli_fetch_assoc($result)){
             echo "
             general.push(['".$row['crse_code']."', '".$row['crse_description']."', '".$row['crse_credits']."']);
+            class_arr.push(['".$row['crse_code']."', '".$row['crse_year']."', '".$row['crse_semester']."']);
             ";
             echo "
             var table = document.getElementById('general-table').innerHTML;
@@ -1061,11 +1078,42 @@ if (isset($_POST['submit'])) {
             echo '" style="cursor: pointer">X</td>
             </tr>`;
             ';
-            
-            
+            $sql_PC = "SELECT * FROM `scheme` WHERE crse_major = '{$cohort[0]}' AND cohort_year = '{$cohort[1]}' AND crse_code = '{$row['crse_code']}'";
+            $result_PC = mysqli_query($conn, $sql_PC);
+            $resultCheck_PC = mysqli_num_rows($result_PC);
+
+            if ($resultCheck_PC > 0){
+              $row_PC = mysqli_fetch_assoc($result_PC);
+                if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] != NULL){
+                  echo "
+                  arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '{$row_PC['crse_CO']}']);";
+                  } else if ($row_PC['crse_PRE'] != NULL && $row_PC['crse_CO'] === NULL){
+                    echo "
+                      arr.push(['{$row['crse_code']}', '{$row_PC['crse_PRE']}', '-']);";
+                      } else if($row_PC['crse_CO'] != NULL && $row_PC['crse_PRE'] === NULL){
+                        echo "
+                          arr.push(['{$row['crse_code']}', '-', '{$row_PC['crse_PRE']}']);";
+                          } 
+                  
+            }
+            echo "
+            list = document.getElementById('clases').innerHTML;
+            document.getElementById('clases').innerHTML = `";
+            echo '
+                            ${list}
+                            <li style="margin-left:20px; font-size: 0.6em; cursor: pointer" onclick="viewClase(';
+                            echo "'{$row['crse_code']}'";
+                            echo ')">';
+                            echo "{$row['crse_code']}</li>
+                          `;";
           }
         }
+
         echo "
+        console.table(arr);
+        console.table(class_arr);
+        console.table(concentracion);
+        console.table(general);
         </script>";
 }
 ?>
