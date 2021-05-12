@@ -1,7 +1,7 @@
 <?php
 include("inc/connection.php");
 session_start();
-$advisor_id= 'CC COMS BCN';
+$advisor_id= 'CC-COMS- BCN';
 $advisor_name = $_SESSION['adv_name'];
 
 // if(!isset($advisor_id)){
@@ -234,6 +234,7 @@ $advisor_name = $_SESSION['adv_name'];
                                   </tr>
                                 </thead>
                                 <tbody>
+                                <form action="firmas.php" method="POST">
                                 <?php
                                        $sql ="SELECT *
                                         FROM cohort INNER JOIN mandatory_courses USING (crse_code)
@@ -261,7 +262,8 @@ $advisor_name = $_SESSION['adv_name'];
                                         </td>
                                       </tr>
                                      ";}}?>
-                                </tbody>
+                                </form>
+                                    </tbody>
                               </table>
                             </div>
                           </div>

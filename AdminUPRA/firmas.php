@@ -167,23 +167,84 @@ $crse_code = $_POST['crse_code'];
         </div>
         <div class="card-body p-0">
             <div align='center'><h3>FIRMAS</h3></div>
-            <?php
-        $sql ="SELECT stdnt_email FROM stdnt_record 
-        INNER JOIN student USING (stdnt_number)
-        INNER JOIN departmental_courses USING (crse_code) 
-               WHERE crse_code = '$crse_code'";
-        $result = mysqli_query($conn, $sql);
-        $resultCheck = mysqli_num_rows($result);
-        $count = 0;
-        if($resultCheck > 0){
-        while($row = mysqli_fetch_assoc($result)){
-             $count++;
-            echo "
-                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
-        }}else{
-          echo "
-          <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";
-        }
+        <?php
+    
+    
+    $sql_M = "SELECT * 
+             FROM mandatory_courses
+             WHERE crse_code = '$crse_code'";
+        $result_M = mysqli_query($conn, $sql_M);
+        $resultCheck_M = mysqli_num_rows($result_M);
+            if($resultCheck_M > 0){
+        $row_M = mysqli_fetch_assoc($result_M);
+                $sql ="SELECT stdnt_email FROM stdnt_record 
+                INNER JOIN student USING (stdnt_number)
+                INNER JOIN mandatory_courses USING (crse_code) 
+                WHERE crse_code = '$crse_code' AND crse_status = 4";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+                    $count = 0;
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                $count++;
+                        echo "
+                        &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
+                        }}else{
+                        echo "
+                        <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";}}
+                
+    $sql_G = "SELECT * 
+             FROM general_courses
+             WHERE crse_code = '$crse_code'";
+        $result_G = mysqli_query($conn, $sql_G);
+        $resultCheck_G = mysqli_num_rows($result_G);
+            if($resultCheck_G > 0){
+        $row_G = mysqli_fetch_assoc($result_G);
+                $sql ="SELECT stdnt_email FROM stdnt_record 
+                INNER JOIN student USING (stdnt_number)
+                INNER JOIN general_courses USING (crse_code) 
+                WHERE crse_code = '$crse_code' AND crse_status = 4";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+                    $count = 0;
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                $count++;
+                        echo "
+                        &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
+                        }}else{
+                        echo "
+                        <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";}}
+                
+                
+    $sql_D = " SELECT * 
+             FROM departmental_courses
+             WHERE crse_code ='$crse_code'";
+        $result_D = mysqli_query($conn, $sql_D);
+        $resultCheck_D = mysqli_num_rows($result_D);
+            if($resultCheck_D > 0){
+        $row_D = mysqli_fetch_assoc($result_D);
+                $sql ="SELECT stdnt_email FROM stdnt_record 
+                INNER JOIN student USING (stdnt_number)
+                INNER JOIN departmental_courses USING (crse_code) 
+                WHERE crse_code = '$crse_code' AND crse_status = 4";
+                    
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+                    $count = 0;
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                $count++;
+                        echo "
+                        &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
+                        }}else{
+                        echo "
+                        <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";}}
+    
+
+                
+                
+                
           ?>
             <br>
         </div>
