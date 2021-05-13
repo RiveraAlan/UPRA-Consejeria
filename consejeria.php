@@ -3,6 +3,13 @@ session_start();
 $id = $_SESSION['stdnt_number'];
 // Se asegura que el usario que no haya iniciado sesion no pueda acceder a esta pagina.
 include_once 'private/dbconnect.php';
+$sql = "SELECT stdnt_major FROM `student` WHERE stdnt_number = '$id'";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['stdnt_major'];
+}
 if(!isset($_SESSION['stdnt_number'])){
   header("Location: index.php");
     exit();
@@ -472,7 +479,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <?php 
                 
                       $sql = "SELECT *
-                      FROM mandatory_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC-COMS-BCN'";
+                      FROM mandatory_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = '$cohort'";
                       $result = mysqli_query($conn, $sql);
                       $resultCheck = mysqli_num_rows($result);
                       
@@ -566,7 +573,7 @@ if(!isset($_SESSION['stdnt_number'])){
                    <?php 
                    $sql ="SELECT *
                         FROM general_courses INNER JOIN cohort USING (crse_code)
-                        WHERE crse_major = 'CC-COMS-BCN'";
+                        WHERE crse_major = '$cohort'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -888,7 +895,7 @@ if(!isset($_SESSION['stdnt_number'])){
                
                         <?php 
                 $sql =" SELECT * 
-                    FROM departmental_courses WHERE crse_major = 'CC-COMS-BCN'";
+                    FROM departmental_courses WHERE crse_major = '$cohort'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -1125,7 +1132,7 @@ if(!isset($_SESSION['stdnt_number'])){
 
                   $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code)
                   UNION
-                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code) WHERE crse_major ='CC-COMS-BCN'";
+                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code) WHERE crse_major ='$cohort'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);                                
                  
@@ -1648,7 +1655,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                     
                                     //CAMBIAR PARA TODOS 
                                     $sql ="SELECT crse_code, crse_description, crse_credits
-                                    FROM departmental_courses WHERE crse_major = 'CC-COMS-BCN'";
+                                    FROM departmental_courses WHERE crse_major = '$cohort'";
                                   $result = mysqli_query($conn, $sql);
                                   $resultCheck = mysqli_num_rows($result);
                             
