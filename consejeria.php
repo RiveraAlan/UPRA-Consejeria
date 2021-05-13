@@ -1020,7 +1020,26 @@ if(!isset($_SESSION['stdnt_number'])){
                 $sql ="SELECT adv_comments
                       FROM record_details WHERE stdnt_number = '$id'";
                     $result = mysqli_query($conn, $sql);
-                    $lop
+                    $resultCheck = mysqli_num_rows($result);
+              
+                if($resultCheck > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                 
+                    echo "
+            <div class='card'>
+              <div class='card-header' style='background: #e0c200'>
+                <h3 class='card-title' >Notas</h3>
+              </div>
+                
+              <div>
+
+              <form id='paper' method='get' action=''>
+		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['adv_comments']}</p>
+              </form>
+                
+            </div>
+            <!-- /.card -->
+          </div>";}}
           ?>
             </div>
 <!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
