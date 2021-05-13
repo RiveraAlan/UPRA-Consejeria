@@ -190,7 +190,7 @@ if(!isset($_SESSION['stdnt_number'])){
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->
-<div class="slide" id="sticky_table" style="visibility: visible">
+<div id="sticky_table" style="visibility: visible">
       <?php
          $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
          $result_couns = mysqli_query($conn, $sql);
@@ -472,7 +472,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 <?php 
                 
                       $sql = "SELECT *
-                      FROM mandatory_courses INNER JOIN cohort USING (crse_code)";
+                      FROM mandatory_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC-COMS-BCN'";
                       $result = mysqli_query($conn, $sql);
                       $resultCheck = mysqli_num_rows($result);
                       
@@ -537,7 +537,7 @@ if(!isset($_SESSION['stdnt_number'])){
                       concentracion.push([clase_sin, desc, cred]);
                       console.table(concentracion);
                       } else {
-                          // Returns false if not checked
+                        con_list('{$row['crse_code']}');
                       }
                   };
 
@@ -624,7 +624,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     general.push([clase_sin, desc, cred]);
                     console.table(general);
                     } else {
-                        // Returns false if not checked
+                      gen_list('{$row['crse_code']}');
                     }
                 };
 
@@ -700,7 +700,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     huma.push([clase_sin, desc, cred]);
                     console.table(huma);
                     } else {
-                        // Returns false if not checked
+                      hum_list('{$row['crse_code']}');
                     }
                 };
 
@@ -777,7 +777,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     ciencias_so.push([clase_sin, desc, cred]);
                     console.table(ciencias_so);
                     } else {
-                        // Returns false if not checked
+                      ciso_list('{$row['crse_code']}');
                     }
                 };
 
@@ -847,7 +847,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     libre.push([clase_sin, desc, cred]);
                     console.table(libre);
                     } else {
-                        // Returns false if not checked
+                      lib_list('{$row['crse_code']}');
                     }
                 };
 
@@ -956,8 +956,10 @@ if(!isset($_SESSION['stdnt_number'])){
                           `;
                     departamento.push([clase_sin, desc, cred]);
                     console.table(departamento);
-                    } else {
-                        
+                    } else {';
+                      echo "
+                      dept_list('{$row['crse_code']}');";
+                      echo '
                     }
                 };
 
@@ -1103,7 +1105,7 @@ if(!isset($_SESSION['stdnt_number'])){
 
                   $sql = "SELECT * FROM `cohort` INNER JOIN mandatory_courses USING (crse_code)
                   UNION
-                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code)";
+                  SELECT * FROM `cohort` INNER JOIN general_courses USING (crse_code) WHERE crse_major ='CC-COMS-BCN'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);                                
                  
@@ -1811,8 +1813,9 @@ function toggle(source) {
                     var list = `${clase}`;
                     const regex =  new RegExp(list,'g'); // correct way
                     var crs_var = str.replace(regex, "");
-                    var res = crs_var.replace(/\W*(<tr class="list">)\W\s\W*(<td class="list"><.td>)\W\s\W*(td><button onclick="con_list)\W['']\W*(x<.button><.td>)\s\W*(.tr>)/g, "");
-                    document.getElementById("con_table").innerHTML = res;
+                    var res = crs_var.replace(/\W*(<tr class="list">)\s\W*(<td class="list"><.td>)\s\W*(<td><button onclick="con_list)\W*[('')">x]\W*(<.button><.td>)\s\W*(<.tr>)/g, "");
+                    var res_case2 = res.replace(/\W*(<tr><td class="list"><.td>)\s\W*(<td><button onclick="con_list)\W*[('')">x]\W*(<.button><.td>)\s\W*(<.tr>)/g, "");
+                    document.getElementById("con_table").innerHTML = res_case2;
                     let inputs = document.getElementById(clase);
                     inputs.checked = false;
                     for (var i = 0; i < concentracion.length; i++){
@@ -1950,7 +1953,6 @@ function toggle(source) {
                       } 
                       departamento = [];
                     }
-
                   }
 
                   document.getElementById('modal-btn').onclick = function() {
