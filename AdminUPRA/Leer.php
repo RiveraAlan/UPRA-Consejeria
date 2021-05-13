@@ -121,9 +121,11 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
           $grade_new = 11;
         }
         
-         if ($row_C['crse_grade'] != NULL OR $grade_new <= $grade_old){}
+         if ($row_C['crse_grade'] == NULL || $grade_new <= $grade_old){
              
-         }
+            $sql = " UPDATE stdnt_record SET crse_grade = 'F' WHERE crse_code = 'CCOM3001' AND stdnt_number = '840-16-4235'" ;
+         }    
+         
     }
     
     else {
