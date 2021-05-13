@@ -73,7 +73,55 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
     $resultCheck_C = mysqli_num_rows($result_C);  
          if($resultCheck_C > 0){
          $row_C = mysqli_fetch_assoc($result_C);
-             if ($row_C['crse_grade'] != NULL){}
+         if($row_C['crse_grade'] == 'A'){
+          $grade_old = 1;
+         }elseif ($row_C['crse_grade'] == 'P') {
+          $grade_old = 2;
+        }elseif ($row_C['crse_grade'] == 'B') {
+          $grade_old = 3;
+         }elseif ($row_C['crse_grade'] == 'C') {
+          $grade_old = 5;
+        }elseif ($row_C['crse_grade'] == 'D') {
+          $grade_old = 7;
+        }elseif ($row_C['crse_grade'] == 'F') {
+          $grade_old = 10;
+        }elseif ($row_C['crse_grade'] == 'NP') {
+          $grade_old = 9;
+        }elseif ($row_C['crse_grade'] == 'IB') {
+          $grade_old = 4;
+        }elseif ($row_C['crse_grade'] == 'IC') {
+          $grade_old = 6;
+        }elseif ($row_C['crse_grade'] == 'ID') {
+          $grade_old = 8;
+        }elseif ($row_C['crse_grade'] == 'IF') {
+          $grade_old = 11;
+        }
+
+        if($res_grade[0] == 'A'){
+          $grade_new = 1;
+         }elseif newes_grade[0] == 'P') {
+          $grade_new = 2;
+        }elseif (news_grade[0] == 'B') {
+          $grade_new = 3;
+         }elseif newes_grade[0] == 'C') {
+          $grade_new = 5;
+        }elseif (news_grade[0] == 'D') {
+          $grade_new = 7;
+        }elseif ($res_grade[0] == 'F') {
+          $grade_new = 10;
+        }elseif (news_grade[0] == 'NP') {
+          $grade_new = 9;
+        }elseif ($res_grade[0] == 'IB') {
+          $grade_new= 4;
+        }elseif (new_grade[0] == 'IC') {
+          $grade_new= 6;
+        }elseif ($res_grade[0] == 'ID') {
+          $grade_new = 8;
+        }elseif ($res_grade[0] == 'IF') {
+          $grade_new = 11;
+        }
+        
+         if ($row_C['crse_grade'] != NULL OR $grade_new <= $grade_old){}
              
          }
     }

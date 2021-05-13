@@ -1251,7 +1251,7 @@ body {
                   <select name="course" id="course-list">
                   <?php
                       //solo deje code y quite name/label y agregue ciso y huma
-                        $sql ="SELECT 	crse_code FROM departmental_courses
+                        $sql ="SELECT	crse_code FROM departmental_courses
                                 UNION ALL 
                                 (SELECT crse_code FROM mandatory_courses)
                                 UNION ALL 
