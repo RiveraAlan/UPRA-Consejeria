@@ -150,11 +150,6 @@ if(!isset($_SESSION['stdnt_number'])){
       <li class="nav-item d-none d-sm-inline-block">
         <a class="nav-link">Inicio</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block" style="right: 0; position: fixed"><a href="index.php" class="nav-link">
-              <i class="fa fa-sign-out-alt">
-              Cerrar Sesión</i>
-            </a>
-          </li>
     </ul>
   </nav>
   <script>
@@ -287,11 +282,14 @@ if(!isset($_SESSION['stdnt_number'])){
             </a></div>";
             }  
       ?>
+      <a href="index.php" class="nav-link" style="background-color: #494E53; border-radius: 5px; border: 0; margin-top: 250px">
+              <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              Cerrar Sesión
+            </a>
       <!-- /.sidebar-menu -->
     </div>
-    <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> -->
-      
-      <!-- </ul> -->
+          </div>
+   
     <!-- /.sidebar -->
   </aside>
   <!-- Content Wrapper. Contains page content -->
