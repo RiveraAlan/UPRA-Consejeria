@@ -1128,7 +1128,7 @@ if(!isset($_SESSION['stdnt_number'])){
                 for (var i = 0; i < cohorte.length; i++){
                   console.log(dept + cohorte[i][4]);
                   if (cohorte[i][4] == `${dept}` && cohorte[i][1] == year){
-                  if (cohorte[i][2] == 1 && cohorte[i][3] == 1){
+                  if (cohorte[i][2] == 1 && (cohorte[i][3] == 1 || cohorte[i][3] == 3)){
                   tabla = document.getElementById("primer_tabla").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("primer_tabla").innerHTML = `
@@ -1155,7 +1155,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
                                 }
-                  } else if (cohorte[i][2] == 1 && cohorte[i][3] == 2){
+                  } else if (cohorte[i][2] == 1 && (cohorte[i][3] == 2 || cohorte[i][3] == 3)){
                   tabla = document.getElementById("primer_segundo").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("primer_segundo").innerHTML = `
@@ -1182,7 +1182,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
                                 }
-                  } else if (cohorte[i][2] == 2 && cohorte[i][3] == 1){
+                  } else if (cohorte[i][2] == 2 && (cohorte[i][3] == 1|| cohorte[i][3] == 3)){
                   tabla = document.getElementById("segundo_primero").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("segundo_primero").innerHTML = `
@@ -1209,7 +1209,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
                                 }
-                  } else if (cohorte[i][2] == 2 && cohorte[i][3] == 2){
+                  } else if (cohorte[i][2] == 2 && (cohorte[i][3] == 2 || cohorte[i][3] == 3)){
                   tabla = document.getElementById("segundo_segundo").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("segundo_segundo").innerHTML = `
@@ -1236,7 +1236,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
                                 }
-                  } else if (cohorte[i][2] == 3 && cohorte[i][3] == 1){
+                  } else if (cohorte[i][2] == 3 && (cohorte[i][3] == 1 || cohorte[i][3] == 3)){
                   tabla = document.getElementById("tercero_primero").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("tercero_primero").innerHTML = `
@@ -1263,7 +1263,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
                                 }
-                  } else if (cohorte[i][2] == 3 && cohorte[i][3] == 2){
+                  } else if (cohorte[i][2] == 3 && (cohorte[i][3] == 2 || cohorte[i][3] == 3)){
                   tabla = document.getElementById("tercero_segundo").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("tercero_segundo").innerHTML = `
@@ -1290,7 +1290,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
                                 }
-                  } else if (cohorte[i][2] == 4 && cohorte[i][3] == 1){
+                  } else if (cohorte[i][2] == 4 && (cohorte[i][3] == 1 || cohorte[i][3] == 3)){
                   tabla = document.getElementById("cuarto_primero").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("cuarto_primero").innerHTML = `
@@ -1317,7 +1317,7 @@ if(!isset($_SESSION['stdnt_number'])){
                                         <td>${cohorte[i][6]}</td>
                                 </tr>`;
                                 }
-                  } else if (cohorte[i][2] == 4 && cohorte[i][3] == 2){
+                  } else if (cohorte[i][2] == 4 && (cohorte[i][3] == 2 || cohorte[i][3] == 3)){
                   tabla = document.getElementById("cuarto_segundo").innerHTML;
                   if (cohorte[i][7] == 'A' || cohorte[i][7] == 'B' || cohorte[i][7] == 'C' || cohorte[i][7] == 'P') {
                   document.getElementById("cuarto_segundo").innerHTML = `
@@ -1347,7 +1347,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   }
                   }
                 }
-              }
+                openCity(event, 'Primer');}
             </script>
                                     <!-- Comienza el TAB del First Year -->
 <div id="Primer" class="tabcontent">
