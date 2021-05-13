@@ -486,7 +486,9 @@ if(!isset($_SESSION['stdnt_number'])){
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                         
-                  
+                    if($row_S['crse_status'] == 4 ) 
+                    echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
+                    else                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
                     echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}'/>&nbsp;</center></td>";
@@ -577,7 +579,10 @@ if(!isset($_SESSION['stdnt_number'])){
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
             
-                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                   if($row_S['crse_status'] == 4 ) 
+                    echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
+                    else                   
+                    echo "<tr width='50%' style='background-color: #f4f9f9'>";
                   
                     echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
@@ -663,7 +668,10 @@ if(!isset($_SESSION['stdnt_number'])){
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                   
-                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                   if($row_S['crse_status'] == 4 ) 
+                    echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
+                    else                   
+                    echo "<tr width='50%' style='background-color: #f4f9f9'>";
                 
                     echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
@@ -740,8 +748,13 @@ if(!isset($_SESSION['stdnt_number'])){
                       $result_S = mysqli_query($conn, $sql_S);
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
-                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
-                
+        
+                    
+                     if($row_S['crse_status'] == 4 ) 
+                    echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
+                    else                   
+                    echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                    
                     echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
@@ -810,8 +823,11 @@ if(!isset($_SESSION['stdnt_number'])){
                 while($row = mysqli_fetch_assoc($result)){
                   
                   
-                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
-                
+                   if($row_S['crse_status'] == 4 ) 
+                    echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
+                    else                   
+                    echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                    
                     echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
                     echo "<td>{$row['crse_description']}</td>";
@@ -885,7 +901,11 @@ if(!isset($_SESSION['stdnt_number'])){
                       $result_S = mysqli_query($conn, $sql_S);
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
-                  echo "<tr width='50%' style='background-color: #f4f9f9'>";
+                 
+                     if($row_S['crse_status'] == 4 ) 
+                    echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
+                    else                   
+                    echo "<tr width='50%' style='background-color: #f4f9f9'>";
                 
                     echo "<td><center><input type='checkbox' id='{$row['crse_code']}' value='{$row['crse_code']}' />&nbsp;</center></td>" ;
                     echo "<td>{$row['crse_code']}</td>";
