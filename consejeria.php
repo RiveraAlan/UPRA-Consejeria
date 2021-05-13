@@ -14,6 +14,12 @@ if(!isset($_SESSION['stdnt_number'])){
   header("Location: index.php");
     exit();
 }
+
+$sql ="SELECT adv_comments
+                      FROM record_details WHERE stdnt_number = '$id'";
+                    $commentResult = mysqli_query($conn, $sql);
+                    $commentCheck = mysqli_num_rows($commentResult);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,6 +141,27 @@ if(!isset($_SESSION['stdnt_number'])){
 
 @keyframes slide {
     100% { left: 010px; }
+}
+
+.notification {
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge {
+  position: absolute;
+  top: 0px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
 }
       </style>
       <body class="hold-transition sidebar-mini">
@@ -349,7 +376,19 @@ if(!isset($_SESSION['stdnt_number'])){
                     <button class="tablinks active" onclick="openCity(event, 'appointment')">Sacar Cita con su Consejero/a</button>
                     <button class="tablinks" onclick="openCity(event, 'Concentracion')">Realización de Consejería</button>
                     <button class="tablinks" onclick="openCity(event, 'Cohorte')">Verficar Cohorte</button>
-                    <button class="tablinks" onclick="openCity(event, 'Comentario')">Comentario del Consejero/a</button>
+                    <?php
+                    echo '<button class="tablinks notification" onclick="openCity(event, ';
+                    echo "'Comentario')";
+                    echo '">Comentario del Consejero/a';
+                    if($commentCheck > 0){
+                    $row = mysqli_fetch_assoc($commentResult);
+                    if ($row['adv_comments'] != "") 
+                    echo '<span class="badge"><i class="fas fa-bell"></i></span>';
+                    }
+                    echo '
+                    </button>';
+                    ?>
+                    
                   </div>
  <!-- Culmina la parte de los TABS. -->                
  <!-- Comienza el TAB de la realizacion de consejeria donde el student puede ver su file y confirmar su consejeria academica y tambien sugerir al momento de darle 'click' en consejeria 'otros cursos'. -->
@@ -1048,13 +1087,9 @@ if(!isset($_SESSION['stdnt_number'])){
             <div id="Comentario" class="tabcontent">
                 <!-- Notes -->
              <?php
-                $sql ="SELECT adv_comments
-                      FROM record_details WHERE stdnt_number = '$id'";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
+                
               
-                if($resultCheck > 0){
-                while($row = mysqli_fetch_assoc($result)){
+                
                  
                     echo "
             <div class='card'>
@@ -1062,15 +1097,22 @@ if(!isset($_SESSION['stdnt_number'])){
                 <h3 class='card-title' style='margin: auto'><strong>Notas</strong></h3>
               </div>
                 
-              <div>
+              <div>";
 
-              <form id='paper' method='get' action=''>
-		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['adv_comments']}</p>
-              </form>
-                
+                if($commentCheck > 0){
+                $row = mysqli_fetch_assoc($commentResult);
+                  echo "
+		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['adv_comments']}</p>";
+                }else {
+                  echo "
+                  <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></p>";
+                }
+              
+             echo "   
+
             </div>
             <!-- /.card -->
-          </div>";}}
+          </div>";
           ?>
             </div>
 <!-- Este es el TAB de Sugerencias del student. Donde podra sugerir las clases de Electiva departamentales y confirmar para dejarle saber a la profesora cuales esta el student sugiriendo solo las electivas departamentales. -->
