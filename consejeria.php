@@ -445,7 +445,7 @@ if(!isset($_SESSION['stdnt_number'])){
                   <br>
                   <h4> <b style="color:red">NOTA</b> </h4>
                   <h5> <i> Para seleccionar un curso presione caja de verificación</i> “❑”</h5>
-                  <h5> <i> Los cursos en color <b style="background:rgb(101,236,227);"> Azul</b> son recomendados por su consejero. </i></h5>
+                  <h5> <i> Los cursos en color <b style="background:violet;"> Violeta</b> son recomendados por su consejero. </i></h5>
                   <br>
 </div>
                             
@@ -957,7 +957,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     departamento.push([clase_sin, desc, cred]);
                     console.table(departamento);
                     } else {
-                        // Returns false if not checked
+                        
                     }
                 };
 
