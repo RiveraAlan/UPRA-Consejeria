@@ -3,8 +3,11 @@ require 'inc/connection.php';
 
 $array = file("Expediente.txt");
 // print_r($array);
-
+    
 $class = array();
+    $Existe = "SELECT * FROM student WHERE stdnt_number = '840-16-4235'";
+    $result_E = mysqli_query($conn, $Existe);
+    $resultCheck_E = mysqli_num_rows($result_E);  
 
 foreach ($array as $item){
 // class code
@@ -64,8 +67,23 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
   $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
 } 
     
-$sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
-VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."', 0)";
+    if($resultCheck_E > 0){
+    $Clase = "SELECT *  FROM stdnt_record WHERE crse_code= '".$res_code[0]."' AND stdnt_number = '.$res_num[0]."
+    $result_C = mysqli_query($conn, $Clase);
+    $resultCheck_C = mysqli_num_rows($result_C);  
+         if($resultCheck_C > 0){
+         $row_C = mysqli_fetch_assoc($result_C);
+             if ($row_C['crse_grade'] != NULL){}
+             
+         }
+    }
+    
+    else {
+        
+        $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
+        VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."', 0)";
+    } 
+
 // Prepare statement
 $stmt = $conn->prepare($sql);
 // execute the query
