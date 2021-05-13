@@ -558,16 +558,16 @@ if(!isset($_SESSION['stdnt_number'])){
                 
                       
                    <?php 
-                   $sql =" SELECT *
-                        FROM GENERAL_courses INNER JOIN cohort USING (crse_code)
-                        WHERE crse_major = 'CC COMS BCN'";
+                   $sql ="SELECT *
+                        FROM general_courses INNER JOIN cohort USING (crse_code)
+                        WHERE crse_major = 'CC-COMS-BCN'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                     $sql_S ="SELECT *
-                      FROM GENERAL_courses INNER JOIN stdnt_record USING (crse_code) 
+                      FROM general_courses INNER JOIN stdnt_record USING (crse_code) 
                       WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
                       $result_S = mysqli_query($conn, $sql_S);
                       $resultCheck_S = mysqli_num_rows($result_S);
@@ -1028,7 +1028,7 @@ if(!isset($_SESSION['stdnt_number'])){
                     echo "
             <div class='card'>
               <div class='card-header' style='background: #e0c200'>
-                <h3 class='card-title' >Notas</h3>
+                <h3 class='card-title' style='margin: auto'><strong>Notas</strong></h3>
               </div>
                 
               <div>
