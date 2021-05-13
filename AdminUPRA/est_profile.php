@@ -420,6 +420,56 @@ body {
               <div class="card-body box-profile">
                     <?php
 
+          $sql_dos = "SELECT stdnt_number, stdnt_email 
+            FROM student INNER JOIN record_details USING (stdnt_number)
+            WHERE record_status != 0 AND stdnt_major = 'CC-COMS-BCN'";
+                  $result_dos = mysqli_query($conn, $sql_dos);
+                  $resultCheck_dos = mysqli_num_rows($result_dos);
+                  $row_dos = mysqli_fetch_assoc($result_dos);
+            
+                $sum = "SELECT 131 - SUM(SUMA) AS sum FROM (
+                  SELECT SUM(crse_credits) AS SUMA
+                  FROM mandatory_courses INNER JOIN  stdnt_record USING(crse_code)
+                  WHERE stdnt_number = '{$row_dos['stdnt_number']}' AND (crse_grade = 'A' OR crse_grade = 'B' 
+                                        OR crse_grade = 'C' OR crse_grade = 'P')
+    		UNION  ALL
+                 SELECT SUM(crse_credits) AS SUMA
+                 FROM general_courses INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_number = '{$row_dos['stdnt_number']}' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                                          OR crse_grade = 'D' OR crse_grade = 'P')
+			UNION ALL
+                 SELECT SUM(crse_credits) AS SUMA
+                 FROM departmental_courses INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_number = '{$row_dos['stdnt_number']}' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                                        OR crse_grade = 'D' OR crse_grade = 'P')
+            UNION ALL
+                 SELECT SUM(crse_credits) AS SUMA
+                 FROM free_courses INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_number = '{$row_dos['stdnt_number']}' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                                        OR crse_grade = 'D' OR crse_grade = 'P')
+            UNION ALL
+                 SELECT SUM(crse_credits) AS SUMA 
+                 FROM general_education_ciso INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_number = '{$row_dos['stdnt_number']}' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                                        OR crse_grade = 'D' OR crse_grade = 'P')
+            UNION ALL
+                 SELECT SUM(crse_credits) AS SUMA
+                 FROM general_education_huma INNER JOIN stdnt_record USING(crse_code)
+                 WHERE stdnt_number = '{$row_dos['stdnt_number']}' AND (crse_grade = 'A' OR crse_grade = 'B' OR crse_grade = 'C'
+                                        OR crse_grade = 'D' OR crse_grade = 'P')) t1";
+                   
+                  $sum_result = mysqli_query($conn, $sum);
+                  $sum_resultCheck = mysqli_num_rows($sum_result);   
+                  $sum_row = mysqli_fetch_assoc($sum_result);
+                        
+                        if($sum_row <= 34)
+                            $A = date('Y') + 3;
+                        elseif ($sum_row >= 34 && $sum_row <= 66)
+                            $A = date('Y') + 2;
+                        elseif ($sum_row >= 66 && $sum_row <= 98)
+                            $A = date('Y') + 1;
+                        else 
+                            $A = date('Y');
                     $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
@@ -459,13 +509,14 @@ body {
                   $creditos['SUM(C)']=0;
               }
            
+            
               if($resultCheck > 0){
               $row = mysqli_fetch_assoc($result);
               $año = date('Y')-(substr($row['stdnt_number'], 4,2) + 1999);
                echo "<h3 class='profile-username text-center'>{$row['stdnt_name']} {$row['stdnt_lastname1']} {$row['stdnt_lastname2']}</h3>
                 <p class='text-muted text-center'>{$row['stdnt_email']}</p>
-                <p class='text-muted text-center'>{$row['stdnt_number']}</p>
-                <ul class='list-group list-group-unbordered mb-3'>
+                <p class='text-muted text-center'>{$row['stdnt_number']}</p>       
+               <ul class='list-group list-group-unbordered mb-3'>
                   <li class='list-group-item'>
                     <b>Créditos Aprobados</b> <a class='float-right'>{$creditos['SUM(C)']}</a>
                   </li>
@@ -474,6 +525,9 @@ body {
                   </li>
                   <li class='list-group-item'>
                     <b>Secuencia:</b> <a class='float-right'>{$row['stdnt_major']}</a>
+                  </li>
+                  <li class='list-group-item'>
+                    <b>Posible año de Graduación:</b> <a class='float-right'>$A</a>
                   </li>
                    
                 </ul>";?>
