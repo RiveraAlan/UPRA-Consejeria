@@ -4,6 +4,14 @@ session_start();
 $advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
+$sql = "SELECT adv_major FROM `advisor` WHERE adv_email = '$advisor_id'";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['adv_major'];
+}
+
 if(!isset($_SESSION['adv_email'])){
   header("Location: index.php");
     exit();
@@ -11,7 +19,7 @@ if(!isset($_SESSION['adv_email'])){
 $count = 0;
 $sql = "SELECT stdnt_number 
 FROM student INNER JOIN record_details USING (stdnt_number)
-WHERE record_status != 0";
+WHERE record_status != 0 AND stdnt_major = '$cohort'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
                   if($resultCheck > 0){
@@ -218,7 +226,7 @@ WHERE record_status != 0";
             <div class="small-box bg-blue">
               <div class="inner">
             <?php
-                $sql = "SELECT count(*) AS amount_of_students FROM `student`";
+                $sql = "SELECT count(*) AS amount_of_students FROM `student` WHERE stdnt_major = '$cohort'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
               
@@ -236,18 +244,18 @@ WHERE record_status != 0";
           <div class="col-lg-3 col-6">
             <?php
                 $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM record_details S_R_D1 
-                WHERE S_R_D1.conducted_counseling = 1 AND record_status != 0;";
+                INNER JOIN student USING(stdnt_number) WHERE S_R_D1.conducted_counseling = 1 AND record_status != 0 AND stdnt_major = '$cohort';";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $students_t_c_c = mysqli_fetch_array($result, MYSQLI_NUM);
 
-                $sql = "SELECT COUNT(*) AS total_students FROM record_details WHERE record_status != 0;";
+                $sql = "SELECT COUNT(*) AS total_students FROM record_details INNER JOIN student USING(stdnt_number) WHERE record_status != 0 AND stdnt_major = '$cohort';";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $total_students =  mysqli_fetch_array($result, MYSQLI_NUM);
 
-                $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM record_details S_R_D1 
-                WHERE S_R_D1.conducted_counseling = 0 AND record_status != 0;";
+                $sql = "SELECT COUNT(S_R_D1.stdnt_number) AS s_t_c_c FROM record_details S_R_D1 INNER JOIN student USING(stdnt_number)
+                WHERE S_R_D1.conducted_counseling = 0 AND record_status != 0 AND stdnt_major = '$cohort';";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 $students_t_dn_c_c = mysqli_fetch_array($result, MYSQLI_NUM); ?>
@@ -384,7 +392,7 @@ margin-left: auto;
               <tbody> 
               <?php
               $sql = "SELECT *
-              FROM student NATURAL JOIN record_details;";
+              FROM student NATURAL JOIN record_details WHERE stdnt_major = '$cohort';";
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
               

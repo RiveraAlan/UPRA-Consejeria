@@ -113,7 +113,7 @@ $result = mysqli_query($conn, $sql);
               <p>Calendario</p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open"><a href="../private/logout_admin.php" class="nav-link">
+          <li class="nav-item has-treeview menu-open"><a href="inc/logout_admin.php" class="nav-link">
               <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Cerrar Sesión</p>
             </a></li>

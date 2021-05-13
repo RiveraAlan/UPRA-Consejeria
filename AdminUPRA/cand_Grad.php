@@ -4,6 +4,13 @@ include("inc/connection.php");
 $advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
+$sql = "SELECT adv_major FROM `advisor` WHERE adv_email = '$advisor_id'";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['adv_major'];
+}
 if(!isset($advisor_id)){
   header("Location: index.php");
     exit();
@@ -11,7 +18,7 @@ if(!isset($advisor_id)){
 $i = 0;
 $sql = "SELECT stdnt_number, stdnt_email 
 FROM student INNER JOIN record_details USING (stdnt_number)
-WHERE record_status != 0 AND stdnt_major = 'CC-COMS-BCN'";
+WHERE record_status != 0 AND stdnt_major = '$cohort'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
                   if($resultCheck > 0){
@@ -233,12 +240,14 @@ WHERE record_status != 0 AND stdnt_major = 'CC-COMS-BCN'";
             <div align='center'><h3>CORREOS ELECTRÓNICOS</h3></div>
             <?php
             $count = 0;
+            if (isset($grad_stdnts)) {
             foreach($grad_stdnts as $grad_stdnt){
             $count++;
             echo "
                 &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. $grad_stdnt</th><br>";
                 
         }
+      }
         if($count == 0){
                 echo "
               <div class='error-message'><h4 style='text-align:center'>¡No hay candidatos a graduación!</h4></div>";

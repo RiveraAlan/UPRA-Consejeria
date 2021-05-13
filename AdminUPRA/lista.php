@@ -4,6 +4,14 @@ session_start();
 $advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
+$sql = "SELECT adv_major FROM `advisor` WHERE adv_email = '$advisor_id'";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['adv_major'];
+}
+
 if(!isset($_SESSION['adv_email'])){
   header("Location: index.php");
     exit();
@@ -187,7 +195,7 @@ if(!isset($_SESSION['adv_email'])){
                                   <?php
                                        $sql ="SELECT *
                                         FROM departmental_courses
-                                        WHERE crse_major = 'CC-COMS-BCN'";
+                                        WHERE crse_major = '$cohort'";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
@@ -238,7 +246,7 @@ if(!isset($_SESSION['adv_email'])){
                                 <?php
                                        $sql ="SELECT *
                                         FROM cohort INNER JOIN mandatory_courses USING (crse_code)
-                                        WHERE crse_major = 'CC-COMS-BCN'";
+                                        WHERE crse_major = '$cohort'";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 
@@ -291,7 +299,7 @@ if(!isset($_SESSION['adv_email'])){
                                 <?php
                                        $sql ="SELECT *
                                         FROM cohort INNER JOIN general_courses USING (crse_code)
-                                        WHERE crse_major = 'CC-COMS-BCN'";
+                                        WHERE crse_major = '$cohort'";
                                         $result = mysqli_query($conn, $sql);
                                         $resultCheck = mysqli_num_rows($result);
 

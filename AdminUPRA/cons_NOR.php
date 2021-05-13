@@ -4,6 +4,13 @@ include("inc/connection.php");
 $advisor_id= $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
+$sql = "SELECT adv_major FROM `advisor` WHERE adv_email = '$advisor_id'";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['adv_major'];
+}
  if(!isset($advisor_id)){
    header("Location: index.php");
      exit();
@@ -182,7 +189,7 @@ $advisor_name = $_SESSION['adv_name'];
     //Cambie stdnt_record_details por recotd_details
         $sql ="SELECT stdnt_email FROM record_details
         INNER JOIN student USING (stdnt_number)
-        WHERE conducted_counseling = 0 AND record_status != 0";
+        WHERE conducted_counseling = 0 AND record_status != 0 AND stdnt_major='$cohort'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count = 0;

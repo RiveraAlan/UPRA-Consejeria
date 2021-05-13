@@ -17,6 +17,9 @@ $isRecordPresentInDB = FALSE;
 
 if($resultCheck > 0)
   $isRecordPresentInDB = TRUE;
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['crse_major'];
+  $cohort_year = $row['cohort_year'];
 ?>
 
 <?php
@@ -37,7 +40,7 @@ $est_year = date('Y')-(substr($row['stdnt_number'], 4,2) + 1999);
 
 $sql_SA =  "SELECT crse_code, crse_year, crse_semester 
             FROM cohort
-            WHERE crse_major = 'CC-COMS-BCN'";
+            WHERE crse_major = '$cohort'";
                       $result_SA = mysqli_query($conn, $sql_SA);
                       $resultCheck_SA = mysqli_num_rows($result_SA);
 
@@ -45,7 +48,7 @@ $sql_SA =  "SELECT crse_code, crse_year, crse_semester
   while($row_SA = mysqli_fetch_assoc($result_SA)){
 $sql_P =  "SELECT crse_code, crse_PRE
 FROM cohort INNER JOIN scheme USING (crse_code,crse_major,cohort_year)
-WHERE crse_code = '".$row_SA['crse_code']."' AND crse_major = 'CC-COMS-BCN' AND cohort_year = 2017";
+WHERE crse_code = '".$row_SA['crse_code']."' AND crse_major = '$cohort' AND cohort_year = $cohort_year";
                       $result_P = mysqli_query($conn, $sql_P);
                       $resultCheck_P = mysqli_num_rows($result_P); 
 

@@ -14,6 +14,14 @@ if(!isset($student_id)){
     exit();
 }
 
+$sql = "SELECT adv_major FROM `advisor` WHERE adv_email = '$advisor_id'";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['adv_major'];
+}
+
 $query = "SELECT * FROM stdnt_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
 $result = mysqli_query($conn, $query);
 $resultCheck = mysqli_num_rows($result);
@@ -422,7 +430,7 @@ body {
 
           $sql_dos = "SELECT stdnt_number, stdnt_email 
             FROM student INNER JOIN record_details USING (stdnt_number)
-            WHERE record_status != 0 AND stdnt_major = 'CC-COMS-BCN'";
+            WHERE record_status != 0 AND stdnt_major = '$cohort'";
                   $result_dos = mysqli_query($conn, $sql_dos);
                   $resultCheck_dos = mysqli_num_rows($result_dos);
                   $row_dos = mysqli_fetch_assoc($result_dos);
@@ -650,7 +658,7 @@ body {
                   <?php
                   $sql = "SELECT *
                       FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                      WHERE crse_major = 'CC-COMS-BCN'";
+                      WHERE crse_major = '$cohort'";
                       $result = mysqli_query($conn, $sql);
                       $resultCheck = mysqli_num_rows($result);
              
@@ -753,7 +761,7 @@ body {
                     
                     $sql =" SELECT *
                     FROM GENERAL_courses INNER JOIN cohort USING (crse_code)
-                    WHERE crse_major = 'CC-COMS-BCN'";
+                    WHERE crse_major = '$cohort'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                       
@@ -914,7 +922,7 @@ body {
                 <?php
                 
                 $sql ="SELECT * 
-                FROM departmental_courses WHERE crse_major = 'CC-COMS-BCN'";
+                FROM departmental_courses WHERE crse_major = '$cohort'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
              

@@ -406,8 +406,15 @@ h2 {
         <div class="form-group">
           <label for="sel1">Seleccione el departamento (Concentración):</label>
           <select class="form-control" id="dept"> 
-          <option>CC-COMS-BCN</option>
-          <option>BI-MICM-BCN</option>
+          <?php
+          $sql_cohort = "SELECT DISTINCT crse_major FROM `cohort`";
+          $result_cohort = mysqli_query($conn, $sql_cohort);
+          $resultCheck_cohort = mysqli_num_rows($result_cohort);  
+          if ($resultCheck_cohort > 0){
+            while ($row_cohort = mysqli_fetch_assoc($result_cohort))
+          echo "<option>{$row_cohort['crse_major']}</option>";
+          }
+          ?>
           </select>
           <label style="margin-left: 5px">Año</label><br>
         <input type="number" id="cohort_year" name="cohort_year" placeholder="2021" style="margin-left: 2px">
