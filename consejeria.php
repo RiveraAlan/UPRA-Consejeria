@@ -176,7 +176,11 @@ if(!isset($_SESSION['stdnt_number'])){
     
 <!-- /.navbar -->
 <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" onmouseover="appear_hover()" onmouseout="appear_hover()">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style='left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1037;' onmouseover="appear_hover()" onmouseout="appear_hover()">
     <!-- Brand Logo -->
     <a href="inicio.html" class="brand-link">
       <img src="image/university.png" alt="UPRA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -186,7 +190,7 @@ if(!isset($_SESSION['stdnt_number'])){
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->
-<div class="sticky slide" id="sticky_table" style="visibility: visible">
+<div class="slide" id="sticky_table" style="visibility: visible">
       <?php
          $sql= "SELECT conducted_counseling FROM record_details WHERE stdnt_number = '$id'";
          $result_couns = mysqli_query($conn, $sql);
