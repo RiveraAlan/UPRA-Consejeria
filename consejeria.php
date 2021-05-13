@@ -1087,7 +1087,7 @@ if(!isset($_SESSION['stdnt_number'])){
              </select>
              <button type='button' class='btn btn-yellow btn-pill' onclick="show_cohort()">CONFIRMAR</button>
              <div class="tab">
-              <button class="tablinks" onclick="openCity(event, 'Primer')">Primer Año</button>
+              <button id="primerbtn" class="tablinks" onclick="openCity(event, 'Primer')">Primer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Segundo')">Segundo Año</button>
               <button class="tablinks" onclick="openCity(event, 'Tercero')">Tercer Año</button>
               <button class="tablinks" onclick="openCity(event, 'Cuarto')">Cuarto Año</button>
@@ -1176,7 +1176,8 @@ if(!isset($_SESSION['stdnt_number'])){
                 tabla = document.getElementById("tercero_segundo").innerHTML = '';
                 tabla = document.getElementById("cuarto_primero").innerHTML = '';
                 tabla = document.getElementById("cuarto_segundo").innerHTML = '';
-
+                openCity(event, 'Primer');
+                document.getElementById('primerbtn').classList.toggle('active');
                 for (var i = 0; i < cohorte.length; i++){
                   console.log(dept + cohorte[i][4]);
                   if (cohorte[i][4] == `${dept}` && cohorte[i][1] == year){
@@ -1399,7 +1400,8 @@ if(!isset($_SESSION['stdnt_number'])){
                   }
                   }
                 }
-                openCity(event, 'Primer');}
+                
+                }
             </script>
                                     <!-- Comienza el TAB del First Year -->
 <div id="Primer" class="tabcontent">
