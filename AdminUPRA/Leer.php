@@ -69,7 +69,6 @@ $Existe = "SELECT * FROM `student` WHERE stdnt_number = '{$res_num[0]}'";
 $result_E = mysqli_query($conn, $Existe);
 $resultCheck_E = mysqli_num_rows($result_E);  
 
-echo $Existe;
     if($resultCheck_E > 0){
     $Clase = "SELECT *  FROM stdnt_record WHERE crse_code = '".$res_code[0]."' AND stdnt_number = '{$res_num[0]}'";
     $result_C = mysqli_query($conn, $Clase);

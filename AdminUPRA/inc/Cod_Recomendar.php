@@ -6,23 +6,21 @@ if(isset($_POST["stdnt_number"])){
 } 
 
 if(!isset($student_id)){
-  header("Location: index.php");
+  header("Location: ../inicio.php");
     exit();
 }
 
-$query = "SELECT * FROM stdnt_record WHERE stdnt_number = '$student_id'";
+$query = "SELECT DISTINCT crse_major, cohort_year FROM student NATURAL JOIN cohort WHERE student.stdnt_number = '$student_id'";
 $result = mysqli_query($conn, $query);
 $resultCheck = mysqli_num_rows($result);
 $isRecordPresentInDB = FALSE;
 
-if($resultCheck > 0)
+if($resultCheck > 0){
   $isRecordPresentInDB = TRUE;
   $row = mysqli_fetch_assoc($result);
   $cohort = $row['crse_major'];
   $cohort_year = $row['cohort_year'];
-?>
-
-<?php
+}
 
 $mes = date("m");
 if ($mes<7)
@@ -75,7 +73,6 @@ WHERE crse_code = '".$row_SA['crse_code']."' AND crse_major = '$cohort' AND coho
                           $resultCheck_PG = mysqli_num_rows($result_PG);
                           $row_PG = mysqli_fetch_assoc($result_PG);
                             if($resultCheck_PG > 0){
-                              echo "3";
                               if ($row_PG['crse_grade']=='A' || $row_PG['crse_grade']=='B' || $row_PG['crse_grade']=='C' || $row_PG['crse_grade']=='P')
                                   $Cant_Nota++;
                             } 
