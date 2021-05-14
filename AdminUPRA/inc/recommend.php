@@ -10,9 +10,9 @@ require '../../private/dbconnect.php';
     $row = mysqli_fetch_assoc($result);
 
     if($row['crse_status'] == 0){
-        $crseR_status = 3; 
+        $crse_status = 3; 
     } else {
-        $crseR_status = 0; 
+        $crse_status = 0; 
     }
     
     if($resultCheck > 0){

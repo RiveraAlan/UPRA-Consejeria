@@ -530,7 +530,7 @@ $sql ="SELECT adv_comments
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                         
-                    if($row_S['crse_status'] == 4 ) 
+                    if($row_S['crse_status'] == 3 ) 
                     echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
                     else                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
@@ -623,7 +623,7 @@ $sql ="SELECT adv_comments
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
             
-                   if($row_S['crse_status'] == 4 ) 
+                   if($row_S['crse_status'] == 3 ) 
                     echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
                     else                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
@@ -712,7 +712,7 @@ $sql ="SELECT adv_comments
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                   
-                   if($row_S['crse_status'] == 4 ) 
+                   if($row_S['crse_status'] == 3 ) 
                     echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
                     else                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
@@ -794,7 +794,7 @@ $sql ="SELECT adv_comments
                       $row_S = mysqli_fetch_assoc($result_S);
         
                     
-                     if($row_S['crse_status'] == 4 ) 
+                     if($row_S['crse_status'] == 3 ) 
                     echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
                     else                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
@@ -867,7 +867,7 @@ $sql ="SELECT adv_comments
                 while($row = mysqli_fetch_assoc($result)){
                   
                   
-                   if($row_S['crse_status'] == 4 ) 
+                   if($row_S['crse_status'] == 3 ) 
                     echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
                     else                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
@@ -946,7 +946,7 @@ $sql ="SELECT adv_comments
                       $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                  
-                     if($row_S['crse_status'] == 4 ) 
+                     if($row_S['crse_status'] == 3 ) 
                     echo "<tr width='50%' style='background-color: rgb(101, 236, 227)'>";    
                     else                   
                     echo "<tr width='50%' style='background-color: #f4f9f9'>";
