@@ -65,7 +65,7 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
   $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
 }  
 
-$Existe = "SELECT * FROM student WHERE stdnt_number = '{$res_num[0]}'";
+$Existe = "SELECT * FROM `student` WHERE stdnt_number = '{$res_num[0]}'";
 $result_E = mysqli_query($conn, $Existe);
 $resultCheck_E = mysqli_num_rows($result_E);  
 
@@ -130,8 +130,6 @@ echo $Existe;
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
-            echo $sql;
-            echo "<br>";
           }    
          
     } else {
@@ -141,8 +139,6 @@ echo $Existe;
         $stmt = $conn->prepare($sql);
         // execute the query
         $stmt->execute();
-        echo $sql;
-        echo "<br>";
     } 
         
       $Subir_Free = "SELECT crse_code FROM mandatory_courses WHERE crse_code = '".$res_code[0]."'
@@ -165,8 +161,6 @@ echo $Existe;
             $stmt = $conn->prepare($sql);
             // execute the query
             $stmt->execute();
-            echo $sql;
-            echo "<br>";
         }
 
 }
@@ -175,12 +169,12 @@ echo $Existe;
 // echo '<script type="text/javascript">
 //        window.location.href="inicio.php";
 //        </script>';
-// echo "
-// <form id='myForm' method='POST' action='inc/Cod_Recomendar.php'>
-// <input type='hidden' name='stdnt_number' value='".$res_num[0]."'>
-// </form>
-// <script>
-// document.getElementById('myForm').submit();
-// </script>";
-// exit();
+echo "
+<form id='myForm' method='POST' action='inc/Cod_Recomendar.php'>
+<input type='hidden' name='stdnt_number' value='".$res_num[0]."'>
+</form>
+<script>
+document.getElementById('myForm').submit();
+</script>";
+exit();
 ?>
