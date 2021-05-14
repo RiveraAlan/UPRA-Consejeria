@@ -34,8 +34,7 @@ if($resultCheck > 0)
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
-          function edit(tabla){
-                    console.log(tabla);
+          function edit(){
                     document.getElementById('id01').style.display='block';
           }
           function myFunction(className) {
@@ -538,10 +537,9 @@ body {
                     <b>Posible año de Graduación:</b> <a class='float-right'>$A</a>
                   </li>
                    
-                </ul>";?>
-               
-              <?php
-                echo "</div>
+                </ul>
+                <button onClick='edit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Editar</button>
+                </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -638,7 +636,7 @@ body {
               }
               ?> 
       <div class="card-body">
-                <div align = "center"><h3>Cursos de Concentración <a href="#"><i class="far fa-edit" onclick="edit('mandatory_courses')"></i></a></h3></div>
+                <div align = "center"><h3>Cursos de Concentración</h3></div>
                 <br>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -734,7 +732,7 @@ body {
           
           
           
-          <div align = "center"><h3>Cursos Generales Obligatorios <a href="#"><i class="far fa-edit" onclick="edit('general_courses')"></i></a></h3></div>
+          <div align = "center"><h3>Cursos Generales Obligatorios</h3></div>
                   <!-- <form action='inc/recommend.php' method='POST'> 
                       
                     <?php
@@ -828,7 +826,7 @@ body {
                 </tbody>
                   </table>
                   <br>
-          <div align = "center"><h3>Electivas Libres <a href="#"><i class="far fa-edit" onclick="edit('free_courses')"></i></a></h3></div>
+          <div align = "center"><h3>Electivas Libres</h3></div>
                   <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
                     // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
@@ -898,7 +896,7 @@ body {
                   <br>
                 
           
-                    <div align = "center"><h3>Electivas Departamentales <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
+                    <div align = "center"><h3>Electivas Departamentales</h3></div>
                    <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
                     // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
@@ -987,7 +985,7 @@ body {
                 </tbody>
                   </table>
                   <br>        
-          <div align = "center"><h3>Cursos Ciencias Sociales <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
+          <div align = "center"><h3>Cursos Ciencias Sociales</h3></div>
                    <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
                     // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
@@ -997,7 +995,7 @@ body {
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
-                  <tr width="50%" bgcolor="#e0c200">
+                  <tr width="50%" style="bgcolor:#e0c200">
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
@@ -1076,7 +1074,7 @@ body {
                 </tbody>
                   </table>
                   <br>  
-          <div align = "center"><h3>Cursos Humanidades <a href="#"><i class="far fa-edit" onclick="edit('departamental_courses')"></i></a></h3></div>
+          <div align = "center"><h3>Cursos Humanidades</h3></div>
                    <!-- <form action='inc/recommend.php' method='POST'>
                    <?php
                     // echo  "<input type='hidden' value='$student_id' name='stdnt_number'>";
@@ -1251,17 +1249,15 @@ body {
                   <select name="course" id="course-list">
                   <?php
                       //solo deje code y quite name/label y agregue ciso y huma
-                        $sql ="SELECT	crse_code FROM departmental_courses
-                                UNION ALL 
-                                (SELECT crse_code FROM mandatory_courses)
-                                UNION ALL 
-                                (SELECT crse_code FROM general_courses)
-                                UNION ALL 
-                                (SELECT crse_code FROM general_education_ciso)
-                                UNION ALL 
-                                (SELECT crse_code FROM general_education_huma)
-                                UNION ALL 
-                                (SELECT crse_code FROM free_courses)";
+                        $sql ="SELECT crse_code FROM mandatory_courses INNER JOIN cohort USING (crse_code)WHERE crse_major = 'CC-COMS-BCN' AND cohort_year = '2017'
+                              UNION ALL 
+                              SELECT crse_code FROM general_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC-COMS-BCN' AND cohort_year = '2017'
+                              UNION ALL 
+                              SELECT	crse_code FROM departmental_courses WHERE crse_major = 'CC-COMS-BCN'
+                              UNION ALL 
+                              SELECT crse_code FROM general_education_ciso
+                              UNION ALL 
+                              SELECT crse_code FROM general_education_huma";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
 
@@ -1290,7 +1286,8 @@ body {
 <!-- ./ termina dos select Box --> 
                           <div class='input-group mb-3'>
                           <input type='text' name='semester' class='form-control' placeholder='SEMESTRE'>
-                          
+                          <input type='text' name='descripcion' class='form-control' placeholder='DESCRIPCIÓN'>
+                          <input type='number' name='creditos' class='form-control' placeholder='CREDITOS'>
                           <div class='input-group-append'>
                             <div class='input-group-text'>
                               <span class='fas fa-comment-dots'></span>

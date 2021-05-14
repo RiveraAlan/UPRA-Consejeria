@@ -68,7 +68,7 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
 }  
     
     if($resultCheck_E > 0){
-    $Clase = "SELECT *  FROM stdnt_record WHERE crse_code= '".$res_code[0]."' AND stdnt_number = '.$res_num[0]."
+    $Clase = "SELECT *  FROM stdnt_record WHERE crse_code = '".$res_code[0]."' AND stdnt_number = '{$res_num[0]}'";
     $result_C = mysqli_query($conn, $Clase);
     $resultCheck_C = mysqli_num_rows($result_C);  
          if($resultCheck_C > 0){
@@ -99,21 +99,21 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
 
         if($res_grade[0] == 'A'){
           $grade_new = 1;
-         }elseif newes_grade[0] == 'P') {
+         }elseif ($res_grade[0] == 'P') {
           $grade_new = 2;
-        }elseif (news_grade[0] == 'B') {
+        }elseif ($res_grade[0] == 'B') {
           $grade_new = 3;
-         }elseif newes_grade[0] == 'C') {
+         }elseif ($res_grade[0] == 'C') {
           $grade_new = 5;
-        }elseif (news_grade[0] == 'D') {
+        }elseif ($res_grade[0] == 'D') {
           $grade_new = 7;
         }elseif ($res_grade[0] == 'F') {
           $grade_new = 10;
-        }elseif (news_grade[0] == 'NP') {
+        }elseif ($res_grade[0] == 'NP') {
           $grade_new = 9;
         }elseif ($res_grade[0] == 'IB') {
           $grade_new= 4;
-        }elseif (new_grade[0] == 'IC') {
+        }elseif ($res_grade[0] == 'IC') {
           $grade_new= 6;
         }elseif ($res_grade[0] == 'ID') {
           $grade_new = 8;
@@ -121,17 +121,25 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
           $grade_new = 11;
         }
         
-         if ($row_C['crse_grade'] == NULL || $grade_new <= $grade_old){
-             
+         if ($row_C['crse_grade'] == NULL || $grade_new < $grade_old){
             $sql = " UPDATE stdnt_record SET crse_grade = '".$res_grade[0]."' WHERE crse_code = 'CCOM3001' AND stdnt_number = '".$res_num[0]."'" ;
-         }    
+            // Prepare statement
+            $stmt = $conn->prepare($sql);
+            // execute the query
+            $stmt->execute();
+            echo $sql;
+            echo "<br>";
+          }    
          
-    }
-    
-    else {
-        
+    } else {
         $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
         VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."', 0)";
+        // Prepare statement
+        $stmt = $conn->prepare($sql);
+        // execute the query
+        $stmt->execute();
+        echo $sql;
+        echo "<br>";
     } 
         
       $Subir_Free = "SELECT crse_code FROM mandatory_courses WHERE crse_code = '".$res_code[0]."'
@@ -144,20 +152,21 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
                     UNION 
                     SELECT crse_code FROM departmental_courses WHERE crse_code = '".$res_code[0]."'
                     UNION 
-                    SELECT crse_code FROM free_courses WHERE crse_code = '".$res_code[0]."";
+                    SELECT crse_code FROM free_courses WHERE crse_code = '".$res_code[0]."'";
                         $result_Free = mysqli_query($conn, $Subir_Free);
                         $resultCheck_Free = mysqli_num_rows($result_Free); 
                         $row_Free = mysqli_fetch_assoc($result_Free);
-        if ($row_Free == 0 )
+        if ($row_Free == 0 ){
             $sql = "INSERT INTO free_courses(crse_code, crse_description, crse_credits) VALUES('".$res_code[0]."',NULL, NULL)";
-        
+            // Prepare statement
+            $stmt = $conn->prepare($sql);
+            // execute the query
+            $stmt->execute();
+            echo $sql;
+            echo "<br>";
+        }
 
-// Prepare statement
-$stmt = $conn->prepare($sql);
-// execute the query
-$stmt->execute();
-echo $sql;
-echo "<br>";
+}
 }
 //exit
 // echo '<script type="text/javascript">

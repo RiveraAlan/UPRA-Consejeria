@@ -381,8 +381,8 @@ $sql ="SELECT adv_comments
                     echo "'Comentario')";
                     echo '">Comentario del Consejero/a';
                     if($commentCheck > 0){
-                    $row = mysqli_fetch_assoc($commentResult);
-                    if ($row['adv_comments'] != "") 
+                    $comment = mysqli_fetch_assoc($commentResult);
+                    if ($comment['adv_comments'] != "") 
                     echo '<span class="badge"><i class="fas fa-bell"></i></span>';
                     }
                     echo '
@@ -1098,18 +1098,15 @@ $sql ="SELECT adv_comments
               </div>
                 
               <div>";
-
                 if($commentCheck > 0){
-                $row = mysqli_fetch_assoc($commentResult);
                   echo "
-		            <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>{$row['adv_comments']}</p>";
+		                <p id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'>".$comment['adv_comments']."</p>";
                 }else {
                   echo "
-                  <p  id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></p>";
+                  <p id='text' name='text' rows='' style='overflow-y: auto; word-wrap: break-word; resize: none; height: 400px;'></p>";
                 }
               
              echo "   
-
             </div>
             <!-- /.card -->
           </div>";
