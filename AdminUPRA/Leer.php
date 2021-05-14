@@ -65,7 +65,7 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
   $entrada_dos = preg_replace($pattern_dos, NULL,$entrada);
   $pattern_tres = "/[;]/";
   $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
-} 
+}  
     
     if($resultCheck_E > 0){
     $Clase = "SELECT *  FROM stdnt_record WHERE crse_code= '".$res_code[0]."' AND stdnt_number = '.$res_num[0]."
@@ -123,7 +123,7 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
         
          if ($row_C['crse_grade'] == NULL || $grade_new <= $grade_old){
              
-            $sql = " UPDATE stdnt_record SET crse_grade = 'F' WHERE crse_code = 'CCOM3001' AND stdnt_number = '840-16-4235'" ;
+            $sql = " UPDATE stdnt_record SET crse_grade = '".$res_grade[0]."' WHERE crse_code = 'CCOM3001' AND stdnt_number = '".$res_num[0]."'" ;
          }    
          
     }
@@ -133,6 +133,24 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
         $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
         VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."', 0)";
     } 
+        
+      $Subir_Free = "SELECT crse_code FROM mandatory_courses WHERE crse_code = '".$res_code[0]."'
+                    UNION 
+                    SELECT crse_code FROM general_courses   WHERE crse_code = '".$res_code[0]."'
+                    UNION 
+                    SELECT crse_code FROM general_education_huma WHERE crse_code = '".$res_code[0]."'
+                    UNION 
+                    SELECT crse_code FROM general_education_ciso WHERE crse_code = '".$res_code[0]."'
+                    UNION 
+                    SELECT crse_code FROM departmental_courses WHERE crse_code = '".$res_code[0]."'
+                    UNION 
+                    SELECT crse_code FROM free_courses WHERE crse_code = '".$res_code[0]."";
+                        $result_Free = mysqli_query($conn, $Subir_Free);
+                        $resultCheck_Free = mysqli_num_rows($result_Free); 
+                        $row_Free = mysqli_fetch_assoc($result_Free);
+        if ($row_Free == 0 )
+            $sql = "INSERT INTO free_courses(crse_code, crse_description, crse_credits) VALUES('".$res_code[0]."',NULL, NULL)";
+        
 
 // Prepare statement
 $stmt = $conn->prepare($sql);
