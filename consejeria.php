@@ -1873,7 +1873,7 @@ function toggle(source) {
                   checkboxes[i].checked = source.checked;
               }
               }
-
+  
               function con_list(clase) {
                     var str = document.getElementById("con_table").innerHTML; 
                     var list = `${clase}`;

@@ -689,12 +689,18 @@ let concentracion = [];
 let general = [];
 
   function myFunction() {
+    
+  
   crse_code = document.getElementById("crse_code").value;
   crse_description = document.getElementById("crse_description").value;
   crse_credits = document.getElementById("crse_credits").value;
   table1 = document.getElementById("concentracion-table").innerHTML;
   table2 = document.getElementById("general-table").innerHTML;
-  
+
+  if (crse_code != crse_code.match(/[A-Z]{4}[0-9]{4}/g)) {
+    alert("El Formato Es : 'ABCD1234' sin espacio y en mayuscula.");
+    return false;
+  }else {
                 if (document.getElementById("general").checked) {
                     clasificacion = "general";
                 }else {
@@ -721,6 +727,7 @@ let general = [];
             <td onclick='eli_gen("${crse_code}")' style='cursor: pointer'>X</td>
             </tr>`;
             general.push([crse_code, crse_description, crse_credits]);
+  }
   }
 }
 
@@ -1056,7 +1063,13 @@ function submitAll() {
 
   document.getElementById("form").submit();
 } 
-
+function validateForm() {
+  var x = document.forms["myForm"]["fname"].value;
+  if (x != x.match(/[A-Z]{4}[0-9]{4}/g)) {
+    alert("El Formato Es : 'ABCD1234' sin espacio y en mayuscula.");
+    return false;
+  }
+}
 </script>
 
 <?php
