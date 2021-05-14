@@ -5,9 +5,7 @@ $array = file("Expediente.txt");
 // print_r($array);
     
 $class = array();
-    $Existe = "SELECT * FROM student WHERE stdnt_number = '840-16-4235'";
-    $result_E = mysqli_query($conn, $Existe);
-    $resultCheck_E = mysqli_num_rows($result_E);  
+    
 
 foreach ($array as $item){
 // class code
@@ -66,7 +64,12 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
   $pattern_tres = "/[;]/";
   $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
 }  
-    
+
+$Existe = "SELECT * FROM student WHERE stdnt_number = '{$res_num[0]}'";
+$result_E = mysqli_query($conn, $Existe);
+$resultCheck_E = mysqli_num_rows($result_E);  
+
+echo $Existe;
     if($resultCheck_E > 0){
     $Clase = "SELECT *  FROM stdnt_record WHERE crse_code = '".$res_code[0]."' AND stdnt_number = '{$res_num[0]}'";
     $result_C = mysqli_query($conn, $Clase);
@@ -172,12 +175,12 @@ if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
 // echo '<script type="text/javascript">
 //        window.location.href="inicio.php";
 //        </script>';
-echo "
-<form id='myForm' method='POST' action='inc/Cod_Recomendar.php'>
-<input type='hidden' name='stdnt_number' value='".$res_num[0]."'>
-</form>
-<script>
-document.getElementById('myForm').submit();
-</script>";
-exit();
+// echo "
+// <form id='myForm' method='POST' action='inc/Cod_Recomendar.php'>
+// <input type='hidden' name='stdnt_number' value='".$res_num[0]."'>
+// </form>
+// <script>
+// document.getElementById('myForm').submit();
+// </script>";
+// exit();
 ?>
