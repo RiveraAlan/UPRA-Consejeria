@@ -551,11 +551,11 @@ body {
             <div class='grid-container' style='margin-top:0px'>
             <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>
                <i class='fas fa-user-times'></i>
-                No desea
+                NO
             </button>
           <button type='submit' value='1' onclick='student()' name='status-submit'class='btn btn-info btn-sm' href='#'>
           <i class='fas fa-user-plus'></i>
-          Si desea &nbsp;&nbsp;&nbsp;
+          SI &nbsp;&nbsp;&nbsp;
       </button>
       </div> <br>
             <!-- About Me Box -->
