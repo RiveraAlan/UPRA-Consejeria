@@ -14,15 +14,16 @@ session_start();
     }else if($tabla == "departamental_courses"){
         $clase = mysqli_real_escape_string($conn, $_POST['course_dept']);
     }
-    echo $tabla, $og_crse, $student_id;
+    //echo $tabla, $og_crse, $student_id;
         // query para verificar si clase ya ha sido equi/conv anteriormente (si ha sido anterior se le dara update y no insert)
         if($tabla !== "free_courses"){
-            $sql ="SELECT 	crse_code, crse_recognition, crse_equivalence, semester_pass, 	crse_credits_ER FROM stdnt_record WHERE crse_code = $clase AND stdnt_number = '$student_id'";
+            $sql ="SELECT crse_code, crse_recognition, crse_equivalence, semester_pass, crse_credits_ER FROM stdnt_record 
+                    WHERE crse_code = '$clase' AND stdnt_number = '$student_id'";
                                     $result = mysqli_query($conn, $sql);
                                     $resultCheck = mysqli_num_rows($result);
         
         // query para obtener datos de la clase que esta siendo utilizada como equi/conv 
-            $sql_free ="SELECT * FROM free_courses WHERE crse_code = $og_crse";
+            $sql_free ="SELECT * FROM free_courses WHERE crse_code = '$og_crse'";
                 $result_free = mysqli_query($conn, $sql_free);
                 $resultCheck_free = mysqli_num_rows($result_free);
                 if($resultCheck_free > 0){
@@ -30,7 +31,7 @@ session_start();
                 }
                         if($resultCheck === 0){
                              // query para sacar nota de curso siendo equi/conva 
-                             $sql ="SELECT crse_grade, crse_credits_ER FROM stdnt_record WHERE crse_code = $og_crse AND stdnt_number = '$student_id'";
+                             $sql ="SELECT crse_grade, crse_credits_ER FROM stdnt_record WHERE crse_code = '$og_crse' AND stdnt_number = '$student_id'";
                              $result = mysqli_query($conn, $sql);
                              $resultCheck = mysqli_num_rows($result);
                              $row = mysqli_fetch_assoc($result);  // nota de curso siendo equi/conva 
@@ -60,7 +61,7 @@ session_start();
                                 // Prepare statement
                                 if ($stmt->execute()) {
                                     // borrar la clase siendo equi/conv del expediente
-                                    $sql = "DELETE FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = $og_crse";
+                                    $sql = "DELETE FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = '$og_crse'";
                                     $del_stmt = $conn->prepare($sql);
                                     if ($del_stmt->execute()) {
                                     header('Location: ../est_profile.php');
@@ -114,7 +115,7 @@ session_start();
                                 // Prepare statement
                                 if ($stmt->execute()) {
                                     // borrar la clase siendo equi/conv del expediente
-                                    $del_sql = "DELETE FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = $og_crse";
+                                    $del_sql = "DELETE FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = '$og_crse'";
                                     $del_stmt = $conn->prepare($del_sql);
                                     if ($del_stmt->execute()) {
                                     header('Location: ../est_profile.php');
@@ -129,18 +130,18 @@ session_start();
                         }
                 
                     }else{
-                        $sql_free ="SELECT crse_code, crse_recognition, crse_equivalence, semester_pass, crse_credits_ER FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = $og_crse";
+                        $sql_free ="SELECT crse_code, crse_recognition, crse_equivalence, semester_pass, crse_credits_ER FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = '$og_crse'";
                                                 $result_free = mysqli_query($conn, $sql_free);
                                                 $resultCheck_free = mysqli_num_rows($result_free);
                                 if($resultCheck_free > 0){
-                                    $sql = "UPDATE stdnt_record SET special_id = NULL WHERE stdnt_number = '$student_id' AND crse_code = $og_crse";
+                                    $sql = "UPDATE stdnt_record SET special_id = NULL WHERE stdnt_number = '$student_id' AND crse_code = '$og_crse'";
                                     $stmt = $conn->prepare($sql);
                                 }
 
                                  // Prepare statement
                                  if ($stmt->execute()) {
                                     // borrar la clase siendo equi/conv del expediente
-                                    $del_sql = "DELETE FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = $og_crse";
+                                    $del_sql = "DELETE FROM stdnt_record WHERE stdnt_number = '$student_id' AND crse_code = '$og_crse'";
                                     $del_stmt = $conn->prepare($del_sql);
                                     if ($del_stmt->execute()) {
                                     header('Location: ../est_profile.php');

@@ -718,8 +718,8 @@ body {
                       echo"
                       <td style='background-color:$color; color: white'>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                     }else{
-                      echo"
-                      <td><button onclick='myFunction({$row['crse_code']})' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
+                      echo" 
+                      <td><button onclick='myFunction(`{$row['crse_code']}`)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
                     }
                   echo "</tr> ";}}?>
                 </tbody>
@@ -820,7 +820,7 @@ body {
                       <td style='background-color:$color; color: white'>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                     }else{
                       echo"
-                      <td><button onclick='myFunction({$row['crse_code']})' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
+                      <td><button onclick='myFunction(`{$row['crse_code']}`)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
                     }
                   echo "</tr> ";}}?>
                 </tbody>
@@ -889,7 +889,7 @@ body {
                     }
                     echo"
                     <td>{$row['semester_pass']}</td>
-                    <td><button onclick='myFunction({$row['crse_code']})' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
+                    <td><button onclick='myFunction(`{$row['crse_code']}`)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
                   </tr>";}}?>
                 </tbody>
                   </table>
@@ -979,7 +979,7 @@ body {
                       <td style='background-color:$color; color: white'>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                     }else{
                       echo"
-                      <td><button onclick='myFunction({$row['crse_code']})' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
+                      <td><button onclick='myFunction(`{$row['crse_code']}`)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
                     }
                   echo "</tr> ";}}?>
                 </tbody>
@@ -1068,7 +1068,7 @@ body {
                       <td style='background-color:$color; color: white'>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                     }else{
                       echo"
-                      <td><button onclick='myFunction({$row['crse_code']})' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
+                      <td><button onclick='myFunction(`{$row['crse_code']}`)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
                     }
                   echo "</tr> ";}}?>
                 </tbody>
@@ -1157,7 +1157,7 @@ body {
                       <td style='background-color:$color; color: white'>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
                     }else{
                       echo"
-                      <td><button onclick='myFunction({$row['crse_code']})' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
+                      <td><button onclick='myFunction(`{$row['crse_code']}`)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>";
                     }
                   echo "</tr> ";}}?>
                 </tbody>
@@ -1202,7 +1202,7 @@ body {
                     <td>{$row['crse_credits']}</td>
                     <td>{$row['crse_grade']}</td>
                     <td>{$row['semester_pass']}</td>
-                    <td><button onclick='myFunction({$row['crse_code']})' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
+                    <td><button onclick='myFunction(`{$row['crse_code']}`)' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%'>Acomodar</button></td>
                   </tr>";}}?>
                 </tbody>
                   </table>
@@ -1551,7 +1551,7 @@ $("status").innerHTML = "Upload Aborted";
                   </select>
 
               </div>
-              
+              <input type='hidden' id='og_crse' value='' name='og_crse'>
               <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
               <button type='submit' id="mandatory" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
               <button type='submit' id="general" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="general_courses" ; ?>APLICAR</button>
