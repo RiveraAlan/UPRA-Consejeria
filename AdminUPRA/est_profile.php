@@ -995,7 +995,7 @@ body {
                    <br>
                     <table id="example2" class="table table-bordered table-hover">
                      <thead>
-                  <tr width="50%" style="bgcolor:#e0c200">
+                  <tr width="50%"  bgcolor="#e0c200">
                     <th>Cursos</th>
                     <th>Descripción</th>
                     <th>Créditos</th>
