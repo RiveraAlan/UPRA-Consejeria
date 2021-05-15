@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['add-submit'])) {
-require '../../private/dbconnect.php';
+require 'connection.php';
     $course = mysqli_real_escape_string($conn, $_POST['course']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $credits = mysqli_real_escape_string($conn, $_POST['creditos']);

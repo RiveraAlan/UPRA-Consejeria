@@ -1,7 +1,7 @@
 <?php
 include("inc/connection.php");
 session_start();
-$advisor_id= $_SESSION['adv_email'];
+$advisor_id = $_SESSION['adv_email'];
 $advisor_name = $_SESSION['adv_name'];
 
 $sql = "SELECT adv_major FROM `advisor` WHERE adv_email = '$advisor_id'";
@@ -176,6 +176,12 @@ WHERE record_status != 0 AND stdnt_major = '$cohort'";
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id04').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Editar/Crear Estudiante</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
             <a href="lista.php" class="nav-link">
                <i class="fas fa-stopwatch-20"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Lista de Conteo de Clases</p>
@@ -237,7 +243,6 @@ WHERE record_status != 0 AND stdnt_major = '$cohort'";
                 <?php echo "<h3>{$row['amount_of_students']}</h3>" ?>
                 <p>Cantidad de Estudiantes</p>
               </div>
-              <a class="small-box-footer"></a>
             </div>
           </div><!-- ./col de Estudiantes de CCOM-->
 <!-- small box de Realizaron Consejeria -->
@@ -271,7 +276,7 @@ WHERE record_status != 0 AND stdnt_major = '$cohort'";
                 <p>Realizaron Consejería</p>
                   </a></div>
               
-              <a class="small-box-footer"></a>
+
             </div>
           </div><!-- ./col de Realizaron Consejeria -->
 <!-- small box de No ha realizado Consejeria -->
@@ -288,7 +293,6 @@ WHERE record_status != 0 AND stdnt_major = '$cohort'";
               ?>
                 <p>No ha realizado Consejería</p>
               </a></div>
-              <a class="small-box-footer"></a>
             </div>
           </div><!-- ./col No ha realizado Consejeria-->
 <!-- small box de Candidatos a Graduacion -->
@@ -298,7 +302,6 @@ WHERE record_status != 0 AND stdnt_major = '$cohort'";
                 <h3><?php echo $count;?></h3>
                 <p>Candidatos a Graduación</p>
               </a></div>
-              <a class="small-box-footer"></a>
             </div>
           </div><!-- ./col Candidatos a Graduacion -->
         </div>
@@ -512,7 +515,7 @@ margin-left: auto;
               <div class='w3-container'>
                   <br>
                   <form action="cohorte.php" method="POST">
-                  <select name='cohort' style="width: 100%; height: 30px; background-color: #d3d3d3; border-radius: 5px">
+                  <select name='cohort' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
                   <option></option>
                         <?php
                             $sql_cohort = "SELECT DISTINCT crse_major, cohort_year FROM `cohort`";
@@ -539,7 +542,31 @@ margin-left: auto;
               </footer>
                  </form> 
             </div>
-          </div><!-- /.Expediente -->
+          </div><!-- /.Cohorte -->
+
+          <!----------------------------------------- Editar/Crear Estudiante -------------------------------------------------->
+        <div id='id04' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id04").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Editar/Crear Estudiante</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                  <div class="grid-container" style="margin-left: auto; margin-right: auto">
+                <div class='item-1'>
+                          <button name="submit" onClick="subir_est('Automatico')" class='btn btn-primary' style="width: 100%; color: white">Automatico</button>
+                  </div> 
+                <div class='item-2'>
+                          <button onClick="subir_est('Manual')" name="submit" class='btn btn-warning' style="width: 100%; color: white">Manual</button>
+                  </div>
+                  </div>
+                  <div id="editar_est">
+                  
+                  </div>
+            </div>
+          </div><!-- /.Estudiante -->
     
   </div>
     <!-- /.modales -->
@@ -583,6 +610,66 @@ function searchStudent(str){
     document.getElementById('myUL').innerHTML = searchList;
 }    
 
+  function subir_est(subida) {
+    if (subida == "Automatico"){
+      document.getElementById('editar_est').innerHTML = `<form action="" method="POST">
+                  <div>
+                          <input type="file" name="uploadedFile" />
+                  </div>
+                  </form>`;
+                  document.getElementById("est_submit").innerHTML = ``;
+    }else if(subida == "Manual") {
+      document.getElementById('editar_est').innerHTML = `<form action="inc/manual_stdnt.php" method="POST"> <div class='input-group mb-3'>
+                  <select name='inicio' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                  <option></option>
+                  <option>Traslado</option>
+                  <option>Reclasificación</option>
+                  </select>
+                  <br>
+                          <input type='text' name='stdnt_email' class='form-control' placeholder='Student Email'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_number' class='form-control' placeholder='Student Number'>
+                          <input type='text' name='stdnt_password' class='form-control' placeholder='Password'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_name' class='form-control' placeholder='First Name'>
+                          <input type='text' name='stdnt_initial' class='form-control' placeholder='Initial'>
+                          <input type='text' name='stdnt_lastname1' class='form-control' placeholder='Last Name'>
+                          <input type='text' name='stdnt_lastname2' class='form-control' placeholder='Maiden Name'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                        <select name='cohort_year' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                        <?php
+                        $sql = "SELECT DISTINCT cohort_year FROM `cohort` WHERE crse_major = '$cohort'";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
+                        if ($resultCheck > 0) {
+                          $row = mysqli_fetch_assoc($result);
+                          echo "<option value='{$row['cohort_year']}'>{$row['cohort_year']}</option>";
+                        }
+                        ?>
+                          </select>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+      <button type='submit' class='btn btn-default' name="Manual" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer></form>`;
+    }
+  }
 </script>
 </body>
 </html>
