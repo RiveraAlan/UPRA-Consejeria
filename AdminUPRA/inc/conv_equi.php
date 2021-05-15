@@ -153,4 +153,7 @@ session_start();
                                 }
                     }
                 }
+    //exit
+    header("Location: ../est_profile.php");
+    exit();
 ?>
