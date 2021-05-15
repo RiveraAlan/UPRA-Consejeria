@@ -30,7 +30,7 @@ $isRecordPresentInDB = FALSE;
 if($resultCheck > 0)
   $isRecordPresentInDB = TRUE;
 
-    $modal = 'document.getElementById("id03").style.display="block"';
+    $modal = 'document.getElementById("Acomodar").style.display="block"';
 ?>
  <!-- script to determine equivalencia/convalidacion -->
  <script>
@@ -40,7 +40,7 @@ if($resultCheck > 0)
           function myFunction(className) {
                     console.log(className); 
                     document.getElementById("og_crse").value = className;
-                    document.getElementById('id03').style.display='block';
+                    document.getElementById('Acomodar').style.display='block';
           }
           function equi_conv(elmnt,tabla) {
             if(tabla == 'mandatory_courses'){
@@ -1466,6 +1466,102 @@ $("status").innerHTML = "Upload Aborted";
                  </form> 
             </div>
           </div><!-- /.Expediente -->
+          <!-------------------------------- Cursos a Examinar ------------------------------------------->
+          <div id='Acomodar' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("Acomodar").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Acomodar</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                <form action="inc/conv_equi.php" method="POST">
+                <div class="grid-container">
+                <div class='item-1'>
+                          <a onclick="equi_conv(this, 'mandatory_courses')" class='btn btn-primary' style="width: 100%; color: white">
+                            <i class='fas fa-pencil-alt'></i> Concentración</a>
+                  </div>
+                <div class='item-2'>
+                          <a onclick="equi_conv(this, 'general_courses')" class='btn btn-warning' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i> General Obli.</a>
+                  </div>
+                          <div class='item-3'>
+                          <a onclick="equi_conv(this, 'departamental_courses')" class='btn btn-danger'style="width: 100%; color: white">
+                             <i class='fas fa-pencil-alt'></i> Elect. Dept.</a>
+                        </div>
+                        <div class='item-4'>
+                          <a onclick="equi_conv(this, 'libre')" class='btn btn-info' style="width: 100%; color: white">
+                              <i class='fas fa-pencil-alt'></i> Elect. Libre</a>
+                        </div>
+                  </div>
+              </div>
+              <div class="grid-container" style="margin-left:18%">
+              <div class='item-1'><input type="radio" name="tipo" value="convalidacion"> Convalidación</input></div>
+              <div class='item-2'><input type="radio" name="tipo" value="equivalencia"> Equivalencia</input></div>
+              </div>
+              
+              <div id='mand' style="display: none" class="select-box">          
+                  <select name="course_mand" id="course-list">
+                  <?php
+                        $sql ="SELECT crse_code
+                        FROM mandatory_courses";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                         if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option value='{$row['crse_code']}'>{$row['crse_code']}</option>";
+                        }
+                        } ?>
+                  </select>
+
+              </div>
+
+              <div id='gen' style="display: none" class="select-box">          
+                  <select name="course_gen" id="course-list">
+                  <?php
+                        $sql ="SELECT crse_code
+                        FROM general_courses";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                         if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option value='{$row['crse_code']}'>{$row['crse_code']}</option>";
+                        }
+                        } ?>
+                  </select>
+
+              </div>
+
+              <div id='dept' style="display: none" class="select-box">          
+                  <select name="course_dept" id="course-list">
+                  <?php
+                        $sql ="SELECT crse_code
+                        FROM 	departmental_courses";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                         if($resultCheck > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option value='{$row['crse_code']}'>{$row['crse_code']}</option>";
+                        }
+                        } ?>
+                  </select>
+
+              </div>
+              
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+              <button type='submit' id="mandatory" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="mandatory_courses" ; ?>APLICAR</button>
+              <button type='submit' id="general" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="general_courses" ; ?>APLICAR</button>
+              <button type='submit' id="depart" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="departamental_courses" ; ?>APLICAR</button>
+              <button type='submit' id="free" style="display: none" class='btn btn-default' onclick='conv_env()' name='conv_env-submit' style='float:right;' value="free_courses" ; ?>APLICAR</button>
+              </footer>
+              </form>
+            </div>
+          </div>
+            <!-- /.Cursos a Examinar -->
     
   </div>
     <!-- /.modales -->
