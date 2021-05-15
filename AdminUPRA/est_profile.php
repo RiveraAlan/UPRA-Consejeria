@@ -544,7 +544,20 @@ body {
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-           
+            
+            <button onClick='edit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Activar Consejería</button>
+            <br><br>
+            <h3 style='text-align:center'>Concentración Menor: </h3>
+            <div class='grid-container' style='margin-top:0px'>
+            <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>
+               <i class='fas fa-user-times'></i>
+                No desea
+            </button>
+          <button type='submit' value='1' onclick='student()' name='status-submit'class='btn btn-info btn-sm' href='#'>
+          <i class='fas fa-user-plus'></i>
+          Si desea &nbsp;&nbsp;&nbsp;
+      </button>
+      </div> <br>
             <!-- About Me Box -->
             <div class='card' >
               <div class='card-header' style='background: #e0c200'>

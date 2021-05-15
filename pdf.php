@@ -8,6 +8,15 @@ $sql = "SELECT stdnt_name,stdnt_lastname1,stdnt_lastname2 FROM student WHERE std
                  $resultCheck = mysqli_num_rows($result);
                  $nombre_est = mysqli_fetch_assoc($result);
 $nombre = "{$nombre_est['stdnt_name']} {$nombre_est['stdnt_lastname1']} {$nombre_est['stdnt_lastname2']}";
+
+$sql_cohorte = "SELECT stdnt_major FROM `student` WHERE stdnt_number = '$id'";
+$result = mysqli_query($conn, $sql_cohorte);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {
+  $row = mysqli_fetch_assoc($result);
+  $cohort = $row['stdnt_major'];
+}
+
 class PDF extends FPDF
 {
 // Page header
@@ -32,8 +41,11 @@ function Header()
     $this->Cell(80);
     $this->Ln();
     $this->SetFont('Arial','B',14);
-    $this->Cell(55,10,'Nombre del Estudiante:',0,0,'C');
-    $this->Cell(41,10,utf8_decode("$nombre"),0,0,'C');
+    //$this->Cell(55,10,' ',0,0,'C');
+    $this->Cell(200,10,utf8_decode("$nombre"),0,0,'C');
+    $this->Ln(10);
+    $this->Cell(200,10,utf8_decode('Cursos confirmados para el siguiente semestre Académico: '),0,0,'C');
+    //$this->Cell(41,10,utf8_decode("$nombre"),0,0,'C');
     $this->Ln(10);
     $this->SetDrawColor(0,0,0);
     $this->SetFillColor(240, 220, 22);
@@ -42,6 +54,7 @@ function Header()
     $this->Cell(105, 10,utf8_decode( 'Descripción'), 1, 0, 'C', 1);
     $this->Cell(27, 10,utf8_decode( 'Créditos'), 1, 0, 'C', 1);
     $this->Cell(15, 10, 'Nota', 1,1,'C',1);
+    
 }
 
 // Page footer
@@ -56,8 +69,8 @@ function Footer()
 }
 }
 
-$consulta = "SELECT * FROM mandatory_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC COMS BCN' UNION
-             SELECT * FROM general_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = 'CC COMS BCN'";
+$consulta = "SELECT * FROM mandatory_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = '$cohort' UNION
+             SELECT * FROM general_courses INNER JOIN cohort USING (crse_code) WHERE crse_major = '$cohort'";
 
 $confirmar = "SELECT crse_code,  crse_description, crse_credits, crse_grade
                 FROM stdnt_record
@@ -95,11 +108,20 @@ $pdf->SetFont('Arial','',16);
 
 while($row = $resultado1->fetch_assoc()){
     $pdf->SetFillColor(101, 236, 227);
-    $pdf->Cell(40, 10, $row['crse_code'], 3, 0, 'C', 1);
-    $pdf->Cell(105, 10,utf8_decode($row['crse_description']), 3, 0, 'C', 1);
-    $pdf->Cell(27, 10, $row['crse_credits'], 3, 0, 'C', 1);
-    $pdf->Cell(15, 10, '', 3, 1, 'C', 1);
+    $pdf->Cell(40, 10, $row['crse_code'], 1, 0, 'C', 1);
+    $pdf->Cell(105, 10,utf8_decode($row['crse_description']), 1, 0, 'C', 1);
+    $pdf->Cell(27, 10, $row['crse_credits'], 1, 0, 'C', 1);
+    $pdf->Cell(15, 10, '', 1, 1, 'C', 1);
 }
+
+$pdf->Ln(10);
+    $pdf->SetDrawColor(0,0,0);
+    $pdf->SetFillColor(240, 220, 22);
+    $pdf->SetLineWidth(0);
+    $pdf->Cell(40, 10, 'Curso', 1, 0, 'C', 1);
+    $pdf->Cell(105, 10,utf8_decode( 'Descripción'), 1, 0, 'C', 1);
+    $pdf->Cell(27, 10,utf8_decode( 'Créditos'), 1, 0, 'C', 1);
+    $pdf->Cell(15, 10, 'Nota', 1,1,'C',1);
 
 while($row = $resultado2->fetch_assoc()){
     $sql_S ="SELECT * FROM stdnt_record WHERE stdnt_number = '$id' AND crse_code = '{$row['crse_code']}'";
