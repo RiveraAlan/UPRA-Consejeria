@@ -551,11 +551,11 @@ body {
             <div class='grid-container' style='margin-top:0px'>
             <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>
                <i class='fas fa-user-times'></i>
-                No desea
+                NO
             </button>
           <button type='submit' value='1' onclick='student()' name='status-submit'class='btn btn-info btn-sm' href='#'>
           <i class='fas fa-user-plus'></i>
-          Si desea &nbsp;&nbsp;&nbsp;
+          SI &nbsp;&nbsp;&nbsp;
       </button>
       </div> <br>
             <!-- About Me Box -->
@@ -723,7 +723,11 @@ body {
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
-                    }else{
+                    } else if($row_S['crse_status'] == 2){
+                        echo "
+                      <td><a class='w3-button w3-round-xlarge' style='color:white; background-color:#faa85f;  width : 100%'>Matriculado</a></td>
+                    ";}
+                    else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
@@ -824,7 +828,11 @@ body {
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
-                    }else{
+                    }else if($row_S['crse_status'] == 2){
+                      echo "
+                    <td><a class='w3-button w3-round-xlarge' style='color:white; background-color:#faa85f;  width : 100%'>Matriculado</a></td>
+                  ";}
+                    else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
@@ -898,7 +906,11 @@ body {
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
-                    }else{
+                    }else if($row_S['crse_status'] == 2){
+                      echo "
+                    <td><a class='w3-button w3-round-xlarge' style='color:white; background-color:#faa85f;  width : 100%'>Matriculado</a></td>
+                  ";}
+                    else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
@@ -983,7 +995,11 @@ body {
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
-                    }else{
+                    }else if($row_S['crse_status'] == 2){
+                      echo "
+                    <td><a class='w3-button w3-round-xlarge' style='color:white; background-color:#faa85f;  width : 100%'>Matriculado</a></td>
+                  ";}
+                    else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
@@ -1072,7 +1088,11 @@ body {
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
-                    }else{
+                    }else if($row_S['crse_status'] == 2){
+                      echo "
+                    <td><a class='w3-button w3-round-xlarge' style='color:white; background-color:#faa85f;  width : 100%'>Matriculado</a></td>
+                  ";}
+                    else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
@@ -1161,7 +1181,11 @@ body {
                       <input type='hidden' id='crseR_status' name='crseR_status' value='1'>
                       <td><button onclick='recommend()' name='rec-submit' class='w3-button w3-round-xlarge' style='color:white; background-color:#10c13f;  width : 100%'>recomendar</button></td>
                       </form>";
-                    }else{
+                    }else if($row_S['crse_status'] == 2){
+                      echo "
+                    <td><a class='w3-button w3-round-xlarge' style='color:white; background-color:#faa85f;  width : 100%'>Matriculado</a></td>
+                  ";}
+                    else{
                       echo "<td><p style= 'margin-left : 50%'>—</p></td>";
                     }
                     echo"
@@ -1234,8 +1258,8 @@ body {
             
             <h1>Leyenda Botón Recomendación</h1>
             <i>Esta leyenda está relacionada con los colores de los botones de recomendación.</i>
-            <div><a class="leyenda" style="background:#c558c5;"></a> El sistema la recomendó automáticamente</div>
-            <div><a class="leyenda" style="background:#7c657c;"></a> El sistema no la ha recomendado</div>
+            <div><a class="leyenda" style="background:#c72837;"></a> El sistema la recomendó automáticamente</div>
+            <div><a class="leyenda" style="background:#10c13f;"></a> El sistema no la ha recomendado</div>
                <FONT COLOR="red"> <i COLOR="red"><b>Nota Aclaratoria:</b> Si desea cambiar la recomendación presione el botón y el color cambiará automáticamente junto con la recomendación.</i></FONT>
             <h1>Leyenda Convalidación/Equivalencia</h1>
             <i>Esta leyenda está relacionada con las convalidaciones y equivalencias.</i>

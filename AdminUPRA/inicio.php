@@ -431,7 +431,7 @@ margin-left: auto;
                             </form>
                           </ul>
                       </td>
-                      <td class='project-state'>
+                     <td class='project-state'>
                           $conducted_counseling
                       </td>";
                       if($row['record_status'] == 1){

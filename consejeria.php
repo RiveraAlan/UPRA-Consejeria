@@ -351,7 +351,8 @@ $sql ="SELECT adv_comments
                  WHERE stdnt_record.stdnt_number = '$id' AND crse_grade != '' AND crse_grade != 'W' AND crse_grade != 'F' AND crse_grade != 'ID' AND crse_grade != 'IF')) t1";
                     $resultRecom = mysqli_query($conn, $sentenciaSQL);
                     $reco=mysqli_fetch_assoc($resultRecom);
-                
+
+                    $year = date('Y');  
               if ($reco['SUM(C)']=== NULL){
                   $reco['SUM(C)']=0;
               }
@@ -366,7 +367,9 @@ $sql ="SELECT adv_comments
                     Correo: <b>{$_SESSION['stdnt_email']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Semestre: <b>$sem</b><br>
                     Número de Estudiante: <b>{$_SESSION['stdnt_number']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Créditos Aprobados: <b>{$reco['SUM(C)']}</b></b><br></div>";?>
+                    Créditos Aprobados: <b>{$reco['SUM(C)']}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Año de Consejería: <b>$year</b></b>
+                    <br> </div>";?>
                 </div>
               </div>
             </div>
