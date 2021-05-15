@@ -244,7 +244,7 @@ WHERE record_status != 0 AND stdnt_major = '$cohort'";
             foreach($grad_stdnts as $grad_stdnt){
             $count++;
             echo "
-                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. $grad_stdnt</th><br>";
+                &nbsp;&nbsp;&nbsp;&nbsp;<th>$grad_stdnt</th><br>";
                 
         }
       }

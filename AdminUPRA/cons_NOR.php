@@ -197,7 +197,7 @@ if ($resultCheck > 0) {
         while($row = mysqli_fetch_assoc($result)){
              $count++;
             echo "
-                &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
+                &nbsp;&nbsp;&nbsp;&nbsp;<th>{$row['stdnt_email']}</th><br>";
         }}else{
           echo "
         <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes sin realizar consejería!</h4></div>";

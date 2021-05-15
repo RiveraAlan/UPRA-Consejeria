@@ -195,12 +195,11 @@ $crse_code = $_POST['crse_code'];
                 WHERE crse_code = '$crse_code' AND crse_status = 4";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
-                    $count = 0;
+                
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                $count++;
                         echo "
-                        &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
+                        &nbsp;&nbsp;&nbsp;&nbsp;<th>{$row['stdnt_email']}</th><br>";
                         }}else{
                         echo "
                         <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";}}
@@ -218,12 +217,10 @@ $crse_code = $_POST['crse_code'];
                 WHERE crse_code = '$crse_code' AND crse_status = 4";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
-                    $count = 0;
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                $count++;
                         echo "
-                        &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
+                        &nbsp;&nbsp;&nbsp;&nbsp;<th>{$row['stdnt_email']}</th><br>";
                         }}else{
                         echo "
                         <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";}}
@@ -243,12 +240,10 @@ $crse_code = $_POST['crse_code'];
                     
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
-                    $count = 0;
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
-                $count++;
                         echo "
-                        &nbsp;&nbsp;&nbsp;&nbsp;<th>$count. {$row['stdnt_email']}</th><br>";
+                        &nbsp;&nbsp;&nbsp;&nbsp;<th>{$row['stdnt_email']}</th><br>";
                         }}else{
                         echo "
                         <div class='error-message'><h4 style='text-align:center'>¡No hay estudiantes!</h4></div>";}}
