@@ -35,10 +35,11 @@ if($stmt = $conn->prepare("SELECT stdnt_number, stdnt_email, stdnt_password, std
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration stdnt_record to store the hashed passwords.
-        
+        $pass = urlencode($stdnt_password);
+        $pass_crypt = crypt($pass);
         
    
-        if ($_POST['password'] === $stdnt_password) {
+        if ($pass_crypt == crypt($pass, $pass_crypt)) {
             echo "Verification success! User has loggedin!";
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
