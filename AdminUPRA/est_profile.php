@@ -1274,6 +1274,8 @@ body {
   <div id="Historial" class="tabcontent ">
             <section>
             <h1 style='text-align:center'>Historial de Recomendaciones</h1>
+            
+
             <style>
 * {
   box-sizing: border-box;
@@ -1322,11 +1324,30 @@ body {
     <th style="width:30%;">Curso</th>
 
   </tr>
-  <tr>
-    <td>2021</td>
-    <td>Enero-Mayo</td>
-    <td>CCOM3001<td>
-  </tr>
+  <?php
+  $date_year = "SELECT crse_code, date_R FROM stdnt_record WHERE stdnt_number = '$student_id'";
+  $result_year = mysqli_query($conn, $date_year);
+  $resultCheck_year = mysqli_num_rows($result_year);
+  //Saca la fecha actual y nos dice el semestre que viene
+  $date = array();
+
+if($resultCheck_year > 0){
+  while($row = mysqli_fetch_assoc($result_year)){
+    $date = explode("-",$row['date_R']);
+    print_r($date);
+  $year = $date[0];
+  $mes = $date[1];
+  if ($mes<7)
+  $semestre = "Agosto-Diciembre";
+  else 
+  $semestre = "Enero-Mayo";
+      echo " <tr>
+      <td>$year</td>
+      <td>$semestre</td>
+      <td>{$row['crse_code']}<td>
+    </tr>";
+    }}
+  ?>
 </table>
 
 <script>
@@ -1349,8 +1370,9 @@ function myFunction() {
   }
 }
 </script>
-            </section>
-        </div><!-- /.Final de Historial -->
+  </section>
+      </div>
+      <!----------------------------- /.Final de Historial --------------------------------->
 <!-- Modals -->
 <!-- Edit -->
     <div id="id01" class="w3-modal" style="padding-left:20%">
