@@ -28,8 +28,11 @@ if ($stmt = $conn->prepare('SELECT adv_password, adv_name FROM advisor WHERE adv
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
         // =============REMEMBER TO USE PASSWORD ENCRYPTION ====================
-       
-        if ($_POST['password'] === $password) {
+        $pass = urlencode($password);
+        $pass_crypt = crypt($pass);
+        
+   
+        if ($pass_crypt == crypt($pass, $pass_crypt)) {
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
             session_regenerate_id();
