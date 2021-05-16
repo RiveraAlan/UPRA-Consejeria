@@ -608,32 +608,32 @@ body {
                 FROM ((SELECT crse_credits AS C
                 FROM mandatory_courses
                 INNER JOIN  stdnt_record USING(crse_code)
-                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crse_status = 3)
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_courses
                 INNER JOIN stdnt_record USING(crse_code)
-                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crse_status = 3)
                 UNION ALL 
                 (SELECT crse_credits AS C
                 FROM departmental_courses
                 INNER JOIN stdnt_record USING(crse_code)
-                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crse_status = 3)
                 UNION ALL 
                 (SELECT crse_credits AS C
                 FROM general_education_ciso
                 INNER JOIN stdnt_record USING(crse_code)
-                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crse_status = 3)
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM general_education_huma
                 INNER JOIN stdnt_record USING(crse_code)
-                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crse_status = 3)
                 UNION ALL
                 (SELECT crse_credits AS C
                 FROM free_courses
                 INNER JOIN stdnt_record USING(crse_code)
-                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crseR_status = 1)) t1";
+                WHERE stdnt_record.stdnt_number = '$student_id' AND stdnt_record.crse_status = 3)) t1";
                 $resultSUM = mysqli_query($conn, $sentenciaSQL);
                 $creditos=mysqli_fetch_assoc($resultSUM);
                if($creditos['SUM(C)'] < 1){
