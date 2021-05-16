@@ -309,9 +309,9 @@ $sql ="SELECT adv_comments
             </a></div>";
             }  
       ?>
-      <button id='myBtn' class="nav-link" style="background-color: #494E53; border-radius: 5px; border: 0; margin-top: 250px">
+      <a onClick="document.getElementById('id01').style.display='block'" class="nav-link" style="background-color: #494E53; border-radius: 5px; border: 0; margin-top: 250px;cursor: pointer">
               Cambiar Contraseña
-            </button>
+            </a>
       <a href="index.php" class="nav-link" style="background-color: #494E53; border-radius: 5px; border: 0; margin-top: 10px">
               <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               Cerrar Sesión
@@ -324,6 +324,33 @@ $sql ="SELECT adv_comments
   </aside>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                        <div class='modal-header'>
+                                          <h3>Cambiar Contraseña</h3>
+                                        </div>
+                                        <form id="pass_form" action="private/change_pass.php" method="POST">
+                                        <div class='modal-body'>
+                                        <div class='input-group mb-3'>
+                          <input type='password' id='new_pass' class='form-control' placeholder='New Password'>
+                          <input type='password' id='stdnt_password' name='stdnt_password' class='form-control' placeholder=' Confirm Password'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                                       <p id="creditos"></p>
+                                                        </div>
+                                        <div class='modal-footer'><br>
+                                          <div class='login-btn-container'><button onclick='pass()' style='float: right;' class='btn btn-yellow btn-pill'>CONFIRMAR</button></div>
+                                        </form>
+                                          </div>
+                                      </div>
+      </div>
+    </div>
  <!-- Culmina la parte cerrar sesion del student. -->
     <div style="padding-top: 20px; padding-bottom: 20px; margin-left: 15%; margin-top: 0">
         <div class="container">
@@ -485,17 +512,7 @@ $sql ="SELECT adv_comments
                                 </div>
                           </div>
                           </form>
-
-                       <!-- The Modal -->
-<div id="pass" class="modal">
-
-<!-- Modal content -->
-<div class="modal-content">
-  <span class="close">&times;</span>
-  <p>Some text in the Modal..</p>
-</div>
-
-</div>   
+                     
  <!-- Comienza el stdnt_record academico del student. -->
                 <h4 style="text-align: left;">Instrucciones:Para realizar la consejería académica siga los siguientes pasos.</h4> 
                   <br>
@@ -2107,31 +2124,17 @@ function toggle(source) {
                                       </tr> `;
                     }
                   }
-// Get the modal
-var modal = document.getElementById("pass");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+  function pass() {
+    pass1 = document.getElementById("new_pass").value;
+    pass2 = document.getElementById("stdnt_password").value;
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+    if (pass1 == pass2) {
+      document.getElementById("pass_form").submit();
+    }else {
+      alert("Contraseñas no son iguales!");
+    }
   }
-}
   </script>
 <!-- Culmina la parte de los JS. -->
 </div>
