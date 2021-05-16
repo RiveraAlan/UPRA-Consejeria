@@ -416,7 +416,7 @@ margin-left: auto;
                       <td align='center'>
                           {$row['stdnt_number']}
                           <div class='grid-container' style='margin-top:0px'>
-            <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>{$row_origin['stdnt_origin']}</div>
+            <button type='submit' value='0' onclick='edit_origin(`{$row_origin['stdnt_origin']}`, `{$row['stdnt_email']}`, `{$row['stdnt_number']}`, `{$row['stdnt_name']}`, `{$row['stdnt_lastname1']}`, `{$row['stdnt_lastname2']}`)' name='status-submit' class='btn btn-danger btn-sm'>{$row_origin['stdnt_origin']}</div>
             </button>
                       </td>
                       <td align='center'>
@@ -628,8 +628,10 @@ function searchStudent(str){
     }else if(subida == "Manual") {
       document.getElementById('editar_est').innerHTML = `<form action="inc/manual_stdnt.php" method="POST"> <div class='input-group mb-3'>
                   <select name='inicio' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
-                  <option></option>
+                  <option>Regular</option>
                   <option>Traslado</option>
+                  <option>Transferencia</option>
+                  <option>Readmision</option>
                   <option>Reclasificación</option>
                   </select>
                   <br>
@@ -676,6 +678,79 @@ function searchStudent(str){
       <button type='submit' class='btn btn-default' name="Manual" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
               </footer></form>`;
     }
+  }
+
+  function edit_origin(inicio, email, number, name, inicial, last_name1, last_name2){
+    document.getElementById('id04').style.display='block';
+    
+    document.getElementById('editar_est').innerHTML = `<form action="inc/manual_stdnt.php" method="POST"> <div class='input-group mb-3'>
+                  <select id='inicio' name='inicio' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                  <option>Regular</option>
+                  <option>Traslado</option>
+                  <option>Transferencia</option>
+                  <option>Readmision</option>
+                  <option>Reclasificación</option>
+                  </select>
+                  <br>
+                          <input type='text' name='stdnt_email' id='stdnt_email' class='form-control' placeholder='Student Email'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_number' id='number' class='form-control' placeholder='Student Number'>
+                          <input type='text' name='stdnt_password' name='stdnt_password' class='form-control' placeholder='Password'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_name' id='stdnt_name' class='form-control' placeholder='First Name'></input>
+                          <input type='text' name='stdnt_initial' id='stdnt_initial' class='form-control' placeholder='Initial'></input>
+                          <input type='text' name='stdnt_lastname1' id='stdnt_lastname1' class='form-control' placeholder='Last Name'></input>
+                          <input type='text' name='stdnt_lastname2' id='stdnt_lastname2' class='form-control' placeholder='Maiden Name'></input>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                        <select name='cohort_year' id='cohort_year' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                        <?php
+                        $sql = "SELECT DISTINCT cohort_year FROM `cohort` WHERE crse_major = '$cohort'";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
+                        if ($resultCheck > 0) {
+                          $row = mysqli_fetch_assoc($result);
+                          echo "<option value='{$row['cohort_year']}'>{$row['cohort_year']}</option>";
+                        }
+                        ?>
+                          </select>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+      <button type='submit' class='btn btn-default' name="Manual" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer></form>`;  
+              if(inicial == null) {
+                inicial = '';
+              }
+              if(last_name1 == null) {
+                last_name1 = '';
+              }
+              if(last_name2 == null) {
+                last_name2 = '';
+              }
+              document.getElementById("inicio").value = inicio;
+              document.getElementById("stdnt_email").value = email;
+              document.getElementById("number").value = number;
+              document.getElementById("stdnt_name").value = name;
+              document.getElementById("stdnt_initial").value = inicial;
+              document.getElementById("stdnt_lastname1").value = last_name1;
+              document.getElementById("stdnt_lastname2").value = last_name2;
+              
   }
 </script>
 </body>
