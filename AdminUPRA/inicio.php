@@ -402,6 +402,10 @@ margin-left: auto;
               $students = array();
               if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
+                  $origin = "SELECT stdnt_origin FROM student WHERE stdnt_number = '{$row['stdnt_number']}'";
+                  $result_origin = mysqli_query($conn, $origin);
+                  $resultCheck_origin = mysqli_num_rows($result_origin);
+                  $row_origin =  mysqli_fetch_assoc($result_origin);
                   array_push($students, array("stdnt_name" =>$row["stdnt_name"].' '.$row["stdnt_lastname1"].' '.$row["stdnt_lastname2"], "stdnt_number" => $row["stdnt_number"]));
                   if(boolval($row["conducted_counseling"]))
                     $conducted_counseling = "<span class='badge badge-success'>SI</span>";
@@ -411,6 +415,9 @@ margin-left: auto;
                   <tr>
                       <td align='center'>
                           {$row['stdnt_number']}
+                          <div class='grid-container' style='margin-top:0px'>
+            <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>{$row_origin['stdnt_origin']}</div>
+            </button>
                       </td>
                       <td align='center'>
                               {$row['stdnt_name']}
