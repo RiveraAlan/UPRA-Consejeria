@@ -16,7 +16,8 @@ require '../../private/dbconnect.php';
     }
     
     if($resultCheck > 0){
-    $sql = "UPDATE stdnt_record SET crse_status = $crseR_status WHERE stdnt_number = '$stdnt_number' AND crse_code = '$crse_code'";
+    $sql = "UPDATE stdnt_record SET crse_status = $crse_status WHERE stdnt_number = 
+    '$stdnt_number' AND crse_code = '$crse_code'";
     // Prepare statement
     $stmt = $conn->prepare($sql);
     // execute the query
