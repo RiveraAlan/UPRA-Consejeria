@@ -9,6 +9,7 @@ require 'dbconnect.php';
     AND crse_code = '$crse_code'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
+    echo $sql;
               
                 if($resultCheck > 0){
                     $sql = "UPDATE stdnt_record SET crse_R_Status = $estatus 
