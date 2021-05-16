@@ -592,6 +592,7 @@ body {
                 <div class="tab">
                     <button class="tablinks active" onclick="openCity(event, 'file')">Expediente del Estudiante</button>
                     <button class="tablinks" onclick="openCity(event, 'Leyendas')">Leyendas</button>
+                    <button class="tablinks" onclick="openCity(event, 'Historial')">Historial</button>
                   </div>
                 
                   <!-- Tab content -->
@@ -1268,6 +1269,88 @@ body {
             <div><a class="leyenda" style="background:#995d2d;"></a> Completado: Ya recibí respuesta</div>
             </section>
         </div><!-- /.Final de Leyendas -->
+
+  <!-- Comienzo de Historial -->
+  <div id="Historial" class="tabcontent ">
+            <section>
+            <h1 style='text-align:center'>Historial de Recomendaciones</h1>
+            <style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por Año" title="Type in a name">
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:40%;">Año</th>
+    <th style="width:30%;">Semestre</th>
+    <th style="width:30%;">Curso</th>
+
+  </tr>
+  <tr>
+    <td>2021</td>
+    <td>Enero-Mayo</td>
+    <td>CCOM3001<td>
+  </tr>
+</table>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+            </section>
+        </div><!-- /.Final de Historial -->
 <!-- Modals -->
 <!-- Edit -->
     <div id="id01" class="w3-modal" style="padding-left:20%">
