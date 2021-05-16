@@ -1330,23 +1330,26 @@ body {
   $resultCheck_year = mysqli_num_rows($result_year);
   //Saca la fecha actual y nos dice el semestre que viene
   $date = array();
-
+  
 if($resultCheck_year > 0){
   while($row = mysqli_fetch_assoc($result_year)){
-    $date = explode("-",$row['date_R']);
-    print_r($date);
+  if($row['date_R'] != NULL) {
+  $date = explode("-",$row['date_R']);
   $year = $date[0];
   $mes = $date[1];
-  if ($mes<7)
+  if ($mes<7){
   $semestre = "Agosto-Diciembre";
-  else 
+  }else {
   $semestre = "Enero-Mayo";
+  }
       echo " <tr>
       <td>$year</td>
       <td>$semestre</td>
       <td>{$row['crse_code']}<td>
     </tr>";
-    }}
+    }
+  }
+}
   ?>
 </table>
 
