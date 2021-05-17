@@ -124,20 +124,27 @@ $resultCheck_E = mysqli_num_rows($result_E);
         }
         
          if ($row_C['crse_grade'] == NULL || $grade_new < $grade_old){
-            $sql = " UPDATE stdnt_record SET crse_grade = '".$res_grade[0]."' WHERE crse_code = 'CCOM3001' AND stdnt_number = '".$res_num[0]."'" ;
+            $sql = "UPDATE stdnt_record SET crse_grade = '".$res_grade[0]."', crse_status = 1 WHERE crse_code = 'CCOM3001' AND stdnt_number = '".$res_num[0]."'" ;
             // Prepare statement
-            $stmt = $conn->prepare($sql);
+            // $stmt = $conn->prepare($sql);
             // execute the query
-            $stmt->execute();
+            // $stmt->execute();
+            echo $sql;
           }    
          
     } else {
+      if($res_grade[0] != '') {
         $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
         VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 1,'".$res_sem[0]."', 0)";
+      }else {
+        $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_grade, crse_status, semester_pass, crseR_status) 
+        VALUES ('".$res_num[0]."','".$res_code[0]."', '".$res_grade[0]."', 0,'".$res_sem[0]."', 0)";
+      }
+      echo $sql;
         // Prepare statement
-        $stmt = $conn->prepare($sql);
+        // $stmt = $conn->prepare($sql);
         // execute the query
-        $stmt->execute();
+        // $stmt->execute();
     } 
         
       $Subir_Free = "SELECT crse_code FROM mandatory_courses WHERE crse_code = '".$res_code[0]."'
@@ -157,23 +164,34 @@ $resultCheck_E = mysqli_num_rows($result_E);
         if ($row_Free == 0 ){
             $sql = "INSERT INTO free_courses(crse_code, crse_description, crse_credits) VALUES('".$res_code[0]."',NULL, NULL)";
             // Prepare statement
-            $stmt = $conn->prepare($sql);
+            // $stmt = $conn->prepare($sql);
             // execute the query
-            $stmt->execute();
+            // $stmt->execute();
         }
 
+}else {
+  $error = 1;
 }
 }
+if(isset($error)){
+  //exit
+  echo "
+  <form id='error_form' method='POST' action='inicio.php'>
+  <input type='hidden' name='error' value='No se pudo Subir Expediente : Estudiante No Existe!'>
+  </form>
+  <script>
+  document.getElementById('error_form').submit();
+  </script>";
+  exit();
+}else {
 //exit
-// echo '<script type="text/javascript">
-//        window.location.href="inicio.php";
-//        </script>';
-echo "
-<form id='myForm' method='POST' action='inc/Cod_Recomendar.php'>
-<input type='hidden' name='stdnt_number' value='".$res_num[0]."'>
-</form>
-<script>
-document.getElementById('myForm').submit();
-</script>";
-exit();
+// echo "
+// <form id='myForm' method='POST' action='inc/Cod_Recomendar.php'>
+// <input type='hidden' name='stdnt_number' value='".$res_num[0]."'>
+// </form>
+// <script>
+// document.getElementById('myForm').submit();
+// </script>";
+// exit();
+}
 ?>

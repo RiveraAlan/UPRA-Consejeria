@@ -16,6 +16,10 @@ if(!isset($_SESSION['adv_email'])){
   header("Location: index.php");
     exit();
 }
+
+if(isset($_POST['error'])){
+  echo "<script>alert('{$_POST['error']}');</script>";
+}
 $count = 0;
 $sql = "SELECT stdnt_number 
 FROM student INNER JOIN record_details USING (stdnt_number)
