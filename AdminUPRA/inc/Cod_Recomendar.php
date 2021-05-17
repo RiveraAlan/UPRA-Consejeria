@@ -27,6 +27,16 @@ if ($mes<7)
 $semestre = 1;
 else 
 $semestre = 2;
+
+$mydate=getdate(date("U"));
+        if ($mydate[mon] < 10 && $mydate[mday] < 10) 
+        $date = "$mydate[year]-0$mydate[mon]-0$mydate[mday]";
+        else if($mydate[mon] < 10)
+        $date = "$mydate[year]-0$mydate[mon]-$mydate[mday]";
+        else if($mydate[mday] < 10)
+        $date = "$mydate[year]-$mydate[mon]-0$mydate[mday]";
+        else
+        $date = "$mydate[year]-$mydate[mon]-$mydate[mday]";
  
 $sql = "SELECT stdnt_number
         FROM student
@@ -79,7 +89,7 @@ WHERE crse_code = '".$row_SA['crse_code']."' AND crse_major = '$cohort' AND coho
                               }    
                         } 
                       if ($Pre_disp ==  $Cant_Nota) {
-                        $sql_rec = "UPDATE stdnt_record SET crse_status = 3 WHERE stdnt_number= '".$student_id."' AND crse_code = '".$row_SA['crse_code']."' "; 
+                        $sql_rec = "UPDATE stdnt_record SET crse_status = 3, date_R = '$date' WHERE stdnt_number= '".$student_id."' AND crse_code = '".$row_SA['crse_code']."' "; 
                         // Prepare statement
                         $stmt = $conn->prepare($sql_rec);
                         // execute the query
@@ -88,8 +98,8 @@ WHERE crse_code = '".$row_SA['crse_code']."' AND crse_major = '$cohort' AND coho
                     } 
                   }else {
                     if ($row_SA['crse_year'] <= $est_year && ($row_SA['crse_semester'] == $semestre || $row_SA['crse_semester'] == 3)){            
-                      $sql_rec = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_status) 
-                        VALUES ('".$student_id."','".$row_SA['crse_code']."', 3)";
+                      $sql_rec = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_status, date_R) 
+                        VALUES ('".$student_id."','".$row_SA['crse_code']."', 3, '$date')";
                       // Prepare statement
                       $stmt = $conn->prepare($sql_rec);
                       // execute the query
