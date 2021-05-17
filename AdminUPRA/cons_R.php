@@ -131,6 +131,12 @@ if ($resultCheck > 0) {
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
+            <a onclick="document.getElementById('id04').style.display='block'" href="#" class="nav-link">
+               <i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Editar/Crear Estudiante</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
             <a href="lista.php" class="nav-link">
                <i class="fas fa-stopwatch-20"></i>&nbsp;&nbsp;&nbsp;&nbsp;
               <p>Lista de Conteo de Clases</p>
@@ -282,7 +288,29 @@ if ($resultCheck > 0) {
                  </form> 
             </div>
           </div><!-- /.Expediente -->
-    
+    <!----------------------------------------- Editar/Crear Estudiante -------------------------------------------------->
+    <div id='id04' class='w3-modal' style='padding-left:20%'>
+            <div class='w3-modal-content w3-animate-zoom'>
+              <header class='w3-container' style='padding-top:5px'>
+                <span onclick='document.getElementById("id04").style.display="none"'
+                class='w3-button w3-display-topright'>&times;</span>
+                <h3>Editar/Crear Estudiante</h3>
+              </header>
+              <div class='w3-container'>
+                  <br>
+                  <div class="grid-container" style="margin-left: auto; margin-right: auto">
+                <div class='item-1'>
+                          <button name="submit" onClick="subir_est('Automatico')" class='btn btn-primary' style="width: 100%; color: white">Automatico</button>
+                  </div> 
+                <div class='item-2'>
+                          <button onClick="subir_est('Manual')" name="submit" class='btn btn-warning' style="width: 100%; color: white">Manual</button>
+                  </div>
+                  </div>
+                  <div id="editar_est">
+                  
+                  </div>
+            </div>
+          </div><!-- /.Estudiante -->
   </div>
     <!-- /.modales -->
 
@@ -301,6 +329,72 @@ if ($resultCheck > 0) {
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
+<!--SCRIPT DE Editar/Crear Estudiante  -->
+<script>
+function subir_est(subida) {
+    if (subida == "Automatico"){
+      document.getElementById('editar_est').innerHTML = `<form action="" method="POST">
+                  <div>
+                          <input type="file" name="uploadedFile" />
+                  </div>
+                  </form>`;
+                  document.getElementById("est_submit").innerHTML = ``;
+    }else if(subida == "Manual") {
+      document.getElementById('editar_est').innerHTML = `<form action="inc/manual_stdnt.php" method="POST"> <div class='input-group mb-3'>
+                  <select name='inicio' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                  <option>Regular</option>
+                  <option>Traslado</option>
+                  <option>Transferencia</option>
+                  <option>Readmision</option>
+                  <option>Reclasificación</option>
+                  </select>
+                  <br>
+                          <input type='text' name='stdnt_email' class='form-control' placeholder='Student Email'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_number' class='form-control' placeholder='Student Number'>
+                          <input type='text' name='stdnt_password' class='form-control' placeholder='Password'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_name' class='form-control' placeholder='First Name'>
+                          <input type='text' name='stdnt_initial' class='form-control' placeholder='Initial'>
+                          <input type='text' name='stdnt_lastname1' class='form-control' placeholder='Last Name'>
+                          <input type='text' name='stdnt_lastname2' class='form-control' placeholder='Maiden Name'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                        <select name='cohort_year' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                        <?php
+                        $sql = "SELECT DISTINCT cohort_year FROM `cohort` WHERE crse_major = '$cohort'";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
+                        if ($resultCheck > 0) {
+                          $row = mysqli_fetch_assoc($result);
+                          echo "<option value='{$row['cohort_year']}'>{$row['cohort_year']}</option>";
+                        }
+                        ?>
+                          </select>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+      <button type='submit' class='btn btn-default' name="Manual" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer></form>`;
+    }
+  }
+</script>
+<!-- END SCRIPT DE Editar/Crear Estudiante  -->
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
