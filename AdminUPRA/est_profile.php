@@ -428,9 +428,9 @@ body {
               <div class="card-body box-profile">
                     <?php
 
-          $sql_dos = "SELECT stdnt_number, stdnt_email 
+          $sql_dos = "SELECT *
             FROM student INNER JOIN record_details USING (stdnt_number)
-            WHERE record_status != 0 AND stdnt_major = '$cohort'";
+            WHERE record_status != 0 AND stdnt_major = '$cohort' AND stdnt_number = '$student_id'";
                   $result_dos = mysqli_query($conn, $sql_dos);
                   $resultCheck_dos = mysqli_num_rows($result_dos);
                   $row_dos = mysqli_fetch_assoc($result_dos);
@@ -478,7 +478,7 @@ body {
                             $A = date('Y') + 1;
                         else 
                             $A = date('Y');
-                    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major
+                    $sql = "SELECT *
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -543,20 +543,29 @@ body {
                 </div>
               <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-            
-            <button onClick='edit()' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Activar Consejería</button>
-            <br><br>
+            <!-- /.card -->";
+            if ($row_dos['conducted_counseling'] == 1){
+            echo "<form action='inc/act_cons.php' method='POST'><button type='submit' name='activate' value='$student_id' class='w3-button w3-round-xlarge upra-amarillo' style='color:white; width : 100%;'>Activar Consejería</button>
+            <br><br></form>";
+            }
+            echo "
             <h3 style='text-align:center'>Concentración Menor: </h3>
             <div class='grid-container' style='margin-top:0px'>
-            <button type='submit' value='0' onclick='student()' name='status-submit' class='btn btn-danger btn-sm' href='#''>
+            <form action='inc/minor.php' method='POST'>
+            <button type='submit' value='0' name='minor-submit' class='btn btn-danger btn-sm' href='#''>
                <i class='fas fa-user-times'></i>
                 NO
             </button>
-          <button type='submit' value='1' onclick='student()' name='status-submit'class='btn btn-info btn-sm' href='#'>
+          <button type='submit' value='1' name='minor-submit' class='btn btn-info btn-sm' href='#'>
           <i class='fas fa-user-plus'></i>
           SI &nbsp;&nbsp;&nbsp;
-      </button>
+      </button></form>";
+      if ($row_dos['stdnt_minor']) {
+        echo "Activo";
+      }else {
+        echo "Inactivo";
+      }
+      echo "
       </div> <br>
             <!-- About Me Box -->
             <div class='card' >
@@ -641,6 +650,7 @@ body {
                }
            
               if($resultCheck > 0){
+                if ($row_dos['conducted_counseling'] == 0){
                 if($creditos['SUM(C)'] <= 11){
               echo "
               <div class='error-message'><h4 style='text-align:center'>¡Recomendar más créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
@@ -649,6 +659,7 @@ body {
               <div class='error-message'><h4 style='text-align:center'>¡Recomendar menos créditos!&nbsp;&nbsp;&nbsp;El código recomienda : {$creditos['SUM(C)']} créditos</h4></div>";
                 }
               }
+            }
               ?> 
       <div class="card-body">
                 <div align = "center"><h3>Cursos de Concentración</h3></div>

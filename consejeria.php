@@ -575,9 +575,9 @@ $sql ="SELECT adv_comments
                     echo "<td>{$row['crse_credits']}</td>";
                     echo "<td>{$row_S['crse_grade']}</td>";
                     echo "<td>{$row_S['semester_pass']}</td>";
-                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crse_ER_Status'] != 1)){
+                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crseR_status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row_S['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                    <td><button onclick='myFunction(`{$row_S['crse_code']}`)' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
                   }elseif($row_S['crse_equivalence'] != NULL || $row_S['crse_recognition'] != NULL){
                     echo"
                     <td>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
@@ -668,9 +668,9 @@ $sql ="SELECT adv_comments
                     echo "<td>{$row['crse_credits']}</td>";
                     echo "<td>{$row_S['crse_grade']}</td>";
                     echo "<td>{$row_S['semester_pass']}</td>";
-                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crse_ER_Status'] != 1)){
+                    if((($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL)) && ($row_S['crseR_status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row_S['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                    <td><button onclick='myFunction(`{$row_S['crse_code']}`)' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
                   }elseif($row_S['crse_equivalence'] != NULL || $row_S['crse_recognition'] != NULL){
                     echo"
                     <td>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
@@ -992,9 +992,9 @@ $sql ="SELECT adv_comments
                     echo "<td>{$row_S['crse_grade']}</td>";
                      echo "
                     <td>{$row_S['semester_pass']}</td>";
-                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crse_ER_Status'] != 1)){
+                    if(($row_S['crse_equivalence'] != NULL) || ($row_S['crse_recognition'] != NULL) && ($row_S['crseR_status'] != 1)){
                       echo"
-                    <td><button onclick='myFunction({$row_S['crse_code']})' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
+                    <td><button onclick='myFunction(`{$row_S['crse_code']}`)' class='yellow-button' style='color:white; width : 100%'>Confirmar Proceso</button></td>";
                   }elseif($row_S['crse_equivalence'] != NULL || $row_S['crse_recognition'] != NULL){
                     echo"
                     <td>{$row_S['crse_equivalence']}{$row_S['crse_recognition']}</td>";
@@ -1024,7 +1024,7 @@ $sql ="SELECT adv_comments
 
                         <input type='hidden' name='stdnt_number' value='$id'>
                         <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-                        <button id='conv_env_submit' type='submit' class='btn btn-default' name='conv_env-submit' value='' style='float:right; '>Confirmar</button>
+                        <button id='conv_env-submit' value='' type='submit' class='btn btn-default' name='conv_env-submit' style='float:right; '>Confirmar</button>
                         </footer>
                         </form>
                       </div>
@@ -1866,7 +1866,7 @@ function toggle(source) {
           <script>
             function myFunction(className) {
                   console.log(className); 
-                  document.getElementById("conv_env_submit").value = className;
+                  document.getElementById("conv_env-submit").value = className;
                   document.getElementById('equi-conv').style.display='block';
             }
 
