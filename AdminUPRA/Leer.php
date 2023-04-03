@@ -7,14 +7,63 @@ $array = file("Expediente.txt");
 $class = array();
     
 
-foreach ($array as $item) {
-    $parts = explode(";", $item);
+foreach ($array as $item){
+// class code
+preg_match_all("/[A-Z]{4}[A-Z0-9]{4}/", $item, $result_code);
 
-    $res_sem = array(trim($parts[0]));
-    $res_num = array(trim($parts[1]));
-    $class_code_parts = explode('-', trim($parts[2]));
-    $res_code = array($class_code_parts[0]);
-    $res_grade = array(trim($parts[5]));
+$entrada = $result_code[0];
+$pattern = "/[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
+$entrada_dos = preg_replace($pattern, NULL, $entrada);
+$pattern_dos = "/ [)]/i";
+$res_code = preg_replace($pattern_dos, NULL,$entrada_dos);
+
+// num de estudiante 
+preg_match_all("/[0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{4}/", $item, $result_num);
+
+$entrada = $result_num[0];
+$pattern = "/[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
+$entrada_dos = preg_replace($pattern, NULL, $entrada);
+$pattern_dos = "/ [)]/i";
+$res_num = preg_replace($pattern_dos, NULL,$entrada_dos);
+
+// class semester
+preg_match_all("/^[A-Z]{1}[0-9]{2}[;]/", $item, $result_sem);
+
+$entrada = $result_sem[0];
+$pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
+$entrada_dos = preg_replace($pattern, NULL, $entrada);
+$pattern_dos = "/[;]/i";
+$res_sem = preg_replace($pattern_dos, NULL,$entrada_dos);
+
+// class grade
+if (preg_match_all("/[;][A-Z].[;]{1}/", $item, $result_grade)){
+  $entrada = $result_grade[0];
+  // $pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
+  // $entrada_dos = preg_replace($pattern, NULL, $entrada);
+  // echo $entrada_dos[0];
+  $pattern_dos = "/.[;]/i";
+  $entrada_dos = preg_replace($pattern_dos, NULL,$entrada);
+  $pattern_tres = "/[;]/";
+  $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
+} else if (preg_match_all("/[;][A-Z]{1}[*].[;]/", $item, $result_grade)){
+  $entrada = $result_grade[0];
+  $pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
+  $entrada_dos = preg_replace($pattern, NULL, $entrada);
+  $pattern_dos = "/.[;]/i";
+  $entrada_tres = preg_replace($pattern_dos, NULL,$entrada_dos);
+  $pattern_tres = "/[*]/i";
+  $entrada_cuatro = preg_replace($pattern_tres, NULL,$entrada_tres);
+  $pattern_cuatro = "/[;]/";
+  $res_grade = preg_replace($pattern_cuatro, NULL,$entrada_cuatro);
+} else if (preg_match_all("/[;][A-Z]{2}.[;]/", $item, $result_grade)){
+  $entrada = $result_grade[0];
+  $pattern = "/^[A-z]{5} [(] [[][1-90000][\]] [=][>] /i";
+  $entrada_dos = preg_replace($pattern, NULL, $entrada);
+  $pattern_dos = "/.[;]/i";
+  $entrada_dos = preg_replace($pattern_dos, NULL,$entrada);
+  $pattern_tres = "/[;]/";
+  $res_grade = preg_replace($pattern_tres, NULL,$entrada_dos);
+}  
 
 $Existe = "SELECT * FROM `student` WHERE stdnt_number = '{$res_num[0]}'";
 $result_E = mysqli_query($conn, $Existe);
@@ -22,7 +71,6 @@ $resultCheck_E = mysqli_num_rows($result_E);
 
     if($resultCheck_E > 0){
     $Clase = "SELECT *  FROM stdnt_record WHERE crse_code = '".$res_code[0]."' AND stdnt_number = '{$res_num[0]}'";
-    $cohort_year = $row_E['cohort_year'];
     $result_C = mysqli_query($conn, $Clase);
     $resultCheck_C = mysqli_num_rows($result_C);  
          if($resultCheck_C > 0){
@@ -119,6 +167,7 @@ $resultCheck_E = mysqli_num_rows($result_E);
             // execute the query
             $stmt->execute();
         }
+
 }else {
   $error = 1;
 }
