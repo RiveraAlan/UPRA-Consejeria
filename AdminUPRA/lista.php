@@ -199,7 +199,7 @@ if(!isset($_SESSION['adv_email'])){
                                 <tbody>
                                   <form action="firmas.php" method="POST">
                                   <?php
-                                       $sql ="SELECT *
+                                       $sql ="SELECT DISTINCT *
                                         FROM departmental_courses
                                         WHERE crse_major = '$cohort'";
                                         $result = mysqli_query($conn, $sql);
@@ -250,7 +250,7 @@ if(!isset($_SESSION['adv_email'])){
                                 <tbody>
                                 <form action="firmas.php" method="POST">
                                 <?php
-                                       $sql ="SELECT *
+                                       $sql ="SELECT DISTINCT *
                                         FROM cohort INNER JOIN mandatory_courses USING (crse_code)
                                         WHERE crse_major = '$cohort'";
                                         $result = mysqli_query($conn, $sql);
@@ -303,7 +303,7 @@ if(!isset($_SESSION['adv_email'])){
                                 <tbody>
                                 <form action="firmas.php" method="POST">
                                 <?php
-                                       $sql ="SELECT *
+                                       $sql ="SELECT DISTINCT *
                                         FROM cohort INNER JOIN general_courses USING (crse_code)
                                         WHERE crse_major = '$cohort'";
                                         $result = mysqli_query($conn, $sql);

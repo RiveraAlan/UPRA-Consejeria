@@ -420,7 +420,7 @@ margin-left: auto;
                       <td align='center'>
                           {$row['stdnt_number']}
                           <div class='grid-container' style='margin-top:0px'>
-            <button type='submit' value='0' onclick='edit_origin(`{$row_origin['stdnt_origin']}`, `{$row['stdnt_email']}`, `{$row['stdnt_number']}`, `{$row['stdnt_name']}`, `{$row['stdnt_lastname1']}`, `{$row['stdnt_lastname2']}`)' name='status-submit' class='btn btn-danger btn-sm'>{$row_origin['stdnt_origin']}</div>
+            <button type='submit' value='0' onclick='edit_stdnt(`{$row_origin['stdnt_origin']}`, `{$row['stdnt_email']}`, `{$row['stdnt_number']}`, `{$row['stdnt_name']}`, `{$row['stdnt_lastname1']}`, `{$row['stdnt_lastname2']}`)' name='status-submit' class='btn btn-danger btn-sm'>{$row_origin['stdnt_origin']}</div>
             </button>
                       </td>
                       <td align='center'>
@@ -563,8 +563,8 @@ margin-left: auto;
                 class='w3-button w3-display-topright'>&times;</span>
                 <h3>Editar/Crear Estudiante</h3>
               </header>
-              <div class='w3-container'>
-                  <br>
+             <div class='w3-container'>
+                 <!--   <br>
                   <div class="grid-container" style="margin-left: auto; margin-right: auto">
                 <div class='item-1'>
                           <button name="submit" onClick="subir_est('Automatico')" class='btn btn-primary' style="width: 100%; color: white">Automatico</button>
@@ -572,9 +572,76 @@ margin-left: auto;
                 <div class='item-2'>
                           <button onClick="subir_est('Manual')" name="submit" class='btn btn-warning' style="width: 100%; color: white">Manual</button>
                   </div>
-                  </div>
+                  </div> -->
                   <div id="editar_est">
-                  
+                            <form action="inc/manual_stdnt.php" method="POST"> <div class='input-group mb-3'>
+                              <p>Seleccione estudiante para editar :</p>
+                              <select id='editar_estudiante' onchange='edit_estudiante()' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                              <option value='none'></option>
+                        <?php
+                        $sql = "SELECT * FROM `student`";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
+                        if ($resultCheck > 0) {
+                          while($row = mysqli_fetch_assoc($result)){
+                            echo "<option inicio='{$row_origin['stdnt_origin']}' email='{$row['stdnt_email']}' number='{$row['stdnt_number']}' name='{$row['stdnt_name']}' inicial='{$row['stdnt_initial']}' lastname1='{$row['stdnt_lastname1']}' lastname2='{$row['stdnt_lastname2']}'>{$row['stdnt_name']} {$row['stdnt_lastname1']} {$row['stdnt_lastname2']}</option>";
+                          }
+                        }
+                        ?>
+                          </select>
+            </button>
+                          <br>
+                  <select name='inicio' id='inicio' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                  <option>Regular</option>
+                  <option>Traslado</option>
+                  <option>Transferencia</option>
+                  <option>Readmision</option>
+                  <option>Reclasificación</option>
+                  </select>
+                  <br>
+                          <input type='text' name='stdnt_email' id='stdnt_email' class='form-control' placeholder='Student Email'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_number' id='stdnt_number' class='form-control' placeholder='Student Number'>
+                          <input type='text' name='stdnt_password' id='stdnt_password' class='form-control' placeholder='Password'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class='input-group mb-3'>
+                          <input type='text' name='stdnt_name' id='stdnt_name' class='form-control' placeholder='First Name'>
+                          <input type='text' name='stdnt_initial' id='stdnt_initial' class='form-control' placeholder='Initial'>
+                          <input type='text' name='stdnt_lastname1' id='stdnt_lastname1' class='form-control' placeholder='Last Name'>
+                          <input type='text' name='stdnt_lastname2' id='stdnt_lastname2' class='form-control' placeholder='Maiden Name'>
+                          <div class='input-group-append'>
+                            <div class='input-group-text'>
+                              <span class='fas fa-comment-dots'></span>
+                            </div>
+                          </div>
+                        </div>
+                        <select name='cohort_year' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+                        <?php
+                        $sql = "SELECT DISTINCT cohort_year FROM `cohort` WHERE crse_major = '$cohort'";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
+                        if ($resultCheck > 0) {
+                          while($row = mysqli_fetch_assoc($result)){
+                            echo "<option value='{$row['cohort_year']}'>{$row['cohort_year']}</option>";
+                          }
+                        }
+                        ?>
+                          </select>
+              </div>
+              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+      <button type='submit' class='btn btn-default' name="Manual" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+              </footer></form>
                   </div>
             </div>
           </div><!-- /.Estudiante -->
@@ -622,66 +689,78 @@ function searchStudent(str){
 }    
 
   function subir_est(subida) {
-    if (subida == "Automatico"){
-      document.getElementById('editar_est').innerHTML = `<form action="" method="POST">
-                  <div>
-                          <input type="file" name="uploadedFile" />
-                  </div>
-                  </form>`;
-                  document.getElementById("est_submit").innerHTML = ``;
-    }else if(subida == "Manual") {
-      document.getElementById('editar_est').innerHTML = `<form action="inc/manual_stdnt.php" method="POST"> <div class='input-group mb-3'>
-                  <select name='inicio' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
-                  <option>Regular</option>
-                  <option>Traslado</option>
-                  <option>Transferencia</option>
-                  <option>Readmision</option>
-                  <option>Reclasificación</option>
-                  </select>
-                  <br>
-                          <input type='text' name='stdnt_email' class='form-control' placeholder='Student Email'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                  <div class='input-group mb-3'>
-                          <input type='text' name='stdnt_number' class='form-control' placeholder='Student Number'>
-                          <input type='text' name='stdnt_password' class='form-control' placeholder='Password'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                  <div class='input-group mb-3'>
-                          <input type='text' name='stdnt_name' class='form-control' placeholder='First Name'>
-                          <input type='text' name='stdnt_initial' class='form-control' placeholder='Initial'>
-                          <input type='text' name='stdnt_lastname1' class='form-control' placeholder='Last Name'>
-                          <input type='text' name='stdnt_lastname2' class='form-control' placeholder='Maiden Name'>
-                          <div class='input-group-append'>
-                            <div class='input-group-text'>
-                              <span class='fas fa-comment-dots'></span>
-                            </div>
-                          </div>
-                        </div>
-                        <select name='cohort_year' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
-                        <?php
-                        $sql = "SELECT DISTINCT cohort_year FROM `cohort` WHERE crse_major = '$cohort'";
-                        $result = mysqli_query($conn, $sql);
-                        $resultCheck = mysqli_num_rows($result);
-                        if ($resultCheck > 0) {
-                          $row = mysqli_fetch_assoc($result);
-                          echo "<option value='{$row['cohort_year']}'>{$row['cohort_year']}</option>";
-                        }
-                        ?>
-                          </select>
-              </div>
-              <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
-      <button type='submit' class='btn btn-default' name="Manual" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
-              </footer></form>`;
-    }
+    // if (subida == "Automatico"){
+    //   document.getElementById('editar_est').innerHTML = `<form action="" method="POST">
+    //               <div>
+    //                       <input type="file" name="uploadedFile" />
+    //               </div>
+    //               </form>`;
+    //               document.getElementById("est_submit").innerHTML = ``;
+    // }else if(subida == "Manual") {
+    //   document.getElementById('editar_est').innerHTML = `<form action="inc/manual_stdnt.php" method="POST"> <div class='input-group mb-3'>
+    //               <select name='inicio' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+    //               <option>Regular</option>
+    //               <option>Traslado</option>
+    //               <option>Transferencia</option>
+    //               <option>Readmision</option>
+    //               <option>Reclasificación</option>
+    //               </select>
+    //               <br>
+    //                       <input type='text' name='stdnt_email' class='form-control' placeholder='Student Email'>
+    //                       <div class='input-group-append'>
+    //                         <div class='input-group-text'>
+    //                           <span class='fas fa-comment-dots'></span>
+    //                         </div>
+    //                       </div>
+    //                     </div>
+    //               <div class='input-group mb-3'>
+    //                       <input type='text' name='stdnt_number' class='form-control' placeholder='Student Number'>
+    //                       <input type='text' name='stdnt_password' class='form-control' placeholder='Password'>
+    //                       <div class='input-group-append'>
+    //                         <div class='input-group-text'>
+    //                           <span class='fas fa-comment-dots'></span>
+    //                         </div>
+    //                       </div>
+    //                     </div>
+    //               <div class='input-group mb-3'>
+    //                       <input type='text' name='stdnt_name' class='form-control' placeholder='First Name'>
+    //                       <input type='text' name='stdnt_initial' class='form-control' placeholder='Initial'>
+    //                       <input type='text' name='stdnt_lastname1' class='form-control' placeholder='Last Name'>
+    //                       <input type='text' name='stdnt_lastname2' class='form-control' placeholder='Maiden Name'>
+    //                       <div class='input-group-append'>
+    //                         <div class='input-group-text'>
+    //                           <span class='fas fa-comment-dots'></span>
+    //                         </div>
+    //                       </div>
+    //                     </div>
+    //                     <select name='cohort_year' style="width: 100%; height: 30px; border-color: #d3d3d3; border-style:solid; border-width: 1px; border-radius: 5px">
+    //                     <?php
+    //                     $sql = "SELECT DISTINCT cohort_year FROM `cohort` WHERE crse_major = '$cohort'";
+    //                     $result = mysqli_query($conn, $sql);
+    //                     $resultCheck = mysqli_num_rows($result);
+    //                     if ($resultCheck > 0) {
+    //                       $row = mysqli_fetch_assoc($result);
+    //                       echo "<option value='{$row['cohort_year']}'>{$row['cohort_year']}</option>";
+    //                     }
+    //                     ?>
+    //                       </select>
+    //           </div>
+    //           <footer class='w3-container' style='padding-bottom:10px; padding-top:10px'>
+    //   <button type='submit' class='btn btn-default' name="Manual" value="Upload" onclick='history.go(0)' style='float:right; '>APLICAR</button>
+    //           </footer></form>`;
+    // }
+  }
+
+  function edit_estudiante() {
+    var e = document.getElementById("editar_estudiante");
+    var option= e.options[e.selectedIndex];
+    document.getElementById("inicio").value = option.getAttribute('inicio');
+    document.getElementById("stdnt_email").value = option.getAttribute('email');
+    document.getElementById("stdnt_number").value = option.getAttribute('number');
+    document.getElementById("stdnt_initial").value = option.getAttribute('inicial');
+    document.getElementById("stdnt_name").value = option.getAttribute('name');
+    document.getElementById("stdnt_lastname2").value = option.getAttribute('lastname2');
+    document.getElementById("stdnt_lastname1").value = option.getAttribute('lastname1');
   }
 
   function edit_origin(inicio, email, number, name, inicial, last_name1, last_name2){
