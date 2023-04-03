@@ -26,15 +26,6 @@ if ($resultCheck > 0) {
 $query = "SELECT * FROM stdnt_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
 $result = mysqli_query($conn, $query);
 $resultCheck = mysqli_num_rows($result);
-
-$query = "SELECT cohort_year FROM student WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
-$result = mysqli_query($conn, $query);
-$resultCheck = mysqli_num_rows($result);
-if ($resultCheck > 0) {
-  $row = mysqli_fetch_assoc($result);
-  $yearofcohort = $row['cohort_year'];
-}
-
 $isRecordPresentInDB = FALSE;
 
 if($resultCheck > 0)
@@ -445,7 +436,7 @@ body {
 
           $sql_dos = "SELECT *
             FROM student INNER JOIN record_details USING (stdnt_number)
-            WHERE record_status != 0 AND stdnt_major = '$cohort' AND cohort_year = '$yearofcohort' AND stdnt_number = '$student_id'";
+            WHERE record_status != 0 AND stdnt_major = '$cohort' AND stdnt_number = '$student_id'";
                   $result_dos = mysqli_query($conn, $sql_dos);
                   $resultCheck_dos = mysqli_num_rows($result_dos);
                   $row_dos = mysqli_fetch_assoc($result_dos);
@@ -623,7 +614,7 @@ body {
     <div id="file" class="tabcontent active">
     <section class="content">
     <?php
-    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major,cohort_year
+    $sql = "SELECT stdnt_number, stdnt_email, stdnt_lastname1, stdnt_lastname2, stdnt_name, stdnt_initial, stdnt_major
                     FROM student WHERE stdnt_number = '$student_id'";
                   $result = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($result);
@@ -697,7 +688,7 @@ body {
                   <?php
                   $sql = "SELECT *
                       FROM mandatory_courses INNER JOIN cohort USING (crse_code)
-                      WHERE crse_major = '$cohort' AND cohort_year = '$yearofcohort'";
+                      WHERE crse_major = '$cohort'";
                       $result = mysqli_query($conn, $sql);
                       $resultCheck = mysqli_num_rows($result);
              
@@ -708,6 +699,7 @@ body {
                       FROM mandatory_courses INNER JOIN stdnt_record USING (crse_code) 
                       WHERE stdnt_number = '$student_id' AND crse_code = '{$row['crse_code']}'";
                       $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                     
                     
@@ -802,19 +794,22 @@ body {
                 <?php
                     
                     $sql =" SELECT *
-                    FROM GENERAL_courses JOIN cohort USING (crse_code)
-                    WHERE crse_major = '$cohort' AND cohort_year = '$yearofcohort'";
+                    FROM GENERAL_courses INNER JOIN cohort USING (crse_code)
+                    WHERE crse_major = '$cohort'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
-    
+                      
+                      
                 if($resultCheck > 0){
                 while($row = mysqli_fetch_assoc($result)){
                     
                      $sql_S ="SELECT *
-                      FROM general_courses  JOIN stdnt_record USING (crse_code)
+                      FROM GENERAL_courses INNER JOIN stdnt_record USING (crse_code) 
                       WHERE stdnt_number = '$student_id' AND crse_code = '{$row['crse_code']}'";
                       $result_S = mysqli_query($conn, $sql_S);
+                      $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
+                    
                   if($row_S['crseR_status'] == 0){
                     $color = '#eeddd2';
                    }elseif($row_S['crseR_status'] == 1){
@@ -979,7 +974,7 @@ body {
                         FROM departmental_courses INNER JOIN stdnt_record USING (crse_code)
                         WHERE stdnt_number = '$student_id' AND crse_code = '{$row['crse_code']}'";
                       $result_S = mysqli_query($conn, $sql_S);
-                    
+                      $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                     
             if($row_S['crseR_status'] == 0){
@@ -1165,7 +1160,7 @@ body {
                         FROM general_education_HUMA INNER JOIN stdnt_record USING (crse_code)
                         WHERE stdnt_number = '$student_id' AND crse_code = '{$row['crse_code']}'";
                       $result_S = mysqli_query($conn, $sql_S);
-                     
+                      $resultCheck_S = mysqli_num_rows($result_S);
                       $row_S = mysqli_fetch_assoc($result_S);
                     
             if($row_S['crseR_status'] == 0){
