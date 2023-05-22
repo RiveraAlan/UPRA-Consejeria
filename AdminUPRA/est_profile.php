@@ -9,11 +9,11 @@ if(isset($_GET["stdnt_number"])){
 }
 $advisor_id = $_SESSION['adv_email'];
 
-if(!isset($student_id)){
+if(!isset($_SESSION['adv_email'])){
   header("Location: index.php");
     exit();
 }
-
+$stdnt_number = $_GET['stdnt_number'];
 $sql = "SELECT adv_major FROM `advisor` WHERE adv_email = '$advisor_id'";
 $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
@@ -23,11 +23,10 @@ if ($resultCheck > 0) {
 }
 
 
-$query = "SELECT * FROM stdnt_record WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
+$query = "SELECT * FROM stdnt_record WHERE  stdnt_number = $stdnt_number";
 $result = mysqli_query($conn, $query);
 $resultCheck = mysqli_num_rows($result);
-
-$query = "SELECT cohort_year FROM student WHERE  stdnt_number = '$_SESSION[stdnt_number]'";
+$query = "SELECT cohort_year FROM student WHERE  stdnt_number = '$stdnt_number'";
 $result = mysqli_query($conn, $query);
 $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {

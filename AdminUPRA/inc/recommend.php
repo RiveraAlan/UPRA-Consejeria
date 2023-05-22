@@ -32,7 +32,7 @@ require 'connection.php';
     // execute the query
     $stmt->execute();
     //exit
-    header("Location: ../est_profile.php");
+   header("Location: ../est_profile.php?stdnt_number=" . $stdnt_number);
     exit();
     } else {
         $sql = "INSERT INTO stdnt_record (stdnt_number, crse_code, crse_status, date_R) 
@@ -42,7 +42,8 @@ require 'connection.php';
     // execute the query
     $stmt->execute();
     //exit
-    header("Location: ../est_profile.php");
+   header("Location: ../est_profile.php?stdnt_number=" . $stdnt_number);
+
     exit();
     }
 }

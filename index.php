@@ -112,11 +112,11 @@ if(isset($_SESSION['stdnt_number'])){
                     <form action="private/auth.php" method="post" class="form-box">
                     <h3 class="h4 text-black mb-4">Iniciar Sesión</h3>
              <?php 
-                if(isset($_GET['isEmailEmpty']) || isset($_GET['isPasswordEmpty'])){
-                    echo '<div class="error-message">¡Por favor rellenar ambos campos!</div>';
+                if(isset($_GET['isEmailEmpty']) || isset($_GET['isStudentNumberEmpty']) || isset($_GET['isDobEmpty'])){
+                    echo '<div class="error-message">¡Por favor rellenar todos los campos!</div>';
                 } 
                 if(isset($_GET['isAuthFailed'])){
-                    echo '<div class="error-message">¡Correo electrónico y/o Contraseña incorrecta!</div>';
+                    echo '<div class="error-message">¡Correo electrónico, Numero de Estudiante o Fecha de Nacimiento Incorrecta!</div>';
                 }
                 ?>
               <div class="form-group">
@@ -124,11 +124,20 @@ if(isset($_SESSION['stdnt_number'])){
                  <input type="email" name="email"  class="form-control <?= isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty'] ? 'form-input-invalid' : 'form-input'?>">
                  <?php if(isset($_GET['isEmailEmpty']) && $_GET['isEmailEmpty']) echo '<p class="text-field-error">Por favor proveer Correo Electrónico</p>'?>
               </div>
-              <div class="form-group">
-                <label for="" class="form-group-label">Contraseña</label>
-                <input type="password" name="password" id="" class="form-control <?= isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty'] ? 'form-input-invalid' : 'form-input'?>">
-                <?php if(isset($_GET['isPasswordEmpty']) && $_GET['isPasswordEmpty']) echo '<p class="text-field-error">Por favor proveer contraseña</p>'?>
-              </div>
+              <!-- Student Number -->
+                        <div class="form-group">
+    <label for="stdnt_number" class="form-group-label">Numero de Estudiante</label>
+    <input type="text" name="stdnt_number" id="stdnt_number" class="form-control <?= isset($_GET['isStudentNumberEmpty']) && $_GET['isStudentNumberEmpty'] ? 'form-input-invalid' : 'form-input'?>">
+    <?php if(isset($_GET['isStudentNumberEmpty']) && $_GET['isStudentNumberEmpty']) echo '<p class="text-field-error">Por favor proveer Numero de Estudiante</p>'?>
+                        </div>
+
+                        <!-- Date of Birth -->
+        <div class="form-group">
+    <label for="dob" class="form-group-label">Fecha de Nacimiento</label>
+    <input type="date" name="dob" id="dob" class="form-control">
+         <?php if(isset($_GET['isDobEmpty']) && $_GET['isDobEmpty']) echo '<p class="text-field-error">Por favor proveer Fecha de Nacimiento</p>'?>
+        </div>
+
                <div class="login-btn-container"><button type="submit" class="btn btn-yellow btn-pill">Iniciar Sesión</button></div>
          </form>
                 </div>

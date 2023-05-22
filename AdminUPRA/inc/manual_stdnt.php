@@ -12,16 +12,16 @@ session_start();
     $cohort = $row['adv_major'];
     }
     $stdnt_email = mysqli_real_escape_string($conn, $_POST['stdnt_email']);
-    $stdnt_password = mysqli_real_escape_string($conn, $_POST['stdnt_password']);
     $stdnt_number = mysqli_real_escape_string($conn, $_POST['stdnt_number']);
     $stdnt_name = mysqli_real_escape_string($conn, $_POST['stdnt_name']);
     $stdnt_initial = mysqli_real_escape_string($conn, $_POST['stdnt_initial']);
     $stdnt_lastname1 = mysqli_real_escape_string($conn, $_POST['stdnt_lastname1']);
     $stdnt_lastname2 = mysqli_real_escape_string($conn, $_POST['stdnt_lastname2']);
     $cohort_year = mysqli_real_escape_string($conn, $_POST['cohort_year']);
+    $stdnt_dob = mysqli_real_escape_string($conn, $_POST['dob']);
     $stdnt_origin = mysqli_real_escape_string($conn, $_POST['inicio']);
-    
-    $encrypted = crypt($stdnt_password);
+  
+   
     $date = getdate(date("U"));
 
     $sql = "SELECT stdnt_number FROM `student` WHERE stdnt_number = '$stdnt_number'";
@@ -30,7 +30,7 @@ session_start();
 
     if ($resultCheck > 0) {
         $sql = "UPDATE student SET stdnt_email = '$stdnt_email', stdnt_password = '$encrypted', stdnt_lastname1 = '$stdnt_lastname1', 
-        stdnt_lastname2 = '$stdnt_lastname2', stdnt_name = '$stdnt_name', stdnt_initial = '$stdnt_initial', stdnt_major = '$cohort', cohort_year = $cohort_year, stdnt_origin = '$stdnt_origin' WHERE stdnt_number = '$stdnt_number'";
+        stdnt_lastname2 = '$stdnt_lastname2', stdnt_name = '$stdnt_name', stdnt_initial = '$stdnt_initial', stdnt_major = '$cohort', cohort_year = $cohort_year, stdnt_origin = '$stdnt_origin',stdnt_dob = '$stdnt_dob' WHERE stdnt_number = '$stdnt_number'";
         // Prepare statement
         $stmt = $conn->prepare($sql);
         // execute the query
@@ -39,8 +39,8 @@ session_start();
         header("Location: ../inicio.php");
         exit();
     }else {
-        $sql = "INSERT INTO Student (stdnt_email,stdnt_password,stdnt_number, stdnt_lastname1, stdnt_lastname2,stdnt_name, stdnt_initial, stdnt_major, cohort_year, stdnt_origin) 
-        values('$stdnt_email', '$encrypted' ,'$stdnt_number', '$stdnt_lastname1', '$stdnt_lastname2', '$stdnt_name', '$stdnt_initial', '$cohort', $cohort_year, '$stdnt_origin');";
+        $sql = "INSERT INTO Student (stdnt_email,stdnt_password,stdnt_number, stdnt_lastname1, stdnt_lastname2,stdnt_name, stdnt_initial, stdnt_major, cohort_year, stdnt_origin,stdnt_dob) 
+        values('$stdnt_email', '$encrypted' ,'$stdnt_number', '$stdnt_lastname1', '$stdnt_lastname2', '$stdnt_name', '$stdnt_initial', '$cohort', $cohort_year, '$stdnt_origin', '$stdnt_dob');";
         // Prepare statement
         $stmt = $conn->prepare($sql);
         // execute the query
